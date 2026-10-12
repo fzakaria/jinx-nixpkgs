@@ -29,40 +29,40 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "autossh"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         autossh: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           sessions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     options: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           example: "socks-peer",
                           description: "Name of the local AutoSSH session",
                         })))),
                       user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           example: "bill",
                           description: "Name of the user the AutoSSH session should run as",
                         })))),
                       monitoringPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 0n,
                           example: 20000n,
                           description: "Port to be used by AutoSSH for peer monitoring. Note, that\nAutoSSH also uses mport+1. Value of 0 disables the keep-alive\nstyle monitoring\n",
                         })))),
                       extraArguments: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "separatedString"), " ")),
                           example: "-N -D4343 bill@socks.example.net",
                           description: "Arguments to be passed to AutoSSH and retransmitted to SSH\nprocess. Some meaningful options include -N (don't run remote\ncommand), -D (open SOCKS proxy on local port), -R (forward\nremote port), -L (forward local port), -v (Enable debug). Check\nssh manual for the complete list.\n",
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
               description: "List of AutoSSH sessions to start as systemd services. Each service is\nnamed 'autossh-{session.name}'.\n",
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   name: "socks-peer",
                   user: "bill",
                   monitoringPort: 20000n,
@@ -85,20 +85,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "sessions"), [])), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => nix.app(nix.sel(lib, "foldr"), (s) => (acc) => nix.update(acc, nix.attrsDyn({}, [
               [nix.str`autossh-${nix.sel(s, "name")}`, nix.thunk(() => (() => {
                 const mport = nix.thunk(() => (nix.asBool(nix.has(s, "monitoringPort")) ? nix.sel(s, "monitoringPort") : 0n));
                 return {
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   description: nix.thunk(() => nix.add(nix.add("AutoSSH session (", nix.sel(s, "name")), ")")),
                   after: nix.thunk(() => ["network.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
-                  environment: nix.thunk(() => ({ __proto__: pos$12, AUTOSSH_GATETIME: "0", AUTOSSH_POLL: "30" })),
+                  environment: nix.thunk(() => ({ [nix.POS]: pos$12, AUTOSSH_GATETIME: "0", AUTOSSH_POLL: "30" })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     User: nix.thunk(() => nix.str`${nix.sel(s, "user")}`),
                     Restart: "on-success",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "autossh")}/bin/autossh -M ${nix.builtins.toString(mport)} ${nix.sel(s, "extraArguments")}`),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
             ])), nix.thunk(() => ({})), nix.thunk(() => nix.sel(cfg, "sessions")))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "autossh"))]),
         })),
       })))),

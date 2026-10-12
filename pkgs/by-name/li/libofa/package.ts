@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.3";
       const deb_patch = "5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/musicip-libofa/libofa-${version}.tar.gz`),
           sha256: "184ham039l7lwhfgg0xr2vch2xnw1lwh7sid432mh879adhlc5h2",
         }))));
       const debian_patches = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/libo/libofa/libofa_${version}-${deb_patch}.debian.tar.gz`),
           hash: "sha256-tENhXSRcUP1PKm35IJyLUEEROze8UzxJzRx3VNAqo40=",
         }))));
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const preConfigure = "configureFlagsArray=(--includedir=$dev/include --libdir=$out/lib)\n";
       const propagatedBuildInputs = nix.thunk(() => [expat, curl, fftw]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://code.google.com/archive/p/musicip-libofa/",
         description: "Library Open Fingerprint Architecture",
         longDescription: "LibOFA (Library Open Fingerprint Architecture) is an open-source audio\nfingerprint created and provided by MusicIP",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         deb_patch,

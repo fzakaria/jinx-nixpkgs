@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const sanic = nix.arg($, "sanic");
   const opts = nix.thunk(() => (nix.asBool(routerFeatures) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     prePatch: "substituteInPlace ./setup.py --replace-fail \"extra_deps = []\" \"extra_deps = router_feature_deps\"\n",
     extraBuildInputs: nix.thunk(() => [janus, ncclient, paramiko]),
-  } : { __proto__: pos$2, prePatch: "", extraBuildInputs: [] }));
+  } : { [nix.POS]: pos$2, prePatch: "", extraBuildInputs: [] }));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname = "entrance";
       const version = "1.1.21";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: pname,
           version: version,
           hash: "sha256-1rKQPIhnVVtM93K3Ppg+m4/L4k0YD+mcE9bZhDmfmbo=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => nix.concat([pyyaml, sanic], nix.sel(opts, "extraBuildInputs")));
       const prePatch = nix.thunk(() => nix.sel(opts, "prePatch"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Server framework for web apps with an Elm frontend",
         homepage: "https://github.com/ensoft/entrance",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

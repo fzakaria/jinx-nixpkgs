@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const nix_update = nix.arg($, "nix-update");
   const cuda = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "bend2-cuda",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(cudaPackages, null);
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bend2",
       version: "2.0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://bend-lang.com/dl/${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-TbcOd84bECfx0OFd7gJZIfp5SptBWt1DUOx8ZKzyd1s=",
         })))),
@@ -88,14 +88,14 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-bend2", nix.thunk(() => nix.str`set -euo pipefail
 version=$(${nix.app(nix.sel(lib, "getExe"), curl)} -fsSL https://bend-lang.com/dl/latest.json | ${nix.app(nix.sel(lib, "getExe"), jq)} -r .ver)
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} bend2 --version "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Dependently typed, affine language that verifies proofs and runs on CPU threads and GPUs",
         homepage: "https://bend-lang.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tantivy-go",
       version: "1.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anyproto",
           repo: "tantivy-go",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,10 +27,10 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/rust`),
       cargoLock: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         lockFile: nix.path(here, "./Cargo.lock"),
         outputHashes: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "rust-stemmers-1.2.0": "sha256-GJYFQf025U42rJEoI9eIi3xDdK6enptAr3jphuKJdiw=",
           "tantivy-0.23.0": "sha256-e2ffM2gRC5eww3xv9izLqukGUgduCt2u7jsqTDX5l8k=",
           "tantivy-jieba-0.11.0": "sha256-BDz6+EVksgLkOj/8XXxPMVshI0X1+oLt6alDLMpnLZc=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
 chmod +w ../bindings.h
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tantivy go bindings",
         homepage: "https://github.com/anyproto/tantivy-go",
         changelog: nix.thunk(() => nix.str`https://github.com/anyproto/tantivy-go/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

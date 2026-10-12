@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xylib",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/wojdyr/xylib/releases/download/v${nix.sel(finalAttrs, "version")}/xylib-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1iqfrfrk78mki5csxysw86zm35ag71w0jvim0f12nwq1z8rwnhdn",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-wx-config=${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), wxwidgets_3_2)), "wx-config")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Portable library for reading files that contain x-y data from powder diffraction, spectroscopy and other experimental methods",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         homepage: "https://xylib.sourceforge.net/",

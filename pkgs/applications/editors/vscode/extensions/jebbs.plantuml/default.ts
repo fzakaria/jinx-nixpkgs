@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "plantuml",
         publisher: "jebbs",
         version: "2.18.1",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
 jq '.contributes.configuration.properties."plantuml.java".default = "${plantuml}/bin/plantuml"' package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Visual Studio Code extension for supporting Rich PlantUML",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml",
         homepage: "https://github.com/qjebbs/vscode-plantuml",

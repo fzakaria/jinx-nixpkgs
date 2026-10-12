@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libunibreak",
       version: "7.0",
       src: nix.thunk(() => (() => {
         const rev_version = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version"))));
         return nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "adah1972",
             repo: "libunibreak",
             tag: nix.thunk(() => nix.str`libunibreak_${rev_version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       })()),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/adah1972/libunibreak",
         changelog: nix.thunk(() => nix.str`https://github.com/adah1972/libunibreak/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "Implementation of line breaking and word breaking algorithms as in the Unicode standard",

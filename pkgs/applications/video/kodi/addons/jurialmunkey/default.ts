@@ -20,23 +20,23 @@ export default nix.lambda((args) => (() => {
       const namespace = "script.module.jurialmunkey";
       const version = "0.2.35";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jurialmunkey",
           repo: namespace,
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-3qcLh1vZ4Y7Sf5NHl4j6cmb+n6KodwOBjmBmHLDinCY=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [requests, infotagger]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, pythonPath: "resources/modules" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, pythonPath: "resources/modules" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/jurialmunkey/script.module.jurialmunkey/tree/main",
         description: "Common code required by TMDbHelper and other related jurialmunkey add-ons",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         namespace,
         version,

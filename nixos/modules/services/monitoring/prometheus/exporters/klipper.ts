@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const moonraker = nix.thunk(() => nix.sel(config, "services", "moonraker"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     port: 9101n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "prometheus-klipper-exporter", nix.thunk(() => ({})))),
       moonrakerApiKey: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "",
           description: "API Key to authenticate with the Moonraker APIs.\nOnly needed if the host running the exporter is not a trusted client to Moonraker.\n",
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
     })),
     serviceOpts: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => nix.concat([
         nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           serviceConfig: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             ExecStart: nix.thunk(() => nix.app(concatStringsSep, " ", nix.thunk(() => [
                 nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/prometheus-klipper-exporter`),
                 nix.thunk(() => nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(cfg, "moonrakerApiKey"), "")), nix.thunk(() => nix.str`--moonraker.apikey ${nix.sel(cfg, "moonrakerApiKey")}`))),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })),
       ], [
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "services", "moonraker", "enable")), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             after: nix.thunk(() => ["moonraker.service"]),
             requires: nix.thunk(() => ["moonraker.service"]),
           })))),

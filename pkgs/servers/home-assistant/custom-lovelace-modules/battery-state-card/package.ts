@@ -14,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "battery-state-card",
       version: "4.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maxwroc",
           repo: "battery-state-card",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-IP1l9/WJphXQlLDVSYK59WEiG5/+D30WUqVP3uybeIE=",
         })))),
       npmDepsHash: "sha256-Hsldl3tATfEPw5GsrhdnLXj3Smy2cAmBA2NIeY1sNK0=",
-      env: nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       installPhase: "runHook preInstall\n\ninstall ./dist/battery-state-card.js -Dt $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Battery state card for Home Assistant",
         homepage: "https://github.com/maxwroc/battery-state-card",
         changelog: nix.thunk(() => nix.str`https://github.com/maxwroc/battery-state-card/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

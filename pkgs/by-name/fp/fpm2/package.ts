@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const intltool = nix.arg($, "intltool");
   const nettle = nix.arg($, "nettle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fpm2",
       version: "0.90.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://als.regnet.cz/fpm2/download/fpm2-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-G6PF5wlEc19jtqOxBTp/10dQiFYPDO/W6v9Oyzz1lZA=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, intltool]),
       buildInputs: nix.thunk(() => [gnupg, gtk3, libxml2, nettle]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GTK2 port from Figaro's Password Manager originally developed by John Conneely, with some new enhancements",
         mainProgram: "fpm2",
         homepage: "https://als.regnet.cz/fpm2/",

@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const pname = "roomeqwizard";
       const version = "5.31.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.roomeqwizard.com/installers/REW_linux_no_jre_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.sh`),
           sha256: "sha256-qaGkKVoiBJ2UWVKAMqbuqNFi6FGcblMxAbYwhf/71CY=",
         }))));
       const dontUnpack = true;
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: pname,
           exec: pname,
           icon: pname,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
           categories: nix.thunk(() => ["AudioVideo"]),
         }))));
       const responseFile = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "response.varfile",
           text: "createDesktopLinkAction$Boolean=false\nexecuteLauncherAction$Boolean=false\nmem$Integer=1\nopengl$Boolean=false\nsys.adminRights$Boolean=false\nsys.installationDir=INSTALLDIR\nsys.languageId=en\nsys.programGroupDisabled$Boolean=true\n",
         }))));
@@ -78,7 +78,7 @@ ${nix.app(nix.sel(lib, "optionalString"), recommendedUdevRules, "echo \"$udevRul
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`${pname}-update.sh`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl common-updater-scripts nixpkgs-fmt coreutils perl
 
@@ -98,7 +98,7 @@ fi
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.roomeqwizard.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -111,7 +111,7 @@ fi
         mainProgram: "roomeqwizard",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

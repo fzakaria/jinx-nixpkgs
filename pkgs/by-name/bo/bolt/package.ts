@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const polkit = nix.arg($, "polkit");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bolt",
       version: "0.9.8",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "bolt",
           repo: "bolt",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.freedesktop.org/bolt/bolt/-/commit/c2f1d5c40ad71b20507e02faa11037b395fac2f8.diff",
             revert: true,
             hash: "sha256-6w7ll65W/CydrWAVi/qgzhrQeDv1PWWShulLxoglF+I=",
@@ -81,12 +81,12 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Dlocalstatedir=/var"]),
       doInstallCheck: true,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/system`),
         PKG_CONFIG_UDEV_UDEVDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/udev`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Thunderbolt 3 device management daemon",
         mainProgram: "boltctl",
         homepage: "https://gitlab.freedesktop.org/bolt/bolt",

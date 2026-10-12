@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "undbx",
       version: "0.22-unstable-2019-02-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ZungBang",
           repo: "undbx",
           rev: "5e31c757e137a6409115cac0623d61d384019b7a",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       postPatch: "substituteInPlace Makefile.am \\\n  --replace-fail \"-Werror\" \"\" \\\n  --replace-fail \"bin_SCRIPTS\" \"#bin_SCRIPTS\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extract e-mail messages from Outlook Express DBX files",
         homepage: "https://github.com/ZungBang/undbx",
         maintainers: [],

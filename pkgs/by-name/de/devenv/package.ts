@@ -44,24 +44,24 @@ export default nix.lambda((args) => (() => {
   const devenvNixVersion = "2.35";
   const devenvNixRev = "2a2ff1045ef7361212d7eac0c062534538968de6";
   const devenvNixSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`devenv-nix-${devenvNixVersion}-source`),
       owner: "cachix",
       repo: "nix",
       rev: devenvNixRev,
       hash: "sha256-1CSuPNIbGyL2JJjOVg0KU7NWst1yZ6iXGDkiN/3bY5o=",
     }))));
-  const nix_components = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(nixVersions, "nixComponents_git", "overrideSource"), devenvNixSrc), "overrideScope"), (finalScope) => (prevScope) => ({ __proto__: pos$2, version: devenvNixVersion })));
+  const nix_components = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(nixVersions, "nixComponents_git", "overrideSource"), devenvNixSrc), "overrideScope"), (finalScope) => (prevScope) => ({ [nix.POS]: pos$2, version: devenvNixVersion })));
   const buildRustPackage = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       stdenv: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.app(useMoldLinker, stdenv) : nix.force(stdenv))),
     }))));
   return nix.app(buildRustPackage, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "devenv",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "cachix",
           repo: "devenv",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-ed2k0D5tp7tlvpqXdxr4uGJozI2gvW1Dvz1SSJDR4NI=",
       postPatch: "substituteInPlace Cargo.toml \\\n  --replace-fail '\"pkg-config\",' '\"pkg-config\", \"link-dynamic\",'\n",
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         RUSTFLAGS: "--cfg tracing_unstable",
         LIBSQLITE3_SYS_USE_PKG_CONFIG: "1",
         OPENSSL_NO_VENDOR: "1",
@@ -133,18 +133,18 @@ installShellCompletion --cmd devenv \\
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               package: devenv,
               command: "export XDG_DATA_HOME=$PWD; devenv version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         changelog: "https://github.com/cachix/devenv/releases",
         description: "Fast, Declarative, Reproducible, and Composable Developer Environments",
         homepage: "https://github.com/cachix/devenv",

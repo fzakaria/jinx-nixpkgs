@@ -69,12 +69,12 @@ export default nix.lambda((args) => (() => {
   const socksio = nix.arg($, "socksio");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sentry-sdk",
       version: "2.70.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getsentry",
           repo: "sentry-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [certifi, urllib3]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         aiohttp: nix.thunk(() => [aiohttp]),
         anthropic: nix.thunk(() => [anthropic]),
         asyncpg: nix.thunk(() => [asyncpg]),
@@ -171,7 +171,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(pythonAtLeast, "3.13")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), nix.thunk(() => ["test_profile_stops_when_segment_ends", "test_segment_span_has_profiler_id"])))),
       pythonImportsCheck: nix.thunk(() => ["sentry_sdk"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Official Python SDK for Sentry.io",
         homepage: "https://github.com/getsentry/sentry-python",
         changelog: nix.thunk(() => nix.str`https://github.com/getsentry/sentry-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

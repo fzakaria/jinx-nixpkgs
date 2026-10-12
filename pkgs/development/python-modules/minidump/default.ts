@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.24";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-964JuUTzsXzPXOzGb5/1p6RbBTR0oTrrAS9MkgRHBDc=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["minidump"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to parse and read Microsoft minidump file format",
         homepage: "https://github.com/skelsec/minidump",
         changelog: nix.thunk(() => nix.str`https://github.com/skelsec/minidump/releases/tag/${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "minidump",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

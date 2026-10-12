@@ -33,30 +33,30 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         mailcatcher: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(mkEnableOption, "MailCatcher, an SMTP server and web interface to locally test outbound emails")),
           http: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             ip: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "127.0.0.1",
                 description: "The ip address of the http server.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 1080n,
                 description: "The port address of the http server.",
               })))),
             path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(types, null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -67,15 +67,15 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           smtp: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             ip: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "127.0.0.1",
                 description: "The ip address of the smtp server.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 1025n,
                 description: "The port address of the smtp server.",
@@ -85,22 +85,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mailcatcher"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             mailcatcher: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "MailCatcher Service",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 DynamicUser: true,
                 Restart: "always",
                 ExecStart: nix.thunk(() => nix.add(nix.str`${nix.sel(pkgs, "mailcatcher")}/bin/mailcatcher --foreground --no-quit --http-ip ${nix.sel(cfg, "http", "ip")} --http-port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "http", "port")))} --smtp-ip ${nix.sel(cfg, "smtp", "ip")} --smtp-port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "smtp", "port")))}`, nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(cfg, "http", "path"), null)), nix.thunk(() => nix.str` --http-path ${nix.sel(cfg, "http", "path")}`)))),

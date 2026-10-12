@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxcb = nix.arg($, "libxcb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "qqmusic",
       version: "1.1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://c.y.qq.com/cgi-bin/file_redirect.fcg?bid=dldir&file=ecosfile_plink%2Fmusic_clntupate%2Flinux%2Fother%2Fqqmusic_${nix.sel(finalAttrs, "version")}_amd64.deb&sign=1-d1ca4d5c5a8369b26af88e881ba3ac544066a899dcaea29778b35c9f648e6fee-68cb7c1c`),
           name: "qqmusic.deb",
           hash: "sha256-QtGNaow8F0FOW228DDrIk7slQMHFwJzpDSQYQ8xZN4g=",
@@ -112,7 +112,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "qqmusic",
             desktopName: "QQMusic",
             exec: "qqmusic %U",
@@ -122,7 +122,7 @@ runHook postInstall
             comment: "Tencent QQMusic",
             categories: nix.thunk(() => ["AudioVideo"]),
             extraConfig: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "Name[zh_CN]": "QQ音乐",
               "Name[zh_TW]": "QQ音樂",
               "Comment[zh_CN]": "腾讯QQ音乐",
@@ -131,7 +131,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "xddxdd"))];

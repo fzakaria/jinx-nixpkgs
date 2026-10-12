@@ -10,16 +10,16 @@ const pos$4 = nix.positions(here + "/default.nix", [["binary-cache", 32, 3], ["b
 
 export default (self) => (super$) => (() => {
   const preferLocal = (orig) => nix.app(nix.sel(self, "lib", "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       constructDrv: orig,
       extendDrvArgs: (finalAttrs) => nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const preferLocalBuild = nix.argOr($, "preferLocalBuild", () => false);
-        return { __proto__: pos$1, preferLocalBuild: preferLocalBuild };
+        return { [nix.POS]: pos$1, preferLocalBuild: preferLocalBuild };
       })(), formals$1),
     })));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "binary-cache": nix.thunk(() => nix.app(preferLocal, nix.thunk(() => nix.sel(super$, "binary-cache")))),
     buildenv: nix.thunk(() => nix.app(preferLocal, nix.thunk(() => nix.sel(super$, "buildenv")))),
     fetchfossil: nix.thunk(() => nix.app(preferLocal, nix.thunk(() => nix.sel(super$, "fetchfossil")))),
@@ -27,7 +27,7 @@ export default (self) => (super$) => (() => {
     fetchgit: nix.thunk(() => nix.update(nix.app(preferLocal, nix.thunk(() => nix.sel(super$, "fetchgit"))), (() => {
       const from = nix.thunk(() => nix.sel(super$, "fetchgit"));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       getRevWithTag: nix.thunk(() => nix.attr(from, "getRevWithTag")),
     };
     })())),

@@ -47,105 +47,105 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     name: "containers-restart_networking",
     meta: nix.thunk(() => ({})),
     nodes: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       client: nix.thunk(() => ({
-        __proto__: pos$36,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$1, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: pos$36,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          __proto__: pos$12,
-          firewall: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+          [nix.POS]: pos$12,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
           bridges: nix.thunk(() => ({
-            __proto__: pos$4,
-            br0: nix.thunk(() => ({ __proto__: pos$3, interfaces: [], rstp: false })),
+            [nix.POS]: pos$4,
+            br0: nix.thunk(() => ({ [nix.POS]: pos$3, interfaces: [], rstp: false })),
           })),
           interfaces: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             br0: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$5, address: "192.168.1.1", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$5, address: "192.168.1.1", prefixLength: 24n })),
                 ]),
               })),
             })),
             eth1: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
               ipv6: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
             })),
           })),
         })),
         containers: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           webserver: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             autoStart: true,
             privateNetwork: true,
             hostBridge: "br0",
             config: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               networking: nix.thunk(() => ({
-                __proto__: pos$18,
-                firewall: nix.thunk(() => ({ __proto__: pos$13, enable: false })),
+                [nix.POS]: pos$18,
+                firewall: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
                 interfaces: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   eth0: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     ipv4: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$14, address: "192.168.1.122", prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: pos$14, address: "192.168.1.122", prefixLength: 24n })),
                       ]),
                     })),
                   })),
                 })),
               })),
-              nix: nix.thunk(() => ({ __proto__: pos$19, enable: false })),
+              nix: nix.thunk(() => ({ [nix.POS]: pos$19, enable: false })),
             })),
           })),
         })),
         specialisation: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           eth1: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             configuration: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               networking: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 bridges: nix.thunk(() => ({
-                  __proto__: pos$24,
-                  br0: nix.thunk(() => ({ __proto__: pos$23, interfaces: nix.thunk(() => ["eth1"]) })),
+                  [nix.POS]: pos$24,
+                  br0: nix.thunk(() => ({ [nix.POS]: pos$23, interfaces: nix.thunk(() => ["eth1"]) })),
                 })),
                 interfaces: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   eth1: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     ipv4: nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
                     })),
                     ipv6: nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
                     })),
                   })),
                   br0: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     ipv4: nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$28, address: "192.168.1.2", prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: pos$28, address: "192.168.1.2", prefixLength: 24n })),
                       ]),
                     })),
                   })),

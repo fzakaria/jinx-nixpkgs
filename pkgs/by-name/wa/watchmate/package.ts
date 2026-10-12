@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "watchmate",
       version: "0.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "azymohliad",
           repo: "watchmate",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk4, libadwaita, bluez, dbus, openssl]),
       postInstall: "install -Dm444 assets/io.gitlab.azymohliad.WatchMate.desktop -t $out/share/applications/\ninstall -Dm444 assets/io.gitlab.azymohliad.WatchMate.metainfo.xml -t $out/share/metainfo/\ninstall -Dm444 assets/io.gitlab.azymohliad.WatchMate.gschema.xml -t $out/share/glib-2.0/schemas/\nglib-compile-schemas $out/share/glib-2.0/schemas/\ninstall -Dm444 assets/icons/io.gitlab.azymohliad.WatchMate.svg -t $out/share/icons/hicolor/scalable/apps/\ninstall -Dm444 assets/icons/io.gitlab.azymohliad.WatchMate-symbolic.svg -t $out/share/icons/hicolor/scalable/apps/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PineTime smart watch companion app for Linux phone and desktop",
         mainProgram: "watchmate",
         homepage: "https://github.com/azymohliad/watchmate",

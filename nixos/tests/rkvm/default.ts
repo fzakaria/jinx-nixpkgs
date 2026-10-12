@@ -42,47 +42,47 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
     const snakeoil_cert = nix.path(here, "./cert.pem");
     const snakeoil_key = nix.path(here, "./key.pem");
     return {
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       name: "rkvm",
       nodes: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
-            virtualisation: nix.thunk(() => ({ __proto__: pos$1, vlans: nix.thunk(() => [1n]) })),
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, vlans: nix.thunk(() => [1n]) })),
             networking: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               useNetworkd: true,
               useDHCP: false,
-              firewall: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               network: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 networks: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   "01-eth1": nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     name: "eth1",
-                    networkConfig: nix.thunk(() => ({ __proto__: pos$4, Address: "10.0.0.1/24" })),
+                    networkConfig: nix.thunk(() => ({ [nix.POS]: pos$4, Address: "10.0.0.1/24" })),
                   })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$13,
-              getty: nix.thunk(() => ({ __proto__: pos$9, autologinUser: "alice" })),
+              [nix.POS]: pos$13,
+              getty: nix.thunk(() => ({ [nix.POS]: pos$9, autologinUser: "alice" })),
               rkvm: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 server: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   enable: true,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     certificate: snakeoil_cert,
                     key: snakeoil_key,
                     password: "snakeoil",
@@ -97,39 +97,39 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           const $_1 = nix.formals(args_1, formals$3);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
-            virtualisation: nix.thunk(() => ({ __proto__: pos$15, vlans: nix.thunk(() => [1n]) })),
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$15, vlans: nix.thunk(() => [1n]) })),
             networking: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               useNetworkd: true,
               useDHCP: false,
-              firewall: nix.thunk(() => ({ __proto__: pos$16, enable: false })),
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$16, enable: false })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               network: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 networks: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   "01-eth1": nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     name: "eth1",
-                    networkConfig: nix.thunk(() => ({ __proto__: pos$18, Address: "10.0.0.2/24" })),
+                    networkConfig: nix.thunk(() => ({ [nix.POS]: pos$18, Address: "10.0.0.2/24" })),
                   })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$27,
-              getty: nix.thunk(() => ({ __proto__: pos$23, autologinUser: "alice" })),
+              [nix.POS]: pos$27,
+              getty: nix.thunk(() => ({ [nix.POS]: pos$23, autologinUser: "alice" })),
               rkvm: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 client: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   enable: true,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     server: "10.0.0.1:5258",
                     certificate: snakeoil_cert,
                     key: snakeoil_key,

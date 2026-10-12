@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pname = "sacrebleu";
   const version = "2.6.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mjpost",
           repo: "sacrebleu",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export HOME=$(mktemp -d)\n",
       pythonImportsCheck: nix.thunk(() => ["sacrebleu"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hassle-free computation of shareable, comparable, and reproducible BLEU, chrF, and TER scores",
         mainProgram: "sacrebleu",
         homepage: "https://github.com/mjpost/sacrebleu",

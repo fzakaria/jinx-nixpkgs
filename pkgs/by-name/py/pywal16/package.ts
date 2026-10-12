@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.8.15";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eylles",
           repo: "pywal16",
           tag: version,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           colorthief: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "colorthief"))]),
           colorz: nix.thunk(() => [colorz]),
           "fast-colorthief": nix.thunk(() => [nix.thunk(() => nix.lookup(w, "fast-colorthief"))]),
@@ -63,11 +63,11 @@ export default nix.lambda((args) => (() => {
         };
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "16 colors fork of pywal",
         homepage: "https://github.com/eylles/pywal16",
         changelog: nix.thunk(() => nix.str`https://github.com/eylles/pywal16/blob/refs/tags/${version}/CHANGELOG.md`),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wal",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

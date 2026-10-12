@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(haskellPackages, "termonad"));
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "termonad-with-packages",
       version: nix.thunk(() => nix.attr(from, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -30,13 +30,13 @@ makeWrapper ${termonadEnv}/bin/termonad $out/bin/termonad \\
       preferLocalBuild: true,
       allowSubstitutes: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "termonad")),
         })),
       })),
-      meta: nix.thunk(() => nix.update(nix.sel(haskellPackages, "termonad", "meta"), { __proto__: pos$3, mainProgram: "termonad" })),
+      meta: nix.thunk(() => nix.update(nix.sel(haskellPackages, "termonad", "meta"), { [nix.POS]: pos$3, mainProgram: "termonad" })),
     };
     })()));
 })(), formals$1);

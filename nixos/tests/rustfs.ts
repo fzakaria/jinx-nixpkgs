@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const accessKey = "BKIKJAA5BMMU2RHO6IBB";
   const secretKey = "V7f1CwQqAcwo80UEIJEjc5gVQUSSx5ohQ9GSrr12";
   const rustfsPythonScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3"), "rustfs-test", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       libraries: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "python3Packages")), null);
         return [nix.thunk(() => nix.lookup(w, "minio"))];
@@ -48,26 +48,26 @@ minioClient.put_object(
 )
 `)));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "rustfs",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "marcel"))]),
       };
     })()),
     containers: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             rustfs: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               environmentFile: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "rustfs-secrets.env", nix.thunk(() => nix.str`RUSTFS_ACCESS_KEY=${accessKey}
 RUSTFS_SECRET_KEY=${secretKey}
@@ -75,7 +75,7 @@ RUSTFS_SECRET_KEY=${secretKey}
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w_1, "rustfs-cli"))];

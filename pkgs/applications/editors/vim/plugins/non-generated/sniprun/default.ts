@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "1.3.22";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "michaelb",
       repo: "sniprun",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-lehL28qI1YArYK38v5tGRe7SSzHxU8Fbf10fG4ShMUw=",
     }))));
   const sniprun_bin = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sniprun-bin",
       version: version,
       src: src,
@@ -46,27 +46,27 @@ export default nix.lambda((args) => (() => {
   --prefix PATH ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bashInteractive, coreutils, curl, gnugrep, gnused, procps]))}
 `),
       doCheck: false,
-      meta: nix.thunk(() => ({ __proto__: pos$2, mainProgram: "sniprun" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "sniprun" })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "sniprun",
       version: version,
       src: src,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             sniprun: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), sniprun_bin)),
           })))),
       ]),
       propagatedBuildInputs: nix.thunk(() => [sniprun_bin]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, attrPath: "vimPlugins.sniprun.sniprun-bin" })))),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, attrPath: "vimPlugins.sniprun.sniprun-bin" })))),
         "sniprun-bin": sniprun_bin,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/michaelb/sniprun/",
         changelog: nix.thunk(() => nix.str`https://github.com/michaelb/sniprun/blob/v${version}/CHANGELOG.md`),
         maintainers: nix.thunk(() => (() => {

@@ -8,17 +8,17 @@ const pos$3 = nix.positions(here + "/npm-deps.nix", [["path", 11, 5], ["hash", 1
 
 export default nix.thunk(() => [
   nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     path: "src/Avalonia.DesignerSupport/Remote/HtmlTransport/webapp",
     hash: "sha256-gncHW5SMtAUMtvHGZ2nUc0KEjxX24DZkAnmeHgo1Roc=",
   })),
   nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     path: "tests/Avalonia.DesignerSupport.Tests/Remote/HtmlTransport/webapp",
     hash: "sha256-MiznlOJ+hIO1cUswy9oGNHP6MWfx+FDLKVT8qcmg8vo=",
   })),
   nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     path: "src/Browser/Avalonia.Browser/webapp",
     hash: "sha256-ublhqSpTJUgb6XKdHBnjPpgw7GXs57jlWSJNgqbdR78=",
   })),

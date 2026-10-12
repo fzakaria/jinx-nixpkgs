@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const callPackage = nix.arg($, "callPackage");
   const bare = nix.thunk(() => nix.app(callPackage, nix.path(here, "./bare.nix"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stdenv: stdenv,
       fetchurl: fetchurl,
       makeWrapper: makeWrapper,
       jre: jre,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scala",
       version: nix.thunk(() => nix.attr(bare, "version")),
       dontUnpack: true,
@@ -32,7 +32,7 @@ ln -s ${bare}/bin/scaladoc $out/bin/scaladoc
 ln -s ${bare}/bin/scala $out/bin/scala
 `),
       meta: nix.thunk(() => nix.attr(bare, "meta")),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, bare: bare })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, bare: bare })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

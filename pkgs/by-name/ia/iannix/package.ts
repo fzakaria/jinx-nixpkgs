@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iannix",
       version: "0.9.20-b-unstable-2020-12-09",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "buzzinglight",
           repo: "IanniX",
           rev: "287b51d9b90b3e16ae206c0c4292599619f7b159",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       qmakeFlags: nix.thunk(() => ["PREFIX=/"]),
       installFlags: nix.thunk(() => ["INSTALL_ROOT=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical open-source sequencer",
         mainProgram: "iannix",
         homepage: "https://www.iannix.org/",

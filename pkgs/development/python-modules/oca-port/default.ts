@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.22";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           owner: "OCA",
           repo: "oca-port",
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools_scm]);
       const dependencies = nix.thunk(() => [click, giturlparse, gitpython, requests, git_filter_repo]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const pythonImportsCheck = nix.thunk(() => ["oca_port"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool helping to port an addon or missing commits of an addon from one branch to another",
         homepage: "https://github.com/OCA/oca-port",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

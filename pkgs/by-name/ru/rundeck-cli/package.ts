@@ -20,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   const jre11_minimal_headless = nix.thunk(() => nix.app(nix.sel(jre11_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       jdk: jdk11_headless,
       modules: nix.thunk(() => ["java.logging"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rundeck-cli",
       version: "2.0.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/rundeck/rundeck-cli/releases/download/v${nix.sel(finalAttrs, "version")}/rundeck-cli-${nix.sel(finalAttrs, "version")}-all.jar`),
           hash: "sha256-RiGWsscenvNpKr+yOHpy2F7dPZ3M/R9SWD+EKF7nq18=",
         })))),
@@ -51,11 +51,11 @@ runHook postInstall
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/rd`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Official CLI tool for Rundeck",
         longDescription: "The rd command provides command line access to the Rundeck HTTP API,\nallowing you to access and control your Rundeck server from the\ncommand line or shell scripts.\n",
         homepage: "https://github.com/rundeck/rundeck-cli",

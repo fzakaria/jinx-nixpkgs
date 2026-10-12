@@ -37,26 +37,26 @@ export default nix.lambda((args) => (() => {
   const command = nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/hercules-ci-agent --config ${nix.sel(cfg, "tomlFile")}`);
   const testCommand = nix.thunk(() => nix.str`${command} --test-configuration`);
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     imports: nix.thunk(() => [
       nix.path(here, "./common.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "hercules-ci-agent", "user"]), nix.thunk(() => ["systemd", "services", "hercules-ci-agent", "serviceConfig", "User"]))),
     ]),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "hercules-ci-agent": nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(config, "nix", "package"))]),
               startLimitBurst: nix.thunk(() => nix.mul(30n, 1000000n)),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 User: "hercules-ci-agent",
                 ExecStart: command,
                 ExecStartPre: testCommand,
@@ -67,8 +67,8 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "hercules-ci-agent-restarter": nix.thunk(() => ({
-              __proto__: pos$4,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$3, Type: "oneshot" })),
+              [nix.POS]: pos$4,
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$3, Type: "oneshot" })),
               script: nix.thunk(() => nix.str`# Wait a bit, with the effect of bundling up file changes into a single
 # run of this script and hopefully a single restart.
 sleep 10
@@ -85,12 +85,12 @@ fi
             })),
           })),
           paths: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "hercules-ci-agent-restart-files": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               wantedBy: nix.thunk(() => ["hercules-ci-agent.service"]),
               pathConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 Unit: "hercules-ci-agent-restarter.service",
                 PathChanged: nix.thunk(() => [
                   nix.thunk(() => nix.sel(cfg, "settings", "clusterJoinTokenPath")),
@@ -101,27 +101,27 @@ fi
           })),
         })),
         nix: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           settings: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "trusted-users": nix.thunk(() => [
               nix.thunk(() => nix.sel(config, "systemd", "services", "hercules-ci-agent", "serviceConfig", "User")),
             ]),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           "hercules-ci-agent": nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             settings: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               nixUserIsTrusted: true,
               labels: nix.thunk(() => (() => {
                 const mkIfNotNull = (x) => nix.app(mkIf, nix.thunk(() => !nix.eq(x, null)), x);
                 return {
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   nixos: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     configurationRevision: nix.thunk(() => nix.app(mkIfNotNull, nix.thunk(() => nix.sel(config, "system", "configurationRevision")))),
                     release: nix.thunk(() => nix.sel(config, "system", "nixos", "release")),
                     label: nix.thunk(() => nix.app(mkIfNotNull, nix.thunk(() => nix.sel(config, "system", "nixos", "label")))),
@@ -135,11 +135,11 @@ fi
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           users: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "hercules-ci-agent": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               home: nix.thunk(() => nix.sel(cfg, "settings", "baseDirectory")),
               createHome: true,
               group: "hercules-ci-agent",
@@ -147,11 +147,11 @@ fi
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$19, "hercules-ci-agent": nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$19, "hercules-ci-agent": nix.thunk(() => ({})) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "roberth"))]),
     })),
   };

@@ -20,29 +20,29 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "refind",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "refind", "meta"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$8,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, useBootLoader: true, useEFIBoot: true })),
+          [nix.POS]: pos$8,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, useBootLoader: true, useEFIBoot: true })),
           boot: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             loader: nix.thunk(() => ({
-              __proto__: pos$6,
-              grub: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
-              efi: nix.thunk(() => ({ __proto__: pos$4, canTouchEfiVariables: true })),
-              refind: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+              [nix.POS]: pos$6,
+              grub: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+              efi: nix.thunk(() => ({ [nix.POS]: pos$4, canTouchEfiVariables: true })),
+              refind: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
               timeout: 1n,
             })),
           })),

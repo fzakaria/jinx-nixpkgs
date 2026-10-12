@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const patches = nix.argOr($, "patches", () => []);
   const releaseData = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./release-data.json")), "plugins", "io.github.jackgruber.backup"));
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "joplin-plugin-backup",
       npmDepsHash: nix.thunk(() => nix.attr(releaseData, "npmDepsHash")),
       patches: patches,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.attr(releaseData, "url")),
           hash: nix.thunk(() => nix.attr(releaseData, "hash")),
         })))),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "realcugan-ncnn-vulkan";
       const version = "20220728";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nihui",
           repo: "realcugan-ncnn-vulkan",
           rev: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/src`);
       const models = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://github.com/nihui/realcugan-ncnn-vulkan/releases/download/20220728/realcugan-ncnn-vulkan-20220728-ubuntu.zip",
           sha256: "sha256-71C6taL2Zr1exG5HEXOLy1j9ZMKgkMJjTgNi2hiA7xk=",
         }))));
@@ -53,7 +53,7 @@ cp -r ${models}/models-{nose,pro,se} $out/share
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Real-cugan converter ncnn version, runs fast on intel / amd / nvidia / apple-silicon GPU with vulkan",
         homepage: "https://github.com/nihui/realcugan-ncnn-vulkan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -65,7 +65,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

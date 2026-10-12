@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const benchexec = nix.arg($, "benchexec");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "benchexec",
       version: "3.27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sosy-lab",
           repo: "benchexec",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,15 +49,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--set-default LIBSECCOMP ${nix.app(nix.sel(lib, "getLib"), libseccomp)}/lib/libseccomp.so`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => (() => {
           const testVersion = (result) => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               command: nix.thunk(() => nix.str`${result} --version`),
               package: benchexec,
             })));
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             nixos: nix.thunk(() => nix.sel(nixosTests, "benchexec")),
             "benchexec-version": nix.thunk(() => nix.app(testVersion, "benchexec")),
             "runexec-version": nix.thunk(() => nix.app(testVersion, "runexec")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Framework for Reliable Benchmarking and Resource Measurement",
         homepage: "https://github.com/sosy-lab/benchexec",
         maintainers: nix.thunk(() => (() => {

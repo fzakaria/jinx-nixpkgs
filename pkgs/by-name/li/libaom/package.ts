@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const libheif = nix.arg($, "libheif");
   const isCross = nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "libaom",
       version: "3.15.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://aomedia.googlesource.com/aom/+archive/v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-TixZQP06TEZPtpHvWVOEagzHtXW9hqXWweO2yimBDG4=",
           stripRoot: false,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./outputs.patch")]),
       nativeBuildInputs: nix.thunk(() => [yasm, perl, cmake, pkg_config, python3]),
       propagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableVmaf, libvmaf)),
-      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-D_XOPEN_SOURCE=700" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-D_POSIX_C_SOURCE=200112L" }))))),
+      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-D_XOPEN_SOURCE=700" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-D_POSIX_C_SOURCE=200112L" }))))),
       preConfigure: nix.thunk(() => nix.str`# build uses \`git describe\` to set the build version
 cat > $NIX_BUILD_TOP/git << "EOF"
 #!${nix.sel(stdenv, "shell")}
@@ -61,22 +61,22 @@ export PATH=$NIX_BUILD_TOP:$PATH
       strictDeps: true,
       outputs: nix.thunk(() => ["out", "bin", "dev", "static"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://aomedia.googlesource.com/aom",
             "rev-prefix": "v",
             ignoredVersions: "(alpha|beta|rc).*",
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           libavif: libavif,
           libheif: libheif,
-          ffmpeg: nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ __proto__: pos$5, withAom: true })))),
+          ffmpeg: nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, withAom: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Alliance for Open Media AV1 codec library",
         longDescription: "Libaom is the reference implementation of the AV1 codec from the Alliance\nfor Open Media. It contains an AV1 library as well as applications like\nan encoder (aomenc) and a decoder (aomdec).\n",
         homepage: "https://aomedia.org/av1-features/get-started/",

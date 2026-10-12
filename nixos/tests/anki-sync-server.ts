@@ -59,27 +59,27 @@ assert sync.required == sync.NO_CHANGES
 `)));
   const testPasswordFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "anki-password", "passfilepassword"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "anki-sync-server",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "martinetd"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "anki-sync-server": nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: true,
             users: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$2, username: "user", password: "password" })),
-              nix.thunk(() => ({ __proto__: pos$3, username: "passfileuser", passwordFile: testPasswordFile })),
+              nix.thunk(() => ({ [nix.POS]: pos$2, username: "user", password: "password" })),
+              nix.thunk(() => ({ [nix.POS]: pos$3, username: "passfileuser", passwordFile: testPasswordFile })),
             ]),
           })),
         })),

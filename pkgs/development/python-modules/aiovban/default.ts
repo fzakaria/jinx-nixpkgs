@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const uv_build = nix.arg($, "uv-build");
   const music_assistant = nix.arg($, "music-assistant");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "aiovban",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wmbest2",
           repo: "aiovban",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([aiovban_pyaudio, pytestCheckHook], nix.sel(aiovban_pyaudio, "optional-dependencies", "cli"))),
       pythonImportsCheck: nix.thunk(() => ["aiovban"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ __proto__: pos$2, doInstallCheck: true }))),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ [nix.POS]: pos$2, doInstallCheck: true }))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(music_assistant, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/wmbest2/aiovban/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Asyncio VBAN Protocol Wrapper",
         homepage: "https://github.com/wmbest2/aiovban",

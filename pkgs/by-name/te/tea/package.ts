@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tea",
       version: "0.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitea.com",
           owner: "gitea",
           repo: "tea",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [gitMinimal, writableTmpDirAsHomeHook]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd tea \\\n  --bash <($out/bin/tea completion bash) \\\n  --fish <($out/bin/tea completion fish) \\\n  --zsh <($out/bin/tea completion zsh)\n\nmkdir $out/share/powershell/ -p\n$out/bin/tea completion pwsh > $out/share/powershell/tea.Completion.ps1\n\n$out/bin/tea man --out $out/share/man/man1/tea.1\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gitea official CLI client",
         homepage: "https://gitea.com/gitea/tea",
         changelog: nix.thunk(() => nix.str`https://gitea.com/gitea/tea/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

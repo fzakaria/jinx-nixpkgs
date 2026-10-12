@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const qtspeech = nix.arg($, "qtspeech");
   const qtwebview = nix.arg($, "qtwebview");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "neochat",
       extraBuildInputs: nix.thunk(() => [qtlocation, qtspeech, qtwebview]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "neochat" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "neochat" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

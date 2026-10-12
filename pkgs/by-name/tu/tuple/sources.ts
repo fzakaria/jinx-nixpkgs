@@ -16,30 +16,30 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchzip = nix.arg($, "fetchzip");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "3.3.8",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://d32ifkf9k9ezcg.cloudfront.net/production/sparkle/tuple-3.3.8-2026-10-02-ea022a88e2.zip",
           hash: "sha256-rvdxEBUhtMmSav9jxI1SXXxq4VcNHimY0aVbm67um1w=",
         })))),
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0-unstable-2026-09-16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://tuple-client-releases.s3.amazonaws.com/linux/v2026_09_16.1/arm64/tuple",
           hash: "sha256-ddQF1Ba+UEskxm4PK4AdRRFAjKMlSib56YSHRxcIUAg=",
         })))),
     })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "0-unstable-2026-09-16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: "https://tuple-client-releases.s3.amazonaws.com/linux/v2026_09_16.1/x86_64/tuple",
           hash: "sha256-pvPaOV6qD0NDEioEjeywrkfxyjb1fEaEd6cRtnPd5PM=",
         })))),

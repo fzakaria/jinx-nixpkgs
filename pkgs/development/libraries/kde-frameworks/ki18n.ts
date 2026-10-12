@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const qtscript = nix.arg($, "qtscript");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "ki18n",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules]),
       propagatedNativeBuildInputs: nix.thunk(() => [gettext, python3]),

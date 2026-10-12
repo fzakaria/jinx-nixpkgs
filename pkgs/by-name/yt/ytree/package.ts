@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ytree",
       version: "2.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://han.de/~werner/ytree-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-yu7qwzTayDkhvYtletLUzyNMFdpP/H0V2tC9qZ5S8Zc=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       preInstall: "mkdir -p $out/bin $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.han.de/~werner/ytree.html",
         description: "Curses-based file manager similar to DOS Xtree(TM)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

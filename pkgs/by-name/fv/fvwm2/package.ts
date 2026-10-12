@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const enableGestures = nix.argOr($, "enableGestures", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fvwm",
       version: "2.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fvwmorg",
           repo: "fvwm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,13 +68,13 @@ export default nix.lambda((args) => (() => {
       pythonPath: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "pyxdg"))]),
       configureFlags: nix.thunk(() => ["--enable-mandoc", "--disable-htmldoc"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion -Wno-error=incompatible-pointer-types",
       })),
       postFixup: "wrapPythonPrograms\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://fvwm.org",
         changelog: nix.thunk(() => nix.str`https://github.com/fvwmorg/fvwm/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Multiple large virtual desktop window manager",

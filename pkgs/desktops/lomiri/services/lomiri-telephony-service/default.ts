@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const replaceDbusService = (pkg) => (name) => nix.str`--replace-fail "\\\${DBUS_SERVICES_DIR}/${name}" "${pkg}/share/dbus-1/services/${name}"`;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "lomiri-telephony-service",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/lomiri-telephony-service",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,25 +67,25 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-lomiri-telephony-service-new-libnotify-needs-spec_version.patch",
             url: "https://gitlab.com/ubports/development/core/lomiri-telephony-service/-/commit/6b0b51a4fcfafcd10ae5fe4928d49c9f73f14d12.patch",
             hash: "sha256-E9THrqE77GXBY8ftwrkwFzFCTSa/YpkaHiX4ivjH6mM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "0002-lomiri-telephony-service-tests-depend-on-the-notification-mock.patch",
             url: "https://gitlab.com/ubports/development/core/lomiri-telephony-service/-/commit/8c5a3048492eb01354565f0892a61770eb27b957.patch",
             hash: "sha256-nLN+Evyq4Yf9GN2wSSPXmzEzTPXHDl+Pl5FKOiwdDY8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "0003-lomiri-telephony-service-approver-fix-race-condition-when-accepting-calls.patch",
             url: "https://gitlab.com/ubports/development/core/lomiri-telephony-service/-/commit/b3123f784ed692f9424c978e68867a8662d00083.patch",
             hash: "sha256-/JEkoEEivFwFoNOrcdDleAGOjdUwS4SlUovMr9trNQQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "0004-lomiri-telephony-service-Robustness-fixes-for-tests.patch",
             url: "https://gitlab.com/ubports/development/core/lomiri-telephony-service/-/commit/e886fbdd016327634e935986f2b63b90833295be.patch",
             hash: "sha256-Ie9kM7UHSjmORTOTNzZ1/qtM4ILkOnGjyQCXXo1PU88=",
@@ -140,7 +140,7 @@ substituteInPlace cmake/modules/GenerateTest.cmake \\
       dontWrapQtApps: true,
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SKIP_QML_TESTS", true))]),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), telepathy_glib)}/include/telepathy-1.0`),
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), dbus_glib)}/include/dbus-1.0`),
@@ -176,19 +176,19 @@ wrapProgram $out/bin/lomiri-indicator-telephony-service \\
   --prefix PATH : "$out/bin"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "ayatana-indicators": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "lomiri-indicator-telephony-service": nix.thunk(() => ["lomiri"]),
         })),
         tests: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           vm: nix.thunk(() => nix.sel(nixosTests, "ayatana-indicators")),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Backend dispatcher service for various mobile phone related operations",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-telephony-service",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-telephony-service/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

@@ -20,23 +20,23 @@ export default nix.lambda((args) => (() => {
   const copyChannel = true;
   const format = "qcow2";
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     imports: nix.thunk(() => nix.concat([
       nix.path(here, "../../../modules/virtualisation/openstack-config.nix"),
       nix.path(here, "../../../modules/image/file-options.nix"),
     ], nix.app(nix.sel(lib, "optional"), copyChannel, nix.path(here, "../../../modules/installer/cd-dvd/channel.nix")))),
-    documentation: nix.thunk(() => ({ __proto__: pos$1, enable: copyChannel })),
-    image: nix.thunk(() => ({ __proto__: pos$2, extension: format })),
+    documentation: nix.thunk(() => ({ [nix.POS]: pos$1, enable: copyChannel })),
+    image: nix.thunk(() => ({ [nix.POS]: pos$2, extension: format })),
     system: nix.thunk(() => ({
-      __proto__: pos$7,
-      nixos: nix.thunk(() => ({ __proto__: pos$3, tags: nix.thunk(() => ["openstack"]) })),
+      [nix.POS]: pos$7,
+      nixos: nix.thunk(() => ({ [nix.POS]: pos$3, tags: nix.thunk(() => ["openstack"]) })),
       build: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         image: nix.thunk(() => nix.sel(config, "system", "build", "openstackImage")),
         openstackImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/make-disk-image.nix")), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(config, "image"));
             return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             lib: lib,
             config: config,
             copyChannel: copyChannel,
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
             additionalSpace: "1024M",
             pkgs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")), nix.thunk(() => (() => {
                 const from_1 = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform"));
-                return { __proto__: pos$4, system: nix.thunk(() => nix.attr(from_1, "system")) };
+                return { [nix.POS]: pos$4, system: nix.thunk(() => nix.attr(from_1, "system")) };
               })()))),
             configFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "configuration.nix", "{\n  imports = [ <nixpkgs/nixos/modules/virtualisation/openstack-config.nix> ];\n}\n")),
           };

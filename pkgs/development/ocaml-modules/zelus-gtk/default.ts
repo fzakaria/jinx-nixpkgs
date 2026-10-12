@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const zelus = nix.arg($, "zelus");
   const lablgtk = nix.arg($, "lablgtk");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "zelus-gtk",
       version: nix.thunk(() => nix.attr(zelus, "version")),
       src: nix.thunk(() => nix.attr(zelus, "src")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(zelus, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Zelus GTK library",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

@@ -114,28 +114,28 @@ export default nix.lambda((args) => (() => {
   const dataDir = "/var/lib/headscale";
   const runDir = "/run/headscale";
   const cliConfig = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     disable_check_updates: true,
     unix_socket: nix.thunk(() => nix.str`${runDir}/headscale.sock`),
   }));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const assertRemovedOption = (option) => (message) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "hasAttrByPath"), option, cfg))),
     message: nix.thunk(() => nix.add(nix.str`The option \`services.headscale.${nix.app(nix.sel(lib, "options", "showOption"), option)}\` was removed. `, message)),
   });
   return {
-    __proto__: pos$101,
+    [nix.POS]: pos$101,
     options: nix.thunk(() => ({
-      __proto__: pos$81,
+      [nix.POS]: pos$81,
       services: nix.thunk(() => ({
-        __proto__: pos$80,
+        [nix.POS]: pos$80,
         headscale: nix.thunk(() => ({
-          __proto__: pos$79,
+          [nix.POS]: pos$79,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "headscale, Open Source coordination server for Tailscale")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "headscale", nix.thunk(() => ({})))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               readOnly: true,
               default: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "headscale.yaml", nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (n) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "settings")))))),
@@ -143,40 +143,40 @@ export default nix.lambda((args) => (() => {
               description: "Path to the configuration file of headscale.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "headscale",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "User account under which headscale runs.\n\n::: {.note}\nIf left as the default value this user will automatically be created\non system activation, otherwise you are responsible for\nensuring the user exists before the headscale service starts.\n:::\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "headscale",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Group under which headscale runs.\n\n::: {.note}\nIf left as the default value this group will automatically be created\non system activation, otherwise you are responsible for\nensuring the user exists before the headscale service starts.\n:::\n",
             })))),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "Listening address of headscale.\n",
               example: "0.0.0.0",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8080n,
               description: "Listening port of headscale.\n",
               example: 443n,
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$78,
+              [nix.POS]: pos$78,
               apply: (settings) => nix.app(nix.sel(lib, "showWarnings"), nix.thunk(() => nix.sel(settings, "warnings")), nix.thunk(() => nix.update(nix.app(nix.sel(lib, "removeAttrs"), settings, nix.thunk(() => ["assertions", "ephemeral_node_inactivity_timeout", "warnings"])), {
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   dns: nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), nix.thunk(() => nix.sel(settings, "dns")), nix.thunk(() => ["split"]))),
                 }))),
               description: "Overrides to {file}`config.yaml` as a Nix attribute set.\nCheck the [example config](https://github.com/juanfont/headscale/blob/main/config-example.yaml)\nfor possible options.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$77,
+                  [nix.POS]: pos$77,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   imports: nix.thunk(() => [
                     nix.path(here, "../../misc/assertions.nix"),
@@ -184,18 +184,18 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["ephemeral_node_inactivity_timeout"]), nix.thunk(() => ["node", "ephemeral", "inactivity_timeout"]))),
                   ]),
                   options: nix.thunk(() => ({
-                    __proto__: pos$76,
+                    [nix.POS]: pos$76,
                     server_url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "http://127.0.0.1:8080",
                         description: "The url clients will connect to.\n",
                         example: "https://myheadscale.example.com:443",
                       })))),
                     noise: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       private_key_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: nix.thunk(() => nix.str`${dataDir}/noise_private.key`),
                           description: "Path to noise private key file, generated automatically if it does not exist.\n",
@@ -204,21 +204,21 @@ export default nix.lambda((args) => (() => {
                     prefixes: nix.thunk(() => (() => {
                       const prefDesc = "Each prefix consists of either an IPv4 or IPv6 address,\nand the associated prefix length, delimited by a slash.\nIt must be within IP ranges supported by the Tailscale\nclient - i.e., subnets of 100.64.0.0/10 and fd7a:115c:a1e0::/48.\n";
                       return {
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         v4: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "100.64.0.0/10",
                             description: prefDesc,
                           })))),
                         v6: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "fd7a:115c:a1e0::/48",
                             description: prefDesc,
                           })))),
                         allocation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["sequential", "random"]))),
                             example: "random",
                             default: "sequential",
@@ -227,37 +227,37 @@ export default nix.lambda((args) => (() => {
                       };
                     })()),
                     derp: nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       urls: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: nix.thunk(() => ["https://controlplane.tailscale.com/derpmap/default"]),
                           description: "List of urls containing DERP maps.\nSee [How Tailscale works](https://tailscale.com/blog/how-tailscale-works/) for more information on DERP maps.\n",
                         })))),
                       paths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                           default: [],
                           description: "List of file paths containing DERP maps.\nSee [How Tailscale works](https://tailscale.com/blog/how-tailscale-works/) for more information on DERP maps.\n",
                         })))),
                       auto_update_enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Whether to automatically update DERP maps on a set frequency.\n",
                           example: false,
                         })))),
                       update_frequency: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "24h",
                           description: "Frequency to update DERP maps.\n",
                           example: "5m",
                         })))),
                       server: nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         private_key_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$20,
+                            [nix.POS]: pos$20,
                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                             default: nix.thunk(() => nix.str`${dataDir}/derp_server_private.key`),
                             description: "Path to derp private key file, generated automatically if it does not exist.\n",
@@ -265,11 +265,11 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     node: nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       ephemeral: nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         inactivity_timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$23,
+                            [nix.POS]: pos$23,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "30m",
                             description: "Time before an inactive ephemeral node is deleted.\n",
@@ -278,24 +278,24 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     database: nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$26,
+                          [nix.POS]: pos$26,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["sqlite", "sqlite3", "postgres"]))),
                           example: "postgres",
                           default: "sqlite",
                           description: "Database engine to use.\nPlease note that using Postgres is highly discouraged as it is only supported for legacy reasons.\nAll new development, testing and optimisations are done with SQLite in mind.\n",
                         })))),
                       sqlite: nix.thunk(() => ({
-                        __proto__: pos$29,
+                        [nix.POS]: pos$29,
                         path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$27,
+                            [nix.POS]: pos$27,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: nix.thunk(() => nix.str`${dataDir}/db.sqlite`),
                             description: "Path to the sqlite3 database file.",
                           })))),
                         write_ahead_log: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$28,
+                            [nix.POS]: pos$28,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: true,
                             description: "Enable WAL mode for SQLite. This is recommended for production environments.\n<https://www.sqlite.org/wal.html>\n",
@@ -303,37 +303,37 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       postgres: nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$30,
+                            [nix.POS]: pos$30,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: null,
                             example: "127.0.0.1",
                             description: "Database host address.",
                           })))),
                         port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$31,
+                            [nix.POS]: pos$31,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                             default: null,
                             example: 3306n,
                             description: "Database host port.",
                           })))),
                         name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$32,
+                            [nix.POS]: pos$32,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: null,
                             example: "headscale",
                             description: "Database name.",
                           })))),
                         user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$33,
+                            [nix.POS]: pos$33,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: null,
                             example: "headscale",
                             description: "Database user.",
                           })))),
                         password_file: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$34,
+                            [nix.POS]: pos$34,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                             default: null,
                             example: "/run/keys/headscale-dbpassword",
@@ -342,16 +342,16 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     log: nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       level: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$37,
+                          [nix.POS]: pos$37,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "info",
                           description: "headscale log level.\n",
                           example: "debug",
                         })))),
                       format: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$38,
+                          [nix.POS]: pos$38,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "text",
                           description: "headscale log format.\n",
@@ -359,64 +359,64 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     dns: nix.thunk(() => ({
-                      __proto__: pos$55,
+                      [nix.POS]: pos$55,
                       magic_dns: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$40,
+                          [nix.POS]: pos$40,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Whether to use [MagicDNS](https://tailscale.com/kb/1081/magicdns/).\n",
                           example: false,
                         })))),
                       base_domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$41,
+                          [nix.POS]: pos$41,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "",
                           description: "Defines the base domain to create the hostnames for MagicDNS.\nThis domain must be different from the {option}`server_url`\ndomain.\n{option}`base_domain` must be a FQDN, without the trailing dot.\nThe FQDN of the hosts will be `hostname.base_domain` (e.g.\n`myhost.tailnet.example.com`).\n",
                           example: "tailnet.example.com",
                         })))),
                       override_local_dns: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$42,
+                          [nix.POS]: pos$42,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Whether to [override clients' DNS servers](https://tailscale.com/kb/1054/dns#override-dns-servers).\n",
                           example: false,
                         })))),
                       nameservers: nix.thunk(() => ({
-                        __proto__: pos$46,
+                        [nix.POS]: pos$46,
                         global: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$43,
+                            [nix.POS]: pos$43,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: [],
                             description: "List of nameservers to pass to Tailscale clients.\n",
                           })))),
                         split: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$45,
+                            [nix.POS]: pos$45,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
                             default: nix.thunk(() => ({})),
                             description: "Split DNS configuration (map of domains and which DNS server to use for each).\nSee <https://tailscale.com/kb/1054/dns/>.\n",
-                            example: nix.thunk(() => ({ __proto__: pos$44, "foo.bar.com": nix.thunk(() => ["1.1.1.1"]) })),
+                            example: nix.thunk(() => ({ [nix.POS]: pos$44, "foo.bar.com": nix.thunk(() => ["1.1.1.1"]) })),
                           })))),
                       })),
                       extra_records: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$52,
+                          [nix.POS]: pos$52,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                  __proto__: pos$51,
+                                  [nix.POS]: pos$51,
                                   options: nix.thunk(() => ({
-                                    __proto__: pos$50,
+                                    [nix.POS]: pos$50,
                                     name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$47,
+                                        [nix.POS]: pos$47,
                                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                         description: "DNS record name.",
                                         example: "grafana.tailnet.example.com",
                                       })))),
                                     type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$48,
+                                        [nix.POS]: pos$48,
                                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["A", "AAAA"]))),
                                         description: "DNS record type.",
                                         example: "A",
                                       })))),
                                     value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$49,
+                                        [nix.POS]: pos$49,
                                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                         description: "DNS record value (IP address).",
                                         example: "100.64.0.3",
@@ -428,14 +428,14 @@ export default nix.lambda((args) => (() => {
                           example: "[ {\n  name = \"grafana.tailnet.example.com\";\n  type = \"A\";\n  example = \"100.64.0.3\";\n} ]\n",
                         })))),
                       extra_records_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$53,
+                          [nix.POS]: pos$53,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: null,
                           description: "Path to a JSON file containing extra DNS records.\nThis is mutually exclusive with {option}`extra_records`.\n",
                           example: "/run/headscale/records.json",
                         })))),
                       search_domains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$54,
+                          [nix.POS]: pos$54,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: [],
                           description: "Search domains to inject to Tailscale clients.\n",
@@ -443,64 +443,64 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     oidc: nix.thunk(() => ({
-                      __proto__: pos$67,
+                      [nix.POS]: pos$67,
                       issuer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$56,
+                          [nix.POS]: pos$56,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "",
                           description: "URL to OpenID issuer.\n",
                           example: "https://openid.example.com",
                         })))),
                       client_id: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$57,
+                          [nix.POS]: pos$57,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "",
                           description: "OpenID Connect client ID.\n",
                         })))),
                       client_secret_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$58,
+                          [nix.POS]: pos$58,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: null,
                           description: "Path to OpenID Connect client secret file. Expands environment variables in format ${VAR}.\n",
                         })))),
                       scope: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$59,
+                          [nix.POS]: pos$59,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: nix.thunk(() => ["openid", "profile", "email"]),
                           description: "Scopes used in the OIDC flow.\n",
                         })))),
                       extra_params: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$61,
+                          [nix.POS]: pos$61,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: nix.thunk(() => ({})),
                           description: "Custom query parameters to send with the Authorize Endpoint request.\n",
-                          example: nix.thunk(() => ({ __proto__: pos$60, domain_hint: "example.com" })),
+                          example: nix.thunk(() => ({ [nix.POS]: pos$60, domain_hint: "example.com" })),
                         })))),
                       allowed_domains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$62,
+                          [nix.POS]: pos$62,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: [],
                           description: "Allowed principal domains. if an authenticated user's domain\nis not in this list authentication request will be rejected.\n",
                           example: nix.thunk(() => ["example.com"]),
                         })))),
                       allowed_users: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$63,
+                          [nix.POS]: pos$63,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: [],
                           description: "Users allowed to authenticate even if not in allowedDomains.\n",
                           example: nix.thunk(() => ["alice@example.com"]),
                         })))),
                       pkce: nix.thunk(() => ({
-                        __proto__: pos$66,
+                        [nix.POS]: pos$66,
                         enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$64,
+                            [nix.POS]: pos$64,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Enable or disable PKCE (Proof Key for Code Exchange) support.\nPKCE adds an additional layer of security to the OAuth 2.0\nauthorization code flow by preventing authorization code\ninterception attacks\nSee https://datatracker.ietf.org/doc/html/rfc7636\n",
                             example: true,
                           })))),
                         method: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$65,
+                            [nix.POS]: pos$65,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "S256",
                             description: "PKCE method to use:\n  - plain: Use plain code verifier\n  - S256: Use SHA256 hashed code verifier (default, recommended)\n",
@@ -508,45 +508,45 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     tls_letsencrypt_hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$68,
+                        [nix.POS]: pos$68,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: "",
                         description: "Domain name to request a TLS certificate for.\n",
                       })))),
                     tls_letsencrypt_challenge_type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$69,
+                        [nix.POS]: pos$69,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["TLS-ALPN-01", "HTTP-01"]))),
                         default: "HTTP-01",
                         description: "Type of ACME challenge to use, currently supported types:\n`HTTP-01` or `TLS-ALPN-01`.\n",
                       })))),
                     tls_letsencrypt_listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$70,
+                        [nix.POS]: pos$70,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: ":http",
                         description: "When HTTP-01 challenge is chosen, letsencrypt must set up a\nverification endpoint, and it will be listening on:\n`:http = port 80`.\n",
                       })))),
                     tls_cert_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$71,
+                        [nix.POS]: pos$71,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                         default: null,
                         description: "Path to already created certificate.\n",
                       })))),
                     tls_key_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$72,
+                        [nix.POS]: pos$72,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                         default: null,
                         description: "Path to key for already created certificate.\n",
                       })))),
                     policy: nix.thunk(() => ({
-                      __proto__: pos$75,
+                      [nix.POS]: pos$75,
                       mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$73,
+                          [nix.POS]: pos$73,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["file", "database"]))),
                           default: "file",
                           description: "The mode can be \"file\" or \"database\" that defines\nwhere the ACL policies are stored and read from.\n",
                         })))),
                       path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$74,
+                          [nix.POS]: pos$74,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                           default: null,
                           description: "If the mode is set to \"file\", the path to a\nHuJSON file containing ACL policies.\n",
@@ -588,10 +588,10 @@ export default nix.lambda((args) => (() => {
       ];
     })()),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$99,
+        [nix.POS]: pos$99,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$82,
+            [nix.POS]: pos$82,
             assertion: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.sel(cfg, "settings")), null);
               return (!nix.asBool(nix.sel(nix.lookup(w_1, "dns"), "magic_dns")) || nix.asBool(!nix.eq(nix.sel(nix.lookup(w_1, "dns"), "base_domain"), "")));
@@ -599,7 +599,7 @@ export default nix.lambda((args) => (() => {
             message: "dns.base_domain must be set when using MagicDNS",
           })),
           nix.thunk(() => ({
-            __proto__: pos$83,
+            [nix.POS]: pos$83,
             assertion: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.sel(cfg, "settings")), null);
               return (!nix.asBool(nix.sel(nix.lookup(w_1, "dns"), "override_local_dns")) || nix.asBool(!nix.eq(nix.sel(nix.lookup(w_1, "dns"), "nameservers", "global"), [])));
@@ -607,7 +607,7 @@ export default nix.lambda((args) => (() => {
             message: "dns.nameservers.global must be set when overriding local DNS",
           })),
           nix.thunk(() => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             assertion: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.sel(cfg, "settings")), null);
               return (nix.asBool(nix.eq(nix.sel(nix.lookup(w_1, "dns"), "extra_records_path"), null)) || nix.asBool(nix.eq(nix.sel(nix.lookup(w_1, "dns"), "extra_records"), null)));
@@ -628,13 +628,13 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(assertRemovedOption, nix.thunk(() => ["settings", "oidc", "strip_email_domain"]), "The strip_email_domain option got removed upstream")),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$87,
+          [nix.POS]: pos$87,
           headscale: nix.thunk(() => ({
-            __proto__: pos$86,
+            [nix.POS]: pos$86,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 cliConfig,
                 nix.thunk(() => ({
-                  __proto__: pos$85,
+                  [nix.POS]: pos$85,
                   listen_addr: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`))),
                   tls_letsencrypt_cache_dir: nix.thunk(() => nix.str`${dataDir}/.cache`),
                 })),
@@ -642,26 +642,26 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$90,
+          [nix.POS]: pos$90,
           etc: nix.thunk(() => ({
-            __proto__: pos$89,
+            [nix.POS]: pos$89,
             "headscale/config.yaml": nix.thunk(() => ({
-              __proto__: pos$88,
+              [nix.POS]: pos$88,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "headscale.yaml", cliConfig)),
             })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$94,
+          [nix.POS]: pos$94,
           groups: nix.thunk(() => ({
-            __proto__: pos$91,
+            [nix.POS]: pos$91,
             headscale: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "headscale")), nix.thunk(() => ({})))),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$93,
+            [nix.POS]: pos$93,
             headscale: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "headscale")), nix.thunk(() => ({
-                __proto__: pos$92,
+                [nix.POS]: pos$92,
                 description: "headscale user",
                 home: dataDir,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -670,11 +670,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$98,
+          [nix.POS]: pos$98,
           services: nix.thunk(() => ({
-            __proto__: pos$97,
+            [nix.POS]: pos$97,
             headscale: nix.thunk(() => ({
-              __proto__: pos$96,
+              [nix.POS]: pos$96,
               description: "headscale coordination server for Tailscale",
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
@@ -687,7 +687,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
               serviceConfig: nix.thunk(() => (() => {
                 const capabilityBoundingSet = nix.thunk(() => nix.concat(["CAP_CHOWN"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.lt(nix.sel(cfg, "port"), 1024n)), "CAP_NET_BIND_SERVICE")));
                 return {
-                  __proto__: pos$95,
+                  [nix.POS]: pos$95,
                   Restart: "always",
                   RestartSec: "5s",
                   Type: "simple",
@@ -729,7 +729,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$100,
+      [nix.POS]: pos$100,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

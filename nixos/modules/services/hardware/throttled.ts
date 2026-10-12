@@ -28,16 +28,16 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "throttled"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         throttled: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "fix for Intel CPU throttling")),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Alternative configuration",
@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         systemd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "throttled"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             throttled: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartTriggers: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "environment", "etc", "throttled.conf", "source")),
@@ -62,26 +62,26 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           etc: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "throttled.conf": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               source: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "extraConfig"), "")) ? nix.app(nix.sel(pkgs, "writeText"), "throttled.conf", nix.thunk(() => nix.sel(cfg, "extraConfig"))) : nix.str`${nix.sel(pkgs, "throttled")}/etc/throttled.conf`)),
             })),
           })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           cpu: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             x86: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               msr: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 enable: true,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   "allow-writes": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "5.9")), "on")),
                 })),
               })),

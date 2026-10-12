@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const rev = "f727ec7463d514b6279981d12833f2e11d62b33d";
       const version = nix.thunk(() => nix.str`20170205-${nix.app(nix.sel(lib, "strings", "substring"), 0n, 7n, rev)}`);
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: rev,
           url: "https://git.code.sf.net/p/glee/glee",
           sha256: "13mf3s7nvmj26vr2wbcg08l4xxqsc1ha41sx3bfghvq8c5qpk2ph",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const configureScript = "cmake\n";
       const preInstall = "sed -i 's/readme/Readme/' cmake_install.cmake\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GL Easy Extension Library",
         homepage: "https://sourceforge.net/p/glee/glee/",
         maintainers: nix.thunk(() => (() => {
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         rev,
         version,

@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.sel(nix.lookup(w, "pygobject3"), "out"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gnucash",
       version: "5.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Gnucash/gnucash/releases/download/${nix.sel(finalAttrs, "version")}/gnucash-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-PRioj1uCMPAeBMLS1zv5Xn3NO/jYzub/pUuyTe5YuF8=",
         })))),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "PYTHON_SYSCONFIG_BUILD", "$out")),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         GNC_DBD_DIR: nix.thunk(() => nix.str`${libdbi_drivers}/lib/dbd`),
         GUILE_AUTO_COMPILE: "0",
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "12")))), nix.thunk(() => ["-Wno-error=use-after-free"]))))),
@@ -115,13 +115,13 @@ substituteInPlace bindings/python/__init__.py \\
       enableParallelChecking: true,
       checkTarget: "check",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         docs: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: "gnucash-docs",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 owner: "Gnucash",
                 repo: "gnucash-docs",
                 tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -162,7 +162,7 @@ chmod +x $out/share/gnucash/python/pycons/*.py
 patchShebangs $out/share/gnucash/python/pycons/*.py
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://www.gnucash.org/",
         description: "Free software for double entry accounting",
         longDescription: "GnuCash is personal and small-business financial-accounting software,\nfreely licensed under the GNU GPL and available for GNU/Linux, BSD,\nSolaris, Mac OS X and Microsoft Windows.\n\nDesigned to be easy to use, yet powerful and flexible, GnuCash allows you\nto track bank accounts, stocks, income and expenses. As quick and\nintuitive to use as a checkbook register, it is based on professional\naccounting principles to ensure balanced books and accurate reports.\n\nSome interesting features:\n\n- Double-Entry Accounting\n- Stock/Bond/Mutual Fund Accounts\n- Small-Business Accounting\n- Reports, Graphs\n- QIF/OFX/HBCI Import, Transaction Matching\n- Scheduled Transactions\n- Financial Calculations\n",

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const undmg = nix.arg($, "undmg");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "krunker",
       version: "2.1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://client2.krunker.io/Official%20Krunker.io%20Client-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha512-brvrOPCsXkkrUGcRxsa8bzpFsrY7GF3llt29ZIax6dC0XBsILKXUleESJ5LpurMOgSBsfxNYjZLPJhicIAtuUA==",
         })))),

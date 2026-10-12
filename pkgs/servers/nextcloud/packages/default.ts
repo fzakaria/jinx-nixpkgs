@@ -21,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const ncVersion = nix.arg($, "ncVersion");
   const nextcloud_notify_push = nix.arg($, "nextcloud-notify_push");
   const packages = (self) => (() => {
-    const generatedJson = nix.thunk(() => ({ __proto__: pos$1, apps: apps }));
+    const generatedJson = nix.thunk(() => ({ [nix.POS]: pos$1, apps: apps }));
     const appBaseDefs = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./nextcloud-apps.json")))));
     return nix.update({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mkNextcloudDerivation: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pname = nix.arg($_1, "pname");
         const data = nix.arg($_1, "data");
         return nix.app(nix.sel(pkgs, "fetchNextcloudApp"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             appName: pname,
             appVersion: nix.thunk(() => nix.sel(data, "version")),
             license: nix.thunk(() => nix.sel(appBaseDefs, nix.key(nix.force(pname)))),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
             homepage: nix.thunk(() => nix.attr(data, "homepage")),
           })));
       })(), formals$2),
-    }, nix.app(nix.sel(lib, "mapAttrs"), (type) => (pkgs_1) => nix.app(nix.sel(lib, "makeExtensible"), (_) => nix.update(nix.app(nix.sel(lib, "mapAttrs"), (pname) => (data) => nix.app(nix.sel(self, "mkNextcloudDerivation"), nix.thunk(() => ({ __proto__: pos$4, pname: pname, data: data }))), pkgs_1), {
-          __proto__: pos$5,
+    }, nix.app(nix.sel(lib, "mapAttrs"), (type) => (pkgs_1) => nix.app(nix.sel(lib, "makeExtensible"), (_) => nix.update(nix.app(nix.sel(lib, "mapAttrs"), (pname) => (data) => nix.app(nix.sel(self, "mkNextcloudDerivation"), nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname, data: data }))), pkgs_1), {
+          [nix.POS]: pos$5,
           notify_push: nix.thunk(() => nix.sel(nextcloud_notify_push, "app")),
         })), generatedJson));
   })();
-  return nix.app(nix.sel(nix.app(nix.sel(lib, "makeExtensible"), (_) => nix.app(nix.sel(lib, "makeScope"), newScope, packages)), "extend"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./thirdparty.nix")), nix.thunk(() => ({ __proto__: pos$6, ncVersion: ncVersion })))));
+  return nix.app(nix.sel(nix.app(nix.sel(lib, "makeExtensible"), (_) => nix.app(nix.sel(lib, "makeScope"), newScope, packages)), "extend"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./thirdparty.nix")), nix.thunk(() => ({ [nix.POS]: pos$6, ncVersion: ncVersion })))));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

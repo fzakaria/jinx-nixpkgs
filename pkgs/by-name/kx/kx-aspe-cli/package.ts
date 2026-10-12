@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kx-aspe-cli",
       version: "0-unstable-2024-04-06",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "keyoxide",
           repo: "kx-aspe-cli",
           rev: "492df7edae95a8636bb59c4e5c1607053dab2c78",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       cargoHash: "sha256-wOg81NvChOLPiCyhJ5dGn5sRskevpf0QdKwmgZa2/1s=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://codeberg.org/keyoxide/kx-aspe-cli",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/keyoxide/kx-aspe-cli/src/commit/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Keyoxide profile generator CLI using ASPE",

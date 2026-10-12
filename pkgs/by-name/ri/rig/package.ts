@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.11",
       pname: "rig",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ayera.dl.sourceforge.net/project/rig/rig/${nix.sel(finalAttrs, "version")}/rig-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1f3snysjqqlpk2kgvm5p2icrj4lsdymccmn3igkc2f60smqckgq0",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./rig_1.11-1.diff")]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CXX=${nix.sel(stdenv, "cc", "targetPrefix")}c++`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://rig.sourceforge.net/",
         description: "Random identity generator",
         longDescription: "RIG (Random Identity Generator) is a free replacement for a shareware\nprogram out there called 'fake'. It generates random, yet real-looking,\npersonal data. It is useful if you need to feed a name to a Web site,\nBBS, or real person, and are too lazy to think of one yourself. Also,\nif the Web site/BBS/person you are giving the information to tries to\ncross-check the city, state, zip, or area code, it will check out.\n",

@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-XTT8j5DJVDIPyn/vEg5f6a9Y+2dP9yNfJ4cDZN5sEG8=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           hash: "sha256-8DYIiX/lFGYz/4+vWgoYTsV5L3O7rulof6UomrulbeM=",
         }))));
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_decode_car"]);
       const pythonImportsCheck = nix.thunk(() => ["libipld"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast Python library to work with IPLD: DAG-CBOR, CID, CAR, multibase",
         homepage: "https://github.com/MarshalX/python-libipld",
         changelog: nix.thunk(() => nix.str`https://github.com/MarshalX/python-libipld/releases/tag/v${version}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

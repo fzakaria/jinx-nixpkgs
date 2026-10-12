@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gtk2 = nix.arg($, "gtk2");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rscw",
       version: "0.1e",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.pa3fwm.nl/software/rscw/rscw-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1hxwxmqc5jinr14ya1idigqigc8qhy1vimzcwy2vmwdjay2sqik2",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk2, fftw]),
       installPhase: "install -D -m 0755 noisycw $out/bin/noisycw\ninstall -D -m 0755 rs12tlmdec $out/bin/rs12tlmdec\ninstall -D -m 0755 rscw $out/bin/rscw\ninstall -D -m 0755 rscwx $out/bin/rscwx\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Receive CW through the soundcard",
         homepage: "https://www.pa3fwm.nl/software/rscw/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

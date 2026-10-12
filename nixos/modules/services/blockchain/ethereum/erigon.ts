@@ -29,34 +29,34 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         erigon: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Ethereum implementation on the efficiency frontier")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "erigon", nix.thunk(() => ({})))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Additional arguments passed to Erigon",
               default: [],
             })))),
           secretJwtPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Path to the secret jwt used for the http api authentication.\n",
               default: "",
               example: "config.age.secrets.ERIGON_JWT.path",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Configuration for Erigon\nRefer to <https://github.com/ledgerwatch/erigon#usage> for details on supported values.\n",
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               example: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 datadir: "/var/lib/erigon",
                 chain: "mainnet",
                 http: true,
@@ -75,13 +75,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           erigon: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             settings: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               datadir: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/erigon")),
               chain: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "mainnet")),
               http: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
@@ -97,16 +97,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             erigon: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Erigon ethereum implemenntation",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 LoadCredential: nix.thunk(() => nix.str`ERIGON_JWT:${nix.sel(cfg, "secretJwtPath")}`),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/erigon --config ${configFile} --authrpc.jwtsecret=%d/ERIGON_JWT ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraArgs")))}`),
                 DynamicUser: true,

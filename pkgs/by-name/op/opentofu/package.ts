@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "opentofu";
       const version = "1.13.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opentofu",
           repo: "opentofu",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,9 +42,9 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const patches = nix.thunk(() => [nix.path(here, "./provider-path-1_12.patch")]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         plugins: plugins,
-        tests: nix.thunk(() => ({ __proto__: pos$2, opentofu_plugins_test: opentofu_plugins_test })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, opentofu_plugins_test: opentofu_plugins_test })),
       }));
       const postInstall = "installShellCompletion --bash --name tofu <(echo complete -C tofu tofu)\n";
       const __darwinAllowLocalNetworking = true;
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export TF_SKIP_REMOTE_TESTS=1\n";
       const subPackages = nix.thunk(() => ["./cmd/..."]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool for building, changing, and versioning infrastructure",
         homepage: "https://opentofu.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/opentofu/opentofu/blob/v${version}/CHANGELOG.md`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "tofu",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
   const opentofu_plugins_test = nix.thunk(() => (() => {
     const mainTf = nix.thunk(() => nix.app(writeText, "main.tf", "terraform {\n  required_providers {\n    random = {\n      source  = \"hashicorp/random\"\n    }\n  }\n}\n\nresource \"random_id\" \"test\" {}\n"));
     const opentofu = nix.thunk(() => nix.app(nix.sel(nix.app(pluggable, package$), "withPlugins"), (p) => [nix.thunk(() => nix.sel(p, "hashicorp_random"))]));
-    const test = nix.thunk(() => nix.app(runCommand, "opentofu-plugin-test", nix.thunk(() => ({ __proto__: pos$6, buildInputs: nix.thunk(() => [opentofu]) })), nix.thunk(() => nix.str`# make it fail outside of sandbox
+    const test = nix.thunk(() => nix.app(runCommand, "opentofu-plugin-test", nix.thunk(() => ({ [nix.POS]: pos$6, buildInputs: nix.thunk(() => [opentofu]) })), nix.thunk(() => nix.str`# make it fail outside of sandbox
 export HTTP_PROXY=http://127.0.0.1:0 HTTPS_PROXY=https://127.0.0.1:0
 cp ${mainTf} main.tf
 tofu init
@@ -105,7 +105,7 @@ touch $out
       const actualPlugins = nix.thunk(() => nix.app(plugins_1, nix.thunk(() => nix.sel(opentofu, "plugins"))));
       const wrapperInputs = nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "catAttrs"), "propagatedBuildInputs", nix.thunk(() => nix.builtins.filter((x) => !nix.eq(x, null), actualPlugins))))))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         withPlugins: (newplugins) => nix.app(withPlugins, (x) => nix.concat(nix.app(newplugins, x), actualPlugins)),
         full: nix.thunk(() => nix.app(withPlugins, (p) => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.sel(lib, "isDerivation")), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(p, "actualProviders"))))))),
         overrideDerivation: (f) => nix.app(nix.sel(nix.app(pluggable, nix.thunk(() => nix.app(nix.sel(opentofu, "overrideDerivation"), f))), "withPlugins"), plugins_1),
@@ -113,10 +113,10 @@ touch $out
         override: (x) => nix.app(nix.sel(nix.app(pluggable, nix.thunk(() => nix.app(nix.sel(opentofu, "override"), x))), "withPlugins"), plugins_1),
       }));
       return (nix.asBool(nix.eq(actualPlugins, [])) ? nix.app(nix.sel(opentofu, "overrideAttrs"), (orig) => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           passthru: nix.thunk(() => nix.update(nix.sel(orig, "passthru"), passthru)),
         })) : nix.app(nix.sel(lib, "appendToName"), "with-plugins", nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             meta: nix.thunk(() => nix.attr(opentofu, "meta")),
             pname: nix.thunk(() => nix.attr(opentofu, "pname")),
             version: nix.thunk(() => nix.attr(opentofu, "version")),

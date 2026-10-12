@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: nix.thunk(() => nix.attr(tectonic_unwrapped, "version")),
       pname: nix.thunk(() => nix.str`${nix.sel(tectonic_unwrapped, "pname")}-wrapped`),
       paths: nix.thunk(() => [tectonic_unwrapped]),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         unwrapped: tectonic_unwrapped,
         biber: biber_for_tectonic,
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
 ln -s $out/bin/tectonic $out/bin/nextonic
 `)),
       meta: nix.thunk(() => nix.update(nix.sel(tectonic_unwrapped, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TeX/LaTeX engine, wrapped with a compatible biber",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

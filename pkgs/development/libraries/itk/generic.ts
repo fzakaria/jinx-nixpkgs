@@ -49,39 +49,39 @@ export default nix.lambda((args) => (() => {
     const enableRtk = nix.argOr($_1, "enableRtk", () => true);
     const withVtk = nix.thunk(() => !nix.asBool(enablePython));
     const itkGenericLabelInterpolatorSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "InsightSoftwareConsortium",
         repo: "ITKGenericLabelInterpolator",
         rev: "2f3768110ffe160c00c533a1450a49a16f4452d9",
         hash: "sha256-Cm3jg14MMnbr/sP+gqR2Rh25xJjoRvpmY/jP/DKH978=",
       }))));
     const itkAdaptiveDenoisingSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         owner: "ntustison",
         repo: "ITKAdaptiveDenoising",
         rev: "24825c8d246e941334f47968553f0ae388851f0c",
         hash: "sha256-deJbza36c0Ohf9oKpO2T4po37pkyI+2wCSeGL4r17Go=",
       }))));
     const itkSimpleITKFiltersSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner: "InsightSoftwareConsortium",
         repo: "ITKSimpleITKFilters",
         rev: "bb896868fc6480835495d0da4356d5db009592a6",
         hash: "sha256-MfaIA0xxA/pzUBSwnAevr17iR23Bo5iQO2cSyknS3o4=",
       }))));
     const rtkSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         owner: "RTKConsortium",
         repo: "RTK",
         rev: "583288b1898dedcfb5e4d602e31020b452971383",
         hash: "sha256-1ItsLCRwRzGDSRe4xUDg09Hksu1nKichbWuM0YSVkbM=",
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: "itk",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             owner: "InsightSoftwareConsortium",
             repo: "ITK",
             tag: tag,
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
           })))),
         patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "5.4")), nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 name: "fix-gcc13-build",
                 url: "https://github.com/InsightSoftwareConsortium/ITK/commit/9a719a0d2f5f489eeb9351b0ef913c3693147a4f.patch",
                 hash: "sha256-dDyqYOzo91afR8W7k2N64X6l7t6Ws1C9iuRkWHUe0fg=",
@@ -152,7 +152,7 @@ find $out/${nix.sel(python, "sitePackages")}/itk -type f -name '*.so*' -exec \\
   patchelf {} --shrink-rpath --allowed-rpath-prefixes "$NIX_STORE" \\;
 `))),
         meta: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: "Insight Segmentation and Registration Toolkit",
           homepage: "https://www.itk.org",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

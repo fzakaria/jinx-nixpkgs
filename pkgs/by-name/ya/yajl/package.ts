@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "yajl",
       version: "2.1.0-unstable-2024-02-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "containers",
           repo: "yajl",
           rev: "6bc5219389fd2752631682b0a8368e6d8218a8c5",
@@ -33,16 +33,16 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [which]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       outputs: nix.thunk(() => ["out", "bin", "dev"]),
       postFixup: "moveToOutput bin \"${!outputBin}\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Yet Another JSON Library",
         longDescription: "YAJL is a small event-driven (SAX-style) JSON parser written in ANSI\nC, and a small validating JSON generator.\n",
         homepage: "https://lloyd.github.io/yajl/",

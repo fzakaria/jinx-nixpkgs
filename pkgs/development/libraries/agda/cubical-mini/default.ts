@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ghc = nix.arg($, "ghc");
   const cabal_install = nix.arg($, "cabal-install");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cubical-mini",
       version: "0.5-unstable-2025-06-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "cubical-mini",
           owner: "cmcmA20",
           rev: "1776874d13d0b811e6eeb70d0e5a52b4d2a978d2",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [ghc, cabal_install]),
       buildPhase: "runHook preBuild\nexport HOME=$TMP\nmkdir $HOME/.cabal\ntouch $HOME/.cabal/config\nmake\nrunHook postBuild\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/cmcmA20/cubical-mini",
         description: "Nonstandard library for Cubical Agda",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

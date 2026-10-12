@@ -23,27 +23,27 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "iotop"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         iotop: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "iotop + setcap wrapper")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "iotop", nix.thunk(() => ({ __proto__: pos$1, example: "iotop-c" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "iotop", nix.thunk(() => ({ [nix.POS]: pos$1, example: "iotop-c" })))),
           enableDelayacct: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the task_delayacct kernel task delay accounting in order to show all\nstatistics")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         security: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             iotop: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               owner: "root",
               group: "root",
               capabilities: "cap_net_admin+p",
@@ -52,10 +52,10 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           kernel: nix.thunk(() => ({
-            __proto__: pos$9,
-            sysctl: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableDelayacct")), nix.thunk(() => ({ __proto__: pos$8, "kernel.task_delayacct": 1n })))),
+            [nix.POS]: pos$9,
+            sysctl: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableDelayacct")), nix.thunk(() => ({ [nix.POS]: pos$8, "kernel.task_delayacct": 1n })))),
           })),
         })),
       })))),

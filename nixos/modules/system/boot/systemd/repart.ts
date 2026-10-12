@@ -49,14 +49,14 @@ export default nix.lambda((args) => (() => {
   const utils = nix.arg($, "utils");
   const cfg = nix.thunk(() => nix.sel(config, "systemd", "repart"));
   const initrdCfg = nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "repart"));
-  const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ __proto__: pos$1, listsAsDuplicateKeys: true }))));
-  const definitionsDirectory = nix.thunk(() => nix.app(nix.sel(utils, "systemdUtils", "lib", "definitions"), "repart.d", format, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_n) => (v) => ({ __proto__: pos$2, Partition: v }), nix.thunk(() => nix.sel(cfg, "partitions"))))));
+  const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ [nix.POS]: pos$1, listsAsDuplicateKeys: true }))));
+  const definitionsDirectory = nix.thunk(() => nix.app(nix.sel(utils, "systemdUtils", "lib", "definitions"), "repart.d", format, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_n) => (v) => ({ [nix.POS]: pos$2, Partition: v }), nix.thunk(() => nix.sel(cfg, "partitions"))))));
   const partitionAssertions = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (fileName) => (definition) => (() => {
       const from = nix.thunk(() => nix.sel(utils, "systemdUtils", "lib"));
       const GPTMaxLabelLength = nix.thunk(() => nix.attr(from, "GPTMaxLabelLength"));
       const labelLength = nix.thunk(() => nix.builtins.stringLength(nix.thunk(() => nix.sel(definition, "Label"))));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         assertion: nix.thunk(() => (!nix.asBool(nix.has(definition, "Label")) || nix.asBool(nix.ge(GPTMaxLabelLength, labelLength)))),
         message: nix.thunk(() => nix.str`The partition label '${nix.sel(definition, "Label")}' defined for '${fileName}' is ${nix.builtins.toString(labelLength)}
 characters long, but the maximum label length supported by systemd is ${nix.builtins.toString(GPTMaxLabelLength)}.
@@ -64,23 +64,23 @@ characters long, but the maximum label length supported by systemd is ${nix.buil
       };
     })(), nix.thunk(() => nix.sel(cfg, "partitions"))));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       boot: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         initrd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             repart: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "systemd-repart"), {
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 description: "Grow and add partitions to a partition table at boot time in the initrd.\nsystemd-repart only works with GPT partition tables.\n\nTo run systemd-repart after the initrd, see\n`options.systemd.repart.enable`.\n",
               })),
               device: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -90,20 +90,20 @@ characters long, but the maximum label length supported by systemd is ${nix.buil
                   example: "/dev/vda",
                 })))),
               empty: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["refuse", "allow", "require", "force", "create"]))),
                   description: "Controls how to operate on empty devices that contain no partition table yet.\nSee {manpage}`systemd-repart(8)` for details.\n",
                   example: "require",
                   default: "refuse",
                 })))),
               discard: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   description: "Controls whether to issue the BLKDISCARD I/O control command on the\nspace taken up by any added partitions or on the space in between them.\nUsually, it's a good idea to issue this request since it tells the underlying\nhardware that the covered blocks shall be considered empty, improving performance.\n\nSee {manpage}`systemd-repart(8)` for details.\n",
                   default: true,
                 })))),
               extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   description: "Extra command-line arguments to pass to systemd-repart.\n\nSee {manpage}`systemd-repart(8)` for all available options.\n",
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   default: [],
@@ -113,15 +113,15 @@ characters long, but the maximum label length supported by systemd is ${nix.buil
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         repart: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "systemd-repart"), {
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             description: "Grow and add partitions to a partition table.\nsystemd-repart only works with GPT partition tables.\n\nTo run systemd-repart while in the initrd, see\n`options.boot.initrd.systemd.repart.enable`.\n",
           })),
           partitions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -133,9 +133,9 @@ characters long, but the maximum label length supported by systemd is ${nix.buil
               })()),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$16,
-                "10-root": nix.thunk(() => ({ __proto__: pos$14, Type: "root" })),
-                "20-home": nix.thunk(() => ({ __proto__: pos$15, Type: "home", SizeMinBytes: "512M", SizeMaxBytes: "2G" })),
+                [nix.POS]: pos$16,
+                "10-root": nix.thunk(() => ({ [nix.POS]: pos$14, Type: "root" })),
+                "20-home": nix.thunk(() => ({ [nix.POS]: pos$15, Type: "home", SizeMinBytes: "512M", SizeMaxBytes: "2G" })),
               })),
               description: "Specify partitions as a set of the names of the definition files as the\nkey and the partition configuration as its value. The partition\nconfiguration can use all upstream options. See {manpage}`repart.d(5)`\nfor all available options.\n",
             })))),
@@ -143,38 +143,38 @@ characters long, but the maximum label length supported by systemd is ${nix.buil
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) || nix.asBool(nix.sel(initrdCfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(initrdCfg, "enable")) || nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")))),
             message: "'boot.initrd.systemd.repart.enable' requires 'boot.initrd.systemd.enable' to be enabled.\n",
           })),
         ], partitionAssertions)),
         boot: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           initrd: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             availableKernelModules: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(initrdCfg, "enable")), "loop")),
             systemd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(initrdCfg, "enable")), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 additionalUpstreamUnits: nix.thunk(() => ["systemd-repart.service", "systemd-repart.socket", "systemd-repart@.service"]),
                 storePaths: nix.thunk(() => [
                   nix.thunk(() => nix.str`${nix.sel(config, "boot", "initrd", "systemd", "package")}/bin/systemd-repart`),
                 ]),
                 contents: nix.thunk(() => ({
-                  __proto__: pos$23,
-                  "/etc/repart.d": nix.thunk(() => ({ __proto__: pos$22, source: definitionsDirectory })),
+                  [nix.POS]: pos$23,
+                  "/etc/repart.d": nix.thunk(() => ({ [nix.POS]: pos$22, source: definitionsDirectory })),
                 })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   "systemd-repart": nix.thunk(() => (() => {
                     const deviceUnit = nix.thunk(() => nix.str`${nix.app(nix.sel(utils, "escapeSystemdPath"), nix.thunk(() => nix.sel(initrdCfg, "device")))}.device`);
                     return {
-                      __proto__: pos$26,
-                      environment: nix.thunk(() => ({ __proto__: pos$24, TMPDIR: "/tmp" })),
+                      [nix.POS]: pos$26,
+                      environment: nix.thunk(() => ({ [nix.POS]: pos$24, TMPDIR: "/tmp" })),
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         ExecStart: nix.thunk(() => [
                           " ",
                           nix.thunk(() => nix.str`${nix.sel(config, "boot", "initrd", "systemd", "package")}/bin/systemd-repart \\
@@ -196,19 +196,19 @@ characters long, but the maximum label length supported by systemd is ${nix.buil
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-              __proto__: pos$32,
-              "repart.d": nix.thunk(() => ({ __proto__: pos$31, source: definitionsDirectory })),
+              [nix.POS]: pos$32,
+              "repart.d": nix.thunk(() => ({ [nix.POS]: pos$31, source: definitionsDirectory })),
             })))),
         })),
         systemd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             additionalUpstreamSystemUnits: nix.thunk(() => ["systemd-repart.service"]),
           })))),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];

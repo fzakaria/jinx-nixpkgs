@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.34.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opentelekomcloud",
           repo: "python-otcextensions",
           tag: version,
           hash: "sha256-dkAF0UXD0cpktSqDsYbpHO8IzKRdHx85MOp4aelbbgo=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
       const build_system = nix.thunk(() => [pbr, setuptools]);
       const dependencies = nix.thunk(() => [
         openstacksdk,
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         "otcextensions.sdk",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OpenStack SDK and client extensions for Open Telekom Cloud services",
         homepage: "https://github.com/opentelekomcloud/python-otcextensions",
         changelog: nix.thunk(() => nix.str`https://github.com/opentelekomcloud/python-otcextensions/releases/tag/${version}`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

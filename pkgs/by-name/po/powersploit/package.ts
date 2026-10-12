@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "powersploit",
       version: "3.0.0-unstable-2020-08-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PowerShellMafia",
           repo: "PowerSploit",
           rev: "d943001a7defb5e0d1657085a77a0e78609be58f",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\nmkdir -p $out/share/windows/powersploit\ncp -a * $out/share/windows/powersploit\nfind $out/share/windows -type f -exec chmod -x {} \\;\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://github.com/PowerShellMafia/PowerSploit/releases/",
         description: "PowerShell Post-Exploitation Framework",
         homepage: "https://github.com/PowerShellMafia/PowerSploit",

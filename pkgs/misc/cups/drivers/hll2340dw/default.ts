@@ -26,17 +26,17 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const version = "3.2.0-1";
   const lprdeb = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf101912/hll2340dlpr-${version}.i386.deb`),
       sha256: "c0ae98b49b462cd8fbef445550f2177ce9d8bf627c904e182daa8cbaf8781e50",
     }))));
   const cupsdeb = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf101913/hll2340dcupswrapper-${version}.i386.deb`),
       sha256: "8aa24a6a825e3a4d5b51778cb46fe63032ec5a731ace22f9ef2b0ffcc2033cc9",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cups-brother-hll2340dw",
       version: version,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -75,7 +75,7 @@ wrapProgram $out/opt/brother/Printers/HLL2340D/lpd/filter_HLL2340D \\
   --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ghostscript, a2ps, file, gnused, gnugrep, coreutils, which]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.brother.com/",
         description: "Brother hl-l2340dw printer driver",
         sourceProvenance: nix.thunk(() => (() => {

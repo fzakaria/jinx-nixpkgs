@@ -25,42 +25,42 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const text = "66263666188646651519653683416";
   const fontsConf = nix.thunk(() => nix.app(nix.sel(pkgs, "makeFontsConf"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fontDirectories: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dejavu_fonts", "minimal"))]),
     }))));
   const image = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "image.png", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "imagemagickBig"))]),
       FONTCONFIG_FILE: fontsConf,
     })), nix.thunk(() => nix.str`magick -pointsize 100 label:${text} $out
 `)));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "sane",
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           boot: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraModprobeConfig: "options v4l2loopback devices=1 max_buffers=2 exclusive_caps=1 card_label=VirtualCam\n",
             kernelModules: nix.thunk(() => ["v4l2loopback"]),
             extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "v4l2loopback"))]),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             services: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               "fake-webcam": nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 description: nix.thunk(() => nix.str`fill /dev/video0 with ${image}`),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   ExecStart: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(pkgs_1, "ffmpeg")}/bin/ffmpeg -framerate 30 -re -stream_loop -1 -i ${image} -f v4l2 -pix_fmt gray /dev/video0`),
                   ]),
@@ -69,18 +69,18 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           hardware: nix.thunk(() => ({
-            __proto__: pos$9,
-            sane: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+            [nix.POS]: pos$9,
+            sane: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
           })),
-          system: nix.thunk(() => ({ __proto__: pos$10, extraDependencies: nix.thunk(() => [image]) })),
+          system: nix.thunk(() => ({ [nix.POS]: pos$10, extraDependencies: nix.thunk(() => [image]) })),
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "fswebcam")),
               nix.thunk(() => nix.sel(pkgs_1, "tesseract")),
               nix.thunk(() => nix.sel(pkgs_1, "v4l-utils")),
             ]),
-            variables: nix.thunk(() => ({ __proto__: pos$11, SANE_DEBUG_V4L: "128" })),
+            variables: nix.thunk(() => ({ [nix.POS]: pos$11, SANE_DEBUG_V4L: "128" })),
           })),
         };
       })(), formals$2),

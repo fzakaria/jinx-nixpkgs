@@ -157,7 +157,7 @@ export default nix.lambda((args) => (() => {
   const submodule = nix.thunk(() => nix.attr(types, "submodule"));
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "xen"));
   const xenBootBuilder = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "xenBootBuilder",
       runtimeInputs: nix.thunk(() => nix.concat((() => {
         const w = nix.withScope(pkgs, null);
@@ -178,14 +178,14 @@ export default nix.lambda((args) => (() => {
           ];
         })())))),
       runtimeEnv: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         efiMountPoint: nix.thunk(() => nix.sel(config, "boot", "loader", "efi", "efiSysMountPoint")),
       })),
       excludeShellChecks: nix.thunk(() => ["SC2016"]),
       text: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./xen-boot-builder.sh"))),
     }))));
   return {
-    __proto__: pos$116,
+    [nix.POS]: pos$116,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["virtualisation", "xen", "bridge", "name"]), "The Xen Network Bridge options are currently unavailable. Please set up your own bridge manually.")),
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["virtualisation", "xen", "bridge", "address"]), "The Xen Network Bridge options are currently unavailable. Please set up your own bridge manually.")),
@@ -199,27 +199,27 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["virtualisation", "xen", "efi", "path"]), nix.thunk(() => ["virtualisation", "xen", "boot", "efi", "path"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$73,
+      [nix.POS]: pos$73,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$72,
+        [nix.POS]: pos$72,
         xen: nix.thunk(() => ({
-          __proto__: pos$71,
+          [nix.POS]: pos$71,
           enable: nix.thunk(() => nix.app(mkEnableOption, "the Xen Project Hypervisor, a virtualisation technology defined as a *type-1 hypervisor*, which allows multiple virtual machines, known as *domains*, to run concurrently on the physical machine. NixOS runs as the privileged *Domain 0*. This option requires a reboot into a Xen kernel to take effect")),
           debug: nix.thunk(() => nix.app(mkEnableOption, "Xen debug features for Domain 0. This option enables some hidden debugging tests and features, and should not be used in production")),
           trace: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: bool,
               default: nix.thunk(() => nix.sel(cfg, "debug")),
               defaultText: nix.thunk(() => nix.app(literalExpression, "false")),
               example: true,
               description: "Whether to enable Xen debug tracing and logging for Domain 0.",
             })))),
-          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "Xen Hypervisor", nix.thunk(() => ({ __proto__: pos$4, default: nix.thunk(() => ["xen"]) })))),
+          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "Xen Hypervisor", nix.thunk(() => ({ [nix.POS]: pos$4, default: nix.thunk(() => ["xen"]) })))),
           qemu: nix.thunk(() => ({
-            __proto__: pos$7,
-            package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "QEMU (with Xen Hypervisor support)", nix.thunk(() => ({ __proto__: pos$5, default: nix.thunk(() => ["qemu_xen"]) })))),
+            [nix.POS]: pos$7,
+            package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "QEMU (with Xen Hypervisor support)", nix.thunk(() => ({ [nix.POS]: pos$5, default: nix.thunk(() => ["qemu_xen"]) })))),
             pidFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: path,
                 default: "/run/xen/qemu-dom0.pid",
                 example: "/var/run/xen/qemu-dom0.pid",
@@ -227,25 +227,25 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             params: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 default: [],
                 example: nix.thunk(() => nix.app(literalExpression, "[\n  \"iommu=force:true,qinval:true,debug:true\"\n  \"noreboot=true\"\n  \"vga=ask\"\n]\n")),
                 type: nix.thunk(() => nix.app(listOf, str)),
                 description: "Xen Command Line parameters passed to Domain 0 at boot time.\n\n::: {.note}\nNote: these are different from {option}`boot.kernelParams`. See\nthe [Xen documentation](https://xenbits.xenproject.org/docs/unstable/misc/xen-command-line.html) for more information.\n:::\n",
               })))),
             builderVerbosity: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["default", "info", "debug", "quiet"]))),
                 default: "default",
                 example: "info",
                 description: "The boot entry builder script should be called with exactly one of the following arguments in order to specify its verbosity:\n\n- `quiet` supresses all messages.\n\n- `default` adds a simple \"Installing Xen Project Hypervisor boot entries...done.\" message to the script.\n\n- `info` is the same as `default`, but it also prints a diff with information on which generations were altered.\n  - This option adds two extra dependencies to the script: `diffutils` and `bat`.\n\n- `debug` prints information messages for every single step of the script.\n\nThis option does not alter the actual functionality of the script, just the number of messages printed when rebuilding the system.\n",
               })))),
             bios: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   type: path,
                   default: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "boot")}/${nix.sel(cfg, "package", "multiboot")}`),
                   defaultText: nix.thunk(() => nix.app(literalExpression, "${config.virtualisation.xen.package.boot}/${config.virtualisation.xen.package.multiboot}")),
@@ -254,9 +254,9 @@ export default nix.lambda((args) => (() => {
                 })))),
             })),
             efi: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   type: path,
                   default: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "boot")}/${nix.sel(cfg, "package", "efi")}`),
                   defaultText: nix.thunk(() => nix.app(literalExpression, "${config.virtualisation.xen.package.boot}/${config.virtualisation.xen.package.efi}")),
@@ -266,23 +266,23 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           dom0Resources: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             maxVCPUs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 default: 0n,
                 example: 4n,
                 type: nix.thunk(() => nix.sel(ints, "unsigned")),
                 description: "Amount of virtual CPU cores allocated to Domain 0 on boot.\nIf set to 0, all cores are assigned to Domain 0, and\nunprivileged domains will compete with Domain 0 for CPU time.\n",
               })))),
             memory: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 default: 0n,
                 example: 512n,
                 type: nix.thunk(() => nix.sel(ints, "unsigned")),
                 description: "Amount of memory (in MiB) allocated to Domain 0 on boot.\nIf set to 0, all memory is assigned to Domain 0, and\nunprivileged domains will compete with Domain 0 for free RAM.\n",
               })))),
             maxMemory: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 default: nix.thunk(() => nix.sel(cfg, "dom0Resources", "memory")),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "config.virtualisation.xen.dom0Resources.memory")),
                 example: 1024n,
@@ -291,9 +291,9 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           domains: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: lines,
                 default: "",
                 example: nix.thunk(() => nix.app(literalExpression, "XENDOMAINS_SAVE=/persist/xen/save\nXENDOMAINS_RESTORE=false\nXENDOMAINS_CREATE_USLEEP=10000000\n")),
@@ -301,9 +301,9 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           store: nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: path,
                 default: nix.thunk(() => nix.str`${nix.sel(cfg, "store", "package")}/bin/oxenstored`),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "${config.virtualisation.xen.store.package}/bin/oxenstored")),
@@ -311,7 +311,7 @@ export default nix.lambda((args) => (() => {
                 description: "Path to the Xen Store Daemon. This option is useful to\nswitch between the legacy C-based Xen Store Daemon, and\nthe newer OCaml-based Xen Store Daemon, `oxenstored`.\n",
               })))),
             type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["c", "ocaml"]))),
                 default: nix.thunk(() => (nix.asBool(nix.app(hasSuffix, "oxenstored", nix.thunk(() => nix.sel(cfg, "store", "path")))) ? "ocaml" : "c")),
                 internal: true,
@@ -319,36 +319,36 @@ export default nix.lambda((args) => (() => {
                 description: "Helper internal option that determines the type of the Xen Store Daemon based on cfg.store.path.",
               })))),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, nix.thunk(() => ["ocamlPackages", "oxenstored"]), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 extraDescription: "This is only used if the Xen Store Daemon being used is the newer OCaml-based store.\nThe legacy C-based store is always included.\n",
               })))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$69,
+                [nix.POS]: pos$69,
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   enableMerge: false,
-                  quota: nix.thunk(() => ({ __proto__: pos$24, maxWatchEvents: 2048n, enable: true })),
-                  conflict: nix.thunk(() => ({ __proto__: pos$25, maxHistorySeconds: 0.12, burstLimit: 15.0 })),
+                  quota: nix.thunk(() => ({ [nix.POS]: pos$24, maxWatchEvents: 2048n, enable: true })),
+                  conflict: nix.thunk(() => ({ [nix.POS]: pos$25, maxHistorySeconds: 0.12, burstLimit: 15.0 })),
                   xenstored: nix.thunk(() => ({
-                    __proto__: pos$27,
-                    log: nix.thunk(() => ({ __proto__: pos$26, file: "/dev/null", level: "info" })),
+                    [nix.POS]: pos$27,
+                    log: nix.thunk(() => ({ [nix.POS]: pos$26, file: "/dev/null", level: "info" })),
                   })),
                 })),
                 description: "The OCaml-based Xen Store Daemon configuration. This\noption does nothing with the C-based `xenstored`.\n",
                 type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                    __proto__: pos$68,
+                    [nix.POS]: pos$68,
                     options: nix.thunk(() => ({
-                      __proto__: pos$67,
+                      [nix.POS]: pos$67,
                       pidFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$29,
+                          [nix.POS]: pos$29,
                           default: "/run/xen/xenstored.pid",
                           example: "/var/run/xen/xenstored.pid",
                           type: path,
                           description: "Path to the Xen Store Daemon PID file.",
                         })))),
                       testEAGAIN: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$30,
+                          [nix.POS]: pos$30,
                           default: nix.thunk(() => nix.sel(cfg, "debug")),
                           defaultText: nix.thunk(() => nix.app(literalExpression, "config.virtualisation.xen.debug")),
                           example: true,
@@ -357,20 +357,20 @@ export default nix.lambda((args) => (() => {
                           description: "Randomly fail a transaction with EAGAIN. This option is used for debugging purposes only.",
                         })))),
                       enableMerge: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           default: true,
                           example: false,
                           type: bool,
                           description: "Whether to enable transaction merge support.",
                         })))),
                       conflict: nix.thunk(() => ({
-                        __proto__: pos$37,
+                        [nix.POS]: pos$37,
                         burstLimit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$33,
+                            [nix.POS]: pos$33,
                             default: 5.0,
                             example: 15.0,
                             type: nix.thunk(() => nix.app(addCheck, nix.thunk(() => nix.update(float, {
-                                __proto__: pos$32,
+                                [nix.POS]: pos$32,
                                 name: "nonnegativeFloat",
                                 description: "nonnegative floating point number, meaning >=0",
                                 descriptionClass: "nonRestrictiveClause",
@@ -378,17 +378,17 @@ export default nix.lambda((args) => (() => {
                             description: "Limits applied to domains whose writes cause other domains' transaction\ncommits to fail. Must include decimal point.\n\nThe burst limit is the number of conflicts a domain can cause to\nfail in a short period; this value is used for both the initial and\nthe maximum value of each domain's conflict-credit, which falls by\none point for each conflict caused, and when it reaches zero the\ndomain's requests are ignored.\n",
                           })))),
                         maxHistorySeconds: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$35,
+                            [nix.POS]: pos$35,
                             default: 0.05,
                             example: 1.0,
                             type: nix.thunk(() => nix.app(addCheck, nix.thunk(() => nix.update(float, {
-                                __proto__: pos$34,
+                                [nix.POS]: pos$34,
                                 description: "nonnegative floating point number, meaning >=0",
                               })), (n) => nix.ge(n, 0n))),
                             description: "Limits applied to domains whose writes cause other domains' transaction\ncommits to fail. Must include decimal point.\n\nThe conflict-credit is replenished over time:\none point is issued after each conflict.maxHistorySeconds, so this\nis the minimum pause-time during which a domain will be ignored.\n",
                           })))),
                         rateLimitIsAggregate: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$36,
+                            [nix.POS]: pos$36,
                             default: true,
                             example: false,
                             type: bool,
@@ -396,16 +396,16 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       perms: nix.thunk(() => ({
-                        __proto__: pos$40,
+                        [nix.POS]: pos$40,
                         enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$38,
+                            [nix.POS]: pos$38,
                             default: true,
                             example: false,
                             type: bool,
                             description: "Whether to enable the node permission system.",
                           })))),
                         enableWatch: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$39,
+                            [nix.POS]: pos$39,
                             default: true,
                             example: false,
                             type: bool,
@@ -413,65 +413,65 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       quota: nix.thunk(() => ({
-                        __proto__: pos$50,
+                        [nix.POS]: pos$50,
                         enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$41,
+                            [nix.POS]: pos$41,
                             default: true,
                             example: false,
                             type: bool,
                             description: "Whether to enable the quota system.",
                           })))),
                         maxEntity: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$42,
+                            [nix.POS]: pos$42,
                             default: 1000n,
                             example: 1024n,
                             type: nix.thunk(() => nix.sel(ints, "positive")),
                             description: "Entity limit for transactions.",
                           })))),
                         maxSize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$43,
+                            [nix.POS]: pos$43,
                             default: 2048n,
                             example: 4096n,
                             type: nix.thunk(() => nix.sel(ints, "positive")),
                             description: "Size limit for transactions.",
                           })))),
                         maxWatch: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$44,
+                            [nix.POS]: pos$44,
                             default: 100n,
                             example: 256n,
                             type: nix.thunk(() => nix.sel(ints, "positive")),
                             description: "Maximum number of watches by the Xenstore Watchdog.",
                           })))),
                         transaction: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$45,
+                            [nix.POS]: pos$45,
                             default: 10n,
                             example: 50n,
                             type: nix.thunk(() => nix.sel(ints, "positive")),
                             description: "Maximum number of transactions.",
                           })))),
                         maxRequests: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$46,
+                            [nix.POS]: pos$46,
                             default: 1024n,
                             example: 1024n,
                             type: nix.thunk(() => nix.sel(ints, "positive")),
                             description: "Maximum number of requests per transaction.",
                           })))),
                         maxPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$47,
+                            [nix.POS]: pos$47,
                             default: 1024n,
                             example: 1024n,
                             type: nix.thunk(() => nix.sel(ints, "positive")),
                             description: "Path limit for the quota system.",
                           })))),
                         maxOutstanding: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$48,
+                            [nix.POS]: pos$48,
                             default: 1024n,
                             example: 1024n,
                             type: nix.thunk(() => nix.sel(ints, "positive")),
                             description: "Maximum outstanding requests, i.e. in-flight requests / domain.",
                           })))),
                         maxWatchEvents: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$49,
+                            [nix.POS]: pos$49,
                             default: 1024n,
                             example: 2048n,
                             type: nix.thunk(() => nix.sel(ints, "positive")),
@@ -479,25 +479,25 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       persistent: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$51,
+                          [nix.POS]: pos$51,
                           default: false,
                           example: true,
                           type: bool,
                           description: "Whether to activate the filed base backend.",
                         })))),
                       xenstored: nix.thunk(() => ({
-                        __proto__: pos$64,
+                        [nix.POS]: pos$64,
                         log: nix.thunk(() => ({
-                          __proto__: pos$55,
+                          [nix.POS]: pos$55,
                           file: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$52,
+                              [nix.POS]: pos$52,
                               default: "/var/log/xen/xenstored.log",
                               example: "/dev/null",
                               type: path,
                               description: "Path to the Xen Store log file.",
                             })))),
                           level: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$53,
+                              [nix.POS]: pos$53,
                               default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "trace")) ? "debug" : null)),
                               defaultText: nix.thunk(() => nix.app(literalExpression, "if (config.virtualisation.xen.trace == true) then \"debug\" else null")),
                               example: "error",
@@ -505,7 +505,7 @@ export default nix.lambda((args) => (() => {
                               description: "Logging level for the Xen Store.",
                             })))),
                           nbFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$54,
+                              [nix.POS]: pos$54,
                               default: 10n,
                               example: 16n,
                               type: int,
@@ -514,16 +514,16 @@ export default nix.lambda((args) => (() => {
                             })))),
                         })),
                         accessLog: nix.thunk(() => ({
-                          __proto__: pos$60,
+                          [nix.POS]: pos$60,
                           file: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$56,
+                              [nix.POS]: pos$56,
                               default: "/var/log/xen/xenstored-access.log",
                               example: "/var/log/security/xenstored-access.log",
                               type: path,
                               description: "Path to the Xen Store access log file.",
                             })))),
                           nbLines: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$57,
+                              [nix.POS]: pos$57,
                               default: 13215n,
                               example: 16384n,
                               type: int,
@@ -531,7 +531,7 @@ export default nix.lambda((args) => (() => {
                               description: "Set `access-log-nb-lines`.",
                             })))),
                           nbChars: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$58,
+                              [nix.POS]: pos$58,
                               default: 180n,
                               example: 256n,
                               type: int,
@@ -539,7 +539,7 @@ export default nix.lambda((args) => (() => {
                               description: "Set `acesss-log-nb-chars`.",
                             })))),
                           specialOps: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$59,
+                              [nix.POS]: pos$59,
                               default: false,
                               example: true,
                               type: bool,
@@ -548,9 +548,9 @@ export default nix.lambda((args) => (() => {
                             })))),
                         })),
                         xenfs: nix.thunk(() => ({
-                          __proto__: pos$63,
+                          [nix.POS]: pos$63,
                           kva: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$61,
+                              [nix.POS]: pos$61,
                               default: "/proc/xen/xsd_kva",
                               example: nix.thunk(() => nix.sel(cfg, "store", "settings", "xenstored", "xenfs", "kva")),
                               type: path,
@@ -558,7 +558,7 @@ export default nix.lambda((args) => (() => {
                               description: "Path to the Xen Store Daemon KVA location inside the XenFS pseudo-filesystem.\nWhile it is possible to alter this value, some drivers may be hardcoded to follow the default paths.\n",
                             })))),
                           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$62,
+                              [nix.POS]: pos$62,
                               default: "/proc/xen/xsd_port",
                               example: nix.thunk(() => nix.sel(cfg, "store", "settings", "xenstored", "xenfs", "port")),
                               type: path,
@@ -568,11 +568,11 @@ export default nix.lambda((args) => (() => {
                         })),
                       })),
                       ringScanInterval: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$66,
+                          [nix.POS]: pos$66,
                           default: 20n,
                           example: 30n,
                           type: nix.thunk(() => nix.app(addCheck, nix.thunk(() => nix.update(int, {
-                              __proto__: pos$65,
+                              [nix.POS]: pos$65,
                               name: "nonzeroInt",
                               description: "nonzero signed integer, meaning !=0",
                               descriptionClass: "nonRestrictiveClause",
@@ -587,52 +587,52 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$114,
+        [nix.POS]: pos$114,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             assertion: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86_64")),
             message: nix.thunk(() => nix.str`Xen is currently not supported on ${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}.`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             assertion: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(config, "boot", "loader", "systemd-boot", "enable")) || nix.asBool((nix.asBool(nix.has(nix.sel(config, "boot"), "lanzaboote")) && nix.asBool(nix.sel(config, "boot", "lanzaboote", "enable")))))) || nix.asBool(nix.sel(config, "boot", "loader", "limine", "enable")))),
             message: "Xen only supports booting on systemd-boot, Lanzaboote or Limine.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$76,
+            [nix.POS]: pos$76,
             assertion: nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "enable")),
             message: "Xen does not support the legacy script-based stage 1 initial ramdisk.\nPlease set 'boot.initrd.systemd.enable' to 'true'.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$77,
+            [nix.POS]: pos$77,
             assertion: nix.thunk(() => nix.ge(nix.sel(cfg, "dom0Resources", "maxMemory"), nix.sel(cfg, "dom0Resources", "memory"))),
             message: "You have allocated more memory to dom0 than 'virtualisation.xen.dom0Resources.maxMemory'\nallows for. Please increase the maximum memory limit, or decrease the default memory allocation.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$78,
+            [nix.POS]: pos$78,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "debug")) || nix.asBool(nix.sel(cfg, "trace")))),
             message: "Xen's debugging features are enabled, but logging is disabled. This is most likely not what you want.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$79,
+            [nix.POS]: pos$79,
             assertion: nix.thunk(() => nix.ge(nix.sel(cfg, "store", "settings", "quota", "maxWatchEvents"), nix.sel(cfg, "store", "settings", "quota", "maxOutstanding"))),
             message: "Upstream Xen recommends that 'virtualisation.xen.store.settings.quota.maxWatchEvents'\nbe equal to or greater than 'virtualisation.xen.store.settings.quota.maxOutstanding',\nin order to mitigate denial of service attacks from malicious frontends.\n",
           })),
         ]),
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.has(nix.sel(config, "boot"), "lanzaboote")) && nix.asBool(nix.sel(config, "boot", "lanzaboote", "enable")))), "Xen support has not yet been merged into Lanzaboote.\nEnsure that your Lanzaboote configuration includes PR #387:\nhttps://github.com/nix-community/lanzaboote/pull/387\n")),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$82,
+          [nix.POS]: pos$82,
           xen: nix.thunk(() => ({
-            __proto__: pos$81,
+            [nix.POS]: pos$81,
             boot: nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               params: nix.thunk(() => nix.concat(nix.app(optionals, nix.thunk(() => nix.sel(cfg, "trace")), nix.thunk(() => ["loglvl=all", "guest_loglvl=all"])), nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "dom0Resources", "memory"), 0n)), nix.thunk(() => nix.str`dom0_mem=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "dom0Resources", "memory")))}M${nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(cfg, "dom0Resources", "memory"), nix.sel(cfg, "dom0Resources", "maxMemory"))), nix.thunk(() => nix.str`,max:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "dom0Resources", "maxMemory")))}M`))}`)), nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "dom0Resources", "maxVCPUs"), 0n)), nix.thunk(() => nix.str`dom0_max_vcpus=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "dom0Resources", "maxVCPUs")))}`))))),
             })),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$89,
+          [nix.POS]: pos$89,
           kernelModules: nix.thunk(() => [
             "xen-evtchn",
             "xen-gntdev",
@@ -648,14 +648,14 @@ export default nix.lambda((args) => (() => {
             "xen-scsiback",
             "xenfs",
           ]),
-          initrd: nix.thunk(() => ({ __proto__: pos$83, kernelModules: nix.thunk(() => ["xenfs"]) })),
+          initrd: nix.thunk(() => ({ [nix.POS]: pos$83, kernelModules: nix.thunk(() => ["xenfs"]) })),
           extraModprobeConfig: "options loop max_loop=64\n",
           bootspec: nix.thunk(() => ({
-            __proto__: pos$86,
+            [nix.POS]: pos$86,
             extensions: nix.thunk(() => ({
-              __proto__: pos$85,
+              [nix.POS]: pos$85,
               "org.xenproject.bootspec.v2": nix.thunk(() => ({
-                __proto__: pos$84,
+                [nix.POS]: pos$84,
                 efiPath: nix.thunk(() => nix.sel(cfg, "boot", "efi", "path")),
                 multibootPath: nix.thunk(() => nix.sel(cfg, "boot", "bios", "path")),
                 version: nix.thunk(() => nix.sel(cfg, "package", "version")),
@@ -664,15 +664,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           loader: nix.thunk(() => ({
-            __proto__: pos$88,
+            [nix.POS]: pos$88,
             "systemd-boot": nix.thunk(() => ({
-              __proto__: pos$87,
+              [nix.POS]: pos$87,
               extraInstallCommands: nix.thunk(() => nix.str`${nix.app(getExe, xenBootBuilder)} ${nix.sel(cfg, "boot", "builderVerbosity")}`),
             })),
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$90,
+          [nix.POS]: pos$90,
           requiredKernelConfig: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(config, "lib", "kernelConfig")), null);
             return [
@@ -696,24 +696,24 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$98,
+          [nix.POS]: pos$98,
           systemPackages: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.sel(cfg, "package")),
             nix.thunk(() => nix.app(hiPrio, nix.thunk(() => nix.sel(cfg, "qemu", "package")))),
           ], nix.app(optional, nix.thunk(() => nix.eq(nix.sel(cfg, "store", "type"), "ocaml")), nix.thunk(() => nix.app(hiPrio, nix.thunk(() => nix.sel(cfg, "store", "package"))))))),
           etc: nix.thunk(() => nix.update({
-            __proto__: pos$95,
+            [nix.POS]: pos$95,
             "xen/xl.conf": nix.thunk(() => ({
-              __proto__: pos$91,
+              [nix.POS]: pos$91,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/xen/xl.conf`),
             })),
             "xen/scripts-xen": nix.thunk(() => ({
-              __proto__: pos$92,
+              [nix.POS]: pos$92,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/xen/scripts/*`),
               target: "xen/scripts",
             })),
             "default/xencommons": nix.thunk(() => ({
-              __proto__: pos$93,
+              [nix.POS]: pos$93,
               text: nix.thunk(() => nix.str`source ${nix.sel(cfg, "package")}/etc/default/xencommons
 
 XENSTORED="${nix.sel(cfg, "store", "path")}"
@@ -722,16 +722,16 @@ ${nix.app(optionalString, nix.thunk(() => nix.sel(cfg, "trace")), "XENSTORED_TRA
 `),
             })),
             "default/xendomains": nix.thunk(() => ({
-              __proto__: pos$94,
+              [nix.POS]: pos$94,
               text: nix.thunk(() => nix.str`source ${nix.sel(cfg, "package")}/etc/default/xendomains
 
 ${nix.sel(cfg, "domains", "extraConfig")}
 `),
             })),
           }, nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "store", "type"), "ocaml")), nix.thunk(() => ({
-              __proto__: pos$97,
+              [nix.POS]: pos$97,
               "xen/oxenstored.conf": nix.thunk(() => ({
-                __proto__: pos$96,
+                [nix.POS]: pos$96,
                 text: nix.thunk(() => nix.str`pid-file = ${nix.sel(cfg, "store", "settings", "pidFile")}
 test-eagain = ${nix.app(boolToString, nix.thunk(() => nix.sel(cfg, "store", "settings", "testEAGAIN")))}
 merge-activate = ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "store", "settings", "enableMerge")))}
@@ -765,45 +765,45 @@ xenstored-port = ${nix.sel(cfg, "store", "settings", "xenstored", "xenfs", "port
             }))))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$100,
+          [nix.POS]: pos$100,
           udev: nix.thunk(() => ({
-            __proto__: pos$99,
+            [nix.POS]: pos$99,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$113,
+          [nix.POS]: pos$113,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           mounts: nix.thunk(() => nix.app(singleton, nix.thunk(() => ({
-              __proto__: pos$102,
+              [nix.POS]: pos$102,
               description: "Mount /proc/xen files",
               what: "xenfs",
               where: "/proc/xen",
               type: "xenfs",
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$101,
+                [nix.POS]: pos$101,
                 ConditionPathExists: "/proc/xen",
                 RefuseManualStop: "true",
               })),
             })))),
           services: nix.thunk(() => ({
-            __proto__: pos$112,
-            xendriverdomain: nix.thunk(() => ({ __proto__: pos$103, enable: false })),
+            [nix.POS]: pos$112,
+            xendriverdomain: nix.thunk(() => ({ [nix.POS]: pos$103, enable: false })),
             xenstored: nix.thunk(() => ({
-              __proto__: pos$104,
+              [nix.POS]: pos$104,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               preStart: "export XENSTORED_ROOTDIR=\"/var/lib/xenstored\"\nrm -f \"$XENSTORED_ROOTDIR\"/tdb* &>/dev/null\nmkdir -p /var/{run,log,lib}/xen\n",
             })),
             "xen-init-dom0": nix.thunk(() => ({
-              __proto__: pos$105,
+              [nix.POS]: pos$105,
               restartIfChanged: false,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             })),
             "xen-qemu-dom0-disk-backend": nix.thunk(() => ({
-              __proto__: pos$107,
+              [nix.POS]: pos$107,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$106,
+                [nix.POS]: pos$106,
                 PIDFile: nix.thunk(() => nix.sel(cfg, "qemu", "pidFile")),
                 overrideStrategy: "asDropin",
                 ExecStart: nix.thunk(() => [
@@ -817,14 +817,14 @@ ${nix.sel(cfg, "qemu", "pidFile")}
                 ]),
               })),
             })),
-            xenconsoled: nix.thunk(() => ({ __proto__: pos$108, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+            xenconsoled: nix.thunk(() => ({ [nix.POS]: pos$108, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
             "xen-watchdog": nix.thunk(() => ({
-              __proto__: pos$110,
+              [nix.POS]: pos$110,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$109, RestartSec: "1", Restart: "on-failure" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$109, RestartSec: "1", Restart: "on-failure" })),
             })),
             xendomains: nix.thunk(() => ({
-              __proto__: pos$111,
+              [nix.POS]: pos$111,
               restartIfChanged: false,
               path: nix.thunk(() => [
                 nix.thunk(() => nix.sel(cfg, "package")),
@@ -837,7 +837,7 @@ ${nix.sel(cfg, "qemu", "pidFile")}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$115,
+      [nix.POS]: pos$115,
       doc: nix.path(here, "./xen.md"),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(teams, "xen"))]),
     })),

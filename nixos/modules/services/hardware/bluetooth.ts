@@ -66,68 +66,68 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfgFmt = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const defaults = nix.thunk(() => ({
-    __proto__: pos$3,
-    General: nix.thunk(() => ({ __proto__: pos$1, ControllerMode: "dual" })),
-    Policy: nix.thunk(() => ({ __proto__: pos$2, AutoEnable: nix.thunk(() => nix.sel(cfg, "powerOnBoot")) })),
+    [nix.POS]: pos$3,
+    General: nix.thunk(() => ({ [nix.POS]: pos$1, ControllerMode: "dual" })),
+    Policy: nix.thunk(() => ({ [nix.POS]: pos$2, AutoEnable: nix.thunk(() => nix.sel(cfg, "powerOnBoot")) })),
   }));
   const hasDisabledPlugins = nix.thunk(() => nix.gt(nix.builtins.length(nix.thunk(() => nix.sel(cfg, "disabledPlugins"))), 0n));
   return {
-    __proto__: pos$41,
+    [nix.POS]: pos$41,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["hardware", "bluetooth", "config"]), nix.thunk(() => ["hardware", "bluetooth", "settings"]))),
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["hardware", "bluetooth", "extraConfig"]), "Use hardware.bluetooth.settings instead.\n\nThis is part of the general move to use structured settings instead of raw\ntext for config as introduced by RFC0042:\nhttps://github.com/NixOS/rfcs/blob/master/rfcs/0042-config-option.md\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       hardware: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         bluetooth: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(mkEnableOption, "support for Bluetooth")),
           hsphfpd: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(mkEnableOption, "support for hsphfpd[-prototype] implementation")),
           })),
           powerOnBoot: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Whether to power up the default Bluetooth controller on boot.",
             })))),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "bluez", nix.thunk(() => ({})))),
           disabledPlugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               description: "Built-in plugins to disable",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(cfgFmt, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$8,
-                General: nix.thunk(() => ({ __proto__: pos$7, ControllerMode: "bredr" })),
+                [nix.POS]: pos$8,
+                General: nix.thunk(() => ({ [nix.POS]: pos$7, ControllerMode: "bredr" })),
               })),
               description: "Set configuration for system-wide bluetooth (/etc/bluetooth/main.conf).\nSee <https://github.com/bluez/bluez/blob/master/src/main.conf> for full list of options.\n",
             })))),
           input: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(cfgFmt, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$11,
-                General: nix.thunk(() => ({ __proto__: pos$10, IdleTimeout: 30n, ClassicBondedOnly: true })),
+                [nix.POS]: pos$11,
+                General: nix.thunk(() => ({ [nix.POS]: pos$10, IdleTimeout: 30n, ClassicBondedOnly: true })),
               })),
               description: "Set configuration for the input service (/etc/bluetooth/input.conf).\nSee <https://github.com/bluez/bluez/blob/master/profiles/input/input.conf> for full list of options.\n",
             })))),
           network: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(cfgFmt, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$14,
-                General: nix.thunk(() => ({ __proto__: pos$13, DisableSecurity: true })),
+                [nix.POS]: pos$14,
+                General: nix.thunk(() => ({ [nix.POS]: pos$13, DisableSecurity: true })),
               })),
               description: "Set configuration for the network service (/etc/bluetooth/network.conf).\nSee <https://github.com/bluez/bluez/blob/master/profiles/network/network.conf> for full list of options.\n",
             })))),
@@ -135,48 +135,48 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         environment: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           systemPackages: nix.thunk(() => nix.concat([package$], nix.app(optional, nix.thunk(() => nix.sel(cfg, "hsphfpd", "enable")), nix.thunk(() => nix.sel(pkgs, "hsphfpd"))))),
           etc: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "bluetooth/input.conf": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               source: nix.thunk(() => nix.app(nix.sel(cfgFmt, "generate"), "input.conf", nix.thunk(() => nix.sel(cfg, "input")))),
             })),
             "bluetooth/network.conf": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               source: nix.thunk(() => nix.app(nix.sel(cfgFmt, "generate"), "network.conf", nix.thunk(() => nix.sel(cfg, "network")))),
             })),
             "bluetooth/main.conf": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               source: nix.thunk(() => nix.app(nix.sel(cfgFmt, "generate"), "main.conf", nix.thunk(() => nix.app(recursiveUpdate, defaults, nix.thunk(() => nix.sel(cfg, "settings")))))),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$26,
-          udev: nix.thunk(() => ({ __proto__: pos$24, packages: nix.thunk(() => [package$]) })),
+          [nix.POS]: pos$26,
+          udev: nix.thunk(() => ({ [nix.POS]: pos$24, packages: nix.thunk(() => [package$]) })),
           dbus: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             packages: nix.thunk(() => nix.concat([package$], nix.app(optional, nix.thunk(() => nix.sel(cfg, "hsphfpd", "enable")), nix.thunk(() => nix.sel(pkgs, "hsphfpd"))))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           packages: nix.thunk(() => [package$]),
           services: nix.thunk(() => nix.update({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             bluetooth: nix.thunk(() => (() => {
               const args_1 = nix.thunk(() => nix.concat(["-f", "/etc/bluetooth/main.conf"], nix.app(optional, hasDisabledPlugins, nix.thunk(() => nix.str`--noplugin=${nix.app(concatStringsSep, ",", nix.thunk(() => nix.sel(cfg, "disabledPlugins")))}`))));
               return {
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 wantedBy: nix.thunk(() => ["bluetooth.target"]),
                 aliases: nix.thunk(() => ["dbus-org.bluez.service"]),
                 restartIfChanged: false,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   ExecStart: nix.thunk(() => [
                     "",
                     nix.thunk(() => nix.str`${package$}/libexec/bluetooth/bluetoothd ${nix.app(nix.sel(utils, "escapeSystemdExecArgs"), args_1)}`),
@@ -202,32 +202,32 @@ export default nix.lambda((args) => (() => {
               };
             })()),
           }, nix.app(optionalAttrs, nix.thunk(() => nix.sel(cfg, "hsphfpd", "enable")), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               hsphfpd: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 after: nix.thunk(() => ["bluetooth.service"]),
                 requires: nix.thunk(() => ["bluetooth.service"]),
                 wantedBy: nix.thunk(() => ["bluetooth.target"]),
                 description: "A prototype implementation used for connecting HSP/HFP Bluetooth devices",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "hsphfpd")}/bin/hsphfpd.pl`),
                 })),
               })),
             }))))),
           user: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             services: nix.thunk(() => nix.update({
-              __proto__: pos$34,
-              obex: nix.thunk(() => ({ __proto__: pos$33, aliases: nix.thunk(() => ["dbus-org.bluez.obex.service"]) })),
+              [nix.POS]: pos$34,
+              obex: nix.thunk(() => ({ [nix.POS]: pos$33, aliases: nix.thunk(() => ["dbus-org.bluez.obex.service"]) })),
             }, nix.app(optionalAttrs, nix.thunk(() => nix.sel(cfg, "hsphfpd", "enable")), nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 telephony_client: nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   wantedBy: nix.thunk(() => ["default.target"]),
                   description: "telephony_client for hsphfpd",
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$35,
+                    [nix.POS]: pos$35,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "hsphfpd")}/bin/telephony_client.pl`),
                   })),
                 })),

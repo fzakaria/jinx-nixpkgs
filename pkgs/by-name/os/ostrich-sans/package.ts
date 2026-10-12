@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ostrich-sans",
       version: "2014-04-18",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theleagueof",
           repo: "ostrich-sans",
           rev: "a949d40d0576d12ba26e2a45e19c91fd0228c964",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gorgeous modern sans-serif with a very long neck",
         longDescription: "A gorgeous modern sans-serif with a very long neck. With a whole slew of\nstyles & weights.\n",
         homepage: "https://www.theleagueofmoveabletype.com/ostrich-sans",

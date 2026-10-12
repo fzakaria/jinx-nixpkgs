@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lv2",
       version: "1.18.10",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://lv2plug.in/spec/lv2-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-eMUbzyG1Tli7Yymsy7Ta4Dsu15tSD5oB5zS9neUwlT8=",
         })))),
@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-Dlv2dir=${nix.builtins.placeholder("out")}/lib/lv2`),
         ])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$2, pipewire: pipewire })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, url: "https://gitlab.com/lv2/lv2.git", "rev-prefix": "v" })))),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, pipewire: pipewire })),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://gitlab.com/lv2/lv2.git", "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://lv2plug.in",
         description: "Plugin standard for audio systems",
         mainProgram: "lv2_validate",

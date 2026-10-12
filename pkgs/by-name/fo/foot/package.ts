@@ -45,10 +45,10 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const version = "1.28.0";
   const stimulusGenerator = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "foot-generate-alt-random-writes",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://codeberg.org/dnkl/foot/raw/tag/${version}/scripts/generate-alt-random-writes.py`),
           hash: "sha256-RUCG4EK9+aXe+EKvFYv6/JzQBglGZHyaEpr63v8akW4=",
         })))),
@@ -67,19 +67,19 @@ export default nix.lambda((args) => (() => {
 `)));
   const compilerName = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? "clang" : (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? "gcc" : "unknown")));
   const pgoCflags = nix.thunk(() => nix.sel({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     clang: "-O3 -Wno-ignored-optimization-argument",
     gcc: "-O3",
   }, nix.key(nix.str`${compilerName}`)));
-  const ar = nix.thunk(() => nix.add(nix.sel(stdenv, "cc", "bintools", "targetPrefix"), nix.sel({ __proto__: pos$4, clang: "llvm-ar", gcc: "gcc-ar", unknown: "ar" }, nix.key(nix.str`${compilerName}`))));
+  const ar = nix.thunk(() => nix.add(nix.sel(stdenv, "cc", "bintools", "targetPrefix"), nix.sel({ [nix.POS]: pos$4, clang: "llvm-ar", gcc: "gcc-ar", unknown: "ar" }, nix.key(nix.str`${compilerName}`))));
   const doPgo = nix.thunk(() => (nix.asBool((nix.asBool(allowPgo) && nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))))) && nix.asBool(!nix.eq(compilerName, "unknown"))));
   const terminfoDir = nix.thunk(() => nix.str`${nix.builtins.placeholder("terminfo")}/share/terminfo`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "foot",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "dnkl",
           repo: "foot",
           tag: version,
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
         utf8proc,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         CFLAGS: nix.thunk(() => (nix.asBool(!nix.asBool(doPgo)) ? "-O3" : nix.force(pgoCflags))),
       })),
       preConfigure: nix.thunk(() => nix.str`export AR="${ar}"
@@ -130,21 +130,21 @@ meson configure -Db_pgo=use
       strictDeps: true,
       outputs: nix.thunk(() => ["out", "terminfo", "themes"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         stimulusGenerator: stimulusGenerator,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$10,
-          "clang-default-compilation": nix.thunk(() => nix.app(nix.sel(foot, "override"), nix.thunk(() => ({ __proto__: pos$7, stdenv: nix.thunk(() => nix.attr(llvmPackages, "stdenv")) })))),
-          noPgo: nix.thunk(() => nix.app(nix.sel(foot, "override"), nix.thunk(() => ({ __proto__: pos$8, allowPgo: false })))),
+          [nix.POS]: pos$10,
+          "clang-default-compilation": nix.thunk(() => nix.app(nix.sel(foot, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, stdenv: nix.thunk(() => nix.attr(llvmPackages, "stdenv")) })))),
+          noPgo: nix.thunk(() => nix.app(nix.sel(foot, "override"), nix.thunk(() => ({ [nix.POS]: pos$8, allowPgo: false })))),
           "stimulus-script-is-current": nix.thunk(() => nix.app(nix.sel(stimulusGenerator, "src", "overrideAttrs"), (_) => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               name: nix.thunk(() => nix.str`generate-alt-random-writes-${version}.py`),
             }))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         homepage: "https://codeberg.org/dnkl/foot/",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/dnkl/foot/releases/tag/${version}`),
         description: "Fast, lightweight and minimalistic Wayland terminal emulator",

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.42.31";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "boto",
           repo: "botocore",
           tag: version,
@@ -39,9 +39,9 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [jsonschema, pytestCheckHook]);
       const disabledTestPaths = nix.thunk(() => ["tests/integration", "tests/functional"]);
       const pythonImportsCheck = nix.thunk(() => ["botocore"]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, crt: nix.thunk(() => [awscrt]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, crt: nix.thunk(() => [awscrt]) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Low-level interface to a growing number of Amazon Web Services",
         homepage: "https://github.com/boto/botocore",
         changelog: nix.thunk(() => nix.str`https://github.com/boto/botocore/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

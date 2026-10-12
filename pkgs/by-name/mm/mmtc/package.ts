@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mmtc",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "figsoda",
           repo: "mmtc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-TpAl7lMaQGSH9oMNqYIxnajsfh1HAdyU2suSFRfWYPs=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "installManPage artifacts/mmtc.1\ninstallShellCompletion artifacts/mmtc.{bash,fish} --zsh artifacts/_mmtc\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, GEN_ARTIFACTS: "artifacts" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GEN_ARTIFACTS: "artifacts" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimal mpd terminal client that aims to be simple yet highly configurable",
         homepage: "https://github.com/figsoda/mmtc",
         changelog: nix.thunk(() => nix.str`https://github.com/figsoda/mmtc/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

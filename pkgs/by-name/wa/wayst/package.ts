@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const xdg_utils = nix.arg($, "xdg-utils");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       desktopName: "Wayst",
       name: "wayst",
       genericName: "Terminal",
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       comment: "A simple terminal emulator",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "wayst",
       version: "0-unstable-2023-07-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "91861",
           repo: "wayst",
           rev: "f8b218eec1af706fd5ae287f5073e6422eb8b6d8",
@@ -76,14 +76,14 @@ ln -s ${desktopItem}/share/applications/* $out/share/applications
 install -D icons/wayst.svg $out/share/icons/hicolor/scalable/apps/wayst.svg
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "wayst")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple terminal emulator",
         mainProgram: "wayst",
         homepage: "https://github.com/91861/wayst",

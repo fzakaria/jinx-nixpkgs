@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.32";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-88DuhgX4FCwzIKzw4RqWgMtjRdf5huVlKEHAAEminuQ=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace setup.py \\\n  --replace \"fido2 == 0.9.3\" \"fido2\"\n";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/trustcrypto/onlykey-solo-python/commit/dfebd6b36087f5f918da8c1af5a3236581cccf2d.patch",
             hash: "sha256-O0XQoWwhwvLc0CchUTXSuWgHMNG2ZPDy7FsU3RQrdp8=",
           })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["solo"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/trustcrypto/onlykey-solo-python",
         description: "Python library for OnlyKey with Solo FIDO2",
         mainProgram: "solo",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const callPackage = nix.arg($, "callPackage");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "project-references": nix.thunk(() => nix.app(callPackage, nix.path(here, "./project-references"), nix.thunk(() => ({})))),
     "use-dotnet-from-env": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./use-dotnet-from-env"), nix.thunk(() => ({})))))),
     "structured-attrs": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./structured-attrs"), nix.thunk(() => ({})))))),

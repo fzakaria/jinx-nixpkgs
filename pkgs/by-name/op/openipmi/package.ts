@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "OpenIPMI",
       version: "2.0.37",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/openipmi/OpenIPMI-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-xi049dp99Cmaw6ZSUI6VlTd1JEAYHjTHayrs69fzAbk=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       outputs: nix.thunk(() => ["out", "lib", "dev", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://openipmi.sourceforge.io/",
         description: "User-level library that provides a higher-level abstraction of IPMI and generic services",
         license: nix.thunk(() => (() => {

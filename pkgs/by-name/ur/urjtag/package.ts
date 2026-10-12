@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const staplSupport = nix.argOr($, "staplSupport", () => true);
   const svfSupport = nix.argOr($, "svfSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "urjtag",
       version: "2021.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/urjtag/urjtag/${nix.sel(finalAttrs, "version")}/urjtag-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-sKLqokVROvCW3E13AQmDIzXGlMbBKqXpL++uhoVBbxw=",
         })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), svfSupport, "svf")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sourceforge.net/projects/urjtag/",
         description: "Universal JTAG library, server and tools",
         license: nix.thunk(() => (() => {

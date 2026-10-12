@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gumbo = nix.arg($, "gumbo");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tdom",
       version: "0.9.6",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://tdom.org/downloads/tdom-${nix.sel(finalAttrs, "version")}-src.tgz`),
           hash: "sha256-zN855tb9JQUtcB7K1DeAjUBrqhoNH44KbeHwp3qewqw=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckTarget: "test",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "XML / DOM / XPath / XSLT / HTML / JSON implementation for Tcl",
         homepage: "http://www.tdom.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

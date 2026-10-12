@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const stardust_xr_atmosphere = nix.arg($, "stardust-xr-atmosphere");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "stardust-xr-atmosphere",
       version: "0.51.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stardustxr",
           repo: "atmosphere",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/share/atmosphere\ncp -r default_envs $out/share/atmosphere\n",
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           versionTest: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: stardust_xr_atmosphere,
               command: "atmosphere --version",
               version: "stardust-xr-atmosphere 0.4.0",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Environment, homespace, and setup client for Stardust XR",
         homepage: "https://stardustxr.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

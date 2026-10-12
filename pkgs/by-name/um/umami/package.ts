@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
   const pnpm = pnpm_12;
   const sources = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   const geocities = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "umami-geocities",
       version: nix.thunk(() => nix.sel(sources, "geocities", "date")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(sources, "geocities"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/GitSquared/node-geolite2-redist/${nix.sel(sources, "geocities", "rev")}/redist/GeoLite2-City.tar.gz`),
           hash: nix.thunk(() => nix.attr(from, "hash")),
         };
@@ -59,15 +59,15 @@ export default nix.lambda((args) => (() => {
       doBuild: false,
       installPhase: "mkdir -p $out\ncp ./GeoLite2-City.mmdb $out/GeoLite2-City.mmdb\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-40")),
       })),
     }))));
   const prisma_engines$ = nix.thunk(() => nix.app(nix.sel(prisma_engines_7, "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "7.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "prisma",
           repo: "prisma-engines",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-zLl2ErsCTXZVShPFLH94GLJ0q2FrMnfnecnfKD7VDL4=",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: nix.thunk(() => nix.attr(prevAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -83,18 +83,18 @@ export default nix.lambda((args) => (() => {
           hash: nix.thunk(() => nix.sel(finalAttrs, "cargoHash")),
         })))),
     })));
-  const prisma$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(prisma_7, "override"), nix.thunk(() => ({ __proto__: pos$7, "prisma-engines_7": prisma_engines$ }))), "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-      __proto__: pos$10,
+  const prisma$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(prisma_7, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, "prisma-engines_7": prisma_engines$ }))), "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
+      [nix.POS]: pos$10,
       version: "7.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "prisma",
           repo: "prisma",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-VOKqrTD18XaCDQ2l5AgND4L8r4OJ3JXJvFgQJ+h1xUw=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(nix.sel(prevAttrs, "pnpmDeps", "override"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           fetcherVersion: 4n,
@@ -102,12 +102,12 @@ export default nix.lambda((args) => (() => {
         })))),
     })));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       pname: "umami",
       version: "3.4.0",
       nativeBuildInputs: nix.thunk(() => [makeWrapper, nodejs, pnpmConfigHook, pnpmBuildHook, pnpm]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           owner: "umami-software",
           repo: "umami",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -128,7 +128,7 @@ substituteInPlace ./scripts/generate-api-client.ts \\
   --replace-fail 'await format(written);' ""
 `),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -137,7 +137,7 @@ substituteInPlace ./scripts/generate-api-client.ts \\
           hash: "sha256-jzE8C+fssW6PVo/aoJU8ORrgiHpMALqE4WPrm7taIOc=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         NODE_ENV: "production",
         NEXT_TELEMETRY_DISABLED: "1",
         COLLECT_API_ENDPOINT: collectApiEndpoint,
@@ -179,8 +179,8 @@ makeWrapper ${nodejs}/bin/node $out/bin/umami-server  \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$15,
-        tests: nix.thunk(() => ({ __proto__: pos$14, umami: nix.thunk(() => nix.attr(nixosTests, "umami")) })),
+        [nix.POS]: pos$15,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$14, umami: nix.thunk(() => nix.attr(nixosTests, "umami")) })),
         sources: sources,
         geocities: geocities,
         prisma: prisma$,
@@ -188,7 +188,7 @@ runHook postInstall
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         changelog: nix.thunk(() => nix.str`https://github.com/umami-software/umami/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Simple, easy to use, self-hosted web analytics solution",
         homepage: "https://umami.is/",

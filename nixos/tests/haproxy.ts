@@ -24,40 +24,40 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const hostPkgs = nix.arg($, "hostPkgs");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "haproxy",
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             haproxy: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               enable: true,
               config: "defaults\n  mode http\n  timeout connect 10s\n  timeout client 10s\n  timeout server 10s\n\n  log /dev/log local0 debug err\n  option logasap\n  option httplog\n  option httpslog\n\nbackend http_server\n  server httpd [::1]:8000 alpn http/1.1\n\nfrontend http\n  bind :80\n  bind :443 ssl strict-sni crt /etc/ssl/fullchain.pem alpn h2,http/1.1\n  bind quic4@:443 ssl strict-sni crt /etc/ssl/fullchain.pem alpn h3 allow-0rtt\n\n  http-after-response add-header alt-svc 'h3=\":443\"; ma=60' if { ssl_fc }\n\n  http-request use-service prometheus-exporter if { path /metrics }\n  use_backend http_server\n\nfrontend http-cert-auth\n  bind :8443 ssl strict-sni crt /etc/ssl/fullchain.pem verify required ca-file /etc/ssl/cacert.crt\n  bind quic4@:8443 ssl strict-sni crt /etc/ssl/fullchain.pem verify required ca-file /etc/ssl/cacert.crt alpn h3\n\n  use_backend http_server\n",
             })),
             httpd: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 localhost: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   documentRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "index.txt", "We are all good!")),
                   adminAddr: "notme@yourhost.local",
-                  listen: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$2, ip: "::1", port: 8000n }))]),
+                  listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$2, ip: "::1", port: 8000n }))]),
                 })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             firewall: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               allowedTCPPorts: nix.thunk(() => [80n, 443n, 8443n]),
               allowedUDPPorts: nix.thunk(() => [443n, 8443n]),
             })),
@@ -68,9 +68,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           environment: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
           })),
         };

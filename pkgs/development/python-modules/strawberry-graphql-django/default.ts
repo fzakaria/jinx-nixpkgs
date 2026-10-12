@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.86.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "strawberry-graphql",
           repo: "strawberry-django",
           tag: version,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [django, asgiref, strawberry_graphql]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "debug-toolbar": nix.thunk(() => [django_debug_toolbar]),
         enum: nix.thunk(() => [django_choices_field]),
       }));
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.sel(optional_dependencies, "debug-toolbar"), nix.sel(optional_dependencies, "enum"))));
       const pythonImportsCheck = nix.thunk(() => ["strawberry_django"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Strawberry GraphQL Django extension",
         homepage: "https://github.com/strawberry-graphql/strawberry-django",
         changelog: nix.thunk(() => nix.str`https://github.com/strawberry-graphql/strawberry-django/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

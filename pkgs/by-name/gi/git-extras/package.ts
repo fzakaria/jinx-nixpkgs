@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const unixtools = nix.arg($, "unixtools");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-extras",
       version: "7.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tj",
           repo: "git-extras",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "# bash completion is already handled by make install\ninstall -D etc/git-extras-completion.zsh $out/share/zsh/site-functions/_git_extras\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/tj/git-extras/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/tj/git-extras",
         description: "GIT utilities -- repo summary, repl, changelog population, author commit percentages and more",

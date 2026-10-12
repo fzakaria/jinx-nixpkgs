@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const pname = "brscan5";
       const version = "1.3.1-0";
       const src = nix.thunk(() => nix.selOr({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "i686-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf104034/${pname}-${version}.i386.deb`),
             hash: "sha256-BgS64vwsKESJBDz9H2MDwcGiresROSNFP1b+7+zlE5c=",
           })))),
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf104033/${pname}-${version}.amd64.deb`),
             hash: "sha256-0UMbXMBlyiZI90WG5FWEP2mIZEBsxXd11dtgtyuSDnY=",
           })))),
@@ -110,11 +110,11 @@ runHook postInstall
       const doInstallCheck = true;
       const dontPatchELF = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, brscan5: nix.thunk(() => nix.attr(nixosTests, "brscan5")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, brscan5: nix.thunk(() => nix.attr(nixosTests, "brscan5")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Brother brscan5 sane backend driver",
         homepage: "https://www.brother.com",
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
@@ -129,7 +129,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

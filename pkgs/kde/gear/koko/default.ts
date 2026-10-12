@@ -19,22 +19,22 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const exiv2 = nix.arg($, "exiv2");
   const admin1 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://web.archive.org/web/20210714035424if_/http://download.geonames.org/export/dump/admin1CodesASCII.txt",
       sha256: "0r783yzajs26hvccdy4jv2v06xfgadx2g90fz3yn7lx8flz4nhwm",
     }))));
   const admin2 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://web.archive.org/web/20210714035427if_/http://download.geonames.org/export/dump/admin2Codes.txt",
       sha256: "1n5nzp3xblhr93rb1sadi5vfbw29slv5lc6cxq21h3x3cg0mwqh3",
     }))));
   const cities1000 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://web.archive.org/web/20210714035406if_/http://download.geonames.org/export/dump/cities1000.zip",
       sha256: "0cwbfff8gzci5zrahh6d53b9b3bfv1cbwlv0k6076531i1c7md9p",
     }))));
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "koko",
       prePatch: nix.thunk(() => nix.str`ln -s ${admin1}     src/admin1CodesASCII.txt
 ln -s ${admin2}     src/admin2Codes.txt
@@ -42,7 +42,7 @@ ln -s ${cities1000} src/cities1000.zip
 `),
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtmultimedia, qtpositioning, qtsvg, exiv2]),
-      meta: nix.thunk(() => ({ __proto__: pos$4, mainProgram: "koko" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$4, mainProgram: "koko" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

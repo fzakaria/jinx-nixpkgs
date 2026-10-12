@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "py-nymta",
       version: "0.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OnFreund",
           repo: "py-nymta",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_asyncio, writableTmpDirAsHomeHook]),
       pythonImportsCheck: nix.thunk(() => ["pymta"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for accessing MTA real-time transit data for NYC",
         homepage: "https://github.com/OnFreund/py-nymta",
         changelog: nix.thunk(() => nix.str`https://github.com/OnFreund/py-nymta/releases/tag/${nix.sel(finalAttrs, "version")}`),

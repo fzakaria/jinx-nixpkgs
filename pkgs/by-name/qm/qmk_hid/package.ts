@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const systemd = nix.arg($, "systemd");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qmk_hid",
       version: "0.1.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FrameworkComputer",
           repo: "qmk_hid",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [systemd]),
       checkFlags: nix.thunk(() => ["--skip=src/lib.rs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Commandline tool for interactng with QMK devices over HID",
         homepage: "https://github.com/FrameworkComputer/qmk_hid",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -15,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const libtool = nix.arg($, "libtool");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "autoreconf-hook",
       propagatedBuildInputs: nix.thunk(() => [autoconf, automake, gettext, libtool]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./autoreconf.sh"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

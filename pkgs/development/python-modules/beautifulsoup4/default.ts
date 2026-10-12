@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const outputs = nix.thunk(() => ["out", "doc"]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-KI48p9VLBvKsGRlwvCdcGTnLRtRQslW/ZxiwSqN6tPc=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [sphinxHook]);
       const dependencies = nix.thunk(() => [soupsieve, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         chardet: nix.thunk(() => [chardet]),
         cchardet: nix.thunk(() => [faust_cchardet]),
         "charset-normalizer": nix.thunk(() => [charset_normalizer]),
@@ -58,9 +58,9 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_rejected_markup", "test_rejected_input"]);
       const pythonImportsCheck = nix.thunk(() => ["bs4"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "html-sanitizer": html_sanitizer,
           markdownify: markdownify,
           mechanicalsoup: mechanicalsoup,
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://git.launchpad.net/beautifulsoup/tree/CHANGELOG?h=${version}`),
         description: "HTML and XML parser",
         homepage: "http://crummy.com/software/BeautifulSoup/bs4/",
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

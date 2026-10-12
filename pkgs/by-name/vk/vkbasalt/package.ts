@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pkgsi686Linux = nix.arg($, "pkgsi686Linux");
   const vkbasalt32 = nix.thunk(() => nix.sel(pkgsi686Linux, "vkbasalt"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vkbasalt",
       version: "0.3.2.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DadSchoorse",
           repo: "vkBasalt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ ln -s ${vkbasalt32}/share/vulkan/implicit_layer.d/vkBasalt.json \\
   --replace "VK_LAYER_VKBASALT_post_processing" "VK_LAYER_VKBASALT_post_processing_${nix.builtins.toString(nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "bits")))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Vulkan post processing layer for Linux",
         homepage: "https://github.com/DadSchoorse/vkBasalt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.0.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Trim21",
           repo: "transmission-rpc",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["transmission_rpc"]);
       const disabledTests = nix.thunk(() => ["test_groups", "test_real"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module that implements the Transmission bittorent client RPC protocol",
         homepage: "https://github.com/Trim21/transmission-rpc",
         changelog: nix.thunk(() => nix.str`https://github.com/trim21/transmission-rpc/releases/tag/v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

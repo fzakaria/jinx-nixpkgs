@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const config_module = "github.com/f1bonacc1/process-compose/src/config";
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "process-compose",
       version: "1.122.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "F1bonacc1",
           repo: "process-compose",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ ldflags+=" -X ${config_module}.Date=$(cat SOURCE_DATE_EPOCH)"
       doCheck: false,
       postInstall: "installShellCompletion --cmd process-compose \\\n  --bash <($out/bin/process-compose completion bash) \\\n  --zsh <($out/bin/process-compose completion zsh) \\\n  --fish <($out/bin/process-compose completion fish)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple and flexible scheduler and orchestrator to manage non-containerized applications",
         homepage: "https://github.com/F1bonacc1/process-compose",
         changelog: nix.thunk(() => nix.str`https://github.com/F1bonacc1/process-compose/releases/tag/v${nix.sel(finalAttrs, "version")}`),

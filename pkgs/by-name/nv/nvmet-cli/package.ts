@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nvmet-cli",
       version: "0.7",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`ftp://ftp.infradead.org/pub/nvmetcli/nvmetcli-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "051y1b9w46azy35118154c353v3mhjkdzh6h59brdgn5054hayj2",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "NVMe target CLI",
         mainProgram: "nvmetcli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

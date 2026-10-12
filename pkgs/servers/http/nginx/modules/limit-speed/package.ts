@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "limit-speed",
       version: "0.1-unstable-2014-03-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yaoweibin",
           repo: "nginx_limit_speed_module",
           rev: "f77ad4a56fbb134878e75827b40cf801990ed936",
           hash: "sha256-6Mr6dlzoq08eWEr+fpLdU75r8D5ARxHRSJ2z+xFoeU4=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Limit the total speed from the specific user",
         homepage: "https://github.com/yaoweibin/nginx_limit_speed_module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

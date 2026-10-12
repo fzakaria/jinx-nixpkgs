@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const lv2 = nix.arg($, "lv2");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "GxMatchEQ.lv2",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brummer10",
           repo: "GxMatchEQ.lv2",
           rev: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "use-lv2ui_descriptor-name.patch",
             url: "https://github.com/brummer10/GxMatchEQ.lv2/commit/4ca70be32220729a5253c0bb46f5aded5ba3d00a.patch",
             hash: "sha256-EKlv6UptUpP+LOG7S30L21o0/upeDj6WB1PZ44XtNRU=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       installFlags: nix.thunk(() => ["INSTALL_DIR=$(out)/lib/lv2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/brummer10/GxMatchEQ.lv2",
         description: "Matching Equalizer to apply EQ curve from one source to another source",
         maintainers: nix.thunk(() => (() => {

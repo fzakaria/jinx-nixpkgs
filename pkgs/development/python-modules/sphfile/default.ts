@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://pypi/s/sphfile/${pname}-${version}.tar.gz`),
           sha256: "1596d801facc2b03a40a1bc67a839701f068a41597059feb82fc9378420c52c0",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [numpy]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Numpy-based NIST SPH audio-file reader",
         homepage: "https://github.com/mcfletch/sphfile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

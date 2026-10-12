@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const withQVoronoi = nix.argOr($, "withQVoronoi", () => false);
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ipe",
       version: "7.2.30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "otfried",
           repo: "ipe",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-gcc16-missing-include.patch",
             url: "https://salsa.debian.org/science-team/ipe/-/raw/e6dc9db1e2d889e86bfa21a95775e778f82ae802/debian/patches/0002-include-stding.patch",
             hash: "sha256-E5F7+qL0ZFTkfixO2+yIhNvKZKW0kltkHDfN+EcB/w8=",
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "ipe",
             desktopName: "Ipe",
             genericName: "Drawing editor",
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
 ln -s $out/share/ipe/${nix.sel(finalAttrs, "version")}/icons/icon_128x128.png $out/share/icons/hicolor/128x128/apps/ipe.png
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Editor for drawing figures",
         homepage: "http://ipe.otfried.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

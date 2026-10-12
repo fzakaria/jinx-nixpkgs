@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const varnish80 = nix.arg($, "varnish80");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     varnish80Packages: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
         const varnish = varnish80;
-        const modules = nix.thunk(() => nix.sel(nix.app(callPackages, nix.path(here, "./modules.nix"), nix.thunk(() => ({ __proto__: pos$1, varnish: varnish }))), "modules27"));
-        return { __proto__: pos$2, varnish, modules };
+        const modules = nix.thunk(() => nix.sel(nix.app(callPackages, nix.path(here, "./modules.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, varnish: varnish }))), "modules27"));
+        return { [nix.POS]: pos$2, varnish, modules };
       })()))),
   };
 })(), formals$1);

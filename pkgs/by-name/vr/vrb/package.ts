@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vrb",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://vrb.sourceforge.net/download/vrb-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "d579ed1998ef2d78e2ef8481a748d26e1fa12cdda806d2e31d8ec66ffb0e289f",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs configure\n",
       postInstall: "mkdir -p $out/share/man/man3\ncp -p vrb/man/man3/*.3 $out/share/man/man3/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Virtual ring buffer library written in C",
         mainProgram: "vbuf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

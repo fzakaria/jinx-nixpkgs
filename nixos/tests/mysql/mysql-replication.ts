@@ -32,9 +32,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$2, pkgs: pkgs, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, pkgs: pkgs, lib: lib }))));
   const mkTestName = nix.thunk(() => nix.attr(from, "mkTestName"));
   const mariadbPackages = nix.thunk(() => nix.attr(from, "mariadbPackages"));
   const replicateUser = "replicate";
@@ -45,10 +45,10 @@ export default nix.lambda((args) => (() => {
     const package$ = nix.arg($_1, "package");
     const name = nix.argOr($_1, "name", () => nix.app(mkTestName, package$));
     return nix.app(makeTest, nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         name: nix.thunk(() => nix.str`${name}-replication`),
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [
@@ -59,45 +59,45 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           primary: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             services: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               mysql: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 package: package$,
                 enable: true,
                 replication: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   role: "master",
                   slaveHost: "%",
                   masterUser: replicateUser,
                   masterPassword: replicatePassword,
                 })),
                 initialDatabases: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$5, name: "testdb", schema: nix.path(here, "./testdb.sql") })),
+                  nix.thunk(() => ({ [nix.POS]: pos$5, name: "testdb", schema: nix.path(here, "./testdb.sql") })),
                 ]),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$9,
-              firewall: nix.thunk(() => ({ __proto__: pos$8, allowedTCPPorts: nix.thunk(() => [3306n]) })),
+              [nix.POS]: pos$9,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$8, allowedTCPPorts: nix.thunk(() => [3306n]) })),
             })),
           })),
           secondary1: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const nodes = nix.arg($_2, "nodes");
             return {
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               services: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 mysql: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   package: package$,
                   enable: true,
                   replication: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     role: "slave",
                     serverId: 2n,
                     masterHost: nix.thunk(() => nix.sel(nodes, "primary", "networking", "hostName")),
@@ -112,15 +112,15 @@ export default nix.lambda((args) => (() => {
             const $_2 = nix.formals(args_2, formals$4);
             const nodes = nix.arg($_2, "nodes");
             return {
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               services: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 mysql: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   package: package$,
                   enable: true,
                   replication: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     role: "slave",
                     serverId: 3n,
                     masterHost: nix.thunk(() => nix.sel(nodes, "primary", "networking", "hostName")),
@@ -135,6 +135,6 @@ export default nix.lambda((args) => (() => {
         testScript: "primary.start()\nprimary.wait_for_unit(\"mysql\")\nprimary.wait_for_open_port(3306)\n# Wait for testdb to be fully populated (5 rows).\nprimary.wait_until_succeeds(\n    \"sudo -u mysql mysql -u mysql -D testdb -N -B -e 'select count(id) from tests' | grep -q 5\"\n)\n\nsecondary1.start()\nsecondary2.start()\nsecondary1.wait_for_unit(\"mysql\")\nsecondary1.wait_for_open_port(3306)\nsecondary2.wait_for_unit(\"mysql\")\nsecondary2.wait_for_open_port(3306)\n\n# wait for replications to finish\nsecondary1.wait_until_succeeds(\n    \"sudo -u mysql mysql -u mysql -D testdb -N -B -e 'select count(id) from tests' | grep -q 5\"\n)\nsecondary2.wait_until_succeeds(\n    \"sudo -u mysql mysql -u mysql -D testdb -N -B -e 'select count(id) from tests' | grep -q 5\"\n)\n\nsecondary2.succeed(\"systemctl stop mysql\")\nprimary.succeed(\n    \"echo 'insert into testdb.tests values (123, 456);' | sudo -u mysql mysql -u mysql -N\"\n)\nsecondary2.succeed(\"systemctl start mysql\")\nsecondary2.wait_for_unit(\"mysql\")\nsecondary2.wait_for_open_port(3306)\nsecondary2.wait_until_succeeds(\n    \"echo 'select * from testdb.tests where Id = 123;' | sudo -u mysql mysql -u mysql -N | grep 456\"\n)\n",
       })));
   })(), formals$2);
-  return nix.app(nix.sel(lib, "mapAttrs"), (_) => (package$) => nix.app(makeReplicationTest, nix.thunk(() => ({ __proto__: pos$21, package: package$ }))), mariadbPackages);
+  return nix.app(nix.sel(lib, "mapAttrs"), (_) => (package$) => nix.app(makeReplicationTest, nix.thunk(() => ({ [nix.POS]: pos$21, package: package$ }))), mariadbPackages);
 })(), formals$1);
 //# sourceMappingURL=mysql-replication.ts.map

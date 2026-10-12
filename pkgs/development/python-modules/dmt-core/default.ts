@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "DMT_core",
           hash: "sha256-489E+uNn4NgyCwxsUMEPH/1ZuM+5uNq4zx8F88rkHMU=",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       const preConfigure = "export HOME=$(mktemp -d)\n";
       const pythonImportsCheck = nix.thunk(() => ["DMT.core", "reprint", "verilogae"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://gitlab.com/dmt-development/dmt-core/-/blob/Version_${version}/CHANGELOG?ref_type=tags`),
         description: "Tool to help modeling engineers extract model parameters, run circuit and TCAD simulations and automate infrastructure",
         homepage: "https://gitlab.com/dmt-development/dmt-core",
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

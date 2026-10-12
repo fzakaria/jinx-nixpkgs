@@ -30,38 +30,38 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "programs", "vscode"));
   const jsonFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       programs: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         vscode: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "VSCode editor")),
           defaultEditor: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "When enabled, configures VSCode to be the default editor\nusing the EDITOR environment variable.\n",
           })),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "vscode", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               extraDescription: "The final package will be customized with extensions from {option}`programs.vscode.extensions`",
             })))),
           extensions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "with pkgs.vscode-extensions; [\n  bbenoist.nix\n  golang.go\n  twxs.cmake\n]\n")),
               description: "List of extensions to install.",
             })))),
           enterprisePolicies: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(jsonFormat, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"UpdateMode\" = \"none\";\n  \"TelemetryLevel\" = \"off\";\n}\n")),
               description: "System-wide policies for VSCode in `/etc/vscode/policy.json`.\nSee <https://code.visualstudio.com/docs/setup/enterprise#_centrally-manage-vs-code-settings> for more information.\n",
             })))),
           finalPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               visible: false,
               readOnly: true,
@@ -71,28 +71,28 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "finalPackage"))]),
           sessionVariables: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             EDITOR: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "defaultEditor")), nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 900n, nix.thunk(() => nix.sel(cfg, "finalPackage", "meta", "mainProgram")))))),
           })),
           etc: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "vscode/policy.json": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "enterprisePolicies"), {})), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 source: nix.thunk(() => nix.app(nix.sel(jsonFormat, "generate"), "vscode-policy.json", nix.thunk(() => nix.sel(cfg, "enterprisePolicies")))),
               })))),
           })),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           vscode: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             finalPackage: nix.thunk(() => nix.app(nix.sel(pkgs, "vscode-with-extensions", "override"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 vscode: nix.thunk(() => nix.sel(cfg, "package")),
                 vscodeExtensions: nix.thunk(() => nix.sel(cfg, "extensions")),
               })))),
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ethancedwards8"))];

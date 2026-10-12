@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.0.5";
       const dl_name = "dymo-cups-drivers-1.4.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.dymo.com/dymo/Software/Download%20Drivers/Linux/Download/${dl_name}.tar.gz`),
           sha256: "0wagsrz3q7yrkzb5ws0m5faq68rqnqfap9p98sgk5jl6x7krf1y6",
         }))));
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         "cupsmodeldir=$(out)/share/cups/model",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CUPS Linux drivers and SDK for DYMO printers",
         homepage: "https://www.dymo.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         "dl-name": dl_name,

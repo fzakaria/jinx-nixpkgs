@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fcitx5-anthy";
       const version = "5.1.11";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.fcitx-im.org/fcitx5/fcitx5-anthy/${pname}-${version}.tar.zst`),
           hash: "sha256-nlmhUat8OmE/zhN+09vSeKVu+H9ptsHsKVyDWxl381Y=",
         }))));
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [fcitx5, anthy]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Anthy Wrapper for Fcitx5",
         homepage: "https://github.com/fcitx/fcitx5-anthy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

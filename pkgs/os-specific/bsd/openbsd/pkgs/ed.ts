@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/ed.nix", [["path", 3, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDerivation = nix.arg($, "mkDerivation");
-  return nix.app(mkDerivation, nix.thunk(() => ({ __proto__: pos$1, path: "bin/ed" })));
+  return nix.app(mkDerivation, nix.thunk(() => ({ [nix.POS]: pos$1, path: "bin/ed" })));
 })(), formals$1);
 //# sourceMappingURL=ed.ts.map

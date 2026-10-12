@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const appimageupdate_qt = nix.arg($, "appimageupdate-qt");
   const withQtUI = nix.argOr($, "withQtUI", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "appimageupdate",
       version: "2.0.0-alpha-1-20251018",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AppImageCommunity",
           repo: "AppImageUpdate",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withQtUI, "wrapQtApp \"$out/bin/AppImageUpdate\"\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, "appimageupdate-qt": appimageupdate_qt })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "appimageupdate-qt": appimageupdate_qt })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Update AppImages using information embedded in the AppImage itself",
         homepage: "https://github.com/AppImageCommunity/AppImageUpdate",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

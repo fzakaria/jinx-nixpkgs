@@ -12,7 +12,7 @@ export default (lib) => (self) => (super$) => (() => {
   const mapAliases = (aliases) => nix.app(nix.sel(lib, "mapAttrs"), (n) => (alias) => nix.app(removeDistribute, nix.thunk(() => nix.app(removeRecurseForDerivations, nix.thunk(() => nix.app(checkInPkgs, n, alias))))), aliases);
   const warnAlias = (msg) => (v) => (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), v)) ? nix.app(nix.sel(lib, "warnOnInstantiate"), msg, v) : (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), v)) ? nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(nix.sel(lib, "warn"), msg), v) : (nix.asBool(nix.app(nix.sel(lib, "isFunction"), v)) ? (arg) => nix.app(nix.sel(lib, "warn"), msg, nix.thunk(() => nix.app(v, arg))) : (nix.asBool(nix.app(nix.sel(lib, "isList"), v)) ? nix.app(nix.builtins.map, nix.thunk(() => nix.app(nix.sel(lib, "warn"), msg)), v) : nix.app(nix.sel(lib, "warn"), msg, v)))));
   return nix.app(mapAliases, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pythonPackages: nix.thunk(() => nix.app(nix.builtins.throw, "do not use pythonPackages when building Python packages, specify each used package as a separate argument")),
       python2Packages: nix.thunk(() => nix.app(nix.builtins.throw, "do not use python2Packages when building Python packages, specify each used package as a separate argument")),
       python27Packages: nix.thunk(() => nix.app(nix.builtins.throw, "do not use python27Packages when building Python packages, specify each used package as a separate argument")),

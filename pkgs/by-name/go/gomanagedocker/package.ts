@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const btrfs_progs = nix.arg($, "btrfs-progs");
   const version = "1.5";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gomanagedocker",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ajayd-san",
           repo: "gomanagedocker",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "TUI tool to manage your docker images, containers and volumes",
         homepage: "https://github.com/ajayd-san/gomanagedocker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -46,12 +46,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const tensorflow = nix.arg($, "tensorflow");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "outlines",
       version: "1.2.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "outlines-dev",
           repo: "outlines",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -198,7 +198,7 @@ export default nix.lambda((args) => (() => {
         "tests/models/test_gemini.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Structured text generation",
         homepage: "https://github.com/outlines-dev/outlines",
         changelog: nix.thunk(() => nix.str`https://github.com/dottxt-ai/outlines/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

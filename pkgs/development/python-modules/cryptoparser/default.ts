@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cryptoparser",
       version: "1.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coroner",
           repo: "cryptoparser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,21 +38,21 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.com/coroner/cryptoparser/-/merge_requests/2.diff",
             hash: "sha256-T8dK6OMR41XUMrZ6B7ZybEtljZJOR2QbCiZl04dT3wA=",
           })))),
       ]),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [asn1crypto, attrs, cryptodatahub, urllib3]),
-      env: nix.thunk(() => ({ __proto__: pos$3, PYTHONDONTWRITEBYTECODE: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, PYTHONDONTWRITEBYTECODE: 1n })),
       nativeCheckInputs: nix.thunk(() => [pyfakefs, pytestCheckHook]),
       disabledTests: nix.thunk(() => ["TestCasesBasesHttpHeader"]),
       postInstall: "find $out -name __pycache__ -type d | xargs rm -rv\n",
       pythonImportsCheck: nix.thunk(() => ["cryptoparser"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "../cryptodatahub/update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "../cryptodatahub/update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Security protocol parser and generator",
         homepage: "https://gitlab.com/coroner/cryptoparser",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/coroner/cryptoparser/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

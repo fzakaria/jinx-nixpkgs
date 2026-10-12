@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sil-abyssinica";
       const version = "2.300";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://software.sil.org/downloads/r/abyssinica/AbyssinicaSIL-${version}.zip`),
           hash: "sha256-3msQRxoIV1K8mjZr7xXKW54fELjNhteXZ5qg6t5+Vcg=",
         }))));
@@ -29,7 +29,7 @@ mv *.txt documentation $out/share/doc/${pname}-${version}/
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unicode font for Ethiopian and Erythrean scripts (Amharic et al.)",
         homepage: "https://software.sil.org/abyssinica/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -39,7 +39,7 @@ runHook postInstall
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

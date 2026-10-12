@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jsonplaceholder",
       version: "0.3.3-unstable-2021-06-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "typicode",
           repo: "jsonplaceholder",
           rev: "7ae4432ac3f60e7226a899c25e04826207d07098",
@@ -37,11 +37,11 @@ makeWrapper ${nodejs}/bin/node $out/bin/jsonplaceholder \\
   --set NODE_PATH "$out/lib/node_modules"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple online fake REST API server",
         homepage: "https://jsonplaceholder.typicode.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

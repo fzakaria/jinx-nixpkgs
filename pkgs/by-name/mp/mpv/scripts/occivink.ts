@@ -37,19 +37,19 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.app(camelToKebab, name));
       const version = "0-unstable-2025-11-01";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "occivink",
           repo: "mpv-scripts",
           rev: "01f3e99558915bb715b614d7f4b052230360eb21",
           hash: "sha256-v3TGsCzSg+a1vrOgI5NbTVf8Bh/iMRRgwMy194sNq1Y=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const scriptPath = nix.thunk(() => nix.str`scripts/${pname}.lua`);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/occivink/mpv-scripts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
         maintainers: nix.thunk(() => (() => {
@@ -58,34 +58,34 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       const pos = nix.thunk(() => nix.builtins.unsafeGetAttrPos("version", self));
-      return { __proto__: pos$4, pname, version, src, passthru, scriptPath, meta, pos };
+      return { [nix.POS]: pos$4, pname, version, src, passthru, scriptPath, meta, pos };
     })());
     return nix.app(buildLua, nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), self, args_1)));
   })();
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.app(mkScript, name))), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         crop: nix.thunk(() => ({
-          __proto__: pos$6,
-          meta: nix.thunk(() => ({ __proto__: pos$5, description: "Crop the current video in a visual manner" })),
+          [nix.POS]: pos$6,
+          meta: nix.thunk(() => ({ [nix.POS]: pos$5, description: "Crop the current video in a visual manner" })),
         })),
         seekTo: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           meta: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             description: "Mpv script for seeking to a specific position",
           })),
         })),
         blacklistExtensions: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           meta: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             description: "Automatically remove playlist entries based on their extension",
           })),
         })),
         encode: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           meta: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             description: "Make an extract of the video currently playing using ffmpeg",
           })),
           postPatch: nix.thunk(() => nix.str`substituteInPlace scripts/encode.lua \\

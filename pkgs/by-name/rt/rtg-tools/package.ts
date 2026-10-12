@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rtg-tools",
       version: "3.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RealTimeGenomics",
           repo: "rtg-tools",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ sed -i '/# Now write the selection to local config/i mkdir -p $HOME/.config/rtg-
 `),
       checkPhase: "ant runalltests\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/RealTimeGenomics/rtg-tools",
         description: "Useful utilities for dealing with VCF files and sequence data, especially vcfeval",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

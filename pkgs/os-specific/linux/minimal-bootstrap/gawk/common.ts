@@ -10,9 +10,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       description: "GNU implementation of the Awk programming language",
       homepage: "https://www.gnu.org/software/gawk",
       license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -26,10 +26,10 @@ export default nix.lambda((args) => (() => {
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "redlib/snakeoil-certs.nix")));
   const redditDomain = nix.thunk(() => nix.sel(certs, "domain"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "redlib",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -39,37 +39,37 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       machine: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         networking: nix.thunk(() => ({
-          __proto__: pos$3,
-          hosts: nix.thunk(() => ({ __proto__: pos$2, "127.0.0.1": nix.thunk(() => [redditDomain]) })),
+          [nix.POS]: pos$3,
+          hosts: nix.thunk(() => ({ [nix.POS]: pos$2, "127.0.0.1": nix.thunk(() => [redditDomain]) })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pki: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             certificates: nix.thunk(() => [
               nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.sel(certs, "ca", "cert")))),
             ]),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           nginx: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: true,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.force(redditDomain), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 onlySSL: true,
                 sslCertificate: nix.thunk(() => nix.sel(certs, nix.key(nix.force(redditDomain)), "cert")),
                 sslCertificateKey: nix.thunk(() => nix.sel(certs, nix.key(nix.force(redditDomain)), "key")),
                 locations: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   "/auth/v2/oauth/access-token/loid": nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     extraConfig: "return 200 \"{\\\"access_token\\\":\\\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\\\",\\\"expires_in\\\":0}\";\n",
                   })),
                 })),
@@ -77,11 +77,11 @@ export default nix.lambda((args) => (() => {
             ])),
           })),
           redlib: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             package: nix.thunk(() => nix.sel(pkgs, "redlib")),
             enable: true,
             port: 80n,
-            settings: nix.thunk(() => ({ __proto__: pos$10, REDLIB_DEFAULT_USE_HLS: true })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$10, REDLIB_DEFAULT_USE_HLS: true })),
           })),
         })),
       })),

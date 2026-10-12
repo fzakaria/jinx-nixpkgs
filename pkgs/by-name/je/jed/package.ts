@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jed";
       const version = "0.99-19";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.jedsoft.org/releases/jed/jed-${version}.tar.bz2`),
           sha256: "sha256-vzeX0P+2+IuKtrX+2lQDeJj7VMDS6XurD2pb2jhxy2Q=",
         }))));
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "for i in autoconf/Makefile autoconf/Makefile.in \\\n         doc/tm/Makefile src/Makefile.in; do\n  sed -e 's|/bin/cp|cp|' -i $i\ndone\nfor i in autoconf/aclocal.m4 configure; do\n  sed -e 's|ncurses5|ncurses|' -i $i\ndone\n";
       const postInstall = "install -D src/objs/rgrep $out/bin\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Programmable text editor written around S-Lang",
         longDescription: "JED is a freely available text editor for Unix, VMS, MSDOS, OS/2, BeOS,\nQNX, and win9X/NT platforms. Although it is a powerful editor designed for\nuse by programmers, its drop-down menu facility make it one of the\nfriendliest text editors around. Hence it is ideal for composing simple\nemail messages as well as editing complex programs in a variety of\ncomputer languages.\n\nJED makes extensive use of the S-Lang library, which endows it with the\npowerful S-Lang scripting language. Some of its features are:\n\n- Color syntax highlighting on color terminals, e.g., Linux console or a\n  remote color terminal via dialup (as well as Xjed)\n- Folding support\n- Drop-down menus on _ALL_ terminals/platforms\n- Emulation of Emacs, EDT, Wordstar, Borland, and Brief editors\n- Extensible in the C-like S-Lang language making the editor completely\n  customizable.\n- Capable of reading GNU info files from within JED's info browser\n- A variety of programming modes (with syntax highlighting) are available\n  including C, C++, FORTRAN, TeX, HTML, SH, python, IDL, DCL, NROFF...\n- Edit TeX files with AUC-TeX style editing (BiBTeX support too)\n- Asynchronous subprocess support allowing one to compile from within the\n  editor\n- Built-in support for the GPM mouse driver on Linux console\n- Abbreviation mode and Dynamic abbreviation mode\n- 8 bit clean with mute/dead key support\n- Supported on most Unix, VMS, OS/2, MSDOS (386+), win9X/NT, QNX, and BeOS\n  systems\n- Rectangular cut/paste; regular expressions; incremental searches; search\n  replace across multiple files; multiple windows; multiple buffers; shell\n  modes; directory editor (dired); mail; rmail; ispell; and much, much\n  more\n",
         homepage: "https://www.jedsoft.org/jed/index.html",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(slang, "meta", "platforms")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

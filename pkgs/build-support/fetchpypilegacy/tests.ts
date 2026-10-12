@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const fetchPypiLegacy = nix.arg($, "fetchPypiLegacy");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     fetchSimple: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchPypiLegacy, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: "requests",
         file: "requests-2.31.0.tar.gz",
         url: "https://pypi.org/simple",

@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
   const libsecret = nix.arg($, "libsecret");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bazaar",
       version: "0.9.1",
       __structuredAttrs: true,
       strictDeps: true,
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bazaar-org",
           repo: "bazaar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -92,11 +92,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "moveToOutput bin/bge-demo $dev\n",
       preFixup: "gappsWrapperArgs+=(\n  # bazaar needs bazaar-dl-worker in path\n  --prefix PATH : $out/bin\n  --prefix LD_LIBRARY_PATH : $lib/lib\n  # gsettings schemas are moved to $lib\n  --prefix XDG_DATA_DIRS : $lib/share\n)\n\n# isn't automatically picked out for some reason, while $dev/bin/bge-demo is...\nwrapGApp $out/bin/bazaar\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "FlatHub-first app store for GNOME",
         homepage: "https://github.com/kolunmi/bazaar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

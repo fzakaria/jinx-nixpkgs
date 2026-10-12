@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ueviewer",
       version: "0-unstable-2024-02-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gildor2",
           repo: "UEViewer",
           rev: "a0bfb468d42be831b126632fd8a0ae6b3614f981",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-ueviewer-Dont-use-c++2a-standard.patch",
             url: "https://github.com/gildor2/UEViewer/commit/d44bef038abca99c84d7f418aedcbcb761de58aa.patch",
             hash: "sha256-v68yoBLz0dUB3evlKApKuajKQiOwbJczVeW5oxYaVyw=",
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n./build.sh\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 umodel $out/bin/umodel\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Viewer and exporter for Unreal Engine 1-4 assets (aka umodel)",
         homepage: "https://www.gildor.org/en/projects/umodel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

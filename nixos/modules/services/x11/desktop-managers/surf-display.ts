@@ -65,20 +65,20 @@ HIDE_IDLE_POINTER="${nix.sel(cfg, "hideIdlePointer")}"
 ${nix.sel(cfg, "extraConfig")}
 `);
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         xserver: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           desktopManager: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "surf-display": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "surf-display as a kiosk browser session")),
               defaultWwwUri: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: nix.thunk(() => nix.str`${nix.sel(pkgs, "surf-display")}/share/surf-display/empty-page.html`),
                   defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"${pkgs.surf-display}/share/surf-display/empty-page.html\"")),
@@ -86,33 +86,33 @@ ${nix.sel(cfg, "extraConfig")}
                   description: "Default URI to display.",
                 })))),
               inactivityInterval: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                   default: 300n,
                   example: 0n,
                   description: "Setting for internal inactivity timer to restart surf-display if the\nuser goes inactive/idle to get a fresh session for the next user of\nthe kiosk.\n\nIf this value is set to zero, the whole feature of restarting due to\ninactivity is disabled.\n",
                 })))),
               screensaverSettings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "separatedString"), " ")),
                   default: "",
                   description: "Screensaver settings, see `man 1 xset` for possible options.\n",
                 })))),
               pointerButtonMap: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "1 0 0 4 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0",
                   description: "Disable right and middle pointer device click in browser sessions\nwhile keeping scrolling wheels' functionality intact. See pointer\nsubcommand on `man xmodmap` for details.\n",
                 })))),
               hideIdlePointer: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "yes",
                   example: "no",
                   description: "Hide idle mouse pointer.",
                 })))),
               extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                   default: "",
                   example: "# Enforce fixed resolution for all displays (default: not set):\nDEFAULT_RESOLUTION=\"1920x1080\"\n\n# HTTP proxy URL, if needed (default: not set).\nHTTP_PROXY_URL=\"http://webcache:3128\"\n\n# Configure individual display screens with host specific parameters:\nDISPLAYS['display-host-0']=\"www_uri=https://www.displayserver.comany.net/display-1/index.html\"\nDISPLAYS['display-host-1']=\"www_uri=https://www.displayserver.comany.net/display-2/index.html\"\nDISPLAYS['display-host-2']=\"www_uri=https://www.displayserver.comany.net/display-3/index.html|res=1920x1280\"\nDISPLAYS['display-host-3']=\"www_uri=https://www.displayserver.comany.net/display-4/index.html\"|res=1280x1024\"\nDISPLAYS['display-host-local-file']=\"www_uri=file:///usr/share/doc/surf-display/empty-page.html\"\n",
@@ -124,19 +124,19 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             sessionPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "surf-display"))]),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           etc: nix.thunk(() => ({
-            __proto__: pos$15,
-            "default/surf-display": nix.thunk(() => ({ __proto__: pos$14, text: surfDisplayConf })),
+            [nix.POS]: pos$15,
+            "default/surf-display": nix.thunk(() => ({ [nix.POS]: pos$14, text: surfDisplayConf })),
           })),
         })),
       })))),

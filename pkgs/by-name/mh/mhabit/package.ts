@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
   const dart = nix.arg($, "dart");
   const version = "1.26.7+180";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "FriesI23",
       repo: "mhabit",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-QRPgtzMRdfuflw36okY8DiXqPC+EJLjz8HQ3iL2Yxh8=",
     }))));
   return nix.app(nix.sel(flutter341, "buildFlutterApplication"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "mhabit",
       version: version,
       src: src,
@@ -41,18 +41,18 @@ export default nix.lambda((args) => (() => {
       gitHashes: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./git-hashes.json"))),
       buildInputs: nix.thunk(() => [sqlite, libsecret]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-deprecated-literal-operator"]))),
       })),
       postInstall: "install -Dm644 flatpak/io.github.friesi23.mhabit.desktop --target-directory=$out/share/applications\ninstall -Dm644 assets/logo/icon.svg $out/share/icons/hicolor/scalable/io.github.friesi23.mhabit\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ __proto__: pos$3, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
+        [nix.POS]: pos$6,
+        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: pos$3, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "mhabit.pubspecSource", nix.path(here, "./pubspec.lock.json")), { __proto__: pos$4, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "mhabit.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$4, supportedFeatures: [] })),
             nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               command: nix.thunk(() => [
                 nix.thunk(() => nix.sel(dart, "fetchGitHashesScript")),
                 "--input",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Track micro habits with easy-to-use charts and tools",
         longDescription: "\"Table Habit\" is an app that helps you establish and track your\nown micro habit. It includes a complete set of growth curves and\ncharts to help you build habits more effectively, and keeps your\ndata in sync across devices (currently via WebDAV, with more\noptions coming soon).\n",
         homepage: "https://github.com/FriesI23/mhabit",

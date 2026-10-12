@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const version = "5.0.1";
   const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "coolercontrol",
       repo: "coolercontrol",
       tag: version,
       hash: "sha256-48hgLZ1tyojGJFsz9ZQKC03QMrUAFuH33Z/LOXYl/aI=",
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Monitor and control your cooling devices",
     homepage: "https://gitlab.com/coolercontrol/coolercontrol",
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
       ];
     })()),
   }));
-  const applySharedDetails = (drv) => nix.app(drv, nix.thunk(() => ({ __proto__: pos$3, version: version, src: src, meta: meta })));
+  const applySharedDetails = (drv) => nix.app(drv, nix.thunk(() => ({ [nix.POS]: pos$3, version: version, src: src, meta: meta })));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "coolercontrol-ui-data": nix.thunk(() => nix.app(applySharedDetails, nix.thunk(() => nix.app(callPackage, nix.path(here, "./coolercontrol-ui-data.nix"), nix.thunk(() => ({})))))),
     coolercontrold: nix.thunk(() => nix.app(applySharedDetails, nix.thunk(() => nix.app(callPackage, nix.path(here, "./coolercontrold.nix"), nix.thunk(() => ({})))))),
     "coolercontrol-gui": nix.thunk(() => nix.app(applySharedDetails, nix.thunk(() => nix.app(callPackage, nix.path(here, "./coolercontrol-gui.nix"), nix.thunk(() => ({})))))),

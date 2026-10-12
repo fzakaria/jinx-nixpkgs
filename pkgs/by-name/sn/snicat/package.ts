@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "snicat",
       version: "0.0.1-unstable-2024-09-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CTFd",
           repo: "snicat",
           rev: "8c8f06e59d5aedb9a97115a4e0eafa75b17a6cdf",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mv $out/bin/snicat $out/bin/sc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TLS & SNI aware netcat",
         homepage: "https://github.com/CTFd/snicat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

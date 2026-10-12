@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "1.7.27";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "ente",
       repo: "ente",
       fetchSubmodules: true,
@@ -47,32 +47,32 @@ export default nix.lambda((args) => (() => {
   const electron = electron_42;
   const resourcesDir = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "$out/Applications/ente.app/Contents/Resources" : "$out/share/ente-desktop/resources"));
   const webCargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: src,
       name: "ente-desktop-web-cargo-deps",
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/rust`),
       hash: "sha256-RWemVZmH/NAQ+yDv2jwLhpHZpcp8BK3lZ4GjHMVLGLA=",
     }))));
   const webNpmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: src,
       name: "ente-desktop-web-npm-deps",
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/web`),
       hash: "sha256-iSqxANhb/DC/57Ltw4F9YKjTlJaAeZG3K4NrUN/+omA=",
     }))));
   const webApp = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(ente_web, "override"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       "wasm-bindgen-cli_0_2_125": wasm_bindgen_cli_0_2_125,
-      extraBuildEnv: nix.thunk(() => ({ __proto__: pos$4, _ENTE_IS_DESKTOP: "1" })),
+      extraBuildEnv: nix.thunk(() => ({ [nix.POS]: pos$4, _ENTE_IS_DESKTOP: "1" })),
     }))), "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: version,
       src: src,
       npmDeps: webNpmDeps,
       cargoDeps: webCargoDeps,
     }))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "ente-desktop",
       version: version,
       src: src,
@@ -124,7 +124,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: "ente-desktop",
               desktopName: "Ente",
               exec: "ente-desktop %U",
@@ -136,15 +136,15 @@ runHook postInstall
             })))),
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         webApp: webApp,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             extraArgs: nix.thunk(() => ["--version-regex", "photos-desktop-v(.*)", "--subpackage", "webApp"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Desktop (Electron) client for Ente Photos",
         homepage: "https://ente.io/",
         changelog: "https://github.com/ente-io/photos-desktop/releases",

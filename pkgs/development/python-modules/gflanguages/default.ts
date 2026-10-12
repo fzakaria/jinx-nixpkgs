@@ -22,25 +22,25 @@ export default nix.lambda((args) => (() => {
   const youseedee = nix.arg($, "youseedee");
   const gfmetadata = nix.arg($, "gfmetadata");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gflanguages",
       version: "0.7.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googlefonts",
           repo: "lang",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-skybvMeSP+F3Bz3PJEB7ZIEVhLdwBc8+VemDcC+1FZc=",
         })))),
       pythonRelaxDeps: nix.thunk(() => ["protobuf"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [protobuf, regex, gfmetadata]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, regex, uharfbuzz, youseedee]),
       pythonImportsCheck: nix.thunk(() => ["gflanguages"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for Google Fonts language metadata",
         homepage: "https://github.com/googlefonts/lang",
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/lang/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

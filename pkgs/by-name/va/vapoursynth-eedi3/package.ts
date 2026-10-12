@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const ocl_icd = nix.arg($, "ocl-icd");
   const openclSupport = nix.argOr($, "openclSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vapoursynth-eedi3",
       version: "unstable-2019-09-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HolyWu",
           repo: "VapourSynth-EEDI3",
           rev: "d11bdb37c7a7118cd095b53d9f8fbbac02a06ac0",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace meson.build \\\n  --replace-fail \"vapoursynth_dep.get_pkgconfig_variable('libdir')\" \"get_option('libdir')\"\n",
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "opencl", openclSupport))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Filter for VapourSynth",
         homepage: "https://github.com/HolyWu/VapourSynth-EEDI3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

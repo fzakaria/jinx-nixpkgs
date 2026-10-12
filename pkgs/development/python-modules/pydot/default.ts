@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-whSPaBxKM+CL8OJqnl+OQJmoLg4qBoCY8yzoZXc2StU=",
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pyparsing]);
       const nativeCheckInputs = nix.thunk(() => [chardet, parameterized, pytestCheckHook]);
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-graphviz-path.patch"), nix.thunk(() => ({ __proto__: pos$2, graphviz: graphviz })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-graphviz-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, graphviz: graphviz })))),
       ]);
       const enabledTestPaths = nix.thunk(() => ["test/test_pydot.py"]);
       const pythonImportsCheck = nix.thunk(() => ["pydot"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Allows to create both directed and non directed graphs from Python",
         homepage: "https://github.com/erocarrera/pydot",
         changelog: nix.thunk(() => nix.str`https://github.com/pydot/pydot/blob/v${version}/ChangeLog`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

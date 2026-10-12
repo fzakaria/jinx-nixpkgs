@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unar = nix.arg($, "unar");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "unrar-wrapper",
       version: "1.0.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openSUSE",
           repo: "unrar_wrapper",
           tag: nix.thunk(() => nix.str`unrar_wrapper-${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "ln -s $out/bin/unrar_wrapper $out/bin/unrar\nrm -rf $out/nix-support/propagated-build-inputs\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/openSUSE/unrar_wrapper",
         description: "Backwards compatibility between unar and unrar",
         longDescription: "unrar_wrapper is a wrapper python script that transforms the basic UnRAR commands\nto unar and lsar calls in order to provide a backwards compatibility.\n",

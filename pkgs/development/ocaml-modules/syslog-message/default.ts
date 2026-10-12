@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const minimalOCamlVersion = "4.08";
       const duneVersion = "3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/verbosemode/${pname}/releases/download/${version}/${pname}-${version}.tbz`),
           hash: "sha256-+eyiv6JvC0EKs3G1s5qoFtK0bU4Yg41AHg5Nc6xD9w0=",
         }))));
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const checkInputs = nix.thunk(() => [qcheck]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Syslog message parser",
         homepage: "https://github.com/verbosemode/syslog-message",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

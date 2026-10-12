@@ -29,32 +29,32 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "nixseparatedebuginfod2"));
   const address = nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`);
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "nixseparatedebuginfod2", "substituter"]), "Instead of `services.nixseparatedebuginfod2.substituter = \"foo\"`, set `services.nixseparatedebuginfod2.substituters = [ \"foo\" ]` (possibly with mkForce to override the default value).\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         nixseparatedebuginfod2: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nixseparatedebuginfod2, a debuginfod server providing source and debuginfo for nix packages")),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "port to listen",
               default: 1949n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nixseparatedebuginfod2", nix.thunk(() => ({})))),
           substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "nix substituter to fetch debuginfo from. Either http/https/file substituters, or `local:` to use debuginfo present in the local store.",
               default: nix.thunk(() => ["local:", "https://cache.nixos.org"]),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           cacheExpirationDelay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "keep unused cache entries for this long. A number followed by a unit",
               default: "1d",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
@@ -63,23 +63,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           sockets: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             nixseparatedebuginfod2: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              socketConfig: nix.thunk(() => ({ __proto__: pos$7, ListenStream: nix.thunk(() => [address]) })),
+              socketConfig: nix.thunk(() => ({ [nix.POS]: pos$7, ListenStream: nix.thunk(() => [address]) })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             nixseparatedebuginfod2: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStart: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([
                       nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           debuginfodServers: nix.thunk(() => [nix.thunk(() => nix.str`http://${address}`)]),
         })),
       })))),

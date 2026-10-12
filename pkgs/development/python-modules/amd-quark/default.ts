@@ -32,19 +32,19 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "amd-quark",
       version: "0.11.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amd",
           repo: "Quark",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-x0y3NFbXAF1SnlzQSkWKEWiz0qRPYHWvQ6oTizKpyQw=",
         })))),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail '\"protobuf-protoc-bin==31.1\",' \"\"\nsubstituteInPlace setup.py \\\n  --replace-fail 'subprocess.check_output([\"git\", \"rev-parse\", \"--short\", \"HEAD\"])' 'b\"nix\"'\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, QUARK_RELEASE: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, QUARK_RELEASE: "1" })),
       "build-system": nix.thunk(() => [setuptools, mypy_protobuf]),
       dependencies: nix.thunk(() => [
         evaluate,
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["quark"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "AMD Quark Model Optimizer",
         homepage: "https://github.com/amd/Quark",
         changelog: nix.thunk(() => nix.str`https://github.com/amd/Quark/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

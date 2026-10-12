@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cups-brother-dcpt725dw";
       const version = "3.5.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf105181/dcpt725dwpdrv-${version}.i386.deb`),
           hash: "sha256-fK6RHaW/ej1nFgSaTbzWxVgjIW32YTbJbd1xD37ZE7c=",
         }))));
@@ -85,7 +85,7 @@ ln -s "$out/opt/brother/Printers/dcpt725dw/cupswrapper/brother_dcpt725dw_printer
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother DCP-T725DW printer driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         sourceProvenance: nix.thunk(() => (() => {
@@ -101,7 +101,7 @@ runHook postInstall
         homepage: "http://www.brother.com/",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

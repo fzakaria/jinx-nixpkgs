@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const getopt = nix.arg($, "getopt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "disnixos",
       version: "0.9.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/svanderburg/disnixos/releases/download/disnixos-${nix.sel(finalAttrs, "version")}/disnixos-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0adv6dm6hszjhzkfkw48pmi37zj32plcibk80r6bm907mm7n50lj",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [socat, dysnomia, disnix, getopt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides complementary NixOS infrastructure deployment to Disnix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

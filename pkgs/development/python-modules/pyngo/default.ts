@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yezz123",
           repo: "pyngo",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pyngo"]);
       const nativeCheckInputs = nix.thunk(() => [django_stubs, pytestCheckHook, pytest_asyncio]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/yezz123/pyngo/releases/tag/${nix.sel(src, "tag")}`),
         description: "Pydantic model support for Django & Django-Rest-Framework",
         homepage: "https://github.com/yezz123/pyngo",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

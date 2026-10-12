@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cppcodec",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tplgy",
           repo: "cppcodec",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "modernize-cmake.patch",
             url: "https://github.com/tplgy/cppcodec/commit/8019b8b580f8573c33c50372baec7039dfe5a8ce.patch",
             hash: "sha256-0MCx3nTsey4Qonx+lyexbcxut0qIHOJZbkJ9u23Zuv8=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Header-only C++11 library for encode/decode functions as in RFC 4648",
         longDescription: "Header-only C++11 library to encode/decode base64, base64url, base32,\nbase32hex and hex (a.k.a. base16) as specified in RFC 4648, plus\nCrockford's base32.\n",
         homepage: "https://github.com/tplgy/cppcodec",

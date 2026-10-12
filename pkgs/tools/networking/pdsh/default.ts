@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pdsh";
       const version = "2.36";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/chaos/pdsh/releases/download/pdsh-${version}/pdsh-${version}.tar.gz`),
           sha256: "sha256-pmEJXOUd1fsF45jPXQ4dYxVxI5WEQfbTUSvPGn0lxRc=",
         }))));
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
 )
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/chaos/pdsh",
         description: "High-performance, parallel remote shell utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -18,29 +18,29 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchPypi = nix.arg($, "fetchPypi");
   const newPackageOverrides = (self) => (super$) => nix.update({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     poetry: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({})))),
     "poetry-core": nix.thunk(() => nix.app(nix.sel(super$, "poetry-core", "overridePythonAttrs"), (old) => (() => {
         const version = "2.4.0";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "python-poetry",
             repo: "poetry-core",
             tag: version,
             hash: "sha256-i9EucMsoX8Z0iyhNDVYaczv1CSY/KaZpMjn/FGzIJU4=",
           }))));
-        return { __proto__: pos$2, version, src };
+        return { [nix.POS]: pos$2, version, src };
       })())),
   }, nix.app(plugins, self));
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), (old) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       self: python,
       packageOverrides: nix.thunk(() => nix.app(nix.sel(lib, "composeManyExtensions"), nix.thunk(() => nix.concat((nix.asBool(nix.has(old, "packageOverrides")) ? [nix.thunk(() => nix.sel(old, "packageOverrides"))] : []), [newPackageOverrides])))),
     })));
   const plugins = (ps) => (() => {
     const w = nix.withScope(ps, null);
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       poeblix: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./plugins/poeblix.nix"), nix.thunk(() => ({})))),
       "poetry-audit-plugin": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./plugins/poetry-audit-plugin.nix"), nix.thunk(() => ({})))),
       "poetry-plugin-export": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./plugins/poetry-plugin-export.nix"), nix.thunk(() => ({})))),
@@ -52,12 +52,12 @@ export default nix.lambda((args) => (() => {
   const withPlugins = (selector) => (() => {
     const selected = nix.thunk(() => nix.app(selector, nix.thunk(() => nix.app(plugins, nix.thunk(() => nix.sel(python, "pkgs"))))));
     return nix.app(nix.sel(python, "pkgs", "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(python, "pkgs", "poetry", "overridePythonAttrs"), (old) => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           dependencies: nix.thunk(() => nix.concat(nix.sel(old, "dependencies"), selected)),
           doCheck: nix.thunk(() => nix.eq(selected, [])),
           postFixup: "rm $out/nix-support/propagated-build-inputs\n",
           passthru: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             plugins: nix.thunk(() => nix.app(plugins, nix.thunk(() => nix.sel(python, "pkgs")))),
             withPlugins: withPlugins,
             python: python,

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libpciaccess = nix.arg($, "libpciaccess");
   const libxcb = nix.arg($, "libxcb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "radeontop",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "0kwqddidr45s1blp0h8r8h1dd1p50l516yb6mb4s6zsc827xzgg3",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           repo: "radeontop",
@@ -39,7 +39,7 @@ substituteInPlace Makefile --replace pkg-config "$PKG_CONFIG"
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       postInstall: "wrapProgram $out/bin/radeontop \\\n  --prefix LD_LIBRARY_PATH : $out/lib\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Top-like tool for viewing AMD Radeon GPU utilization",
         mainProgram: "radeontop",
         longDescription: "View GPU utilization, both for the total activity percent and individual\nblocks. Supports R600 and later cards: even Southern Islands should work.\nWorks with both the open drivers and AMD Catalyst. Total GPU utilization\nis also valid for OpenCL loads; the other blocks are only useful for GL\nloads.\n",

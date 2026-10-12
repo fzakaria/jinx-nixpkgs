@@ -76,13 +76,13 @@ substitute ${source}/settings/defaults/pref/local-settings.js $out \\
     ]);
     const extraPoliciesFiles = nix.thunk(() => [nix.thunk(() => nix.str`${source}/settings/distribution/policies.json`)]);
     const extraPassthru = nix.thunk(() => ({
-      __proto__: pos$2,
-      librewolf: nix.thunk(() => ({ __proto__: pos$1, src: src, extraPatches: extraPatches })),
+      [nix.POS]: pos$2,
+      librewolf: nix.thunk(() => ({ [nix.POS]: pos$1, src: src, extraPatches: extraPatches })),
       extraPrefsFiles: extraPrefsFiles,
       extraPoliciesFiles: extraPoliciesFiles,
     }));
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       packageVersion,
       firefox,
       source,

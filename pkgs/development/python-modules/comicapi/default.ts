@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "comictagger",
           repo: "comicapi",
           rev: "2bf8332114e49add0bbc0fd3d85bdbba02de3d1a",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         wordninja,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         _7z: nix.thunk(() => [py7zr]),
         all: nix.thunk(() => nix.concat([py7zr, rarfile], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), pyicu))),
         cbr: nix.thunk(() => [rarfile]),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_copy_from_archive"]);
       const pythonImportsCheck = nix.thunk(() => ["comicapi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Comic archive (cbr/cbz/cbt) and metadata utilities",
         homepage: "https://github.com/comictagger/comicapi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

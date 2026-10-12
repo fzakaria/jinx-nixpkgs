@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const which = nix.arg($, "which");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gluonts",
       version: "0.17.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "awslabs",
           repo: "gluonts",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./pandas3-compat.patch")]),
       pythonRelaxDeps: nix.thunk(() => ["pandas", "toolz"]),
       dependencies: nix.thunk(() => [numpy, pandas, pydantic, tqdm, toolz, typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, torch: nix.thunk(() => [torch, lightning, scipy]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, torch: nix.thunk(() => [torch, lightning, scipy]) })),
       pythonImportsCheck: nix.thunk(() => [
         "gluonts",
         "gluonts.core",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.concat(["test/torch/model"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test/torch/test_torch_item_id_info.py"])))),
       disabledTests: nix.thunk(() => nix.concat(["test_against_former_evaluator"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_forecast"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Probabilistic time series modeling in Python",
         homepage: "https://ts.gluon.ai",
         changelog: nix.thunk(() => nix.str`https://github.com/awslabs/gluonts/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

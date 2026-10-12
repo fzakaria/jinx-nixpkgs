@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const wafHook = nix.arg($, "wafHook");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mda-lv2",
       version: "1.2.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.drobilla.net/mda-lv2-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-zWYRcCSuBJzzrKg/npBKcCdyJOI6lp9yqcXQEKSYV9s=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, wafHook, python3]),
       buildInputs: nix.thunk(() => [fftwSinglePrec, lv2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://drobilla.net/software/mda-lv2.html",
         description: "LV2 port of the MDA plugins by Paul Kellett",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

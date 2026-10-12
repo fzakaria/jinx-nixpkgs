@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ducc0",
       version: "0.41.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.mpcdf.mpg.de",
           owner: "mtr",
           repo: "ducc",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-OeTTrIcvY9bhnctc6h1xUdSriQN4RNy3vjxWKKlT0ew=",
         })))),
       postPatch: "substituteInPlace pyproject.toml --replace-fail '\"pybind11>=2.13.6\", ' \"\"\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, DUCC0_USE_NANOBIND: "", DUCC0_OPTIMIZATION: "portable" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, DUCC0_USE_NANOBIND: "", DUCC0_OPTIMIZATION: "portable" })),
       "build-system": nix.thunk(() => [cmake, nanobind, ninja, scikit_build_core, setuptools]),
       dontUseCmakeConfigure: true,
       dependencies: nix.thunk(() => [numpy]),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
 cp -r ${nix.sel(finalAttrs, "src")}/src/ducc0 $out/include
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Efficient algorithms for Fast Fourier transforms and more",
         homepage: "https://gitlab.mpcdf.mpg.de/mtr/ducc",
         changelog: nix.thunk(() => nix.str`https://gitlab.mpcdf.mpg.de/mtr/ducc/-/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog?ref_type=tags`),

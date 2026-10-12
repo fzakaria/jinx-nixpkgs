@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const dotnet_aspnetcore_8 = nix.arg($, "dotnet-aspnetcore_8");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "luarenamer",
       version: "5.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mik1ll",
           repo: "LuaRenamer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
       projectFile: "LuaRenamer/LuaRenamer.csproj",
       executables: [],
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(dotnet_sdk_8, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Mik1ll/LuaRenamer",
         changelog: nix.thunk(() => nix.str`https://github.com/Mik1ll/LuaRenamer/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Plugin for Shoko that allows users to rename their collection using Lua",

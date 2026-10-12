@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libnotify = nix.arg($, "libnotify");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "psi-notify",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cdown",
           repo: "psi-notify",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       installPhase: "runHook preInstall\n\ninstall -D psi-notify $out/bin/psi-notify\nsubstituteInPlace psi-notify.service --replace psi-notify $out/bin/psi-notify\ninstall -D psi-notify.service $out/lib/systemd/user/psi-notify.service\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Alert on system resource saturation",
         longDescription: "psi-notify can alert you when resources on your machine are becoming\noversaturated, and allow you to take action before your system slows to a\ncrawl.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

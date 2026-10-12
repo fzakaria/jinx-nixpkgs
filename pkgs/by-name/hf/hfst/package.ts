@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const openfst = nix.arg($, "openfst");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hfst",
       version: "3.17.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hfst",
           repo: "hfst",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [foma, gettext, icu, zlib, openfst]),
       configureFlags: nix.thunk(() => ["--enable-all-tools", "--with-foma-upstream=true"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FST language processing library",
         homepage: "https://github.com/hfst/hfst",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const supportSocks = nix.argOr($, "supportSocks", () => true);
   const version = "1.9.2";
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fangfrisch",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rseichter",
           repo: "fangfrisch",
           tag: version,
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["fangfrisch"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Update and verify unofficial Clam Anti-Virus signatures",
         homepage: "https://github.com/rseichter/fangfrisch",
         changelog: nix.thunk(() => nix.str`https://github.com/rseichter/fangfrisch/blob/${version}/CHANGELOG.rst`),

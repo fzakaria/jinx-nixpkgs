@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const features = nix.thunk(() => ["rustls-webpki", "geosparql", "rdf-12"]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oxigraph",
       version: "0.5.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oxigraph",
           repo: "oxigraph",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       cargoCheckNoDefaultFeatures: true,
       cargoCheckFeatures: features,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/oxigraph/oxigraph",
         description: "SPARQL graph database",
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin", "riscv64-linux"]),

@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const libxtst = nix.arg($, "libxtst");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ctagdrc",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BillyDM",
           repo: "CTAGDRC",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         libxtst,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))),
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-lX11",
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n      --replace-fail 'COPY_PLUGIN_AFTER_BUILD TRUE' 'COPY_PLUGIN_AFTER_BUILD FALSE'\nsubstituteInPlace CMakeLists.txt \\\n      --replace-fail 'include(cmake-include/CPM.cmake)' '# No CPM needed'\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/lib/clap $out/lib/vst3\ninstall -Dm755 \"CTAGDRC_artefacts/Release/Standalone/CTAGDRC\" $out/bin/CTAGDRC\ninstall -Dm644 \"CTAGDRC_artefacts/Release/CLAP/CTAGDRC.clap\" -t $out/lib/clap\ncp -r \"CTAGDRC_artefacts/Release/VST3/CTAGDRC.vst3\" $out/lib/vst3\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Audio compressor plugin created with JUCE",
         homepage: "https://github.com/BillyDM/CTAGDRC",
         changelog: nix.thunk(() => nix.str`https://github.com/BillyDM/CTAGDRC/releases/tag/v${nix.sel(finalAttrs, "version")}`),

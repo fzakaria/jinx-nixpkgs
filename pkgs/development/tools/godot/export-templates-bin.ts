@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const withMono = nix.argOr($, "withMono", () => false);
   const self = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       __structuredAttrs: true,
       pname: nix.thunk(() => nix.str`godot-export-templates${nix.app(nix.sel(lib, "optionalString"), withMono, "-mono")}-bin`),
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/godotengine/godot/releases/download/${version}/Godot_v${version}${nix.app(nix.sel(lib, "optionalString"), withMono, "_mono")}_export_templates.tpz`),
           hash: hash,
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(godot, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

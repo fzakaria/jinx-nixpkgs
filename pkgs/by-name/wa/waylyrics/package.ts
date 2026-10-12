@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const dbus = nix.arg($, "dbus");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "waylyrics",
       version: "0.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "waylyrics",
           repo: "waylyrics",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
         "--skip=tests::netease_lyric::get_netease_lyric",
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         WAYLYRICS_THEME_PRESETS_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/waylyrics/themes`),
       })),
       postInstall: "# Install themes\ninstall -d $WAYLYRICS_THEME_PRESETS_DIR\ncp -vr themes/* $WAYLYRICS_THEME_PRESETS_DIR\n# Install desktop entry\ninstall -Dm644 metainfo/io.github.waylyrics.Waylyrics.desktop -t $out/share/applications\n# Install schema\ninstall -Dm644 metainfo/io.github.waylyrics.Waylyrics.gschema.xml -t $out/share/gsettings-schemas/$name/glib-2.0/schemas\nglib-compile-schemas $out/share/gsettings-schemas/$name/glib-2.0/schemas/\n# Install metainfo\ninstall -Dm644 metainfo/io.github.waylyrics.Waylyrics.metainfo.xml -t $out/share/metainfo\n# Install icons\ninstall -d $out/share/icons\ncp -vr res/icons/hicolor $out/share/icons/hicolor\n# Install translations\npushd locales\nfor po in $(find . -type f -name '*.po')\ndo\n  install -d $(dirname \"$out/share/locale/$po\")\n  msgfmt -o $out/share/locale/${po%.po}.mo $po\ndone\npopd\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Desktop lyrics with QQ and NetEase Music source",
         mainProgram: "waylyrics",
         homepage: "https://github.com/waylyrics/waylyrics",

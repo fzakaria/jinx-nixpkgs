@@ -14,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tecla",
       version: "1.6.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.astro.caltech.edu/~mcs/tecla/libtecla-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-8nV8xVBAhZ/Pj1mgt7JuAYSiK+zkTtlWikU0pHjB7ho=",
         })))),
       outputs: nix.thunk(() => ["out", "man"]),
       postPatch: "substituteInPlace install-sh \\\n  --replace \"stripprog=\" \"stripprog=\\$STRIP # \"\n",
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.astro.caltech.edu/~mcs/tecla/",
         description: "Command-line editing library",
         longDescription: "The tecla library provides UNIX and LINUX programs with interactive\ncommand line editing facilities, similar to those of the UNIX tcsh\nshell. In addition to simple command-line editing, it supports recall of\npreviously entered command lines, TAB completion of file names or other\ntokens, and in-line wild-card expansion of filenames. The internal\nfunctions which perform file-name completion and wild-card expansion are\nalso available externally for optional use by programs.\n\nIn addition, the library includes a path-searching module. This allows an\napplication to provide completion and lookup of files located in UNIX\nstyle paths. Although not built into the line editor by default, it can\neasily be called from custom tab-completion callback functions. This was\noriginally conceived for completing the names of executables and\nproviding a way to look up their locations in the user's PATH environment\nvariable, but it can easily be asked to look up and complete other types\nof files in any list of directories.\n\nNote that special care has been taken to allow the use of this library in\nthreaded programs. The option to enable this is discussed in the\nMakefile, and specific discussions of thread safety are presented in the\nincluded man pages.\n",

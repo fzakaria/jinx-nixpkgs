@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
       const gemdir = nix.path(here, "./.");
       const exes = nix.thunk(() => ["sublime_syntax_convertor"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, pname)),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Converts tmLanguage to sublime-syntax",
         homepage: "https://github.com/aziz/SublimeSyntaxConvertor/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "laalsaas"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, gemdir, exes, passthru, meta };
+      return { [nix.POS]: pos$3, pname, gemdir, exes, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -38,10 +38,10 @@ export default nix.lambda((args) => (() => {
     const configFile = "git-pages.toml";
     const configOutPath = nix.thunk(() => nix.sel(config, "configData", nix.key(configFile), "path"));
     return {
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       _class: "service",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [
@@ -51,23 +51,23 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       options: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "git-pages": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Package to use for git-pages",
               defaultText: "The git-pages package that provided this module.",
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
             })))),
           secretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "File that contains secrets for the git-pages config.\nIf values in this file are set, any options specified take priority over the options set in\n{option}`git-pages.settings`.\n\n::: {.note}\nSee the [git-pages documentation](https://git-pages.org/running-a-server/#configuration) on\nsecrets and environment variables.\n:::\n",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               description: "Settings to set in config.toml.\n\n::: {.note}\nSee the [git-pages documentation](https://git-pages.org/running-a-server/#configuration) on configuring the server.\n:::\n",
               default: nix.thunk(() => ({})),
@@ -75,22 +75,22 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       config: nix.thunk(() => nix.update({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         "git-pages": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           settings: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             storage: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               fs: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 root: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`/var/lib/${name}/data`))),
               })),
             })),
           })),
         })),
         process: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           argv: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
             "-config",
@@ -99,16 +99,16 @@ export default nix.lambda((args) => (() => {
         })),
         configData: nix.thunk(() => nix.attrsDyn({}, [
           [nix.str`${configFile}`, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), configFile, nix.thunk(() => nix.sel(cfg, "settings")))),
           }))],
         ])),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(options, "systemd")), nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           systemd: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             service: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Forge-agnostic static site server",
               documentation: nix.thunk(() => ["https://git-pages.org/running-a-server/"]),
               after: nix.thunk(() => ["network.target"]),
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(config, "configData", nix.key(nix.str`${configFile}`), "source")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 Restart: "always",
                 StateDirectory: name,
                 WorkingDirectory: nix.thunk(() => nix.str`%S/${name}`),

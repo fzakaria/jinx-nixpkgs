@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const zip = nix.arg($, "zip");
   const libxslt = nix.arg($, "libxslt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "docbook2odf",
       version: "0.244",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://open.comsultia.com/docbook2odf/dwn/docbook2odf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "10k44g0qqa37k30pfj8vz95j6zdzz0nmnqjq1lyahfs2h4glzgwb",
         })))),
@@ -46,7 +46,7 @@ wrapProgram "$out/bin/docbook2odf" \\
   --prefix PERL5PATH : "${nix.app(nix.sel(perlPackages, "makePerlPath"), nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "ImageMagick"))]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert DocBook to OpenDocument Format (ODF)",
         longDescription: "Docbook2odf is a toolkit that automatically converts DocBook to OASIS\nOpenDocument (ODF, the ISO standardized format used for texts,\nspreadsheets and presentations). Conversion is based on a XSLT which\nmakes it easy to convert DocBook->ODF, ODT, ODS and ODP as all these\ndocuments are XML based.\n",
         homepage: "http://open.comsultia.com/docbook2odf/",

@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const pruviloj = nix.arg($, "pruviloj");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "derive",
       version: "2018-07-02",
       idrisDeps: nix.thunk(() => [contrib, pruviloj]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "david-christiansen",
           repo: "derive-all-the-instances",
           rev: "0a9a5082d4ab6f879a2c141d1a7b645fa73fd950",
           sha256: "06za15m1kv9mijzll5712crry4iwx3b0fjv76gy9vv1p10gy2g4m",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Type class deriving with elaboration reflection",
         homepage: "https://github.com/davlum/derive-all-the-instances",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

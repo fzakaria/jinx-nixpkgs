@@ -34,108 +34,108 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const installFonts = nix.arg($, "installFonts");
   const fonts = nix.thunk(() => ({
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     assamese: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       label: "Assamese",
       version: "2.91.5",
       hash: "sha256-Oo/hHHFg/Nu3eaZLMdBclY90lKU2AMFUclyXHxGaAgg=",
     })),
     bengali: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       label: "Bengali",
       version: "2.91.5",
       hash: "sha256-QGf94TdQS2c9+wSSDK4Mknw5ubCGTuvg0xoNaJdirBc=",
     })),
     devanagari: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       label: "Devanagari script",
       version: "2.95.4",
       hash: "sha256-6CbOCqOei5eO1zwNQZvB+fFDkqxvJnK82z+zmClhRAE=",
     })),
     gujarati: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       label: "Gujarati",
       version: "2.92.4",
       hash: "sha256-BpwibF0/HXDvXpDEek0fj73cxo2QC1hSfQ49Q/ZOZg8=",
     })),
     gurmukhi: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       label: "Gurmukhi script",
       version: "2.91.2",
       hash: "sha256-5iLFW2FEE5LBqoALi+3sUjwC0ADntsp259TP+bYwR9g=",
     })),
     kannada: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       label: "Kannada",
       version: "2.5.4",
       hash: "sha256-7y2u0tBdNYCeY7Y+aqhxXP7Qv6GglJeVO1wvM9CzyIQ=",
     })),
     malayalam: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       label: "Malayalam",
       version: "2.92.2",
       hash: "sha256-SzM38vuAlP9OMC8kUuHQylmH8TUjCeg1y/Zcu2I2bjA=",
     })),
     marathi: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       label: "Marathi",
       version: "2.94.2",
       hash: "sha256-jK1Gwcr5gqzRNkbIxs4V/OYgUlUEpU0OYzKDTkiMlqM=",
     })),
     nepali: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       label: "Nepali",
       version: "2.94.2",
       hash: "sha256-OX1ekxeSbVGOrdbZ3Jvu4nii0zkgbuij10JIzqRcFx4=",
     })),
     odia: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       label: "Odia",
       version: "2.91.2",
       hash: "sha256-3/eczBGGZj4QPs7KY0as9zk5HaBfhgz6YgU0qmwpVcA=",
     })),
     "tamil-classical": nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       label: "Classical Tamil",
       version: "2.5.4",
       hash: "sha256-6SsddTCEUHMoF7X4+i7eXimmMuktfFAl8uz95RwM+yg=",
     })),
     tamil: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       label: "Tamil",
       version: "2.91.3",
       hash: "sha256-8lcNw87o9lhQsKwCqwBSfx7rhcrH/eEqac7EsA9/w/E=",
     })),
     telugu: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       label: "Telugu",
       version: "2.5.5",
       hash: "sha256-cZh93NfEB+5S1JeEowtBMJ0nbZsFGpbEp2WAtzxrA8A=",
     })),
   }));
   const gplfonts = nix.thunk(() => ({
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     kashmiri: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       label: "Kashmiri",
       version: "2.4.3",
       hash: "sha256-6T2QaWnt3+e5nr4vbk44FouqmeWKzia1lSf8S/bvqCs=",
     })),
     konkani: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       label: "Konkani",
       version: "2.4.3",
       hash: "sha256-hVy2rxrUTPDeNnugi3Bk7z0JqGmk4/yeUsAoI/4R7A8=",
     })),
     maithili: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       label: "Maithili",
       version: "2.4.3",
       hash: "sha256-ikDcpJqdizAYRpgoebzqxOEeodJ6C3fO2rsqGzC0HCs=",
     })),
     sindhi: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       label: "Sindhi",
       version: "2.4.3",
       hash: "sha256-wU3B9fh+8E1bFBMnakzmajY7eNKzed9+eYL5AOxyNQI=",
@@ -147,11 +147,11 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         pname: pname,
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             url: nix.thunk(() => nix.str`https://releases.pagure.org/lohit/lohit-${pname}-ttf-${version}.tar.gz`),
             hash: hash,
           })))),
@@ -160,7 +160,7 @@ export default nix.lambda((args) => (() => {
 install -Dm644 ChangeLog* COPYRIGHT* -t "$out/share/doc/lohit-${pname}/"
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           license: license,
           description: nix.thunk(() => nix.add(nix.add("Free and open source fonts for Indian languages (", label), ")")),
           homepage: "https://pagure.io/lohit",

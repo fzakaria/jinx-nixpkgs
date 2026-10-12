@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.28.0";
       const outputs = nix.thunk(() => ["out", "dev", "man"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.drobilla.net/lilv-${version}.tar.xz`),
           hash: "sha256-jctwrbXPByM1EVprCR9BE3EL3HOrqtqj+enB5VlXsUk=",
         }))));
@@ -43,12 +43,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "tests", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.add(nix.add(nix.add(nix.app(nix.sel(lib, "mesonOption"), "default_lv2_path", "~/.lv2:~/Library/Audio/Plug-Ins/LV2:"), "/usr/local/lib/lv2:/usr/lib/lv2:"), "/Library/Audio/Plug-Ins/LV2:"), "~/.nix-profile/lib/lv2"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.add(nix.app(nix.sel(lib, "mesonOption"), "default_lv2_path", "~/.lv2:/usr/local/lib/lv2:/usr/lib/lv2:"), "~/.nix-profile/lib/lv2:/run/current-system/sw/lib/lv2"))))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$2, pipewire: pipewire })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, url: "https://gitlab.com/lv2/lilv.git", "rev-prefix": "v" })))),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, pipewire: pipewire })),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://gitlab.com/lv2/lilv.git", "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "http://drobilla.net/software/lilv",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/lv2/lilv/-/blob/v${version}/NEWS`),
         description: "C library to make the use of LV2 plugins",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         outputs,

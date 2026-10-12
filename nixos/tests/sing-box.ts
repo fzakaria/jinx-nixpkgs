@@ -156,25 +156,25 @@ export default nix.lambda((args) => (() => {
   const server_host = "sing-box.test";
   const hosts = nix.thunk(() => nix.attrsDyn({}, [[nix.str`${target_host}`, "1.1.1.1"], [nix.str`${server_host}`, "1.1.1.2"]]));
   const hostsEntries = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (k) => (v) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: v,
       value: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), k)),
     }), hosts));
-  const hostsDns = nix.thunk(() => ({ __proto__: pos$2, type: "hosts", tag: "dns:hosts" }));
+  const hostsDns = nix.thunk(() => ({ [nix.POS]: pos$2, type: "hosts", tag: "dns:hosts" }));
   const vmessPort = 1080n;
   const vmessUUID = "bf000d23-0752-40b4-affe-68f7707a9661";
   const vmessInbound = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     type: "vmess",
     tag: "inbound:vmess",
     listen: "0.0.0.0",
     listen_port: vmessPort,
     users: nix.thunk(() => [
-      nix.thunk(() => ({ __proto__: pos$3, name: "sekai", uuid: vmessUUID, alterId: 0n })),
+      nix.thunk(() => ({ [nix.POS]: pos$3, name: "sekai", uuid: vmessUUID, alterId: 0n })),
     ]),
   }));
   const vmessOutbound = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     type: "vmess",
     tag: "outbound:vmess",
     server: server_host,
@@ -184,7 +184,7 @@ export default nix.lambda((args) => (() => {
     alter_id: 0n,
   }));
   const tunInbound = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     type: "tun",
     tag: "inbound:tun",
     interface_name: "tun0",
@@ -202,7 +202,7 @@ export default nix.lambda((args) => (() => {
   }));
   const tproxyPort = 1081n;
   const tproxyPost = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "exe",
       runtimeInputs: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
@@ -250,10 +250,10 @@ iptables -t mangle -A OUTPUT -j SING_BOX_SELF
 `),
     }))));
   return {
-    __proto__: pos$136,
+    [nix.POS]: pos$136,
     name: "sing-box",
     meta: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -263,26 +263,26 @@ iptables -t mangle -A OUTPUT -j SING_BOX_SELF
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$135,
+      [nix.POS]: pos$135,
       target: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           networking: nix.thunk(() => ({
-            __proto__: pos$14,
-            firewall: nix.thunk(() => ({ __proto__: pos$9, enable: false })),
+            [nix.POS]: pos$14,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$9, enable: false })),
             hosts: hostsEntries,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               eth1: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   addresses: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       address: nix.thunk(() => nix.sel(hosts, nix.key(nix.str`${target_host}`))),
                       prefixLength: 24n,
                     })),
@@ -292,14 +292,14 @@ iptables -t mangle -A OUTPUT -j SING_BOX_SELF
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$20,
-            dnsmasq: nix.thunk(() => ({ __proto__: pos$15, enable: true })),
+            [nix.POS]: pos$20,
+            dnsmasq: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${target_host}`, nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   onlySSL: true,
                   sslCertificate: nix.path(here, "./common/acme/server/acme.test.cert.pem"),
                   sslCertificateKey: nix.path(here, "./common/acme/server/acme.test.key.pem"),
@@ -309,9 +309,9 @@ iptables -t mangle -A OUTPUT -j SING_BOX_SELF
                   quic: true,
                   reuseport: true,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       extraConfig: nix.thunk(() => nix.str`default_type text/plain;
 return 200 "$server_protocol $remote_addr";
 allow ${nix.sel(hosts, nix.key(nix.str`${server_host}`))}/32;
@@ -329,28 +329,28 @@ deny all;
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           boot: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             kernel: nix.thunk(() => ({
-              __proto__: pos$23,
-              sysctl: nix.thunk(() => ({ __proto__: pos$22, "net.ipv4.conf.all.forwarding": 1n })),
+              [nix.POS]: pos$23,
+              sysctl: nix.thunk(() => ({ [nix.POS]: pos$22, "net.ipv4.conf.all.forwarding": 1n })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$34,
-            firewall: nix.thunk(() => ({ __proto__: pos$25, enable: false })),
+            [nix.POS]: pos$34,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$25, enable: false })),
             hosts: hostsEntries,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               eth1: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   addresses: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       address: nix.thunk(() => nix.sel(hosts, nix.key(nix.str`${server_host}`))),
                       prefixLength: 24n,
                     })),
@@ -359,13 +359,13 @@ deny all;
               })),
             })),
             "wg-quick": nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               interfaces: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 wg0: nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.sel(wg_keys, "peer0"));
                   return {
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   address: nix.thunk(() => ["10.23.42.1/24"]),
                   listenPort: 2408n,
                   mtu: 1500n,
@@ -373,7 +373,7 @@ deny all;
                   peers: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => (() => {
                       const from_1 = nix.thunk(() => nix.sel(wg_keys, "peer1"));
                       return {
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       allowedIPs: nix.thunk(() => ["10.23.42.2/32"]),
                       publicKey: nix.thunk(() => nix.attr(from_1, "publicKey")),
                     };
@@ -387,24 +387,24 @@ ${nix.sel(pkgs_1, "iptables")}/bin/iptables -t nat -A POSTROUTING -s 10.23.42.0/
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             network: nix.thunk(() => ({
-              __proto__: pos$36,
-              "wait-online": nix.thunk(() => ({ __proto__: pos$35, ignoredInterfaces: nix.thunk(() => ["wg0"]) })),
+              [nix.POS]: pos$36,
+              "wait-online": nix.thunk(() => ({ [nix.POS]: pos$35, ignoredInterfaces: nix.thunk(() => ["wg0"]) })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             "sing-box": nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 inbounds: nix.thunk(() => [vmessInbound]),
                 outbounds: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$38, type: "direct", tag: "outbound:direct" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$38, type: "direct", tag: "outbound:direct" })),
                 ]),
-                route: nix.thunk(() => ({ __proto__: pos$39, default_interface: "eth1" })),
+                route: nix.thunk(() => ({ [nix.POS]: pos$39, default_interface: "eth1" })),
               })),
             })),
           })),
@@ -414,67 +414,67 @@ ${nix.sel(pkgs_1, "iptables")}/bin/iptables -t nat -A POSTROUTING -s 10.23.42.0/
         const $_1 = nix.formals(args_1, formals$4);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           networking: nix.thunk(() => ({
-            __proto__: pos$49,
-            firewall: nix.thunk(() => ({ __proto__: pos$44, enable: false })),
+            [nix.POS]: pos$49,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$44, enable: false })),
             hosts: hostsEntries,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               eth1: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$46,
+                  [nix.POS]: pos$46,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$45, address: "1.1.1.3", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$45, address: "1.1.1.3", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             pki: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               certificates: nix.thunk(() => [
                 nix.thunk(() => nix.builtins.readFile(nix.path(here, "./common/acme/server/ca.cert.pem"))),
               ]),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "curl")),
               nix.thunk(() => nix.sel(pkgs_1, "iproute2")),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             "sing-box": nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 dns: nix.thunk(() => ({
-                  __proto__: pos$53,
+                  [nix.POS]: pos$53,
                   final: nix.thunk(() => nix.sel(hostsDns, "tag")),
                   servers: nix.thunk(() => [hostsDns]),
                 })),
                 inbounds: nix.thunk(() => [tunInbound]),
                 outbounds: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$54, type: "block", tag: "outbound:block" })),
-                  nix.thunk(() => ({ __proto__: pos$55, type: "direct", tag: "outbound:direct" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$54, type: "block", tag: "outbound:block" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$55, type: "direct", tag: "outbound:direct" })),
                   vmessOutbound,
                 ]),
                 route: nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   default_domain_resolver: nix.thunk(() => nix.sel(hostsDns, "tag")),
                   default_interface: "eth1",
                   final: "outbound:block",
                   rules: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$56,
+                      [nix.POS]: pos$56,
                       inbound: nix.thunk(() => ["inbound:tun"]),
                       outbound: "outbound:vmess",
                     })),
@@ -489,60 +489,60 @@ ${nix.sel(pkgs_1, "iptables")}/bin/iptables -t nat -A POSTROUTING -s 10.23.42.0/
         const $_1 = nix.formals(args_1, formals$5);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$80,
+          [nix.POS]: pos$80,
           networking: nix.thunk(() => ({
-            __proto__: pos$67,
-            firewall: nix.thunk(() => ({ __proto__: pos$62, enable: false })),
+            [nix.POS]: pos$67,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$62, enable: false })),
             hosts: hostsEntries,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               eth1: nix.thunk(() => ({
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$64,
+                  [nix.POS]: pos$64,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$63, address: "1.1.1.4", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$63, address: "1.1.1.4", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             pki: nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               certificates: nix.thunk(() => [
                 nix.thunk(() => nix.builtins.readFile(nix.path(here, "./common/acme/server/ca.cert.pem"))),
               ]),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "curl")),
               nix.thunk(() => nix.sel(pkgs_1, "iproute2")),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$79,
+            [nix.POS]: pos$79,
             "sing-box": nix.thunk(() => ({
-              __proto__: pos$78,
+              [nix.POS]: pos$78,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$77,
+                [nix.POS]: pos$77,
                 dns: nix.thunk(() => ({
-                  __proto__: pos$71,
+                  [nix.POS]: pos$71,
                   final: nix.thunk(() => nix.sel(hostsDns, "tag")),
                   servers: nix.thunk(() => [hostsDns]),
                 })),
                 inbounds: nix.thunk(() => [tunInbound]),
                 outbounds: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$72, type: "block", tag: "outbound:block" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$72, type: "block", tag: "outbound:block" })),
                 ]),
                 endpoints: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$74,
+                    [nix.POS]: pos$74,
                     type: "wireguard",
                     tag: "outbound:wireguard",
                     address: nix.thunk(() => ["10.23.42.2/32"]),
@@ -550,7 +550,7 @@ ${nix.sel(pkgs_1, "iptables")}/bin/iptables -t nat -A POSTROUTING -s 10.23.42.0/
                     private_key: nix.thunk(() => nix.sel(wg_keys, "peer1", "privateKey")),
                     peers: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$73,
+                        [nix.POS]: pos$73,
                         address: server_host,
                         port: 2408n,
                         public_key: nix.thunk(() => nix.sel(wg_keys, "peer0", "publicKey")),
@@ -560,13 +560,13 @@ ${nix.sel(pkgs_1, "iptables")}/bin/iptables -t nat -A POSTROUTING -s 10.23.42.0/
                   })),
                 ]),
                 route: nix.thunk(() => ({
-                  __proto__: pos$76,
+                  [nix.POS]: pos$76,
                   default_domain_resolver: nix.thunk(() => nix.sel(hostsDns, "tag")),
                   default_interface: "eth1",
                   final: "outbound:block",
                   rules: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$75,
+                      [nix.POS]: pos$75,
                       inbound: nix.thunk(() => ["inbound:tun"]),
                       outbound: "outbound:wireguard",
                     })),
@@ -581,66 +581,66 @@ ${nix.sel(pkgs_1, "iptables")}/bin/iptables -t nat -A POSTROUTING -s 10.23.42.0/
         const $_1 = nix.formals(args_1, formals$6);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$103,
+          [nix.POS]: pos$103,
           networking: nix.thunk(() => ({
-            __proto__: pos$86,
-            firewall: nix.thunk(() => ({ __proto__: pos$81, enable: false })),
+            [nix.POS]: pos$86,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$81, enable: false })),
             hosts: hostsEntries,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$85,
+              [nix.POS]: pos$85,
               eth1: nix.thunk(() => ({
-                __proto__: pos$84,
+                [nix.POS]: pos$84,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$83,
+                  [nix.POS]: pos$83,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$82, address: "1.1.1.5", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$82, address: "1.1.1.5", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$88,
+            [nix.POS]: pos$88,
             pki: nix.thunk(() => ({
-              __proto__: pos$87,
+              [nix.POS]: pos$87,
               certificates: nix.thunk(() => [
                 nix.thunk(() => nix.builtins.readFile(nix.path(here, "./common/acme/server/ca.cert.pem"))),
               ]),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$89,
+            [nix.POS]: pos$89,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "curl"))]),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$93,
+            [nix.POS]: pos$93,
             services: nix.thunk(() => ({
-              __proto__: pos$92,
+              [nix.POS]: pos$92,
               "sing-box": nix.thunk(() => ({
-                __proto__: pos$91,
+                [nix.POS]: pos$91,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$90,
+                  [nix.POS]: pos$90,
                   ExecStartPost: nix.thunk(() => [nix.thunk(() => nix.str`+${tproxyPost}/bin/exe`)]),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$102,
+            [nix.POS]: pos$102,
             "sing-box": nix.thunk(() => ({
-              __proto__: pos$101,
+              [nix.POS]: pos$101,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$100,
+                [nix.POS]: pos$100,
                 dns: nix.thunk(() => ({
-                  __proto__: pos$94,
+                  [nix.POS]: pos$94,
                   final: nix.thunk(() => nix.sel(hostsDns, "tag")),
                   servers: nix.thunk(() => [hostsDns]),
                 })),
                 inbounds: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$95,
+                    [nix.POS]: pos$95,
                     tag: "inbound:tproxy",
                     type: "tproxy",
                     listen: "0.0.0.0",
@@ -649,18 +649,18 @@ ${nix.sel(pkgs_1, "iptables")}/bin/iptables -t nat -A POSTROUTING -s 10.23.42.0/
                   })),
                 ]),
                 outbounds: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$96, type: "block", tag: "outbound:block" })),
-                  nix.thunk(() => ({ __proto__: pos$97, type: "direct", tag: "outbound:direct" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$96, type: "block", tag: "outbound:block" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$97, type: "direct", tag: "outbound:direct" })),
                   vmessOutbound,
                 ]),
                 route: nix.thunk(() => ({
-                  __proto__: pos$99,
+                  [nix.POS]: pos$99,
                   default_domain_resolver: nix.thunk(() => nix.sel(hostsDns, "tag")),
                   default_interface: "eth1",
                   final: "outbound:block",
                   rules: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$98,
+                      [nix.POS]: pos$98,
                       inbound: nix.thunk(() => ["inbound:tproxy"]),
                       outbound: "outbound:vmess",
                     })),
@@ -675,55 +675,55 @@ ${nix.sel(pkgs_1, "iptables")}/bin/iptables -t nat -A POSTROUTING -s 10.23.42.0/
         const $_1 = nix.formals(args_1, formals$7);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$125,
+          [nix.POS]: pos$125,
           networking: nix.thunk(() => ({
-            __proto__: pos$109,
-            firewall: nix.thunk(() => ({ __proto__: pos$104, enable: false })),
+            [nix.POS]: pos$109,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$104, enable: false })),
             hosts: hostsEntries,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$108,
+              [nix.POS]: pos$108,
               eth1: nix.thunk(() => ({
-                __proto__: pos$107,
+                [nix.POS]: pos$107,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$106,
+                  [nix.POS]: pos$106,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$105, address: "1.1.1.6", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$105, address: "1.1.1.6", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$110,
+            [nix.POS]: pos$110,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "dnsutils"))]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$124,
+            [nix.POS]: pos$124,
             "sing-box": nix.thunk(() => ({
-              __proto__: pos$123,
+              [nix.POS]: pos$123,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$122,
+                [nix.POS]: pos$122,
                 dns: nix.thunk(() => ({
-                  __proto__: pos$115,
+                  [nix.POS]: pos$115,
                   final: "dns:default",
                   independent_cache: true,
                   servers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$111,
+                      [nix.POS]: pos$111,
                       type: "udp",
                       tag: "dns:default",
                       server: nix.thunk(() => nix.sel(hosts, nix.key(nix.str`${target_host}`))),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$112,
+                      [nix.POS]: pos$112,
                       type: "fakeip",
                       tag: "dns:fakeip",
                       inet4_range: "198.18.0.0/16",
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$113,
+                      [nix.POS]: pos$113,
                       type: "resolved",
                       tag: "dns:resolved",
                       service: "service:resolved",
@@ -732,7 +732,7 @@ ${nix.sel(pkgs_1, "iptables")}/bin/iptables -t nat -A POSTROUTING -s 10.23.42.0/
                   ]),
                   rules: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$114,
+                      [nix.POS]: pos$114,
                       query_type: nix.thunk(() => ["A", "AAAA"]),
                       server: "dns:fakeip",
                     })),
@@ -740,21 +740,21 @@ ${nix.sel(pkgs_1, "iptables")}/bin/iptables -t nat -A POSTROUTING -s 10.23.42.0/
                 })),
                 inbounds: nix.thunk(() => [tunInbound]),
                 outbounds: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$116, type: "block", tag: "outbound:block" })),
-                  nix.thunk(() => ({ __proto__: pos$117, type: "direct", tag: "outbound:direct" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$116, type: "block", tag: "outbound:block" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$117, type: "direct", tag: "outbound:direct" })),
                 ]),
                 route: nix.thunk(() => ({
-                  __proto__: pos$120,
+                  [nix.POS]: pos$120,
                   default_domain_resolver: "dns:default",
                   default_interface: "eth1",
                   final: "outbound:direct",
                   rules: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$118, action: "sniff" })),
-                    nix.thunk(() => ({ __proto__: pos$119, protocol: "dns", action: "hijack-dns" })),
+                    nix.thunk(() => ({ [nix.POS]: pos$118, action: "sniff" })),
+                    nix.thunk(() => ({ [nix.POS]: pos$119, protocol: "dns", action: "hijack-dns" })),
                   ]),
                 })),
                 services: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$121, type: "resolved", tag: "service:resolved" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$121, type: "resolved", tag: "service:resolved" })),
                 ]),
               })),
             })),
@@ -764,28 +764,28 @@ ${nix.sel(pkgs_1, "iptables")}/bin/iptables -t nat -A POSTROUTING -s 10.23.42.0/
       empty_settings: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$8);
         return {
-          __proto__: pos$134,
+          [nix.POS]: pos$134,
           environment: nix.thunk(() => ({
-            __proto__: pos$131,
+            [nix.POS]: pos$131,
             etc: nix.thunk(() => ({
-              __proto__: pos$130,
+              [nix.POS]: pos$130,
               "sing-box/config.json": nix.thunk(() => ({
-                __proto__: pos$129,
+                [nix.POS]: pos$129,
                 text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-                    __proto__: pos$128,
+                    [nix.POS]: pos$128,
                     inbounds: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$126, type: "mixed", listen: "127.0.0.1", listen_port: 1088n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$126, type: "mixed", listen: "127.0.0.1", listen_port: 1088n })),
                     ]),
                     outbounds: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$127, type: "direct", tag: "outbound:direct" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$127, type: "direct", tag: "outbound:direct" })),
                     ]),
                   })))),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$133,
-            "sing-box": nix.thunk(() => ({ __proto__: pos$132, enable: true, settings: nix.thunk(() => ({})) })),
+            [nix.POS]: pos$133,
+            "sing-box": nix.thunk(() => ({ [nix.POS]: pos$132, enable: true, settings: nix.thunk(() => ({})) })),
           })),
         };
       })(), formals$8),

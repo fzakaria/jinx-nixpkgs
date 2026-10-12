@@ -22,32 +22,32 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "ltac2",
       owner: "coq",
       version: version,
       defaultVersion: nix.thunk(() => nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$1, case: "8.10", out: "0.3" })),
-          nix.thunk(() => ({ __proto__: pos$2, case: "8.9", out: "0.2" })),
-          nix.thunk(() => ({ __proto__: pos$3, case: "8.8", out: "0.1" })),
-          nix.thunk(() => ({ __proto__: pos$4, case: "8.7", out: "0.1-8.7" })),
+          nix.thunk(() => ({ [nix.POS]: pos$1, case: "8.10", out: "0.3" })),
+          nix.thunk(() => ({ [nix.POS]: pos$2, case: "8.9", out: "0.2" })),
+          nix.thunk(() => ({ [nix.POS]: pos$3, case: "8.8", out: "0.1" })),
+          nix.thunk(() => ({ [nix.POS]: pos$4, case: "8.7", out: "0.1-8.7" })),
         ]), null)),
       release: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "0.3": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256:0pzs5nsakh4l8ffwgn4ryxbnxdv2x0r1i7bc598ij621haxdirrr",
         })),
         "0.2": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256:0xby1kb26r9gcvk5511wqj05fqm9paynwfxlfqkmwkgnfmzk0x73",
         })),
         "0.1": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256:1zz26cyv99whj7rrpgnhhm9dfqnpmrx5pqizn8ihf8jkq8d4drz7",
         })),
         "0.1-8.7": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           version: "0.1",
           rev: "v0.1-8.7",
           hash: "sha256:0l6wiwi4cvd0i324fb29i9mdh0ijlxzggw4mrjjy695l2qdnlgg0",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       })),
       mlPlugin: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Robust and expressive tactic language for Coq",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

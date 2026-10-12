@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2024.03.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bachya",
           repo: "regenmaschine",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["regenmaschine"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for interacting with RainMachine smart sprinkler controllers",
         homepage: "https://github.com/bachya/regenmaschine",
         changelog: nix.thunk(() => nix.str`https://github.com/bachya/regenmaschine/releases/tag/${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

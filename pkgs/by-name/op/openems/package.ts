@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const qcsxcad = nix.arg($, "qcsxcad");
   const hyp2mat = nix.arg($, "hyp2mat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "openems",
       version: "0.0.36",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thliebig",
           repo: "openEMS",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "update-cmake-minimum-required.patch",
             url: "https://github.com/thliebig/openEMS/commit/0fa7ba3aebc8ee531077973cfa136ead8e887872.patch",
             hash: "sha256-q/ax7MZHwqSKAjx22uyV13YO/TXZa4bwikoQyItMB7E=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "update-nf2ff-cmake-minimum-required.patch",
             url: "https://github.com/thliebig/openEMS/commit/e02e2a8414355482145240e4c2b2464d7a26dd9e.patch",
             hash: "sha256-y3pvim/8XUKF5k7shj0D+8P6tdfSZ3E/gxTogbRtxdo=",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         boost,
         zlib,
         csxcad,
-        nix.thunk(() => nix.app(nix.sel(octave, "override"), nix.thunk(() => ({ __proto__: pos$4, hdf5: hdf5 })))),
+        nix.thunk(() => nix.app(nix.sel(octave, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, hdf5: hdf5 })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), withQcsxcad, nix.thunk(() => [qcsxcad])), nix.concat(nix.app(nix.sel(lib, "optionals"), withMPI, nix.thunk(() => [mpi])), nix.app(nix.sel(lib, "optionals"), withHyp2mat, nix.thunk(() => [hyp2mat])))))),
       postFixup: nix.thunk(() => nix.str`substituteInPlace $out/share/openEMS/matlab/setup.m \\
   --replace /usr/lib ${hdf5}/lib \\
@@ -78,7 +78,7 @@ ${octave}/bin/mkoctfile -L${hdf5}/lib -I${hdf5}/include \\
   -o $out/share/openEMS/matlab/h5readatt_octave.oct
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open Source Electromagnetic Field Solver",
         homepage: "https://wiki.openems.de/index.php/Main_Page.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

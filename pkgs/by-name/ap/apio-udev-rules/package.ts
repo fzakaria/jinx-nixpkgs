@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apio-udev-rules",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FPGAwars",
           repo: "apio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installPhase: "runHook preInstall\ninstall -D apio/resources/80-fpga-ftdi.rules $out/lib/udev/rules.d/70-fpga-ftdi.rules\ninstall -D apio/resources/80-fpga-serial.rules $out/lib/udev/rules.d/70-fpga-serial.rules\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Apio udev rules list",
         homepage: "https://github.com/FPGAwars/apio",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

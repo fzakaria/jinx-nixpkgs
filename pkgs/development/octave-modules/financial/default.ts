@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const pname = "financial";
       const version = "0.5.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "sha256-C5BohrTHVMaDrV9GTbp5d0OvXR+szQMjV5hvONFtP7s=",
         }))));
       const requiredOctavePackages = nix.thunk(() => [statistics]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/financial/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })()),
         description: "Monte Carlo simulation, options pricing routines, financial manipulation, plotting functions and additional date manipulation tools",
       }));
-      return { __proto__: pos$3, pname, version, src, requiredOctavePackages, meta };
+      return { [nix.POS]: pos$3, pname, version, src, requiredOctavePackages, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

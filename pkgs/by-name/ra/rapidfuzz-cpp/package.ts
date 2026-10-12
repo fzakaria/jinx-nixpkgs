@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const catch2_3 = nix.arg($, "catch2_3");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rapidfuzz-cpp",
       version: "3.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rapidfuzz",
           repo: "rapidfuzz-cpp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,19 +32,19 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), nix.thunk(() => ["-DRAPIDFUZZ_BUILD_TESTING=ON"]))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-include", "algorithm"]))),
         })))),
       nativeCheckInputs: nix.thunk(() => [catch2_3]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           levenshtein: nix.thunk(() => nix.attr(python3Packages, "levenshtein")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Rapid fuzzy string matching in C++ using the Levenshtein Distance",
         homepage: "https://github.com/rapidfuzz/rapidfuzz-cpp",
         changelog: nix.thunk(() => nix.str`https://github.com/rapidfuzz/rapidfuzz-cpp/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

@@ -29,8 +29,8 @@ export default nix.lambda((args) => (() => {
     "-Wno-error=missing-attributes",
     "-Wno-error=array-bounds",
   ]);
-  return nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ __proto__: pos$1, stdenv: stdenv, linuxHeaders: linuxHeaders })), nix.thunk(() => ({
-      __proto__: pos$2,
+  return nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv, linuxHeaders: linuxHeaders })), nix.thunk(() => ({
+      [nix.POS]: pos$2,
       withLinuxHeaders: withLinuxHeaders,
       withGd: withGd,
       profilingLibraries: profilingLibraries,
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       enableCETRuntimeDefault: enableCETRuntimeDefault,
       pname: nix.thunk(() => nix.add(nix.add("glibc", nix.app(nix.sel(lib, "optionalString"), withGd, "-gd")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.eq(libgcc, null)))), "-nolibgcc"))),
     }))), "overrideAttrs"), (previousAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       postConfigure: "# Hack: get rid of the `-static' flag set by the bootstrap stdenv.\n# This has to be done *after* `configure' because it builds some\n# test binaries.\nexport NIX_CFLAGS_LINK=\nexport NIX_LDFLAGS_BEFORE=\n\nexport NIX_DONT_SET_RPATH=1\nunset CFLAGS\n\n# Apparently --bindir is not respected.\nmakeFlagsArray+=(\"bindir=$bin/bin\" \"sbindir=$bin/sbin\" \"rootsbindir=$bin/sbin\")\n",
       hardeningDisable: nix.thunk(() => ["fortify", "stackprotector", "strictflexarrays3"]),
       env: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "env"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_NO_SELF_RPATH: true,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(previousAttrs, () => "", "env", "NIX_CFLAGS_COMPILE"), nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.builtins.concatLists(nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withGd, gdCflags)),
@@ -66,12 +66,12 @@ cp -r $NIX_BUILD_TOP/${nix.sel(pkgsBuildBuild, "glibc")}/lib/locale $out/lib
 popd
 `)))), "\ntest -f $out/etc/ld.so.cache && rm $out/etc/ld.so.cache\n\nif test -n \"$linuxHeaders\"; then\n    # Include the Linux kernel headers in Glibc, except the `scsi'\n    # subdirectory, which Glibc provides itself.\n    (cd $dev/include && \\\n     ln -sv $(ls -d $linuxHeaders/include/* | grep -v scsi\\$) .)\nfi\n\n# Fix for NIXOS-54 (ldd not working on x86_64).  Make a symlink\n# \"lib64\" to \"lib\".\nif test -n \"$is64bit\"; then\n    ln -s lib $out/lib64\nfi\n\n# Get rid of more unnecessary stuff.\nrm -rf $out/var $bin/bin/sln\n\n# Backwards-compatibility to fix e.g.\n# \"configure: error: Pthreads are required to build libgomp\" during `gcc`-build\n# because it's not actually needed anymore to link against `pthreads` since\n# it's now part of `libc.so.6` itself, but the gcc build breaks if\n# this doesn't work.\nln -sf $out/lib/libpthread.so.0 $out/lib/libpthread.so\nln -sf $out/lib/librt.so.1 $out/lib/librt.so\nln -sf $out/lib/libdl.so.2 $out/lib/libdl.so\ntest -f $out/lib/libutil.so.1 && ln -sf $out/lib/libutil.so.1 $out/lib/libutil.so\ntouch $out/lib/libpthread.a\n\n# Put libraries for static linking in a separate output.  Note\n# that libc_nonshared.a and libpthread_nonshared.a are required\n# for dynamically-linked applications.\nmkdir -p $static/lib\nmv $out/lib/*.a $static/lib\nmv $static/lib/lib*_nonshared.a $out/lib\n# If libutil.so.1 is missing, libutil.a is required.\ntest -f $out/lib/libutil.so.1 || mv $static/lib/libutil.a $out/lib\n# Some of *.a files are linker scripts where moving broke the paths.\nsed \"/^GROUP/s|$out/lib/lib|$static/lib/lib|g\" \\\n  -i \"$static\"/lib/*.a\n\n# Work around a Nix bug: hard links across outputs cause a build failure.\ncp $bin/bin/getconf $bin/bin/getconf_\nmv $bin/bin/getconf_ $bin/bin/getconf\n")),
       separateDebugInfo: true,
-      passthru: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "passthru"), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(libgcc, null)), nix.thunk(() => ({ __proto__: pos$4, libgcc: libgcc }))))),
+      passthru: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "passthru"), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(libgcc, null)), nix.thunk(() => ({ [nix.POS]: pos$4, libgcc: libgcc }))))),
       meta: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "meta"), {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "GNU C Library",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gnu", nix.thunk(() => nix.sel(previousAttrs, "passthru", "minorRelease")))),
         })),
       })),

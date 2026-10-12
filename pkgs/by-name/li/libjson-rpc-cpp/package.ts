@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const libmicrohttpd = nix.arg($, "libmicrohttpd");
   const patchelf = nix.arg($, "patchelf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libjson-rpc-cpp",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cinemast",
           repo: "libjson-rpc-cpp",
           sha256: "sha256-YCCZN4y88AixQeo24pk6YHfSCsJz8jJ97Dg40KM08cQ=",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${catch2}/include/catch2`),
       })),
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, cmake, doxygen], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [patchelf])))),
@@ -59,7 +59,7 @@ runHook postConfigure
       postInstall: nix.thunk(() => nix.add(nix.add("sed -i -re \"s#-([LI]).*/Build/Install(.*)#-\\1$out\\2#g\" Install/lib*/pkgconfig/*.pc\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "for f in Install/lib*/*.so* $(find Install/bin -executable -type f); do\n  fixRunPath $f\ndone\n")), "cp -r Install/* $out\n")),
       installPhase: "runHook preInstall\nmake install\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C++ framework for json-rpc (json remote procedure call)",
         mainProgram: "jsonrpcstub",
         homepage: "https://github.com/cinemast/libjson-rpc-cpp",

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const bos = nix.arg($, "bos");
   const mirage_vnetif = nix.arg($, "mirage-vnetif");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "arp",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/arp/releases/download/v${nix.sel(finalAttrs, "version")}/arp-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-AvjxveUgSRBNhZQvCp1oa+JfEXSIronECk4nNos8hl0=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       checkInputs: nix.thunk(() => [alcotest, bos, mirage_vnetif]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Address Resolution Protocol purely in OCaml",
         homepage: "https://github.com/mirage/arp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

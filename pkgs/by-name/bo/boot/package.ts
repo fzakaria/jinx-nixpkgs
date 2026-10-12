@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const jdk = nix.arg($, "jdk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.7.2",
       pname: "boot",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/boot-clj/boot-bin/releases/download/${nix.sel(finalAttrs, "version")}/boot.sh`),
           sha256: "1hqp3xxmsj5vkym0l3blhlaq9g3w0lhjgmp37g6y3rr741znkk8c",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       builder: nix.path(here, "./builder.sh"),
       propagatedBuildInputs: nix.thunk(() => [jdk]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Build tooling for Clojure",
         mainProgram: "boot",
         homepage: "https://boot-clj.github.io/",

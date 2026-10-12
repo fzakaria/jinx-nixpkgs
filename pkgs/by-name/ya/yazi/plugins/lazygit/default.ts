@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lazygit.yazi",
       version: "0-unstable-2026-05-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Lil-Dank",
           repo: "lazygit.yazi",
           rev: "e73fd74c2af3300368b33da1cfbab6a8649a41a8",
           hash: "sha256-KPvjXjYE0W4Q2xZiVfMwZbtalHt0FbgLtEK4sUWbYOI=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lazygit plugin for yazi",
         homepage: "https://github.com/Lil-Dank/lazygit.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

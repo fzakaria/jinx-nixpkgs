@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const subversion = nix.arg($, "subversion");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "thcrap-proton",
       version: "0-unstable-2026-02-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nerusuki",
           repo: "thcrap-steam-proton-wrapper",
           rev: "a5edfe44ead2df2e6bca54bd738ae0dc3284e679",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash, subversion]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper script for launching the official Touhou games on Steam with patches through Proton on GNU/Linux",
         homepage: "https://github.com/nerusuki/thcrap-steam-proton-wrapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

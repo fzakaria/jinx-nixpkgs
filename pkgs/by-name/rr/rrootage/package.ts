@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const version = "0.23a";
   const debianRevision = "16";
   const debianPatch = (patchname) => (hash) => nix.app(fetchpatch, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`${patchname}.patch`),
       url: nix.thunk(() => nix.str`https://sources.debian.org/data/main/r/rrootage/${version}-${debianRevision}/debian/patches/${patchname}.patch`),
       hash: hash,
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rrootage",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://downloads.sourceforge.net/rrootage/rRootage-${version}.tar.gz`),
           hash: "sha256-lk7b4hgC4+QNao2hm2ETLeys0Tv5pxushqvOASN5/wc=",
         })))),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["stackprotector", "fortify"]),
       installPhase: "runHook preInstall\n\ninstall -d \"$out\"/share/games\ncp -r rr_share \"$out\"/share/games/rrootage\ninstall -D src/rrootage \"$out\"/bin/rrootage\n\ninstall -D -m 644 readme.txt \"$out\"/share/licenses/rrootage/README.jp\ninstall -m 644 readme_e.txt \"$out\"/share/licenses/rrootage/README.en\n\ninstall -D -m 644 readme.txt \"$out\"/share/doc/rrootage/README.jp\ninstall -m 644 readme_e.txt \"$out\"/share/doc/rrootage/README.en\ninstall -m 644 readme_linux \"$out\"/share/doc/rrootage/README\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Abstract shooter created by Kenta Cho",
         mainProgram: "rrootage",
         homepage: "https://rrootage.sourceforge.net/",

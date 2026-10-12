@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "saman_ttf",
       version: "1.001",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/tcgumus/saman/releases/download/v${nix.sel(finalAttrs, "version")}/SamanDere-Regular.ttf`),
           hash: "sha256-hLlo4qtxL1RDiA9PpRvo2F7rdCVGPs2G8NHKydLfJXU=",
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\ninstall -Dm644 $src $out/share/fonts/truetype/SamanDere-Regular.ttf\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Medium contrast sans serif font for web use",
         homepage: "https://github.com/tcgumus/saman",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

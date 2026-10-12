@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const kirigami2 = nix.arg($, "kirigami2");
   const signond = nix.arg($, "signond");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "purpose",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules, intltool]),
       buildInputs: nix.thunk(() => [

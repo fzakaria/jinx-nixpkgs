@@ -35,48 +35,48 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "duplicati"));
   const parametersFile = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "parametersFile"), null)) ? nix.sel(cfg, "parametersFile") : nix.app(nix.sel(pkgs, "writeText"), "duplicati-parameters", nix.thunk(() => nix.sel(cfg, "parameters")))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         duplicati: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Duplicati")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "duplicati", nix.thunk(() => ({})))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: 8200n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: "Port serving the web interface\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/duplicati",
               description: "The directory where Duplicati stores its data files.\n\n::: {.note}\nIf left as the default value this directory will automatically be created\nbefore the Duplicati server starts, otherwise you are responsible for ensuring\nthe directory exists with appropriate ownership and permissions.\n:::\n",
             })))),
           interface: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "127.0.0.1",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Listening interface for the web UI\nSet it to \"any\" to listen on all available interfaces\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "duplicati",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Duplicati runs as it's own user. It will only be able to backup world-readable files.\nRun as root with special care.\n",
             })))),
           parameters: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               example: "--webservice-allowedhostnames=*\n",
               description: "This option can be used to store some or all of the options given to the\ncommandline client.\nEach line in this option should be of the format --option=value.\nThe options in this file take precedence over the options provided\nthrough command line arguments.\n[Duplicati docs: parameters-file](https://duplicati.readthedocs.io/en/latest/06-advanced-options/#parameters-file)\n",
             })))),
           parametersFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               description: "This file can be used to store some or all of the options given to the\ncommandline client.\nEach line in the file option should be of the format --option=value.\nThe options in this file take precedence over the options provided\nthrough command line arguments.\n[Duplicati docs: parameters-file](https://duplicati.readthedocs.io/en/latest/06-advanced-options/#parameters-file)\n",
@@ -85,55 +85,55 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "parametersFile"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "parameters"), ""))))),
             message: "cannot set both services.duplicati.parameters and services.duplicati.parametersFile at the same time",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             duplicati: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Duplicati backup",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     Group: "duplicati",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/duplicati-server --webservice-interface=${nix.sel(cfg, "interface")} --webservice-port=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} --server-datafolder=${nix.sel(cfg, "dataDir")} --parameters-file=${parametersFile}`),
                     Restart: "on-failure",
                   })),
-                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/duplicati")), nix.thunk(() => ({ __proto__: pos$13, StateDirectory: "duplicati" })))),
+                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/duplicati")), nix.thunk(() => ({ [nix.POS]: pos$13, StateDirectory: "duplicati" })))),
                 ]))),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "duplicati")), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               duplicati: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "duplicati")),
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 group: "duplicati",
               })),
             })))),
           groups: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             duplicati: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "duplicati")),
             })),
           })),

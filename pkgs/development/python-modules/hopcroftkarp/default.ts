@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hopcroftkarp",
       version: "1.2.5",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "28a7887db81ad995ccd36a1b5164a4c542b16d2781e8c49334dc9d141968c0e7",
         })))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of HopcroftKarp's algorithm",
         homepage: "https://github.com/sofiat-olaosebikan/hopcroftkarp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

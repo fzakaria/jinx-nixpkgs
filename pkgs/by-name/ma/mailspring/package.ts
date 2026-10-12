@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const commandLineArgs = nix.argOr($, "commandLineArgs", () => "");
   const version = "1.26.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Foundry376",
       repo: "Mailspring",
       tag: version,
@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
     }))));
   const patches = nix.thunk(() => [nix.path(here, "./remove-rpm-deb-and-macos-package-generation.patch")]);
   const electron = electron_44;
-  const mailspring_sync = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mailsync.nix"), nix.thunk(() => ({ __proto__: pos$2, src: src, version: version }))));
+  const mailspring_sync = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mailsync.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version }))));
   const mailspring_app = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mailspring-app",
       version: version,
       src: src,
@@ -51,19 +51,19 @@ export default nix.lambda((args) => (() => {
       postPatch: "cd app",
       npmDepsHash: "sha256-Bj41bbICX8mHw0DqzGekjDnain0HGJ3Y5B3aADPV8+0=",
       dontNpmBuild: true,
-      env: nix.thunk(() => ({ __proto__: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       makeCacheWritable: true,
       installPhase: "cp -r . \"$out\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Node dependencies for the Mailspring electron frontend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),
       })),
     }))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "mailspring",
       version: version,
       src: src,
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-EWXLOGKWPvE42PvpzJL47i0FojoZeVcMkUctuf3/Hnw=",
       nativeBuildInputs: nix.thunk(() => nix.concat([makeBinaryWrapper, pkg_config, wrapGAppsHook3, zip], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [actool])))),
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
-      env: nix.thunk(() => ({ __proto__: pos$6, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$6, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       postPatch: "echo \"\" > scripts/postinstall.js\n",
       preConfigure: nix.thunk(() => nix.str`chmod +w app
 cp -r ${mailspring_app}/node_modules app/node_modules
@@ -135,15 +135,15 @@ makeWrapper "$out/Applications/Mailspring.app/Contents/MacOS/Mailspring" "$out/b
   --add-flags ${nix.app(nix.sel(lib, "escapeShellArg"), commandLineArgs)}
 `))), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "mailspring-app": mailspring_app,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extraArgs: nix.thunk(() => ["--subpackage=mailspring-app"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Beautiful, fast and maintained fork of Nylas Mail by one of the original authors",
         downloadPage: "https://github.com/Foundry376/Mailspring/releases",
         changelog: nix.thunk(() => nix.str`https://github.com/Foundry376/Mailspring/releases/tag/${nix.sel(finalAttrs, "version")}`),

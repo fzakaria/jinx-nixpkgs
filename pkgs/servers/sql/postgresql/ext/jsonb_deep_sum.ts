@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   return nix.app(postgresqlBuildExtension, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jsonb_deep_sum",
       version: "0-unstable-2026-06-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "furstenheim",
           repo: "jsonb_deep_sum",
           rev: "3f1b4be67e3bc74b7cc4635fc285dc3c602ee420",
           hash: "sha256-44GApqemY9sLukViGbyTzlI7qHeAGNdMCKZOawPUj8s=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PostgreSQL extension to easily add jsonb numeric",
         homepage: "https://github.com/furstenheim/jsonb_deep_sum",
         maintainers: nix.thunk(() => (() => {

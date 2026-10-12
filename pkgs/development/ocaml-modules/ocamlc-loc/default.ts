@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const dune = nix.arg($, "dune");
   const dyn = nix.arg($, "dyn");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ocamlc-loc",
       src: nix.thunk(() => nix.attr(dune, "src")),
       version: nix.thunk(() => nix.attr(dune, "version")),
       dontAddPrefix: true,
       propagatedBuildInputs: nix.thunk(() => [dyn]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Parse ocaml compiler output into structured form",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ulrikstrid"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

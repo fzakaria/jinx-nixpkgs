@@ -37,18 +37,18 @@ export default nix.lambda((args) => (() => {
   const leptonica = nix.arg($, "leptonica");
   const fetchDebianPatch = nix.arg($, "fetchDebianPatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "k2pdfopt",
       version: "2.55",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.willus.com/k2pdfopt/src/k2pdfopt_v${nix.sel(finalAttrs, "version")}_src.zip`),
           hash: "sha256-orQNDXQkkcCtlA8wndss6SiJk4+ImiFCG8XRLEg963k=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./0001-Fix-CMakeLists.patch"),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}+ds`),
             debianRevision: "3.1",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-uJ9Gpyq64n/HKqo0hkQ2dnkSLCKNN4DedItPGzHfqR8=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}+ds`),
             debianRevision: "3.1",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "install -D -m 755 k2pdfopt $out/bin/k2pdfopt\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Optimizes PDF/DJVU files for mobile e-readers (e.g. the Kindle) and smartphones",
         homepage: "http://www.willus.com/k2pdfopt",
         changelog: "https://www.willus.com/k2pdfopt/k2pdfopt_version.txt",

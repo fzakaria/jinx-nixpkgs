@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dscanner";
       const version = "0.15.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dlang-community",
           repo: "D-Scanner",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ echo "v${version}" > bin/dubhash.txt
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Swiss-army knife for D source code",
         changelog: nix.thunk(() => nix.str`https://github.com/dlang-community/D-Scanner/releases/tag/v${version}`),
         homepage: "https://github.com/dlang-community/D-Scanner",
@@ -45,7 +45,7 @@ echo "v${version}" > bin/dubhash.txt
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

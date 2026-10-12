@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pydicom",
           repo: "pylibjpeg",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,20 +37,20 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy]);
       const optional_dependencies = nix.thunk(() => (() => {
         const extras = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           libjpeg: nix.thunk(() => [pylibjpeg_libjpeg]),
           openjpeg: nix.thunk(() => [pylibjpeg_openjpeg]),
           rle: nix.thunk(() => [pylibjpeg_rle]),
         }));
         return nix.update(extras, {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           all: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), extras)))),
         });
       })());
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pydicom, pylibjpeg_data, pylibjpeg_libjpeg]);
       const pythonImportsCheck = nix.thunk(() => ["pylibjpeg"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python framework for decoding JPEG images, with a focus on supporting Pydicom",
         homepage: "https://github.com/pydicom/pylibjpeg",
         changelog: nix.thunk(() => nix.str`https://github.com/pydicom/pylibjpeg/releases/tag/v${version}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

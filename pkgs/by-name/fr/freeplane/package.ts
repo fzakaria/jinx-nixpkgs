@@ -27,33 +27,33 @@ export default nix.lambda((args) => (() => {
   const jdk = jdk17;
   const gradle = gradle_9;
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "freeplane",
       repo: "freeplane",
       rev: nix.thunk(() => nix.str`release-${version}`),
       hash: "sha256-NDji6psNXESAY5NWI/Ms63MTgbxZHiIxYAgOSkWHuK0=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/freeplane/freeplane/commit/34189b58bbdf0027185a212e2d6bd9e289782ef2.patch",
             hash: "sha256-gVCKXme+pB7PV0yBoDMPg6ltCaTGYh1lspEKgwVkDgc=",
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, jdk, gradle, copyDesktopItems]),
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ __proto__: pos$3, pname: pname, data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, data: nix.path(here, "./deps.json") })))),
       gradleFlags: nix.thunk(() => [nix.thunk(() => nix.str`-Dorg.gradle.java.home=${jdk}`), "-x", "test"]),
       enableParallelBuilding: false,
       preBuild: "mkdir -p freeplane/build",
       gradleBuildTask: "build",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "freeplane",
             desktopName: "freeplane",
             genericName: "Mind-mapper",
@@ -79,7 +79,7 @@ makeWrapper $out/share/freeplane/freeplane.sh $out/bin/freeplane \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Mind-mapping software",
         homepage: "https://freeplane.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

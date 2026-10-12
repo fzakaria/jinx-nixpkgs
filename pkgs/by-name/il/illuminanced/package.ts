@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "illuminanced",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mikhail-m1",
           repo: "illuminanced",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       preBuild: "substituteInPlace src/main.rs \\\n  --replace-fail /usr/local/etc/illuminanced.toml $out/share/illuminanced/illuminanced.toml\n",
       postInstall: "install -Dm0644 illuminanced.toml $out/share/illuminanced/illuminanced.toml\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Ambient Light Sensor Daemon for Linux",
         homepage: "https://github.com/mikhail-m1/illuminanced",
         changelog: nix.thunk(() => nix.str`https://github.com/mikhail-m1/illuminanced/releases/tag/${nix.sel(finalAttrs, "version")}`),

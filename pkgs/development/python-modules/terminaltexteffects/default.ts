@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.15.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-9LMchr+pQ9W/Oyxey/rqDeZe1KlRAoxA+OTLVO/QZDk=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const pythonImportsCheck = nix.thunk(() => ["terminaltexteffects"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of visual effects that can be applied to terminal piped stdin text",
         homepage: "https://chrisbuilds.github.io/terminaltexteffects",
         changelog: "https://chrisbuilds.github.io/terminaltexteffects/changeblog/changeblog/",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "tte",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

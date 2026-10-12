@@ -18,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const srcdirs = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     filter: "epson-inkjet-printer-filter-1.0.0",
     driver: "epson-inkjet-printer-workforce-840-series-1.0.0",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "epson-inkjet-printer-workforce-840-series",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.ebz.epson.net/dsc/op/stable/SRPMS/epson-inkjet-printer-workforce-840-series-${nix.sel(finalAttrs, "version")}-1lsb3.2.src.rpm`),
             nix.thunk(() => nix.str`https://web.archive.org/web/https://download.ebz.epson.net/dsc/op/stable/SRPMS/epson-inkjet-printer-workforce-840-series-${nix.sel(finalAttrs, "version")}-1lsb3.2.src.rpm`),
@@ -74,7 +74,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Proprietary CUPS drivers for Epson inkjet printers",
         longDescription: "This software is a filter program used with the Common UNIX Printing\nSystem (CUPS) under Linux. It supplies high quality printing with\nSeiko Epson Color Ink Jet Printers.\n\nThis printer driver is supporting the following printers.\n\nEpson Stylus Office BX925\nEpson WorkForce 840\n\nTo use the driver adjust your configuration.nix file:\n```nix\n{\n  services.printing = {\n    enable = true;\n    drivers = [ pkgs.epson-inkjet-printer-workforce-840-series ];\n  };\n}\n```\n",
         downloadPage: "http://download.ebz.epson.net/dsc/du/02/DriverDownloadInfo.do?LG2=EN&CN2=&DSCMI=16839&DSCCHK=3d7bc6bdfca08006abfb859fb1967183156a7252",

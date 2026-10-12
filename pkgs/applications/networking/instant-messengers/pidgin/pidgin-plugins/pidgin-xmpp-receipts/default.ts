@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pidgin = nix.arg($, "pidgin");
   const version = "0.8";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pidgin-xmpp-receipts",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "noonien-d",
           repo: "pidgin-xmpp-receipts",
           rev: nix.thunk(() => nix.str`release_${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pidgin]),
       installPhase: "mkdir -p $out/lib/pidgin/\ncp xmpp-receipts.so $out/lib/pidgin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://devel.kondorgulasch.de/pidgin-xmpp-receipts/",
         description: "Message delivery receipts (XEP-0184) Pidgin plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

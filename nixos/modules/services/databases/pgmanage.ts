@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cfg = nix.thunk(() => nix.sel(config, "services", "pgmanage"));
   const confFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "pgmanage.conf",
       text: nix.thunk(() => nix.str`connection_file = ${pgmanageConnectionsFile}
 
@@ -66,87 +66,87 @@ log_level = ${nix.sel(cfg, "logLevel")}
 `),
     }))));
   const pgmanageConnectionsFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "pgmanage-connections.conf",
       text: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (conn) => nix.str`${name}: ${conn}`, nix.thunk(() => nix.sel(cfg, "connections")))))),
     }))));
   const pgmanage = "pgmanage";
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         pgmanage: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "PostgreSQL Administration for the web")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "pgmanage", nix.thunk(() => ({})))),
           connections: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 "nuc-server": "hostaddr=192.168.0.100 port=5432 dbname=postgres",
                 "mini-server": "hostaddr=127.0.0.1 port=5432 dbname=postgres sslmode=require",
               })),
               description: "pgmanage requires at least one PostgreSQL server be defined.\n\nDetailed information about PostgreSQL connection strings is available at:\n<https://www.postgresql.org/docs/current/libpq-connect.html>\n\nNote that you should not specify your user name or password. That\ninformation will be entered on the login screen. If you specify a\nusername or password, it will be removed by pgmanage before attempting to\nconnect to a database.\n",
             })))),
           allowCustomConnections: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "This tells pgmanage whether or not to allow anyone to use a custom\nconnection from the login screen.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8080n,
               description: "This tells pgmanage what port to listen on for browser requests.\n",
             })))),
           localOnly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "This tells pgmanage whether or not to set the listening socket to local\naddresses only.\n",
             })))),
           superOnly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "This tells pgmanage whether or not to only allow super users to\nlogin. The recommended value is true and will restrict users who are not\nsuper users from logging in to any PostgreSQL instance through\npgmanage. Note that a connection will be made to PostgreSQL in order to\ntest if the user is a superuser.\n",
             })))),
           loginGroup: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "This tells pgmanage to only allow users in a certain PostgreSQL group to\nlogin to pgmanage. Note that a connection will be made to PostgreSQL in\norder to test if the user is a member of the login group.\n",
             })))),
           loginTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 3600n,
               description: "Number of seconds of inactivity before user is automatically logged\nout.\n",
             })))),
           sqlRoot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/pgmanage",
               description: "This tells pgmanage where to put the SQL file history. All tabs are saved\nto this location so that if you get disconnected from pgmanage you\ndon't lose your work.\n",
             })))),
           tls: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     options: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       cert: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "TLS certificate",
                         })))),
                       key: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "TLS key",
                         })))),
@@ -156,7 +156,7 @@ log_level = ${nix.sel(cfg, "logLevel")}
               description: "These options tell pgmanage where the TLS Certificate and Key files\nreside. If you use these options then you'll only be able to access\npgmanage through a secure TLS connection. These options are only\nnecessary if you wish to connect directly to pgmanage using a secure TLS\nconnection. As an alternative, you can set up pgmanage in a reverse proxy\nconfiguration. This allows your web server to terminate the secure\nconnection and pass on the request to pgmanage. You can find help to set\nup this configuration in:\n<https://github.com/pgManage/pgManage/blob/master/INSTALL_NGINX.md>\n",
             })))),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["error", "warn", "notice", "info"]))),
               default: "error",
               description: "Verbosity of logs\n",
@@ -165,19 +165,19 @@ log_level = ${nix.sel(cfg, "logLevel")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             pgmanage: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "pgmanage - PostgreSQL Administration for the web",
               wants: nix.thunk(() => ["postgresql.target"]),
               after: nix.thunk(() => ["postgresql.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 User: pgmanage,
                 Group: pgmanage,
                 ExecStart: nix.thunk(() => nix.add(nix.str`${nix.sel(cfg, "package")}/sbin/pgmanage -c ${confFile}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "localOnly")), " --local-only=true"))),
@@ -186,10 +186,10 @@ log_level = ${nix.sel(cfg, "logLevel")}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [pgmanage, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               name: pgmanage,
               group: pgmanage,
               home: nix.thunk(() => nix.sel(cfg, "sqlRoot")),
@@ -197,7 +197,7 @@ log_level = ${nix.sel(cfg, "logLevel")}
               isSystemUser: true,
             }))],
           ])),
-          groups: nix.thunk(() => nix.attrsDyn({}, [[pgmanage, nix.thunk(() => ({ __proto__: pos$26, name: pgmanage }))]])),
+          groups: nix.thunk(() => nix.attrsDyn({}, [[pgmanage, nix.thunk(() => ({ [nix.POS]: pos$26, name: pgmanage }))]])),
         })),
       })))),
   };

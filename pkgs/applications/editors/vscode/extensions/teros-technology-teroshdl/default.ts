@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "teroshdl",
         publisher: "teros-technology",
         version: "7.0.3",
         hash: "sha256-Bt31ia0X4sQQfREq8PPVEGt/oGe/Oob0yQbYkwNRSsk=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://github.com/TerosTechnology/vscode-terosHDL/releases",
         description: "Visual Studio Code extension for HDL developments (SystemVerilog/Verilog/VHDL)",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=teros-technology.teroshdl",

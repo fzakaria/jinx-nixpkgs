@@ -20,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const krr = nix.arg($, "krr");
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python313Packages, "overrideScope"), (final) => (prev) => ({
-      __proto__: pos$2,
-      prometrix: nix.thunk(() => nix.app(nix.sel(prev, "prometrix", "override"), nix.thunk(() => ({ __proto__: pos$1, pydantic: nix.thunk(() => nix.sel(final, "pydantic_1")) })))),
+      [nix.POS]: pos$2,
+      prometrix: nix.thunk(() => nix.app(nix.sel(prev, "prometrix", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, pydantic: nix.thunk(() => nix.sel(final, "pydantic_1")) })))),
     })));
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "krr",
       version: "1.28.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "robusta-dev",
           repo: "krr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,14 +86,14 @@ substituteInPlace pyproject.toml \\
       disabledTestPaths: nix.thunk(() => ["tests/test_krr.py", "tests/test_runner.py"]),
       pythonImportsCheck: nix.thunk(() => ["robusta_krr"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$4, package: krr, command: "krr version" })))),
+          [nix.POS]: pos$5,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: krr, command: "krr version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Prometheus-based Kubernetes resource recommendations",
         longDescription: "Robusta KRR (Kubernetes Resource Recommender) is a CLI tool for optimizing\nresource allocation in Kubernetes clusters. It gathers Pod usage data from\nPrometheus and recommends requests and limits for CPU and memory. This\nreduces costs and improves performance.\n",
         homepage: "https://github.com/robusta-dev/krr",

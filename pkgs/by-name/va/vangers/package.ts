@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const clunk = nix.thunk(() => nix.app(callPackage, nix.path(here, "./clunk.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vangers",
       version: "2.0-unstable-2024-09-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KranX",
           repo: "Vangers",
           rev: "72145feed605856c6711bbbcb4f9db99db3434fd",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, installShellFiles]),
       installPhase: "runHook preInstall\n\ninstallBin server/vangers_server\ninstallBin src/vangers\ninstallBin surmap/surmap\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Video game that combines elements of the racing and role-playing genres",
         homepage: "https://github.com/KranX/Vangers",
         mainProgram: "vangers",

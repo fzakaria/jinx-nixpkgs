@@ -105,17 +105,17 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "autodete
   const smartdDeviceOpts = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       options: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         device: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             example: "/dev/sda",
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Location of the device.",
           })))),
         options: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             default: "",
             example: "-d sat",
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "separatedString"), " ")),
@@ -125,87 +125,87 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "autodete
     };
   })(), formals$2);
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     options: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       services: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         smartd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "smartd daemon from `smartmontools` package")),
           autodetect: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whenever smartd should monitor all devices connected to the\nmachine at the time it's being started (the default).\n\nSet to false to monitor the devices listed in\n{option}`services.smartd.devices` only.\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               example: nix.thunk(() => ["-A /var/log/smartd/", "--interval=3600"]),
               description: "Extra command-line options passed to the `smartd`\ndaemon on startup.\n\n(See `man 8 smartd`.)\n",
             })))),
           notifications: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             mail: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   default: nix.thunk(() => !nix.eq(nix.sel(config, "services", "mail", "sendmailSetuidWrapper"), null)),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.mail.sendmailSetuidWrapper != null")),
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   description: "Whenever to send e-mail notifications.",
                 })))),
               sender: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   default: "root",
                   example: "example@domain.tld",
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   description: "Sender of the notification messages.\nActs as the value of `email` in the emails' `From: ...` field.\n",
                 })))),
               recipient: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   default: "root",
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   description: "Recipient of the notification messages.",
                 })))),
               mailer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   default: "/run/wrappers/bin/sendmail",
                   type: nix.thunk(() => nix.sel(lib, "types", "path")),
                   description: "Sendmail-compatible binary to be used to send the messages.\n\nYou should probably enable\n{option}`services.postfix` or some other MTA for\nthis to work.\n",
                 })))),
             })),
             "systembus-notify": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   default: false,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   description: "Whenever to send systembus-notify notifications.\n\nWARNING: enabling this option (while convenient) should *not* be done on a\nmachine where you do not trust the other users as it allows any other\nlocal user to DoS your session by spamming notifications.\n\nTo actually see the notifications in your GUI session, you need to have\n`systembus-notify` running as your user, which this\noption handles by enabling {option}`services.systembus-notify`.\n",
                 })))),
             })),
             wall: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   default: true,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   description: "Whenever to send wall notifications to all users.",
                 })))),
             })),
             x11: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   default: nix.thunk(() => nix.sel(config, "services", "xserver", "enable")),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.xserver.enable")),
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   description: "Whenever to send X11 xmessage notifications.",
                 })))),
               display: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   default: nix.thunk(() => nix.str`:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "xserver", "display")))}`),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\":${toString config.services.xserver.display}\"")),
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
@@ -213,23 +213,23 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "autodete
                 })))),
             })),
             test: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Whenever to send a test notification on startup.",
               })))),
           })),
           defaults: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             monitored: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 default: "-a",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "separatedString"), " ")),
                 example: "-a -o on -s (S/../.././02|L/../../7/04)",
                 description: "Common default options for explicitly monitored (listed in\n{option}`services.smartd.devices`) devices.\n\nThe default value turns on monitoring of all the things (see\n`man 5 smartd.conf`).\n\nThe example also turns on SMART Automatic Offline Testing on\nstartup, and schedules short self-tests daily, and long\nself-tests weekly.\n",
               })))),
             autodetected: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 default: nix.thunk(() => nix.sel(cfg, "defaults", "monitored")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "defaults", "monitored")}`))),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "separatedString"), " ")),
@@ -237,11 +237,11 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "autodete
               })))),
           })),
           devices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               default: [],
               example: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$24, device: "/dev/sda" })),
-                nix.thunk(() => ({ __proto__: pos$25, device: "/dev/sdb", options: "-d sat" })),
+                nix.thunk(() => ({ [nix.POS]: pos$24, device: "/dev/sda" })),
+                nix.thunk(() => ({ [nix.POS]: pos$25, device: "/dev/sdb", options: "-d sat" })),
               ]),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -253,24 +253,24 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "autodete
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             assertion: nix.thunk(() => (nix.asBool(nix.sel(cfg, "autodetect")) || nix.asBool(!nix.eq(nix.sel(cfg, "devices"), [])))),
             message: "smartd can't run with both disabled autodetect and an empty list of devices to monitor.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           services: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             smartd: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               description: "S.M.A.R.T. Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 Type: "notify",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "smartmontools")}/sbin/smartd ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "extraOptions")))} --no-fork --configfile=${smartdConf}`),
               })),
@@ -278,9 +278,9 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "autodete
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           "systembus-notify": nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(ns, "enable")))),
           })),
         })),

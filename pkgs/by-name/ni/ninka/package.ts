@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(perlPackages, "buildPerlPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ninka",
       version: "2.0-pre",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dmgerman",
           repo: "ninka",
           rev: "b89b59ecd057dfc939d0c75acaddebb58fcd8cba",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
 perl Makefile.PL
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sentence based license detector",
         mainProgram: "ninka",
         homepage: "http://ninka.turingmachine.org/",

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const qt = nix.thunk(() => (nix.asBool(useQt6) ? nix.force(qt6) : nix.force(qt5)));
   const qtVersion = nix.thunk(() => (nix.asBool(useQt6) ? "6" : "5"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "qadwaitadecorations",
       version: "0.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FedoraQt",
           repo: "QAdwaitaDecorations",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Fix build with Qt 6.10",
             url: "https://github.com/FedoraQt/QAdwaitaDecorations/commit/e6da80a440218b87e441c8a698014ef3962af98b.patch?full_index=1",
             hash: "sha256-7ZmceoOzUDHvvCX+8SwuX+DIi65d6hYIYfpikMiN0wM=",
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DQT_PLUGINS_DIR=${nix.builtins.placeholder("out")}/${nix.sel(qt, "qtbase", "qtPluginPrefix")}`),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), useQt6, "-DUSE_QT6=true"), nix.app(nix.sel(lib, "optional"), qt5ShadowsSupport, "-DHAS_QT6_SUPPORT=true")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: nix.thunk(() => nix.str`Qt${qtVersion} Wayland decoration plugin using libadwaita style`),
         homepage: "https://github.com/FedoraQt/QAdwaitaDecorations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "weather-chart-card";
       const version = "2.4.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mlamberts78",
           repo: "weather-chart-card",
           rev: nix.thunk(() => nix.str`V${version}`),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
 ln -s ${nix.path(here, "./package-lock.json")} ./package-lock.json
 `);
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           postPatch: postPatch,
           hash: "sha256-OJF8N7vPLRX0ec5gaQKAxLR227uoeuAU5z+QVNyOeTY=",
         }))));
       const installPhase = "mkdir $out\ncp -R dist/* $out/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Custom weather card with charts",
         homepage: "https://github.com/mlamberts78/weather-chart-card",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -46,7 +46,7 @@ ln -s ${nix.path(here, "./package-lock.json")} ./package-lock.json
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

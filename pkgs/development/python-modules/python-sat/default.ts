@@ -20,23 +20,23 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const fetchurl = nix.arg($, "fetchurl");
   const kissat404src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/arminbiere/kissat/archive/refs/tags/rel-4.0.4.tar.gz",
       hash: "sha256-v+k+qmMjtIAR5LH890s/LiD53lRHZ+coAJ5bIBgpYZM=",
     }))));
   const minisatepsrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://github.com/hchenqide/minisat/archive/90305f7b9ab9c9c9c560238f16b47c26506d0750.zip",
       hash: "sha256-eS5+wPrcZ00DRZMaJp4yZOZ1uz72Auin6FK6G2SId64=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "python-sat",
       version: "1.9.dev15",
       pyproject: true,
       "build-system": nix.thunk(() => [setuptools]),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "python_sat",
           hash: "sha256-WipYAiJIziz5OVtWBoUYXkdzxFKinrCuhmLWdhEzbNM=",
@@ -50,7 +50,7 @@ ln -s ${minisatepsrc} solvers/minisatep.zip
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       preCheck: "rm -r pysat\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Toolkit for SAT-based prototyping in Python (without optional dependencies)",
         homepage: "https://github.com/pysathq/pysat",
         changelog: "https://pysathq.github.io/updates/",

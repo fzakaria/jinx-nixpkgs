@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const rust_jemalloc_sys = nix.arg($, "rust-jemalloc-sys");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mado",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "akiomik",
           repo: "mado",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-5qlpKlI/oJR/AzTrVNnIYFJb46k1YHVjRarqF6vUp6w=",
       nativeBuildInputs: nix.thunk(() => [pkg_config, installShellFiles]),
       buildInputs: nix.thunk(() => [oniguruma, rust_jemalloc_sys]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd mado \\\n  --bash <($out/bin/mado generate-shell-completion bash) \\\n  --zsh <($out/bin/mado generate-shell-completion zsh) \\\n  --fish <($out/bin/mado generate-shell-completion fish)\n")),
       checkFlags: nix.thunk(() => [
         "--skip=check_empty_stdin_with_file",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         "--skip=unknown_command",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Markdown linter written in Rust",
         homepage: "https://github.com/akiomik/mado",
         changelog: nix.thunk(() => nix.str`https://github.com/akiomik/mado/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

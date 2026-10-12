@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const sharutils = nix.arg($, "sharutils");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fvwm3",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fvwmorg",
           repo: "fvwm3",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libx11, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://fvwm.org",
         description: "Multiple large virtual desktop window manager - Version 3",
         longDescription: "Fvwm is a virtual window manager for the X windows system. It was\noriginally a feeble fork of TWM by Robert Nation in 1993 (fvwm history),\nand has evolved into the fantastic, fabulous, famous, flexible, and so on,\nwindow manager we have today.\n\nFvwm is a ICCCM/EWMH compliant and highly configurable floating window\nmanager built primarily using Xlib. Fvwm is configured using a\nconfiguration file, which is used to configure most aspects of the window\nmanager including window looks, key bindings, menus, window behavior,\nadditional modules, and more. There is a default configuration file that\ncan be used as a starting point for writing one's own configuration file.\n\nFvwm is a light weight window manager and can be configured to be anything\nfrom a small sleek window manager to a full featured desktop\nenvironment. To get the most out of fvwm, one should be willing to read\nthe documents, and take the time to write a custom configuration file that\nsuites their needs. The manual pages and the fvwm wiki can be used to help\nlearn how to configure fvwm.\n",

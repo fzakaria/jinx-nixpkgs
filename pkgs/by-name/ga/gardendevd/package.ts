@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const kmod = nix.arg($, "kmod");
   const uaccessSupport = nix.argOr($, "uaccessSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gardendevd",
       version: "0.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Gardenhouse",
           repo: "gardendevd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,11 +52,11 @@ substituteInPlace src/spawn.c \\
 patchShebangs scripts/
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://codeberg.org/Gardenhouse/gardendevd",
         description: "Udev daemon running on top of mdevd to replace systemd-udev",
         longDescription: "Gardendevd is a udev-compatible daemon that processes device\nevents from the Linux kernel. It is designed to be a lightweight\nand flexible alternative to systemd-udevd, leveraging mdevd for\ndevice node creation and firmware loading.\n",

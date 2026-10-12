@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const airspy = nix.arg($, "airspy");
   const soapysdr_with_plugins = nix.arg($, "soapysdr-with-plugins");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "abracadabra",
       version: "4.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KejPi",
           repo: "AbracaDABra",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => ["-DAIRSPY=ON", "-DSOAPYSDR=ON"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DAB/DAB+ radio application",
         homepage: "https://github.com/KejPi/AbracaDABra",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

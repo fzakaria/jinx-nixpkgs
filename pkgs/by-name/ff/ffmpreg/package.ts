@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ffmpreg",
       version: "0.1.2-unstable-2026-03-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yazaldefilimone",
           repo: "ffmpreg",
           rev: "a6fca970b98357ccd275acd797673ef7cf4ca02f",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-GxUBhFWoAq6zCDHWTiZ/pC6BWu4JcW71Sh9Du2H36wg=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Experimental safe Rust-native multimedia toolkit for decoding, transforming, and encoding audio and video",
         homepage: "https://github.com/yazaldefilimone/ffmpreg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pup = nix.arg($, "pup");
   const undmg = nix.arg($, "undmg");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "shottr",
       version: "1.9.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://shottr.cc/dl/Shottr-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-iaZMZhXNOVUzYijpT/rx10zGne+IxwAW5X35tI2sI6U=",
         })))),
@@ -33,16 +33,16 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -R Shottr.app \"$out/Applications\"\n\nmkdir -p \"$out/bin\"\nln -s \"$out/Applications/Shottr.app/Contents/MacOS/Shottr\" \"$out/bin/shottr\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "shottr-update-script",
               runtimeInputs: nix.thunk(() => [cacert, common_updater_scripts, curl, pup]),
               text: "version=\"$(curl -s https://shottr.cc/newversion.html \\\n  | pup 'a[href*=\"Shottr-\"] attr{href}' \\\n  | sed -E 's|/dl/Shottr-||' \\\n  | sed -E 's|\\.dmg||')\"\nupdate-source-version shottr \"$version\"\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: "https://shottr.cc/newversion.html",
         description: "MacOS screenshot app with scrolling screenshots, OCR, annotation and measurement instruments",
         homepage: "https://shottr.cc/",

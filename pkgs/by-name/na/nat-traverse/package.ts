@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nat-traverse",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.speicherleck.de/iblech/nat-traverse/nat-traverse-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0knwnqsjwv7sa5wjb863ghabs7s269a73qwkmxpsbngjw9s0j2ih",
         })))),
       nativeBuildInputs: nix.thunk(() => [perl]),
       installPhase: "mkdir -p $out/bin $out/share/man/man1\ncp nat-traverse $out/bin\ngzip -c nat-traverse.1 > $out/share/man/man1/nat-traverse.1.gz\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "NAT gateway traversal utility",
         longDescription: "nat-traverse establishes direct connections between nodes which are\nbehind NAT gateways, i.e. hosts which do not have public IP addresses.\nThis is done using an UDP NAT traversal technique. Additionally, it's\npossible to setup a small VPN by using pppd on top of nat-traverse.\n\nnat-traverse does not need an external server on the Internet, and it\nisn't necessary to reconfigure the involved NAT gateways, either.\nnat-traverse works out-of-the-box.\n",
         homepage: "https://www.speicherleck.de/iblech/nat-traverse/",

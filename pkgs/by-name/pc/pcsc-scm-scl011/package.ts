@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pcsc-scm-scl";
       const version = "2.09";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://files.identiv.com/products/smart-card-readers/contactless/scl010-011/Linux_Driver_Ver${version}.zip`),
           sha256: "0ik26sxgqgsqplksl87z61vwmx51k7plaqmrkdid7xidgfhfxr42",
         }))));
@@ -35,7 +35,7 @@ export sourceRoot=$(readlink -e sclgeneric_${version}_linux_${arch}bit)
   $out/pcsc/drivers/SCLGENERIC.bundle/Contents/Linux/libSCLGENERIC.so.${version};
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SCM Microsystems SCL011 chipcard reader user space driver",
         homepage: "https://www.scm-pc-card.de/index.php?lang=en&page=product&function=show_product&product_id=630",
         downloadPage: "https://support.identiv.com/scl010-scl011/",
@@ -51,7 +51,7 @@ export sourceRoot=$(readlink -e sclgeneric_${version}_linux_${arch}bit)
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

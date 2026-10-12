@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   const cryptography = nix.arg($, "cryptography");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cryptomobile",
       version: "0-unstable-2025-08-30",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mitshell",
           repo: "cryptomobile",
           rev: "0857cbbf140c05c54688bdb2076c25eb8f3ddb89",
@@ -42,7 +42,7 @@ ${nix.sel(python, "interpreter")} ./test/test_TUAK.py
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cryptography for mobile network",
         homepage: "https://github.com/mitshell/CryptoMobile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

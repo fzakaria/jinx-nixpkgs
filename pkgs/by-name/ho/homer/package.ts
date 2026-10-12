@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const pname = "homer";
       const version = "26.08.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bastienwirtz",
           repo: "homer",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-25XQH6Kn+ydtUUKiIlQQ1WEBXfljkams+yyCht/bLQ8=",
         }))));
       const pnpmDeps = nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -53,19 +53,19 @@ runHook postBuild
 `);
       const installPhase = "runHook preInstall\n\nmkdir -p $out\ncp -R dist/* $out/\n\n# Remove sample/demo files from output\nrm -f $out/assets/*.yml.dist\nrm -f $out/assets/*.css.sample\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "homer"));
           return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           caddy: nix.thunk(() => nix.attr(from, "caddy")),
           nginx: nix.thunk(() => nix.attr(from, "nginx")),
         };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Very simple static homepage for your server",
         homepage: "https://github.com/bastienwirtz/homer",
         changelog: "https://github.com/bastienwirtz/homer/releases",
@@ -80,7 +80,7 @@ runHook postBuild
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

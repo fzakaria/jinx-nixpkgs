@@ -38,10 +38,10 @@ export default nix.lambda((args) => (() => {
         const adminPasswordHashFile = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "plausible-admin-password-hash", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "mkpasswd")))} -m bcrypt ${nix.app(nix.sel(lib, "escapeShellArg"), adminPassword)} > "$out"
 `)));
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           name: nix.thunk(() => nix.add("plausible", nix.app(nix.sel(lib, "optionalString"), seedAdmin, "-declarative-admin-user"))),
           meta: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
               return [
@@ -51,37 +51,37 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             machine: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               systemd: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 services: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   plausible: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "always")),
                       RestartSec: 1n,
                     })),
-                    unitConfig: nix.thunk(() => ({ __proto__: pos$3, StartLimitIntervalSec: 0n })),
+                    unitConfig: nix.thunk(() => ({ [nix.POS]: pos$3, StartLimitIntervalSec: 0n })),
                   })),
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 plausible: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   enable: true,
                   adminUser: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), seedAdmin, nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       email: adminEmail,
                       name: "Test Admin",
                       passwordHashFile: nix.thunk(() => nix.str`${adminPasswordHashFile}`),
                     })))),
                   server: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     baseUrl: "http://localhost:8000",
                     secretKeybaseFile: nix.thunk(() => nix.builtins.toFile("plausible-test-secret-keybase-file", secretKeybase)),
                   })),
@@ -118,9 +118,9 @@ with subtest("seeding is idempotent across restarts"):
       })(), formals$3));
   })(), formals$2);
   return {
-    __proto__: pos$16,
-    basic: nix.thunk(() => nix.app(mkPlausibleTest, nix.thunk(() => ({ __proto__: pos$14, seedAdmin: false })))),
-    "declarative-admin-user": nix.thunk(() => nix.app(mkPlausibleTest, nix.thunk(() => ({ __proto__: pos$15, seedAdmin: true })))),
+    [nix.POS]: pos$16,
+    basic: nix.thunk(() => nix.app(mkPlausibleTest, nix.thunk(() => ({ [nix.POS]: pos$14, seedAdmin: false })))),
+    "declarative-admin-user": nix.thunk(() => nix.app(mkPlausibleTest, nix.thunk(() => ({ [nix.POS]: pos$15, seedAdmin: true })))),
   };
 })(), formals$1);
 //# sourceMappingURL=plausible.ts.map

@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const jool = nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "jool"));
   const jool_cli = nix.thunk(() => nix.sel(pkgs, "jool-cli"));
   const hardening = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     User: "jool",
     Group: "jool",
     DynamicUser: true,
@@ -55,24 +55,24 @@ export default nix.lambda((args) => (() => {
     CapabilityBoundingSet: nix.thunk(() => ["CAP_SYS_MODULE", "CAP_NET_ADMIN"]),
   }));
   const configFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
-  const nat64Conf = (name) => nix.app(nix.sel(configFormat, "generate"), nix.thunk(() => nix.str`jool-nat64-${name}.conf`), nix.thunk(() => nix.update(nix.sel(cfg, "nat64", nix.key(nix.force(name))), { __proto__: pos$2, instance: name })));
-  const siitConf = (name) => nix.app(nix.sel(configFormat, "generate"), nix.thunk(() => nix.str`jool-siit-${name}.conf`), nix.thunk(() => nix.update(nix.sel(cfg, "siit", nix.key(nix.force(name))), { __proto__: pos$3, instance: name })));
+  const nat64Conf = (name) => nix.app(nix.sel(configFormat, "generate"), nix.thunk(() => nix.str`jool-nat64-${name}.conf`), nix.thunk(() => nix.update(nix.sel(cfg, "nat64", nix.key(nix.force(name))), { [nix.POS]: pos$2, instance: name })));
+  const siitConf = (name) => nix.app(nix.sel(configFormat, "generate"), nix.thunk(() => nix.str`jool-siit-${name}.conf`), nix.thunk(() => nix.update(nix.sel(cfg, "siit", nix.key(nix.force(name))), { [nix.POS]: pos$3, instance: name })));
   const nat64Options = nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       freeformType: nix.thunk(() => nix.sel(configFormat, "type")),
       options: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         framework: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["netfilter", "iptables"]))),
             default: "netfilter",
             description: "The framework to use for attaching Jool's translation to the exist\nkernel packet processing rules. See the\n[documentation](https://nicmx.github.io/Jool/en/intro-jool.html#design)\nfor the differences between the two options.\n",
           })))),
         global: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           pool6: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
-              type: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "strMatching"), "[[:xdigit:]:]+/[[:digit:]]+"), { __proto__: pos$5, description: "Network prefix in CIDR notation" })),
+              [nix.POS]: pos$6,
+              type: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "strMatching"), "[[:xdigit:]:]+/[[:digit:]]+"), { [nix.POS]: pos$5, description: "Network prefix in CIDR notation" })),
               default: "64:ff9b::/96",
               description: "The prefix used for embedding IPv4 into IPv6 addresses.\nDefaults to the well-known NAT64 prefix, defined by\n[RFC 6052](https://datatracker.ietf.org/doc/html/rfc6052).\n",
             })))),
@@ -80,22 +80,22 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const siitOptions = nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       freeformType: nix.thunk(() => nix.sel(configFormat, "type")),
       options: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.app(nix.sel(nat64Options, "getSubOptions"), []));
-        return { __proto__: pos$10, framework: nix.thunk(() => nix.attr(from, "framework")) };
+        return { [nix.POS]: pos$10, framework: nix.thunk(() => nix.attr(from, "framework")) };
       })()),
     }))));
   const makeNat64Unit = (name) => (opts) => nix.attrsDyn({}, [
     [nix.str`jool-nat64-${name}`, nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       description: nix.thunk(() => nix.str`Jool, NAT64 setup of instance ${name}`),
       documentation: nix.thunk(() => ["https://nicmx.github.io/Jool/en/documentation.html"]),
       after: nix.thunk(() => ["network.target"]),
       wantedBy: nix.thunk(() => ["multi-user.target"]),
       serviceConfig: nix.thunk(() => nix.update({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         Type: "oneshot",
         RemainAfterExit: true,
         ExecStartPre: nix.thunk(() => nix.str`${nix.sel(pkgs, "kmod")}/bin/modprobe jool`),
@@ -106,13 +106,13 @@ export default nix.lambda((args) => (() => {
   ]);
   const makeSiitUnit = (name) => (opts) => nix.attrsDyn({}, [
     [nix.str`jool-siit-${name}`, nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       description: nix.thunk(() => nix.str`Jool, SIIT setup of instance ${name}`),
       documentation: nix.thunk(() => ["https://nicmx.github.io/Jool/en/documentation.html"]),
       after: nix.thunk(() => ["network.target"]),
       wantedBy: nix.thunk(() => ["multi-user.target"]),
       serviceConfig: nix.thunk(() => nix.update({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         Type: "oneshot",
         RemainAfterExit: true,
         ExecStartPre: nix.thunk(() => nix.str`${nix.sel(pkgs, "kmod")}/bin/modprobe jool_siit`),
@@ -130,29 +130,29 @@ jool_siit file check ${nix.app(siitConf, name)}
 printf 'Ok.\\n'; touch "$out"
 `;
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       networking: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         jool: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               relatedPackages: nix.thunk(() => ["linuxPackages.jool", "jool-cli"]),
               description: "Whether to enable Jool, an Open Source implementation of IPv4/IPv6\ntranslation on Linux.\n\nJool can perform stateless IP/ICMP translation (SIIT) or stateful\nNAT64, analogous to the IPv4 NAPT. Refer to the upstream\n[documentation](https://nicmx.github.io/Jool/en/intro-xlat.html) for\nthe supported modes of translation and how to configure them.\n\nEnabling this option will install the Jool kernel module and the\ncommand line tools for controlling it.\n",
             })))),
           nat64: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nat64Options)),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  default = {\n    # custom NAT64 prefix\n    global.pool6 = \"2001:db8:64::/96\";\n\n    # Port forwarding\n    bib = [\n      { # SSH 192.0.2.16 → 2001:db8:a::1\n        \"protocol\"     = \"TCP\";\n        \"ipv4 address\" = \"192.0.2.16#22\";\n        \"ipv6 address\" = \"2001:db8:a::1#22\";\n      }\n      { # DNS (TCP) 192.0.2.16 → 2001:db8:a::2\n        \"protocol\"     = \"TCP\";\n        \"ipv4 address\" = \"192.0.2.16#53\";\n        \"ipv6 address\" = \"2001:db8:a::2#53\";\n      }\n      { # DNS (UDP) 192.0.2.16 → 2001:db8:a::2\n        \"protocol\" = \"UDP\";\n        \"ipv4 address\" = \"192.0.2.16#53\";\n        \"ipv6 address\" = \"2001:db8:a::2#53\";\n      }\n    ];\n\n    pool4 = [\n      # Port ranges for dynamic translation\n      { protocol =  \"TCP\";  prefix = \"192.0.2.16/32\"; \"port range\" = \"40001-65535\"; }\n      { protocol =  \"UDP\";  prefix = \"192.0.2.16/32\"; \"port range\" = \"40001-65535\"; }\n      { protocol = \"ICMP\";  prefix = \"192.0.2.16/32\"; \"port range\" = \"40001-65535\"; }\n\n      # Ports for static BIB entries\n      { protocol =  \"TCP\";  prefix = \"192.0.2.16/32\"; \"port range\" = \"22\"; }\n      { protocol =  \"UDP\";  prefix = \"192.0.2.16/32\"; \"port range\" = \"53\"; }\n    ];\n  };\n}\n")),
               description: "Definitions of NAT64 instances of Jool.\nSee the\n[documentation](https://nicmx.github.io/Jool/en/config-atomic.html) for\nthe available options. Also check out the\n[tutorial](https://nicmx.github.io/Jool/en/run-nat64.html) for an\nintroduction to NAT64 and how to troubleshoot the setup.\n\nThe attribute name defines the name of the instance, with the main one\nbeing `default`: this can be accessed from the command line without\nspecifying the name with `-i`.\n\n::: {.note}\nInstances created imperatively from the command line will not interfere\nwith the NixOS instances, provided the respective `pool4` addresses and\nport ranges are not overlapping.\n:::\n\n::: {.warning}\nChanges to an instance performed via `jool -i <name>` are applied\ncorrectly but will be lost after restarting the respective\n`jool-nat64-<name>.service`.\n:::\n",
             })))),
           siit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), siitOptions)),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  default = {\n    # Maps any IPv4 address x.y.z.t to 2001:db8::x.y.z.t and v.v.\n    global.pool6 = \"2001:db8::/96\";\n\n    # Explicit address mappings\n    eamt = [\n      # 2001:db8:1:: ←→ 192.0.2.0\n      { \"ipv6 prefix\" = \"2001:db8:1::/128\"; \"ipv4 prefix\" = \"192.0.2.0\"; }\n      # 2001:db8:1::x ←→ 198.51.100.x\n      { \"ipv6 prefix\" = \"2001:db8:2::/120\"; \"ipv4 prefix\" = \"198.51.100.0/24\"; }\n    ];\n  };\n}\n")),
@@ -162,24 +162,24 @@ printf 'Ok.\\n'; touch "$out"
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
-        boot: nix.thunk(() => ({ __proto__: pos$22, extraModulePackages: nix.thunk(() => [jool]) })),
-        environment: nix.thunk(() => ({ __proto__: pos$23, systemPackages: nix.thunk(() => [jool_cli]) })),
+        [nix.POS]: pos$27,
+        boot: nix.thunk(() => ({ [nix.POS]: pos$22, extraModulePackages: nix.thunk(() => [jool]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$23, systemPackages: nix.thunk(() => [jool_cli]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), makeNat64Unit, nix.thunk(() => nix.sel(cfg, "nat64"))), nix.app(nix.sel(lib, "mapAttrsToList"), makeSiitUnit, nix.thunk(() => nix.sel(cfg, "siit"))))))),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           checks: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "nat64"), {})) || nix.asBool(!nix.eq(nix.sel(cfg, "siit"), {})))), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "jool-validated", nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 nativeBuildInputs: nix.thunk(() => [jool_cli]),
                 preferLocalBuild: true,
               })), nix.thunk(() => nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), checkNat64, nix.thunk(() => nix.sel(cfg, "nat64"))), nix.app(nix.sel(lib, "mapAttrsToList"), checkSiit, nix.thunk(() => nix.sel(cfg, "siit"))))))))))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "rnhmjoj"))];

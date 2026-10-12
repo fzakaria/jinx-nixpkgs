@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cabin";
       const version = "1.005";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "impallari",
           repo: "Cabin",
           rev: "982839c790e9dc57c343972aa34c51ed3b3677fd",
@@ -30,7 +30,7 @@ install -m444 -Dt $out/share/doc/${pname}-${version} README.md FONTLOG.txt
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Humanist sans with 4 weights and true italics",
         longDescription: "The Cabin font family is a humanist sans with 4 weights and true italics,\ninspired by Edward Johnston’s and Eric Gill’s typefaces, with a touch of\nmodernism. Cabin incorporates modern proportions, optical adjustments, and\nsome elements of the geometric sans. It remains true to its roots, but has\nits own personality.\n\nThe weight distribution is almost monotone, although top and bottom curves\nare slightly thin. Counters of the b, g, p and q are rounded and optically\nadjusted. The curved stem endings have a 10 degree angle. E and F have\nshorter center arms. M is splashed.\n",
         homepage: "https://github.com/impallari/Cabin",
@@ -38,7 +38,7 @@ runHook postInstall
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

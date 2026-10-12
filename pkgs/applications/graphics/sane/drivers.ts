@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     epjitsu: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "scansnap-firmware",
         owner: "stevleibelt",
         repo: "scansnap-firmware",
         rev: "96c3a8b2a4e4f1ccc4e5827c5eb5598084fd17c8",
         sha256: "1inchnvaqyw9d0skpg8hp5rpn27c09q58lsr42by4bahpbx5qday",
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         })),
       })))),

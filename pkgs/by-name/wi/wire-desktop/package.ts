@@ -38,42 +38,42 @@ export default nix.lambda((args) => (() => {
     const x86_64_linux = nix.thunk(() => (() => {
       const version = "3.40.3882";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wireapp",
           repo: "wire-desktop",
           tag: nix.thunk(() => nix.str`linux/${version}`),
           hash: "sha256-pNu+/JKvaKSqHxNeDL8RcDy+FiY3aynQH06t05qgXrA=",
         }))));
-      return { __proto__: pos$2, version, src };
+      return { [nix.POS]: pos$2, version, src };
     })());
     const aarch64_darwin = nix.thunk(() => (() => {
       const version = "3.42.5489";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "wireapp",
           repo: "wire-desktop",
           tag: nix.thunk(() => nix.str`macos/${version}`),
           hash: "sha256-v80sdksor6V0OVXlBTeMf9Jz8lhQy+UdyTxxupuafeo=",
         }))));
-      return { __proto__: pos$4, version, src };
+      return { [nix.POS]: pos$4, version, src };
     })());
     const aarch64_linux = x86_64_linux;
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       "x86_64-linux": x86_64_linux,
       "aarch64-darwin": aarch64_darwin,
       "aarch64-linux": aarch64_linux,
     };
   })());
   const web_config = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       owner: "wireapp",
       repo: "wire-web-config-wire",
       tag: "v0.34.9-0",
       hash: "sha256-E9x/tRcMfXw/tjgNBUTefym9/m/Xu9/9CclwSmxpDzU=",
     }))));
   const electron_dist_zip = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "electron-dist-zip",
       version: nix.thunk(() => nix.sel(electron, "version")),
       src: nix.thunk(() => nix.sel(electron, "dist")),
@@ -84,13 +84,13 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.selOr(sources, () => nix.sel(sources, "x86_64-linux"), nix.key(nix.sel(stdenv, "system"))));
       return {
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "wire-desktop",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-md7B8NSqT9dmPxrp9zbWifNow+1j2tuTRMOljG1V8WE=",
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`substituteInPlace .copyconfigrc.js \\
   --replace-fail 'repositoryUrl,' 'repositoryUrl, externalDir : "${web_config}",'
 `),
-      env: nix.thunk(() => ({ __proto__: pos$9, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$9, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       buildPhase: nix.thunk(() => nix.add(nix.add(nix.add(nix.str`runHook preBuild
 
 export BUILD_NUMBER=$(echo ${nix.sel(finalAttrs, "version")} | awk -F. '{print $NF}')
@@ -152,7 +152,7 @@ done
 `))), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             categories: nix.thunk(() => ["Network", "InstantMessaging", "Chat", "VideoConference"]),
             comment: "Secure messenger for everyone",
             desktopName: "Wire",
@@ -164,7 +164,7 @@ done
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Modern, secure messenger for everyone",
         longDescription: "Wire Personal is a secure, privacy-friendly messenger. It combines useful\nand fun features, audited security, and a beautiful, distinct user\ninterface.  It does not require a phone number to register and chat.\n\n  * End-to-end encrypted chats, calls, and files\n  * Crystal clear voice and video calling\n  * File and screen sharing\n  * Timed messages and chats\n  * Synced across your phone, desktop and tablet\n",
         homepage: "https://wire.com/",

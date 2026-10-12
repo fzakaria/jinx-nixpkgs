@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cdb",
       version: "20251021",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://cdb.cr.yp.to/cdb-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-jlMdY5C818mky9Fv7TYybu546LDlwHg6gVimp5Q3490=",
         })))),
@@ -29,7 +29,7 @@ substituteInPlace conf-cc conf-ld --replace-fail 'gcc' '${nix.sel(stdenv, "cc")}
       configurePhase: "runHook preConfigure\n\n# Set install prefix to output directory\necho \"$out\" > conf-home\n\nrunHook postConfigure\n",
       postInstall: "mkdir -p $man/share/man/man1 $man/share/man/man3\ncp doc/man/*.1 $man/share/man/man1/\ncp doc/man/*.3 $man/share/man/man3/\n\nmkdir -p $doc/share/doc/cdb\ncp doc/*.md $doc/share/doc/cdb/\ncp -r doc/html $doc/share/doc/cdb/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://cdb.cr.yp.to/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
         maintainers: [],

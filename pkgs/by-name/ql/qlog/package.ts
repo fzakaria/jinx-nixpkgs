@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const qt6Packages = nix.arg($, "qt6Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qlog",
       version: "0.48.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "foldynl",
           repo: "QLog",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Grsrh+WDobWC+zRFYP3xtfGp0VIyTt6XhTMs0+s9qh4=",
           fetchSubmodules: true,
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lhamlib" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lhamlib" })),
       buildInputs: nix.thunk(() => nix.concat([
         hamlib,
         nix.thunk(() => nix.sel(qt6, "qtbase")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv $out/{qlog.app,Applications}\nln -s $out/Applications/qlog.app/Contents/MacOS/qlog $out/bin/qlog\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Amateur radio logbook software",
         mainProgram: "qlog",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "globus",
           repo: "globus-sdk-python",
           tag: version,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [flaky, responses]);
       const pythonImportsCheck = nix.thunk(() => ["globus_sdk"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interface to Globus REST APIs, including the Transfer API and the Globus Auth API",
         homepage: "https://github.com/globus/globus-sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/globus/globus-sdk-python/releases/tag/${nix.sel(src, "tag")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

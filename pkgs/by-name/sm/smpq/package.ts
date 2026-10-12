@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const stormlib = nix.arg($, "stormlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "smpq",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://launchpad.net/smpq/trunk/${nix.sel(finalAttrs, "version")}/+download/smpq_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           hash: "sha256-ufmfE7Ma2qeS4yCgKkBaMiy3ZprUhHgb8v/+/790neI=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [stormlib]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://launchpad.net/smpq",
         description: "StormLib MPQ archiving utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

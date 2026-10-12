@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libxrender = nix.arg($, "libxrender");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "segger-ozone",
       version: "3.50a",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.segger.com/downloads/jlink/Ozone_Linux_V${nix.app(nix.sel(lib, "replaceString"), ".", "", nix.thunk(() => nix.sel(finalAttrs, "version")))}_x86_64.tgz`),
           hash: "sha256-pE9uaYwE0df/bOE5kgiBEiVZjUol3lvLKHMj1cPskDc=",
         })))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             categories: nix.thunk(() => ["Development", "Debugger", "X-MandrivaLinux-MoreApplications-Development"]),
             comment: "SEGGER Ozone",
             desktopName: "Ozone",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/libexec $out/bin\ncp --recursive . $out/libexec/segger-ozone\nln -s $out/libexec/segger-ozone/Ozone $out/bin/Ozone\ninstall -D --mode=0644 Ozone.png $out/share/icons/hicolor/256x256/apps/Ozone.png\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "J-Link Debugger and Performance Analyzer",
         longDescription: "Ozone is a cross-platform debugger and performance analyzer for J-Link\nand J-Trace.\n\n  - Stand-alone graphical debugger\n  - Debug output of any tool chain and IDE 1\n  - C/C++ source level debugging and assembly instruction debugging\n  - Debug information windows for any purpose: disassembly, memory,\n    globals and locals, (live) watches, CPU and peripheral registers\n  - Source editor to fix bugs immediately\n  - High-speed programming of the application into the target\n  - Direct use of J-Link built-in features (Unlimited Flash\n    Breakpoints, Flash Download, Real Time Terminal, Instruction Trace)\n  - Scriptable project files to set up everything automatically\n    - New project wizard to ease the basic configuration of new projects\n\n1 Ozone has been tested with the output of the following compilers:\nGCC, Clang, ARM, IAR. Output of other compilers may be supported but is\nnot guaranteed to be.\n",
         homepage: "https://www.segger.com/products/development-tools/ozone-j-link-debugger",

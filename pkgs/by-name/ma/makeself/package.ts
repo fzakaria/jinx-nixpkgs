@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "makeself";
       const version = "2.7.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "megastep",
           repo: "makeself",
           tag: nix.thunk(() => nix.str`release-${version}`),
@@ -42,7 +42,7 @@ runHook postInstall
       const fixupPhase = nix.thunk(() => nix.str`sed -e "s|^HEADER=.*|HEADER=${sharePath}/makeself-header.sh|" -i $out/bin/makeself
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://makeself.io",
         description: "Utility to create self-extracting packages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -51,7 +51,7 @@ runHook postInstall
         mainProgram: "makeself",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

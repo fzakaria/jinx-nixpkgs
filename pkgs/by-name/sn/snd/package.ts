@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxft = nix.arg($, "libxft");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "snd",
       version: "26.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/snd/snd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-KTc3QGcrWWNlKmy4HSfiWq6wiu082xpyABITPeu3iEc=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-motif"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sound editor",
         homepage: "https://ccrma.stanford.edu/software/snd/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

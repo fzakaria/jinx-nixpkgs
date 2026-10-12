@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => (() => {
         const underscoreVersion = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version));
         return nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/0xType/0xProto/releases/download/${version}/0xProto_${underscoreVersion}.zip`),
             hash: "sha256-ffYvfEGMoIJKVEcs2XzhDrq++SkTbQOVvb6X9q+uyu8=",
             stripRoot: false,
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       })());
       const installPhase = "runHook preInstall\ninstall -Dm644 -t $out/share/fonts/opentype/ *.otf ./No-Ligatures/*-NL.otf\ninstall -Dm644 -t $out/share/fonts/truetype/ *.ttf ./No-Ligatures/*-NL.ttf\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free and Open-source font for programming",
         homepage: "https://github.com/0xType/0xProto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$4, pname, version, src, installPhase, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, installPhase, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

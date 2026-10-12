@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i3-cycle-focus",
       version: "0-unstable-2021-09-27",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TheDoctor314",
           repo: "i3-cycle-focus",
           rev: "d94f22e4b8502de4ed846a211fa0c8418b3e3e89",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-6d3a9iaXKakbs7g/649nO39bh4Ka8jcBI/yJImTqoZs=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple tool to cyclically switch between the windows on the active workspace",
         mainProgram: "i3-cycle-focus",
         homepage: "https://github.com/TheDoctor314/i3-cycle-focus",

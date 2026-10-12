@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.attr(releases, "version"));
       const format = "wheel";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "saxonche",
           version: version,
           format: "wheel",
@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])));
       const buildInputs = nix.thunk(() => [zlib]);
       const pythonImportsCheck = nix.thunk(() => ["saxonche"]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.py") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.py") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Official Python package for the SaxonC-HE processor",
         homepage: "https://www.saxonica.com/saxon-c/index.xml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

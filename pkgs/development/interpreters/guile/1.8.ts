@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "guile";
       const version = "1.8.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/${pname}/${pname}-${version}.tar.gz`),
           sha256: "0l200a0v7h8bh0cwz6v7hc13ds39cgqsmfrks55b1rbj5vniyiy3",
         }))));
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libtool, readline]);
       const propagatedBuildInputs = nix.thunk(() => [gmp, libtool]);
       const patches = nix.thunk(() => [nix.path(here, "./cpp-4.5.patch"), nix.path(here, "./CVE-2016-8605.patch")]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
       const preBuild = "sed -e '/lt_dlinit/a  lt_dladdsearchdir(\"'$out/lib'\");' -i libguile/dynl.c\n";
       const postInstall = nix.thunk(() => nix.add(nix.str`wrapProgram $out/bin/guile-snarf --prefix PATH : "${gawk}/bin"
 `, nix.str`sed -i "$out/lib/pkgconfig/guile"-*.pc    \\
@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = doCheck;
       const setupHook = nix.path(here, "./setup-hook-1.8.sh");
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         effectiveVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version)),
         siteCcacheDir: "lib/guile/site-ccache",
         siteDir: "share/guile/site",
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.gnu.org/software/guile/",
         description: "Embeddable Scheme implementation",
         longDescription: "GNU Guile is an implementation of the Scheme programming language, with\nsupport for many SRFIs, packaged for use in a wide variety of\nenvironments.  In addition to implementing the R5RS Scheme standard and a\nlarge subset of R6RS, Guile includes a module system, full access to POSIX\nsystem calls, networking support, multiple threads, dynamic linking, a\nforeign function call interface, and powerful string processing.\n",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

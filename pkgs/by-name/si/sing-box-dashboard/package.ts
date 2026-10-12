@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const pnpm = pnpm_11;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sing-box-dashboard",
       version: "0-unstable-2026-09-03",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SagerNet",
           repo: "sing-box-dashboard",
           rev: "c4c39ac92c74a76664d43ecc5d3213f6182c7cf2",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDeps: null,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "npm run generate\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r dist/. $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Web dashboard for sing-box",
         homepage: "https://github.com/SagerNet/sing-box-dashboard",
         downloadPage: "https://github.com/SagerNet/sing-box-dashboard",

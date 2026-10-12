@@ -34,17 +34,17 @@ export default nix.lambda((args) => (() => {
   const pname = "glibc";
   const version = "2.44";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://gnu/libc/glibc-${version}.tar.xz`),
       hash: "sha256-N/YA8r7zxegwAUcFlWiyouQKetbMxlzpQlVtSUKcxmc=",
     }))));
   const linkerFile = nix.thunk(() => nix.sel({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "ld-linux-x86-64",
     "i686-linux": "ld-linux",
   }, nix.key(nix.sel(buildPlatform, "system"))));
   return nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => [
@@ -62,10 +62,10 @@ export default nix.lambda((args) => (() => {
         xz,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          "hello-world": (result) => nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-simple-program-${version}`), nix.thunk(() => ({ __proto__: pos$3, nativeBuildInputs: nix.thunk(() => [gcc, binutils]) })), nix.thunk(() => nix.str`cat <<EOF >> test.c
+          [nix.POS]: pos$4,
+          "hello-world": (result) => nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-simple-program-${version}`), nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [gcc, binutils]) })), nix.thunk(() => nix.str`cat <<EOF >> test.c
 #include <stdio.h>
 int main() {
   printf("Hello World!\\n");
@@ -83,7 +83,7 @@ mkdir $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "The GNU C Library",
         homepage: "https://www.gnu.org/software/libc/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

@@ -17,15 +17,15 @@ export default nix.lambda((args) => (() => {
   const jre_minimal = nix.arg($, "jre_minimal");
   const aapt = nix.arg($, "aapt");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       modules: nix.thunk(() => ["java.base", "java.desktop", "java.logging", "java.xml"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "apktool",
       version: "3.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://github.com/iBotPeaches/Apktool/releases/download/v${nix.sel(finalAttrs, "version")}/apktool_${nix.sel(finalAttrs, "version")}.jar`),
           ]),
@@ -48,7 +48,7 @@ makeWrapper "${jre}/bin/java" "$out/bin/apktool" \\
   --prefix PATH : ${nix.app(nix.sel(lib, "getBin"), aapt)}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for reverse engineering Android apk files",
         mainProgram: "apktool",
         homepage: "https://apktool.org",

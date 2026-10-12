@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const gcc_unwrapped = nix.arg($, "gcc-unwrapped");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "1.5.0",
       pname: "libthreadar",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libthreadar/libthreadar-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-wJAkIUGK7Ud6n2p1275vNkSx/W7LlgKWXQaDevetPko=",
         })))),
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       buildInputs: nix.thunk(() => [gcc_unwrapped]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++14"]))),
       })),
       configureFlags: nix.thunk(() => ["--disable-build-html"]),
       postInstall: "# Disable html help\nrm -r \"$out\"/share\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://libthreadar.sourceforge.net/",
         description: "C++ library that provides several classes to manipulate threads",
         longDescription: "Libthreadar is a C++ library providing a small set of C++ classes to manipulate\nthreads in a very simple and efficient way from your C++ code.\n",

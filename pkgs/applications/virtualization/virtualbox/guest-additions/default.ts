@@ -38,29 +38,29 @@ export default nix.lambda((args) => (() => {
   const virtualboxSha256 = "5c2138213b72f36c129b92c2c267f2a40e9c98513f4c86a584327f09f9be706d";
   const platform = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "arm64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "is32bit")) ? "x86" : "amd64")));
   const virtualBoxNixGuestAdditionsBuilder = nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder.nix"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       virtualboxVersion: virtualboxVersion,
       virtualboxSubVersion: virtualboxSubVersion,
       virtualboxSha256: virtualboxSha256,
       platform: platform,
     }))));
   const dlopenLibs = nix.thunk(() => [
-    nix.thunk(() => ({ __proto__: pos$2, name: "libdbus-1.so", pkg: dbus })),
-    nix.thunk(() => ({ __proto__: pos$3, name: "libXfixes.so", pkg: libxfixes })),
-    nix.thunk(() => ({ __proto__: pos$4, name: "libXrandr.so", pkg: libxrandr })),
-    nix.thunk(() => ({ __proto__: pos$5, name: "libwayland-client.so", pkg: wayland })),
-    nix.thunk(() => ({ __proto__: pos$6, name: "libX11.so", pkg: libx11 })),
-    nix.thunk(() => ({ __proto__: pos$7, name: "libXt.so", pkg: libxt })),
+    nix.thunk(() => ({ [nix.POS]: pos$2, name: "libdbus-1.so", pkg: dbus })),
+    nix.thunk(() => ({ [nix.POS]: pos$3, name: "libXfixes.so", pkg: libxfixes })),
+    nix.thunk(() => ({ [nix.POS]: pos$4, name: "libXrandr.so", pkg: libxrandr })),
+    nix.thunk(() => ({ [nix.POS]: pos$5, name: "libwayland-client.so", pkg: wayland })),
+    nix.thunk(() => ({ [nix.POS]: pos$6, name: "libX11.so", pkg: libx11 })),
+    nix.thunk(() => ({ [nix.POS]: pos$7, name: "libXt.so", pkg: libxt })),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "VirtualBox-GuestAdditions",
       version: nix.thunk(() => nix.str`${virtualboxVersion}${virtualboxSubVersion}-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.str`${virtualBoxNixGuestAdditionsBuilder}/VBoxGuestAdditions-${platform}.tar.bz2`),
       sourceRoot: ".",
       hardeningDisable: nix.thunk(() => ["pic"]),
       env: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=incompatible-pointer-types",
             "-Wno-error=implicit-function-declaration",
@@ -140,7 +140,7 @@ runHook postInstall
 done
 `, dlopenLibs)),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Guest additions for VirtualBox",
         longDescription: "Various add-ons which makes NixOS work better as guest OS inside VirtualBox.\nThis add-on provides support for dynamic resizing of the virtual display, shared\nhost/guest clipboard support.\n",
         sourceProvenance: nix.thunk(() => (() => {

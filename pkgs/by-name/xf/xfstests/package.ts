@@ -48,17 +48,17 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xfstests",
       version: "2026.09.02",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/fs/xfs/xfstests-dev.git/snapshot/xfstests-dev-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-jnwEcGUSkKW9afGQTUsWR7CNQECWz/sYdSaDx0hY1Uo=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://lore.kernel.org/fstests/20260813150846.280498-1-zlang@kernel.org/raw",
             hash: "sha256-NOPMo0cdKKoPMwG53BdTe+G+vDXb+2ICGYFRs4g+edQ=",
           })))),
@@ -135,7 +135,7 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
 exec ./check "$@"
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-xfstests", nix.thunk(() => nix.str`set -euo pipefail
 export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, gitMinimal, gawk, nix_update]))}:$PATH
 VERSION="$(git ls-remote --tags --refs https://git.kernel.org/pub/scm/fs/xfs/xfstests-dev.git \\
@@ -148,7 +148,7 @@ exec nix-update --version "$VERSION" xfstests "$@"
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Torture test suite for filesystems",
         homepage: "https://git.kernel.org/pub/scm/fs/xfs/xfstests-dev.git/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

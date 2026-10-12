@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const dejavu_fonts = nix.arg($, "dejavu_fonts");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "qr-backup",
       version: "1.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "za3k",
           repo: "qr-backup",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
       })()),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-Rename-from-regression-to-reproducibility-tests.patch",
             url: "https://github.com/za3k/qr-backup/commit/ec8ab373110de62d2e1f6f47c9a34e9e1a73c571.patch",
             hash: "sha256-93wxmCeH3qxZkDLZa9giMGUmVHdXSitXzet6WnAbQRw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "0002-Add-fast-option-to-tests.patch",
             url: "https://github.com/za3k/qr-backup/commit/e7d028eb4fddaa7f8628c88e1604d5e64f546389.patch",
             hash: "sha256-5Ib+bs+ciqH1z0kvHBD7PrefTTwD6nWk+6pEPqxc9uU=",
@@ -77,11 +77,11 @@ export default nix.lambda((args) => (() => {
       })()),
       installCheckPhase: "runHook preInstallCheck\n\nsubstituteInPlace tests/test.py \\\n  --replace-fail '\"python3\", \"qr-backup\"' \"'$out/bin/qr-backup'\"\nexport GNUPGHOME=\"$(mktemp -d)\"\nmake test-fast\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Utility to generate paper backup of files using QR codes",
         homepage: "https://github.com/za3k/qr-backup",
         changelog: nix.thunk(() => nix.str`https://github.com/za3k/qr-backup/blob/v${nix.sel(finalAttrs, "version")}/docs/CHANGELOG`),

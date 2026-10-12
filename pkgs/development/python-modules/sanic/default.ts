@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.12.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sanic-org",
           repo: "sanic",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         websockets,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ext: nix.thunk(() => [sanic_ext]),
         http3: nix.thunk(() => [aioquic]),
       }));
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["sanic"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Web server and web framework",
         homepage: "https://github.com/sanic-org/sanic/",
         changelog: nix.thunk(() => nix.str`https://github.com/sanic-org/sanic/releases/tag/${nix.sel(src, "tag")}`),
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sanic",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

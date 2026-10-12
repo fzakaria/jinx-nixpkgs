@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const help2man = nix.arg($, "help2man");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gengetopt",
       version: "2.23",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gengetopt/gengetopt-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1b44fn0apsgawyqa4alx2qj5hls334mhbszxsy6rfr0q074swhdr",
         })))),
@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: false,
       nativeBuildInputs: nix.thunk(() => [texinfo, help2man]),
       postPatch: "substituteInPlace configure --replace \\\n  'set -o posix' \\\n  'set +o posix'\n",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-std=c++14" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=c++14" })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line option parser generator",
         mainProgram: "gengetopt",
         longDescription: "GNU Gengetopt program generates a C function that uses getopt_long\nfunction to parse the command line options, to validate them and\nfills a struct\n",

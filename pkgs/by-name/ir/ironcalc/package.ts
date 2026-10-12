@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "0.7.1-unstable-2026-04-29";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "ironcalc",
       repo: "ironcalc",
       rev: "8461ff71347ab19145cd7ad50ef829181ba765c2",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const cargoHash = "sha256-q5DnqhIYKUUqfJ4/TNHYF1QgTbH198QtgirQ+lP30wk=";
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Open source selfhosted spreadsheet engine",
     homepage: "https://github.com/ironcalc/IronCalc",
     license: nix.thunk(() => (() => {
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
     broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")),
   }));
   const server = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ironcalc-server",
       src: src,
       version: version,
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bzip2, zstd]),
       postInstall: "install -Dm644 webapp/app.ironcalc.com/server/init_db.sql $out/share/ironcalc/init_db.sql\n",
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "IronCalc server package",
         mainProgram: "ironcalc_server",
       })),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
   const wasm = nix.thunk(() => nix.attr(frontend_packages, "wasm"));
   const widget = nix.thunk(() => nix.attr(frontend_packages, "widget"));
   const tools = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ironcalc-tools",
       src: src,
       version: version,
@@ -99,13 +99,13 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n{ $out/bin/xlsx_2_icalc 2>&1 || true; } | grep -q \"Usage:\"\n\n$out/bin/xlsx_2_icalc xlsx/tests/docs/CHOOSE.xlsx test.ic\ntest -f test.ic\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "IronCalc helper tools",
         mainProgram: "xlsx_2_icalc",
       })),
     }))));
   const wrapper = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "ironcalc",
       runtimeInputs: nix.thunk(() => [coreutils, sqlite, server]),
       text: nix.thunk(() => nix.str`IRONCALC_DB_PATH="\${IRONCALC_DB_PATH:-ironcalc.sqlite}"
@@ -126,7 +126,7 @@ exec ironcalc_server "$@"
   const nodejs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./nodejs.nix"), nix.thunk(() => ({}))));
   const docs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./docs.nix"), nix.thunk(() => ({}))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "ironcalc",
       version: version,
       paths: nix.thunk(() => [tools, wrapper]),
@@ -134,7 +134,7 @@ exec ironcalc_server "$@"
       strictDeps: true,
       passthru: nix.thunk(() => (() => {
         const exports = nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           frontend: frontend,
           widget: widget,
           server: server,
@@ -146,7 +146,7 @@ exec ironcalc_server "$@"
           wrapper: wrapper,
         }));
         return nix.update({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           src: src,
           cargoHash: cargoHash,
           updateScript: nix.thunk(() => [nix.path(here, "./update.sh")]),

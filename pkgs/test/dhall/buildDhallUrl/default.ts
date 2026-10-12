@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const dhallPackages = nix.arg($, "dhallPackages");
   return nix.app(nix.sel(dhallPackages, "buildDhallUrl"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://raw.githubusercontent.com/cdepillabout/example-dhall-nix/e6a675c72ecd4dd23d254a02aea8181fe875747f/mydhallfile.dhall",
       hash: "sha256-434x+QjHRzuprBdw0h6wmwB1Zj6yZqQb533me8XdO4c=",
       dhallHash: "sha256-434x+QjHRzuprBdw0h6wmwB1Zj6yZqQb533me8XdO4c=",

@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const watchdog = nix.arg($, "watchdog");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pipx",
       version: "1.16.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pypa",
           repo: "pipx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./preserve-pythonpath-in-import-test.patch")]),
       "build-system": nix.thunk(() => [docutils, hatchling, hatch_vcs]),
       dependencies: nix.thunk(() => [argcomplete, colorama, filelock, packaging, platformdirs, userpath]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, uv: nix.thunk(() => [uv]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, uv: nix.thunk(() => [uv]) })),
       nativeBuildInputs: nix.thunk(() => [argcomplete, installShellFiles]),
       nativeCheckInputs: nix.thunk(() => [
         gitMinimal,
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "installShellCompletion --cmd pipx \\\n  --bash <(register-python-argcomplete pipx --shell bash) \\\n  --zsh <(register-python-argcomplete pipx --shell zsh) \\\n  --fish <(register-python-argcomplete pipx --shell fish)\n",
       pythonImportsCheck: nix.thunk(() => ["pipx"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Install and run Python applications in isolated environments",
         mainProgram: "pipx",
         homepage: "https://github.com/pypa/pipx",

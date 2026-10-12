@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "472872e096eb8df219c23f2689fc336668bdb43d194094b5cc1707e1640acfc8",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest]);
       const checkPhase = "py.test\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module containing functions for converting between Julian dates and calendar dates",
         homepage: "https://github.com/phn/jdcal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -30,39 +30,39 @@ export default nix.lambda((args) => (() => {
   const getNonBlackistedExtensionsAsList = (ps) => nix.builtins.filter((x) => !nix.eq(x, null), nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), blacklistedToNull, ps)));
   const geoserverWithAllExtensions = nix.thunk(() => nix.app(nix.sel(pkgs, "geoserver", "withExtensions"), (ps) => nix.app(getNonBlackistedExtensionsAsList, ps)));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "geoserver",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "geospatial", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$9,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
+          [nix.POS]: pos$9,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
           environment: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             systemPackages: nix.thunk(() => [geoserver, geoserverWithAllExtensions]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             geoserver: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               jettyOpts: "jetty.http.port=8090",
               package: geoserverWithImporterExtension,
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             services: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               geoserver: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
             })),

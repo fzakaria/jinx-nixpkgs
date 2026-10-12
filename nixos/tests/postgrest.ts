@@ -27,58 +27,58 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "postgrest",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "wolfgangwalther"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             postgresql: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "init.sql", "CREATE ROLE postgrest LOGIN NOINHERIT;\nCREATE ROLE anon ROLE postgrest;\n\nCREATE ROLE postgrest_with_password LOGIN NOINHERIT PASSWORD 'password';\nCREATE ROLE authenticated ROLE postgrest_with_password;\n")),
             })),
             postgrest: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 "admin-server-port": 3001n,
                 "db-anon-role": "anon",
-                "db-uri": nix.thunk(() => ({ __proto__: pos$3, dbname: "postgres" })),
+                "db-uri": nix.thunk(() => ({ [nix.POS]: pos$3, dbname: "postgres" })),
               })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             withSecrets: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               configuration: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 services: nix.thunk(() => ({
-                  __proto__: pos$11,
-                  postgresql: nix.thunk(() => ({ __proto__: pos$7, enableTCPIP: true })),
+                  [nix.POS]: pos$11,
+                  postgresql: nix.thunk(() => ({ [nix.POS]: pos$7, enableTCPIP: true })),
                   postgrest: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     pgpassFile: "/run/secrets/.pgpass",
                     jwtSecretFile: "/run/secrets/jwt.secret",
                     settings: nix.thunk(() => ({
-                      __proto__: pos$9,
-                      "db-uri": nix.thunk(() => ({ __proto__: pos$8, host: "localhost", user: "postgrest_with_password" })),
+                      [nix.POS]: pos$9,
+                      "db-uri": nix.thunk(() => ({ [nix.POS]: pos$8, host: "localhost", user: "postgrest_with_password" })),
                       "server-port": 3000n,
                       "server-unix-socket": null,
                     })),

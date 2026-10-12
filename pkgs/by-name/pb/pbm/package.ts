@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const buildDotnetGlobalTool = nix.arg($, "buildDotnetGlobalTool");
   const lib = nix.arg($, "lib");
   return nix.app(buildDotnetGlobalTool, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pbm",
       version: "1.5.1",
       nugetHash: "sha256-8H4qT1BMvLf3CogaEUF3mYJIeChQZH+xeZsGUlkePBQ=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "CLI for managing Akka.NET applications and Akka.NET Clusters",
         homepage: "https://cmd.petabridge.com/index.html",
         changelog: "https://cmd.petabridge.com/articles/RELEASE_NOTES.html",

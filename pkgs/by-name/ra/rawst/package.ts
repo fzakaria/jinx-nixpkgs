@@ -16,25 +16,25 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       __structuredAttrs: true,
       pname: "rawst",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Jupiee",
           repo: "rawst",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-+uhE80XoZyMBV+nmlP+C5DfoB+z4tyK69XGsuALxROs=",
         })))),
       cargoHash: "sha256-wS1dR6r3/4sg4DCMR8QZjbHgiSEhuu/v4MqJ6LxEKtY=",
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTC_BOOTSTRAP: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTC_BOOTSTRAP: true })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cli downloader, written in rust",
         homepage: "https://github.com/Jupiee/rawst",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

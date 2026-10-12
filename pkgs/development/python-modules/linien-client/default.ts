@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [fabric, typing_extensions, numpy, scipy, linien_common]);
       const pythonImportsCheck = nix.thunk(() => ["linien_client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Client components of the Linien spectroscopy lock application",
         homepage: "https://github.com/linien-org/linien/tree/develop/linien-client",
         changelog: nix.thunk(() => nix.str`https://github.com/linien-org/linien/blob/v${version}/CHANGELOG.md`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(numpy, "version")), "2")),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         pyproject,
         src,

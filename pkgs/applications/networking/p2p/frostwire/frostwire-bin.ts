@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.13.3";
       const pname = "frostwire";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/frostwire/frostwire/releases/download/frostwire-desktop-${version}-build-322/frostwire-${version}.amd64.tar.gz`),
           hash: "sha256-wRT8Oo+niOFBpEnq3pgjO9jpagZMgSE44V9RBYnGwig=",
         }))));
@@ -43,7 +43,7 @@ substituteInPlace $out/share/java/frostwire.desktop \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.frostwire.com/",
         description: "BitTorrent Client and Cloud File Downloader",
         mainProgram: "frostwire",
@@ -61,7 +61,7 @@ runHook postInstall
         })()),
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
-      return { __proto__: pos$3, version, pname, src, nativeBuildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, version, pname, src, nativeBuildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=frostwire-bin.ts.map

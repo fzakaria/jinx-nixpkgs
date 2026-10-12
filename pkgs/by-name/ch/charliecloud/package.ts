@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const fuse3 = nix.arg($, "fuse3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "charliecloud",
       version: "0.38",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hpc",
           repo: "charliecloud",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,14 +66,14 @@ substituteInPlace configure.ac --replace-fail "/usr/bin/env" "${coreutils}/bin/e
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           charliecloud: nix.thunk(() => nix.sel(nixosTests, "charliecloud")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "User-defined software stacks (UDSS) for high-performance computing (HPC) centers",
         longDescription: "Charliecloud uses Linux user namespaces to run containers with no\nprivileged operations or daemons and minimal configuration changes on\ncenter resources. This simple approach avoids most security risks\nwhile maintaining access to the performance and functionality already\non offer.\n",
         homepage: "https://hpc.github.io/charliecloud",

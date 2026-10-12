@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SkyTemple",
           repo: "explorerscript",
           tag: version,
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       const dontUseCmakeConfigure = true;
       const pythonRelaxDeps = nix.thunk(() => ["igraph"]);
       const dependencies = nix.thunk(() => [igraph]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, pygments: nix.thunk(() => [pygments]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, pygments: nix.thunk(() => [pygments]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "pygments")));
       const pythonImportsCheck = nix.thunk(() => ["explorerscript"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/SkyTemple/explorerscript",
         description: "Programming language + compiler/decompiler for creating scripts for Pokémon Mystery Dungeon Explorers of Sky",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

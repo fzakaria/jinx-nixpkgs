@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const libx11 = nix.arg($, "libx11");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "photon",
       version: "unstable-2022-01-11",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~ghost08",
           repo: "photon",
           rev: "5d1f7dd8d0d526096886b03c7bc0ef56cbdd6d79",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       proxyVendor: true,
       vendorHash: "sha256-n9XNqXIoqn+f0xKCenJWXUYXtQhtbNBar68onWH/WV4=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RSS/Atom reader with the focus on speed, usability and a bit of unix philosophy",
         mainProgram: "photon",
         homepage: "https://sr.ht/~ghost08/photon",

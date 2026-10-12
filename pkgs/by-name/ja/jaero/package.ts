@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const qmqtt = nix.arg($, "qmqtt");
   const makeWrapper = nix.arg($, "makeWrapper");
   const jfft_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "jontio",
       repo: "JFFT",
       rev: "4b74486e58e1d266f1cc3c570f3d073d40c353d6",
       hash: "sha256-GDagnbbYT6Xn8IQ7YH7giBiNqSYYkyyTqInlvT5TZZA=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jaero",
       version: "1.0.4.14-unstable-2023-11-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "jontio",
           repo: "JAERO",
           rev: "1d4e515921244aec1d85a03f5f38b4e7818fdbe6",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "mkdir -p $out/bin\nmv $out/JAERO $out/bin/JAERO\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SatCom ACARS demodulator and decoder for the Aero standard",
         homepage: "https://github.com/jontio/JAERO",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "29.3",
       pname: "owntone",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "owntone",
           repo: "owntone-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -77,11 +77,11 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), chromecastSupport, nix.thunk(() => ["--enable-chromecast"])), nix.app(nix.sel(lib, "optionals"), pulseSupport, nix.thunk(() => ["--with-pulseaudio"])))),
       patches: nix.thunk(() => [nix.path(here, "./gettext-0.25.patch")]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Media server to stream audio to AirPlay and Chromecast receivers",
         homepage: "https://github.com/owntone/owntone-server",
         downloadPage: nix.thunk(() => nix.str`https://github.com/owntone/owntone-server/releases/tag/${nix.sel(finalAttrs, "version")}`),

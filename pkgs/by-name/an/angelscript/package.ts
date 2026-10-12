@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "angelscript",
       version: "2.38.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.angelcode.com/angelscript/sdk/files/angelscript_${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-sztdvNoQMX72fWKDU9gyRphM5vysEC1Nwq7RIeulLm8=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DBUILD_SHARED_LIBS=ON"]),
       postInstall: "mkdir -p \"$out/share/docs/angelscript\"\ncp -r $ROOT/docs/* \"$out/share/docs/angelscript\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Light-weight scripting library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
         maintainers: nix.thunk(() => (() => {

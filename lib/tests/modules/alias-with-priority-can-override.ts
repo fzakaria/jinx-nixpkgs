@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "bool")))),
           default: null,
           example: true,
           description: "Some descriptive text\n",
         })))),
       warnings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           internal: true,
           default: [],
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config_1 = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
-        return { __proto__: pos$4, enableAlias: nix.thunk(() => nix.app(mkForce, false)) };
+        return { [nix.POS]: pos$4, enableAlias: nix.thunk(() => nix.app(mkForce, false)) };
       })(), formals$2),
       nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config_1 = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
-        return { __proto__: pos$5, enable: true };
+        return { [nix.POS]: pos$5, enable: true };
       })(), formals$3),
     ]),
   };

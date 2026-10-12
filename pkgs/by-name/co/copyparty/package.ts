@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`copyparty${nameSuffix}`);
       const version = "1.20.24";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/9001/copyparty/releases/download/v${version}/copyparty-${version}.tar.gz`),
           hash: "sha256-RQ3KfVcB5nI12RbgNfzCFDMozh0Ka1t+PF0sI727c+M=",
         }))));
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), runtimeDeps)}`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "turn almost any device into a file server over http(s), webdav, ftp(s), and tftp",
         longDescription: longDescription,
         homepage: "https://github.com/9001/copyparty",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
           const includedLibraryLicenses = nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
             return {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               asmcrypto: nix.thunk(() => nix.lookup(w_1, "mit")),
               marked: nix.thunk(() => [
                 nix.thunk(() => nix.lookup(w_1, "mit")),
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

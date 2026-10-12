@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const dtc = nix.arg($, "dtc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kvmtool",
       version: "0-unstable-2024-04-09",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.kernel.org/pub/scm/linux/kernel/git/will/kvmtool.git",
           rev: "da4cfc3e540341b84c4bbad705b5a15865bc1f80",
           hash: "sha256-05tNsZauOXe1L1y1YchzvLZm3xOctPJhHCjyAyRnwy4=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./strlcpy-glibc-2.38-fix.patch")]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => [dtc]))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       enableParallelBuilding: true,
       makeFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`ARCH=${nix.sel(stdenv, "hostPlatform", "linuxArch")}`),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => [nix.thunk(() => nix.str`LIBFDT_DIR=${dtc}/lib`)])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight tool for hosting KVM guests",
         homepage: "https://git.kernel.org/pub/scm/linux/kernel/git/will/kvmtool.git/tree/README",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

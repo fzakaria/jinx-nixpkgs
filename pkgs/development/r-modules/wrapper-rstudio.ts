@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const packages = nix.arg($, "packages");
   const fontconfig = nix.arg($, "fontconfig");
   return nix.app(runCommand, nix.thunk(() => nix.add(nix.sel(rstudio, "name"), "-wrapper")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.attr(rstudio, "pname")),
       version: nix.thunk(() => nix.attr(rstudio, "version")),
       preferLocalBuild: true,

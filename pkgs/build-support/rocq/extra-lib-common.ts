@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         const isEq = nix.thunk(() => nix.app(opTruncate, nix.thunk(() => nix.sel(pred, "equal"))));
         const range = (low) => (high) => nix.app(nix.sel(pred, "inter"), nix.thunk(() => nix.app(nix.sel(versions, "isGe"), low)), nix.thunk(() => nix.app(nix.sel(versions, "isLe"), high)));
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           truncate: truncate_1,
           majorMinorPatch,
           isGe,
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       return nix.app(loop, [], [], l);
     })();
     const pred = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       inter: (p) => (q) => (x) => (nix.asBool(nix.app(p, x)) && nix.asBool(nix.app(q, x))),
       union: (p) => (q) => (x) => (nix.asBool(nix.app(p, x)) || nix.asBool(nix.app(q, x))),
       compl: (p) => (x) => !nix.asBool(nix.app(p, x)),
@@ -78,13 +78,13 @@ export default nix.lambda((args) => (() => {
       const compare = (f) => (nix.asBool(nix.app(isFunction, f)) ? nix.force(f) : nix.app(nix.lookup(w, "equal"), f));
       const combine = (cl) => (var$_1) => (nix.asBool(nix.has(cl, "case")) ? nix.app(compare, nix.thunk(() => nix.sel(cl, "case")), var$_1) : nix.app(all, nix.thunk(() => nix.app(nix.lookup(w, "equal"), true)), nix.thunk(() => nix.app(zipListsWith, compare, nix.thunk(() => nix.sel(cl, "cases")), var$_1))));
       return nix.app(switch_if, nix.thunk(() => nix.app(nix.builtins.map, (cl) => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             cond: nix.thunk(() => nix.app(combine, cl, var$)),
             out: nix.thunk(() => nix.attr(cl, "out")),
           }), clauses)), default$);
     })();
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       versions,
       splitList,
       pred,

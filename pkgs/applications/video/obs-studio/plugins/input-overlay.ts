@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const libxkbfile = nix.arg($, "libxkbfile");
   const sdl3 = nix.arg($, "sdl3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "obs-input-overlay",
       version: "5.1.0-unstable-2025-09-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "univrsal",
           repo: "input-overlay",
           rev: "4d62e7d0c55f8ff62c3a0e7b1a8f3092086b23b7",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Show keyboard, gamepad and mouse input on stream",
         homepage: "https://github.com/univrsal/input-overlay",
         maintainers: nix.thunk(() => (() => {

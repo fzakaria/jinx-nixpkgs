@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cordova";
       const version = "13.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "cordova-cli",
           tag: version,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-y81NdwF+RU20jmCi+Fou3Vc9ivt1x8JOj7biAsuSYDg=";
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Build native mobile applications using HTML, CSS and JavaScript",
         homepage: "https://github.com/apache/cordova-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "flosse"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, dontNpmBuild, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, dontNpmBuild, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

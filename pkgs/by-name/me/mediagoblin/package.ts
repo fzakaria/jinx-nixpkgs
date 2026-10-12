@@ -23,9 +23,9 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const lndir = nix.arg($, "lndir");
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (final) => (prev) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       paste: nix.thunk(() => nix.app(nix.sel(prev, "paste", "override"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           setuptools: nix.thunk(() => nix.sel(prev, "setuptools_80")),
         })))),
     })));
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const sitePackages = nix.thunk(() => nix.attr(from, "sitePackages"));
   const version = "0.15.0";
   const src = nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "~mediagoblin",
       repo: "mediagoblin",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-9zfSRFyf9Sw+r7ATlZVl2dymWjOO2JQZGsBLQPYT0rs=",
     }))));
   const extlib = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "mediagoblin-extlib",
       src: src,
       npmDepsHash: "sha256-wtk5MgsWEpuz3V/EcozEAMOa8UeCgdjhR5wxaiaMugY=",
@@ -119,7 +119,7 @@ substituteInPlace mediagoblin/gmg_commands/__init__.py \\
           ];
         })());
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           ascii: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "chardet"))]),
           audio: nix.thunk(() => nix.concat([nix.thunk(() => nix.lookup(w_2, "numpy"))], gst)),
           ldap: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "python-ldap"))]),
@@ -147,9 +147,9 @@ ln -rs $out/${sitePackages}/mediagoblin/static/extlib/leaflet/dist/images/ $out/
         ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies));
       })());
       const pythonImportsCheck = nix.thunk(() => ["mediagoblin"]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$6, extlib: extlib, pythonPackages: pythonPackages }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$6, extlib: extlib, pythonPackages: pythonPackages }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Free software media publishing platform that anyone can run",
         homepage: "https://mediagoblin.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -159,7 +159,7 @@ ln -rs $out/${sitePackages}/mediagoblin/static/extlib/leaflet/dist/images/ $out/
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         format,
         pname,
         version: version_1,

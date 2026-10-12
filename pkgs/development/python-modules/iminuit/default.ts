@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.32.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-oys00YZllZvnWta9sd2ARZu5RGbGK0VWMcAFaKzN99I=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const dontUseCmakeConfigure = true;
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/scikit-hep/iminuit",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-hep/iminuit/releases/tag/v${version}`),
         description: "Python interface for the Minuit2 C++ library",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

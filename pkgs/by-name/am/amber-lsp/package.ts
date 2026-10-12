@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "amber-lsp",
       version: "0.3.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amber-lang",
           repo: "amber-lsp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["--test-threads=4"]),
       postFixup: "# By default it wants to write to $out/amber-lsp-resources\nwrapProgram $out/bin/amber-lsp \\\n  --run '\n    export AMBER_LSP_RESOURCES_DIR=\"${XDG_DATA_HOME:-$HOME/.local/share}/amber-lsp-resources\"\n  '\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Amber's Language Server",
         homepage: "https://github.com/amber-lang/amber-lsp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

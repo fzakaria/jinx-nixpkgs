@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kquickimageeditor";
       const version = "0.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "invent.kde.org",
           owner: "libraries",
           repo: "kquickimageeditor",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         qtbase,
         qtdeclarative,
         nix.thunk(() => nix.app(nix.sel(opencv, "override"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enableCuda: false,
             enabledModules: nix.thunk(() => ["core", "imgproc"]),
             runAccuracyTests: false,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Set of QtQuick components providing basic image editing capabilities",
         homepage: "https://invent.kde.org/libraries/kquickimageeditor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         badPlatforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

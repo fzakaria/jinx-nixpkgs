@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const runCommandLocal = nix.arg($, "runCommandLocal");
   const bitlbee = nix.arg($, "bitlbee");
   return (plugins) => nix.app(runCommandLocal, "bitlbee-plugins", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       plugins: plugins,
       buildInputs: nix.thunk(() => nix.concat([bitlbee], plugins)),
     })), "mkdir -p $out/lib/bitlbee\nfor plugin in $plugins; do\n  for thing in $(ls $plugin/lib/bitlbee); do\n    ln -s $plugin/lib/bitlbee/$thing $out/lib/bitlbee/\n  done\ndone\n");

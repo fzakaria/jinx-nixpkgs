@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "duckdb.yazi",
       version: "25.4.8-unstable-2025-05-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wylie102",
           repo: "duckdb.yazi",
           rev: "3f8c8633d4b02d3099cddf9e892ca5469694ba22",
           hash: "sha256-XQM459V3HbPgXKgd9LnAIKRQOAaJPdZA/Tp91TSGHqY=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yazi plugin that uses duckdb to preview data files",
         homepage: "https://github.com/wylie102/duckdb.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

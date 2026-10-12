@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const maps = nix.argOr($, "maps", () => nix.sel(pkgs, "crossfire-maps"));
   const arch = nix.argOr($, "arch", () => nix.sel(pkgs, "crossfire-arch"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crossfire-server",
       version: "2025-04",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.code.sf.net/p/crossfire/crossfire-server",
           rev: "5f742b9f9f785e4a59a3a463bee1f31c9bc67098",
           hash: "sha256-e7e3xN7B1cv9+WkZGzOJgrFer50Cs0L/2dYB9RmGCiE=",
@@ -43,7 +43,7 @@ sh autogen.sh
       postInstall: nix.thunk(() => nix.str`ln -s ${maps} "$out/share/crossfire/maps"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Server for the Crossfire free MMORPG",
         homepage: "http://crossfire.real-time.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

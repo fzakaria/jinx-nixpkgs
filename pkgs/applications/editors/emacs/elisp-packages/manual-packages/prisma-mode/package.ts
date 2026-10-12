@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const js2_mode = nix.arg($, "js2-mode");
   const lsp_mode = nix.arg($, "lsp-mode");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prisma-mode",
       version: "0-unstable-2021-12-07",
       packageRequires: nix.thunk(() => [js2_mode, lsp_mode]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pimeys",
           repo: "emacs-prisma-mode",
           rev: "5283ca7403bcb21ca0cac8ecb063600752dfd9d4",
           hash: "sha256-DJJfjbu27Gi7Nzsa1cdi8nIQowKH8ZxgQBwfXLB0Q/I=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Major mode for Prisma Schema Language",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       })),

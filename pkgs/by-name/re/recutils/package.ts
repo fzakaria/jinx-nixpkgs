@@ -26,17 +26,17 @@ export default nix.lambda((args) => (() => {
   const withBashBuiltins = nix.argOr($, "withBashBuiltins", () => true);
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "recutils",
       version: "1.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/recutils/recutils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-YwFZKwAgwUtFZ1fvXUNNSfYCe45fOkmdEzYvIFxIbg4=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "configure-big_sur.diff",
             url: "https://github.com/Homebrew/formula-patches/raw/03cf8088210822aa2c1ab544ed58ea04c897d9c4/libtool/configure-big_sur.diff",
             hash: "sha256-NazWrrwZhD8aKzpj6IC6zrD1J4qxrOZh5XpQLZ14yTw=",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(libgcrypt, "dev")),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), withUuid, nix.thunk(() => [libuuid])), nix.app(nix.sel(lib, "optionals"), withBashBuiltins, nix.thunk(() => [nix.thunk(() => nix.sel(bash, "dev"))])))))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=implicit-function-declaration"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => [
               "-Wno-error=implicit-function-declaration",
               "-Wno-error=incompatible-pointer-types",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [bc, check]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.gnu.org/software/recutils/",
         description: "Tools and libraries to access human-editable, text-based databases",
         longDescription: "GNU Recutils is a set of tools and libraries to access human-editable,\ntext-based databases called recfiles. The data is stored as a sequence of\nrecords, each record containing an arbitrary number of named fields.\n",

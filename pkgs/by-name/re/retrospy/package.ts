@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const runCommandLocal = nix.arg($, "runCommandLocal");
   const version = "6.10";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "retrospy",
       repo: "RetroSpy",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
 ${nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.builtins.map((e) => nix.str`cp ${src}/${e}.ico $out/share/retrospy/${e}.ico`, executables)))}
 `)));
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "retrospy",
       version: version,
       src: src,
@@ -46,9 +46,9 @@ ${nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.builtins.map((e) => ni
       "dotnet-runtime": nix.thunk(() => nix.sel(dotnetCorePackages, "aspnetcore_8_0")),
       nugetDeps: nix.path(here, "./deps.json"),
       executables: executables,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       desktopItems: nix.thunk(() => nix.builtins.map((e) => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: e,
             exec: e,
             icon: nix.thunk(() => nix.str`${retrospy_icons}/share/retrospy/${e}.ico`),
@@ -57,7 +57,7 @@ ${nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.builtins.map((e) => ni
             startupWMClass: e,
           }))), executables)),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Live controller viewer for Nintendo consoles as well as many other retro consoles and computers",
         homepage: "https://retro-spy.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/retrospy/RetroSpy/releases/tag/${nix.sel(src, "rev")}`),

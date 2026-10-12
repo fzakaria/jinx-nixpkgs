@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const makeShellWrapper = nix.arg($, "makeShellWrapper");
   const stdenv$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? nix.force(stdenv) : nix.sel(llvmPackages, "stdenv")));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shiboken6-generator",
       version: "6.11.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://code.qt.io/pyside/pyside-setup.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-m1vBGIUOgjx+0/MkiCASP6HaX5YM2B/txnbww7dKjCk=",
@@ -53,7 +53,7 @@ cp -r shiboken6_generator.egg-info $out/${nix.sel(python, "sitePackages")}/
       postFixup: "wrapProgramShell $out/bin/shiboken6 --add-flags '--typesystem-paths=$NIXPKGS_SHIBOKEN6_TYPESYSTEMS_PATH'\n",
       setupHook: nix.path(here, "./shiboken6-hook.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generator for the pyside6 Qt bindings - tools",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

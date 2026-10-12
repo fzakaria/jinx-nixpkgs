@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.8.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emmett-framework",
           repo: "granian",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./no-alloc.patch")]);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "granian",
           version: version,
           src: src,
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       })());
       const dependencies = nix.thunk(() => [click]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         dotenv: nix.thunk(() => [python_dotenv]),
         pname: nix.thunk(() => [setproctitle]),
         reload: nix.thunk(() => [watchfiles]),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const preCheck = "# collides with the one installed in $out\nrm -rf granian/\n";
       const env = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
       }));
       const __darwinAllowLocalNetworking = true;
@@ -93,11 +93,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pytest: nix.thunk(() => nix.app(nix.sel(granian, "overridePythonAttrs"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               pname: "granian-with-check-phase",
               buildPhase: nix.thunk(() => nix.str`# runHook preBuild
 die() { echo >&2 "$@"; exit 1; }
@@ -115,7 +115,7 @@ runHook postBuild
       }));
       const pythonImportsCheck = nix.thunk(() => ["granian"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Rust HTTP server for Python ASGI/WSGI/RSGI applications",
         homepage: "https://github.com/emmett-framework/granian",
         changelog: nix.thunk(() => nix.str`https://github.com/emmett-framework/granian/releases/tag/v${version}`),
@@ -131,7 +131,7 @@ runHook postBuild
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         pyproject,

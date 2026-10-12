@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.5.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-ph78AY/T6zF+7KMaupDunn8m8iiEp5tsbscVv3G7YvE=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const nativeCheckInputs = nix.thunk(() => [objgraph, psutil, unittestCheckHook]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isPower64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64")))), "-fomit-frame-pointer")),
       }));
       const preCheck = nix.thunk(() => nix.str`pushd ${nix.builtins.placeholder("out")}/${nix.sel(python, "sitePackages")}
@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
       const unittestFlagsArray = nix.thunk(() => ["greenlet.tests"]);
       const postCheck = "popd\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          pytest: nix.thunk(() => nix.app(nix.sel(greenlet, "overridePythonAttrs"), (_) => ({ __proto__: pos$3, doCheck: true }))),
+          [nix.POS]: pos$4,
+          pytest: nix.thunk(() => nix.app(nix.sel(greenlet, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$3, doCheck: true }))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/python-greenlet/greenlet/blob/${version}/CHANGES.rst`),
         homepage: "https://github.com/python-greenlet/greenlet",
         description: "Module for lightweight in-process concurrent programming",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

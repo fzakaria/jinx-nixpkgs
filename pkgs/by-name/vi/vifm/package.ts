@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const isFullPackage = mediaSupport;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => (nix.asBool(isFullPackage) ? "vifm-full" : "vifm")),
       version: "0.14.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/vifm/vifm/releases/download/v${nix.sel(finalAttrs, "version")}/vifm-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-QLwy7BDYKa2j0Cl9M81PMCxSC7QxKH1UT8CgWuRf2xs=",
         })))),
@@ -50,16 +50,16 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/vifm/vifm.git",
             "rev-prefix": "v",
             ignoredVersions: "beta",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: nix.thunk(() => nix.str`Vi-like file manager${nix.app(nix.sel(lib, "optionalString"), isFullPackage, "; Includes support for optional features")}`),
         mainProgram: "vifm",
         maintainers: nix.thunk(() => (() => {

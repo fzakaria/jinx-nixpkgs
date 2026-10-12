@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
     "bin/uic",
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtbase",
       qtCompatVersion: qtCompatVersion,
       src: src,
@@ -149,10 +149,10 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([python3, at_spi2_core], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withLibinput, libinput), nix.app(nix.sel(lib, "optional"), withGtk3, gtk3)))), nix.concat(nix.app(nix.sel(lib, "optionals"), developerBuild, nix.thunk(() => [gdb])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(cups, null)), nix.thunk(() => [cups])), nix.concat(nix.app(nix.sel(lib, "optionals"), mysqlSupport, nix.thunk(() => [libmysqlclient])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(libpq, null)), nix.thunk(() => [libpq])))))))),
       nativeBuildInputs: nix.thunk(() => nix.concat([bison, flex, gperf, lndir, perl, pkg_config, which], nix.concat(nix.app(nix.sel(lib, "optionals"), mysqlSupport, nix.thunk(() => [libmysqlclient])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcbuild]))))),
     }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]),
       }))), nix.update({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       propagatedNativeBuildInputs: nix.thunk(() => [lndir]),
       strictDeps: true,
       propagatedSandboxProfile: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "(allow file-read* (subpath \"/usr/share/icu\"))\n")),
@@ -246,7 +246,7 @@ find . -name '.qmake.conf' | while read conf; do
 done
 `),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error=sign-compare"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ["-Wno-warn=free-nonheap-object", "-Wno-free-nonheap-object", "-w"])), nix.concat([
             nix.thunk(() => nix.str`-DNIXPKGS_QTCOMPOSE="${nix.sel(libx11, "out")}/share/X11/locale"`),
             nix.thunk(() => nix.str`-DLIBRESOLV_SO="${nix.sel(stdenv, "cc", "libc", "out")}/lib/libresolv"`),
@@ -258,12 +258,12 @@ done
               nix.thunk(() => nix.str`-DNIXPKGS_QGTK3_GIO_EXTRA_MODULES="${nix.sel(dconf, "lib")}/lib/gio/modules"`),
             ])), nix.app(nix.sel(lib, "optionals"), decryptSslTraffic, nix.thunk(() => ["-DQT_DECRYPT_SSL_TRAFFIC"]))))))))))),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           NIX_CFLAGS_COMPILE_FOR_BUILD: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-warn=free-nonheap-object", "-Wno-free-nonheap-object", "-w"]))),
-        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(libpq, null)), nix.thunk(() => ({ __proto__: pos$5, PSQL_LIBS: nix.thunk(() => nix.str`-L${libpq}/lib -lpq`) })))))),
+        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(libpq, null)), nix.thunk(() => ({ [nix.POS]: pos$5, PSQL_LIBS: nix.thunk(() => nix.str`-L${libpq}/lib -lpq`) })))))),
       prefixKey: "-prefix ",
-    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ({ __proto__: pos$7, configurePlatforms: [] }))), {
-      __proto__: pos$14,
+    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ({ [nix.POS]: pos$7, configurePlatforms: [] }))), {
+      [nix.POS]: pos$14,
       configureFlags: nix.thunk(() => nix.concat([
         "-plugindir",
         nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${qtPluginPrefix}`),
@@ -381,10 +381,10 @@ sed -i "$dev/lib/pkgconfig/Qt5Core.pc" \\
       dontStrip: debugSymbols,
       setupHook: nix.thunk(() => (() => {
         const hook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             name: "qtbase5-setup-hook",
             substitutions: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               qtPluginPrefix: qtPluginPrefix,
               qtQmlPrefix: qtQmlPrefix,
               qtDocPrefix: qtDocPrefix,
@@ -392,23 +392,23 @@ sed -i "$dev/lib/pkgconfig/Qt5Core.pc" \\
               fix_qt_module_paths: fix_qt_module_paths,
               debug: debugSymbols,
             })),
-            meta: nix.thunk(() => ({ __proto__: pos$9, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$9, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })), nix.path(here, "../hooks/qtbase-setup-hook.sh")));
         return nix.str`${hook}/nix-support/setup-hook`;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         qtPluginPrefix: qtPluginPrefix,
         qtQmlPrefix: qtQmlPrefix,
         qtDocPrefix: qtDocPrefix,
         tests: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         homepage: "https://www.qt.io/",
         description: "Cross-platform application framework for C++",
         license: nix.thunk(() => (() => {

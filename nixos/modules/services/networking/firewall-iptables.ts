@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(config, "boot", "kernelPackages"));
   const kernel = nix.thunk(() => nix.attr(from, "kernel"));
   const kernelHasRPFilter = nix.thunk(() => (nix.asBool(nix.app(nix.selOr(kernel, () => (x) => false, "config", "isEnabled"), "IP_NF_MATCH_RPFILTER")) || nix.asBool(nix.selOr(kernel, () => false, "features", "netfilterRPFilter"))));
-  const helpers = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./helpers.nix")), nix.thunk(() => ({ __proto__: pos$1, config: config, lib: lib }))));
+  const helpers = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./helpers.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, config: config, lib: lib }))));
   const writeShScript = (name) => (text) => (() => {
     const dir = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), name, nix.thunk(() => nix.str`#! ${nix.sel(pkgs, "runtimeShell")} -e
 ${text}
@@ -175,22 +175,22 @@ else
 fi
 `)));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       networking: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         firewall: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           extraCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "iptables -A INPUT -p icmp -j ACCEPT",
               description: "Additional shell commands executed as part of the firewall\ninitialisation script.  These are executed just before the\nfinal \"reject\" firewall rule is added, so they can be used\nto allow packets that would otherwise be refused.\n\nThis option only works with the iptables based firewall.\n",
             })))),
           extraStopCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "iptables -P INPUT ACCEPT",
@@ -200,31 +200,31 @@ fi
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.eq(nix.sel(cfg, "backend"), "iptables")))), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "checkReversePath"), false)) || nix.asBool(kernelHasRPFilter))),
             message: "This kernel does not support rpfilter",
           })),
         ]),
         networking: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           firewall: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             checkReversePath: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(kernelHasRPFilter)), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nixos-firewall-tool"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             firewall: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Firewall",
               wantedBy: nix.thunk(() => ["sysinit.target"]),
               wants: nix.thunk(() => ["network-pre.target"]),
@@ -233,13 +233,13 @@ fi
               conflicts: nix.thunk(() => ["shutdown.target"]),
               path: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.sel(cfg, "extraPackages"))),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ConditionCapability: "CAP_NET_ADMIN",
                 DefaultDependencies: false,
               })),
               reloadIfChanged: true,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 ExecStart: nix.thunk(() => nix.str`@${startScript} firewall-start`),

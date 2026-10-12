@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const lzlib = nix.arg($, "lzlib");
   const wcslib = nix.arg($, "wcslib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnuastro",
       version: "0.24",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gnuastro/gnuastro-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-xOZAHu5dgWGbgtjRimRHhRs24HVBGOv1vfrHoDGU+YE=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["format"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNU astronomy utilities and library",
         homepage: "https://www.gnu.org/software/gnuastro/",
         changelog: nix.thunk(() => nix.str`https://git.savannah.gnu.org/cgit/gnuastro.git/plain/NEWS?id=gnuastro_v${nix.sel(finalAttrs, "version")}`),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "genmap",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cpockrandt",
           repo: "genmap",
           rev: nix.thunk(() => nix.str`genmap-v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "echo > benchmarks/CMakeLists.txt\n",
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 3.0.0)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ultra-fast computation of genome mappability",
         mainProgram: "genmap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

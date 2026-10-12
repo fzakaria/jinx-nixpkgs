@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const enableSDL = nix.argOr($, "enableSDL", () => true);
   const SDL = nix.arg($, "SDL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "directfb",
       version: "1.7.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deniskropp",
           repo: "DirectFB",
           rev: nix.thunk(() => nix.str`DIRECTFB_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -48,22 +48,22 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/deniskropp/DirectFB/commit/3a236241bbec3f15b012b6f0dbe94353d8094557.patch",
             sha256: "0rj3gv0zlb225sqjz04p4yagy4xacf3210aa8vra8i1f0fv0w4kw",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://git.alpinelinux.org/aports/plain/community/directfb/0001-directfb-fix-musl-compile.patch?id=f8158258493fc0c3eb5de2302e40f4bc44ecfb09",
             sha256: "sha256-hmwzbaXu30ZkAqUn1NmvtlJkM6ctddKcO4hxh+1LSS4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://git.alpinelinux.org/aports/plain/community/directfb/0002-Fix-musl-PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP-comp.patch?id=f8158258493fc0c3eb5de2302e40f4bc44ecfb09",
             sha256: "sha256-j3+mcP6hV9LKuba1GOdcM1cZfmXuJtRgx4vE484jIns=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://git.alpinelinux.org/aports/plain/community/directfb/fix-missing-basename.patch?id=bc049ae1bcf9ef3f66cd12a6fbb7ac4e917764b1",
             hash: "sha256-BX/C8+nh2fovHx8vKXFqKzBtfiTKUcW2BUCsaDIhodc=",
           })))),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.add("# https://github.com/deniskropp/DirectFB/blob/master/src/core/Makefile.am#L15\n# BUILDTIME is embedded in the result\n# if switching to cmake then a similar substitution has to be done\nsubstituteInPlace src/core/Makefile.am \\\n  --replace '`date -u \"+%Y-%m-%d %H:%M\"`' \"`date -u \\\"+%Y-%m-%d %H:%M\\\" --date=\"@${SOURCE_DATE_EPOCH}\"`\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), "# Specifically patch out two drivers that have build errors with musl libc,\n# while leaving the rest of the default selection enabled\nsubstituteInPlace configure.in \\\n  --replace checkfor_lirc={yes,no} \\\n  --replace checkfor_matrox={yes,no}\n"))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, perl, pkg_config, flux]),
       buildInputs: nix.thunk(() => nix.concat([zlib, libjpeg, freetype, giflib, libpng], nix.concat(nix.app(nix.sel(lib, "optional"), enableSDL, SDL), nix.app(nix.sel(lib, "optionals"), enableX11, nix.thunk(() => [xorgproto, libx11, libxext, libxrender]))))),
-      env: nix.thunk(() => nix.update({ __proto__: pos$6, NIX_LDFLAGS: "-lgcc_s" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ __proto__: pos$7, NIX_CFLAGS_COMPILE: "-fpermissive" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$6, NIX_LDFLAGS: "-lgcc_s" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$7, NIX_CFLAGS_COMPILE: "-fpermissive" }))))),
       configureFlags: nix.thunk(() => nix.concat([
         "--enable-sdl",
         "--enable-zlib",
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))), "--with-smooth-scaling"), nix.app(nix.sel(lib, "optional"), enableX11, "--enable-x11")))),
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Graphics and input library designed with embedded systems in mind",
         longDescription: "DirectFB is a thin library that provides hardware graphics acceleration,\ninput device handling and abstraction, integrated windowing system with\nsupport for translucent windows and multiple display layers, not only on\ntop of the Linux Framebuffer Device. It is a complete hardware\nabstraction layer with software fallbacks for every graphics operation\nthat is not supported by the underlying hardware. DirectFB adds graphical\npower to embedded systems and sets a new standard for graphics under\nLinux.\n",
         homepage: "https://github.com/deniskropp/DirectFB",

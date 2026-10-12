@@ -29,18 +29,18 @@ export default nix.lambda((args) => (() => {
   const settings = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "filterAttrs"), (n) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "settings"))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "rebuilderd.conf", settings));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         rebuilderd: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(mkEnableOption, "rebuilderd service for independent verification of binary packages")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "rebuilderd", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$1, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
+              [nix.POS]: pos$2,
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$1, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
               default: nix.thunk(() => ({})),
               description: "Configuration for rebuilderd (rebuilderd.conf)\n",
             })))),
@@ -48,19 +48,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             rebuilderd: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Independent verification of binary packages",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              environment: nix.thunk(() => ({ __proto__: pos$6, REBUILDERD_COOKIE_PATH: "/var/lib/rebuilderd/auth-cookie" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$6, REBUILDERD_COOKIE_PATH: "/var/lib/rebuilderd/auth-cookie" })),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/rebuilderd --config ${configFile}`),
                 DynamicUser: true,
                 StateDirectory: "rebuilderd",

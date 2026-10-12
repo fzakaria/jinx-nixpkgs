@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
   const mp4v2 = nix.argOr($, "mp4v2", () => null);
   nix.assert_((!nix.asBool(samplerateSupport) || nix.asBool(jackSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/cm/cmus/package.nix:71:1");
   const ffmpeg = ffmpeg_7;
-  const mkFlag = (b) => (f) => (dep) => (nix.asBool(b) ? { __proto__: pos$1, flags: nix.thunk(() => [f]), deps: nix.thunk(() => [dep]) } : { __proto__: pos$2, flags: [], deps: [] });
+  const mkFlag = (b) => (f) => (dep) => (nix.asBool(b) ? { [nix.POS]: pos$1, flags: nix.thunk(() => [f]), deps: nix.thunk(() => [dep]) } : { [nix.POS]: pos$2, flags: [], deps: [] });
   const opts = nix.thunk(() => [
     nix.thunk(() => nix.app(mkFlag, alsaSupport, "CONFIG_ALSA=y", alsa_lib)),
     nix.thunk(() => nix.app(mkFlag, aoSupport, "CONFIG_AO=y", libao)),
@@ -94,11 +94,11 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.app(mkFlag, aacSupport, "CONFIG_AAC=y", faad2)),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cmus",
       version: "2.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "cmus",
           repo: "cmus",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatMap"), (a) => nix.sel(a, "flags"), opts))),
       makeFlags: nix.thunk(() => ["LD=$(CC)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Small, fast and powerful console music player for Linux and *BSD",
         homepage: "https://cmus.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

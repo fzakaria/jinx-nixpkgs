@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const libnfc = nix.arg($, "libnfc");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "zaparoo",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ZaparooProject",
           repo: "zaparoo-core",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-UTMYZ8la4VsxIVjcRg8l1yGy52CRjv/6WZQgHJ+oFdE=",
       webUIVersion: "1.8.0",
       webUI: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/ZaparooProject/zaparoo-app/releases/download/v${nix.sel(finalAttrs, "webUIVersion")}/zaparoo_app-web-${nix.sel(finalAttrs, "webUIVersion")}.tar.gz`),
           hash: "sha256-77QyMFbx73vaKIRDCnhdqDXBb8MfQSsCWghe3XEL0tk=",
         })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         "-s",
         nix.thunk(() => nix.str`-X github.com/ZaparooProject/zaparoo-core/pkg/config.AppVersion=${nix.sel(finalAttrs, "version")}`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: 1n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libusb1, libnfc]),
       postPatch: nix.thunk(() => nix.str`mkdir -p pkg/assets/_app/dist
@@ -55,11 +55,11 @@ tar xf ${nix.sel(finalAttrs, "webUI")} -C pkg/assets/_app/dist/
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Launch games and cores on your MiSTer, emulators and handhelds using NFC tags or cards",
         homepage: "https://zaparoo.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/ZaparooProject/zaparoo-core/releases/tag/v${nix.sel(finalAttrs, "version")}`),

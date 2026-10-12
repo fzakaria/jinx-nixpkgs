@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clipboard.yazi",
       version: "0-unstable-2026-09-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "XYenon",
           repo: "clipboard.yazi",
           rev: "a2655fde94dbbea56aa0230a300ab64503df53f4",
           hash: "sha256-Jh8mZQjU5bzo9yly36M6b3Jfz4bIUdMSIS43VM/i/j4=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Clipboard sync plugin for Yazi that copies yanked file paths to the system clipboard",
         homepage: "https://github.com/XYenon/clipboard.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

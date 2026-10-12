@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const dpkg = nix.arg($, "dpkg");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jitsi-meet-prosody",
       version: "1.0.9365",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.jitsi.org/stable/jitsi-meet-prosody_${nix.sel(finalAttrs, "version")}-1_all.deb`),
           hash: "sha256-tgRYD4Ip+QAbOKCFTXVbou5Qv+Us+pNtzi5xlT/bFIc=",
         })))),
@@ -29,15 +29,15 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\nmkdir -p $out/share\nmv usr/share/jitsi-meet/prosody-plugins $out/share/\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "single-node-smoke-test": nix.thunk(() => nix.sel(nixosTests, "jitsi-meet")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prosody configuration for Jitsi Meet",
         longDescription: "This package contains configuration for Prosody to be used with Jitsi Meet.\n",
         homepage: "https://github.com/jitsi/jitsi-meet/",

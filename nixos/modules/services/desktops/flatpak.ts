@@ -33,34 +33,34 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "flatpak"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       doc: nix.path(here, "./flatpak.md"),
       maintainers: nix.thunk(() => nix.sel(pkgs, "flatpak", "meta", "maintainers")),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         flatpak: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "flatpak")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "flatpak", nix.thunk(() => ({})))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             assertion: nix.thunk(() => nix.eq(nix.sel(config, "xdg", "portal", "enable"), true)),
             message: "To use Flatpak you must enable XDG Desktop Portals with xdg.portal.enable.",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(cfg, "package")),
             nix.thunk(() => nix.sel(pkgs, "fuse3")),
@@ -68,44 +68,44 @@ export default nix.lambda((args) => (() => {
           profiles: nix.thunk(() => ["$HOME/.local/share/flatpak/exports", "/var/lib/flatpak/exports"]),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$8,
-          fuse: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+          [nix.POS]: pos$8,
+          fuse: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$10,
-          polkit: nix.thunk(() => ({ __proto__: pos$9, enable: true })),
+          [nix.POS]: pos$10,
+          polkit: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
         })),
         fonts: nix.thunk(() => ({
-          __proto__: pos$12,
-          fontDir: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+          [nix.POS]: pos$12,
+          fontDir: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           dbus: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           users: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             flatpak: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Flatpak system helper",
               group: "flatpak",
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$19, flatpak: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$19, flatpak: nix.thunk(() => ({})) })),
         })),
       })))),
   };

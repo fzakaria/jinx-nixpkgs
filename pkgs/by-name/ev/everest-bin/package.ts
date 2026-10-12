@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const version = "6580";
   const phome = "$out/lib/Celeste";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/EverestAPI/Everest/releases/download/stable-1.6580.0/main.zip",
           extension: "zip",
           hash: "sha256-O2/VfrP53HtA7ajsrlfalAsvYvjY4ABCYWCOwUKYio0=",
@@ -39,7 +39,7 @@ cp -r * ${phome}
       postFixup: nix.thunk(() => nix.str`autoPatchelf ${phome}/MiniInstaller-linux
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Celeste mod loader (don't install; use celestegame instead)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

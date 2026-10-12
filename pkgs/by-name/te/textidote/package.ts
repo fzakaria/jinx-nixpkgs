@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const version = "0.8.3";
   const jdk = jdk11;
   const populated_src = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "textidote-populated-src",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sylvainhalle",
           repo: "textidote",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
       outputHash: "sha256-LrFClt8zN/ma42+Yoqwoy03TCuC3JfAeb02vehkljBo=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       src: populated_src,
       nativeBuildInputs: nix.thunk(() => [ant, makeWrapper, stripJavaArchivesHook]),
       buildInputs: nix.thunk(() => [jdk]),
-      env: nix.thunk(() => ({ __proto__: pos$3, ANT_OPTS: "-Dfile.encoding=utf8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ANT_OPTS: "-Dfile.encoding=utf8" })),
       buildPhase: "runHook preBuild\n\nant jar\n\nrunHook postBuild\n",
       doCheck: true,
       checkPhase: "runHook preCheck\n\nant test\n\nrunHook postCheck\n",
@@ -64,11 +64,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jdk)} $out/bin/textidote \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`TeXtidote v${nix.sel(finalAttrs, "version")}`),
             })))),
@@ -77,7 +77,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jdk, "meta"));
         return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://sylvainhalle.github.io/textidote/",
         downloadPage: "https://github.com/sylvainhalle/textidote/releases",
         description: "Correction tool for LaTeX documents",

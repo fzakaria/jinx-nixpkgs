@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.9.8",
       pyproject: true,
       pname: "canto-daemon",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "themoken",
           repo: "canto-next",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["canto_next"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Daemon for the canto Atom/RSS feed reader",
         longDescription: "Canto is an Atom/RSS feed reader for the console that is meant to be\nquick, concise, and colorful. It's meant to allow you to crank through\nfeeds like you've never cranked before by providing a minimal, yet\ninformation packed interface. No navigating menus. No dense blocks of\nunreadable white text. An interface with almost infinite customization\nand extensibility using the excellent Python programming language.\n",
         homepage: "https://codezen.org/canto-ng/",

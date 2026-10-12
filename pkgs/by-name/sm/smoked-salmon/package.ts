@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const sox = nix.arg($, "sox");
   const runtimeDeps = nix.thunk(() => [curl, flac, lame, mp3val, sox]);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "smoked-salmon",
       version: "0.10.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smokin-salmon",
           repo: "smoked-salmon",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,9 +76,9 @@ export default nix.lambda((args) => (() => {
         ":",
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "runtimeDeps")))),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, runtimeDeps: runtimeDeps })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, runtimeDeps: runtimeDeps })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Toolkit for checking, editing and uploading music. Catered to Gazelle-based trackers",
         homepage: "https://github.com/smokin-salmon/smoked-salmon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

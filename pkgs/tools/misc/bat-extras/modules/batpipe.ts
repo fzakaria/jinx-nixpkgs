@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const less = nix.arg($, "less");
   const procps = nix.arg($, "procps");
   return nix.app(buildBatExtrasPkg, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "batpipe",
       dependencies: nix.thunk(() => [less, procps]),
-      shellInit: nix.thunk(() => ({ __proto__: pos$1, flags: [] })),
+      shellInit: nix.thunk(() => ({ [nix.POS]: pos$1, flags: [] })),
       patches: nix.thunk(() => nix.concat([nix.path(here, "../patches/batpipe-skip-outdated-test.patch")], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.path(here, "../patches/batpipe-skip-detection-tests.patch")])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Less (and soon bat) preprocessor for viewing more types of files in the terminal",
       })),
     })));

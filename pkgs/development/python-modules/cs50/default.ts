@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cs50",
           repo: "python-cs50",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [flask, packaging, sqlalchemy, sqlparse, termcolor]);
       const pythonImportsCheck = nix.thunk(() => ["cs50"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CS50 Library for Python",
         homepage: "https://github.com/cs50/python-cs50/",
         changelog: nix.thunk(() => nix.str`https://github.com/cs50/python-cs50/releases/tag/v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

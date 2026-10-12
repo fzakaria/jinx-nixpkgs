@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lsd2dsl",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nongeneric",
           repo: "lsd2dsl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/nongeneric/lsd2dsl/commit/bbda5be1b76a4a44804483d00c07d79783eceb6b.patch",
             hash: "sha256-7is83D1cMBArXVLe5TP7D7lUcwnTMeXjkJ+cbaH5JQk=",
           })))),
@@ -58,9 +58,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qt5compat")),
         nix.thunk(() => nix.sel(qt6, "qtwebengine")),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-int-conversion" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-int-conversion" })),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "lsd2dsl",
             exec: "lsd2dsl-qtgui",
             desktopName: "lsd2dsl",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
           })))))),
       installPhase: "install -Dm755 console/lsd2dsl gui/lsd2dsl-qtgui -t $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://rcebits.com/lsd2dsl/",
         description: "Lingvo dictionaries decompiler",
         longDescription: "A decompiler for ABBYY Lingvo’s proprietary dictionaries.\n",

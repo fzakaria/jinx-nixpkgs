@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const nix_update_script = nix.arg($, "nix-update-script");
   const vsix = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`vscode-js-debug-companion-${nix.sel(finalAttrs, "version")}.vsix`),
       pname: "vscode-js-debug-companion-vsix",
       version: "1.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "vscode-js-debug-companion",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-+w6s6S1Vk99ABEJyQPEZXVPj0aNt6MvrD2nPGbxrsw0=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-yirZRytdOYp7EMYIN6Yc7GC/9EFHONzarj+K/idj3pQ=",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(vscode_utils, "buildVscodeExtension"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "src"));
       return {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "vscode-js-debug-companion",
       version: nix.thunk(() => nix.attr(from, "version")),
       vscodeExtPublisher: "ms-vscode",
@@ -56,15 +56,15 @@ export default nix.lambda((args) => (() => {
       vscodeExtUniqueId: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "vscodeExtPublisher")}.${nix.sel(finalAttrs, "vscodeExtName")}`),
       src: vsix,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         vsix: nix.thunk(() => nix.sel(finalAttrs, "src")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             attrPath: "vscode-extensions.ms-vscode.js-debug-companion.vsix",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Companion extension to js-debug that provides capability for remote debugging",
         homepage: "https://github.com/microsoft/vscode-js-debug-companion",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-companion",

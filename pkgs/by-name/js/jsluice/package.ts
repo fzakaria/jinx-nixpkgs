@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jsluice",
       version: "0-unstable-2023-06-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BishopFox",
           repo: "jsluice",
           rev: "f10429e1016a9573da0157eacde8f7feb9deb8c7",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-u4E+b/vChXArovtaZ4LODaINWit86i5K4GyHLR0JSyU=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for extracting URLs, paths, secrets, and other data from JavaScript source code",
         homepage: "https://github.com/BishopFox/jsluice",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

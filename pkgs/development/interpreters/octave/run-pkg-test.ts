@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const nativeOctavePkgTestInputs = nix.arg($, "nativeOctavePkgTestInputs");
   const octavePkgTestEnv = nix.arg($, "octavePkgTestEnv");
   return (package$) => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(package$, "name")}-pkg-test`), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(nix.sel(octave, "withPackages"), (os) => [package$])),
       ], nativeOctavePkgTestInputs)),

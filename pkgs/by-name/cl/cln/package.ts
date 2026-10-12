@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
       const pname = "cln";
       const version = "1.3.7";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${nix.sel(meta, "homepage")}cln-${version}.tar.bz2`),
           sha256: "sha256-fH7YR0lYM35N9btX6lF2rQNlAEy7mLYhdlvEYGoQ2Gs=",
         }))));
       const buildInputs = nix.thunk(() => [gmp]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C/C++ library for numbers, a part of GiNaC",
         mainProgram: "pi",
         homepage: "https://www.ginac.de/CLN/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

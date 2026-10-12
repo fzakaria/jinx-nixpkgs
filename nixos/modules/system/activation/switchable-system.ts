@@ -23,24 +23,24 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["system", "switch", "enableNg"]), "This option controlled the usage of the new switch-to-configuration-ng,\nwhich is now the only switch-to-configuration implementation. This option\ncan be removed from configuration. If there are outstanding issues\npreventing you from using the new implementation, please open an issue on\nGitHub.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       system: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         switch: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to include the capability to switch configurations.\n\nDisabling this makes the system unable to be reconfigured via `nixos-rebuild`.\n\nThis is good for image based appliances where updates are handled\noutside the image. Reducing features makes the image lighter and\nslightly more secure.\n",
             })))),
           inhibitors: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
               description: "Attribute set of strings that will prevent switching into a configuration when\nthey change.\nThe switch can be manually forced on the command line if required.\n",
@@ -49,9 +49,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "system", "switch", "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         system: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           activatableSystemBuilderCommands: nix.thunk(() => nix.str`(
   source ${nix.sel(pkgs, "buildPackages", "makeWrapper")}/nix-support/setup-hook
 
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
           systemBuilderCommands: nix.thunk(() => nix.str`ln -s ${nix.sel(config, "system", "build", "inhibitSwitch")} $out/switch-inhibitors
 `),
           build: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             inhibitSwitch: nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeJSON"), "switch-inhibitors", nix.thunk(() => nix.sel(config, "system", "switch", "inhibitors")))),
           })),
           preSwitchChecks: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             switchInhibitors: nix.thunk(() => (() => {
               const jq = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "jq"))));
               const empty = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "empty-inhibitors", "{}"));
@@ -145,9 +145,9 @@ fi
         security: nix.thunk(() => (() => {
           const extraConfig = "Defaults env_keep+=NIXOS_NO_CHECK\n";
           return {
-            __proto__: pos$11,
-            sudo: nix.thunk(() => ({ __proto__: pos$9, extraConfig: extraConfig })),
-            "sudo-rs": nix.thunk(() => ({ __proto__: pos$10, extraConfig: extraConfig })),
+            [nix.POS]: pos$11,
+            sudo: nix.thunk(() => ({ [nix.POS]: pos$9, extraConfig: extraConfig })),
+            "sudo-rs": nix.thunk(() => ({ [nix.POS]: pos$10, extraConfig: extraConfig })),
           };
         })()),
       })))),

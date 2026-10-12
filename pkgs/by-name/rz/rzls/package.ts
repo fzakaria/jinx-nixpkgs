@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "sdk_8_0")),
         ])));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       packages: nix.thunk(() => nix.attr(from, "packages")),
       targetPackages: nix.thunk(() => nix.attr(from, "targetPackages")),
     };
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   })());
   const dotnet_runtime = nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_9_0"));
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       "dotnet-sdk": dotnet_sdk,
       "dotnet-runtime": dotnet_runtime,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "dotnet",
           repo: "razor",
           rev: "763a361771dc544744cc5c19ae32d4878b4e0892",
@@ -52,9 +52,9 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Upstream uses rollForward = latestPatch, which pins to an *exact* .NET SDK version.\njq '.sdk.rollForward = \"latestMinor\"' < global.json > global.json.tmp\nmv global.json.tmp global.json\n",
       dotnetFlags: nix.thunk(() => ["-p:EnableWindowsTargeting=false", "-p:PublishReadyToRun=false"]),
       dotnetInstallFlags: nix.thunk(() => ["-p:InformationalVersion=$version"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/dotnet/razor",
         description: "Razor language server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

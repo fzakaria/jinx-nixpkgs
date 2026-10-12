@@ -17,27 +17,27 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "galleta",
       version: "20040505_1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/odessa/Galleta/${nix.sel(finalAttrs, "version")}/galleta_${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-tc5XLToyQZutb51ZoBlGWXDpsSqdJ89bjzJwY8kRncA=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/pkg-security-team/galleta/-/raw/998470d8151b2f3a4bec71ae340c30f252d03a9b/debian/patches/10_fix-gcc-warnings.patch",
             hash: "sha256-b8VJGSAoSnWteyUbC2Ue3tqkpho7gyn+E/yrN2O3G9c=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://salsa.debian.org/pkg-security-team/galleta/-/raw/553c237a34995d9f7fc0383ee547d4f5cd004d5b/debian/patches/20_fix-makefile.patch",
             hash: "sha256-+rnoTrlXtWl9zmZlkvqbJ+YlIXFCpKOqvxIkN8xxtsg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://salsa.debian.org/pkg-security-team/galleta/-/raw/f0f51a5a9e5adc0279f78872461fa57ee90d6842/debian/patches/30-fix-FTBS-cross-compilation.patch",
             hash: "sha256-ZwymEVJy7KvLFvNOcVZqDtJPxEcpQBVg+u+G+kSDZBo=",
           })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp src/galleta $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Examine the contents of the IE's cookie files for forensic purposes",
         mainProgram: "galleta",
         homepage: "https://sourceforge.net/projects/odessa/files/Galleta",

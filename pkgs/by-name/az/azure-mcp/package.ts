@@ -22,24 +22,24 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const version = "3.0.0-beta.33";
   const srcs = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/microsoft/mcp/releases/download/Azure.Mcp.Server-${version}/Azure.Mcp.Server-linux-x64-native.zip`),
       hash: "sha256-Zm55CQkPGvdHJDOqeh9A5wBX4HNXg/h2rhkfGRqy0Zk=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://github.com/microsoft/mcp/releases/download/Azure.Mcp.Server-${version}/Azure.Mcp.Server-linux-arm64.zip`),
       hash: "sha256-UY4cYtJE74+dWpOjq9ddhhjCPRavCwvA+VqFLabIV1o=",
     })),
     "x86_64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://github.com/microsoft/mcp/releases/download/Azure.Mcp.Server-${version}/Azure.Mcp.Server-osx-x64.zip`),
       hash: "sha256-aLGpa+DZBKzPlAqMDv3vg7ioN8+DL7AsyhsQvVRywnw=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: nix.thunk(() => nix.str`https://github.com/microsoft/mcp/releases/download/Azure.Mcp.Server-${version}/Azure.Mcp.Server-osx-arm64.zip`),
       hash: "sha256-HYvRa3/G+ZJ70w8RKKIoYX9UlOorKwjMheAvHYC8uss=",
     })),
@@ -48,14 +48,14 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.selOr(srcs, () => nix.force(unavailable), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
       return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       url: nix.thunk(() => nix.attr(from, "url")),
       hash: nix.thunk(() => nix.attr(from, "hash")),
       stripRoot: false,
     };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "azure-mcp",
       version: version,
       src: src,
@@ -75,7 +75,7 @@ wrapProgram $out/bin/azure-mcp \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Model Context Protocol server for Azure services",
         longDescription: "The Azure MCP Server implements the Model Context Protocol (MCP)\nspecification to create a seamless connection between AI agents and\nAzure services. It provides 321+ tools for interacting with Azure\nresources including storage, compute, databases, and more.\n",
         homepage: "https://github.com/microsoft/mcp",

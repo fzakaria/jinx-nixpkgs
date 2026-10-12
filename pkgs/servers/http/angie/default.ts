@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "angie";
       const version = "1.12.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.angie.software/files/angie-${version}.tar.gz`),
           hash: "sha256-TwpRsd6N2fCSSLKEW7+k308DSHe/kvYF5Jn9f/8Jx3w=",
         }))));
@@ -29,16 +29,16 @@ export default nix.lambda((args) => (() => {
       const preInstall = "if [[ -e man/angie.8 ]]; then\n  installManPage man/angie.8\nfi\n";
       const postInstall = "ln -s $out/bin/nginx $out/bin/angie\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           angie: nix.thunk(() => nix.sel(nixosTests, "nginx-variants", "angie")),
           "angie-api": nix.thunk(() => nix.sel(nixosTests, "angie-api")),
           "angie-http3": nix.thunk(() => nix.sel(nixosTests, "nginx-http3", "angie")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Angie is an efficient, powerful, and scalable web server that was forked from nginx",
         homepage: "https://en.angie.software/",
         mainProgram: "angie",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

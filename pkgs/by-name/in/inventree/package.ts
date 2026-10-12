@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const version = "1.5.6";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "inventree",
       repo: "inventree",
       tag: nix.thunk(() => nix.str`${version}`),
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const frontend = nix.thunk(() => (() => {
     const frontendSource = nix.thunk(() => nix.add(src, "/src/frontend"));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "inventree-frontend",
         version: version,
         src: frontendSource,
         yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
             hash: "sha256-iJfu2eo8anGDGoPDx68+LyFI6/bmaUms5kkiMpuEC+Y=",
           })))),
@@ -215,7 +215,7 @@ runHook postInstall
 `;
       })());
       const doCheck = true;
-      const env = nix.thunk(() => ({ __proto__: pos$4, DJANGO_SETTINGS_MODULE: "InvenTree.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$4, DJANGO_SETTINGS_MODULE: "InvenTree.settings" }));
       const checkPhase = nix.thunk(() => nix.str`runHook preCheck
 
 tmpDir=$(mktemp -d)
@@ -266,14 +266,14 @@ runHook postCheck
       const passthru = nix.thunk(() => (() => {
         const pythonPath = nix.thunk(() => nix.app(nix.sel(python3Packages, "makePythonPath"), dependencies));
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           frontend: frontend,
           pythonPath: pythonPath,
-          tests: nix.thunk(() => ({ __proto__: pos$5, nixos: nix.thunk(() => nix.sel(nixosTests, "inventree")) })),
+          tests: nix.thunk(() => ({ [nix.POS]: pos$5, nixos: nix.thunk(() => nix.sel(nixosTests, "inventree")) })),
         };
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Open Source Inventory Management System",
         homepage: "https://inventree.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/inventree/inventree/blob/${nix.sel(src_1, "tag")}/CHANGELOG.md`),
@@ -286,7 +286,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         pyproject,
         version: version_1,

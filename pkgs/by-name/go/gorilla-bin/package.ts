@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxscrnsaver = nix.arg($, "libxscrnsaver");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gorilla-bin",
       version: "1.5.3.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "gorilla1537_64.bin",
           url: "https://gorilla.dp100.com/downloads/gorilla1537_64.bin",
           sha256: "19ir6x4c01825hpx2wbbcxkk70ymwbw4j03v8b2xc13ayylwzx0r",
@@ -48,7 +48,7 @@ makeWrapper "$out/opt/password-gorilla/gorilla-${nix.sel(finalAttrs, "version")}
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Password Gorilla is a Tk based password manager",
         mainProgram: "gorilla",
         homepage: "https://github.com/zdia/gorilla/wiki",

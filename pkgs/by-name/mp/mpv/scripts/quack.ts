@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const buildLua = nix.arg($, "buildLua");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpv-quack",
       version: "0-unstable-2020-05-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CounterPillow",
           repo: "mpv-quack",
           rev: "1c87f36f9726d462dd112188c04be54d85692cf3",
           hash: "sha256-dEnJbS8RJoAxpKINdoMHN4l7vpEdf7+C5JVWpK0VXMw=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reduce audio volume after seeking",
         longDescription: "quack is an mpv script to temporarily reduce the volume after a seek,\nin order to avoid loud noises when scrubbing through a movie.\n\nThe volume is linearly increased back up to its original level.\nRepeated seeks before the transition is done work as well.\n",
         homepage: "https://github.com/CounterPillow/mpv-quack",

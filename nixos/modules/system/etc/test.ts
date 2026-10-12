@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         imports: nix.thunk(() => [pkgsModule, nix.path(here, "../etc/etc.nix")]),
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           etc: nix.thunk(() => ({
-            __proto__: pos$3,
-            passwd: nix.thunk(() => ({ __proto__: pos$1, text: passwdText })),
-            hosts: nix.thunk(() => ({ __proto__: pos$2, text: hostsText, mode: "0751" })),
+            [nix.POS]: pos$3,
+            passwd: nix.thunk(() => ({ [nix.POS]: pos$1, text: passwdText })),
+            hosts: nix.thunk(() => ({ [nix.POS]: pos$2, text: hostsText, mode: "0751" })),
           })),
         })),
       };
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const passwdText = "root:x:0:0:System administrator:/root:/run/current-system/sw/bin/bash\n";
   const hostsText = "127.0.0.1 localhost\n::1 localhost\n# testing...\n";
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       "test-etc-vm": nix.thunk(() => nix.app(nix.sel(vmTools, "runInLinuxVM"), nix.thunk(() => nix.app(runCommand, "test-etc-vm", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p /etc
 ${nix.sel(node, "config", "system", "build", "etcActivationCommands")}
 set -x
@@ -55,7 +55,7 @@ set +x
 touch $out
 `))))),
       "test-etc-fakeroot": nix.thunk(() => nix.app(runCommand, "test-etc", nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           nativeBuildInputs: nix.thunk(() => [fakeroot, fakechroot, coreutils, util_linux]),
           fakeRootCommands: nix.thunk(() => nix.str`mkdir -p /etc
 ${nix.sel(node, "config", "system", "build", "etcActivationCommands")}

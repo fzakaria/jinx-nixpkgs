@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sn-pro";
       const version = "1.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "supernotes",
           repo: "sn-pro",
           rev: version,
@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "runHook preInstall\n\ninstall -Dm644 -t $out/share/fonts/otf exports/SNPro/*.otf\ninstall -Dm644 -t $out/share/fonts/woff2 exports/SNPro/*.woff2\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SN Pro Font Family",
         homepage: "https://github.com/supernotes/sn-pro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

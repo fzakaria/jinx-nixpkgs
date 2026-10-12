@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const fetchNpmDeps = nix.arg($, "fetchNpmDeps");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "go-hass-agent",
       version: "14.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joshuar",
           repo: "go-hass-agent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-QhQur0aHZBXZ3FUDyJzWz7sTY2ucFOd8jy1ApSdw0NA=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-M0C+iSVIjbOnBW+OFtjwUa6npa3jJSWcMHphASqCuPs=",
         })))),
       overrideModAttrs: (oldAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (drv) => !nix.eq(drv, nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(oldAttrs, "nativeBuildInputs")))),
         preBuild: "",
       }),
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => ["assets/start-go-hass-agent.desktop"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Home Assistant native app for desktop/laptop devices",
         mainProgram: "go-hass-agent",
         longDescription: "Go Hass Agent is an application to expose sensors, controls, and events\nfrom a device to Home Assistant. You can think of it as something similar\nto the Home Assistant companion app for mobile devices, but for your\ndesktop, server, Raspberry Pi, Arduino, toaster, whatever. If it can run\nGo and Linux, it can run Go Hass Agent!\n\nOut of the box, Go Hass Agent will report lots of details about the system\nit is running on. You can extend it with additional sensors and controls\nby hooking it up to MQTT. You can extend it even further with your own\ncustom sensors and controls with scripts/programs.\n\nYou can then use these sensors, controls, or events in any automations and\ndashboards, just like the companion app or any other “thing” you've added\ninto Home Assistant.\n",

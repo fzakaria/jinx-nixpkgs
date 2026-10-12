@@ -56,12 +56,12 @@ export default nix.lambda((args) => (() => {
     zstd,
   ], nix.concat(nix.app(nix.sel(lib, "optional"), arjSupport, arj), nix.concat(nix.app(nix.sel(lib, "optional"), unrarSupport, unrar), nix.app(nix.sel(lib, "optional"), unzipSupport, unzip)))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dtrx",
       version: "8.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dtrx-py",
           repo: "dtrx",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,15 +76,15 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\ntests/compare.py '^(?!download and extract$)(?!password zip noninteractive$).*'\nrunHook postCheck\n",
       doCheck: nix.thunk(() => (nix.asBool((nix.asBool(arjSupport) && nix.asBool(unrarSupport))) && nix.asBool(unzipSupport))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          "dtrx-full": nix.thunk(() => nix.app(nix.sel(dtrx, "override"), nix.thunk(() => ({ __proto__: pos$2, arjSupport: true, unrarSupport: true, unzipSupport: true })))),
+          [nix.POS]: pos$3,
+          "dtrx-full": nix.thunk(() => nix.app(nix.sel(dtrx, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, arjSupport: true, unrarSupport: true, unzipSupport: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Do The Right Extraction: A tool for taking the hassle out of extracting archives",
         homepage: "https://github.com/dtrx-py/dtrx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

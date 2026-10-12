@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const kmod = nix.arg($, "kmod");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "zram-generator",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "systemd",
           repo: "zram-generator",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-aGBvvjGKZ5biruwmJ0ITakqPhTWs9hspRIE9QirqstA=",
         })))),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
       postPatch: nix.thunk(() => nix.str`cp ${nix.path(here, "./Cargo.lock")} Cargo.lock
 substituteInPlace Makefile \\
   --replace-fail 'target/$(BUILDTYPE)' 'target/${nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")}/$(BUILDTYPE)'
@@ -55,15 +55,15 @@ substituteInPlace src/config.rs \\
         "SYSTEMD_SYSTEM_GENERATOR_DIR=$(out)/lib/systemd/system-generators",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "zram-generator": nix.thunk(() => nix.attr(nixosTests, "zram-generator")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/systemd/zram-generator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Systemd unit generator for zram devices",

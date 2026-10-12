@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
       const pname = "cubelify";
       const version = "1.25.14";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://storage.cubelify.com/overlay/v1/Cubelify%20Overlay-${version}.AppImage`),
           hash: "sha512-R2J1u+XAeOwNe6lzsntXzIU0wk7UEXa4QBncpMnc3qgp/uYzaV+rBbk5+NyL+GBjLEVPkUDoMjoL2K2iCZpdYw==",
         }))));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const extraInstallCommands = nix.thunk(() => (() => {
-        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
         return nix.str`wrapProgram $out/bin/cubelify \\
   --add-flags "\\\${NIXOS_OZONE_WL:+\\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
 install -Dm444 ${contents}/cubelify-overlay.desktop -t $out/share/applications/
@@ -34,9 +34,9 @@ substituteInPlace $out/share/applications/cubelify-overlay.desktop \\
   --replace-fail 'Exec=AppRun --no-sandbox %U' 'Exec=cubelify'
 `;
       })());
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Powerful and feature-rich Hypixel anti-sniping stats overlay",
         homepage: "https://cubelify.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -48,7 +48,7 @@ substituteInPlace $out/share/applications/cubelify-overlay.desktop \\
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

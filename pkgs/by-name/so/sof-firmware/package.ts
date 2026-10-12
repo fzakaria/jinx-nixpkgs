@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sof-firmware",
       version: "2025.12.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/thesofproject/sof-bin/releases/download/v${nix.sel(finalAttrs, "version")}/sof-bin-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Uz9j46bZTAnOBaeCZXtnX6aD/yB4fAl5Imz1Y+x59Rc=",
         })))),
       dontFixup: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/firmware/intel\n# copy sof and sof-* recursively, preserving symlinks\ncp -R -d sof{,-*} $out/lib/firmware/intel/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/thesofproject/sof-bin/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Sound Open Firmware",
         homepage: "https://www.sofproject.org/",

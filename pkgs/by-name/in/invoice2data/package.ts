@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const tesseract5 = nix.arg($, "tesseract5");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "invoice2data",
       version: "1.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "invoice-x",
           repo: "invoice2data",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       pythonImportsCheck: nix.thunk(() => ["invoice2data"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Data extractor for PDF invoices",
         mainProgram: "invoice2data",
         homepage: "https://github.com/invoice-x/invoice2data",

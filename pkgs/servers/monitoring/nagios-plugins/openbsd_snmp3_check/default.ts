@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.55";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alexander-naumov",
           repo: "openbsd_snmp3_check",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,15 +31,15 @@ export default nix.lambda((args) => (() => {
         }))));
       const postInstall = "install -Dm755 openbsd_snmp3.py $out/bin/openbsd_snmp3.py\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: openbsd_snmp3_check })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: openbsd_snmp3_check })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/alexander-naumov/openbsd_snmp3_check/releases/tag/v${version}`),
         description: "SNMP v3 check for OpenBSD systems state monitoring",
         homepage: "https://github.com/alexander-naumov/openbsd_snmp3_check",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "openbsd_snmp3.py",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gobi_loader",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.codon.org.uk/~mjg59/gobi_loader/download/gobi_loader-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0jkmpqkiddpxrzl2s9s3kh64ha48m00nn53f82m1rphw8maw5gbq",
         })))),
@@ -29,7 +29,7 @@ substituteInPlace 60-gobi.rules --replace "/lib/firmware" "/run/current-system/f
       doInstallCheck: true,
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Firmware loader for Qualcomm Gobi USB chipsets",
         homepage: "https://www.codon.org.uk/~mjg59/gobi_loader/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const fpath = nix.arg($, "fpath");
   const re = nix.arg($, "re");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "testo-util",
       version: nix.thunk(() => nix.attr(testo, "version")),
       src: nix.thunk(() => nix.attr(testo, "src")),
       propagatedBuildInputs: nix.thunk(() => [fpath, re, testo_diff]),
-      meta: nix.thunk(() => nix.update(nix.sel(testo, "meta"), { __proto__: pos$1, description: "Modules shared by testo, testo-lwt, etc" })),
+      meta: nix.thunk(() => nix.update(nix.sel(testo, "meta"), { [nix.POS]: pos$1, description: "Modules shared by testo, testo-lwt, etc" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=util.ts.map

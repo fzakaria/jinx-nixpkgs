@@ -24,16 +24,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.thunk(() => nix.attr(llvmPackages, "stdenv"));
   const box2dVersion = "3.1.1";
   const box2dTarball = nix.thunk(() => (nix.asBool(enableBox2d) ? nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/erincatto/box2d/archive/refs/tags/v${box2dVersion}.tar.gz`),
       hash: "sha256-+275FLUPQxLX2SGmAOq8EjGLs8VaC4wLkGCPpEiO8uQ=",
     }))) : null));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "odin",
       version: "dev-2026-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "odin-lang",
           repo: "Odin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "# Odin is still using 'arm64-apple-macos' as the target name on\n# aarch64-darwin architectures. This results in a warning whenever the\n# Odin compiler runs a build. Replacing the target in the Odin compiler\n# removes the nix warning when the Odin compiler is ran on aarch64-darwin.\nsubstituteInPlace src/build_settings.cpp \\\n  --replace-fail \"arm64-apple-macosx\" \"arm64-apple-darwin\"\n\nrm -r vendor/raylib/{linux,macos,wasm,windows}\n\npatchShebangs --build build_odin.sh\n",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         LLVM_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(llvmPackages, "llvm", "dev")), "llvm-config")),
       })),
       dontConfigure: true,
@@ -86,11 +86,11 @@ fi
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fast, concise, readable, pragmatic and open sourced programming language",
         downloadPage: "https://github.com/odin-lang/Odin",
         homepage: "https://odin-lang.org/",

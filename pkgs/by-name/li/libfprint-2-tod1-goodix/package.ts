@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const libfprint_tod = nix.arg($, "libfprint-tod");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libfprint-2-tod1-goodix",
       version: "0.0.6",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.launchpad.net/~oem-solutions-engineers/libfprint-2-tod1-goodix/+git/libfprint-2-tod1-goodix",
           rev: "882735c6366fbe30149eea5cfd6d0ddff880f0e4",
           sha256: "sha256-Uv+Rr4V31DyaZFOj79Lpyfl3G6zVWShh20roI0AvMPU=",
@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
   usr/lib/x86_64-linux-gnu/libfprint-2/tod-1/libfprint-tod-goodix-53xc-$version.so
 `),
       installPhase: "mkdir -p \"$out/lib/libfprint-2/tod-1/\"\nmkdir -p \"$out/lib/udev/rules.d/\"\n\ncp usr/lib/x86_64-linux-gnu/libfprint-2/tod-1/libfprint-tod-goodix-53xc-$version.so \"$out/lib/libfprint-2/tod-1/\"\ncp lib/udev/rules.d/60-libfprint-2-tod1-goodix.rules \"$out/lib/udev/rules.d/\"\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, driverPath: "/lib/libfprint-2/tod-1" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, driverPath: "/lib/libfprint-2/tod-1" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Goodix driver module for libfprint-2-tod Touch OEM Driver",
         homepage: "https://git.launchpad.net/~oem-solutions-engineers/libfprint-2-tod1-goodix/+git/libfprint-2-tod1-goodix/",
         sourceProvenance: nix.thunk(() => (() => {

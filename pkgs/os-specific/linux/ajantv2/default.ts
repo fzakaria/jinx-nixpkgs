@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const libajantv2 = nix.arg($, "libajantv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "version")}-${nix.sel(kernel, "version")}`),
       pname: "ajantv2-module",
       version: nix.thunk(() => nix.sel(libajantv2, "version")),
@@ -35,7 +35,7 @@ install -D ajardma.ko $out/lib/modules/${nix.sel(kernel, "modDirVersion")}/misc/
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libajantv2, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.attr(from, "license")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

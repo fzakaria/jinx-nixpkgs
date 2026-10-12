@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
   const storeDir = nix.argOr($, "storeDir", () => "/gnu/store");
   const confDir = nix.argOr($, "confDir", () => "/etc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "guix",
       version: "1.5.0-unstable-2026-08-23",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://codeberg.org/guix/guix.git",
           rev: "bf8a5bce1bdbddc2a0097e153ef06210d637e398",
           hash: "sha256-Emd26l9buF1P7Dj14ulT6W6lrNC3PSTY4steU1I7T84=",
@@ -129,11 +129,11 @@ export default nix.lambda((args) => (() => {
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, guix: nix.thunk(() => nix.attr(nixosTests, "guix")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, guix: nix.thunk(() => nix.attr(nixosTests, "guix")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Functional package manager with a Scheme interface",
         longDescription: "GNU Guix is a purely functional package manager for the GNU system, and a distribution thereof.\nIn addition to standard package management features, Guix supports\ntransactional upgrades and roll-backs, unprivileged package management,\nper-user profiles, and garbage collection.\nIt provides Guile Scheme APIs, including high-level embedded\ndomain-specific languages (EDSLs), to describe how packages are built\nand composed.\nA user-land free software distribution for GNU/Linux comes as part of\nGuix.\nGuix is based on the Nix package manager.\n",
         homepage: "https://guix.gnu.org/",

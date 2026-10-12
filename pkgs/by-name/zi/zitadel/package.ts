@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const statik = nix.arg($, "statik");
   const version = "2.71.7";
   const zitadelRepo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "zitadel",
       repo: "zitadel",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const goModulesHash = "sha256-iZCjHSpQ7Gy41Dd4svRLbyEh1N8VE8U0uCOlN9rfJQU=";
   const buildZitadelProtocGen = (name) => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`protoc-gen-${name}`),
       version: version,
       src: zitadelRepo,
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
     const outputPath = nix.arg($_1, "outputPath");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.str`${pname}-buf-generated`),
         version: version_1,
         src: zitadelRepo,
@@ -78,7 +78,7 @@ HOME=$TMPDIR buf generate ${bufArgs}
       })));
   })(), formals$2);
   const protobufGenerated = nix.thunk(() => nix.app(generateProtobufCode, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zitadel",
       version: version,
       nativeBuildInputs: nix.thunk(() => [
@@ -120,16 +120,16 @@ cp -r ${nix.sel(passthru, "console")}/* internal/api/ui/console/static
       const doCheck = false;
       const installPhase = "mkdir -p $out/bin\ninstall -Dm755 $GOPATH/bin/zitadel $out/bin/\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         console: nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./console.nix")), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               generateProtobufCode: generateProtobufCode,
               version: version_1,
               zitadelRepo: zitadelRepo,
             })))), nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Identity and access management platform",
         homepage: "https://zitadel.com/",
         downloadPage: "https://github.com/zitadel/zitadel/releases",
@@ -139,7 +139,7 @@ cp -r ${nix.sel(passthru, "console")}/* internal/api/ui/console/static
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "nrabulinski"))]),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version: version_1,
         src,

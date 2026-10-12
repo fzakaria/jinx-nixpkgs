@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "db";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.oracle.com/berkeley-db/db-${version_1}.tar.gz`),
           sha256: sha256,
         }))));
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const patches = nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc15.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/sys-libs/db/files/db-4.8.30-tls-configure.patch?id=1ae36006c79ef705252f5f7009e79f6add7dc353",
             hash: "sha256-OzQL+kgXtcvhvyleDLuH1abhY4Shb/9IXx4ZkeFbHOA=",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const preAutoreconf = "pushd dist\n# Upstream’s `dist/s_config` cats everything into `aclocal.m4`, but that doesn’t work with\n# autoreconfHook, so cat `config.m4` to another file. Otherwise, it won’t be found by `aclocal`.\ncat aclocal/config.m4 >> aclocal/options.m4\n";
       const postAutoreconf = "(\n  declare -a vars=(\n    \"DB_VERSION_FAMILY\"\n    \"DB_VERSION_RELEASE\"\n    \"DB_VERSION_MAJOR\"\n    \"DB_VERSION_MINOR\"\n    \"DB_VERSION_PATCH\"\n    \"DB_VERSION_STRING\"\n    \"DB_VERSION_FULL_STRING\"\n    \"DB_VERSION_UNIQUE_NAME\"\n    \"DB_VERSION\"\n  )\n  source RELEASE\n  for var in \"${vars[@]}\"; do\n    sed -e \"s/__EDIT_${var}__/${!var}/g\" -i configure\n  done\n)\npopd\n";
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=incompatible-pointer-types"]))),
       }));
       const configureFlags = nix.thunk(() => nix.concat([
@@ -62,14 +62,14 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "make examples_c examples_cxx\n";
       const __structuredAttrs = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.oracle.com/database/technologies/related/berkeleydb.html",
         description: "Berkeley DB",
         license: license,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version: version_1,
         src,

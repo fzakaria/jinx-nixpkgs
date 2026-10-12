@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const matplotlib = nix.arg($, "matplotlib");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "odc-geo",
       version: "0.5.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opendatacube",
           repo: "odc-geo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => [affine, cachetools, numpy, pyproj, shapely]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         xr: nix.thunk(() => [xarray]),
         wrap: nix.thunk(() => [rasterio]),
         tiff: nix.thunk(() => [dask, distributed, rasterio, tifffile, xarray]),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["odc.geo", "odc.geo.xr"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GeoBox and geometry utilities extracted from datacube-core",
         longDescription: "This library combines geometry shape classes from `shapely` with CRS from\n`pyproj` to provide a number of data types and utilities useful for working\nwith geospatial metadata and geo-registered `xarray` rasters.\n",
         homepage: "https://github.com/opendatacube/odc-geo/",

@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const sanic = nix.arg($, "sanic");
   const types_setuptools = nix.arg($, "types-setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pyshacl",
       version: "0.40.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rdflib",
           repo: "pyshacl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [importlib_metadata, owlrl, packaging, prettytable, rdflib]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         http: nix.thunk(() => [sanic, sanic_cors, sanic_ext]),
         js: nix.thunk(() => [pyduktape2]),
         oxigraph: nix.thunk(() => [pyoxigraph]),
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["pyshacl"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python validator for SHACL",
         homepage: "https://github.com/rdflib/pyshacl",
         changelog: nix.thunk(() => nix.str`https://github.com/rdflib/pyshacl/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

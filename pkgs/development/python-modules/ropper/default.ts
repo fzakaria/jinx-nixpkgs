@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.13.13";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sashs",
           repo: "Ropper",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [capstone, filebytes]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, ropchain: nix.thunk(() => [keystone_engine]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, ropchain: nix.thunk(() => [keystone_engine]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["ropper"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Show information about files in different file formats",
         homepage: "https://scoding.de/ropper/",
         changelog: nix.thunk(() => nix.str`https://github.com/sashs/Ropper/releases/tag/${nix.sel(src, "tag")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ropper",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

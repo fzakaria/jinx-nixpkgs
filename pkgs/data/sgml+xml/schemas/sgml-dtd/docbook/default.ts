@@ -12,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     docbook_sgml_dtd_31: nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: "3.1",
           hash: "sha256-ICYdJ3G5oFKr+j2PqxqmK+BXkaAQKBxWb5Bzvw5kRTg=",
         })))), nix.thunk(() => ({})))),
     docbook_sgml_dtd_41: nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: "4.1",
           hash: "sha256-3qr88KNndpLnrUQSwOQcHbPp2mzc2z3TKyzB+cl9YxE=",
         })))), nix.thunk(() => ({})))),
     docbook_sgml_dtd_45: nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: "4.5",
           hash: "sha256-gEPlFOgMbBnLFGtdN5N9EwW/Or+bAJfDbff3D2Ec30M=",
         })))), nix.thunk(() => ({})))),

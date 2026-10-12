@@ -79,11 +79,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(vp9HighbitdepthSupport) || nix.asBool((nix.asBool(vp9DecoderSupport) || nix.asBool(vp9EncoderSupport)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libvpx/package.nix:134:1");
   nix.assert_((!nix.asBool(isCygwin) || nix.asBool((nix.asBool((nix.asBool(unitTestsSupport) && nix.asBool(webmIOSupport))) && nix.asBool(libyuvSupport)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libvpx/package.nix:135:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "libvpx",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "webmproject",
           repo: "libvpx",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -151,21 +151,21 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [perl, yasm]),
       buildInputs: nix.thunk(() => nix.concat([], nix.app(optionals, unitTestsSupport, nix.thunk(() => [coreutils, curl])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lpthread"]))),
       })),
       enableParallelBuilding: true,
       postInstall: "moveToOutput bin \"$bin\" ",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "gst-plugins-good": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-good")),
-          ffmpeg: nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ __proto__: pos$3, withVpx: true })))),
+          ffmpeg: nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withVpx: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "WebM VP8/VP9 codec SDK",
         homepage: "https://www.webmproject.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/webmproject/libvpx/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG`),

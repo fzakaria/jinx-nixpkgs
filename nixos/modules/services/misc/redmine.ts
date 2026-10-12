@@ -71,18 +71,18 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const bundle = nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/redmine/bin/bundle`);
   const databaseSettings = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     production: nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       adapter: nix.thunk(() => nix.sel(cfg, "database", "type")),
       database: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "sqlite3")) ? nix.str`${nix.sel(cfg, "stateDir")}/database.sqlite3` : nix.sel(cfg, "database", "name"))),
     }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "type"), "sqlite3")), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         host: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgresql")) && nix.asBool(!nix.eq(nix.sel(cfg, "database", "socket"), null)))) ? nix.sel(cfg, "database", "socket") : nix.sel(cfg, "database", "host"))),
         port: nix.thunk(() => nix.sel(cfg, "database", "port")),
         username: nix.thunk(() => nix.sel(cfg, "database", "user")),
-      }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "database", "type"), "sqlite3")) && nix.asBool(!nix.eq(nix.sel(cfg, "database", "passwordFile"), null)))), nix.thunk(() => ({ __proto__: pos$3, password: "#dbpass#" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql2")) && nix.asBool(!nix.eq(nix.sel(cfg, "database", "socket"), null)))), nix.thunk(() => ({
-        __proto__: pos$4,
+      }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "database", "type"), "sqlite3")) && nix.asBool(!nix.eq(nix.sel(cfg, "database", "passwordFile"), null)))), nix.thunk(() => ({ [nix.POS]: pos$3, password: "#dbpass#" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql2")) && nix.asBool(!nix.eq(nix.sel(cfg, "database", "socket"), null)))), nix.thunk(() => ({
+        [nix.POS]: pos$4,
         socket: nix.thunk(() => nix.sel(cfg, "database", "socket")),
       }))))))),
   }));
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
   const unpackTheme = nix.thunk(() => nix.app(unpack, "theme"));
   const unpackPlugin = nix.thunk(() => nix.app(unpack, "plugin"));
   const unpack = (id) => (name) => (source) => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: nix.thunk(() => nix.str`redmine-${id}-${name}`),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "unzip"))]),
       buildCommand: nix.thunk(() => nix.str`mkdir -p $out
@@ -103,120 +103,120 @@ unpackFile ${source}
   const mysqlLocal = nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql2"))));
   const pgsqlLocal = nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgresql"))));
   return {
-    __proto__: pos$58,
+    [nix.POS]: pos$58,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "redmine", "extraConfig"]), "Use services.redmine.settings instead.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "redmine", "database", "password"]), "Use services.redmine.database.passwordFile instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       services: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         redmine: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Redmine, a project management web application")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "redmine", nix.thunk(() => ({ __proto__: pos$7, example: "redmine.override { ruby = pkgs.ruby_3_3; }" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "redmine", nix.thunk(() => ({ [nix.POS]: pos$7, example: "redmine.override { ruby = pkgs.ruby_3_3; }" })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "redmine",
               description: "User under which Redmine is ran.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "redmine",
               description: "Group under which Redmine is ran.",
             })))),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "0.0.0.0",
               description: "IP address Redmine should bind to.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 3000n,
               description: "Port on which Redmine is ran.",
             })))),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/redmine",
               description: "The state directory, logs and plugins are stored here.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               description: "Redmine configuration ({file}`configuration.yml`). Refer to\n<https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration>\nfor details.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  email_delivery = {\n    delivery_method = \"smtp\";\n    smtp_settings = {\n      address = \"mail.example.com\";\n      port = 25;\n    };\n  };\n}\n")),
             })))),
           extraEnv: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra configuration in additional_environment.rb.\n\nSee <https://svn.redmine.org/redmine/trunk/config/additional_environment.rb.example>\nfor details.\n",
               example: "config.logger.level = Logger::DEBUG\n",
             })))),
           themes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: nix.thunk(() => ({})),
               description: "Set of themes.",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  dkuk-redmine_alex_skin = builtins.fetchurl {\n    url = \"https://bitbucket.org/dkuk/redmine_alex_skin/get/1842ef675ef3.zip\";\n    sha256 = \"0hrin9lzyi50k4w2bd2b30vrf1i4fi1c0gyas5801wn8i7kpm9yl\";\n  };\n}\n")),
             })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: nix.thunk(() => ({})),
               description: "Set of plugins.",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  redmine_env_auth = builtins.fetchurl {\n    url = \"https://github.com/Intera/redmine_env_auth/archive/0.6.zip\";\n    sha256 = \"0yyr1yjd8gvvh832wdc8m3xfnhhxzk2pk3gm2psg5w9jdvd6skak\";\n  };\n}\n")),
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["mysql2", "postgresql", "sqlite3"]))),
                 example: "postgresql",
                 default: "mysql2",
                 description: "Database engine to use.",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost",
                 description: "Database host address.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgresql")) ? 5432n : 3306n)),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "3306")),
                 description: "Database host port.",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "redmine",
                 description: "Database name.",
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "redmine",
                 description: "Database user.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/run/keys/redmine-dbpassword",
                 description: "A file containing the password corresponding to\n{option}`database.user`.\n",
               })))),
             socket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: nix.thunk(() => (nix.asBool(mysqlLocal) ? "/run/mysqld/mysqld.sock" : (nix.asBool(pgsqlLocal) ? "/run/postgresql" : null))),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "/run/mysqld/mysqld.sock")),
@@ -224,14 +224,14 @@ unpackFile ${source}
                 description: "Path to the unix socket file to use for authentication.",
               })))),
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Create the database and database user locally.",
               })))),
           })),
           components: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             subversion: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Subversion integration")),
             mercurial: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Mercurial integration")),
             git: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "git integration")),
@@ -240,7 +240,7 @@ unpackFile ${source}
             imagemagick: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "exporting Gant diagrams as PNG")),
             ghostscript: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "exporting Gant diagrams as PDF")),
             minimagick_font_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "MiniMagick font path",
@@ -252,47 +252,47 @@ unpackFile ${source}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "database", "type"), "sqlite3")) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "database", "passwordFile"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "database", "socket"), null)))))),
             message: "one of services.redmine.database.socket or services.redmine.database.passwordFile must be set",
           })),
           nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), nix.sel(cfg, "user"))))),
             message: nix.thunk(() => nix.str`services.redmine.database.user must be set to ${nix.sel(cfg, "user")} if services.redmine.database.createLocally is set true`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             assertion: nix.thunk(() => (!nix.asBool(pgsqlLocal) || nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), nix.sel(cfg, "database", "name"))))),
             message: "services.redmine.database.user and services.redmine.database.name must be the same when using a local postgresql database",
           })),
           nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(!nix.eq(nix.sel(cfg, "database", "type"), "sqlite3")))) || nix.asBool(!nix.eq(nix.sel(cfg, "database", "socket"), null)))),
             message: "services.redmine.database.socket must be set if services.redmine.database.createLocally is set to true and no sqlite database is used",
           })),
           nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "host"), "localhost")))),
             message: "services.redmine.database.host must be set to localhost if services.redmine.database.createLocally is set to true",
           })),
           nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "components", "imagemagick")) || nix.asBool(!nix.eq(nix.sel(cfg, "components", "minimagick_font_path"), "")))),
             message: "services.redmine.components.minimagick_font_path must be configured with a path to a font file if services.redmine.components.imagemagick is set to true.",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           redmine: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             settings: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               production: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 scm_subversion_command: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "components", "subversion")), nix.thunk(() => nix.str`${nix.sel(pkgs, "subversion")}/bin/svn`))),
                 scm_mercurial_command: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "components", "mercurial")), nix.thunk(() => nix.str`${nix.sel(pkgs, "mercurial")}/bin/hg`))),
                 scm_git_command: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "components", "git")), nix.thunk(() => nix.str`${nix.sel(pkgs, "git")}/bin/git`))),
@@ -309,25 +309,25 @@ config.logger.level = Logger::INFO
 `))),
           })),
           mysql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), mysqlLocal, nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               enable: true,
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "database", "name")}.*`, "ALL PRIVILEGES"]])),
                 })),
               ]),
             })))),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), pgsqlLocal, nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               enable: true,
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensureDBOwnership: true,
                 })),
@@ -335,9 +335,9 @@ config.logger.level = Logger::INFO
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "stateDir")}' 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "stateDir")}/cache' 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
@@ -353,13 +353,13 @@ config.logger.level = Logger::INFO
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             redmine: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               after: nix.thunk(() => nix.concat(["network.target"], nix.concat(nix.app(nix.sel(lib, "optional"), mysqlLocal, "mysql.service"), nix.app(nix.sel(lib, "optional"), pgsqlLocal, "postgresql.target")))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 RAILS_ENV: "production",
                 RAILS_CACHE: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/cache`),
                 REDMINE_LANG: "en",
@@ -437,7 +437,7 @@ ${bundle} exec rake redmine:load_default_data
 ${bundle} exec rake assets:precompile
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -479,27 +479,27 @@ ${bundle} exec rake assets:precompile
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "redmine")), nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               redmine: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "stateDir")),
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "redmine")),
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "redmine")), nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               redmine: nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "redmine")),
               })),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$57,
+      [nix.POS]: pos$57,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "felixsinger"))];

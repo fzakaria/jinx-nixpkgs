@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const udisks = nix.arg($, "udisks");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "eos-installer",
       version: "5.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "endlessm",
           repo: "eos-installer",
           tag: nix.thunk(() => nix.str`Release_${nix.sel(finalAttrs, "version")}`),
@@ -53,13 +53,13 @@ gpg = '${gnupg}/bin/gpg'
 `))}`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/system`),
       })),
       doCheck: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/endlessm/eos-installer",
         description: "Installer UI which writes images to disk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

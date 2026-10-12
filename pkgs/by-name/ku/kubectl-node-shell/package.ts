@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kubectl-node-shell";
       const version = "1.11.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kvaps",
           repo: "kubectl-node-shell",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [bash]);
       const installPhase = "runHook preInstall\n\ninstall -m755 ./kubectl-node_shell -D $out/bin/kubectl-node_shell\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Exec into node via kubectl",
         mainProgram: "kubectl-node_shell",
         homepage: "https://github.com/kvaps/kubectl-node-shell",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

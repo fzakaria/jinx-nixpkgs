@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const unwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => nix.builtins.removeAttrs(args_1, nix.thunk(() => ["callPackage"])))));
   return nix.app(nix.sel(unwrapped, "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       passthru: nix.thunk(() => (() => {
         const finalKodi = nix.thunk(() => nix.sel(oldAttrs, "passthru", "kodi"));
         return nix.update(nix.sel(oldAttrs, "passthru"), {
-          __proto__: pos$3,
-          packages: nix.thunk(() => nix.app(callPackage, nix.path(here, "../../../top-level/kodi-packages.nix"), nix.thunk(() => ({ __proto__: pos$1, kodi: finalKodi })))),
+          [nix.POS]: pos$3,
+          packages: nix.thunk(() => nix.app(callPackage, nix.path(here, "../../../top-level/kodi-packages.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, kodi: finalKodi })))),
           withPackages: (func) => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               kodi: finalKodi,
               addons: nix.thunk(() => nix.app(nix.sel(finalKodi, "packages", "requiredKodiAddons"), nix.thunk(() => nix.app(func, nix.thunk(() => nix.sel(finalKodi, "packages")))))),
             }))),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const elixir = nix.arg($, "elixir");
   const shell = (drv) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`interactive-shell-${nix.sel(drv, "name")}`),
       buildInputs: nix.thunk(() => [drv]),
     })));
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hex";
       const version = "2.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "hexpm",
           repo: "hex",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "runHook preBuild\nexport HEX_OFFLINE=1\nexport HEX_HOME=./\nexport MIX_ENV=prod\nmix compile\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\n\nmkdir -p $out/lib/erlang/lib\ncp -r ./_build/prod/lib/hex $out/lib/erlang/lib/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Package manager for the Erlang VM https://hex.pm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/hexpm/hex",
@@ -46,9 +46,9 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "ericbmerritt"))];
         })()),
       }));
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, env: nix.thunk(() => nix.app(shell, self)) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, env: nix.thunk(() => nix.app(shell, self)) }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

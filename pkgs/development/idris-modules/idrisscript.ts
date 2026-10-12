@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "idrisscript",
       version: "2017-07-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "idris-hackers",
           repo: "IdrisScript",
           rev: "4bb7019182392f24d2246a3e616f829156c8f091",
           sha256: "074ignh2hqwq4ng5nk7dswga4lm7342w7h4bmx4n03ygrn7w89ff",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FFI Bindings to interact with the unsafe world of JavaScript",
         homepage: "https://github.com/idris-hackers/IdrisScript",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

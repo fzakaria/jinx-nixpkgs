@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const createGrepReplacementLinks = nix.argOr($, "createGrepReplacementLinks", () => false);
   const gnugrep = nix.arg($, "gnugrep");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "ugrep",
       version: "7.8.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Genivia",
           repo: "ugrep",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,17 +62,17 @@ for i in ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => ["grep
 done
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Ultra fast grep with interactive query UI",
         homepage: "https://github.com/Genivia/ugrep",
         changelog: nix.thunk(() => nix.str`https://github.com/Genivia/ugrep/releases/tag/v${nix.sel(finalAttrs, "version")}`),
@@ -87,7 +87,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         mainProgram: "ug",
       }, nix.app(nix.sel(lib, "optionalAttrs"), createGrepReplacementLinks, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           priority: nix.thunk(() => nix.sub(nix.selOr(gnugrep, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
         }))))),
     }));

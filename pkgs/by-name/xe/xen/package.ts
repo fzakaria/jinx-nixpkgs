@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
         "sleep",
         "stat",
       ])), nix.update(nix.app(mkTools, drbd, nix.thunk(() => ["drbdadm", "drbdsetup"])), nix.update(nix.app(mkTools, gnugrep, nix.thunk(() => ["egrep", "grep"])), nix.update(nix.app(mkTools, iproute2, nix.thunk(() => ["bridge", "ip", "tc"])), nix.update(nix.app(mkTools, iptables, nix.thunk(() => ["arptables", "ip6tables", "iptables"])), nix.update(nix.app(mkTools, kmod, nix.thunk(() => ["modinfo", "modprobe", "rmmod"])), nix.update(nix.app(mkTools, libnl, nix.thunk(() => ["nl-qdisc-add", "nl-qdisc-delete", "nl-qdisc-list"])), nix.update(nix.app(mkTools, util_linux, nix.thunk(() => ["flock", "logger", "losetup", "prlimit"])), {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       awk: nix.thunk(() => nix.app(getExe$, gawk, "awk")),
       brctl: nix.thunk(() => nix.app(getExe, bridge_utils)),
       diff: nix.thunk(() => nix.app(getExe$, diffutils, "diff")),
@@ -143,7 +143,7 @@ export default nix.lambda((args) => (() => {
     })))))))));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "xen",
       version: "4.22.0",
       upstreamVersion: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -152,40 +152,40 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-makefile-efi-output-directory.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-scripts-external-executable-calls.patch"), scriptDeps)),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://xenbits.xenproject.org/xsa/xsa509.patch",
             hash: "sha256-Ive95ewRsPe/Oq2NpqkcgXwKAi8pKJAF4eGQ9IkgM9A=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://xenbits.xenproject.org/xsa/xsa510.patch",
             hash: "sha256-RxCN2TMqeXVjHZhqxLvhWE40vUkD52RDYNyd9+6K9mA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://xenbits.xenproject.org/xsa/xsa511.patch",
             hash: "sha256-y7TVcoXpeJoXnMOk1ESWyW53JbBTf8urrNYpwtmft/A=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://xenbits.xenproject.org/xsa/xsa512-1.patch",
             hash: "sha256-Xky7ddRSd1d+Y/voEmsyiyMsU7NX/WM2/yOviaLv5gU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://xenbits.xenproject.org/xsa/xsa512-2.patch",
             hash: "sha256-4LgqC1F22kFjiVWgiSb1hZazbBF2Fziiif0Scv+ynho=",
           })))),
       ], nix.app(optionals, nix.thunk(() => nix.app(versionOlder, nix.thunk(() => nix.sel(finalAttrs, "version")), "4.21")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               url: "https://github.com/xen-project/xen/commit/f6281291704aa356489f4bd927cc7348a920bd01.diff?full_index=1",
               hash: "sha256-LH+68kxH/gxdyh45kYCPxKwk+9cztLrScpC2pCNQV2M=",
             })))),
         ])))),
       outputs: nix.thunk(() => ["out", "man", "doc", "dev", "boot", "ocaml"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "xen-project",
           repo: "xen",
           tag: nix.thunk(() => nix.str`RELEASE-${nix.sel(finalAttrs, "version")}`),
@@ -258,14 +258,14 @@ export default nix.lambda((args) => (() => {
       postInstall: "wrapPythonPrograms\nwrapPythonProgramsIn \"$out/libexec/xen/bin\" \"$out ${pythonPath[*]}\"\n",
       postFixup: nix.thunk(() => nix.add("addAutoPatchelfSearchPath $out/lib\nautoPatchelf $out/libexec/xen/bin\n", nix.app(optionalString, nix.thunk(() => !nix.asBool(withFlask)), "rm -f $out/bin/flask-*\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         efi: nix.thunk(() => nix.str`boot/xen-${nix.sel(finalAttrs, "upstreamVersion")}.efi`),
         multiboot: nix.thunk(() => nix.str`boot/xen-${nix.sel(finalAttrs, "upstreamVersion")}`),
         flaskPolicy: nix.thunk(() => (nix.asBool(withFlask) ? nix.app(warn, "This Xen was compiled with FLASK support, but the FLASK file may not match the Xen version number. Please hardcode the path to the FLASK file instead.", nix.thunk(() => nix.str`boot/xenpolicy-${nix.sel(finalAttrs, "upstreamVersion")}`)) : nix.builtins.throw("This Xen was compiled without FLASK support."))),
         tests: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => [
                 "xencall",
@@ -289,7 +289,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         branch: nix.thunk(() => nix.app(majorMinor, nix.thunk(() => nix.sel(finalAttrs, "version")))),
         description: "Type-1 hypervisor intended for embedded and hyperscale use cases",
         longDescription: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add(nix.add("The Xen Project Hypervisor is a virtualisation technology defined as a *type-1\nhypervisor*, which allows multiple virtual machines, known as domains, to run\nconcurrently with the host on the physical machine. On a typical *type-2\nhypervisor*, the virtual machines run as applications on top of the\nhost. NixOS runs as the privileged **Domain 0**, and can paravirtualise or fully\nvirtualise **Unprivileged Domains**.\n\nUse with the `qemu_xen` package.\n", nix.str`

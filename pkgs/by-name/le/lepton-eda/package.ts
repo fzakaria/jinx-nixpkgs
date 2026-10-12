@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lepton-eda";
       const version = "1.9.18-20220529";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/lepton-eda/lepton-eda/releases/download/${version}/lepton-eda-${nix.builtins.head(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", version)))}.tar.gz`),
           hash: "sha256-X9yNuosNR1Jf3gYWQZeOnKdxzJLld29Sn9XYsPGWYYI=",
         }))));
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const configureFlags = nix.thunk(() => ["--disable-update-xdg-database", "--with-gtk3"]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DSCM_DEBUG_TYPING_STRICTNESS=2"]))),
       }));
       const postInstall = nix.thunk(() => nix.str`libs="${nix.app(nix.sel(lib, "makeLibraryPath"), propagatedBuildInputs)}"
@@ -61,7 +61,7 @@ for program in $out/bin/*; do
 done
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/lepton-eda",
         description: "Lepton Electronic Design Automation",
         longDescription: "Lepton EDA is a suite of free software tools for designing electronics.\nIt provides schematic capture, netlisting into over 30 netlist formats, and many other features.\n",
@@ -73,7 +73,7 @@ done
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

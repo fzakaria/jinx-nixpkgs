@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "doronz88",
           repo: "python-remotezip2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ ${nix.sel(python, "interpreter")} test_remotezip2.py
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/doronz88/python-remotezip2/releases/tag/${nix.sel(src, "tag")}`),
         description: "Access zip file content hosted remotely without downloading the full file",
         homepage: "https://github.com/doronz88/python-remotezip2",
@@ -45,7 +45,7 @@ runHook postCheck
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dotlambda"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

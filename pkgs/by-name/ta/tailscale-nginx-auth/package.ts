@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const buildGo127Module = nix.arg($, "buildGo127Module");
   const tailscale = nix.arg($, "tailscale");
   return nix.app(buildGo127Module, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tailscale-nginx-auth",
       version: nix.thunk(() => nix.attr(tailscale, "version")),
       src: nix.thunk(() => nix.attr(tailscale, "src")),
       vendorHash: nix.thunk(() => nix.attr(tailscale, "vendorHash")),
-      env: nix.thunk(() => ({ __proto__: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["cmd/nginx-auth"]),
       ldflags: nix.thunk(() => [
         "-w",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mv $out/bin/nginx-auth $out/bin/tailscale.nginx-auth\nsed -i -e \"s#/usr/sbin#$out/bin#\" ./cmd/nginx-auth/tailscale.nginx-auth.service\ninstall -D -m0444 -t $out/lib/systemd/system ./cmd/nginx-auth/tailscale.nginx-auth.service\ninstall -D -m0444 -t $out/lib/systemd/system ./cmd/nginx-auth/tailscale.nginx-auth.socket\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://tailscale.com",
         description: "Tool that allows users to use Tailscale Whois authentication with NGINX as a reverse proxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const tomlq = nix.arg($, "tomlq");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "flax",
       version: "0.12.10",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "flax",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,14 +77,14 @@ export default nix.lambda((args) => (() => {
         "test_transforms",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str`nix-update flax # does not --build by default
 nix-build . -A flax.src # src is essentially a passthru
 nix-update flaxlib --version="$(${nix.app(nix.sel(lib, "getExe"), tomlq)} <result/Cargo.toml .something.version)" --commit
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Neural network library for JAX",
         homepage: "https://github.com/google/flax",
         changelog: nix.thunk(() => nix.str`https://github.com/google/flax/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

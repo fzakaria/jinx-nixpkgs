@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const toUnderscore = (str) => nix.builtins.replaceStrings(nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), str);
   const buildMypyBoto3Package = (serviceName) => (version) => (hash) => nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`mypy-boto3-${serviceName}`),
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.str`mypy_boto3_${nix.app(toUnderscore, serviceName)}`),
           version: version,
           hash: hash,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => [nix.thunk(() => nix.str`mypy_boto3_${nix.app(toUnderscore, serviceName)}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`Type annotations for boto3 ${serviceName}`),
         homepage: "https://github.com/youtype/mypy_boto3_builder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "mypy-boto3-accessanalyzer": nix.thunk(() => nix.app(buildMypyBoto3Package, "accessanalyzer", "1.43.10", "sha256-oB2v3DdKFxhtwJ974/vq5UIJ9UVWCPMCAJaDNl2xTtM=")),
     "mypy-boto3-account": nix.thunk(() => nix.app(buildMypyBoto3Package, "account", "1.43.106", "sha256-HpNjZmNHVOX2QRlV9Pk1v/Nre6q0It1qsnkfo3wv3m0=")),
     "mypy-boto3-acm": nix.thunk(() => nix.app(buildMypyBoto3Package, "acm", "1.43.71", "sha256-24QBYMB1qkzU/bHWHz03FngomwqTAcSK8YlQ5r5g8DE=")),

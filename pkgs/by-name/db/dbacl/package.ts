@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dbacl",
       version: "1.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.lbreyer.com/gpl/dbacl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0224g6x71hyvy7jikfxmgcwww1r5lvk0jx36cva319cb9nmrbrq7",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://dbacl.sourceforge.net/",
         longDescription: "a digramic Bayesian classifier for text recognition.",
         maintainers: [],

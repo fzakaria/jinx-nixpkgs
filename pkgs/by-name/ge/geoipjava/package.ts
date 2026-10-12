@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "GeoIPJava",
       version: "1.2.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://geolite.maxmind.com/download/geoip/api/java/GeoIPJava-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "1gb2d0qvvq7xankz7l7ymbr3qprwk9bifpy4hlgw0sq4i6a55ypd",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "cd source\njavac $(find . -name \\*.java)\njar cfv maxmindgeoip.jar $(find . -name \\*.class)\n",
       installPhase: "mkdir -p $out/share/java\ncp maxmindgeoip.jar $out/share/java\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GeoIP Java API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
       const version = "2.10.1.1338";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "ldap3_bleeding_edge",
           version: version,
           hash: "sha256-7j5W1C0scvjm6j3eueNomdTRd+Uzishhr2U1bb1gB3s=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [cryptography, pyasn1, pycryptodomex]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, kerberos: nix.thunk(() => [gssapi]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, kerberos: nix.thunk(() => [gssapi]) }));
       const pythonImportsCheck = nix.thunk(() => ["ldap3"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Strictly RFC 4510 conforming LDAP V3 client library (bleeding edge)",
         homepage: "https://pypi.org/project/ldap3-bleeding-edge/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

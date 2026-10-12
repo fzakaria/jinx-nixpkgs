@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mswatch",
       version: "1.2.0-unstable-2018-11-21",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "svn://svn.code.sf.net/p/mswatch/code/trunk",
           rev: "369",
           sha256: "sha256-czwwhchTizfgVmeknQGLijYgaFSP/45pD2yhDKj5BKw=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook, bison, flex]),
       buildInputs: nix.thunk(() => [glib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line Linux utility that efficiently directs mail synchronization between a pair of mailboxes",
         homepage: "https://mswatch.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

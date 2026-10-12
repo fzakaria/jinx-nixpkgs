@@ -73,26 +73,26 @@ export default nix.lambda((args) => (() => {
   const yaml = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const mkYamlConf = (name) => (cfg_1) => (nix.asBool(!nix.eq(cfg_1, null)) ? nix.attrsDyn({}, [
     [nix.str`trafficserver/${name}.yaml`, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       source: nix.thunk(() => nix.app(nix.sel(yaml, "generate"), nix.thunk(() => nix.str`${name}.yaml`), cfg_1)),
     }))],
   ]) : nix.attrsDyn({}, [
-    [nix.str`trafficserver/${name}.yaml`, nix.thunk(() => ({ __proto__: pos$2, text: "" }))],
+    [nix.str`trafficserver/${name}.yaml`, nix.thunk(() => ({ [nix.POS]: pos$2, text: "" }))],
   ]));
   const mkRecordLines = (path) => (value) => (nix.asBool(nix.app(nix.lookup(w, "isAttrs"), value)) ? nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.app(mkRecordLines, nix.thunk(() => nix.concat(path, [n])), v), value) : (nix.asBool(nix.app(nix.lookup(w, "isInt"), value)) ? nix.str`CONFIG ${nix.app(nix.lookup(w, "concatStringsSep"), ".", path)} INT ${nix.app(nix.builtins.toString, value)}` : (nix.asBool(nix.app(nix.lookup(w, "isFloat"), value)) ? nix.str`CONFIG ${nix.app(nix.lookup(w, "concatStringsSep"), ".", path)} FLOAT ${nix.app(nix.builtins.toString, value)}` : nix.str`CONFIG ${nix.app(nix.lookup(w, "concatStringsSep"), ".", path)} STRING ${nix.app(nix.builtins.toString, value)}`)));
   const mkRecordsConfig = (cfg_1) => nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.lookup(w, "flatten"), nix.thunk(() => nix.app(mkRecordLines, [], cfg_1)))));
   const mkPluginConfig = (cfg_1) => nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.builtins.map, (p) => nix.str`${nix.sel(p, "path")} ${nix.sel(p, "arg")}`, cfg_1)));
   return {
-    __proto__: pos$56,
+    [nix.POS]: pos$56,
     options: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       services: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         trafficserver: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Apache Traffic Server")),
           cache: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "dest_domain=example.com suffix=js action=never-cache",
@@ -103,7 +103,7 @@ documentation](${nix.app(getManualUrl, "cache.config")}) for more details.
 `),
             })))),
           hosting: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "domain=example.com volume=1",
@@ -114,7 +114,7 @@ upstream documentation](${nix.app(getManualUrl, "hosting.config")}) for more det
 `),
             })))),
           ipAllow: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(yaml, "type")))),
               default: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./ip_allow.json"))),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalMD"), "upstream defaults")),
@@ -127,7 +127,7 @@ documentation](${nix.app(getManualUrl, "ip_allow.yaml")}) for more details.
 `),
             })))),
           logging: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(yaml, "type")))),
               default: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./logging.json"))),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalMD"), "upstream defaults")),
@@ -139,7 +139,7 @@ documentation](${nix.app(getManualUrl, "logging.yaml")}) for more details.
 `),
             })))),
           parent: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "dest_domain=. method=get parent=\"p1.example:8080; p2.example:8080\" round_robin=true\n",
@@ -150,7 +150,7 @@ documentation](${nix.app(getManualUrl, "parent.config")}) for more details.
 `),
             })))),
           plugins: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: [],
               description: nix.thunk(() => nix.str`Controls run-time loadable plugins available to Traffic Server, as
 well as their configuration.
@@ -161,17 +161,17 @@ documentation](${nix.app(getManualUrl, "plugin.config")}) for more details.
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       options: nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         path: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.lookup(w_1, "str")),
                             example: "xdebug.so",
                             description: "Path to plugin. The path can either be absolute, or relative to\nthe plugin directory.\n",
                           })))),
                         arg: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: nix.thunk(() => nix.lookup(w_1, "str")),
                             default: "",
                             example: "--header=ATS-My-Debug",
@@ -182,7 +182,7 @@ documentation](${nix.app(getManualUrl, "plugin.config")}) for more details.
               })()),
             })))),
           records: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 const valueType = nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -190,15 +190,15 @@ documentation](${nix.app(getManualUrl, "plugin.config")}) for more details.
                       nix.thunk(() => nix.lookup(w_1, "float")),
                       nix.thunk(() => nix.lookup(w_1, "str")),
                       valueType,
-                    ])))), { __proto__: pos$13, description: "Traffic Server records value" }));
+                    ])))), { [nix.POS]: pos$13, description: "Traffic Server records value" }));
                 return nix.force(valueType);
               })()),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 proxy: nix.thunk(() => ({
-                  __proto__: pos$15,
-                  config: nix.thunk(() => ({ __proto__: pos$14, proxy_name: "my_server" })),
+                  [nix.POS]: pos$15,
+                  config: nix.thunk(() => ({ [nix.POS]: pos$14, proxy_name: "my_server" })),
                 })),
               })),
               description: nix.thunk(() => nix.str`List of configurable variables used by Traffic Server.
@@ -208,7 +208,7 @@ upstream documentation](${nix.app(getManualUrl, "records.config")}) for more det
 `),
             })))),
           remap: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "map http://from.example http://origin.example",
@@ -219,7 +219,7 @@ upstream documentation](${nix.app(getManualUrl, "remap.config")}) for more detai
 `),
             })))),
           splitDns: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "dest_domain=internal.corp.example named=\"255.255.255.255:212 255.255.255.254\" def_domain=corp.example search_list=\"corp.example corp1.example\"\ndest_domain=!internal.corp.example named=255.255.255.253\n",
@@ -231,7 +231,7 @@ upstream documentation](${nix.app(getManualUrl, "splitdns.config")}) for more de
 `),
             })))),
           sslMulticert: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "dest_ip=* ssl_cert_name=default.pem",
@@ -242,7 +242,7 @@ upstream documentation](${nix.app(getManualUrl, "ssl_multicert.config")}) for mo
 `),
             })))),
           sni: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(yaml, "type")))),
               default: null,
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  sni = [{\n    fqdn = \"no-http2.example.com\";\n    https = \"off\";\n  }];\n}\n")),
@@ -254,7 +254,7 @@ documentation](${nix.app(getManualUrl, "sni.yaml")}) for more details.
 `),
             })))),
           storage: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "/var/cache/trafficserver 256M",
               example: "/dev/disk/by-id/XXXXX volume=1",
@@ -265,7 +265,7 @@ upstream documentation](${nix.app(getManualUrl, "storage.config")}) for more det
 `),
             })))),
           strategies: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(yaml, "type")))),
               default: null,
               description: nix.thunk(() => nix.str`Specify the next hop proxies used in an cache hierarchy and the
@@ -276,7 +276,7 @@ upstream documentation](${nix.app(getManualUrl, "strategies.yaml")}) for more de
 `),
             })))),
           volume: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(yaml, "type")))),
               default: "",
               example: "volume=1 scheme=http size=20%",
@@ -291,43 +291,43 @@ upstream documentation](${nix.app(getManualUrl, "volume.config")}) for more deta
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         environment: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           etc: nix.thunk(() => nix.update({
-            __proto__: pos$38,
-            "trafficserver/cache.config": nix.thunk(() => ({ __proto__: pos$28, text: nix.thunk(() => nix.sel(cfg, "cache")) })),
-            "trafficserver/hosting.config": nix.thunk(() => ({ __proto__: pos$29, text: nix.thunk(() => nix.sel(cfg, "hosting")) })),
-            "trafficserver/parent.config": nix.thunk(() => ({ __proto__: pos$30, text: nix.thunk(() => nix.sel(cfg, "parent")) })),
+            [nix.POS]: pos$38,
+            "trafficserver/cache.config": nix.thunk(() => ({ [nix.POS]: pos$28, text: nix.thunk(() => nix.sel(cfg, "cache")) })),
+            "trafficserver/hosting.config": nix.thunk(() => ({ [nix.POS]: pos$29, text: nix.thunk(() => nix.sel(cfg, "hosting")) })),
+            "trafficserver/parent.config": nix.thunk(() => ({ [nix.POS]: pos$30, text: nix.thunk(() => nix.sel(cfg, "parent")) })),
             "trafficserver/plugin.config": nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               text: nix.thunk(() => nix.app(mkPluginConfig, nix.thunk(() => nix.sel(cfg, "plugins")))),
             })),
             "trafficserver/records.config": nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               text: nix.thunk(() => nix.app(mkRecordsConfig, nix.thunk(() => nix.sel(cfg, "records")))),
             })),
-            "trafficserver/remap.config": nix.thunk(() => ({ __proto__: pos$33, text: nix.thunk(() => nix.sel(cfg, "remap")) })),
-            "trafficserver/splitdns.config": nix.thunk(() => ({ __proto__: pos$34, text: nix.thunk(() => nix.sel(cfg, "splitDns")) })),
-            "trafficserver/ssl_multicert.config": nix.thunk(() => ({ __proto__: pos$35, text: nix.thunk(() => nix.sel(cfg, "sslMulticert")) })),
-            "trafficserver/storage.config": nix.thunk(() => ({ __proto__: pos$36, text: nix.thunk(() => nix.sel(cfg, "storage")) })),
-            "trafficserver/volume.config": nix.thunk(() => ({ __proto__: pos$37, text: nix.thunk(() => nix.sel(cfg, "volume")) })),
+            "trafficserver/remap.config": nix.thunk(() => ({ [nix.POS]: pos$33, text: nix.thunk(() => nix.sel(cfg, "remap")) })),
+            "trafficserver/splitdns.config": nix.thunk(() => ({ [nix.POS]: pos$34, text: nix.thunk(() => nix.sel(cfg, "splitDns")) })),
+            "trafficserver/ssl_multicert.config": nix.thunk(() => ({ [nix.POS]: pos$35, text: nix.thunk(() => nix.sel(cfg, "sslMulticert")) })),
+            "trafficserver/storage.config": nix.thunk(() => ({ [nix.POS]: pos$36, text: nix.thunk(() => nix.sel(cfg, "storage")) })),
+            "trafficserver/volume.config": nix.thunk(() => ({ [nix.POS]: pos$37, text: nix.thunk(() => nix.sel(cfg, "volume")) })),
           }, nix.update(nix.app(mkYamlConf, "ip_allow", nix.thunk(() => nix.sel(cfg, "ipAllow"))), nix.update(nix.app(mkYamlConf, "logging", nix.thunk(() => nix.sel(cfg, "logging"))), nix.update(nix.app(mkYamlConf, "sni", nix.thunk(() => nix.sel(cfg, "sni"))), nix.app(mkYamlConf, "strategies", nix.thunk(() => nix.sel(cfg, "strategies")))))))),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "trafficserver"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "trafficserver"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             trafficserver: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               enable: true,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '/run/trafficserver' - ${user} ${group} - -`),
               nix.thunk(() => nix.str`d '/var/cache/trafficserver' - ${user} ${group} - -`),
@@ -337,18 +337,18 @@ upstream documentation](${nix.app(getManualUrl, "volume.config")}) for more deta
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           trafficserver: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             records: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               proxy: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 config: nix.thunk(() => ({
-                  __proto__: pos$46,
-                  admin: nix.thunk(() => ({ __proto__: pos$44, user_id: user })),
+                  [nix.POS]: pos$46,
+                  admin: nix.thunk(() => ({ [nix.POS]: pos$44, user_id: user })),
                   body_factory: nix.thunk(() => ({
-                    __proto__: pos$45,
+                    [nix.POS]: pos$45,
                     template_sets_dir: nix.thunk(() => nix.str`${nix.sel(pkgs, "trafficserver")}/etc/trafficserver/body_factory`),
                   })),
                 })),
@@ -357,17 +357,17 @@ upstream documentation](${nix.app(getManualUrl, "volume.config")}) for more deta
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           users: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             trafficserver: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               description: "Apache Traffic Server",
               isSystemUser: true,
               group: group,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$53, trafficserver: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$53, trafficserver: nix.thunk(() => ({})) })),
         })),
       })))),
   };

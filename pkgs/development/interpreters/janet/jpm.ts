@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const janet = nix.arg($, "janet");
   const platformFiles = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-darwin": "macos_config.janet",
     "aarch64-linux": "linux_config.janet",
     "x86_64-linux": "linux_config.janet",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jpm";
       const version = "1.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "janet-lang",
           repo: "jpm",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -53,13 +53,13 @@ runHook postInstall
       const doInstallCheck = true;
       const installCheckPhase = "$out/bin/jpm help\n$out/bin/jpm show-paths\n";
       const meta = nix.thunk(() => nix.update(nix.sel(janet, "meta"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Janet Project Manager for the Janet programming language",
         mainProgram: "jpm",
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), platformFiles)),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

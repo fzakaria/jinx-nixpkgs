@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mrustc";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thepowersgang",
           repo: "mrustc",
           rev: tag,
@@ -38,7 +38,7 @@ sed '1i#include <limits>' -i src/trans/codegen_c.cpp
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mutabah's Rust Compiler",
         mainProgram: "mrustc",
         longDescription: "In-progress alternative rust compiler, written in C++.\nCapable of building a fully-working copy of rustc,\nbut not yet suitable for everyday use.\n",
@@ -55,7 +55,7 @@ sed '1i#include <limits>' -i src/trans/codegen_c.cpp
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version: version_1,
         src,

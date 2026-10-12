@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "starlark-rust",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "starlark_bin",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-uNhMtBpfkTQdWNyjklP6NC3aXwXqH23PN4MWOjaR49w=",
         })))),
       cargoHash: "sha256-1x0QESkxze/MP7/E0whPwx3zSv+JC2OH7pz5adO1JFk=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rust implementation of the Starlark language",
         homepage: "https://github.com/facebook/starlark-rust",
         changelog: nix.thunk(() => nix.str`https://github.com/facebook/starlark-rust/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

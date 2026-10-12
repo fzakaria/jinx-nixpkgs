@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const version = "50.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyca",
           repo: "cryptography",
           tag: version,
           hash: "sha256-KHxEVSYr8yrODSVsGNgZowI/YnhG3qnFgae9877H+VE=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -57,13 +57,13 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(isPyPy)), nix.thunk(() => [cffi]))));
       const buildInputs = nix.thunk(() => nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))));
       const dependencies = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(isPyPy)), nix.thunk(() => [cffi])));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, ssh: nix.thunk(() => [bcrypt]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, ssh: nix.thunk(() => [bcrypt]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([certifi, cryptography_vectors, pretend, pytestCheckHook, pytest_xdist], nix.sel(optional_dependencies, "ssh")));
       const pytestFlags = nix.thunk(() => ["--disable-pytest-warnings"]);
       const disabledTestPaths = nix.thunk(() => ["tests/bench"]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, vectors: cryptography_vectors }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, vectors: cryptography_vectors }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Package which provides cryptographic recipes and primitives",
         longDescription: "Cryptography includes both high level recipes and low level interfaces to\ncommon cryptographic algorithms such as symmetric ciphers, message\ndigests, and key derivation functions.\n",
         homepage: "https://github.com/pyca/cryptography",
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

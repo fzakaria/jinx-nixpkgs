@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dvgrab",
       version: "3.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ddennedy",
           repo: "dvgrab",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libunwind, libraw1394, libjpeg, libiec61883, libdv, libavc1394]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Receive and store audio & video over IEEE1394",
         longDescription: "dvgrab receives audio and video data from a digital camcorder via an\nIEEE1394 (widely known as FireWire) or USB link and stores them into\none of several file formats. It features autosplit of long video\nsequences, and supports saving the data as raw frames, AVI type 1,\nAVI type 2, Quicktime DV, a series of JPEG stills or MPEG2-TS.\n",
         homepage: "https://github.com/ddennedy/dvgrab",

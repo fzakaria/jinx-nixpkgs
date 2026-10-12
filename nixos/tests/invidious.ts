@@ -70,21 +70,21 @@ const pos$60 = nix.positions(here + "/invidious.nix", [["name", 3, 3], ["meta", 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$60,
+    [nix.POS]: pos$60,
     name: "invidious",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$59,
+      [nix.POS]: pos$59,
       "postgres-tcp": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             postgresql: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "init-postgres-with-password", "CREATE USER invidious WITH PASSWORD 'correct horse battery staple';\nCREATE DATABASE invidious WITH OWNER invidious;\n")),
               enableTCPIP: true,
@@ -92,9 +92,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             firewall: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               allowedTCPPorts: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "services", "postgresql", "settings", "port")),
               ]),
@@ -106,128 +106,128 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
-            invidious: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+            [nix.POS]: pos$8,
+            invidious: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             nginx: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               configuration: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 services: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   invidious: nix.thunk(() => ({
-                    __proto__: pos$10,
-                    nginx: nix.thunk(() => ({ __proto__: pos$9, enable: true })),
+                    [nix.POS]: pos$10,
+                    nginx: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
                     domain: "invidious.example.com",
                   })),
                   nginx: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     virtualHosts: nix.thunk(() => ({
-                      __proto__: pos$12,
-                      "invidious.example.com": nix.thunk(() => ({ __proto__: pos$11, forceSSL: false, enableACME: false })),
+                      [nix.POS]: pos$12,
+                      "invidious.example.com": nix.thunk(() => ({ [nix.POS]: pos$11, forceSSL: false, enableACME: false })),
                     })),
                   })),
                 })),
                 networking: nix.thunk(() => ({
-                  __proto__: pos$16,
-                  hosts: nix.thunk(() => ({ __proto__: pos$15, "127.0.0.1": nix.thunk(() => ["invidious.example.com"]) })),
+                  [nix.POS]: pos$16,
+                  hosts: nix.thunk(() => ({ [nix.POS]: pos$15, "127.0.0.1": nix.thunk(() => ["invidious.example.com"]) })),
                 })),
               })),
             })),
             "nginx-sig-helper": nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               configuration: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 services: nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   invidious: nix.thunk(() => ({
-                    __proto__: pos$22,
-                    nginx: nix.thunk(() => ({ __proto__: pos$19, enable: true })),
+                    [nix.POS]: pos$22,
+                    nginx: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true })),
                     domain: "invidious.example.com",
-                    "sig-helper": nix.thunk(() => ({ __proto__: pos$20, enable: true })),
-                    settings: nix.thunk(() => ({ __proto__: pos$21, log_level: "Trace" })),
+                    "sig-helper": nix.thunk(() => ({ [nix.POS]: pos$20, enable: true })),
+                    settings: nix.thunk(() => ({ [nix.POS]: pos$21, log_level: "Trace" })),
                   })),
                   nginx: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     virtualHosts: nix.thunk(() => ({
-                      __proto__: pos$24,
-                      "invidious.example.com": nix.thunk(() => ({ __proto__: pos$23, forceSSL: false, enableACME: false })),
+                      [nix.POS]: pos$24,
+                      "invidious.example.com": nix.thunk(() => ({ [nix.POS]: pos$23, forceSSL: false, enableACME: false })),
                     })),
                   })),
                 })),
                 networking: nix.thunk(() => ({
-                  __proto__: pos$28,
-                  hosts: nix.thunk(() => ({ __proto__: pos$27, "127.0.0.1": nix.thunk(() => ["invidious.example.com"]) })),
+                  [nix.POS]: pos$28,
+                  hosts: nix.thunk(() => ({ [nix.POS]: pos$27, "127.0.0.1": nix.thunk(() => ["invidious.example.com"]) })),
                 })),
               })),
             })),
             "nginx-scale": nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               configuration: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 services: nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   invidious: nix.thunk(() => ({
-                    __proto__: pos$32,
-                    nginx: nix.thunk(() => ({ __proto__: pos$31, enable: true })),
+                    [nix.POS]: pos$32,
+                    nginx: nix.thunk(() => ({ [nix.POS]: pos$31, enable: true })),
                     domain: "invidious.example.com",
                     serviceScale: 3n,
                   })),
                   nginx: nix.thunk(() => ({
-                    __proto__: pos$35,
+                    [nix.POS]: pos$35,
                     virtualHosts: nix.thunk(() => ({
-                      __proto__: pos$34,
-                      "invidious.example.com": nix.thunk(() => ({ __proto__: pos$33, forceSSL: false, enableACME: false })),
+                      [nix.POS]: pos$34,
+                      "invidious.example.com": nix.thunk(() => ({ [nix.POS]: pos$33, forceSSL: false, enableACME: false })),
                     })),
                   })),
                 })),
                 networking: nix.thunk(() => ({
-                  __proto__: pos$38,
-                  hosts: nix.thunk(() => ({ __proto__: pos$37, "127.0.0.1": nix.thunk(() => ["invidious.example.com"]) })),
+                  [nix.POS]: pos$38,
+                  hosts: nix.thunk(() => ({ [nix.POS]: pos$37, "127.0.0.1": nix.thunk(() => ["invidious.example.com"]) })),
                 })),
               })),
             })),
             "nginx-scale-ytproxy": nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               configuration: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 services: nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   invidious: nix.thunk(() => ({
-                    __proto__: pos$43,
-                    nginx: nix.thunk(() => ({ __proto__: pos$41, enable: true })),
-                    "http3-ytproxy": nix.thunk(() => ({ __proto__: pos$42, enable: true })),
+                    [nix.POS]: pos$43,
+                    nginx: nix.thunk(() => ({ [nix.POS]: pos$41, enable: true })),
+                    "http3-ytproxy": nix.thunk(() => ({ [nix.POS]: pos$42, enable: true })),
                     domain: "invidious.example.com",
                     serviceScale: 3n,
                   })),
                   nginx: nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     virtualHosts: nix.thunk(() => ({
-                      __proto__: pos$45,
-                      "invidious.example.com": nix.thunk(() => ({ __proto__: pos$44, forceSSL: false, enableACME: false })),
+                      [nix.POS]: pos$45,
+                      "invidious.example.com": nix.thunk(() => ({ [nix.POS]: pos$44, forceSSL: false, enableACME: false })),
                     })),
                   })),
                 })),
                 networking: nix.thunk(() => ({
-                  __proto__: pos$49,
-                  hosts: nix.thunk(() => ({ __proto__: pos$48, "127.0.0.1": nix.thunk(() => ["invidious.example.com"]) })),
+                  [nix.POS]: pos$49,
+                  hosts: nix.thunk(() => ({ [nix.POS]: pos$48, "127.0.0.1": nix.thunk(() => ["invidious.example.com"]) })),
                 })),
               })),
             })),
             "postgres-tcp": nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               configuration: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 services: nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   invidious: nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     database: nix.thunk(() => ({
-                      __proto__: pos$52,
+                      [nix.POS]: pos$52,
                       createLocally: false,
                       host: "postgres-tcp",
                       passwordFile: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "database-password", "correct horse battery staple")))),

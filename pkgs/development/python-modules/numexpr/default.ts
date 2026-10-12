@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.14.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-S+ALEIbHt6XDLjFVgSK3uAJD/gmFebFwln2oPzFStIs=",
@@ -35,20 +35,20 @@ ln -s ${nix.sel(numpy, "cfg")} site.cfg
 `);
       const nativeCheckInputs = nix.thunk(() => [pytest_run_parallel, pytestCheckHook]);
       const propagatedNativeBuildInputs = nix.thunk(() => [checkPhaseThreadLimitHook]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, dontLimitCheckPhaseThreads: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, dontLimitCheckPhaseThreads: 1n }));
       const preCheck = "pushd $out\n";
       const postCheck = "popd\n";
       const disabledTests = nix.thunk(() => ["test_numexpr_max_threads_empty_string", "test_omp_num_threads_empty_string"]);
       const pythonImportsCheck = nix.thunk(() => ["numexpr"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast numerical array expression evaluator for NumPy",
         homepage: "https://github.com/pydata/numexpr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

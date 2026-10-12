@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "elementary-greeter",
       version: "8.1.2-unstable-2025-01-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "greeter",
           rev: "5510466126f7aa3412a21c055d59f8eb5fcc8d29",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./sysconfdir-install.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-fallback-background.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             default_wallpaper: nix.thunk(() => nix.str`${nix.sel(nixos_artwork, "wallpapers", "simple-dark-gray", "gnomeFilePath")}`),
           })))),
       ]),
@@ -108,18 +108,18 @@ export default nix.lambda((args) => (() => {
 `),
       postFixup: "substituteInPlace $out/share/xgreeters/io.elementary.greeter.desktop \\\n  --replace-fail \"Exec=io.elementary.greeter\" \"Exec=$out/bin/io.elementary.greeter\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         xgreeters: nix.thunk(() => nix.app(linkFarm, "pantheon-greeter-xgreeters", nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               path: nix.thunk(() => nix.str`${elementary_greeter}/share/xgreeters/io.elementary.greeter.desktop`),
               name: "io.elementary.greeter.desktop",
             })),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "LightDM Greeter for Pantheon",
         homepage: "https://github.com/elementary/greeter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

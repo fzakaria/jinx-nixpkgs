@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const libice = nix.arg($, "libice");
   const libsm = nix.arg($, "libsm");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "downkyicore",
       version: "1.0.32",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crazysmile-PhD",
           repo: "downkyicore",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/downkyicore`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postInstall: nix.thunk(() => nix.add(nix.str`mkdir -p $out/lib/downkyicore/{aria2,ffmpeg}
@@ -85,7 +85,7 @@ printf 'See https://ffmpeg.org/legal.html for FFmpeg licensing information.\\n' 
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "app=\"$out/Applications/DownKyi.app\"\nmkdir -p \"$app/Contents/MacOS\" \"$app/Contents/Resources\"\n\ncp $src/script/macos/Info.plist \"$app/Contents/Info.plist\"\nmakeWrapper \"$out/bin/DownKyi\" \"$app/Contents/MacOS/DownKyi\"\ncp $src/script/macos/logo.icns \"$app/Contents/Resources/logo.icns\"\n")),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "downkyicore",
               desktopName: "DownKyi",
               comment: "Cross-platform Bilibili downloader",
@@ -95,7 +95,7 @@ printf 'See https://ffmpeg.org/legal.html for FFmpeg licensing information.\\n' 
             })))),
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cross-platform Bilibili downloader built with Avalonia",
         homepage: "https://github.com/crazysmile-PhD/downkyicore",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

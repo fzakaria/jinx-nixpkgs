@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "075af8afabae6362482d254e5ac3ffa595d1766117b684e53d9c25c2e937e139",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [pycurl, six]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://urlgrabber.baseurl.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
         description: "Python module for downloading files",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "qknight"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

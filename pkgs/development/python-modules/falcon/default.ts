@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "falconry",
           repo: "falcon",
           tag: version,
@@ -62,14 +62,14 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests"]);
       const disabledTestPaths = nix.thunk(() => nix.concat(["tests/asgi/test_asgi_servers.py"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ["tests/asgi/test_cythonized_asgi.py"]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://falcon.readthedocs.io/en/stable/changes/${nix.sel(src, "tag")}.html`),
         description: "Ultra-reliable, fast ASGI+WSGI framework for building data plane APIs at scale",
         homepage: "https://falconframework.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

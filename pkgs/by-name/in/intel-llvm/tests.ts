@@ -19,20 +19,20 @@ export default nix.lambda((args) => (() => {
   const writeTextFile = nix.arg($, "writeTextFile");
   const backends = nix.arg($, "backends");
   const src = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "test.cpp",
       text: "#include <sycl/sycl.hpp>\n#include <iostream>\n\nint main() {\n  sycl::queue q;\n  std::cout << \"SYCL queue created successfully\" << std::endl;\n  return 0;\n}\n",
     }))));
-  const targets = nix.thunk(() => nix.concat([nix.thunk(() => ({ __proto__: pos$2, name: "spir64", flags: [] }))], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "native_cpu", backends)), nix.thunk(() => ({
-      __proto__: pos$3,
+  const targets = nix.thunk(() => nix.concat([nix.thunk(() => ({ [nix.POS]: pos$2, name: "spir64", flags: [] }))], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "native_cpu", backends)), nix.thunk(() => ({
+      [nix.POS]: pos$3,
       name: "native_cpu",
       flags: nix.thunk(() => ["-fsycl-targets=native_cpu"]),
     }))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "cuda", backends)), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "nvptx64-nvidia-cuda",
       flags: nix.thunk(() => ["-fsycl-targets=nvptx64-nvidia-cuda"]),
     }))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "hip", backends)), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "amdgcn-amd-amdhsa",
       flags: nix.thunk(() => [
         "-fsycl-targets=amdgcn-amd-amdhsa",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const flags = nix.arg($_1, "flags");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: nix.thunk(() => nix.str`intel-llvm-test-sycl-compile-${name}`),
         src: src,
         dontUnpack: true,
@@ -54,7 +54,7 @@ clang++ -fsycl ${nix.app(nix.sel(lib, "escapeShellArgs"), flags)} $src -o test
 `),
         installPhase: "mkdir -p $out/bin\ncp test $out/bin/sycl-test\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: nix.thunk(() => nix.str`Test that intel-llvm can build a SYCL program for ${name}`),
           mainProgram: "sycl-test",
         })),

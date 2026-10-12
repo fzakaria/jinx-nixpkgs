@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elementary-tasks";
       const version = "6.3.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "tasks",
           rev: version,
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
         libportal_gtk3,
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/elementary/tasks",
         description: "Synced tasks and reminders on elementary OS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "io.elementary.tasks",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

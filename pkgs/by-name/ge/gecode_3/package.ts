@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
       const pname = "gecode";
       const version = "3.7.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.gecode.org/download/${pname}-${version}.tar.gz`),
           sha256: "0k45jas6p3cyldgyir1314ja3174sayn2h2ly3z9b4dl3368pk77",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-const-weights-clang.patch",
             url: "https://github.com/Gecode/gecode/commit/c810c96b1ce5d3692e93439f76c4fa7d3daf9fbb.patch",
             sha256: "0270msm22q5g5sqbdh8kmrihlxnnxqrxszk9a49hdxd72736p4fc",
@@ -36,18 +36,18 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [perl]);
       const preConfigure = "patchShebangs configure";
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CXXFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-std=c++14")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://www.gecode.org",
         description: "Toolkit for developing constraint-based systems",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

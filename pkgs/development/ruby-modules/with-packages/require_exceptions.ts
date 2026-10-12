@@ -9,7 +9,7 @@ export default nix.thunk(() => (() => {
 require "#{Gem::Specification.find_by_name(%(${name})).gem_dir}/lib/cocoapods_plugin"
 `;
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     actioncable: nix.thunk(() => ["action_cable"]),
     actionmailer: nix.thunk(() => ["action_mailer"]),
     actionpack: nix.thunk(() => ["action_pack"]),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromBitbucket = nix.arg($, "fetchFromBitbucket");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "u9fs",
       version: "unstable-2021-01-25",
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "plan9-from-bell-labs",
           repo: "u9fs",
           rev: "d65923fd17e8b158350d3ccd6a4e32b89b15014a",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "install -Dm644 u9fs.man \"$out/share/man/man4/u9fs.4\"\ninstall -Dm755 u9fs -t \"$out/bin\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Serve 9P from Unix",
         homepage: "http://p9f.org/magic/man2html?man=u9fs&sect=4",
         license: nix.thunk(() => nix.sel(lib, "licenses", "dtoa")),

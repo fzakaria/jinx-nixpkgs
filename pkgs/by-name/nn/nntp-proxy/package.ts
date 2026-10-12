@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nntp-proxy",
       version: "2014-01-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nieluj",
           repo: "nntp-proxy",
           rev: "0358e7ad6c4676f90ac5074320b16e1461b0011a",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["INSTALL_DIR=$(out)/bin/"]),
       prePatch: "mkdir -p $out/bin\nsubstituteInPlace Makefile \\\n  --replace /usr/bin/install $(type -P install) \\\n  --replace gcc cc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple NNTP proxy with SSL support",
         homepage: "https://github.com/nieluj/nntp-proxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

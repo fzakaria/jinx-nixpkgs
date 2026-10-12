@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
     "text",
   ]);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spdx-license-list-data",
       version: "3.28.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spdx",
           repo: "license-list-data",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ runHook postInstall
 `),
       dontFixup: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Various data formats for the SPDX License List",
         homepage: "https://github.com/spdx/license-list-data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

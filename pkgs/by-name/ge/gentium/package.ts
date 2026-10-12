@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gentium",
       version: "7.000",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://software.sil.org/downloads/r/gentium/Gentium-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-RBBecFdi/yyFfBk1CcQebOuAdKNUczpwOP52zVtbc2o=",
         })))),
@@ -30,7 +30,7 @@ cp -r documentation $out/share/doc/${nix.sel(finalAttrs, "pname")}-${nix.sel(fin
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://software.sil.org/gentium/",
         description: "High-quality typeface family for Latin, Cyrillic, and Greek",
         longDescription: "Gentium is a typeface family designed to enable the diverse ethnic groups\naround the world who use the Latin, Cyrillic and Greek scripts to produce\nreadable, high-quality publications. It supports a wide range of Latin and\nCyrillic-based alphabets.\n\nThe design is intended to be highly readable, reasonably compact, and\nvisually attractive. The additional ‘extended’ Latin letters are designed\nto naturally harmonize with the traditional 26 ones. Diacritics are\ntreated with careful thought and attention to their use. Gentium also\nsupports both polytonic and monotonic Greek.\n\nThis package contains the regular and italic styles for the Gentium font\nfamily, along with documentation.\n",

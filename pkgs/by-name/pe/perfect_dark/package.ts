@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const roms = nix.thunk(() => ["ntsc-final", "pal-final", "jpn-final"]);
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "romID", romID, roms), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pe/perfect_dark/package.nix:21:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "perfect_dark",
       version: "0-unstable-2026-08-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "perfect-dark-pc-port",
           repo: "perfect_dark",
           rev: "32a1cb9f268dd3ac73016801025c6bbbfa20130f",
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       preConfigure: "patchShebangs --build tools/assetmgr\n",
       installPhase: "runHook preInstall\n\npushd ..\ninstall -Dm755 build/pd.* $out/bin/io.github.perfect_dark_pc_port.perfect_dark\ninstall -Dm644 dist/linux/io.github.perfect_dark_pc_port.perfect_dark.desktop \\\n        -t $out/share/applications\ninstall -Dm644 dist/linux/io.github.perfect_dark_pc_port.perfect_dark.png \\\n        -t $out/share/icons/hicolor/256x256/apps\ninstall -Dm644 dist/linux/io.github.perfect_dark_pc_port.perfect_dark.metainfo.xml \\\n        -t $out/share/metainfo\npopd\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Modern cross-platform port of Perfect Dark",
         longDescription: nix.thunk(() => nix.str`This is a port of Ryan Dywer's decompilation of classic N64
 shooter Perfect Dark to modern systems.

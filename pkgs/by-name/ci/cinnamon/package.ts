@@ -83,11 +83,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cinnamon",
       version: "6.6.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "cinnamon",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./use-sane-install-dir.patch"),
         nix.path(here, "./libdir.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/linuxmint/cinnamon/commit/3a2d558aa575f0ea364c5b4e30d2eb3ee604ee58.patch",
             hash: "sha256-+uAGuQJ0VsIvMvPFafyoXmU4MiHfbbRXLzeW/n62ucw=",
           })))),
@@ -203,11 +203,11 @@ chmod +x $out/share/cinnamon/applets/printers@cinnamon.org/{cancel-print-dialog,
 wrapGApp $out/share/cinnamon/applets/printers@cinnamon.org/cancel-print-dialog.py
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         providedSessions: nix.thunk(() => ["cinnamon", "cinnamon2d", "cinnamon-wayland"]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/linuxmint/cinnamon",
         description: "Cinnamon desktop environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

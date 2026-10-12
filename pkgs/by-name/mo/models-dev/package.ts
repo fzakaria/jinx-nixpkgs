@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const node_modules = (finalAttrs) => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
       version: nix.thunk(() => nix.attr(finalAttrs, "version")),
       src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
     })));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "models-dev",
       version: "0.0.5-unstable-2026-10-02",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "anomalyco",
           repo: "models.dev",
           rev: "e752025f46d6ab6357e7df98e169e7357b033293",
@@ -65,16 +65,16 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/dist\ncp -R ./dist $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         jsonschema: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/dist/model-schema.json`),
         node_modules: nix.thunk(() => nix.app(node_modules, finalAttrs)),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version=branch", "--subpackage", "node_modules"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Comprehensive open-source database of AI model specifications, pricing, and capabilities",
         homepage: "https://github.com/anomalyco/models.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

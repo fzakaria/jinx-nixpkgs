@@ -55,13 +55,13 @@ export default nix.lambda((args) => (() => {
   const wrappers = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => nix.sel(value, "enable"), nix.thunk(() => nix.sel(config, "security", "wrappers"))));
   const parentWrapperDir = nix.thunk(() => nix.builtins.dirOf(wrapperDir));
   const securityWrapper = (sourceProg) => nix.app(nix.sel(pkgs, "pkgsStatic", "callPackage"), nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       sourceProg: sourceProg,
       unsecvars: nix.thunk(() => nix.app(nix.sel(lib, "overrideDerivation"), nix.thunk(() => nix.app(nix.sel(pkgs, "srcOnly"), nix.thunk(() => nix.sel(pkgs, "glibc")))), nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const name = nix.arg($_1, "name");
           return {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: nix.thunk(() => nix.str`${name}-unsecvars`),
             installPhase: "mkdir $out\ncp sysdeps/generic/unsecvars.h $out\n",
           };
@@ -71,29 +71,29 @@ export default nix.lambda((args) => (() => {
     const symbolic = "[ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+";
     const numeric = "[-+=]?[0-7]{0,4}";
     const mode = nix.thunk(() => nix.str`((${symbolic})(,${symbolic})*)|(${numeric})`);
-    return nix.update(nix.app(nix.sel(lib, "types", "strMatching"), mode), { __proto__: pos$3, description: "file mode string" });
+    return nix.update(nix.app(nix.sel(lib, "types", "strMatching"), mode), { [nix.POS]: pos$3, description: "file mode string" });
   })());
   const wrapperType = nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
       const name = nix.arg($_1, "name");
       const config_1 = nix.arg($_1, "config");
       return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         options: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable the wrapper.",
             })))),
           source: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The absolute path to the program to be wrapped.",
             })))),
           program: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -102,36 +102,36 @@ export default nix.lambda((args) => (() => {
               description: "The name of the wrapper program. Defaults to the attribute name.\n",
             })))),
           owner: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The owner of the wrapper program.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The group of the wrapper program.",
             })))),
           permissions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: fileModeType,
               default: "u+rx,g+x,o+x",
               example: "a+rx",
               description: "The permissions of the wrapper program. The format is that of a\nsymbolic or numeric file mode understood by {command}`chmod`.\n",
             })))),
           capabilities: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "commas")),
               default: "",
               description: "A comma-separated list of capability clauses to be given to the\nwrapper program. The format for capability clauses is described in the\n“TEXTUAL REPRESENTATION” section of the {manpage}`cap_from_text(3)`\nmanual page. For a list of capabilities supported by the system, check\nthe {manpage}`capabilities(7)` manual page.\n\n::: {.note}\n`cap_setpcap`, which is required for the wrapper\nprogram to be able to raise caps into the Ambient set is NOT raised\nto the Ambient set so that the real program cannot modify its own\ncapabilities!! This may be too restrictive for cases in which the\nreal program needs cap_setpcap but it at least leans on the side\nsecurity paranoid vs. too relaxed.\n:::\n",
             })))),
           setuid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to add the setuid bit the wrapper program.",
             })))),
           setgid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to add the setgid bit the wrapper program.",
@@ -182,36 +182,36 @@ chmod "u${(nix.asBool(setuid) ? "+" : "-")}s,g${(nix.asBool(setgid) ? "+" : "-")
   })(), formals$5);
   const mkWrappedPrograms = nix.thunk(() => nix.builtins.map((opts) => (nix.asBool(!nix.eq(nix.sel(opts, "capabilities"), "")) ? nix.app(mkSetcapProgram, opts) : nix.app(mkSetuidProgram, opts)), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), wrappers))));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["security", "setuidOwners"]), "Use security.wrappers instead")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["security", "setuidPrograms"]), "Use security.wrappers instead")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       security: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         enableWrappers: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           default: true,
           description: "Whether to enable SUID/SGID wrappers.\n\n::: {.warning}\nONLY DISABLE THIS OPTION IF YOU KNOW WHAT YOU'RE DOING.\n:::\n\nA normal interactive NixOS system requires SUID/SGID wrappers (e.g. for\nPAM and sudo). Disabling them, thus will lock you out from your system.\n\nDisabling the SUID/SGID binaries is useful for non-interactive systems\n(like a firewall appliance) to minimize the attack surface. In the\nfuture, this might become available for interactive systems as well\n(e.g. with systemd's [run0](https://www.freedesktop.org/software/systemd/man/latest/run0)).\n",
         })),
         wrappers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), wrapperType)),
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  # a setuid root program\n  doas =\n    { setuid = true;\n      owner = \"root\";\n      group = \"root\";\n      source = \"${pkgs.doas}/bin/doas\";\n    };\n\n  # a setgid program\n  locate =\n    { setgid = true;\n      owner = \"root\";\n      group = \"mlocate\";\n      source = \"${pkgs.locate}/bin/locate\";\n    };\n\n  # a program with the CAP_NET_RAW capability\n  ping =\n    { owner = \"root\";\n      group = \"root\";\n      capabilities = \"cap_net_raw+ep\";\n      source = \"${pkgs.iputils.out}/bin/ping\";\n    };\n}\n")),
             description: "This option effectively allows adding setuid/setgid bits, capabilities,\nchanging file ownership and permissions of a program without directly\nmodifying it. This works by creating a wrapper program in a directory\n(not configurable), which is then added to the shell `PATH`.\n",
           })))),
         wrapperDirSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             default: "50%",
             example: "10G",
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Size limit for the /run/wrappers tmpfs. Look at {manpage}`mount(8)`, tmpfs size option,\nfor the accepted syntax. WARNING: don't set to less than 64MB.\n",
           })))),
         wrapperDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => nix.sel(lib, "types", "path")),
             default: "/run/wrappers/bin",
             internal: true,
@@ -220,34 +220,34 @@ chmod "u${(nix.asBool(setuid) ? "+" : "-")}s,g${(nix.asBool(setgid) ? "+" : "-")
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "security", "enableWrappers")), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (opts) => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(opts, "setuid")) || nix.asBool(nix.sel(opts, "setgid")))) || nix.asBool(nix.eq(nix.sel(opts, "capabilities"), "")))),
             message: nix.thunk(() => nix.str`The security.wrappers.${name} wrapper is not valid:
     setuid/setgid and capabilities are mutually exclusive.
 `),
           }), wrappers)),
         security: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           wrappers: nix.thunk(() => (() => {
             const mkSetuidRoot = (source) => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               setuid: true,
               owner: "root",
               group: "root",
               source: source,
             });
             return {
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               mount: nix.thunk(() => nix.app(mkSetuidRoot, nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "util-linux")))}/bin/mount`))),
               umount: nix.thunk(() => nix.app(mkSetuidRoot, nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "util-linux")))}/bin/umount`))),
             };
           })()),
           apparmor: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             includes: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (wrapName) => (wrap) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`nixos/security.wrappers/${wrapName}`), nix.thunk(() => nix.str`include "${nix.app(nix.sel(pkgs, "apparmorRulesFromClosure"), nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     name: nix.thunk(() => nix.str`security.wrappers.${wrapName}`),
                   })), nix.thunk(() => [
                     nix.thunk(() => nix.app(securityWrapper, nix.thunk(() => nix.sel(wrap, "source")))),
@@ -257,16 +257,16 @@ mrpx ${nix.sel(wrap, "source")},
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           extraInit: nix.thunk(() => nix.str`# Wrappers override other bin directories.
 export PATH="${wrapperDir}:$PATH"
 `),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           mounts: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               where: parentWrapperDir,
               what: "tmpfs",
               type: "tmpfs",
@@ -278,20 +278,20 @@ export PATH="${wrapperDir}:$PATH"
             })),
           ]),
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             "suid-sgid-wrappers": nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               description: "Create SUID/SGID Wrappers",
               wantedBy: nix.thunk(() => ["sysinit.target"]),
               before: nix.thunk(() => ["sysinit.target", "shutdown.target"]),
               conflicts: nix.thunk(() => ["shutdown.target"]),
               after: nix.thunk(() => ["systemd-sysusers.service"]),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 DefaultDependencies: false,
                 RequiresMountsFor: nix.thunk(() => ["/nix/store", "/run/wrappers"]),
               })),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$30, RestrictSUIDSGID: false, Type: "oneshot" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$30, RestrictSUIDSGID: false, Type: "oneshot" })),
               script: nix.thunk(() => nix.str`chmod 755 "${parentWrapperDir}"
 
 # We want to place the tmpdirs for the wrappers to the parent dir.
@@ -319,9 +319,9 @@ fi
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           checks: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), "ensure-all-wrappers-paths-exist", nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libcap-text-verifier"))]),
                 preferLocalBuild: true,
               })), nix.thunk(() => nix.str`# make sure we produce output

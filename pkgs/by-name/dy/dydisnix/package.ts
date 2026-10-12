@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const disnix = nix.arg($, "disnix");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0-unstable-2020-11-02",
       pname: "dydisnix",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "svanderburg",
           repo: "dydisnix",
           rev: "12ca1516bc1e5d161ac68f5d8252a0a2f353c8cf",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, libxml2, libxslt, getopt, nix$, disnix, libiconv, gettext]),
       preConfigure: "./bootstrap\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Toolset enabling self-adaptive redeployment on top of Disnix",
         longDescription: "Dynamic Disnix is a (very experimental!) prototype extension framework for Disnix supporting dynamic (re)deployment of service-oriented systems.\n",
         homepage: "https://github.com/svanderburg/dydisnix",

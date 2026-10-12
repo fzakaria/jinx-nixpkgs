@@ -30,29 +30,29 @@ export default nix.lambda((args) => (() => {
       const pname = "mqtt-explorer";
       const version = "0.4.0-beta.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thomasnordquist",
           repo: "MQTT-Explorer",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-oFS4RnuWQoicPemZbPBAp8yQjRbhAyo/jiaw8V0MBAo=",
         }))));
       const offlineCache = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${src}/yarn.lock`),
           hash: "sha256-yEL6Vb1Yry3Vns2GF0aagGksRwsCgXR5ZfmrDPxeqos=",
         }))));
       const offlineCacheApp = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           yarnLock: nix.thunk(() => nix.str`${src}/app/yarn.lock`),
           hash: "sha256-4oGWBXZHdN+wSpn3fPzTdpaIcywAVdFVYmsOIhcgvUE=",
         }))));
       const offlineCacheBackend = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           yarnLock: nix.thunk(() => nix.str`${src}/backend/yarn.lock`),
           hash: "sha256-gg6KrcQz7MdIgFdlbuGiDf/tVd7lSOjwXFIq56tpaTc=",
         }))));
       const nativeBuildInputs = nix.thunk(() => nix.concat([nodejs, yarn, typescript_5, fixup_yarn_lock, makeWrapper], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [copyDesktopItems]))));
-      const env = nix.thunk(() => ({ __proto__: pos$5, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$5, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const configurePhase = nix.thunk(() => nix.str`runHook preConfigure
 
 # Yarn writes cache directories etc to $HOME.
@@ -125,7 +125,7 @@ runHook postInstall
       const checkPhase = "export ELECTRON_OVERRIDE_DIST_PATH=\"$electron_dist\"\n\nyarn test:app --offline\nyarn test:backend --offline\n\nunset ELECTRON_OVERRIDE_DIST_PATH\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: pname,
             exec: nix.thunk(() => nix.sel(meta, "mainProgram")),
             icon: "mqtt-explorer",
@@ -138,7 +138,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "All-round MQTT client that provides a structured topic overview",
         homepage: "https://github.com/thomasnordquist/MQTT-Explorer",
         changelog: nix.thunk(() => nix.str`https://github.com/thomasnordquist/MQTT-Explorer/releases/tag/v${version}`),
@@ -151,7 +151,7 @@ runHook postInstall
         mainProgram: "mqtt-explorer",
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

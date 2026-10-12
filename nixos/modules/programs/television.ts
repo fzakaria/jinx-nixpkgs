@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(from_1, "mkIf"));
   const cfg = nix.thunk(() => nix.sel(config, "programs", "television"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       programs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         television: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Blazingly fast general purpose fuzzy finder TUI")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "television", nix.thunk(() => ({})))),
           enableBashIntegration: nix.thunk(() => nix.app(mkEnableOption, "Bash integration")),
@@ -43,32 +43,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           zsh: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             interactiveShellInit: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableZshIntegration")), nix.thunk(() => nix.str`source ${nix.sel(cfg, "package")}/share/television/completion.zsh
 `))),
           })),
           bash: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             interactiveShellInit: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableBashIntegration")), nix.thunk(() => nix.str`source ${nix.sel(cfg, "package")}/share/television/completion.bash
 `))),
           })),
           fish: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             interactiveShellInit: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableFishIntegration")), nix.thunk(() => nix.str`source ${nix.sel(cfg, "package")}/share/television/completion.fish
 `))),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "pbek"))];

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const ddccontrol = nix.arg($, "ddccontrol");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "ddccontrol-dbgen",
       version: nix.thunk(() => nix.attr(ddccontrol, "version")),
       src: nix.thunk(() => nix.attr(ddccontrol, "src")),

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const spdlog = nix.arg($, "spdlog");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gr-bladeRF",
       version: "0-unstable-2023-11-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nuand",
           repo: "gr-bladeRF",
           rev: "27de2898dbee75d55c61f541315e3853e602e526",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(python, "pkgs", "pygccxml")),
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNU Radio source and sink blocks for bladeRF devices",
         homepage: "https://github.com/Nuand/gr-bladeRF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const effects = nix.arg($, "effects");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eternal",
       version: "2018-07-02",
       idrisDeps: nix.thunk(() => [effects]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Heather",
           repo: "Control.Eternal.Idris",
           rev: "2f84b0dd49a7a29a2f852ba96cabfe8322e0852b",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postUnpack: "printf 'makefile = Makefile\\n' >> source/eternal.ipkg\nprintf 'objs = readProcess.o\\n' >> source/eternal.ipkg\nsed -i 's/\\/usr\\/local\\/idris\\/readProcess.h/readProcess.h/g' source/Control/Eternal/System/Process.idr\nsed -i 's/\\/usr\\/local\\/idris\\/readProcess.o/readProcess.o/g' source/Control/Eternal/System/Process.idr\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Infix pipe operators and some Nat, Float, String conversions",
         homepage: "https://github.com/Heather/Control.Eternal.Idris",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

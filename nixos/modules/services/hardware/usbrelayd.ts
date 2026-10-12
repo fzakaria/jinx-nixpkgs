@@ -27,25 +27,25 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "usbrelayd"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         usbrelayd: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "USB Relay MQTT daemon")),
             broker: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 description: "Hostname or IP address of your MQTT Broker.",
                 default: "127.0.0.1",
                 example: nix.thunk(() => ["mqtt", "192.168.1.1"]),
               })))),
             clientName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 description: "Name, your client connects as.",
                 default: "MyUSBRelay",
@@ -55,13 +55,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           etc: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "usbrelayd.conf": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               text: nix.thunk(() => nix.str`[MQTT]
 BROKER = ${nix.sel(cfg, "broker")}
 CLIENTNAME = ${nix.sel(cfg, "clientName")}
@@ -70,23 +70,23 @@ CLIENTNAME = ${nix.sel(cfg, "clientName")}
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           udev: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "usbrelayd"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "usbrelayd"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$13,
-          groups: nix.thunk(() => ({ __proto__: pos$12, usbrelay: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$13,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$12, usbrelay: nix.thunk(() => ({})) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "wentasah"))];

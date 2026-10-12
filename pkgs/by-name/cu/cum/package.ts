@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cum",
       version: "0.9.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "15qc6agka2g3kcnpnz0hbjic1s3260cr9bda0rlcyninxs1vndq0",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "rm -rf $out/tests $out/LICENSE\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Comic updater, mangafied",
         mainProgram: "cum",
         homepage: "https://github.com/Hamuko/cum",

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const opencl_headers = nix.arg($, "opencl-headers");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opencl-caps-viewer",
       version: "1.30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SaschaWillems",
           repo: "OpenCLCapsViewer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       qtWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--prefix LD_LIBRARY_PATH : ${ocl_icd}/lib`)]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "OpenCLCapsViewer",
         description: "OpenCL hardware capability viewer",
         longDescription: "Client application to display hardware implementation details for devices supporting the OpenCL API by Khronos.\nThe hardware reports can be submitted to a public online database that allows comparing different devices, browsing available features, extensions, formats, etc.\n",

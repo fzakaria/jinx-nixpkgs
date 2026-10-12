@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
     const apps = nix.arg($_1, "apps");
     const callPackage = nix.arg($_1, "callPackage");
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       apps: nix.thunk(() => nix.app(nix.sel(apps, "extend"), (self) => (super$) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hmr_enabler: nix.thunk(() => nix.app(callPackage, nix.path(here, "./apps/hmr_enabler.nix"), nix.thunk(() => ({})))),
-          memories: nix.thunk(() => nix.app(callPackage, nix.path(here, "./apps/memories.nix"), nix.thunk(() => ({ __proto__: pos$1, ncVersion: ncVersion })))),
-          recognize: nix.thunk(() => nix.app(callPackage, nix.path(here, "./apps/recognize.nix"), nix.thunk(() => ({ __proto__: pos$2, ncVersion: ncVersion })))),
+          memories: nix.thunk(() => nix.app(callPackage, nix.path(here, "./apps/memories.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, ncVersion: ncVersion })))),
+          recognize: nix.thunk(() => nix.app(callPackage, nix.path(here, "./apps/recognize.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, ncVersion: ncVersion })))),
         }))),
     };
   })(), formals$2);

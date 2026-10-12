@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const rtl_sdr = nix.arg($, "rtl-sdr");
   const soapysdr_with_plugins = nix.arg($, "soapysdr-with-plugins");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dump1090",
       version: "11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flightaware",
           repo: "dump1090",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
         "view1090",
         "faup1090",
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-truncation" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-truncation" })),
       doCheck: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share\ncp -v dump1090 view1090 faup1090 $out/bin\ncp -vr public_html $out/share/dump1090\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple Mode S decoder for RTLSDR devices",
         homepage: "https://github.com/flightaware/dump1090",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

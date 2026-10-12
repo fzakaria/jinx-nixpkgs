@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
       const pname = "disnix";
       const version = "0.10.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/svanderburg/disnix/releases/download/${pname}-${version}/${pname}-${version}.tar.gz`),
           sha256: "0mc0wy8fca60w0d56cljq2cw1xigbp2dklb43fxa5xph94j3i49a",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "add-stdlib.h.patch",
             url: "https://github.com/svanderburg/disnix/commit/aa969f1d152acb35fc70c6c8db249b61f5a9eb41.patch",
             hash: "sha256-RZNVVdZ7Rx8n7qzbJOw8BHL8f07mvh8IKpfsWexuVLU=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [glib, libxml2, libxslt, getopt, libintl, libiconv, dysnomia]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Nix-based distributed service deployment tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

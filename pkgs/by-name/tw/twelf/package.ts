@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const smlnj = nix.arg($, "smlnj");
   const rsync = nix.arg($, "rsync");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "twelf",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://twelf.plparty.org/releases/twelf-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0fi1kbs9hrdrm1x4k13angpjasxlyd1gc3ys8ah54i75qbcd9c4i",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/standardml/twelf/commit/7b3f3dbb8b8ec8d16d843875fce1e2bd6a50e3ae.patch",
             hash: "sha256-cSrgQFRPL+4zRtFXv3rLsAasjLfal0TZpXasEUtUSHc=",
           })))),
@@ -54,7 +54,7 @@ mkdir -p $out/share/twelf/vim
 rsync -av vim/ $out/share/twelf/vim/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Logic proof assistant",
         longDescription: "Twelf is a language used to specify, implement, and prove properties of\ndeductive systems such as programming languages and logics. Large\nresearch projects using Twelf include the TALT typed assembly language,\na foundational proof-carrying-code system, and a type safety proof for\nStandard ML.\n",
         homepage: "http://twelf.org/wiki/Main_Page",

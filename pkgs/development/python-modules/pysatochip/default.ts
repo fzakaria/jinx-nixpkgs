@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.18.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "toporin",
           repo: "pysatochip",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [certifi]);
       const pythonImportsCheck = nix.thunk(() => ["pysatochip"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple python library to communicate with a Satochip hardware wallet",
         homepage: "https://github.com/Toporin/pysatochip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

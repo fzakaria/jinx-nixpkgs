@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "i3-volume";
       const version = "4.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hastinbe",
           repo: "i3-volume",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -52,11 +52,11 @@ wrapProgram "$out/bin/i3-volume" \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Volume control with on-screen display notifications",
         longDescription: "Use keyboard volume keys to mute, increase, or decrease the volume. Volume indicators in status lines will be updated and, when notifications are enabled, a popup will display the volume level.\n\nWorks with any window manager, such as [i3wm](https://i3wm.org/), [bspwm](https://github.com/baskerville/bspwm), and [KDE](https://kde.org/), as a standalone script, or with statusbars such as [polybar](https://github.com/polybar/polybar), [i3blocks](https://github.com/vivien/i3blocks), [i3status](https://github.com/i3/i3status), and more.\n",
         homepage: "https://github.com/hastinbe/i3-volume",
@@ -65,7 +65,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

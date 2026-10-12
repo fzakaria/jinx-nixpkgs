@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const isLinux = nix.thunk(() => nix.attr(from, "isLinux"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lockbook",
       version: "26.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lockbook",
           repo: "lockbook",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 `))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --bash --name lockbook.bash <($out/bin/lockbook completions bash)\ninstallShellCompletion --zsh --name _lockbook <($out/bin/lockbook completions zsh)\ninstallShellCompletion --fish --name lockbook.fish <($out/bin/lockbook completions fish)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Private, polished note-taking platform",
         longDescription: "Write notes, sketch ideas, and store files in one secure place.\nShare seamlessly, keep data synced, and access it on any\nplatform—even offline. Lockbook encrypts files so even we\ncan’t see them, but don’t take our word for it:\nLockbook is 100% open-source.\n",
         homepage: "https://lockbook.net",

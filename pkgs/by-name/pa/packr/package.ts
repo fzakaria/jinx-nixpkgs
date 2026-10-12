@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "packr2";
       const version = "2.8.0";
       const src = nix.thunk(() => nix.add(nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gobuffalo",
           repo: "packr",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-N3u+DmEe0r72zFPb8El/MwjyIcTehQRE+MgusIII2Is=";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple and easy way to embed static files into Go binaries",
         homepage: "https://github.com/gobuffalo/packr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const pname = "packr1";
       const version = "2.8.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "gobuffalo",
           repo: "packr",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-6mlV3q7irI0aoeB91OYSD3RvmwYcNXRNkSYowjmSflQ=";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple and easy way to embed static files into Go binaries",
         homepage: "https://github.com/gobuffalo/packr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,
@@ -88,6 +88,6 @@ export default nix.lambda((args) => (() => {
         meta,
       };
     })())));
-  return nix.app(symlinkJoin, nix.thunk(() => ({ __proto__: pos$7, name: "packr", paths: nix.thunk(() => [p1, p2]) })));
+  return nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: pos$7, name: "packr", paths: nix.thunk(() => [p1, p2]) })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

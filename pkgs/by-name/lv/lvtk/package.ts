@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pugl = nix.arg($, "pugl");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lvtk",
       version: "1.2.0-unstable-2024-11-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lvtk",
           repo: "lvtk",
           rev: "0797fdcabef84f57b064c7b4507743afebc66589",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mv $out/include/lvtk-3.0/lvtk $out/include/\nrmdir $out/include/lvtk-3.0/\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set C++ wrappers around the LV2 C API",
         homepage: "https://lvtk.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const devExtraCmakeFlags = nix.argOr($, "devExtraCmakeFlags", () => []);
   const getVersionFile = nix.arg($, "getVersionFile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mlir",
       version: version,
       doCheck: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_32"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))))),
       src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-src-${version}`), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -74,7 +74,7 @@ mkdir -p "$out/llvm"
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://mlir.llvm.org/",
         description: "Multi-Level IR Compiler Framework",
         longDescription: "The MLIR project is a novel approach to building reusable and extensible\ncompiler infrastructure. MLIR aims to address software fragmentation,\nimprove compilation for heterogeneous hardware, significantly reduce\nthe cost of building domain specific compilers, and aid in connecting\nexisting compilers together.\n",

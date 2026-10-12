@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const features = nix.argOr($, "features", () => ["use_jemalloc", "allow_avx2", "unstable"]);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => !nix.asBool((nix.asBool(nix.app(nix.sel(lib, "elem"), "default", features)) || nix.asBool(nix.app(nix.sel(lib, "elem"), "llvm_backend", features))))), "LLVM support has been dropped due to LLVM 12 EOL."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fr/frawk/package.nix:15:1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "frawk",
       version: "0.4.8",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-wPnMJDx3aF1Slx5pjLfii366pgNU3FJBdznQLuUboYA=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "elem"), "default", features)) || nix.asBool(nix.app(nix.sel(lib, "elem"), "unstable", features)))), "export RUSTC_BOOTSTRAP=1\n")),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small programming language for writing short programs processing textual data",
         mainProgram: "frawk",
         homepage: "https://github.com/ezrosent/frawk",

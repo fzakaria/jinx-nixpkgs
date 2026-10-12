@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writeShellScript = nix.arg($, "writeShellScript");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "whatcable",
       version: "1.2.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/darrylmorley/whatcable/releases/download/v${nix.sel(finalAttrs, "version")}/WhatCable.zip`),
           hash: "sha256-znu0y7rj7HYxTs3Kr9hR44461NoROMKGX0KHsaNfAes=",
         })))),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "macOS menu bar app that explains USB-C cable capabilities",
         homepage: "https://whatcable.uk",
         changelog: nix.thunk(() => nix.str`https://github.com/darrylmorley/whatcable/releases/tag/v${nix.sel(finalAttrs, "version")}`),

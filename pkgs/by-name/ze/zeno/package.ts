@@ -14,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zeno",
       version: "2.0.27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "internetarchive",
           repo: "Zeno",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-TxizytoXeZmgKUkLOqWUHSA7rNCAW43FQlC5KpbLe50=",
         })))),
       vendorHash: "sha256-SgC8wZr2BHGXT2Oul3/YqX0H9XMpFBaA6GCQPfRkxY4=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: true })),
       ldFlags: nix.thunk(() => ["-s", "-w"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "State-of-the-art web crawler",
         longDescription: "Zeno is a web crawler designed to operate wide crawls or to simply\narchive one web page. Zeno's key concepts are: portability,\nperformance, simplicity. With an emphasis on performance.\n",
         homepage: "https://github.com/internetarchive/Zeno",

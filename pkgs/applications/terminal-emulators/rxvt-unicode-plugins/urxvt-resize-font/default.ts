@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "urxvt-resize-font",
       version: "2019-10-05",
       dontPatchShebangs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simmel",
           repo: "urxvt-resize-font",
           rev: "e966a5d77264e9263bfc8a51e160fad24055776b",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir -p $out/lib/urxvt/perl\ncp resize-font $out/lib/urxvt/perl\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "URxvt Perl extension for resizing the font",
         homepage: "https://github.com/simmel/urxvt-resize-font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

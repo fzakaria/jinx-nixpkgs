@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mpd-mpris",
       version: "0.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "natsukagami",
           repo: "mpd-mpris",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace services/mpd-mpris.service --replace-fail \"ExecStart=\" \"ExecStart=$out/bin/\"\n",
       postInstall: "install -Dm644 services/mpd-mpris.service -t $out/lib/systemd/user\ninstall -Dm644 mpd-mpris.desktop -t $out/etc/xdg/autostart\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of the MPRIS protocol for MPD",
         homepage: "https://github.com/natsukagami/mpd-mpris",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

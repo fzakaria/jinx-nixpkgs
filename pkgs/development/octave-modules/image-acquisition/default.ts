@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "image-acquisition";
       const version = "0.3.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Andy1978",
           repo: "octave-image-acquisition",
           tag: nix.thunk(() => nix.str`image-acquisition-${version}`),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [fltk]);
       const propagatedBuildInputs = nix.thunk(() => [libv4l]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "image-acquisition-(.*)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gnu-octave.github.io/packages/image-acquisition/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "The Octave-forge Image Acquisition package provides functions to\ncapture images from connected devices. Currently only v4l2 is supported.\n",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

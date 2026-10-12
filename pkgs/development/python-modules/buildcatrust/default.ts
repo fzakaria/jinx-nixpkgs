@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const flit_core = nix.arg($, "flit-core");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "buildcatrust",
       version: "0.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-I7f2LCQ8dGFOX/d04mOUll7IL7y5Qn1EPu9UO5496So=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["buildcatrust/tests/test_nonhermetic.py"]),
       pythonImportsCheck: nix.thunk(() => ["buildcatrust", "buildcatrust.cli"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Build SSL/TLS trust stores",
         mainProgram: "buildcatrust",
         homepage: "https://github.com/lukegb/buildcatrust",

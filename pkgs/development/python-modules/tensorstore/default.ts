@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const pythonVersionNoDot = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(python, "pythonVersion"))));
   const systemToPlatform = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-linux": "manylinux_2_27_aarch64.manylinux_2_28_aarch64",
     "x86_64-linux": "manylinux_2_27_x86_64.manylinux_2_28_x86_64",
     "aarch64-darwin": "macosx_11_0_arm64",
   }));
   const hashes = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "311-x86_64-linux": "sha256-iudEUatcyKDNnlGSat8E9N/b2K1awxrHHxyqe9+ygo0=",
     "312-x86_64-linux": "sha256-ZMgDlVjVYHtzkDlI/OBYclcx30EMXBls9Ys/xiIjlbU=",
     "313-x86_64-linux": "sha256-jqU6hR6oaq09mcFKeQyFRo1jJL4Ux6whHx8CZej6twc=",
@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
     "314-aarch64-darwin": "sha256-19AXdZhfyqKw8QA0l2apU8UIbpLnRr85XpNhUdTY+aw=",
   }));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tensorstore",
       version: "0.1.84",
       format: "wheel",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           format: "wheel",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [ml_dtypes, numpy]),
       pythonImportsCheck: nix.thunk(() => ["tensorstore"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library for reading and writing large multi-dimensional arrays",
         homepage: "https://google.github.io/tensorstore",
         changelog: nix.thunk(() => nix.str`https://github.com/google/tensorstore/releases/tag/v${nix.sel(finalAttrs, "version")}`),

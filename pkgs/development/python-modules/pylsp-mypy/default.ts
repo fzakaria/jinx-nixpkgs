@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const python_lsp_server = nix.arg($, "python-lsp-server");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pylsp-mypy",
       version: "0.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pylsp_mypy",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ANhur6TlRO6Bpzl57/GpmPvUDUrpwYIf6IAjMmp1bcI=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pylsp_mypy"]),
       disabledTests: nix.thunk(() => ["test_option_overrides_dmypy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mypy plugin for the Python LSP Server",
         homepage: "https://pypi.org/project/pylsp-mypy/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

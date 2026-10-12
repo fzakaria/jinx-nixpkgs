@@ -22,33 +22,33 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       sub: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         nixos: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 class: "nixos",
                 modules: nix.thunk(() => [nix.path(here, "./expose-module-class.nix")]),
               })))),
             default: nix.thunk(() => ({})),
           })))),
         conditionalImportAsNixos: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 class: "nixos",
                 modules: nix.thunk(() => [nix.path(here, "./polymorphic-module.nix")]),
               })))),
             default: nix.thunk(() => ({})),
           })))),
         conditionalImportAsDarwin: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 class: "darwin",
                 modules: nix.thunk(() => [nix.path(here, "./polymorphic-module.nix")]),
               })))),
@@ -57,23 +57,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       _module: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         freeformType: nix.thunk(() => nix.sel(lib, "types", "anything")),
       })),
       nixos: nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           class: "nixos",
           modules: nix.thunk(() => [nix.path(here, "./expose-module-class.nix")]),
         })))),
       conditionalImportAsNixos: nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           class: "nixos",
           modules: nix.thunk(() => [nix.path(here, "./polymorphic-module.nix")]),
         })))),
       conditionalImportAsDarwin: nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           class: "darwin",
           modules: nix.thunk(() => [nix.path(here, "./polymorphic-module.nix")]),
         })))),

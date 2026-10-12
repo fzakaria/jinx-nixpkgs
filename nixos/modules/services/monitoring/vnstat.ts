@@ -32,48 +32,48 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "vnstat"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         vnstat: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "update of network usage statistics via vnstatd")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "vnstat", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 })))),
               default: nix.thunk(() => ({})),
               description: "Configuration for vnstat. Refer to\n[https://humdi.net/vnstat/man/vnstat.conf.html]\nor {manpage}`vnstat.conf(5)` for more information.\n",
-              example: nix.thunk(() => ({ __proto__: pos$2, AlwaysAddNewInterfaces: 1n })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$2, AlwaysAddNewInterfaces: 1n })),
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "vnstat.conf": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "vnstat.conf", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$13,
-          groups: nix.thunk(() => ({ __proto__: pos$10, vnstatd: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$13,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$10, vnstatd: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             vnstatd: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               isSystemUser: true,
               group: "vnstatd",
               description: "vnstat daemon user",
@@ -81,18 +81,18 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             vnstat: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "vnStat network traffic monitor",
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "coreutils"))]),
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               documentation: nix.thunk(() => ["man:vnstatd(1)", "man:vnstat(1)", "man:vnstat.conf(5)"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/vnstatd -n`),
                 ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "procps")}/bin/kill -HUP $MAINPID`),
                 ProtectSystem: "strict",
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "hmenke"))];

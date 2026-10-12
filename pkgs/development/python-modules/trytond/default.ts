@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.8.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-9X7/+cP4rKUJcfj3wa3ONyMkpXaHz36hrIZxeGvOpp4=",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export TRYTOND_DATABASE_URI=\"sqlite://\"\nexport DB_NAME=\":memory:\";\n";
       const unittestFlagsArray = nix.thunk(() => ["-s", "trytond.tests"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Server of the Tryton application platform",
         longDescription: "The server for Tryton, a three-tier high-level general purpose\napplication platform under the license GPL-3 written in Python and using\nPostgreSQL as database engine.\n\nIt is the core base of a complete business solution providing\nmodularity, scalability and security.\n",
         homepage: "http://www.tryton.org/",
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

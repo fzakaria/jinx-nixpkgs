@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
       const pname = "standard-library";
       const version = "2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "agda-stdlib",
           owner: "agda",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-JOeoek6OfyIk9vwTj5QUJU6LnRzwfiG0e0ysW6zbhZ8=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, agda: nix.thunk(() => nix.attr(nixosTests, "agda")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, agda: nix.thunk(() => nix.attr(nixosTests, "agda")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://wiki.portal.chalmers.se/agda/pmwiki.php?n=Libraries.StandardLibrary",
         description: "Standard library for use with the Agda compiler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$5, pname, version, src, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

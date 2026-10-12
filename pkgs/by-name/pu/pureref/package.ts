@@ -27,16 +27,16 @@ export default nix.lambda((args) => (() => {
   const downloadKeyCmd = nix.thunk(() => nix.str`${kindCurl} "${homepage}/download.php" | grep '%3D%3D' | cut -d '"' -f2`);
   const archiveUrl = (v) => (k) => nix.str`${homepage}/files/build.php?build=LINUX64.Appimage&version=${v}&downloadKey=${k}`;
   const src = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`PureRef-${version}.AppImage`), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [curl, gnugrep, cacert]),
       outputHash: "sha256-N5iyT/WFOFBZdfjHX6lZD2EqiOmTdYQEf2YIlN2o7/M=",
       outputHashMode: "flat",
     })), nix.thunk(() => nix.str`key="$(${downloadKeyCmd})"
 curl -L "${nix.app(archiveUrl, version, "$key")}" --output $out
 `)));
-  const archive = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const archive = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -50,7 +50,7 @@ wrapProgram $out/bin/PureRef \\
   --set FONTCONFIG_FILE /etc/fonts/fonts.conf
 `, nix.app(nix.sel(lib, "optionalString"), blockNetwork, "sed -i 's|--die-with-parent|--unshare-net\\n --die-with-parent|' $out/bin/.PureRef-wrapped\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-pureref", nix.thunk(() => nix.str`set -eux
 package_nix="${nix.builtins.toString(nix.path(here, "./package.nix"))}"
 
@@ -77,7 +77,7 @@ sed -i "s|outputHash = \\".*\\"|outputHash = \\"$sri\\"|" "$package_nix"
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Reference Image Viewer",
         homepage: homepage,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

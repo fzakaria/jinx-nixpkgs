@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "persim",
       version: "0.3.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "persim",
           hash: "sha256-4T0YWEF2uKdk0W1+Vt8I3Mi6ZsazJXoHI0W+O9WbpA0=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "# specifically needed for darwin\nexport HOME=$(mktemp -d)\nmkdir -p $HOME/.matplotlib\necho \"backend: ps\" > $HOME/.matplotlib/matplotlibrc\n",
       pythonImportsCheck: nix.thunk(() => ["persim"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Distances and representations of persistence diagrams",
         homepage: "https://persim.scikit-tda.org",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-tda/persim/releases/tag/v${nix.sel(finalAttrs, "version")}`),

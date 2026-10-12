@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const lua = nix.arg($, "lua");
   const openssl = nix.arg($, "openssl");
   const features = nix.argOr($, "features", () => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     urls: false,
     regex: true,
     signatures: false,
@@ -28,17 +28,17 @@ export default nix.lambda((args) => (() => {
     utils: false,
   }));
   const featureDeps = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     urls: nix.thunk(() => [curl]),
     signatures: nix.thunk(() => [openssl]),
     lua: nix.thunk(() => [lua]),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libucl",
       version: "0.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "vstakhov",
           repo: "libucl",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (feat) => (enabled) => nix.app(nix.sel(lib, "strings", "enableFeature"), enabled, feat), features)),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Universal configuration library parser",
         homepage: "https://github.com/vstakhov/libucl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

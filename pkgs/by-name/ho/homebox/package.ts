@@ -28,26 +28,26 @@ export default nix.lambda((args) => (() => {
   const pname = "homebox";
   const version = "0.26.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "sysadminsmedia",
       repo: "homebox",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-JUhRpUWbydy28Xw7j6oCKJLBmaOxcruWAdkqm+hvouY=",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       src: src,
       vendorHash: "sha256-peQaPSbxGn8MnbZPqCi5ptW+dMh9l4W1hB6HqBLTqh4=",
       modRoot: "backend",
       overrideModAttrs: (_) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         nativeBuildInputs: nix.thunk(() => [go, git, cacert]),
         preBuild: "",
       }),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: pname,
           version: version,
           src: nix.thunk(() => nix.str`${src}/frontend`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-oHS2uMWyuqpiK7yWznmZ2mgxPJpWsyOZL2wz6zBu0cc=",
         })))),
       pnpmRoot: "../frontend",
-      env: nix.thunk(() => ({ __proto__: pos$4, NUXT_TELEMETRY_DISABLED: 1n, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, NUXT_TELEMETRY_DISABLED: 1n, CGO_ENABLED: 0n })),
       preBuild: "pushd ../frontend\n\npnpm build\n\npopd\n\nmkdir -p ./app/api/static/public\ncp -r ../frontend/.output/public/* ./app/api/static/public\n",
       nativeBuildInputs: nix.thunk(() => [pnpmConfigHook, pnpm_10, nodejs]),
       doCheck: false,
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp -r $GOPATH/bin/api $out/bin/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$5, homebox: nix.thunk(() => nix.attr(nixosTests, "homebox")) })),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, homebox: nix.thunk(() => nix.attr(nixosTests, "homebox")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         mainProgram: "api",
         homepage: "https://homebox.software/",
         description: "Inventory and organization system built for the Home User",

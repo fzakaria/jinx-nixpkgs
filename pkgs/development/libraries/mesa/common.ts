@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
     const pname = "mesa";
     const version = "26.2.4";
     const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         domain: "gitlab.freedesktop.org",
         owner: "mesa",
         repo: "mesa",
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-H5hBOkFhRJJQ/D3ZPzWNM81aqkW5oSlHMxbR9jK//XQ=",
       }))));
     const meta = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Open source 3D graphics library",
       longDescription: "The Mesa project began as an open-source implementation of the OpenGL\nspecification - a system for rendering interactive 3D graphics. Over the\nyears the project has grown to implement more graphics APIs, including\nOpenGL ES (versions 1, 2, 3), OpenCL, OpenMAX, VDPAU, VA API, XvMC, and\nVulkan.  A variety of device drivers allows the Mesa libraries to be used\nin many different environments ranging from software emulation to\ncomplete hardware acceleration for modern GPUs.\n",
       homepage: "https://www.mesa3d.org/",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
     }));
-    return { __proto__: pos$3, pname, version, src, meta };
+    return { [nix.POS]: pos$3, pname, version, src, meta };
   })();
 })(), formals$1);
 //# sourceMappingURL=common.ts.map

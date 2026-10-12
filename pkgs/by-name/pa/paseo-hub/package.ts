@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nodejs_22 = nix.arg($, "nodejs_22");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "paseo-hub",
       version: "0.10.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getpaseo",
           repo: "hub",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       nodejs: nodejs_22,
       npmDepsHash: "sha256-lBePEjJFJ2we9Yx8/KK3lYw6G1S46mIFrBZRAbvWw+c=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Self-hosted automation for Paseo daemons",
         homepage: "https://github.com/getpaseo/hub",
         changelog: nix.thunk(() => nix.str`https://github.com/getpaseo/hub/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const console = nix.arg($, "console");
   const src = nix.arg($, "src");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       src: src,
       pname: "console",
       version: "0.1.0-unstable-2024-05-07",
       nativeBuildInputs: nix.thunk(() => [reason]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           console: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/console"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library providing a web-influenced polymorphic console API for native Console.log(anything) with runtime printing",
         downloadPage: "https://github.com/reasonml/reason-native/tree/master/src/console",
         homepage: "https://reason-native.com/docs/console/",

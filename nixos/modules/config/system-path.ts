@@ -67,20 +67,20 @@ export default nix.lambda((args) => (() => {
     })(), defaultPackageNames));
   const defaultPackagesText = nix.thunk(() => nix.str`[ ${nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (n) => nix.str`pkgs.${n}`, defaultPackageNames)} ]`);
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       environment: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
             default: [],
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.firefox pkgs.thunderbird ]")),
             description: "The set of packages that appear in\n/run/current-system/sw.  These packages are\nautomatically available to all users, and are\nautomatically updated every time you rebuild the system\nconfiguration.  (The latter is the main difference with\ninstalling them in the default profile,\n{file}`/nix/var/nix/profiles/default`.\n",
           })))),
         corePackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), nix.thunk(() => nix.str`these packages, with their \`meta.priority\` numerically increased
 (thus lowering their installation priority):
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
             description: "Set of core packages for a normal interactive system.\n\nOnly change this if you know what you're doing!\n\nLike with systemPackages, packages are installed to\n{file}`/run/current-system/sw`. They are\nautomatically available to all users, and are\nautomatically updated every time you rebuild the system\nconfiguration.\n",
           })))),
         defaultPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
             default: defaultPackages,
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), nix.thunk(() => nix.str`these packages, with their \`meta.priority\` numerically increased
@@ -103,39 +103,39 @@ export default nix.lambda((args) => (() => {
             description: "Set of default packages that aren't strictly necessary\nfor a running system, entries can be removed for a more\nminimal NixOS installation.\n\nLike with systemPackages, packages are installed to\n{file}`/run/current-system/sw`. They are\nautomatically available to all users, and are\nautomatically updated every time you rebuild the system\nconfiguration.\n",
           })))),
         pathsToLink: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: [],
             example: nix.thunk(() => ["/"]),
             description: "List of directories to be symlinked in {file}`/run/current-system/sw`.",
           })))),
         extraOutputsToInstall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: [],
             example: nix.thunk(() => ["dev", "info"]),
             description: "Entries listed here will be appended to the `meta.outputsToInstall` attribute for each package in `environment.systemPackages`, and the files from the corresponding derivation outputs symlinked into {file}`/run/current-system/sw`.\n\nFor example, this can be used to install the `dev` and `info` outputs for all packages in the system environment, if they are available.\n\nTo use specific outputs instead of configuring them globally, select the corresponding attribute on the package derivation, e.g. `libxml2.dev` or `coreutils.info`.\n",
           })))),
         extraSetup: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             default: "",
             description: "Shell fragments to be run after the system environment has been created. This should only be used for things that need to modify the internals of the environment, e.g. generating MIME caches. The environment being built can be accessed at $out.",
           })))),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             internal: true,
             description: "The packages you want in the boot environment.\n",
           })))),
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       environment: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         corePackages: corePackages,
         systemPackages: nix.thunk(() => nix.concat(nix.sel(config, "environment", "corePackages"), nix.sel(config, "environment", "defaultPackages"))),
         pathsToLink: nix.thunk(() => [
@@ -158,11 +158,11 @@ export default nix.lambda((args) => (() => {
         ]),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(config, "environment"));
             return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             name: "system-path",
             paths: nix.thunk(() => nix.sel(config, "environment", "systemPackages")),
             pathsToLink: nix.thunk(() => nix.attr(from, "pathsToLink")),

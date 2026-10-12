@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.13";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-+T1E/Dk4OcXa8vBhspuB/8V23TORsXXetZpylW25SJM=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pypykatz"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mimikatz implementation in Python",
         homepage: "https://github.com/skelsec/pypykatz",
         changelog: nix.thunk(() => nix.str`https://github.com/skelsec/pypykatz/releases/tag/${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pypykatz",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

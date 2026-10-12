@@ -49,74 +49,74 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const escapeSystemdExecArgs = nix.thunk(() => nix.attr(utils, "escapeSystemdExecArgs"));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         wyoming: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           "faster-whisper": nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return {
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "wyoming-faster-whisper", nix.thunk(() => ({})))),
               servers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   default: nix.thunk(() => ({})),
                   description: "Attribute set of wyoming-faster-whisper instances to spawn.\n",
                   type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.lambda((args_1) => (() => {
                         const $_1 = nix.formals(args_1, formals$2);
                         const name = nix.arg($_1, "name");
                         return {
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           options: nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             enable: nix.thunk(() => nix.app(mkEnableOption, "Wyoming faster-whisper server")),
                             task: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$1,
+                                [nix.POS]: pos$1,
                                 type: nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["transcribe", "translate"]))),
                                 default: "transcribe",
                                 description: "Whisper task to perform.\n",
                               })))),
                             zeroconf: nix.thunk(() => ({
-                              __proto__: pos$4,
-                              enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "zeroconf discovery"), { __proto__: pos$2, default: true })),
+                              [nix.POS]: pos$4,
+                              enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "zeroconf discovery"), { [nix.POS]: pos$2, default: true })),
                               name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$3,
+                                  [nix.POS]: pos$3,
                                   type: nix.thunk(() => nix.lookup(w, "str")),
                                   default: nix.thunk(() => nix.str`faster-whisper-${name}`),
                                   description: "The advertised name for zeroconf discovery.\n",
                                 })))),
                             })),
                             sttLibrary: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$5,
+                                [nix.POS]: pos$5,
                                 type: nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["auto", "faster-whisper", "onnx-asr", "qwen3-asr", "sherpa", "transformers"]))),
                                 default: "auto",
                                 example: "sherpa",
                                 description: "Library used for speech-to-text process.\n\nWhen set to `auto` picks a default based on the {option}`language`.\n",
                               })))),
                             model: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$6,
+                                [nix.POS]: pos$6,
                                 type: nix.thunk(() => nix.lookup(w, "str")),
                                 default: "auto",
                                 example: "sherpa-onnx-nemo-parakeet-tdt-0.6b-v3-int8",
                                 description: "Name of the voice model to use. Can also be a HuggingFace model ID or a path to\na custom model directory.\n\nWhen set to `auto` picks a default based on the {option}`language`,\n\nWith {option}`sttLibrary` set to `transformers`, a HuggingFace transformers Whisper model\nID from HuggingFace like `openai/whisper-tiny` or `openai/whisper-base` must be used.\n\nCompressed models (`int8`) are slightly less accurate, but smaller and faster.\nDistilled models are uncompressed and faster and smaller than non-distilled models.\n\nAvailable models for faster-whisper:\n- `tiny-int8` (compressed)\n- `tiny`\n- `tiny.en` (English only)\n- `base-int8` (compressed)\n- `base`\n- `base.en` (English only)\n- `small-int8` (compressed)\n- `distil-small.en` (distilled, English only)\n- `small`\n- `small.en` (English only)\n- `medium-int8` (compressed)\n- `distil-medium.en` (distilled, English only)\n- `medium`\n- `medium.en` (English only)\n- `large`\n- `large-v1`\n- `distil-large-v2` (distilled, English only)\n- `large-v2`\n- `distil-large-v3` (distilled, English only)\n- `large-v3`\n- `turbo` (faster than large-v3)\n",
                               })))),
                             uri: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$7,
+                                [nix.POS]: pos$7,
                                 type: nix.thunk(() => nix.app(nix.lookup(w, "strMatching"), "^(tcp|unix)://.*$")),
                                 example: "tcp://0.0.0.0:10300",
                                 description: "URI to bind the wyoming server to.\n",
                               })))),
                             device: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$8,
+                                [nix.POS]: pos$8,
                                 type: nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["cpu", "cuda", "auto"]))),
                                 default: "cpu",
                                 description: "Determines the platform faster-whisper is run on. CPU works everywhere, CUDA requires a compatible NVIDIA GPU.\n",
                               })))),
                             language: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$9,
+                                [nix.POS]: pos$9,
                                 type: nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => [
                                     "auto",
                                     "af",
@@ -224,14 +224,14 @@ export default nix.lambda((args) => (() => {
                                 description: "The language used to to parse words and sentences.\n",
                               })))),
                             initialPrompt: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$10,
+                                [nix.POS]: pos$10,
                                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                                 default: null,
                                 example: "The following conversation takes place in the universe of\nWizard of Oz. Key terms include 'Yellow Brick Road' (the path\nto follow), 'Emerald City' (the ultimate goal), and 'Ruby\nSlippers' (the magical tools to succeed). Keep these in mind as\nthey guide the journey.\n",
                                 description: "Optional text to provide as a prompt for the first window.\nThis can be used to provide, or \"prompt-engineer\" a context\nfor transcription, e.g. custom vocabularies or proper nouns to\nmake it more likely to predict those word correctly.\n\nOnly supported when the {option}`sttLibrary` is\n`faster-whisper`. Not supported with Distill whisper models.\n",
                               })))),
                             beamSize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$11,
+                                [nix.POS]: pos$11,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w, "ints"), "unsigned")),
                                 default: 0n,
                                 example: 5n,
@@ -239,7 +239,7 @@ export default nix.lambda((args) => (() => {
                                 apply: nix.builtins.toString,
                               })))),
                             extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$12,
+                                [nix.POS]: pos$12,
                                 type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                                 default: [],
                                 description: "Extra arguments to pass to the server commandline.\n",
@@ -258,33 +258,33 @@ export default nix.lambda((args) => (() => {
       const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
       const nameValuePair = nix.thunk(() => nix.attr(lib, "nameValuePair"));
       return nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "servers"), {})), nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           assertions: nix.thunk(() => nix.app(mapAttrsToList, (server) => (options) => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(options, "sttLibrary")), nix.thunk(() => ["faster-whisper", "qwen3-asr"])))) || nix.asBool(nix.eq(nix.sel(options, "initialPrompt"), null)))),
               message: nix.thunk(() => nix.str`wyoming-faster-whisper/${server}: Initial prompt is only supported when \`sttLibrary\` is \`faster-whisper\` or \`qwen3-asr\`.`),
             }), nix.thunk(() => nix.sel(cfg, "servers")))),
           systemd: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             services: nix.thunk(() => nix.app(mapAttrs$, (server) => (options) => (() => {
                 const finalPackage = nix.thunk(() => nix.app(nix.sel(cfg, "package", "overridePythonAttrs"), (oldAttrs) => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     dependencies: nix.thunk(() => nix.concat(nix.sel(oldAttrs, "dependencies"), nix.concat(nix.app(optionals, nix.thunk(() => nix.app(any, (arg) => nix.app(hasInfix, "--hass", arg), nix.thunk(() => nix.sel(options, "extraArgs")))), nix.thunk(() => nix.sel(oldAttrs, "optional-dependencies", "hass"))), nix.concat(nix.app(optionals, nix.thunk(() => nix.sel(options, "zeroconf", "enable")), nix.thunk(() => nix.sel(oldAttrs, "optional-dependencies", "zeroconf"))), nix.concat(nix.app(optionals, nix.thunk(() => (nix.asBool(nix.eq(nix.sel(options, "sttLibrary"), "onnx-asr")) || nix.asBool((nix.asBool(nix.eq(nix.sel(options, "sttLibrary"), "auto")) && nix.asBool(nix.eq(nix.sel(options, "language"), "ru")))))), nix.thunk(() => nix.sel(oldAttrs, "optional-dependencies", "onnx_asr"))), nix.concat(nix.app(optionals, nix.thunk(() => (nix.asBool(nix.eq(nix.sel(options, "sttLibrary"), "sherpa")) || nix.asBool((nix.asBool(nix.eq(nix.sel(options, "sttLibrary"), "auto")) && nix.asBool(nix.eq(nix.sel(options, "language"), "en")))))), nix.thunk(() => nix.sel(oldAttrs, "optional-dependencies", "sherpa"))), nix.app(optionals, nix.thunk(() => nix.eq(nix.sel(options, "sttLibrary"), "transformers")), nix.thunk(() => nix.sel(oldAttrs, "optional-dependencies", "transformers"))))))))),
                   })));
                 return nix.app(nameValuePair, nix.thunk(() => nix.str`wyoming-faster-whisper-${server}`), nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     enable: nix.thunk(() => nix.attr(options, "enable")),
                     description: nix.thunk(() => nix.str`Wyoming faster-whisper server instance ${server}`),
                     wants: nix.thunk(() => ["network-online.target"]),
                     after: nix.thunk(() => ["network-online.target"]),
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     environment: nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       HF_HOME: "/tmp/huggingface",
                       MODELSCOPE_CACHE: "/tmp/modelscope",
                     })),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       DynamicUser: true,
                       User: "wyoming-faster-whisper",
                       StateDirectory: nix.thunk(() => ["wyoming/faster-whisper"]),

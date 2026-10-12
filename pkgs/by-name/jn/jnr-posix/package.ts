@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const pname = "jnr-posix";
   const version = "3.1.18";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "jnr",
       repo: "jnr-posix",
       rev: nix.thunk(() => nix.str`jnr-posix-${version}`),
       hash: "sha256-zx8I9rsu9Kjef+LatDA1WIuO7Vgo0/JM5nGi3pSWch4=",
     }))));
   const deps = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`deps-${pname}`),
       src: src,
       version: version,
@@ -56,7 +56,7 @@ install -D target/jnr-posix-${version_1}.jar $out/share/java/jnr-posix-${version
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight cross-platform POSIX emulation layer for Java, written in Java and is part of the JNR project",
         homepage: "https://github.com/jnr/jnr-posix",
         license: nix.thunk(() => (() => {
@@ -73,7 +73,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: version_1,
         pname: pname_1,
         src: src_1,

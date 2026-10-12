@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const nix_update_script = nix.arg($, "nix-update-script");
   const amneziawg_go_pinned = nix.thunk(() => nix.app(nix.sel(amneziawg_go, "overrideAttrs"), (finalAttrs) => (_) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "3.1.20260814",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amnezia-vpn",
           repo: "amneziawg-go",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,10 +44,10 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-Y2dCwlKMVLrkzDcNKyCPxFJwMbCA2mQKkakvzwbamCY=",
     })));
   const tun2socks_pinned = nix.thunk(() => nix.app(nix.sel(tun2socks, "overrideAttrs"), (finalAttrs) => (_) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "xjasonlyu",
           repo: "tun2socks",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,12 +79,12 @@ export default nix.lambda((args) => (() => {
   const free_v2_endpoint = "13.248.139.44";
   const prem_v1_endpoint = "52.223.54.40";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "amnezia-vpn",
       version: "5.0.3.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "amnezia-vpn",
           repo: "amnezia-client",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -186,11 +186,11 @@ export PREM_V1_ENDPOINT="${prem_v1_endpoint}"
       cmakeFlags: nix.thunk(() => ["-DCLIENT_ENABLE_APP_UPDATES=0"]),
       installPhase: "runHook preInstall\n\ninstall -Dm555 client/AmneziaVPN service/server/AmneziaVPN-service -t $out/bin/\ninstall -Dm555 ../deploy/data/linux/update-resolv-conf.sh -t $out/libexec/\n\ninstall -Dm444 ../deploy/data/linux/AmneziaVPN.desktop -t $out/share/applications/\ninstall -Dm444 ../deploy/data/linux/AmneziaVPN.png -t $out/share/icons/hicolor/512x512/apps/\ninstall -Dm444 ../deploy/data/linux/AmneziaVPN.service -t $out/lib/systemd/system/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Amnezia VPN Client",
         downloadPage: "https://amnezia.org/en/downloads",
         homepage: "https://github.com/amnezia-vpn/amnezia-client",

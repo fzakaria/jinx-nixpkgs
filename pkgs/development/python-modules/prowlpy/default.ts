@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const typer = nix.arg($, "typer");
   const xmltodict = nix.arg($, "xmltodict");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "prowlpy",
       version: "2.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OMEGARAZER",
           repo: "prowlpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [pyreqwest, xmltodict]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [loguru, typer]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [loguru, typer]) })),
       pythonImportsCheck: nix.thunk(() => ["prowlpy"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([cacert, pytest_asyncio, pytest_cov_stub, pytestCheckHook, respx], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pytestFlags: nix.thunk(() => ["-v"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/OMEGARAZER/prowlpy/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Send push notifications to iPhones using the Prowl API",
         homepage: "https://github.com/OMEGARAZER/prowlpy",

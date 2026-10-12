@@ -35,41 +35,41 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "turn-rs"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "turn-rs": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "turn-rs server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "turn-rs", nix.thunk(() => ({})))),
           secretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/keys/turn-rs.env",
               description: "Environment variables from this file will be interpolated into the\nfinal config file using envsubst with this syntax: `$ENVIRONMENT` or\n`${VARIABLE}`.\nThe file should contain lines formatted as `SECRET_VAR=SECRET_VALUE`.\nThis is useful to avoid putting secrets into the nix store.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$2, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
+              [nix.POS]: pos$9,
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$2, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
               description: "Turn-rs server config file",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 turn: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   realm: "localhost",
                   interfaces: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       transport: "udp",
                       bind: "127.0.0.1:3478",
                       external: "127.0.0.1:3478",
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       transport: "tcp",
                       bind: "127.0.0.1:3478",
                       external: "127.0.0.1:3478",
@@ -77,8 +77,8 @@ export default nix.lambda((args) => (() => {
                   ]),
                 })),
                 auth: nix.thunk(() => ({
-                  __proto__: pos$7,
-                  static_credentials: nix.thunk(() => ({ __proto__: pos$6, user1: "test", user2: "test" })),
+                  [nix.POS]: pos$7,
+                  static_credentials: nix.thunk(() => ({ [nix.POS]: pos$6, user1: "test", user2: "test" })),
                 })),
               })),
             })))),
@@ -86,30 +86,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           "turn-rs": nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             settings: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               api: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 bind: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "127.0.0.1:3000")),
               })),
               log: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 level: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "info")),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "turn-rs": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               enable: true,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               description: "Turn-rs Server Daemon",
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
 `;
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 RuntimeDirectory: "turn-rs",
                 EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "secretFile"), null)), nix.thunk(() => nix.sel(cfg, "secretFile")))),
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --config=/run/turn-rs/config.toml`),

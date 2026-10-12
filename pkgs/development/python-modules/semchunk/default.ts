@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "isaacus-dev",
           repo: "semchunk",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [tqdm]);
       const pythonImportsCheck = nix.thunk(() => ["semchunk"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast, lightweight and easy-to-use Python library for splitting text into semantically meaningful chunks",
         changelog: nix.thunk(() => nix.str`https://github.com/isaacus-dev/semchunk/releases/tag/v${version}`),
         homepage: "https://github.com/isaacus-dev/semchunk",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

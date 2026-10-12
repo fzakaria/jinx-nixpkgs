@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "obspy",
       version: "1.5.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "obspy",
           repo: "obspy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [decorator, lxml, matplotlib, numpy, requests, scipy, setuptools, sqlalchemy]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         geo: nix.thunk(() => [geographiclib]),
         imaging: nix.thunk(() => [cartopy]),
         "io.shapefile": nix.thunk(() => [pyshp]),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         "test_plot_farfield_without_quiver_with_maps",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python framework for seismological observatories",
         homepage: "https://www.obspy.org",
         changelog: nix.thunk(() => nix.str`https://github.com/obspy/obspy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

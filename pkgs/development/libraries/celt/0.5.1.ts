@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(args_1, (() => {
       const version = "0.5.1.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.xiph.org/releases/celt/celt-${version}.tar.gz`),
           sha256: "0bkam9z5vnrxpbxkkh9kw6yzjka9di56h11iijikdd1f71l5nbpw",
         }))));
       const prePatch = "substituteInPlace Makefile.in \\\n  --replace 'SUBDIRS = libcelt tests' \\\n            'SUBDIRS = libcelt'\n";
-      return { __proto__: pos$2, version, src, prePatch };
+      return { [nix.POS]: pos$2, version, src, prePatch };
     })())));
 })(), formals$1);
 //# sourceMappingURL=0.5.1.ts.map

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pypkgs = python3Packages;
   const version = "2.1-unstable-2025-03-28";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "JelmerT",
       repo: "cc2538-bsl",
       rev: "250e8616e6cb00f1b23cb251154de984ce506f7b",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = nix.thunk(() => nix.str`substituteInPlace cc2538_bsl/cc2538_bsl.py  \\
   --replace-fail '__version__ = "2.1"' '__version__ = "${version$}"'
 `);
-      const env = nix.thunk(() => ({ __proto__: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: version$ }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: version$ }));
       const build_system = nix.thunk(() => (() => {
         const w = nix.withScope(pypkgs, null);
         return [nix.thunk(() => nix.lookup(w, "setuptools-scm"))];
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const postInstallCheck = nix.thunk(() => nix.str`$out/bin/${nix.sel(meta, "mainProgram")} --help
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/JelmerT/cc2538-bsl",
         description: "Flash TI SimpleLink chips (CC2538, CC13xx, CC26xx) over serial",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cc2538-bsl",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version: version_1,
         src: src_1,

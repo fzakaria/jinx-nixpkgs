@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "explosion",
           repo: "curated-transformers",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [catalogue, curated_tokenizers, huggingface_hub, tokenizers, torch]);
       const pythonImportsCheck = nix.thunk(() => ["curated_transformers"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PyTorch library of curated Transformer models and their composable components",
         homepage: "https://github.com/explosion/curated-transformers",
         changelog: nix.thunk(() => nix.str`https://github.com/explosion/curated-transformers/releases/tag/v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

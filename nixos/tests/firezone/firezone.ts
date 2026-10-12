@@ -85,10 +85,10 @@ export default nix.lambda((args) => (() => {
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")));
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
   return {
-    __proto__: pos$70,
+    [nix.POS]: pos$70,
     name: "firezone",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -98,50 +98,50 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$69,
+      [nix.POS]: pos$69,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           security: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pki: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraHosts: nix.thunk(() => nix.str`${nix.sel(config, "networking", "primaryIPAddress")} ${domain}
 ${nix.sel(config, "networking", "primaryIPv6Address")} ${domain}
 `),
-            firewall: nix.thunk(() => ({ __proto__: pos$4, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             nginx: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.force(domain), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   sslCertificate: nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "cert")),
                   sslCertificateKey: nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "key")),
                 }))],
               ])),
             })),
             firezone: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               server: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 enable: true,
                 enableLocalDB: true,
-                nginx: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+                nginx: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
                 smtp: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   from: "firezone@localhost.localdomain",
                   host: "localhost",
                   port: 25n,
@@ -150,10 +150,10 @@ ${nix.sel(config, "networking", "primaryIPv6Address")} ${domain}
                   passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "tmpmailpasswd", "verysecurepassword")),
                 })),
                 api: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   externalUrl: nix.thunk(() => nix.str`https://${domain}/api/`),
                 })),
-                web: nix.thunk(() => ({ __proto__: pos$11, externalUrl: nix.thunk(() => nix.str`https://${domain}/`) })),
+                web: nix.thunk(() => ({ [nix.POS]: pos$11, externalUrl: nix.thunk(() => nix.str`https://${domain}/`) })),
               })),
             })),
           })),
@@ -164,26 +164,26 @@ ${nix.sel(config, "networking", "primaryIPv6Address")} ${domain}
         const nodes = nix.arg($_1, "nodes");
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           security: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             pki: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")} ${domain}
 ${nix.sel(nodes, "server", "networking", "primaryIPv6Address")} ${domain}
 `),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             firezone: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               relay: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 enable: true,
                 logLevel: "debug",
                 name: "test-relay",
@@ -198,47 +198,47 @@ ${nix.sel(nodes, "server", "networking", "primaryIPv6Address")} ${domain}
         };
       })(), formals$3),
       resource: nix.thunk(() => ({
-        __proto__: pos$39,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$23, vlans: nix.thunk(() => [1n, 2n]) })),
+        [nix.POS]: pos$39,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$23, vlans: nix.thunk(() => [1n, 2n]) })),
         networking: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             eth1: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$24, address: "172.20.1.1", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$24, address: "172.20.1.1", prefixLength: 24n })),
                 ]),
               })),
             })),
             eth2: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$27, address: "172.20.2.1", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$27, address: "172.20.2.1", prefixLength: 24n })),
                 ]),
               })),
             })),
           })),
-          firewall: nix.thunk(() => ({ __proto__: pos$31, allowedTCPPorts: nix.thunk(() => [80n]) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$31, allowedTCPPorts: nix.thunk(() => [80n]) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           nginx: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             enable: true,
             virtualHosts: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               localhost: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 default: true,
                 locations: nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   "/": nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     extraConfig: "return 200 'greetings from the resource';\nadd_header Content-Type text/plain;\n",
                   })),
                 })),
@@ -252,39 +252,39 @@ ${nix.sel(nodes, "server", "networking", "primaryIPv6Address")} ${domain}
         const nodes = nix.arg($_1, "nodes");
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$61,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$40, vlans: nix.thunk(() => [1n, 2n]) })),
+          [nix.POS]: pos$61,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$40, vlans: nix.thunk(() => [1n, 2n]) })),
           networking: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               eth1: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$41, address: "172.20.1.2", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$41, address: "172.20.1.2", prefixLength: 24n })),
                   ]),
                 })),
               })),
               eth2: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$44, address: "172.20.2.2", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$44, address: "172.20.2.2", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
-            firewall: nix.thunk(() => ({ __proto__: pos$48, enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$48, enable: false })),
             nftables: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               enable: true,
               tables: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 filter: nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   family: "inet",
                   content: "chain incoming {\n  type filter hook input priority 0; policy accept;\n}\n\nchain postrouting {\n  type nat hook postrouting priority srcnat; policy accept;\n  meta protocol ip iifname \"tun-firezone\" oifname { \"eth1\", \"eth2\" } masquerade random\n}\n\nchain forward {\n  type filter hook forward priority 0; policy drop;\n  iifname \"tun-firezone\" accept\n  oifname \"tun-firezone\" accept\n}\n\nchain output {\n  type filter hook output priority 0; policy accept;\n}\n",
                 })),
@@ -296,11 +296,11 @@ ${nix.sel(nodes, "server", "networking", "primaryIPv6Address")} ${domain}
 `),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             kernel: nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               sysctl: nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 "net.ipv4.ip_forward": "1",
                 "net.ipv6.conf.default.forwarding": "1",
                 "net.ipv6.conf.all.forwarding": "1",
@@ -308,18 +308,18 @@ ${nix.sel(nodes, "server", "networking", "primaryIPv6Address")} ${domain}
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             pki: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             firezone: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               gateway: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 enable: true,
                 logLevel: "debug",
                 name: "test-gateway",
@@ -335,27 +335,27 @@ ${nix.sel(nodes, "server", "networking", "primaryIPv6Address")} ${domain}
         const nodes = nix.arg($_1, "nodes");
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           security: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             pki: nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             useNetworkd: true,
             extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")} ${domain}
 ${nix.sel(nodes, "server", "networking", "primaryIPv6Address")} ${domain}
 `),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$67,
+            [nix.POS]: pos$67,
             firezone: nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               "headless-client": nix.thunk(() => ({
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 enable: true,
                 logLevel: "debug",
                 name: "test-client-somebody",

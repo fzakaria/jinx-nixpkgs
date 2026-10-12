@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "colcon",
           repo: "colcon-argcomplete",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["test/test_flake8.py", "test/test_spell_check.py"]);
       const pythonImportsCheck = nix.thunk(() => ["colcon_argcomplete"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension for colcon-core to provide command line completion using argcomplete",
         homepage: "https://github.com/colcon/colcon-argcomplete",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

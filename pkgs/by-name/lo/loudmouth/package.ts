@@ -19,23 +19,23 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "1.5.4",
       pname: "loudmouth",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mcabber.com/files/loudmouth/loudmouth-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-McvJHB/dzFNGszc7j7RVlOnqnMf+NtBZXokSxHrZTQ0=",
         })))),
       configureFlags: nix.thunk(() => ["--with-ssl=openssl"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=deprecated-declarations", "-Wno-error=discarded-qualifiers"]))),
       })),
       propagatedBuildInputs: nix.thunk(() => [openssl, libidn, glib, zlib]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: "https://mcabber.com/",
         description: "Lightweight C library for the Jabber protocol",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

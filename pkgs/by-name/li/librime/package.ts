@@ -31,11 +31,11 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", copySinglePlugin, plugins)}
 chmod +w -R plugins/*
 `);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "librime",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rime",
           repo: "librime",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ chmod +w -R plugins/*
       buildInputs: nix.thunk(() => nix.concat([boost, glog, leveldb, marisa, opencc, yaml_cpp, gtest, capnproto], plugins)),
       preConfigure: copyPlugins,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://rime.im/",
         description: "Rime Input Method Engine, the core library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

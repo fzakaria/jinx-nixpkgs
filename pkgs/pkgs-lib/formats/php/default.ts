@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const finalVariable = nix.argOr($_1, "finalVariable", () => null);
       const toPHP = (value) => nix.selOr({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         null: "null",
         bool: nix.thunk(() => (nix.asBool(value) ? "true" : "false")),
         int: nix.thunk(() => nix.builtins.toString(value)),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         const value = nix.arg($_2, "value");
         const _phpType = nix.arg($_2, "_phpType");
         return nix.sel({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           mixed_array: nix.thunk(() => nix.app(mixedArray, value)),
           raw: value,
         }, nix.key(nix.force(_phpType)));
@@ -70,22 +70,22 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.lookup(w, "str")),
               nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), type)),
               nix.thunk(() => nix.app(nix.lookup(w, "listOf"), type)),
-            ])))), { __proto__: pos$3, description: "PHP value" });
+            ])))), { [nix.POS]: pos$3, description: "PHP value" });
       })());
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         type: type,
         lib: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           mkMixedArray: (list_1) => (set) => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             _phpType: "mixed_array",
-            value: nix.thunk(() => ({ __proto__: pos$4, list: list_1, set: set })),
+            value: nix.thunk(() => ({ [nix.POS]: pos$4, list: list_1, set: set })),
           }),
-          mkRaw: (raw) => ({ __proto__: pos$6, _phpType: "raw", value: raw }),
+          mkRaw: (raw) => ({ [nix.POS]: pos$6, _phpType: "raw", value: raw }),
         })),
         generate: (name) => (value) => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: name,
             text: nix.thunk(() => (() => {
               const phpHeader = "<?php\ndeclare(strict_types=1);\n";

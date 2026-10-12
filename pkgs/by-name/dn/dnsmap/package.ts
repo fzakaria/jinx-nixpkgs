@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const autoconf = nix.arg($, "autoconf");
   const automake = nix.arg($, "automake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dnsmap",
       tag: "0.36",
       version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "tag")}-unstable-2024-08-20`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "resurrecting-open-source-projects",
           repo: "dnsmap",
           rev: "b5b4b1a7764e141f2551584d9fad3a973951eafe",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--prefix=$(out)"]),
       nativeBuildInputs: nix.thunk(() => [autoconf, automake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Scan for subdomains using brute-force techniques",
         homepage: "https://github.com/resurrecting-open-source-projects/dnsmap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

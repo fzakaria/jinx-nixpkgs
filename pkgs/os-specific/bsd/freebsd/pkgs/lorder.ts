@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const bsdSetupHook = nix.arg($, "bsdSetupHook");
   const freebsdSetupHook = nix.arg($, "freebsdSetupHook");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.bin/lorder",
       noCC: true,
       dontBuild: true,
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: [],
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

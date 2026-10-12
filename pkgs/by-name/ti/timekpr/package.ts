@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "timekpr";
       const version = "0.5.10";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.launchpad.net/timekpr-next",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-0vIMWIGVuyqU/eV9NmUvbBRwmONHgcmoqzPUI0XfCa0=",
@@ -94,11 +94,11 @@ ln -s ${setup_py} setup.py
       const postFixup = "for executable in $out/bin/*\ndo\n  wrapProgram \"$executable\" --prefix PYTHONPATH : \"$PYTHONPATH\"\ndone\n";
       const preInstall = "while IFS= read -r line\ndo\n  # Trim leading/trailing whitespace\n  line=$(echo \"$line\" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')\n\n  # Skip empty lines and comments\n  if [[ -z \"$line\" || \"$line\" =~ ^# ]]; then\n      continue\n  fi\n\n  # Separate source and destination\n  # This assumes the destination is the last field and source path doesn't contain problematic spaces\n  # More robust parsing might be needed if source paths have spaces.\n  source_path=$(echo \"$line\" | awk '{ $NF=\"\"; print $0 }' | sed 's/[[:space:]]*$//')\n  dest_path=$(echo \"$line\" | awk '{ print $NF }')\n\n  # Check destination path prefix and map to $out/*\n  case \"$dest_path\" in\n    usr/share/*)\n      # Remove \"usr/\" prefix and prepend \"$out/\"\n      install -D --mode=444 \"$source_path\" --target-directory=\"$out/${dest_path#usr/}\"\n      ;;\n    usr/bin/*)\n      # Remove \"usr/\" prefix and prepend \"$out/\"\n      install -D --mode=555 \"$source_path\" --target-directory=\"$out/${dest_path#usr/}\"\n      ;;\n    etc/*|lib/*|var/*)\n      # Prepend \"$out/\"\n      install -D --mode=444 \"$source_path\" --target-directory=\"$out/$dest_path\"\n      ;;\n    usr/lib/python3/dist-packages/*)\n      # Skip this line if the destination is a Python module\n      # because it will be handled by the Python build process\n      continue\n      ;;\n    *)\n      echo \"Error: Unknown destination prefix: '$dest_path'\" >&2\n      exit 1\n      ;;\n  esac\ndone < debian/install\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Manages and restricts user screen time by enforcing time limits",
         homepage: "https://mjasnik.gitlab.io/timekpr-next/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -106,7 +106,7 @@ ln -s ${setup_py} setup.py
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

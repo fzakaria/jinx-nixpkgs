@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const protobuf_35 = nix.arg($, "protobuf_35");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       jdk: jdk_headless,
       modules: nix.thunk(() => [
         "java.desktop",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const protobuf = protobuf_35;
   const protobufJavaVer = nix.thunk(() => nix.builtins.import(nix.path(here, "./protobuf-java-version.nix")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "traccar",
       version: "6.15.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "traccar",
           repo: "traccar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,17 +63,17 @@ substituteInPlace build.gradle \\
   --replace-fail "\\$protobufVersion" "${protobufJavaVer}"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         protocPath: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), protobuf, "protoc")),
       })),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pkg: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           data: nix.path(here, "./deps.json"),
         })))),
       npmRoot: "traccar-web",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/traccar-web`),
           hash: "sha256-C/jfTuFFGdGNGyoYb5fhEmsKdWb5XfsoJ388Rzh35fY=",
         })))),
@@ -89,10 +89,10 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/traccar \\
   --add-flags "-jar $out/tracker-server.jar"
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Open source GPS tracking system",
         homepage: "https://www.traccar.org/",
         sourceProvenance: nix.thunk(() => (() => {

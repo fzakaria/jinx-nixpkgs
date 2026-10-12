@@ -55,42 +55,42 @@ export default nix.lambda((args) => (() => {
   const toStringEnv = (value) => (nix.asBool(nix.app(isBool, value)) ? nix.app(boolToString, value) : nix.builtins.toString(value));
   const cfg = nix.thunk(() => nix.sel(config, "services", "netbird", "server", "dashboard"));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         netbird: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           server: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             dashboard: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: nix.thunk(() => nix.app(mkEnableOption, "the static netbird dashboard frontend")),
               package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "netbird-dashboard", nix.thunk(() => ({})))),
               enableNginx: nix.thunk(() => nix.app(mkEnableOption, "Nginx reverse-proxy to serve the dashboard")),
               domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: str,
                   default: "localhost",
                   description: "The domain under which the dashboard runs.",
                 })))),
               managementServer: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: str,
                   description: "The address of the management server, used for the API endpoints.",
                 })))),
               settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       freeformType: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(either, str, bool)))),
                     })))),
                   defaultText: "{\n  AUTH_AUDIENCE = \"netbird\";\n  AUTH_CLIENT_ID = \"netbird\";\n  AUTH_SUPPORTED_SCOPES = \"openid profile email\";\n  NETBIRD_AGENT_NETWORK_ENABLED = false;\n  NETBIRD_AGENT_NETWORK_ONLY = false;\n  NETBIRD_CLOUD = false;\n  NETBIRD_LICENSED = false;\n  NETBIRD_TOKEN_SOURCE = \"idToken\";\n  USE_AUTH0 = false;\n}\n",
                   description: "An attribute set that will be used to substitute variables when building the dashboard.\nAny values set here will be templated into the frontend and be public for anyone that can reach your website.\nThe exact values sadly aren't documented anywhere.\nA starting point when searching for valid values is this [script](https://github.com/netbirdio/dashboard/blob/main/docker/init_react_envs.sh)\nThe only mandatory value is 'AUTH_AUTHORITY' as we cannot set a default value here.\n",
                 })))),
               finalDrv: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   readOnly: true,
                   type: package$,
                   description: "The derivation containing the final templated dashboard.\n",
@@ -101,29 +101,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => nix.app(hasAttr, "AUTH_AUTHORITY", nix.thunk(() => nix.sel(cfg, "settings")))),
             message: "The setting AUTH_AUTHORITY is required for the dashboard to function.",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           netbird: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             server: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               dashboard: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   AUTH_CLIENT_SECRET: "",
                   NETBIRD_MGMT_API_ENDPOINT: nix.thunk(() => nix.sel(cfg, "managementServer")),
                   NETBIRD_MGMT_GRPC_API_ENDPOINT: nix.thunk(() => nix.sel(cfg, "managementServer")),
                 }, nix.app(mapAttrs, (_) => nix.force(mkDefault), nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     AUTH_AUDIENCE: "netbird",
                     AUTH_CLIENT_ID: "netbird",
                     AUTH_SUPPORTED_SCOPES: "openid profile email",
@@ -135,10 +135,10 @@ export default nix.lambda((args) => (() => {
                     USE_AUTH0: false,
                   }))))),
                 finalDrv: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "netbird-dashboard", nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gettext"))]),
                     env: nix.thunk(() => nix.update({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       ENV_STR: nix.thunk(() => nix.app(concatStringsSep, " ", nix.thunk(() => [
                           "$AUTH_AUDIENCE",
                           "$AUTH_AUTHORITY",
@@ -188,16 +188,16 @@ cp -R build $out
             })),
           })),
           nginx: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableNginx")), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "domain"), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   root: nix.thunk(() => nix.sel(cfg, "finalDrv")),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$21,
-                    "/": nix.thunk(() => ({ __proto__: pos$19, tryFiles: "$uri $uri.html $uri/ =404" })),
-                    "= /404.html": nix.thunk(() => ({ __proto__: pos$20, extraConfig: "internal;\n" })),
+                    [nix.POS]: pos$21,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$19, tryFiles: "$uri $uri.html $uri/ =404" })),
+                    "= /404.html": nix.thunk(() => ({ [nix.POS]: pos$20, extraConfig: "internal;\n" })),
                   })),
                   extraConfig: "error_page 404 /404.html;\n",
                 }))],

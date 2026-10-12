@@ -50,74 +50,74 @@ export default nix.lambda((args) => (() => {
   const stateDir = "/var/lib/tsidp";
   const cfg = nix.thunk(() => nix.sel(config, "services", "tsidp"));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         tsidp: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(mkEnableOption, "tsidp server")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "tsidp", nix.thunk(() => ({})))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nullOr, path)),
               description: "Path to an environment file loaded for the tsidp service.\n\nThis can be used to securely store tokens and secrets outside of the world-readable Nix store.\n\nExample contents of the file:\n```\nTS_AUTH_KEY=YOUR_TAILSCALE_AUTHKEY\n```\n",
               default: null,
               example: "/run/secrets/tsidp",
             })))),
           settings: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             hostName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: str,
                 default: "idp",
                 description: "The hostname to use for the tsnet node.\n",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: port,
                 default: 443n,
                 description: "Port to listen on (default: 443).\n",
               })))),
             localPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(nullOr, port)),
                 default: null,
                 description: "Listen on localhost:<port>.",
               })))),
             useLocalTailscaled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: bool,
                 description: "Use local tailscaled instead of tsnet.\n",
                 default: false,
               })))),
             enableFunnel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: bool,
                 default: false,
                 description: "Use Tailscale Funnel to make tsidp available on the public internet so it works with SaaS products.\n",
               })))),
             enableSts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: bool,
                 default: true,
                 description: "Enable OAuth token exchange using RFC 8693.\n",
               })))),
             logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["debug", "info", "warn", "error"]))),
                 description: "Set logging level: debug, info, warn, error.\n",
                 default: "info",
               })))),
             debugAllRequests: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: bool,
                 description: "For development. Prints all requests and responses.\n",
                 default: false,
               })))),
             debugTsnet: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: bool,
                 description: "For development. Enables debug level logging with tsnet connection.\n",
                 default: false,
@@ -127,22 +127,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "settings", "useLocalTailscaled")) || nix.asBool(nix.eq(nix.sel(config, "services", "tailscale", "enable"), true)))),
             message: "Tailscale service must be enabled if services.tsidp.settings.useLocalTailscaled is used.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             tsidp: nix.thunk(() => (() => {
               const deps = nix.thunk(() => nix.concat(["network.target"], nix.app(optional, nix.thunk(() => nix.sel(cfg, "settings", "useLocalTailscaled")), "tailscaled.service")));
               return {
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "tsidp",
                 after: deps,
                 wants: deps,
@@ -151,13 +151,13 @@ export default nix.lambda((args) => (() => {
                   nix.thunk(() => nix.sel(cfg, "package")),
                   nix.thunk(() => nix.sel(cfg, "environmentFile")),
                 ]),
-                environment: nix.thunk(() => ({ __proto__: pos$16, HOME: stateDir, TAILSCALE_USE_WIP_CODE: "1" })),
+                environment: nix.thunk(() => ({ [nix.POS]: pos$16, HOME: stateDir, TAILSCALE_USE_WIP_CODE: "1" })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   Type: "simple",
                   ExecStart: nix.thunk(() => (() => {
                     const args_1 = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         dir: stateDir,
                         hostname: nix.thunk(() => nix.sel(cfg, "settings", "hostName")),
                         port: nix.thunk(() => nix.sel(cfg, "settings", "port")),
@@ -213,7 +213,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [

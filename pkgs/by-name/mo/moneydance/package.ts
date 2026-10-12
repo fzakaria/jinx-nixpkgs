@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const openjdk25 = nix.arg($, "openjdk25");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const jvmFlags = nix.argOr($, "jvmFlags", () => []);
-  const jdk = nix.thunk(() => nix.app(nix.sel(openjdk25, "override"), nix.thunk(() => ({ __proto__: pos$1, enableJavaFX: true }))));
+  const jdk = nix.thunk(() => nix.app(nix.sel(openjdk25, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "moneydance",
       version: "2024.4_5253",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://infinitekind.com/stabledl/${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["_"]), nix.thunk(() => ["."]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/moneydance-linux.tar.gz`),
           hash: "sha256-xOdkuaN17ss9tTSXgU//s6cBm2jGEgP9eTtvW0k3VWQ=",
         })))),
       nativeBuildInputs: nix.thunk(() => [
         makeWrapper,
         nix.thunk(() => nix.app(nix.sel(buildPackages, "wrapGAppsHook3", "override"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             makeWrapper: nix.thunk(() => nix.sel(buildPackages, "makeShellWrapper")),
           })))),
       ]),
@@ -54,9 +54,9 @@ makeWrapper ${jdk}/bin/java $out/bin/moneydance \\
   --add-flags ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), finalJvmFlags)))}
 `;
       })()),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, jdk: jdk })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, jdk: jdk })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://infinitekind.com/moneydance",
         changelog: nix.thunk(() => nix.str`https://infinitekind.com/stabledl/${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["_"]), nix.thunk(() => ["."]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/changelog-stable.txt`),
         description: "Easy to use and full-featured personal finance app that doesn't compromise your privacy",

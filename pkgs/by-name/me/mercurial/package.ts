@@ -59,28 +59,28 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`mercurial${nix.app(nix.sel(lib, "optionalString"), fullBuild, "-full")}`);
       const version = "7.2.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mercurial-scm.org/release/mercurial-${version}.tar.gz`),
           hash: "sha256-8uyOfu7wUAWRcG03RVXwzrEYgiBo51+jsyvgfdIYT2w=",
         }))));
       const pyproject = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         python: python,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          "mercurial-tests": nix.thunk(() => nix.app(makeTests, nix.thunk(() => ({ __proto__: pos$2, flags: "--with-hg=$MERCURIAL_BASE/bin/hg" })))),
+          [nix.POS]: pos$3,
+          "mercurial-tests": nix.thunk(() => nix.app(makeTests, nix.thunk(() => ({ [nix.POS]: pos$2, flags: "--with-hg=$MERCURIAL_BASE/bin/hg" })))),
         })),
       }));
       const cargoDeps = nix.thunk(() => (nix.asBool(rustSupport) ? nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           src: src,
           name: nix.thunk(() => nix.str`mercurial-${version}`),
           hash: "sha256-OGsHK3Bh47V4n+7HYpVp/jymCz1QY45rkWlAW0Hob7g=",
           sourceRoot: nix.thunk(() => nix.str`mercurial-${version}/rust`),
         }))) : null));
       const cargoRoot = nix.thunk(() => (nix.asBool(rustSupport) ? "rust" : null));
-      const env = nix.thunk(() => ({ __proto__: pos$6, PYO3_USE_ABI3_FORWARD_COMPATIBILITY: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$6, PYO3_USE_ABI3_FORWARD_COMPATIBILITY: 1n }));
       const propagatedBuildInputs = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), re2Support, google_re2), nix.concat(nix.app(nix.sel(lib, "optional"), gitSupport, pygit2), nix.app(nix.sel(lib, "optional"), highlightSupport, pygments))));
       const nativeBuildInputs = nix.thunk(() => nix.concat([makeWrapper, gettext, installShellFiles, setuptools, setuptools_scm, pip], nix.app(nix.sel(lib, "optionals"), rustSupport, nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")), cargo, rustc]))));
       const buildInputs = nix.thunk(() => [docutils]);
@@ -97,7 +97,7 @@ WRAP_TK=" --set TK_LIBRARY ${tk}/lib/${nix.sel(tk, "libPrefix")}
           --prefix PATH : ${tk}/bin "
 `)), "for i in $(cd $out/bin && ls); do\n  wrapProgram $out/bin/$i \\\n    $WRAP_TK\ndone\n\n# copy hgweb.cgi to allow use in apache\nmkdir -p $out/share/cgi-bin\ncp -v hgweb.cgi contrib/hgweb.wsgi $out/share/cgi-bin\nchmod u+x $out/share/cgi-bin/hgweb.cgi\n\ninstallShellCompletion --cmd hg \\\n  --bash contrib/bash_completion \\\n  --zsh contrib/zsh_completion\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Fast, lightweight SCM system for very large distributed projects",
         homepage: "https://www.mercurial-scm.org",
         downloadPage: "https://www.mercurial-scm.org/release/",
@@ -115,7 +115,7 @@ WRAP_TK=" --set TK_LIBRARY ${tk}/lib/${nix.sel(tk, "libPrefix")}
         mainProgram: "hg",
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,
@@ -138,7 +138,7 @@ WRAP_TK=" --set TK_LIBRARY ${tk}/lib/${nix.sel(tk, "libPrefix")}
     const nameSuffix = nix.argOr($_1, "nameSuffix", () => "");
     const flags = nix.argOr($_1, "flags", () => "");
     return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(mercurial, "pname")}${nameSuffix}-tests`), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         src: nix.thunk(() => nix.attr(mercurial, "src")),
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
         MERCURIAL_BASE: mercurial,
@@ -159,7 +159,7 @@ done
 `),
         requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
         meta: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           broken: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))) || nix.asBool(!nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))))),
         })),
       })), nix.thunk(() => nix.str`addToSearchPathWithCustomDelimiter : PYTHONPATH "${mercurial}/${nix.sel(python, "sitePackages")}"
@@ -210,20 +210,20 @@ touch $out
 `));
   })(), formals$2);
   return nix.app(nix.sel(self, "overridePythonAttrs"), (origAttrs) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       passthru: nix.thunk(() => nix.update(nix.sel(origAttrs, "passthru"), (() => {
         const withExtensions = (f) => (() => {
           const python_1 = nix.thunk(() => nix.sel(self, "python"));
           const mercurialHighPrio = (ps) => nix.app(nix.sel(nix.app(nix.sel(ps, "toPythonModule"), self), "overrideAttrs"), (oldAttrs) => ({
-              __proto__: pos$12,
-              meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), { __proto__: pos$11, priority: 50n })),
+              [nix.POS]: pos$12,
+              meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), { [nix.POS]: pos$11, priority: 50n })),
             }));
           const plugins = nix.thunk(() => nix.concat(nix.app(f, nix.thunk(() => nix.sel(python_1, "pkgs"))), [
             nix.thunk(() => nix.app(mercurialHighPrio, nix.thunk(() => nix.sel(python_1, "pkgs")))),
           ]));
           const env = nix.thunk(() => nix.app(nix.sel(python_1, "withPackages"), (ps) => nix.force(plugins)));
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               pname: nix.thunk(() => nix.str`${nix.sel(self, "pname")}-with-extensions`),
               src: nix.thunk(() => nix.attr(self, "src")),
               version: nix.thunk(() => nix.attr(self, "version")),
@@ -253,10 +253,10 @@ runHook postInstall
             })));
         })();
         const tests = nix.thunk(() => nix.update(nix.sel(origAttrs, "passthru", "tests"), {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           withExtensions: nix.thunk(() => nix.app(withExtensions, (pm) => [nix.thunk(() => nix.sel(pm, "hg-evolve"))])),
         }));
-        return { __proto__: pos$15, withExtensions, tests };
+        return { [nix.POS]: pos$15, withExtensions, tests };
       })())),
     }));
 })(), formals$1);

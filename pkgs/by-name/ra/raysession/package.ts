@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "raysession",
       version: "0.14.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Houston4444/RaySession/releases/download/v${nix.sel(finalAttrs, "version")}/RaySession-${nix.sel(finalAttrs, "version")}-source.tar.gz`),
           hash: "sha256-cr9kqZdqY6Wq+RkzwYxNrb/PLFREKUgWeVNILVUkc7A=",
         })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "wrapPythonProgramsIn \"$out/share/raysession/src\" \"$out ${pythonPath[*]}\"\nfor file in $out/bin/*; do\n  wrapQtApp \"$file\"\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Houston4444/RaySession",
         description: "Session manager for Linux musical programs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

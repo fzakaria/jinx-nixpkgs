@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const withRtlsdr = nix.argOr($, "withRtlsdr", () => true);
   const withQrypt = nix.argOr($, "withQrypt", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rng-tools",
       version: "6.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nhorman",
           repo: "rng-tools",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\nset -o pipefail\n$out/bin/rngtest --version | grep $version\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Random number generator daemon",
         homepage: "https://github.com/nhorman/rng-tools",
         changelog: nix.thunk(() => nix.str`https://github.com/nhorman/rng-tools/releases/tag/v${nix.sel(finalAttrs, "version")}`),

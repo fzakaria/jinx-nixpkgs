@@ -26,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "config.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         blocky: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "blocky, a fast and lightweight DNS proxy as ad-blocker for local network with many features")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "blocky", nix.thunk(() => ({})))),
-          enableConfigCheck: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "checking the config during build time"), { __proto__: pos$1, default: true })),
+          enableConfigCheck: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "checking the config during build time"), { [nix.POS]: pos$1, default: true })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               description: "Blocky configuration. Refer to\n<https://0xerr0r.github.io/blocky/configuration/>\nfor details on supported values.\n",
@@ -46,19 +46,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             blocky: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "A DNS proxy and ad-blocker for the local network",
               wants: nix.thunk(() => ["network-online.target", "nss-lookup.target"]),
               before: nix.thunk(() => ["nss-lookup.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 AmbientCapabilities: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
                 CapabilityBoundingSet: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
                 DynamicUser: true,
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           checks: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableConfigCheck")), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "check-blocky-config", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --config ${configFile} validate && touch $out
 `))),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

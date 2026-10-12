@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
       const pname = "carddav";
       const version = "5.1.3";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mstilkerich/rcmcarddav/releases/download/v${version}/carddav-v${version}.tar.gz`),
           sha256: "sha256-INWMFNVs+hDJb0tYjmM3x6JtXpR6WAwPn2ZuVuDzjXo=",
         }))));
-      return { __proto__: pos$2, pname, version, src };
+      return { [nix.POS]: pos$2, pname, version, src };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

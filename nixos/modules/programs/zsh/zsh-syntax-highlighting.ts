@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "zsh", "syntaxHighlighting"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["programs", "zsh", "enableSyntaxHighlighting"]), nix.thunk(() => ["programs", "zsh", "syntaxHighlighting", "enable"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["programs", "zsh", "syntax-highlighting", "enable"]), nix.thunk(() => ["programs", "zsh", "syntaxHighlighting", "enable"]))),
@@ -32,29 +32,29 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["programs", "zsh", "syntax-highlighting", "patterns"]), nix.thunk(() => ["programs", "zsh", "syntaxHighlighting", "patterns"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       programs: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         zsh: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           syntaxHighlighting: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "zsh-syntax-highlighting")),
             highlighters: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 default: nix.thunk(() => ["main"]),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["main", "brackets", "pattern", "cursor", "regexp", "root", "line"]))))),
                 description: "Specifies the highlighters to be used by zsh-syntax-highlighting.\n\nThe following defined options can be found here:\nhttps://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md\n",
               })))),
             patterns: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"rm -rf *\" = \"fg=white,bold,bg=red\";\n}\n")),
                 description: "Specifies custom patterns to be highlighted by zsh-syntax-highlighting.\n\nPlease refer to the docs for more information about the usage:\nhttps://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/pattern.md\n",
               })))),
             styles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"alias\" = \"fg=magenta,bold\";\n}\n")),
@@ -65,22 +65,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zsh-syntax-highlighting"))]),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             assertion: nix.thunk(() => (!nix.asBool(nix.gt(nix.builtins.length(nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "patterns"))))), 0n)) || nix.asBool(nix.builtins.elem("pattern", nix.thunk(() => nix.sel(cfg, "highlighters")))))),
             message: "When highlighting patterns, \"pattern\" needs to be included in the list of highlighters.\n",
           })),
         ]),
         programs: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           zsh: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkAfter"), nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.concat([
                   nix.thunk(() => nix.str`source ${nix.sel(pkgs, "zsh-syntax-highlighting")}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh`),
                 ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.gt(nix.builtins.length(nix.thunk(() => nix.sel(cfg, "highlighters"))), 0n)), nix.thunk(() => nix.str`ZSH_HIGHLIGHT_HIGHLIGHTERS=(${nix.builtins.concatStringsSep(" ", nix.thunk(() => nix.sel(cfg, "highlighters")))})`)), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.gt(nix.builtins.length(nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "patterns"))))), 0n)), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (pattern) => (design) => nix.str`ZSH_HIGHLIGHT_PATTERNS+=('${pattern}' '${design}')`, nix.thunk(() => nix.sel(cfg, "patterns"))))), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.gt(nix.builtins.length(nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "styles"))))), 0n)), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (styles) => (design) => nix.str`ZSH_HIGHLIGHT_STYLES[${styles}]='${design}'`, nix.thunk(() => nix.sel(cfg, "styles"))))))))))))),

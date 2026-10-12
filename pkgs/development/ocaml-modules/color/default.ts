@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const gg = nix.arg($, "gg");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "color",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/anuragsoni/color/releases/download/${nix.sel(finalAttrs, "version")}/color-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-8BZjdafFnFTTz75be+5vJnP42vr4FHfLt+6oEM1Q43E=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [gg]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Converts between different color formats",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

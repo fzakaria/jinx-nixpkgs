@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openexr = nix.arg($, "openexr");
   const hdf5_threadsafe = nix.arg($, "hdf5-threadsafe");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alembic",
       version: "1.8.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alembic",
           repo: "alembic",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       enableParallelChecking: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open framework for storing and sharing scene data",
         homepage: "http://alembic.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

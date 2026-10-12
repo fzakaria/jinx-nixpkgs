@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kde-gruvbox",
       version: "0-unstable-2015-08-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "printesoi",
           repo: "kde-gruvbox",
           rev: "2dd95283076d7194345a460edb3630cfd020759c",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/{plasma/desktoptheme,yakuake/kns_skins}\ncp -R color-schemes konsole $out/share\ncp -R plasma5/gruvbox $out/share/plasma/desktoptheme\ncp -R yakuake/breeze-gruvbox-dark $out/share/yakuake/kns_skins\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Suite of themes for KDE applications that match the retro gruvbox colorscheme",
         homepage: "https://github.com/printesoi/kde-gruvbox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const imageName = nix.arg($_1, "imageName");
     const tag = nix.arg($_1, "tag");
     return nix.app(generic_fetcher, nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         fetcher: "hocker-config",
         name: nix.thunk(() => nix.str`${repository}_${imageName}_${tag}-config.json`),
         tag: "unused",

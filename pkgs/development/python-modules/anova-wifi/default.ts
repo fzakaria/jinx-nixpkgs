@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "anova-wifi",
       version: "2.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Lash-L",
           repo: "anova_wifi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_async_data_1"]),
       pythonImportsCheck: nix.thunk(() => ["anova_wifi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package for reading anova sous vide api data",
         homepage: "https://github.com/Lash-L/anova_wifi",
         changelog: nix.thunk(() => nix.str`https://github.com/Lash-L/anova_wifi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

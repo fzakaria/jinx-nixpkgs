@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libgcc = nix.arg($, "libgcc");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yofi",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "l4l",
           repo: "yofi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoPatches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "bump-time-1.80.0.patch",
             url: "https://github.com/l4l/yofi/commit/438e180bf5132d29a6846e830d7227cb996ade3e.patch",
             hash: "sha256-o/kwQRIG6MASGYnepb96pL1qfI+/CNTqc5maDPjSZXk=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       checkFlags: nix.thunk(() => ["--skip=screen::context::test"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimalist app launcher in Rust",
         homepage: "https://github.com/l4l/yofi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

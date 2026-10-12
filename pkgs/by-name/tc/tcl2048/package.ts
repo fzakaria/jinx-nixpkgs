@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const tclPackages = nix.arg($, "tclPackages");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(tcl, "mkTclDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tcl2048",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/dbohdan/2048.tcl/v${nix.sel(finalAttrs, "version")}/2048.tcl`),
           sha256: "53f5503efd7f029b2614b0f9b1e3aac6c0342735a3c9b811d74a5135fee3e89e",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "mkdir -pv $out/bin\ninstall -m 755 $src $out/bin/2048\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/dbohdan/2048.tcl",
         description: "Game of 2048 implemented in Tcl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

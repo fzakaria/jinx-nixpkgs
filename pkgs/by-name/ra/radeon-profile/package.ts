@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         libdrm,
       ]);
       const src = nix.thunk(() => nix.add(nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marazmista",
           repo: "radeon-profile",
           rev: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         }))), "/radeon-profile"));
       const preConfigure = "substituteInPlace radeon-profile.pro \\\n  --replace \"/usr/\" \"$out/\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Application to read current clocks of AMD Radeon cards",
         homepage: "https://github.com/marazmista/radeon-profile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "radeon-profile",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         nativeBuildInputs,

@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const pulseaudioSupport = nix.argOr($, "pulseaudioSupport", () => nix.selOr(config, () => false, "pulseaudio"));
   const libpulseaudio = nix.arg($, "libpulseaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mimic",
       version: "1.3.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MycroftAI",
           repo: "mimic1",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fno-common",
             url: "https://github.com/MycroftAI/mimic1/commit/77b36eaeb2c38eba571b8db7e9bb0fd507774e6d.patch",
             sha256: "0n3hqrfpbdp44y0c8bq55ay9m4c96r09k18hjxka4x54j5c7lw1m",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, makeWrapper]),
       buildInputs: nix.thunk(() => nix.concat([alsa_lib, alsa_plugins, libtool, icu, pcre2], nix.app(nix.sel(lib, "optional"), pulseaudioSupport, libpulseaudio))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=free-nonheap-object",
             "-Wno-error=discarded-qualifiers",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
   --run "export ALSA_PLUGIN_DIR=${alsa_plugins}/lib/alsa-lib"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Mycroft's TTS engine, based on CMU's Flite (Festival Lite)",
         homepage: "https://mimic.mycroft.ai/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

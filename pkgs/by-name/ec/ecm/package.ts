@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const m4 = nix.arg($, "m4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ecm",
       version: "7.0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.inria.fr/zimmerma/ecm/uploads/ad3e5019fef98819ceae58b78f4cce93/ecm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-fSDs5hq2ogrYXywYBkyr133Eapb/iUtSINuxbkZm6KU=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [m4, gmp]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Elliptic Curve Method for Integer Factorization",
         mainProgram: "ecm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

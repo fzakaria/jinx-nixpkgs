@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "zsh-clipboard",
       version: "1.0",
       dontUnpack: true,
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`install -D -m0444 -T ${nix.path(here, "./clipboard.plugin.zsh")} $out/share/zsh/plugins/clipboard/clipboard.plugin.zsh
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Ohmyzsh plugin that integrates kill-ring with system clipboard",
         longDescription: "Ohmyzsh plugin that integrates kill-ring with system clipboard.\n\nKey bindings for C-y, C-k, C-u, M-d, M-backspace and M-w are rebound.\nBehaviour of these keys should not be changed.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const perl = nix.arg($, "perl");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ssh-tools",
       version: "1.9",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vaporup",
           repo: "ssh-tools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bash, perl]),
       postInstall: "install cmd/{bash,perl}/ssh-*/ssh-* -t $out/bin\ninstallManPage man/*.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Making SSH more convenient",
         homepage: "https://codeberg.org/vaporup/ssh-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

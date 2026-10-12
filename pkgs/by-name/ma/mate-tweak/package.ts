@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "22.10.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubuntu-mate",
           repo: "mate-tweak",
           rev: version,
@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
       const preFixup = "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n";
       const postFixup = "for i in bin/.mate-tweak-wrapped lib/mate-tweak/mate-tweak-helper; do\n  sed -i \"s,usr,run/current-system/sw,g\" $out/$i\ndone\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tweak tool for the MATE Desktop",
         homepage: "https://github.com/ubuntu-mate/mate-tweak",
         changelog: nix.thunk(() => nix.str`https://github.com/ubuntu-mate/mate-tweak/releases/tag/${version}`),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "mate"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

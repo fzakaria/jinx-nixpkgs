@@ -12,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const wolfram_engine = nix.arg($, "wolfram-engine");
   const kernel = nix.thunk(() => nix.app(callPackage, nix.path(here, "./kernel.nix"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     definition: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       displayName: nix.thunk(() => nix.str`Wolfram Language ${nix.sel(wolfram_engine, "version")}`),
       argv: nix.thunk(() => [
         nix.thunk(() => nix.str`${wolfram_engine}/bin/wolfram`),

@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
   const configFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "libconfig"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(configFormat, "generate"), "sslh.conf", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$46,
+    [nix.POS]: pos$46,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "sslh", "listenAddress"]), nix.thunk(() => ["services", "sslh", "listenAddresses"]))),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "sslh", "timeout"]), nix.thunk(() => ["services", "sslh", "settings", "timeout"]))),
@@ -75,22 +75,22 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "sslh", "appendConfig"]), "Use services.sslh.settings instead")),
       nix.thunk(() => nix.app(nix.lookup(w, "mkChangedOptionModule"), nix.thunk(() => ["services", "sslh", "verbose"]), nix.thunk(() => ["services", "sslh", "settings", "verbose-connections"]), (config_1) => (nix.asBool(nix.sel(config_1, "services", "sslh", "verbose")) ? 1n : 0n))),
     ]),
-    meta: nix.thunk(() => ({ __proto__: pos$1, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, buildDocsInSandbox: false })),
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         sslh: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "sslh, protocol demultiplexer")),
           method: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["fork", "select", "ev"]))),
               default: "fork",
               description: "The method to use for handling connections:\n\n  - `fork` forks a new process for each incoming connection. It is\n  well-tested and very reliable, but incurs the overhead of many\n  processes.\n\n  - `select` uses only one thread, which monitors all connections at once.\n  It has lower overhead per connection, but if it stops, you'll lose all\n  connections.\n\n  - `ev` is implemented using libev, it's similar to `select` but\n    scales better to a large number of connections.\n",
             })))),
           listenAddresses: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "coercedTo"), nix.thunk(() => nix.lookup(w_1, "str")), nix.thunk(() => nix.lookup(w_1, "singleton")), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))));
@@ -99,52 +99,52 @@ export default nix.lambda((args) => (() => {
               description: "Listening addresses or hostnames.",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 443n,
               description: "Listening port.",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   freeformType: nix.thunk(() => nix.sel(configFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     timeout: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")),
                         default: 2n,
                         description: "Timeout in seconds.",
                       })))),
                     transparent: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         default: false,
                         description: "Whether the services behind sslh (Apache, sshd and so on) will see the\nexternal IP and ports as if the external world connected directly to\nthem.\n",
                       })))),
                     "verbose-connections": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "ints", "between"), 0n, 4n)),
                         default: 0n,
                         description: "Where to log connections information. Possible values are:\n\n 0. don't log anything\n 1. write log to stdout\n 2. write log to syslog\n 3. write log to both stdout and syslog\n 4. write to a log file ({option}`sslh.settings.logfile`)\n",
                       })))),
                     numeric: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         default: true,
                         description: "Whether to disable reverse DNS lookups, thus keeping IP\naddress literals in the log.\n",
                       })))),
                     protocols: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(configFormat, "type")))),
                         default: nix.thunk(() => [
-                          nix.thunk(() => ({ __proto__: pos$9, name: "ssh", host: "localhost", port: "22", service: "ssh" })),
-                          nix.thunk(() => ({ __proto__: pos$10, name: "openvpn", host: "localhost", port: "1194" })),
-                          nix.thunk(() => ({ __proto__: pos$11, name: "xmpp", host: "localhost", port: "5222" })),
-                          nix.thunk(() => ({ __proto__: pos$12, name: "http", host: "localhost", port: "80" })),
-                          nix.thunk(() => ({ __proto__: pos$13, name: "tls", host: "localhost", port: "443" })),
-                          nix.thunk(() => ({ __proto__: pos$14, name: "anyprot", host: "localhost", port: "443" })),
+                          nix.thunk(() => ({ [nix.POS]: pos$9, name: "ssh", host: "localhost", port: "22", service: "ssh" })),
+                          nix.thunk(() => ({ [nix.POS]: pos$10, name: "openvpn", host: "localhost", port: "1194" })),
+                          nix.thunk(() => ({ [nix.POS]: pos$11, name: "xmpp", host: "localhost", port: "5222" })),
+                          nix.thunk(() => ({ [nix.POS]: pos$12, name: "http", host: "localhost", port: "80" })),
+                          nix.thunk(() => ({ [nix.POS]: pos$13, name: "tls", host: "localhost", port: "443" })),
+                          nix.thunk(() => ({ [nix.POS]: pos$14, name: "anyprot", host: "localhost", port: "443" })),
                         ]),
                         description: "List of protocols sslh will probe for and redirect.\nEach protocol entry consists of:\n\n  - `name`: name of the probe.\n\n  - `service`: libwrap service name (see {manpage}`hosts_access(5)`),\n\n  - `host`, `port`: where to connect when this probe succeeds,\n\n  - `log_level`: to log incoming connections,\n\n  - `transparent`: proxy this protocol transparently,\n\n  - etc.\n\nSee the documentation for all options, including probe-specific ones.\n",
                       })))),
@@ -157,18 +157,18 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             systemd: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               services: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 sslh: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   description: "Applicative Protocol Multiplexer (e.g. share SSH and HTTPS on the same port)",
                   after: nix.thunk(() => ["network.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     DynamicUser: true,
                     User: "sslh",
                     PermissionsStartOnly: true,
@@ -186,15 +186,15 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               sslh: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   foreground: true,
                   inetd: false,
                   listen: nix.thunk(() => nix.app(nix.builtins.map, (addr) => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       host: addr,
                       port: nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "port")))),
                     }), nix.thunk(() => nix.sel(cfg, "listenAddresses")))),
@@ -203,69 +203,69 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "settings", "transparent")))), nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             boot: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               kernel: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 sysctl: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   "net.ipv4.conf.default.route_localnet": 1n,
                   "net.ipv4.conf.all.route_localnet": 1n,
                 })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               services: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 sslh: nix.thunk(() => (() => {
                   const iptablesCommands = nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$34,
+                      [nix.POS]: pos$34,
                       table: "raw",
                       command: "PREROUTING  ! -i lo -d 127.0.0.0/8 -j DROP",
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$35,
+                      [nix.POS]: pos$35,
                       table: "mangle",
                       command: "POSTROUTING ! -o lo -s 127.0.0.0/8 -j DROP",
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       table: "nat",
                       command: nix.thunk(() => nix.str`OUTPUT -m owner --uid-owner ${user} -p tcp --tcp-flags FIN,SYN,RST,ACK SYN -j CONNMARK --set-xmark 0x02/0x0f`),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       table: "mangle",
                       command: "OUTPUT ! -o lo -p tcp -m connmark --mark 0x02/0x0f -j CONNMARK --restore-mark --mask 0x0f",
                     })),
                   ]);
                   const ip6tablesCommands = nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$38,
+                      [nix.POS]: pos$38,
                       table: "raw",
                       command: "PREROUTING  ! -i lo -d ::1/128     -j DROP",
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       table: "mangle",
                       command: "POSTROUTING ! -o lo -s ::1/128     -j DROP",
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       table: "nat",
                       command: nix.thunk(() => nix.str`OUTPUT -m owner --uid-owner ${user} -p tcp --tcp-flags FIN,SYN,RST,ACK SYN -j CONNMARK --set-xmark 0x02/0x0f`),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$41,
+                      [nix.POS]: pos$41,
                       table: "mangle",
                       command: "OUTPUT ! -o lo -p tcp -m connmark --mark 0x02/0x0f -j CONNMARK --restore-mark --mask 0x0f",
                     })),
                   ]);
                   return {
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     path: nix.thunk(() => [
                       nix.thunk(() => nix.sel(pkgs, "iptables")),
                       nix.thunk(() => nix.sel(pkgs, "iproute2")),

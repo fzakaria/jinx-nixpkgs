@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aio-libs",
           repo: "aiocache",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         redis: nix.thunk(() => [redis]),
         memcached: nix.thunk(() => [aiomcache]),
         msgpack: nix.thunk(() => [msgpack]),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["aiocache"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Asyncio cache supporting multiple backends (memory, redis, memcached, etc.)",
         homepage: "https://github.com/aio-libs/aiocache",
         changelog: nix.thunk(() => nix.str`https://github.com/aio-libs/aiocache/releases/tag/v${version}`),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

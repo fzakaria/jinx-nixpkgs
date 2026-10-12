@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const nlohmann_json = nix.arg($, "nlohmann_json");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tokenspeed-triton",
       version: "3.8.10.post20260920",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lightseekorg",
           repo: "triton",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ substituteInPlace pyproject.toml \\
       dontUseCmakeConfigure: true,
       nativeBuildInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         TRITON_OFFLINE_BUILD: true,
         TRITON_BUILD_RELEASE: true,
         TRITON_BUILD_PROTON: false,
@@ -62,7 +62,7 @@ substituteInPlace pyproject.toml \\
       pythonImportsCheck: nix.thunk(() => ["tokenspeed_triton"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Language and compiler for custom Deep Learning operations",
         homepage: "https://github.com/lightseekorg/triton",
         downloadPage: "https://pypi.org/project/tokenspeed-triton/#files",

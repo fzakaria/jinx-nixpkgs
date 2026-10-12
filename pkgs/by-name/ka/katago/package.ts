@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "katago";
       const version = "1.16.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lightvector",
           repo: "katago",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -78,7 +78,7 @@ export EXTRA_LDFLAGS="-L/run/opengl-driver/lib"
 `))));
       const installPhase = nix.thunk(() => nix.add(nix.add("runHook preInstall\nmkdir -p $out/bin; cp katago $out/bin;\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.eq(backend, "cuda")) || nix.asBool(nix.eq(backend, "tensorrt")))), "wrapProgram $out/bin/katago \\\n  --prefix LD_LIBRARY_PATH : \"/run/opengl-driver/lib\"\n")), "runHook postInstall\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Go engine modeled after AlphaGo Zero",
         mainProgram: "katago",
         homepage: "https://github.com/lightvector/katago",
@@ -87,7 +87,7 @@ export EXTRA_LDFLAGS="-L/run/opengl-driver/lib"
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

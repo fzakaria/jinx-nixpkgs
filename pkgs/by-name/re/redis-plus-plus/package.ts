@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const enableStatic = nix.argOr($, "enableStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   nix.assert_((nix.asBool(enableShared) || nix.asBool(enableStatic)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/re/redis-plus-plus/package.nix:13:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "redis-plus-plus",
       version: "1.3.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sewenew",
           repo: "redis-plus-plus",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./0001-Fix-pkg-config-paths.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "walk-around-gcc-16-bug.patch",
             url: "https://github.com/sewenew/redis-plus-plus/commit/4b4cd0dc2931e96842ef05e165673b8679e32f48.patch?full_index=1",
             hash: "sha256-neZj/J9nRg3Ft/+wQcRzvTjwm41odNnEfHnrs8/KiL4=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [hiredis]),
       cmakeFlags: nix.thunk(() => nix.concat(["-DREDIS_PLUS_PLUS_BUILD_TEST=OFF"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(enableShared)), nix.thunk(() => ["-DREDIS_PLUS_PLUS_BUILD_SHARED=OFF"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(enableStatic)), nix.thunk(() => ["-DREDIS_PLUS_PLUS_BUILD_STATIC=OFF"]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/sewenew/redis-plus-plus",
         description: "Redis client written in C++",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

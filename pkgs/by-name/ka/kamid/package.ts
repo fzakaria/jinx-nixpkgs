@@ -19,23 +19,23 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const libbsd = nix.arg($, "libbsd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kamid",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/omar-polo/kamid/releases/download/${nix.sel(finalAttrs, "version")}/kamid-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-23LgcZ+R6wcUz1fZA+IbhyshfQOTyiFPZ+uKVwOh680=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libevent, libressl, readline, libbsd]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-function-declaration", "-Wno-error=int-conversion"]))),
       })),
       makeFlags: nix.thunk(() => ["AR:=$(AR)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "FREE, easy-to-use and portable implementation of a 9p file server daemon for UNIX-like systems",
         homepage: "https://kamid.omarpolo.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mirage-block-ramdisk";
       const version = "0.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-block-ramdisk/releases/download/${version}/mirage-block-ramdisk-${version}.tbz`),
           sha256: "cc0e814fd54efe7a5b7a8c5eb1c04e2dece751b7d8dee2d95908a0768896e8af",
         }))));
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [io_page, mirage_block]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "In-memory BLOCK device for MirageOS",
         homepage: "https://github.com/mirage/mirage-block-ramdisk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

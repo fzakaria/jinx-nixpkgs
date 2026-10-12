@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const isKernelRT = nix.thunk(() => (nix.asBool(nix.has(nix.sel(kernel, "structuredExtraConfig"), "PREEMPT_RT")) && nix.asBool(nix.eq(nix.sel(kernel, "structuredExtraConfig", "PREEMPT_RT"), nix.sel(lib, "kernel", "yes")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-${nix.sel(kernel, "version")}`),
       pname: "lkrg",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lkrg-org",
           repo: "lkrg",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ install -D lkrg.ko $out/lib/modules/${nix.sel(kernel, "modDirVersion")}/extra/lk
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LKRG Linux Kernel module",
         longDescription: "LKRG performs runtime integrity checking of the Linux kernel and detection of security vulnerability exploits against the kernel.",
         homepage: "https://lkrg.org/",

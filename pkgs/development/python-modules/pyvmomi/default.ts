@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.1.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vmware",
           repo: "pyvmomi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [requests, six]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, sso: nix.thunk(() => [lxml, pyopenssl]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, sso: nix.thunk(() => [lxml, pyopenssl]) }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pyVim", "pyVmomi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python SDK for the VMware vSphere API that allows you to manage ESX, ESXi, and vCenter",
         homepage: "https://github.com/vmware/pyvmomi",
         changelog: nix.thunk(() => nix.str`https://github.com/vmware/pyvmomi/releases/tag/${nix.sel(src, "tag")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

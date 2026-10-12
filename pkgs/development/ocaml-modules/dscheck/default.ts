@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dscheck",
       version: "0.6.0",
       minimalOCamlVersion: "5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/dscheck/releases/download/${nix.sel(finalAttrs, "version")}/dscheck-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-//li4+7Y1kWjU5V3uTUF1kLZr+M7KeJPkOZx03UOe6w=",
         })))),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Traced atomics",
         homepage: "https://github.com/ocaml-multicore/dscheck",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const swig = nix.arg($, "swig");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "marisa",
       src: nix.thunk(() => nix.attr(marisa, "src")),
       version: nix.thunk(() => nix.attr(marisa, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["marisa"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Python bindings for marisa",
         homepage: "https://github.com/s-yata/marisa-trie",
         license: nix.thunk(() => (() => {

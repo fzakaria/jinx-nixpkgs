@@ -16,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "airsonic",
       version: "10.6.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/airsonic/airsonic/releases/download/v${nix.sel(finalAttrs, "version")}/airsonic.war`),
           sha256: "0q3qnqymj3gaa6n79pvbyidn1ga99lpngp5wvhlw1aarg1m7vccl",
         })))),
       buildCommand: "mkdir -p \"$out/webapps\"\ncp \"$src\" \"$out/webapps/airsonic.war\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "airsonic-starts": nix.thunk(() => nix.sel(nixosTests, "airsonic")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Personal media streamer",
         homepage: "https://airsonic.github.io",
         sourceProvenance: nix.thunk(() => (() => {

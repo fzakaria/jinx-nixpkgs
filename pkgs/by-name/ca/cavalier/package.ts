@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cavalier";
       const version = "2024.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NickvisionApps",
           repo: "Cavalier",
           tag: version,
@@ -52,9 +52,9 @@ export default nix.lambda((args) => (() => {
       const makeWrapperArgs = nix.thunk(() => [
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cava]))}`),
       ]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Visualize audio with CAVA",
         homepage: "https://github.com/NickvisionApps/Cavalier",
         mainProgram: "NickvisionCavalier.GNOME",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

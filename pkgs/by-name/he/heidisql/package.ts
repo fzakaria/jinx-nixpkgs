@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         const library = nix.arg($_1, "library");
         const path = nix.argOr($_1, "path", () => "lib");
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           package: package$,
           library: library,
           path: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), package$)}/${path}`),
@@ -51,26 +51,26 @@ export default nix.lambda((args) => (() => {
       })(), formals$2);
       const dbConnectors = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             package: mariadb_connector_c,
             library: "libmariadb.so",
             path: "lib/mariadb",
           })))),
-        nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({ __proto__: pos$3, package: libpq, library: "libpq.so" })))),
-        nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({ __proto__: pos$4, package: sqlite, library: "libsqlite3.so" })))),
-        nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({ __proto__: pos$5, package: freetds, library: "libsybdb.so" })))),
-        nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({ __proto__: pos$6, package: firebird, library: "libfbclient.so" })))),
+        nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({ [nix.POS]: pos$3, package: libpq, library: "libpq.so" })))),
+        nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({ [nix.POS]: pos$4, package: sqlite, library: "libsqlite3.so" })))),
+        nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({ [nix.POS]: pos$5, package: freetds, library: "libsybdb.so" })))),
+        nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({ [nix.POS]: pos$6, package: firebird, library: "libfbclient.so" })))),
       ]);
       const customScript = nix.thunk(() => nix.app(nix.sel(writers, "writeBashBin"), "heidisql-ldconfig", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map((x) => nix.str`printf '	%s (libc6,x86-64) => %s/%s
 ' "${nix.sel(x, "library")}" "${nix.sel(x, "path")}" "${nix.sel(x, "library")}"`, dbConnectors))))));
       return {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         pname: "heidisql",
         version: "12.20",
         strictDeps: true,
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             owner: "HeidiSQL",
             repo: "HeidiSQL",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -113,7 +113,7 @@ runHook postInstall
 `),
         desktopItems: nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               name: "heidisql",
               desktopName: "HeidiSQL",
               comment: "A lightweight client for managing MariaDB, MySQL, SQL Server, PostgreSQL, SQLite, Interbase and Firebird, written in Delphi and Lazarus/FreePascal",
@@ -124,16 +124,16 @@ runHook postInstall
             })))),
         ]),
         passthru: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               ignoredVersions: "[v0-9.]*-Windows$",
               allowedVersions: "v[0-9]*.[0-9]*",
               "rev-prefix": "v",
             })))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           mainProgram: "heidisql",
           description: "A lightweight client for managing MariaDB, MySQL, SQL Server, PostgreSQL, SQLite, Interbase and Firebird, written in Delphi and Lazarus/FreePascal",
           homepage: "https://www.heidisql.com/",

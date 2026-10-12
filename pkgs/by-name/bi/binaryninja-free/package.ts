@@ -35,31 +35,31 @@ export default nix.lambda((args) => (() => {
   const libxcb_wm = nix.arg($, "libxcb-wm");
   const version = "6.0.10601";
   const sources = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/Vector35/binaryninja-api/releases/download/stable/${version}/binaryninja_free_linux.zip`),
       hash: "sha256-PoucWGGr5umwTIa1+cStLchs7ep5ty17Cu4f3PfOkdY=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://github.com/Vector35/binaryninja-api/releases/download/stable/${version}/binaryninja_free_linux-arm.zip`),
       hash: "sha256-G3gSWFa+Rh9zJMoA9QyH8XiIXsEK0YVXgHDtmR6X11o=",
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "binaryninja-free",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))))),
       icon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: "https://raw.githubusercontent.com/Vector35/binaryninja-api/448f40be71dffa86a6581c3696627ccc1bdf74f2/docs/img/logo.png",
           hash: "sha256-TzGAAefTknnOBj70IHe64D6VwRKqIDpL4+o9kTw0Mn4=",
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "com.vector35.binaryninja",
             desktopName: "Binary Ninja Free",
             comment: "A Reverse Engineering Platform",
@@ -97,12 +97,12 @@ install -Dm644 ${nix.sel(finalAttrs, "icon")} $out/share/icons/hicolor/256x256/a
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: nix.thunk(() => nix.str`https://binary.ninja/changelog/#${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
         description: "Interactive decompiler, disassembler, debugger",
         homepage: "https://binary.ninja/",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             shortName: "binary-ninja",
             fullName: "Binary Ninja Free Software License",
             url: "https://docs.binary.ninja/about/license.html#free-license",

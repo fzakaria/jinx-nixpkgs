@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "espanso"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -41,15 +41,15 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         espanso: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Espanso")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "espanso", nix.thunk(() => ({ __proto__: pos$2, example: "pkgs.espanso-wayland" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "espanso", nix.thunk(() => ({ [nix.POS]: pos$2, example: "pkgs.espanso-wayland" })))),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "with pkgs; [ bash curl python3 ];")),
@@ -59,34 +59,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         security: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             espanso: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.selOr(cfg, () => false, "package", "waylandSupport")), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 capabilities: "cap_dac_override+p",
                 owner: "root",
                 group: "root",
                 source: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       securityWrapperPath: nix.thunk(() => nix.sel(config, "security", "wrapperDir")),
                     })))))),
               })))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           user: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             services: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               espanso: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 description: "Espanso daemon",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   ExecStart: nix.thunk(() => nix.str`${(nix.asBool(nix.selOr(cfg, () => false, "package", "waylandSupport")) ? nix.str`${nix.sel(config, "security", "wrapperDir")}/espanso` : nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package"))))} daemon`),
                   Restart: "on-failure",
                 })),
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

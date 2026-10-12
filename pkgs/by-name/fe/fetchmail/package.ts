@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fetchmail",
       version: "6.6.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/fetchmail/fetchmail-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-vs6KqqaOAp7tn9Vf/9Ktx91s1elXTVv5Li2SCL2XqIE=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-ssl=${nix.sel(openssl, "dev")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.fetchmail.info/",
         description: "Full-featured remote-mail retrieval and forwarding utility",
         longDescription: "A full-featured, robust, well-documented remote-mail retrieval and\nforwarding utility intended to be used over on-demand TCP/IP links\n(such as SLIP or PPP connections). It supports every remote-mail\nprotocol now in use on the Internet: POP2, POP3, RPOP, APOP, KPOP,\nall flavors of IMAP, ETRN, and ODMR. It can even support IPv6 and\nIPSEC.\n",

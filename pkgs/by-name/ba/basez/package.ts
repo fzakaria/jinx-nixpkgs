@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "basez",
       version: "1.6.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.quarkline.net/basez/download/basez-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-Kp+CFIh5HCdj7wEgx1xD3IPdFlZ7fEFvMDMYif1ZiTc=",
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Base 16/32/64 encode/decode data to standard output",
         longDescription: "Encode  data into/decode data from base16, base32, base32hex, base64 or\nbase64url stream per RFC 4648;  MIME  base64  Content-Transfer-Encoding\nper RFC 2045; or PEM Printable Encoding per RFC 1421.\n",
         homepage: "http://www.quarkline.net/basez/",

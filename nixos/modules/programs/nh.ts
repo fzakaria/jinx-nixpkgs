@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "nh"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -45,30 +45,30 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       programs: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         nh: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nh, yet another Nix CLI helper")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nh", nix.thunk(() => ({})))),
           flake: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "The string that will be used for the `NH_FLAKE` environment variable.\n\n`NH_FLAKE` is used by nh as the default flake for performing actions, such as\n`nh os switch`. This behaviour can be overriden per-command with environment\nvariables that will take priority.\n\n- `NH_OS_FLAKE`: will take priority for `nh os` commands.\n- `NH_HOME_FLAKE`: will take priority for `nh home` commands.\n- `NH_DARWIN_FLAKE`: will take priority for `nh darwin` commands.\n\nThe formerly valid `FLAKE` is now deprecated by nh, and will cause hard errors\nin future releases if `NH_FLAKE` is not set.\n",
             })))),
           clean: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "periodic garbage collection with nh clean all")),
             dates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
                 default: "weekly",
                 description: "How often cleanup is performed. Passed to systemd.time\n\nThe format is described in\n{manpage}`systemd.time(7)`.\n",
               })))),
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
                 default: "",
                 example: "--keep 5 --keep-since 3d",
@@ -79,41 +79,41 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       warnings: nix.thunk(() => (nix.asBool(!nix.asBool((!nix.asBool(nix.sel(cfg, "clean", "enable")) || nix.asBool(!nix.asBool(nix.sel(config, "nix", "gc", "automatic")))))) ? [
         "programs.nh.clean.enable and nix.gc.automatic are both enabled. Please use one or the other to avoid conflict.",
       ] : [])),
       assertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "flake"), null)) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".nix", nix.thunk(() => nix.sel(cfg, "flake"))))))),
           message: "nh.flake must be a directory, not a nix file",
         })),
       ]),
       environment: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
-          variables: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "flake"), null)), nix.thunk(() => ({ __proto__: pos$10, NH_FLAKE: nix.thunk(() => nix.sel(cfg, "flake")) })))),
+          variables: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "flake"), null)), nix.thunk(() => ({ [nix.POS]: pos$10, NH_FLAKE: nix.thunk(() => nix.sel(cfg, "flake")) })))),
         })))),
       systemd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "clean", "enable")), nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "nh-clean": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Nh clean",
               script: nix.thunk(() => nix.str`exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} clean all ${nix.sel(cfg, "clean", "extraArgs")}`),
               startAt: nix.thunk(() => nix.sel(cfg, "clean", "dates")),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(config, "nix", "package"))]),
               after: nix.thunk(() => ["multi-user.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$12, Type: "oneshot" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$12, Type: "oneshot" })),
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "nh-clean": nix.thunk(() => ({
-              __proto__: pos$16,
-              timerConfig: nix.thunk(() => ({ __proto__: pos$15, Persistent: true })),
+              [nix.POS]: pos$16,
+              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$15, Persistent: true })),
             })),
           })),
         })))),

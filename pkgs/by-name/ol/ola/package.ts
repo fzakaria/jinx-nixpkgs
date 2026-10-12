@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ola",
       version: "0.10.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenLightingProject",
           repo: "ola",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/OpenLightingProject/ola/commit/d9b9c78645c578adb7c07b692842e841c48310be.patch",
             hash: "sha256-BplSqQv8ztWMpiX/M3/3wvf6LsPTBglh48gHlUoM6rw=",
           })))),
@@ -49,13 +49,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, bison, flex, pkg_config, perl]),
       buildInputs: nix.thunk(() => [libftdi1, libuuid, cppunit, protobuf_21, zlib, avahi, libmicrohttpd, python3]),
       propagatedBuildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "protobuf4", "override"), nix.thunk(() => ({ __proto__: pos$3, protobuf: protobuf_21 })))),
+        nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "protobuf4", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, protobuf: protobuf_21 })))),
         nix.thunk(() => nix.sel(python3, "pkgs", "numpy")),
       ]),
       configureFlags: nix.thunk(() => ["--enable-python-libs"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Framework for controlling entertainment lighting equipment",
         homepage: "https://www.openlighting.org/ola/",

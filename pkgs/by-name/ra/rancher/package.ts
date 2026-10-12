@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rancher",
       version: "2.15.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rancher",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-DHxPgHm5dzv4o8yZD6SaQ5Q+3UAZ5LJ/scT7dIXe5G8=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-w",
         "-s",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: nix.thunk(() => nix.str`$out/bin/rancher | grep ${nix.sel(finalAttrs, "version")} > /dev/null
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI tool for interacting with your Rancher Server",
         mainProgram: "rancher",
         homepage: "https://github.com/rancher/cli",

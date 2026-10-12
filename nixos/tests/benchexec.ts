@@ -24,16 +24,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const user = "alice";
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "benchexec",
     nodes: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       benchexec: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
         programs: nix.thunk(() => ({
-          __proto__: pos$2,
-          benchexec: nix.thunk(() => ({ __proto__: pos$1, enable: true, users: nix.thunk(() => [user]) })),
+          [nix.POS]: pos$2,
+          benchexec: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, users: nix.thunk(() => [user]) })),
         })),
       })),
     })),
@@ -43,9 +43,9 @@ export default nix.lambda((args) => (() => {
       const echo = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(pkgs, "benchexec"))));
       const test = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => (() => {
             const name = "test";
-            const meta = nix.thunk(() => ({ __proto__: pos$5, mainProgram: name }));
+            const meta = nix.thunk(() => ({ [nix.POS]: pos$5, mainProgram: name }));
             const text = nix.thunk(() => nix.str`echo '${echo}'`);
-            return { __proto__: pos$6, name, meta, text };
+            return { [nix.POS]: pos$6, name, meta, text };
           })())))));
       const wd = "/tmp";
       const stdout = nix.thunk(() => nix.str`${wd}/runexec.out`);
@@ -71,19 +71,19 @@ benchexec.succeed("! grep -E '(WARNING|ERROR)' ${stderr}")
 `;
     })(), formals$2),
     interactive: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       nodes: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         benchexec: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             kmscon: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               fonts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   name: "Fira Code",
                   package: nix.thunk(() => nix.sel(pkgs, "fira-code")),
                 })),

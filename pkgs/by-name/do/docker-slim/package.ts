@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "docker-slim",
       version: "1.40.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "slimtoolkit",
           repo: "slim",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-X+1euWp4W53axbiBpL82bUPfod/JNhGVGWgOqKyhz6A=",
         })))),
       vendorHash: null,
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["cmd/slim", "cmd/slim-sensor"]),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       preBuild: "go generate ./...\n",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "wrapProgram \"$out/bin/slim\" --add-flags '--state-path \"$(pwd)\"'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minify and secure Docker containers",
         homepage: "https://slimtoolkit.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/slimtoolkit/slim/raw/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

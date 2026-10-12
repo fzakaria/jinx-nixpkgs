@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const pname = "rtl8189fs";
       const version = "2025-09-26";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jwrdegoede",
           repo: "rtl8189ES_linux",
           rev: "876e627a5b6a8021700391b4249a4a31edfebe5c",
           hash: "sha256-3v40I09TDGWdpllS3WfshPkXbT5Q2pWMTalHLUlU3lU=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Driver for Realtek rtl8189fs",
         homepage: "https://github.com/jwrdegoede/rtl8189ES_linux/tree/rtl8189fs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "puffnfresh"))];
         })()),
       }));
-      return { __proto__: pos$3, name, pname, version, src, meta };
+      return { [nix.POS]: pos$3, name, pname, version, src, meta };
     })());
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

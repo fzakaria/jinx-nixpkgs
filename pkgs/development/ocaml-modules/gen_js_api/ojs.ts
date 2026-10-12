@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const gen_js_api = nix.arg($, "gen_js_api");
   const js_of_ocaml_compiler = nix.arg($, "js_of_ocaml-compiler");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ojs",
       version: nix.thunk(() => nix.attr(gen_js_api, "version")),
       src: nix.thunk(() => nix.attr(gen_js_api, "src")),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(gen_js_api, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

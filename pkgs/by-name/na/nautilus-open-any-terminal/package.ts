@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Stunkymonkey",
           repo: "nautilus-open-any-terminal",
           tag: version,
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
 `);
       const postInstall = "glib-compile-schemas \"$out/share/glib-2.0/schemas\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension for nautilus, which adds an context-entry for opening other terminal-emulators then `gnome-terminal`",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

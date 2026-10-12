@@ -38,20 +38,20 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const sysctl = nix.arg($, "sysctl");
   const gguf_tools = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "antirez",
       repo: "gguf-tools",
       rev: "8fa6eb65236618e28fd7710a0fba565f7faa1848",
       hash: "sha256-15FvyPOFqTOr5vdWQoPnZz+mYH919++EtghjozDlnSA=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "mlx",
       version: "0.32.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ml-explore",
           repo: "mlx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postUnpack: "export MAKEFLAGS+=\"${enableParallelBuilding:+-j$NIX_BUILD_CORES}\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PYPI_RELEASE: 1n,
         CMAKE_ARGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "MLX_BUILD_METAL", false)),
@@ -94,25 +94,25 @@ export default nix.lambda((args) => (() => {
   $out/${nix.sel(python, "sitePackages")}/mlx/core.cpython-*.so
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "gguf-tools": gguf_tools,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           mlxTest: nix.thunk(() => nix.sel(nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               mlx: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             }))), "mlxTest")),
         })),
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "mlx-update",
               runtimeInputs: nix.thunk(() => [common_updater_scripts, curl, nix$, nix_update, perl]),
               text: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./update.sh"))),
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://github.com/ml-explore/mlx",
         description: "Array framework for Apple silicon",
         changelog: nix.thunk(() => nix.str`https://github.com/ml-explore/mlx/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RDFLib",
           repo: "rdflib",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [pyparsing]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         html: nix.thunk(() => [html5lib]),
         networkx: nix.thunk(() => [networkx]),
       }));
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["TestGraphHTTP"]))));
       const pythonImportsCheck = nix.thunk(() => ["rdflib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/RDFLib/rdflib/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Python library for working with RDF",
         homepage: "https://rdflib.readthedocs.io",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

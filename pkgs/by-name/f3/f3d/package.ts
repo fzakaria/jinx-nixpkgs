@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.5.0";
       const outputs = nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), withManual, nix.thunk(() => ["man"]))));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "f3d-app",
           repo: "f3d",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), withManual, nix.thunk(() => ["-DF3D_LINUX_GENERATE_MAN=ON"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withPythonBinding, nix.thunk(() => ["-DF3D_BINDINGS_PYTHON=ON"])), nix.app(nix.sel(lib, "optionals"), withUsd, nix.thunk(() => ["-DF3D_PLUGIN_BUILD_USD=ON"]))))));
       const postInstall = "for thumbnailer in $out/share/thumbnailers/f3d-plugin-*.thumbnailer; do\n  substituteInPlace $thumbnailer \\\n    --replace-fail \"TryExec=f3d\" \"TryExec=$out/bin/f3d\" \\\n    --replace-fail \"Exec=f3d\" \"Exec=$out/bin/f3d\"\ndone\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast and minimalist 3D viewer using VTK",
         homepage: "https://f3d.app",
         changelog: nix.thunk(() => nix.str`https://github.com/f3d-app/f3d/releases/tag/v${version}`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "f3d",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         outputs,

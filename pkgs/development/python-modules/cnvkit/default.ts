@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const R = nix.arg($, "R");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cnvkit",
       version: "0.9.13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "etal",
           repo: "cnvkit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/etal/cnvkit/commit/c5c7c06b7fb873ed7ae44593c11a91d45f433e54.patch",
             hash: "sha256-H9Nr4JL7bc9CQ/BmXkOAwjbr/ykvbnjyyWrVSrVH9kg=",
           })))),
@@ -109,7 +109,7 @@ runHook postInstallCheck
       pythonImportsCheck: nix.thunk(() => ["cnvlib"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, R]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://cnvkit.readthedocs.io",
         description: "Python library and command-line software toolkit to infer and visualize copy number from high-throughput DNA sequencing data",
         changelog: nix.thunk(() => nix.str`https://github.com/etal/cnvkit/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

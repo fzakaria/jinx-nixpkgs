@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "keto",
       version: "26.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ory",
           repo: "keto",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: nix.thunk(() => ["version"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd keto \\\n  --bash <($out/bin/keto completion bash) \\\n  --fish <($out/bin/keto completion fish) \\\n  --zsh <($out/bin/keto completion zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Scalable and customizable permission server ",
         longDescription: "Open source implementation of \"Zanzibar: Google's Consistent, Global Authorization System\". It follows\n[cloud architecture best practices](https://www.ory.com/docs/ecosystem/software-architecture-philosophy)\nand focuses on:\n\n- Scalable permission checks based on the Zanzibar model\n- The Ory Permission Language for defining access control policies\n- Relationship-based access control (ReBAC)\n- Low latency permission checks (sub-10ms)\n- Horizontal scaling to billions of relationships\n- Consistency and high availability\n",
         homepage: "https://github.com/ory/keto",

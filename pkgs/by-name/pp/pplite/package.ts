@@ -17,25 +17,25 @@ export default nix.lambda((args) => (() => {
   const flint = nix.arg($, "flint");
   const gmp = nix.arg($, "gmp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pplite",
       version: "0.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/ezaffanella/PPLite/raw/main/releases/pplite-0.12.tar.gz",
           hash: "sha256-9qulVEIZRPHV5GnVmp65nMrGrUwRGkR8i8ORbLdHb1E=",
         })))),
       buildInputs: nix.thunk(() => [flint, gmp]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "flint-3_2.patch",
             url: "https://github.com/ezaffanella/PPLite/commit/96fd1e50131f70bb78efdd60985525e970c9df06.patch",
             hash: "sha256-8FNyL8h/rBm2Hegib2l08vqEmFDU0PhMCV8Ui2G4xHQ=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/ezaffanella/PPLite",
         description: "Convex polyhedra library for Abstract Interpretation",
         mainProgram: "pplite_lcdd",

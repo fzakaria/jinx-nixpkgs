@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const font = "kanji-stroke-order";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`${font}-font`),
       version: "4.005",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://drive.google.com/uc?export=download&id=1DKZEYA3PJ8ulLnjYDP5bxzJ3SWi59ghr#${font}.zip`),
           hash: "sha256-6mw72eoRIGzG2IoVnPo1G0i2Z2Ot8Q/WjaJ8tNDQbMk=",
         })))),
@@ -32,7 +32,7 @@ install -Dm644 *.pdf -t $out/share/doc/${font}
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Font containing stroke order diagrams for over 6500 kanji, 180 kana and other characters",
         homepage: "https://www.kanji.uk/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

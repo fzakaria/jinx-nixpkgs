@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pyaudio = nix.arg($, "pyaudio");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiovban-pyaudio",
       version: nix.thunk(() => nix.attr(aiovban, "version")),
       pyproject: nix.thunk(() => nix.attr(aiovban, "pyproject")),
@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [aiovban, pyaudio]),
       pythonImportsCheck: nix.thunk(() => ["aiovban_pyaudio"]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$1, cli: nix.thunk(() => [setproctitle, uvloop]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$1, cli: nix.thunk(() => [setproctitle, uvloop]) })),
       __structuredAttrs: true,
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(aiovban, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/wmbest2/aiovban/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "PyAudio wrapper for aiovban",
         homepage: "https://github.com/wmbest2/aiovban/tree/main/aiovban_pyaudio",

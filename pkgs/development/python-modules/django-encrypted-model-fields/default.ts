@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-i9IcVWXA1k7E29N1rTT+potNotuHHew/px/nteQiHJk=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [cryptography, django]);
       const pythonImportsCheck = nix.thunk(() => ["encrypted_model_fields"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of fields that wrap standard Django fields with encryption provided by the python cryptography library",
         homepage: "https://gitlab.com/lansharkconsulting/django/django-encrypted-model-fields",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

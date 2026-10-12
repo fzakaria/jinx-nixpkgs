@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const minimalOCamlVersion = "4.08";
       const duneVersion = "3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xapi-project",
           repo: "ocaml-xenstore-clients",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [xenstore, lwt]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Low-level libraries for connecting to a xenstore service on a xen host",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         homepage: "https://github.com/xapi-project/ocaml-xenstore-clients",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "xen"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gtk_layer_shell = nix.arg($, "gtk-layer-shell");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nwg-bar",
       version: "0.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nwg-piotr",
           repo: "nwg-bar",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, gtk_layer_shell, librsvg]),
       preInstall: "mkdir -p $out/share/nwg-bar\ncp -r config/* images $out/share/nwg-bar\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GTK3-based button bar for sway and other wlroots-based compositors",
         mainProgram: "nwg-bar",
         homepage: "https://github.com/nwg-piotr/nwg-bar",

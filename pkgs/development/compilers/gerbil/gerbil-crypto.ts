@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gerbilPackages = nix.arg($, "gerbilPackages");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     pname: "gerbil-crypto",
     version: "unstable-2023-11-29",
     "git-version": "0.1-1-g4197bfa",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
     "version-path": "version",
     softwareName: "Gerbil-crypto",
     "pre-src": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fun: fetchFromGitHub,
       owner: "mighty-gerbils",
       repo: "gerbil-crypto",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       sha256: "1jdfz5x24dfvpwyfxalkhv83gf9ylyaqii1kg8rjl8dzickawrix",
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Gerbil Crypto: Extra Cryptographic Primitives for Gerbil",
       homepage: "https://github.com/fare/gerbil-crypto",
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

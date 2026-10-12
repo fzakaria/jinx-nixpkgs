@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const tls_cert = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "selfSignedCerts", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), "openssl req \\\n  -x509 -newkey rsa:4096 -sha256 -days 365 \\\n  -nodes -out cert.pem -keyout key.pem \\\n  -subj '/CN=minio' -addext \"subjectAltName=DNS:localhost\"\n\nmkdir -p $out\ncp key.pem cert.pem $out\n"));
   const accessKey = "BKIKJAA5BMMU2RHO6IBB";
@@ -53,12 +53,12 @@ minioClient.put_object('test-bucket', 'test.txt', sio, sio_len, content_type='te
 MINIO_ROOT_PASSWORD=${secretKey}
 `)));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "minio",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "bachp")),
           nix.thunk(() => nix.lookup(w, "ryan4yin")),
@@ -66,22 +66,22 @@ MINIO_ROOT_PASSWORD=${secretKey}
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
-            minio: nix.thunk(() => ({ __proto__: pos$3, enable: true, rootCredentialsFile: rootCredentialsFile })),
+            [nix.POS]: pos$4,
+            minio: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, rootCredentialsFile: rootCredentialsFile })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "minio-client"))]),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             diskSize: nix.thunk(() => nix.mul(4n, 1024n)),
             memorySize: 4096n,
           })),

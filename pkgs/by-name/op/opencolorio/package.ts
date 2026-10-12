@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "opencolorio";
       const version = "2.5.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AcademySoftwareFoundation",
           repo: "OpenColorIO",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(python3Packages, "python")),
           nix.thunk(() => nix.sel(python3Packages, "pybind11")),
         ])), nix.app(nix.sel(lib, "optionals"), buildApps, nix.thunk(() => [lcms2, openexr]))))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-ffp-contract=on" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-ffp-contract=on" }));
       const cmakeFlags = nix.thunk(() => nix.concat([
         "-DOCIO_INSTALL_EXT_PACKAGES=NONE",
         "-DOCIO_USE_SSE2NEON=OFF",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64"));
       const enableParallelChecking = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://opencolorio.org",
         description: "Color management framework for visual effects and animation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

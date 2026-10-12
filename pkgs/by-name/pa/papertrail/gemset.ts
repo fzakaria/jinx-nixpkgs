@@ -11,13 +11,13 @@ const pos$6 = nix.positions(here + "/gemset.nix", [["dependencies", 23, 5], ["gr
 const pos$7 = nix.positions(here + "/gemset.nix", [["ansi", 2, 3], ["chronic", 12, 3], ["papertrail", 22, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$7,
+  [nix.POS]: pos$7,
   ansi: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "14ims9zfal4gs2wpx2m5rd8zsrl2k794d359shkrsgg3fhr2a22l",
       type: "gem",
@@ -25,11 +25,11 @@ export default nix.thunk(() => ({
     version: "1.5.0",
   })),
   chronic: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1hrdkn4g8x7dlzxwb1rfgr8kw3bp4ywg5l4y4i9c2g5cwv62yvvn",
       type: "gem",
@@ -37,12 +37,12 @@ export default nix.thunk(() => ({
     version: "0.10.2",
   })),
   papertrail: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     dependencies: nix.thunk(() => ["ansi", "chronic"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "170zhgahrgpwj4cb9xj8104yqcf9gva8qk5vqpmw3g8rq29jxshy",
       type: "gem",

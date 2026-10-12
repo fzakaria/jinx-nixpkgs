@@ -25,31 +25,31 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
-      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "anything")) })))),
+      [nix.POS]: pos$2,
+      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "anything")) })))),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-        nix.thunk(() => ({ __proto__: pos$4, value: nix.thunk(() => ({ __proto__: pos$3, foo: null })) })),
+        nix.thunk(() => ({ [nix.POS]: pos$4, value: nix.thunk(() => ({ [nix.POS]: pos$3, foo: null })) })),
         nix.thunk(() => ({
-          __proto__: pos$7,
-          value: nix.thunk(() => ({ __proto__: pos$6, l1: nix.thunk(() => ({ __proto__: pos$5, foo: null })) })),
+          [nix.POS]: pos$7,
+          value: nix.thunk(() => ({ [nix.POS]: pos$6, l1: nix.thunk(() => ({ [nix.POS]: pos$5, foo: null })) })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           value: nix.thunk(() => ({
-            __proto__: pos$10,
-            l1: nix.thunk(() => ({ __proto__: pos$9, l2: nix.thunk(() => ({ __proto__: pos$8, foo: null })) })),
+            [nix.POS]: pos$10,
+            l1: nix.thunk(() => ({ [nix.POS]: pos$9, l2: nix.thunk(() => ({ [nix.POS]: pos$8, foo: null })) })),
           })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           value: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             l1: nix.thunk(() => ({
-              __proto__: pos$14,
-              l2: nix.thunk(() => ({ __proto__: pos$13, l3: nix.thunk(() => ({ __proto__: pos$12, foo: null })) })),
+              [nix.POS]: pos$14,
+              l2: nix.thunk(() => ({ [nix.POS]: pos$13, l3: nix.thunk(() => ({ [nix.POS]: pos$12, foo: null })) })),
             })),
           })),
         })),

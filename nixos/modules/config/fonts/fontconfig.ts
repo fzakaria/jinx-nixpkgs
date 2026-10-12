@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
   const makeCacheConf = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const makeCache = (fontconfig) => nix.app(nix.sel(pkgs, "makeFontsCache"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         fontconfig: fontconfig,
         fontDirectories: nix.thunk(() => nix.sel(config, "fonts", "packages")),
       })));
@@ -165,7 +165,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(cf
 ln -s ${nix.sel(pkg, "out")}/share/fontconfig/conf.avail/${newConfig} \\
       $dst/
 `;
-  const confPkg = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "fontconfig-conf", nix.thunk(() => ({ __proto__: pos$2, preferLocalBuild: true })), nix.thunk(() => nix.str`dst=$out/etc/fonts/conf.d
+  const confPkg = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "fontconfig-conf", nix.thunk(() => ({ [nix.POS]: pos$2, preferLocalBuild: true })), nix.thunk(() => nix.str`dst=$out/etc/fonts/conf.d
 mkdir -p $dst
 
 # fonts.conf
@@ -217,14 +217,14 @@ ln -s ${rejectType1} $dst/53-nixos-reject-type1.conf
 `))}
 `)));
   const fontconfigEtc = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "fontconfig-etc",
       paths: nix.thunk(() => nix.sel(cfg, "confPackages")),
       ignoreCollisions: true,
     }))));
   const fontconfigNote = "Consider manually configuring fonts.fontconfig according to personal preference.";
   return {
-    __proto__: pos$45,
+    [nix.POS]: pos$45,
     imports: nix.thunk(() => nix.concat([
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["fonts", "fontconfig", "ultimate", "allowBitmaps"]), nix.thunk(() => ["fonts", "fontconfig", "allowBitmaps"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["fonts", "fontconfig", "ultimate", "allowType1"]), nix.thunk(() => ["fonts", "fontconfig", "allowType1"]))),
@@ -238,19 +238,19 @@ ln -s ${rejectType1} $dst/53-nixos-reject-type1.conf
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["fonts", "optimizeForVeryHighDPI"]), fontconfigNote)),
     ], nix.app(nix.sel(lib, "forEach"), nix.thunk(() => ["enable", "substitutions", "preset"]), (opt) => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["fonts", "fontconfig", "ultimate", nix.thunk(() => nix.str`${opt}`)]), "The fonts.fontconfig.ultimate module and configuration is obsolete.\nThe repository has since been archived and activity has ceased.\nhttps://github.com/bohoomil/fontconfig-ultimate/issues/171.\nNo action should be needed for font configuration, as the fonts.fontconfig\nmodule is already used by default.\n")))),
     options: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       fonts: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         fontconfig: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "If enabled, a Fontconfig configuration file will be built\npointing to a set of default fonts.  If you don't care about\nrunning X11 applications or any other program that uses\nFontconfig, you can turn this option off and prevent a\ndependency on all those fonts.\n",
             })))),
           confPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               internal: true,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -260,60 +260,60 @@ ln -s ${rejectType1} $dst/53-nixos-reject-type1.conf
               description: "Fontconfig configuration packages.\n",
             })))),
           antialias: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Enable font antialiasing. At high resolution (> 200 DPI),\nantialiasing has no visible effect; users of such displays may want\nto disable this option.\n",
             })))),
           localConf: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "System-wide customization file contents, has higher priority than\n`defaultFonts` settings.\n",
             })))),
           defaultFonts: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             monospace: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: nix.thunk(() => ["DejaVu Sans Mono"]),
                 description: "System-wide default monospace font(s). Multiple fonts may be\nlisted in case multiple languages must be supported.\n",
               })))),
             sansSerif: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: nix.thunk(() => ["DejaVu Sans"]),
                 description: "System-wide default sans serif font(s). Multiple fonts may be\nlisted in case multiple languages must be supported.\n",
               })))),
             serif: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: nix.thunk(() => ["DejaVu Serif"]),
                 description: "System-wide default serif font(s). Multiple fonts may be listed\nin case multiple languages must be supported.\n",
               })))),
             emoji: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: nix.thunk(() => ["Noto Color Emoji"]),
                 description: "System-wide default emoji font(s). Multiple fonts may be listed\nin case a font does not support all emoji.\n\nNote that fontconfig matches color emoji fonts preferentially,\nso if you want to use a black and white font while having\na color font installed (eg. Noto Color Emoji installed alongside\nNoto Emoji), fontconfig will still choose the color font even\nwhen it is later in the list.\n",
               })))),
           })),
           hinting: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Enable font hinting. Hinting aligns glyphs to pixel boundaries to\nimprove rendering sharpness at low resolution. At high resolution\n(> 200 dpi) hinting will do nothing (at best); users of such\ndisplays may want to disable this option.\n",
               })))),
             autohint: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Enable the autohinter in place of the default interpreter.\nThe results are usually lower quality than correctly-hinted\nfonts, but better than unhinted fonts.\n",
               })))),
             style: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["none", "slight", "medium", "full"]))),
                 default: "slight",
                 description: "Hintstyle is the amount of font reshaping done to line up\nto the grid.\n\nslight will make the font more fuzzy to line up to the grid but\nwill be better in retaining font shape, while full will be a\ncrisp font that aligns well to the pixel grid but will lose a\ngreater amount of font shape.\n",
@@ -326,76 +326,76 @@ ln -s ${rejectType1} $dst/53-nixos-reject-type1.conf
               })))),
           })),
           includeUserConf: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Include the user configuration from\n{file}`~/.config/fontconfig/fonts.conf` or\n{file}`~/.config/fontconfig/conf.d`.\n",
             })))),
           subpixel: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             rgba: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 default: "none",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["rgb", "bgr", "vrgb", "vbgr", "none"]))),
                 description: "Subpixel order. The overwhelming majority of displays are\n`rgb` in their normal orientation. Select\n`vrgb` for mounting such a display 90 degrees\nclockwise from its normal orientation or `vbgr`\nfor mounting 90 degrees counter-clockwise. Select\n`bgr` in the unlikely event of mounting 180\ndegrees from the normal orientation. Reverse these directions in\nthe improbable event that the display's native subpixel order is\n`bgr`.\n",
               })))),
             lcdfilter: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 default: "default",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["none", "default", "light", "legacy"]))),
                 description: "FreeType LCD filter. At high resolution (> 200 DPI), LCD filtering\nhas no visible effect; users of such displays may want to select\n`none`.\n",
               })))),
           })),
           cache32Bit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Generate system fonts cache for 32-bit applications.\n",
             })))),
           allowBitmaps: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Allow bitmap fonts. Set to `false` to ban all\nbitmap fonts.\n",
             })))),
           allowType1: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Allow Type-1 fonts. Default is `false` because of\npoor rendering.\n",
             })))),
           useEmbeddedBitmaps: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Use embedded bitmaps in fonts like Calibri.",
             })))),
           aliases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     options: nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       binding: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["same", "weak", "strong"]))),
                           default: "same",
                           description: "Binding precedence for this font family. See\nfontconfig \"Font Matching\" section for details.\n",
                         })))),
                       prefer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$26,
+                          [nix.POS]: pos$26,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: [],
                           description: "Fonts whose glyphs are chosen preferentially prior\nto fonts which match the alias family.\n",
                         })))),
                       accept: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: [],
                           description: "Fonts that are chosen if none of the preferred\nfonts, nor the alias family could provide the\ndesired glyph.\n",
                         })))),
                       default: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: [],
                           description: "Last chance fallback fonts which are chosen by\ndefault if none of the other options could\nprovide the desired glyph.\n",
@@ -411,24 +411,24 @@ ln -s ${rejectType1} $dst/53-nixos-reject-type1.conf
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             environment: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "fontconfig"))]),
               etc: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 fonts: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   source: nix.thunk(() => nix.str`${fontconfigEtc}/etc/fonts/`),
                 })),
               })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               apparmor: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 includes: nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   "abstractions/fonts": nix.thunk(() => nix.str`# fonts.conf
 r ${nix.sel(pkg, "out")}/etc/fonts/fonts.conf,
 
@@ -467,10 +467,10 @@ r ${rejectType1},
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             fonts: nix.thunk(() => ({
-              __proto__: pos$43,
-              fontconfig: nix.thunk(() => ({ __proto__: pos$42, confPackages: nix.thunk(() => [confPkg]) })),
+              [nix.POS]: pos$43,
+              fontconfig: nix.thunk(() => ({ [nix.POS]: pos$42, confPackages: nix.thunk(() => [confPkg]) })),
             })),
           })))),
       ]))),

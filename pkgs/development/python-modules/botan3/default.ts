@@ -35,7 +35,7 @@ substituteInPlace botan3.py --replace-fail 'libbotan-3.so' "$botanLibPath"
 `))));
       const pythonImportsCheck = nix.thunk(() => ["botan3"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Python Bindings for botan3 cryptography library",
         homepage: "https://github.com/randombit/botan",
         changelog: nix.thunk(() => nix.str`https://github.com/randombit/botan/blob/${version}/news.rst`),
@@ -46,7 +46,7 @@ substituteInPlace botan3.py --replace-fail 'libbotan-3.so' "$botanLibPath"
         })()),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         src,
         version,

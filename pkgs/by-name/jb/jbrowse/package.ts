@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pname = "jbrowse";
   const version = "4.3.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/GMOD/jbrowse-components/releases/download/v${version}/jbrowse-desktop-v${version}-linux.AppImage`),
       sha256: "sha256-8d/nF2e92BLYzlw7MfLon+dWZnwnoIFCLy+gTGA1E14=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -35,7 +35,7 @@ substituteInPlace $out/share/applications/jbrowse-desktop.desktop \\
   --replace 'Exec=AppRun --no-sandbox' 'Exec=jbrowse-desktop'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Next-generation genome browser",
         mainProgram: "jbrowse-desktop",
         homepage: "https://jbrowse.org/jb2/",

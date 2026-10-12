@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "redshift"));
   const lcfg = nix.thunk(() => nix.sel(config, "location"));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkChangedOptionModule"), nix.thunk(() => ["services", "redshift", "latitude"]), nix.thunk(() => ["location", "latitude"]), (config_1) => (() => {
           const value = nix.thunk(() => nix.app(nix.lookup(w, "getAttrFromPath"), nix.thunk(() => ["services", "redshift", "latitude"]), config_1));
@@ -50,42 +50,42 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "redshift", "provider"]), nix.thunk(() => ["location", "provider"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         redshift: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Enable Redshift to change your screen's colour temperature depending on\nthe time of day.\n",
             })))),
           temperature: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             day: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "ints", "between"), 1000n, 25000n)),
                 default: 6500n,
                 description: "Colour temperature to use during the day, between\n`1000` and `25000` K.\n",
               })))),
             night: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "ints", "between"), 1000n, 25000n)),
                 default: 4500n,
                 description: "Colour temperature to use at night, between\n`1000` and `25000` K.\n",
               })))),
           })),
           brightness: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             day: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "1",
                 description: "Screen brightness to apply during the day,\nbetween `0.1` and `1.0`.\n",
               })))),
             night: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "1",
                 description: "Screen brightness to apply during the night,\nbetween `0.1` and `1.0`.\n",
@@ -93,14 +93,14 @@ export default nix.lambda((args) => (() => {
           })),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "redshift", nix.thunk(() => ({})))),
           executable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "/bin/redshift",
               example: "/bin/redshift-gtk",
               description: "Redshift executable to use within the package.\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["-v", "-m randr"]),
@@ -110,36 +110,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           geoclue2: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             appConfig: nix.thunk(() => ({
-              __proto__: pos$15,
-              redshift: nix.thunk(() => ({ __proto__: pos$14, isAllowed: true, isSystem: true })),
+              [nix.POS]: pos$15,
+              redshift: nix.thunk(() => ({ [nix.POS]: pos$14, isAllowed: true, isSystem: true })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           user: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             services: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               redshift: nix.thunk(() => (() => {
                 const providerString = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(lcfg, "provider"), "manual")) ? nix.str`${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(lcfg, "latitude")))}:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(lcfg, "longitude")))}` : nix.sel(lcfg, "provider")));
                 return {
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   description: "Redshift colour temperature adjuster",
                   wantedBy: nix.thunk(() => ["graphical-session.target"]),
                   partOf: nix.thunk(() => ["graphical-session.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}${nix.sel(cfg, "executable")} \\
   -l ${providerString} \\
   -t ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "temperature", "day")))}:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "temperature", "night")))} \\

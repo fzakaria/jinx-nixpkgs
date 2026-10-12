@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const stig = nix.arg($, "stig");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "stig",
       version: "0.14.2a0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rndusr",
           repo: "stig",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,16 +48,16 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["urwidtrees"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             package: stig,
             command: "stig -v",
             version: nix.thunk(() => nix.str`stig version ${nix.sel(finalAttrs, "version")}`),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "TUI and CLI for the BitTorrent client Transmission",
         homepage: "https://github.com/rndusr/stig",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

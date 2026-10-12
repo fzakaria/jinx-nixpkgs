@@ -27,19 +27,19 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const version = "4.3.4";
   const urbanterror_maps = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "urbanterror-maps",
       url: nix.thunk(() => nix.str`http://cdn.urbanterror.info/urt/43/releases/zips/UrbanTerror${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}_full.zip`),
       hash: "sha256-C6Gb5PPECAOjQhmkrzkV6dpY/zHVtUj9oq3507o2PUI=",
     }))));
   const urbanterror_source = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "urbanterror-source",
       url: nix.thunk(() => nix.str`https://github.com/FrozenSand/ioq3-for-UrbanTerror-4/archive/release-${version}.zip`),
       hash: "sha256-zF6Tkaj5WYkFU66VwpBFr1P18OJGrGgxnc/jvcvt8hA=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "urbanterror",
       version: version,
       srcs: nix.thunk(() => [urbanterror_maps, urbanterror_source]),
@@ -69,7 +69,7 @@ ln -s ${urbanterror_maps}/q3ut4 $out/share/urbanterror/
       hardeningDisable: nix.thunk(() => ["format"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "urbanterror",
             exec: "urbanterror",
             icon: "urbanterror",
@@ -79,7 +79,7 @@ ln -s ${urbanterror_maps}/q3ut4 $out/share/urbanterror/
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Multiplayer tactical FPS on top of Quake 3 engine",
         homepage: "https://www.urbanterror.info",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

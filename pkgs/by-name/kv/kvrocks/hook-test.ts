@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const kvrocks = nix.arg($, "kvrocks");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "kvrocks-test-hook-test",
       nativeCheckInputs: nix.thunk(() => [valkey, nix.thunk(() => nix.sel(kvrocks, "hook"))]),
       dontUnpack: true,

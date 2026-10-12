@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const webtest = nix.arg($, "webtest");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wsgidav",
       version: "4.3.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mar10",
           repo: "wsgidav",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [bcrypt, defusedxml, jinja2, json5, cheroot, lxml, passlib, pyyaml]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, pam: nix.thunk(() => [python_pam]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, pam: nix.thunk(() => [python_pam]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, requests, webtest]),
       pythonImportsCheck: nix.thunk(() => ["wsgidav"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Generic and extendable WebDAV server based on WSGI",
         homepage: "https://wsgidav.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/mar10/wsgidav/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

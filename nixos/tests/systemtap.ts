@@ -22,32 +22,32 @@ export default nix.lambda((args) => (() => {
   const args_1 = args;
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
   const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), null);
   const stapScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "test.stp", "probe kernel.function(\"do_sys_poll\") {\n  println(\"kernel function probe & println work\")\n  exit()\n}\n"));
   const testsForLinuxPackages = (linuxPackages) => nix.app(nix.builtins.import, nix.path(here, "./make-test-python.nix"), nix.lambda((args_2) => (() => {
       const $_1 = nix.formals(args_2, formals$2);
       const pkgs_1 = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: nix.thunk(() => nix.str`kernel-${nix.sel(linuxPackages, "kernel", "version")}`),
         meta: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "lib", "maintainers")), w);
           return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "bendlas"))]),
           };
         })()),
         nodes: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           machine: nix.lambda((args_3) => (() => {
             const $_2 = nix.formals(args_3, formals$3);
             return {
-              __proto__: pos$6,
-              boot: nix.thunk(() => ({ __proto__: pos$3, kernelPackages: linuxPackages })),
+              [nix.POS]: pos$6,
+              boot: nix.thunk(() => ({ [nix.POS]: pos$3, kernelPackages: linuxPackages })),
               programs: nix.thunk(() => ({
-                __proto__: pos$5,
-                systemtap: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+                [nix.POS]: pos$5,
+                systemtap: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
               })),
             };
           })(), formals$3),
@@ -63,15 +63,15 @@ with subtest("Ensure that expected output from stap script is there"):
   const kernels = nix.thunk(() => (() => {
     const from = nix.thunk(() => nix.sel(pkgs, "linuxKernel", "packageAliases"));
     return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     linux_default: nix.thunk(() => nix.attr(from, "linux_default")),
     linux_latest: nix.thunk(() => nix.attr(from, "linux_latest")),
   };
   })());
   return nix.update(nix.app(nix.lookup(w, "mapAttrs"), (_) => (lP) => nix.app(testsForLinuxPackages, lP), kernels), {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     passthru: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       testsForLinuxPackages: testsForLinuxPackages,
       testsForKernel: (kernel) => nix.app(testsForLinuxPackages, nix.thunk(() => nix.app(nix.sel(pkgs, "linuxPackagesFor"), kernel))),
     })),

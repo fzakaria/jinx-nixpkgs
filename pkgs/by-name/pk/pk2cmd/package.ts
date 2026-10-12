@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pk2cmd";
       const version = "1.20";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ww1.microchip.com/downloads/en/DeviceDoc/pk2cmdv${version}LinuxMacSource.tar.gz`),
           sha256: "1yjpi2qshnqfpan4w3ggakkr3znfrx5cxkny92ka7v9na3g2fc4h",
         }))));
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const buildInputs = nix.thunk(() => [libusb_compat_0_1]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.microchip.com/pickit2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         description: "Microchip PIC programming software for the PICKit2 programmer",
         mainProgram: "pk2cmd",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

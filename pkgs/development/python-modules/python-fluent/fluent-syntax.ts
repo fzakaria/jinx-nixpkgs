@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const version = "0.19.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "projectfluent",
       repo: "python-fluent",
       rev: nix.thunk(() => nix.str`fluent.syntax@${version}`),
       hash: "sha256-nULngwBG/ebICRDi6HMHBdT+r/oq6tbDL7C1iMZpMsA=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fluent-syntax",
       version: version,
       pyproject: true,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["fluent.syntax"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/projectfluent/python-fluent/blob/${nix.sel(src, "rev")}/fluent.syntax/CHANGELOG.md`),
         description: "Parse, analyze, process, and serialize Fluent files",
         downloadPage: nix.thunk(() => nix.str`https://github.com/projectfluent/python-fluent/releases/tag/${nix.sel(src, "rev")}`),

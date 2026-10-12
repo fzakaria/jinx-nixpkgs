@@ -50,10 +50,10 @@ export default nix.lambda((args) => (() => {
   const withEditor = nix.argOr($, "withEditor", () => true);
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   const spidermonkey = nix.thunk(() => nix.app(nix.sel(spidermonkey_128, "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "fix-extra-gc-tracing.patch",
             url: "https://github.com/mozilla-firefox/firefox/commit/bf1994b05baea60f84309475cd544fe89acf82f2.patch",
             hash: "sha256-3sTcZb34yHheqK7O9aHSwMife3uJnf3us+0sPJ2NzKs=",
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
       ])),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "0ad",
       version: "0.28.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://releases.wildfiregames.com/0ad-${nix.sel(finalAttrs, "version")}-unix-build.tar.xz`),
           hash: "sha256-J+IXdV73apIv5Y2/WT2W5Utu0jddI/VIw1YZqmvVpCo=",
         })))),
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
         cxxtest,
       ], nix.app(nix.sel(lib, "optional"), withEditor, wxwidgets_3_2))),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${xorgproto}/include`),
             nix.thunk(() => nix.str`-I${nix.sel(libx11, "dev")}/include`),
@@ -167,7 +167,7 @@ install -D build/resources/0ad.png     $out/share/icons/hicolor/128x128/apps/0ad
 install -D build/resources/0ad.desktop $out/share/applications/0ad.desktop
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Free, open-source game of ancient warfare",
         homepage: "https://play0ad.com/",
         license: nix.thunk(() => (() => {

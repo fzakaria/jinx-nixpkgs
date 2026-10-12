@@ -25,20 +25,20 @@ export default nix.lambda((args) => (() => {
   const tpm2_tss = nix.arg($, "tpm2-tss");
   const version = "0.69.2";
   const srcs = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://packages.smallstep.com/stable/step-agent/linux/${version}/step-agent_${version}_linux_amd64.tar.gz`),
         sha256: "sha256-HIIXGIczw6bqVY05mTaCW0JhZNbgHW8cDKSmeUTzSf0=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://packages.smallstep.com/stable/step-agent/linux/${version}/step-agent_${version}_linux_arm64.tar.gz`),
         sha256: "sha256-ENT7vn0YqpMX1SrdFTTo3ZV1aVKl2lqZ8e6vwUqDgk4=",
       })))),
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       strictDeps: true,
       __structuredAttrs: true,
       version: version,
@@ -50,9 +50,9 @@ export default nix.lambda((args) => (() => {
 cp -vr ./step-agent $out/bin/step-agent
 wrapProgram $out/bin/step-agent --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [tpm2_tss, tpm2_openssl, polkit, p11_kit]))}
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "step-agent is an automated certificate management agent plugin for step-cli",
         homepage: "https://github.com/smallstep/step-agent-plugin/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "runningx",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://www.fiction.net/blong/programs/mutt/autoview/RunningX.c",
           sha256: "1mikkhrx6jsx716041qdy3nwjac08pxxvxyq2yablm8zg9hrip0d",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "cc -O2 -o RunningX $(pkg-config --cflags --libs x11) $src\n",
       installPhase: "mkdir -p \"$out\"/bin\ncp -vai RunningX \"$out/bin\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.fiction.net/blong/programs/mutt/",
         description: "Program for testing if X is running",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

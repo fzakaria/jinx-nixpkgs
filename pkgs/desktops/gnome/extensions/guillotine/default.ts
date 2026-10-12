@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gnome-shell-extension-guillotine",
       version: "27-unstable-2026-04-08",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ente76",
           repo: "guillotine",
           rev: "3bccda1d189ed0525daa12f6b12b4ebea4222fc5",
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [glib]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extensionUuid: "guillotine@fopdoodle.net",
         extensionPortalSlug: "guillotine",
       })),
       buildPhase: "runHook preBuild\nrm schemas/gschemas.compiled\nglib-compile-schemas schemas\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out/share/gnome-shell/extensions/guillotine@fopdoodle.net\ncp -R schemas \"$out/share/gnome-shell/extensions/guillotine@fopdoodle.net\"\ncp default.json $out/share/gnome-shell/extensions/guillotine@fopdoodle.net\ncp extension.js \"$out/share/gnome-shell/extensions/guillotine@fopdoodle.net\"\ncp guillotine-symbolic.svg \"$out/share/gnome-shell/extensions/guillotine@fopdoodle.net\"\ncp LICENSE \"$out/share/gnome-shell/extensions/guillotine@fopdoodle.net\"\ncp metadata.json \"$out/share/gnome-shell/extensions/guillotine@fopdoodle.net\"\ncp README.md \"$out/share/gnome-shell/extensions/guillotine@fopdoodle.net\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Gnome extension designed for efficiently carrying out executions of commands from a customizable menu",
         homepage: "https://gitlab.com/ente76/guillotine/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

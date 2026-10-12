@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const certs = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "cryptpadSelfSignedCerts", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), "mkdir -p $out\ncd $out\nopenssl req -x509 -newkey rsa:4096 \\\n  -keyout key.pem -out cert.pem -nodes -days 3650 \\\n  -subj '/CN=cryptpad.localhost' \\\n  -addext 'subjectAltName = DNS.1:cryptpad.localhost, DNS.2:cryptpad-sandbox.localhost'\n"));
   const test_write_data = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "cryptpadTestData", "{\"command\":\"WRITE_BLOCK\",\"content\":{\"publicKey\":\"O2onvM62pC1io6jQKm8Nc2UyFXcd4kOmOsBIoYtZ2ik=\",\"signature\":\"aXcM9SMO59lwA7q7HbYB+AnzymmxSyy/KhkG/cXIBVzl8v+kkPWXmFuWhcuKfRF8yt3Zc3ktIsHoFyuyDSAwAA==\",\"ciphertext\":\"AFwCIfBHKdFzDKjMg4cu66qlJLpP+6Yxogbl3o9neiQou5P8h8yJB8qgnQ==\"},\"publicKey\":\"O2onvM62pC1io6jQKm8Nc2UyFXcd4kOmOsBIoYtZ2ik=\",\"nonce\":\"bitSbJMNSzOsg98nEzN80a231PCkBQeH\"}\n"));
   const seleniumScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "selenium-script", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       libraries: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "python3Packages")), null);
         return [nix.thunk(() => nix.lookup(w, "selenium"))];
@@ -71,41 +71,41 @@ print(f"Sheets done loading in {time() - start}", file=stderr)
 driver.close()
 `)));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "cryptpad",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "martinetd"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       machine: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "firefox-unwrapped"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           cryptpad: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: true,
             configureNginx: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               httpUnsafeOrigin: "https://cryptpad.localhost",
               httpSafeOrigin: "https://cryptpad-sandbox.localhost",
             })),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             virtualHosts: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "cryptpad.localhost": nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 enableACME: false,
                 sslCertificate: nix.thunk(() => nix.str`${certs}/cert.pem`),
                 sslCertificateKey: nix.thunk(() => nix.str`${certs}/key.pem`),
@@ -114,9 +114,9 @@ driver.close()
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           pki: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${certs}/cert.pem`)]),
           })),
         })),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const gccStdenv = nix.arg($, "gccStdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "your-editor",
       version: "1601",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "your-editor",
           repo: "yed",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       installPhase: "runHook preInstall\npatchShebangs install.sh\n./install.sh -p $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small and simple terminal editor core that is meant to be extended through a powerful plugin architecture",
         homepage: "https://your-editor.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/your-editor/yed/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "filegive",
       version: "0.8.0-unstable-2022-05-29",
       rev: "5b28e7087a",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://viric.name/cgi-bin/filegive/tarball/${nix.sel(finalAttrs, "rev")}/filegive-${nix.sel(finalAttrs, "rev")}.tar.gz`),
           hash: "sha256-A69oys59GEysZvQLaYsfoX/X2ENMMH2BGfJqXohQjpc=",
         })))),
       vendorHash: "sha256-l7FRl58NWGBynMlGu1SCxeVBEzTdxREvUWzmJDiliZM=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://viric.name/cgi-bin/filegive",
         description: "Easy p2p file sending program",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

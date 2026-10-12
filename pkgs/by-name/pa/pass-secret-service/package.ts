@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pass-secret-service",
       version: "0-unstable-2026-07-15",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mdellweg",
           repo: "pass_secret_service",
           rev: "4ba0f4b6c0667192263c385c13b5ec42a87af9ff",
@@ -70,15 +70,15 @@ substituteInPlace systemd/dbus-org.freedesktop.secrets.service \\
       checkTarget: "test",
       pythonImportsCheck: nix.thunk(() => ["pass_secret_service"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pass-secret-service": nix.thunk(() => nix.sel(nixosTests, "pass-secret-service")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Libsecret D-Bus API with pass as the backend",
         homepage: "https://github.com/mdellweg/pass_secret_service/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

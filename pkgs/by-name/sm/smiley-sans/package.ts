@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "smiley-sans",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/atelier-anchor/smiley-sans/releases/download/v${nix.sel(finalAttrs, "version")}/smiley-sans-v${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-p6DwX5MBPemAfV99L9ayLkEWro31ip4tf+wBQr8mkbs=",
           stripRoot: false,
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       outputs: nix.thunk(() => ["out", "webfont"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Condensed and oblique Chinese typeface seeking a visual balance between the humanist and the geometric",
         homepage: "https://atelier-anchor.com/typefaces/smiley-sans/",
         changelog: "https://github.com/atelier-anchor/smiley-sans/blob/main/CHANGELOG.md",

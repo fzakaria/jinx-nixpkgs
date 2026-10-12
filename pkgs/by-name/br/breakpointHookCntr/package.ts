@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "breakpoint-hook",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         broken: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "buildPlatform", "isLinux"))),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

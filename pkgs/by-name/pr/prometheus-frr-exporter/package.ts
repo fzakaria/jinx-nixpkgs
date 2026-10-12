@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "1.10.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "tynany",
       repo: "frr_exporter",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-Q8OrFmj54Tvn283ZbFc+R/g3cJw5ypAvV+Qbf/6BsmM=",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prometheus-frr-exporter",
       vendorHash: "sha256-Z4miOR9gmZlYR/VAbMY6SLZJrzBEpuJbnrIJ3ObaZ/Y=",
       src: src,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         "-X github.com/prometheus/common/version.Branch=unknown",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prometheus exporter for FRR version 3.0+",
         longDescription: "Prometheus exporter for FRR version 3.0+ that collects metrics from the\nFRR Unix sockets and exposes them via HTTP, ready for collecting by\nPrometheus.\n",
         homepage: "https://github.com/tynany/frr_exporter",

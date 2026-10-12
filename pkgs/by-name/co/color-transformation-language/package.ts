@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libtiff = nix.arg($, "libtiff");
   const aces_container = nix.arg($, "aces-container");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ctl",
       version: "1.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aces-aswf",
           repo: "CTL",
           rev: nix.thunk(() => nix.str`ctl-${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, openexr, libtiff, aces_container]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Programming language for digital color management",
         homepage: "https://github.com/aces-aswf/CTL",
         changelog: nix.thunk(() => nix.str`https://github.com/aces-aswf/CTL/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG`),

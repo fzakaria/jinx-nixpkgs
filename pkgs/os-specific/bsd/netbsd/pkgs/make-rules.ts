@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const bsdSetupHook = nix.arg($, "bsdSetupHook");
   const netbsdSetupHook = nix.arg($, "netbsdSetupHook");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "share/mk",
       noCC: true,
       buildInputs: [],

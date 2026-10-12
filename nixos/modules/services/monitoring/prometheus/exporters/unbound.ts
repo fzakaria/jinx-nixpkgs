@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
   const mkMerge = nix.thunk(() => nix.attr(lib, "mkMerge"));
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["controlInterface"]), "This option was removed, use the `unbound.host` option instead.")),
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["fetchType"]), "This option was removed, use the `unbound.host` option instead.")),
       nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         options: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           warnings: nix.thunk(() => nix.sel(options, "warnings")),
           assertions: nix.thunk(() => nix.sel(options, "assertions")),
         })),
@@ -48,38 +48,38 @@ export default nix.lambda((args) => (() => {
     ]),
     port: 9167n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       telemetryPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "/metrics",
           description: "Path under which to expose metrics.\n",
         })))),
       unbound: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         ca: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
             default: "/var/lib/unbound/unbound_server.pem",
             example: null,
             description: "Path to the Unbound server certificate authority\n",
           })))),
         certificate: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
             default: "/var/lib/unbound/unbound_control.pem",
             example: null,
             description: "Path to the Unbound control socket certificate\n",
           })))),
         key: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
             default: "/var/lib/unbound/unbound_control.key",
             example: null,
             description: "Path to the Unbound control socket key.\n",
           })))),
         host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "tcp://127.0.0.1:8953",
             example: "unix:///run/unbound/unbound.socket",
@@ -89,9 +89,9 @@ export default nix.lambda((args) => (() => {
     })),
     serviceOpts: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => nix.concat([
         nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           serviceConfig: nix.thunk(() => nix.update({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             User: "unbound",
             ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-unbound-exporter")}/bin/unbound_exporter \\
   --unbound.host "${nix.sel(cfg, "unbound", "host")}" \\
@@ -103,11 +103,11 @@ export default nix.lambda((args) => (() => {
   ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "extraFlags")))}
 `),
             RestrictAddressFamilies: nix.thunk(() => ["AF_UNIX", "AF_INET", "AF_INET6"]),
-          }, nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(nix.sel(config, "services", "unbound", "enable"))), nix.thunk(() => ({ __proto__: pos$11, DynamicUser: true }))))),
+          }, nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(nix.sel(config, "services", "unbound", "enable"))), nix.thunk(() => ({ [nix.POS]: pos$11, DynamicUser: true }))))),
         })),
       ], [
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "services", "unbound", "enable")), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             after: nix.thunk(() => ["unbound.service"]),
             requires: nix.thunk(() => ["unbound.service"]),
           })))),

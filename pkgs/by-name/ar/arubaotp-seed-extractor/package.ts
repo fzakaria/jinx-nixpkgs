@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "arubaotp-seed-extractor",
       version: "0-unstable-2022-12-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andry08",
           repo: "ArubaOTP-seed-extractor",
           rev: "534f78bb71594d5806fd2d7a8eade109b0e1d402",
@@ -43,7 +43,7 @@ mkdir -p $out/bin
 ln -s "$libdir/main.py" $out/bin/arubaotp-seed-extractor
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/andry08/ArubaOTP-seed-extractor",
         description: "Extract TOTP seed instead of using ArubaOTP app",
         mainProgram: "arubaotp-seed-extractor",

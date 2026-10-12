@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clap",
       version: "0.3.0",
       minimalOCamlVersion: "4.07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rbardou",
           repo: "clap",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-IEol27AVYs55ntvNprBxOk3/EsBKAdPkF3Td3w9qOJg=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-Line Argument Parsing, imperative style with a consumption mechanism",
         homepage: "https://github.com/rbardou/clap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

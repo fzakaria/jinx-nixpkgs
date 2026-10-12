@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchLakeDeps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./fetch-lake-deps.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       lib: lib,
       stdenvNoCC: stdenvNoCC,
       gitMinimal: gitMinimal,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       jq: jq,
     }))));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => [
         "lakeHash",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         const leanPackageName_1 = nix.thunk(() => nix.selOr(args_2, () => nix.sel(finalAttrs, "pname"), "leanPackageName"));
         const allLeanDeps = nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.builtins.concatMap((dep) => nix.concat([dep], nix.selOr(dep, () => [], "passthru", "allLeanDeps")), leanDeps))));
         const computedLakeDeps = nix.thunk(() => (nix.asBool(!nix.eq(lakeDeps, null)) ? nix.force(lakeDeps) : (nix.asBool(nix.eq(lakeHash, null)) ? null : nix.app(nix.sel(nix.app(fetchLakeDeps, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -74,10 +74,10 @@ export default nix.lambda((args) => (() => {
             excludePackages: nix.thunk(() => nix.builtins.map((dep) => nix.selOr(dep, () => nix.sel(dep, "pname"), "passthru", "lakePackageName"), allLeanDeps)),
           }))), "overrideAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "toExtension"), overrideLakeDepsAttrs))))));
         const overridesFile = nix.thunk(() => nix.app(writeText, "lake-overrides.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               schemaVersion: "1.2.0",
               packages: nix.thunk(() => nix.builtins.map((dep) => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: "path",
                   name: nix.thunk(() => nix.selOr(dep, () => nix.sel(dep, "pname"), "passthru", "lakePackageName")),
                   inherited: false,
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
                 }), allLeanDeps)),
             }))))));
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           strictDeps: true,
           __structuredAttrs: true,
           nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, [lean4, gitMinimal, jq, writableTmpDirAsHomeHook])),
@@ -155,7 +155,7 @@ fi
 runHook postInstall
 ` : "runHook preInstall\n\nif [ -d .lake/build/bin ]; then\n  mkdir -p \"$out/bin\"\n  find .lake/build/bin -type f -executable \\\n    -exec install -Dm755 {} \"$out/bin/\" \\;\nfi\n\nrunHook postInstall\n"), "installPhase")),
           passthru: nix.thunk(() => nix.update(passthru, {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             computedLakeDeps: computedLakeDeps,
             lean4: lean4,
             allLeanDeps: allLeanDeps,
@@ -163,7 +163,7 @@ runHook postInstall
             overrideLakeDepsAttrs: nix.thunk(() => nix.app(nix.sel(lib, "toExtension"), overrideLakeDepsAttrs)),
           })),
           meta: nix.thunk(() => nix.update(meta, {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             platforms: nix.thunk(() => nix.selOr(meta, () => nix.sel(lean4, "meta", "platforms"), "platforms")),
           })),
         };

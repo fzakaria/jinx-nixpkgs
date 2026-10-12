@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const glibc = nix.arg($, "glibc");
   const callPackage = nix.arg($, "callPackage");
   const getSharedObjectFromDebian = (sharedObjectName) => (src) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`${sharedObjectName}-fetcher`),
       src: src,
       nativeBuildInputs: nix.thunk(() => [dpkg]),
@@ -37,7 +37,7 @@ cp usr/lib/*/${sharedObjectName} $out
     })));
   const makeSharedObjectTest = (sharedObject) => (targetPkgs) => (() => {
     const lddFHSEnv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "ldd-with-ncurses-FHS-env",
         targetPkgs: targetPkgs,
         runScript: "ldd",
@@ -45,15 +45,15 @@ cp usr/lib/*/${sharedObjectName} $out
     const ldd_in_FHS = nix.thunk(() => nix.str`${lddFHSEnv}/bin/${nix.sel(lddFHSEnv, "name")}`);
     const ldd = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), glibc)}/bin/ldd`);
     const find_libFHSEnv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "ls-with-ncurses-FHS-env",
         targetPkgs: (p) => [nix.thunk(() => nix.sel(p, "ncurses5"))],
         runScript: "find /lib/ -executable",
       }))));
     const find_lib_in_FHS = nix.thunk(() => nix.str`${find_libFHSEnv}/bin/${nix.sel(find_libFHSEnv, "name")}`);
     return nix.app(runCommand, "FHS-lib-test", nix.thunk(() => ({
-        __proto__: pos$5,
-        meta: nix.thunk(() => ({ __proto__: pos$4, platforms: nix.thunk(() => ["x86_64-linux"]) })),
+        [nix.POS]: pos$5,
+        meta: nix.thunk(() => ({ [nix.POS]: pos$4, platforms: nix.thunk(() => ["x86_64-linux"]) })),
       })), nix.thunk(() => nix.str`echo original ldd output is:
 ${ldd} ${sharedObject}
 lddOutput="$(${ldd_in_FHS} ${sharedObject})"
@@ -70,9 +70,9 @@ fi
 `));
   })();
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     libtinfo: nix.thunk(() => nix.app(makeSharedObjectTest, nix.thunk(() => nix.app(getSharedObjectFromDebian, "libedit.so.2.0.70", nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "mirror://debian/pool/main/libe/libedit/libedit2_3.1-20221030-2_amd64.deb",
             hash: "sha256-HPFKvycW0yedsS0GV6VzfPcAdKHnHTvfcyBmJePInOY=",
           })))))), (p) => [
@@ -80,7 +80,7 @@ fi
         nix.thunk(() => nix.sel(p, "libbsd")),
       ])),
     liblzma: nix.thunk(() => nix.app(makeSharedObjectTest, nix.thunk(() => nix.app(getSharedObjectFromDebian, "libxml2.so.2.9.14", nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "mirror://debian/pool/main/libx/libxml2/libxml2_2.9.14+dfsg-1.3~deb12u1_amd64.deb",
             hash: "sha256-NbdstwOPwclAIEpPBfM/+3nQJzU85Gk5fZrc+Pmz4ac=",
           })))))), (p) => [

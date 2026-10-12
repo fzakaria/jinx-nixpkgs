@@ -33,16 +33,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     name: "PdfDing e2e tests",
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           environment: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "tests_e2e", nix.thunk(() => (() => {
                   const pythonPath = nix.thunk(() => (() => {
@@ -69,18 +69,18 @@ python -m pytest pdfding/e2e \\
             ]),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             settings: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               Manager: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 DefaultDeviceTimeoutSec: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 1800n)),
               })),
             })),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$6,
-            initrd: nix.thunk(() => ({ __proto__: pos$5, kernelModules: nix.thunk(() => ["virtio_console"]) })),
+            [nix.POS]: pos$6,
+            initrd: nix.thunk(() => ({ [nix.POS]: pos$5, kernelModules: nix.thunk(() => ["virtio_console"]) })),
           })),
         };
       })(), formals$2),
@@ -91,36 +91,36 @@ python -m pytest pdfding/e2e \\
       return "# start\nstart_all()\nmachine.wait_for_unit(\"multi-user.target\")\n\nmachine.succeed(\"tests_e2e | systemd-cat\")\n";
     })(), formals$3),
     interactive: nix.thunk(() => ({
-      __proto__: pos$19,
-      sshBackdoor: nix.thunk(() => ({ __proto__: pos$9, enable: true })),
+      [nix.POS]: pos$19,
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           const config = nix.arg($_1, "config");
           return {
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             imports: nix.thunk(() => [
               nix.path(here, "./common/x11.nix"),
               nix.path(here, "./common/user-account.nix"),
             ]),
             services: nix.thunk(() => ({
-              __proto__: pos$11,
-              xserver: nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+              [nix.POS]: pos$11,
+              xserver: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
             })),
             "test-support": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               displayManager: nix.thunk(() => ({
-                __proto__: pos$13,
-                auto: nix.thunk(() => ({ __proto__: pos$12, user: "alice" })),
+                [nix.POS]: pos$13,
+                auto: nix.thunk(() => ({ [nix.POS]: pos$12, user: "alice" })),
               })),
             })),
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               memorySize: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 8192n)),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               systemPackages: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [nix.thunk(() => nix.lookup(w, "htop"))];
@@ -131,7 +131,7 @@ python -m pytest pdfding/e2e \\
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
   };

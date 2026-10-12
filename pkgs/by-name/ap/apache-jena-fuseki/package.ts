@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "apache-jena-fuseki",
       version: "5.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/jena/binaries/apache-jena-fuseki-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-GcwXcLVM2txPC+kkHjEIpqK9dTkQEN9Jkka0EaJRO7Q=",
         })))),
@@ -43,14 +43,14 @@ for i in "$out"/bin/fuseki*; do
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "basic-test": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./basic-test.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "SPARQL server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

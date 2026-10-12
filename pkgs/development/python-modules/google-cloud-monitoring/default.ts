@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "google-cloud-monitoring",
       version: "2.31.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_monitoring",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-tMnTUoyGQ9TrS51ojLs8WRS8X2mzFP98XhtHvcBzqa4=",
@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => nix.concat([google_api_core, proto_plus, protobuf], nix.sel(google_api_core, "optional-dependencies", "grpc"))),
       pythonRelaxDeps: nix.thunk(() => ["protobuf"]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, pandas: nix.thunk(() => [pandas]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, pandas: nix.thunk(() => [pandas]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([google_cloud_testutils, mock, pytestCheckHook, pytest_asyncio], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       disabledTests: nix.thunk(() => ["test_list_monitored_resource_descriptors", "test_list_alert_policies"]),
       pythonImportsCheck: nix.thunk(() => ["google.cloud.monitoring", "google.cloud.monitoring_v3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Stackdriver Monitoring API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-monitoring",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/tree/google-cloud-monitoring-v${nix.sel(finalAttrs, "version")}/packages/google-cloud-monitoring`),

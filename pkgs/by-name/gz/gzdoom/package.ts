@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zmusic = nix.arg($, "zmusic");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gzdoom",
       version: "4.14.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ZDoom",
           repo: "gzdoom",
           rev: nix.thunk(() => nix.str`g${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "gzdoom",
               exec: "gzdoom",
               desktopName: "GZDoom",
@@ -97,7 +97,7 @@ for size in 16 24 32 48 64 128; do
 done;
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/ZDoom/gzdoom",
         description: "Modder-friendly OpenGL and Vulkan source port based on the DOOM engine",
         mainProgram: "gzdoom",

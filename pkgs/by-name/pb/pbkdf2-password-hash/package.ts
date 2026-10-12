@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pbkdf2-password-hash",
       version: "0-unstable-2024-03-21",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.sr.ht/~laalsaas/pbkdf2-password-hash",
           rev: "9dfc0fd353bda7a6ccffbf681efc9a26dcc29a90",
           hash: "sha256-eBRArvcGU+63VT8Fx6iIi5RP9F55860CwF4Q3YwT8WU=",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-n3VxmR+bjFN/mEJ/SuDYQJWcndR7QFmcVJdZhSHDdmQ=",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prompts for a password and prints the pbkdf2 hash",
         homepage: "https://git.sr.ht/~laalsaas/pbkdf2-password-hash",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

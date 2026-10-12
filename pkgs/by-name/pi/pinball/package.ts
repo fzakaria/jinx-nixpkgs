@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   const libsm = nix.arg($, "libsm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pinball",
       version: "0.3.20230219-unstable-2024-11-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adoptware",
           repo: "pinball",
           rev: "7f6887d8912340c0eee7f96b4c4bb84c8d889246",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libglvnd, libtool, SDL2, SDL2_image, SDL2_mixer, libsm]),
       strictDeps: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2_image)}/include/SDL2`),
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2_mixer)}/include/SDL2`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/adoptware/pinball",
         description: "Emilia Pinball simulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

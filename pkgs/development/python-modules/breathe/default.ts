@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const sphinx = nix.arg($, "sphinx");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "breathe",
       version: "4.35.0-unstable-2025-01-16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "breathe-doc",
           repo: "breathe",
           rev: "9711e826e0c46a635715e5814a83cab9dda79b7b",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [defusedxml, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["breathe"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sphinx Doxygen renderer",
         mainProgram: "breathe-apidoc",
         homepage: "https://github.com/breathe-doc/breathe",

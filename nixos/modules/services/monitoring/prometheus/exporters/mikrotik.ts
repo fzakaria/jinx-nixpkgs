@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   const escapeShellArg = nix.thunk(() => nix.attr(lib, "escapeShellArg"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     port: 9436n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           default: null,
           description: "Path to a mikrotik exporter configuration file. Mutually exclusive with\n{option}`configuration` option.\n",
           example: nix.thunk(() => nix.app(literalExpression, "./mikrotik.yml")),
         })))),
       configuration: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "attrs")))),
           default: null,
           description: "Mikrotik exporter configuration as nix attribute set. Mutually exclusive with\n{option}`configFile` option.\n\nSee <https://github.com/nshttpd/mikrotik-exporter/blob/master/README.md>\nfor the description of the configuration file format.\n",
@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
     serviceOpts: nix.thunk(() => (() => {
       const configFile = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.sel(cfg, "configFile") : nix.str`${nix.app(nix.sel(pkgs, "writeText"), "mikrotik-exporter.yml", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "configuration")))))}`));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         serviceConfig: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-mikrotik-exporter")}/bin/mikrotik-exporter \\
   -config-file=${nix.app(escapeShellArg, configFile)} \\
   -port=${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\

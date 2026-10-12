@@ -47,31 +47,31 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   nix.assert_((nix.asBool(!nix.asBool(nix.sel(blas, "isILP64"))) && nix.asBool(!nix.asBool(nix.sel(lapack, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gi/giac/package.nix:37:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`giac${nix.app(nix.sel(lib, "optionalString"), enableGUI, "-with-xcas")}`),
       version: "2.0.0-19",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www-fourier.univ-grenoble-alpes.fr/~parisse/debian/dists/stable/main/source/giac_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-7fuKV8xNlDyN9ha1+NNHUjFPhEP0NZ3thwRXL1kcA5E=",
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.path(here, "./fix-fltk-guard.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "pari_2_15.patch",
             url: "https://raw.githubusercontent.com/sagemath/sage/07a2afd65fb4b0a1c9cbc43ede7d4a18c921a000/build/pkgs/giac/patches/pari_2_15.patch",
             hash: "sha256-Q3xBFED7XEAyNz6AHjzt63XtospmdGAIdS6iPq1C2UE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix_implicit_declaration.patch",
             url: "https://salsa.debian.org/science-team/giac/-/raw/c05ae9b9e74d3c6ee6411d391071989426a76201/debian/patches/fix_implicit_declaration.patch",
             hash: "sha256-ompUceYJLiL0ftfjBkIMcYvX1YqG2/XA7e1yDyFY0IY=",
           })))),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(enableGUI)), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "nofltk-check.patch",
               url: "https://raw.githubusercontent.com/sagemath/sage/7553a3c8dfa7bcec07241a07e6a4e7dcf5bb4f26/build/pkgs/giac/patches/nofltk-check.patch",
               hash: "sha256-eA0S+pEgllv77+KIpMvZgjz99jlbnreVvtNqNXs2HvI=",
@@ -146,7 +146,7 @@ if [ -n "$doc" ]; then
 fi
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableGUI)), "for i in pixmaps application-registry applications icons; do\n  rm -r \"$out/share/$i\";\ndone;\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Free computer algebra system (CAS)",
         homepage: "https://www-fourier.ujf-grenoble.fr/~parisse/giac.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

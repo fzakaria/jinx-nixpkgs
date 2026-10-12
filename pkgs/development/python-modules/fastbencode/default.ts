@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "breezy-team",
           repo: "fastbencode",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-hQwu0VKJ6tp155meE5JXbk5xEmcfktBHgUqVJYs2exM=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -45,7 +45,7 @@ ${nix.sel(python, "interpreter")} -m unittest tests.test_suite
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast implementation of bencode",
         homepage: "https://github.com/breezy-team/fastbencode",
         changelog: nix.thunk(() => nix.str`https://github.com/breezy-team/fastbencode/releases/tag/v${version}`),
@@ -53,7 +53,7 @@ runHook postCheck
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

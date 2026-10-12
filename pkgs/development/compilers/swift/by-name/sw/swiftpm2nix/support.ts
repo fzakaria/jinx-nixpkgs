@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
     const mkPinFile = (workspaceState) => (() => {
       nix.assert_((nix.asBool(nix.ge(nix.sel(workspaceState, "version"), 5n)) && nix.asBool(nix.le(nix.sel(workspaceState, "version"), 6n))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/swift/by-name/sw/swiftpm2nix/support.nix:24:5");
       return nix.app(nix.sel(json, "generate"), "Package.resolved", nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: 1n,
           object: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pins: nix.thunk(() => nix.builtins.map((dep) => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 package: nix.thunk(() => nix.sel(dep, "packageRef", "name")),
                 repositoryURL: nix.thunk(() => nix.sel(dep, "packageRef", "location")),
                 state: nix.thunk(() => nix.sel(dep, "state", "checkoutState")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const pinFile = nix.thunk(() => nix.app(mkPinFile, workspaceState));
       return (() => {
         const sources = nix.thunk(() => nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((dep) => nix.app(nameValuePair, nix.thunk(() => nix.sel(dep, "subpath")), nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   url: nix.thunk(() => nix.sel(dep, "packageRef", "location")),
                   rev: nix.thunk(() => nix.sel(dep, "state", "checkoutState", "revision")),
                   sha256: nix.thunk(() => nix.sel(hashes, nix.key(nix.sel(dep, "subpath")))),
@@ -82,10 +82,10 @@ ${nix.app(nix.sel(lib, "getExe"), jq)} '
 ' < ${workspaceStateFile} > "$swiftpmDeps/workspace-state.json"
 `, nix.app(concatStrings, nix.thunk(() => nix.app(mapAttrsToList, (name) => (src) => nix.str`ln -s '${src}' "$swiftpmDeps/Packages/${name}"
 `, sources)))), "swiftpmUnpackDeps\n\n# Helper that makes a swiftpm dependency mutable by copying the source.\nswiftpmMakeMutable() {\n  local checkoutDir=$NIX_BUILD_TOP/$sourceRoot/.build/checkouts\n  local orig=$(readlink -f \"Packages/$1\")\n\n  mkdir -p \"$checkoutDir\"\n  cp -r \"$orig\" \"$checkoutDir/$1\"\n  chmod -R u+w \"$checkoutDir/$1\"\n\n  rm \"Packages/$1\"\n  ln -s \"$checkoutDir/$1\" \"Packages/$1\"\n}\n"));
-        return { __proto__: pos$5, sources, configure };
+        return { [nix.POS]: pos$5, sources, configure };
       })();
     })();
-    return { __proto__: pos$6, mkPinFile, helpers };
+    return { [nix.POS]: pos$6, mkPinFile, helpers };
   })();
 })(), formals$1);
 //# sourceMappingURL=support.ts.map

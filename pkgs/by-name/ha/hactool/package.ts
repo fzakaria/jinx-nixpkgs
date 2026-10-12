@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hactool",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SciresM",
           repo: "hactool",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`install -D hactool${nix.sel(stdenv, "hostPlatform", "extensions", "executable")} $out/bin/hactool${nix.sel(stdenv, "hostPlatform", "extensions", "executable")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/SciresM/hactool",
         description: "Tool to manipulate common file formats for the Nintendo Switch",
         longDescription: "A tool to view information about, decrypt, and extract common file formats for the Nintendo Switch, especially Nintendo Content Archives",

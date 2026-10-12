@@ -33,24 +33,24 @@ export default nix.lambda((args) => (() => {
 exec ${nix.sel(pkgs, "coreutils")}/bin/sleep infinity
 `)));
   const common = nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     boot: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       initrd: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         systemd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: true,
-          managerEnvironment: nix.thunk(() => ({ __proto__: pos$1, SYSTEMD_LOG_LEVEL: "warning" })),
+          managerEnvironment: nix.thunk(() => ({ [nix.POS]: pos$1, SYSTEMD_LOG_LEVEL: "warning" })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             settings: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               "10-os-release": nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 "/sysroot/etc/os-release": nix.thunk(() => ({
-                  __proto__: pos$3,
-                  f: nix.thunk(() => ({ __proto__: pos$2, mode: "0644", argument: "ID=test-non-nixos" })),
+                  [nix.POS]: pos$3,
+                  f: nix.thunk(() => ({ [nix.POS]: pos$2, mode: "0644", argument: "ID=test-non-nixos" })),
                 })),
               })),
             })),
@@ -59,28 +59,28 @@ exec ${nix.sel(pkgs, "coreutils")}/bin/sleep infinity
       })),
       consoleLogLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 3n)),
     })),
-    virtualisation: nix.thunk(() => ({ __proto__: pos$10, diskImage: null, graphics: false })),
+    virtualisation: nix.thunk(() => ({ [nix.POS]: pos$10, diskImage: null, graphics: false })),
   }));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     name: "systemd-initrd-non-nixos",
     nodes: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       bashActivation: common,
       nixosInit: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         imports: nix.thunk(() => [common]),
         system: nix.thunk(() => ({
-          __proto__: pos$15,
-          "nixos-init": nix.thunk(() => ({ __proto__: pos$12, enable: true })),
+          [nix.POS]: pos$15,
+          "nixos-init": nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
           etc: nix.thunk(() => ({
-            __proto__: pos$14,
-            overlay: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+            [nix.POS]: pos$14,
+            overlay: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$17,
-          userborn: nix.thunk(() => ({ __proto__: pos$16, enable: true })),
+          [nix.POS]: pos$17,
+          userborn: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true })),
         })),
       })),
     })),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "perccli";
       const version = "7.2313.00";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://dl.dell.com/FOLDER09770976M/1/PERCCLI_7.2313.0_A14_Linux.tar.gz",
           hash: "sha256-IhclHVkdihRx5CzyO2dlOEhCon+0/HB3Fkue7MWsWnw=",
           curlOptsList: nix.thunk(() => ["--user-agent", "Mozilla/5.0"]),
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
         const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
         const system = nix.thunk(() => nix.attr(from, "system"));
         const platforms = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "x86_64-linux": "install -D ./opt/MegaRAID/perccli/perccli64 $out/bin/perccli64\nln -s perccli64 $out/bin/perccli\n",
         }));
         return nix.selOr(platforms, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system: ${system}`)), nix.key(nix.force(system)));
       })());
       const dontFixup = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Perccli Support for PERC RAID controllers",
         homepage: "https://www.dell.com/support/home/en-us/drivers/driversdetails?driverid=tdghn",
         sourceProvenance: nix.thunk(() => (() => {
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

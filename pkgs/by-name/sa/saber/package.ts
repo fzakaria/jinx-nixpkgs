@@ -36,14 +36,14 @@ ln -s ${zlib}/lib $out/lib
 `)));
   const version = "1.35.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "saber-notes",
       repo: "saber",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-DL05jDZTUFNJE0p1uAm0zWHm85um8bF+OntXuovHueI=",
     }))));
   return nix.app(nix.sel(flutter344, "buildFlutterApplication"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "saber",
       version: version,
       src: src,
@@ -61,17 +61,17 @@ ln -s ${zlib}/lib $out/lib
       ]),
       postPatch: "patchShebangs patches/pre/remove_proprietary_dependencies.sh patches/pre/remove_dev_dependencies.sh\npatches/pre/remove_proprietary_dependencies.sh\npatches/pre/remove_dev_dependencies.sh\n",
       flutterBuildFlags: nix.thunk(() => ["--dart-define=DIRTY=false"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, ZLIB_ROOT: zlib_root })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ZLIB_ROOT: zlib_root })),
       postInstall: "install -Dm0644 flatpak/com.adilhanney.saber.desktop $out/share/applications/saber.desktop\ninstall -Dm0644 assets/icon/icon.svg $out/share/icons/hicolor/scalable/apps/com.adilhanney.saber.svg\ninstall -Dm0644 flatpak/com.adilhanney.saber.metainfo.xml -t $out/share/metainfo\n",
       preFixup: "patchelf --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\" $out/app/saber/lib/lib*.so\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ __proto__: pos$3, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
+        [nix.POS]: pos$6,
+        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: pos$3, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "saber.pubspecSource", nix.path(here, "./pubspec.lock.json")), { __proto__: pos$4, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "saber.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$4, supportedFeatures: [] })),
             nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               command: nix.thunk(() => [
                 nix.thunk(() => nix.sel(dart, "fetchGitHashesScript")),
                 "--input",
@@ -84,7 +84,7 @@ ln -s ${zlib}/lib $out/lib
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Cross-platform open-source app built for handwriting",
         homepage: "https://github.com/saber-notes/saber",
         mainProgram: "saber",

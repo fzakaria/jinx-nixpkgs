@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
   const supportedTargets$ = nix.thunk(() => (nix.asBool(anySupportedTargets) ? nix.app(nix.sel(lib, "concatStringsSep"), ";", supportedTargets) : "gfx1200"));
   const sourceRoot = "aotriton";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: nix.thunk(() => nix.str`aotriton${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(anySupportedTargets)), "-shim")}`),
       version: "0.12b",
       sourceRoot: sourceRoot,
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "ROCm",
             repo: "aotriton",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
             name: sourceRoot,
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "ROCm",
             repo: "aiter",
             tag: "v0.1.11",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       requiredSystemFeatures: nix.thunk(() => (nix.asBool(anySupportedTargets) ? ["big-parallel"] : [])),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         AOTRITON_CI_SUPPLIED_SHA1: nix.thunk(() => nix.sel(finalAttrs, "version")),
         ROCM_PATH: nix.thunk(() => nix.str`${clr}`),
         CFLAGS: "-w -g1 -gz -Wno-c++11-narrowing",
@@ -116,22 +116,22 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "AOTRITON_TARGET_ARCH", supportedTargets$)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "ld-preload-into-hello": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "aotriton-basic-load-test",
               nativeBuildInputs: nix.thunk(() => [hello]),
               buildCommand: nix.thunk(() => nix.str`set -e
-LD_PRELOAD=${nix.app(nix.sel(aotriton, "override"), nix.thunk(() => ({ __proto__: pos$4, gpuTargets: [] })))}/lib/libaotriton_v2.so ${hello}/bin/hello > /dev/null
+LD_PRELOAD=${nix.app(nix.sel(aotriton, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, gpuTargets: [] })))}/lib/libaotriton_v2.so ${hello}/bin/hello > /dev/null
 echo "ld-preload-into-hello" > $out
 `),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "ROCm Ahead of Time (AOT) Triton Math Library",
         homepage: "https://github.com/ROCm/aotriton",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
   const torchdata = nix.arg($, "torchdata");
   const webdataset = nix.arg($, "webdataset");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aistore",
       version: "1.25.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-aslNCRSV7QKgvvDuUQPgcbUyUDdGP2kC4ryFu6IVYYE=",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         xxhash,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         botocore: nix.thunk(() => [wrapt]),
         etl: nix.thunk(() => [aiofiles, fastapi, flask, gunicorn, httpx, uvicorn]),
         mcp: nix.thunk(() => [mcp]),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["aistore"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Client-side APIs to access and utilize clusters, buckets, and objects on AIStore",
         homepage: "https://aistore.nvidia.com",
         downloadPage: "https://github.com/NVIDIA/aistore/tree/main/python/aistore/sdk",

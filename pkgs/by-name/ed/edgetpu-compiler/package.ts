@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const libcxx = nix.arg($, "libcxx");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "edgetpu-compiler",
       version: "15.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const url = nix.thunk(() => nix.str`https://packages.cloud.google.com/apt/pool/edgetpu-compiler_${nix.sel(finalAttrs, "version")}_amd64_${sha256}.deb`);
           const sha256 = "ce03822053c2bddbb8640eaa988396ae66f9bc6b9d6d671914acd1727c2b445a";
-          return { __proto__: pos$1, url, sha256 };
+          return { [nix.POS]: pos$1, url, sha256 };
         })()))),
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook, dpkg]),
       buildInputs: nix.thunk(() => [libcxx]),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r ./{bin,share} $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line tool that compiles a TensorFlow Lite model into an Edge TPU compatible file",
         mainProgram: "edgetpu_compiler",
         homepage: "https://coral.ai/docs/edgetpu/compiler",

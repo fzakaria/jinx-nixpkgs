@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pixeluvo";
       const version = "1.6.0-2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.pixeluvo.com/downloads/${pname}_${version}_amd64.deb`),
           sha256: "sha256-QYSuD6o3kHg0DrFihYEcf9e3b8U1bu4Zf78+Akmm8yo=",
         }))));
@@ -44,7 +44,7 @@ makeWrapper $out/opt/pixeluvo/bin/Pixeluvo64 $out/bin/pixeluvo \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Beautifully Designed Image and Photo Editor for Windows and Linux",
         homepage: "http://www.pixeluvo.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -57,7 +57,7 @@ runHook postInstall
         mainProgram: "pixeluvo",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

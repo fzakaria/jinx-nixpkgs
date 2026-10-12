@@ -33,30 +33,30 @@ export default nix.lambda((args) => (() => {
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mighty-config", nix.thunk(() => nix.sel(cfg, "config"))));
   const routingFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mighty-routing", nix.thunk(() => nix.sel(cfg, "routing"))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mighttpd2: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Mighttpd2 web server")),
           config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "",
               example: "# Example configuration for Mighttpd 2\nPort: 80\n# IP address or \"*\"\nHost: *\nDebug_Mode: Yes # Yes or No\nUser: mighttpd2\nGroup: mighttpd2\nPid_File: /run/mighty.pid\nLogging: Yes # Yes or No\nLog_File: /var/log/mighty # The directory must be writable by User:\nLog_File_Size: 16777216 # bytes\nLog_Backup_Number: 10\nIndex_File: index.html\nIndex_Cgi: index.cgi\nStatus_File_Dir: /usr/local/share/mighty/status\nConnection_Timeout: 30 # seconds\nFd_Cache_Duration: 10 # seconds\n# Server_Name: Mighttpd/3.x.y\nTls_Port: 443\nTls_Cert_File: cert.pem # should change this with an absolute path\n# should change this with comma-separated absolute paths\nTls_Chain_Files: chain.pem\n# Currently, Tls_Key_File must not be encrypted.\nTls_Key_File: privkey.pem # should change this with an absolute path\nService: 0 # 0 is HTTP only, 1 is HTTPS only, 2 is both\n",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "Verbatim config file to use\n(see <https://kazu-yamamoto.github.io/mighttpd2/config.html>)\n",
             })))),
           routing: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "",
               example: "# Example routing for Mighttpd 2\n\n# Domain lists\n[localhost www.example.com]\n\n# Entries are looked up in the specified order\n# All paths must end with \"/\"\n\n# A path to CGI scripts should be specified with \"=>\"\n/~alice/cgi-bin/ => /home/alice/public_html/cgi-bin/\n\n# A path to static files should be specified with \"->\"\n/~alice/         -> /home/alice/public_html/\n/cgi-bin/        => /export/cgi-bin/\n\n# Reverse proxy rules should be specified with \">>\"\n# /path >> host:port/path2\n# Either \"host\" or \":port\" can be committed, but not both.\n/app/cal/        >> example.net/calendar/\n# Yesod app in the same server\n/app/wiki/       >> 127.0.0.1:3000/\n\n/                -> /export/www/\n",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "Verbatim routing file to use\n(see <https://kazu-yamamoto.github.io/mighttpd2/config.html>)\n",
             })))),
           cores: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
               description: "How many cores to use.\nIf null it will be determined automatically\n",
@@ -65,26 +65,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "routing"), "")),
             message: "You need at least one rule in mighttpd2.routing",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             mighttpd2: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Mighttpd2 web server",
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "haskellPackages", "mighttpd2")}/bin/mighty \\
   ${configFile} \\
   ${routingFile} \\
@@ -101,27 +101,27 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             mighttpd2: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               group: "mighttpd2",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "mighttpd2")),
               isSystemUser: true,
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             mighttpd2: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "mighttpd2")),
             })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "fgaz"))];

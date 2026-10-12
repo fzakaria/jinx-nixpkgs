@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
     "corepack",
   ]);
   return nix.app(nix.sel(nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "nodejs",
       version: nix.thunk(() => nix.attr(nodejs_slim, "version")),
       passthru: nix.thunk(() => nix.attr(nodejs_slim, "passthru")),
       meta: nix.thunk(() => nix.attr(nodejs_slim, "meta")),
       paths: nix.thunk(() => nix.concat([nodejs_slim, nix.thunk(() => nix.sel(nodejs_slim, "npm"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.builtins.hasAttr("corepack", nodejs_slim)), nix.thunk(() => nix.sel(nodejs_slim, "corepack"))))),
     }))), "overrideAttrs"), (nodejs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       passthru: nix.thunk(() => nix.update(nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((name) => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: name,
             value: nix.thunk(() => nix.app(nix.sel(lib, "warn"), nix.thunk(() => nix.str`Use nodejs-slim.${name} instead of nodejs.${name}`), nix.thunk(() => nix.sel(nodejs_slim, nix.key(nix.force(name)))))),
           }), nix.thunk(() => nix.builtins.filter((name) => (nix.asBool((nix.asBool(!nix.asBool(nix.app(hasDisallowedPrefix, name))) && nix.asBool(!nix.asBool(nix.builtins.elem(name, allowedNames))))) && nix.asBool(!nix.asBool(nix.has(nodejs, nix.key(nix.force(name)))))), nix.thunk(() => nix.builtins.attrNames(nodejs_slim))))))), nix.sel(nodejs, "passthru"))),

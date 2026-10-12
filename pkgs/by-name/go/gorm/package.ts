@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const gnustep_back = nix.arg($, "gnustep-back");
   const wrapGNUstepAppsHook = nix.arg($, "wrapGNUstepAppsHook");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gorm",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`ftp://ftp.gnustep.org/pub/gnustep/dev-apps/gorm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-B7NNRA3qA2PFbb03m58EBBONuIciLf6eU+YSR0qvaCo=",
         })))),
       nativeBuildInputs: nix.thunk(() => [wrapGNUstepAppsHook]),
       buildInputs: nix.thunk(() => [gnustep_back]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical Object Relationship Modeller is an easy-to-use interface designer for GNUstep",
         homepage: "https://gnustep.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

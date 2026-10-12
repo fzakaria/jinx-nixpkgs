@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const helion = nix.arg($, "helion");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "helion",
       version: "1.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pytorch",
           repo: "helion",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,15 +46,15 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_squeeze_and_excitation_net_bwd_dx"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(helion, "overridePythonAttrs"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             doCheck: true,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python-embedded DSL that makes it easy to write fast, scalable ML kernels with minimal boilerplate",
         homepage: "https://github.com/pytorch/helion",
         changelog: nix.thunk(() => nix.str`https://github.com/pytorch/helion/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

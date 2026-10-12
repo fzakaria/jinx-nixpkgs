@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "terminology";
       const version = "1.14.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.enlightenment.org/rel/apps/${pname}/${pname}-${version}.tar.xz`),
           sha256: "81QFcFGwXP+2meM4NqETXbHU7Yv5VPm1fcDpO8MHUU0=",
         }))));
@@ -33,15 +33,15 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [efl]);
       const postPatch = "patchShebangs data/colorschemes/*.py\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "terminology")),
         })),
         updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Powerful terminal emulator based on EFL",
         homepage: "https://www.enlightenment.org/about-terminology",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "enlightenment"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

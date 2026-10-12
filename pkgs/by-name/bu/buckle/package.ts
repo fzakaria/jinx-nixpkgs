@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "buckle",
       version: "1.1.0",
       cargoHash: "sha256-2QUgyml4ebPLt0oXrdCNYIORvVyBKvsDfC+ZgsVn+cQ=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "benbrittain",
           repo: "buckle",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       checkFlags: nix.thunk(() => ["--skip=test_buck2_latest", "--skip=test_buck2_specific_version"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Buck2 launcher",
         longDescription: "Buckle is a launcher for [Buck2](https://buck2.build). It manages\nBuck2 on a per-project basis. This enables a project or team to do\nseamless upgrades of their build system tooling. It is designed to\nbe minimally intrusive. Buckle only manages fetching Buck2 and\nenforcing the prelude is upgraded in sync.\n",
         homepage: "https://github.com/benbrittain/buckle",

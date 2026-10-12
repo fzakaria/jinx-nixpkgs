@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sit",
       version: "0-unstable-2026-01-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thecloudexpanse",
           repo: "sit",
           rev: "8e3d6416c2b61db99c74e8f1224431dc33a50a34",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\ninstall -Dm755 sit $out/bin/sit\ninstall -Dm755 macbinfilt $out/bin/macbinfilt\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create StuffIt archives on Unix systems",
         homepage: "https://github.com/thecloudexpanse/sit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

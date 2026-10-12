@@ -25,15 +25,15 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         gpaste: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable GPaste, a clipboard manager.\n",
@@ -42,37 +42,37 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "programs", "gpaste", "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gpaste"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           dbus: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gpaste"))]),
           })),
           desktopManager: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             gnome: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               sessionPath: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gpaste"))]),
             })),
           })),
           xserver: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             desktopManager: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               cinnamon: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 sessionPath: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gpaste"))]),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gpaste"))]),
         })),
       })))),

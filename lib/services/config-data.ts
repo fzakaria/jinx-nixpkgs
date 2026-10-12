@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
     const from = nix.thunk(() => nix.sel(lib, "modules"));
     const importApply = nix.thunk(() => nix.attr(from, "importApply"));
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       options: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         configData: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"server.conf\" = {\n    text = ''\n      port = 8080\n      workers = 4\n    '';\n  };\n  \"ssl/cert.pem\" = {\n    source = ./cert.pem;\n  };\n}\n")),
             description: "Configuration data files for the service\n\nThese files are made available to the service and can be updated without restarting the service process, enabling configuration reloading.\nThe service manager implementation determines how these files are exposed to the service (e.g., via a specific directory path).\nThis path is available in the `path` sub-option for each `configData.<name>` entry.\n\nThis is particularly useful for services that support configuration reloading via signals (e.g., SIGHUP) or which pick up changes automatically, so that no downtime is required in order to reload the service.\n",

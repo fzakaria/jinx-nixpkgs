@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "1lab",
       version: "0-unstable-2025-07-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "the1lab",
           repo: "1lab",
           rev: "e9c2ad2b3ba9cefad36e72cb9d732117c68ac862",
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "# We don't need anything in support; avoid installing LICENSE.agda\nrm -rf support\n\n# Remove verbosity options as they make Agda take longer and use more memory.\nshopt -s globstar extglob\nfiles=(src/**/*.@(agda|lagda.md))\nsed -Ei '/OPTIONS/s/ -v ?[^ #]+//g' \"${files[@]}\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Formalised, cross-linked reference resource for mathematics done in Homotopy Type Theory ",
         homepage: "https://github.com/the1lab/1lab",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

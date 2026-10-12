@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => "2.100");
   const new$ = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "3.000"));
   const hash = nix.thunk(() => nix.sel({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "2.100": "sha256-d2UyOOOnmE1afCwyIrM1bL3lQC7XRwh03hzetk/4V30=",
     "3.300": "sha256-LaaA6DWAE2dcwVVX4go9cJaiuwI6efYbPk82ym3W3IY=",
     "4.000": "sha256-FhgHlHCfojIl3Y11EDYhNTmLYwQ60OrwnA9nbZbZGJE=",
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://software.sil.org/downloads/r/scheherazade/Scheherazade${nix.app(nix.sel(lib, "optionalString"), new$, "New")}-${version_1}.zip`),
           hash: hash,
         }))));
       const installPhase = "runHook preInstall\n\ninstall -Dm644 *.ttf -t $out/share/fonts/truetype\ninstall -Dm644 FONTLOG.txt README.txt -t $out/share/doc\ncp -r documentation $out/share/doc/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://software.sil.org/scheherazade/",
         description: "Font designed in a similar style to traditional Naskh typefaces",
         longDescription: nix.thunk(() => nix.str`
@@ -58,7 +58,7 @@ font family, along with documentation.
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname_1,
         version: version_1,
         src,

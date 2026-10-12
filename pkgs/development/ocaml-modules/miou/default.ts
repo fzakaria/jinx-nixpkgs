@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const dune_configurator = nix.arg($, "dune-configurator");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "miou",
       version: "0.10.0",
       minimalOCamlVersion: "5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/robur-coop/miou/releases/download/v${nix.sel(finalAttrs, "version")}/miou-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-vxlUxvZqydMGs7T5SLGfWdLDJyE6+TDhnZ+8c/E0+hg=",
         })))),
       buildInputs: nix.thunk(() => [dune_configurator]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Composable concurrency primitives for OCaml",
         homepage: "https://git.robur.coop/robur/miou",
         changelog: nix.thunk(() => nix.str`https://git.robur.coop/robur/miou/src/tag/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

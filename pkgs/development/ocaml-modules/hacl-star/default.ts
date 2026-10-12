@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const qcheck_core = nix.arg($, "qcheck-core");
   const cstruct = nix.arg($, "cstruct");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "hacl-star",
       version: nix.thunk(() => nix.attr(hacl_star_raw, "version")),
       src: nix.thunk(() => nix.attr(hacl_star_raw, "src")),

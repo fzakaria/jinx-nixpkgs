@@ -80,12 +80,12 @@ export default nix.lambda((args) => (() => {
   const rigctl_server = nix.argOr($, "rigctl_server", () => true);
   const scanner = nix.argOr($, "scanner", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sdrpp",
       upstreamVersion: "1.3.0",
       version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "upstreamVersion")}-unstable-2026-03-24`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AlexandreRouma",
           repo: "SDRPlusPlus",
           rev: "a6df4d58e5f6b3045883a70aeb8fb41fd5dbf1d9",
@@ -145,10 +145,10 @@ substituteInPlace core/src/version.h \\
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "OPT_BUILD_RIGCTL_SERVER", rigctl_server)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "OPT_BUILD_SCANNER", scanner)),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fpermissive" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fpermissive" })),
       hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "format")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross-Platform SDR Software",
         homepage: "https://github.com/AlexandreRouma/SDRPlusPlus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

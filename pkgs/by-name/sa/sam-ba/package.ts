@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "3.5",
       pname: "sam-ba",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ww1.microchip.com/downloads/en/DeviceDoc/sam-ba_${nix.sel(finalAttrs, "version")}-linux_x86_64.tar.gz`),
           sha256: "1k0nbgyc98z94nphm2q7s82b274clfnayf4a2kv93l5594rzdbp1",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/bin/\" \\\n         \"$out/opt/sam-ba/\"\ncp -a . \"$out/opt/sam-ba/\"\nln -sr \"$out/opt/sam-ba/sam-ba\" \"$out/bin/\"\nln -sr \"$out/opt/sam-ba/multi_sam-ba.py\" \"$out/bin/\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Programming tools for Atmel SAM3/7/9 ARM-based microcontrollers",
         longDescription: "Atmel SAM-BA software provides an open set of tools for programming the\nAtmel SAM3, SAM7 and SAM9 ARM-based microcontrollers.\n",
         homepage: "http://www.at91.com/linux4sam/bin/view/Linux4SAM/SoftwareTools",

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sshfs.yazi",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uhs-robert",
           repo: "sshfs.yazi",
           tag: "v2.1.1",
           hash: "sha256-RYZ0wFkYfR/TfYntRipNPvpSl4gvtmNukLBQONRk1jU=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimal SSHFS integration for the Yazi terminal file‑manager",
         homepage: "https://github.com/uhs-robert/sshfs.yazi",
         changelog: nix.thunk(() => nix.str`https://github.com/uhs-robert/sshfs.yazi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

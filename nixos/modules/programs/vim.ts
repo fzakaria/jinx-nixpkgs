@@ -20,33 +20,33 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "vim"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         vim: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Vi IMproved, an advanced text editor")),
           defaultEditor: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "vim as the default editor")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "vim", nix.thunk(() => ({ __proto__: pos$1, example: nix.thunk(() => ["vim-full"]) })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "vim", nix.thunk(() => ({ [nix.POS]: pos$1, example: nix.thunk(() => ["vim-full"]) })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) || nix.asBool(nix.sel(cfg, "defaultEditor")))), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "defaultEditor")) || nix.asBool(nix.sel(cfg, "enable")))),
             message: "{option}`programs.vim.defaultEditor` requires {option}`programs.vim.enable` to be set to true.",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           sessionVariables: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             EDITOR: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "defaultEditor")), nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 900n, "vim")))),
           })),
           pathsToLink: nix.thunk(() => ["/share/vim-plugins"]),

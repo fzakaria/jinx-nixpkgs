@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const dns_tsig = nix.arg($, "dns-tsig");
   const base64 = nix.arg($, "base64");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dns-server",
       version: nix.thunk(() => nix.attr(dns, "version")),
       src: nix.thunk(() => nix.attr(dns, "src")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, mirage_crypto_rng, dns_tsig, base64]),
-      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { __proto__: pos$1, description: "DNS server, primary and secondary" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { [nix.POS]: pos$1, description: "DNS server, primary and secondary" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=server.ts.map

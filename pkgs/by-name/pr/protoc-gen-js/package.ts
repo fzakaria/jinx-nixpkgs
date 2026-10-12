@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const bazel_7 = nix.arg($, "bazel_7");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cctools = nix.arg($, "cctools");
-  const buildBazelPackage$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? nix.app(nix.sel(buildBazelPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: gcc14Stdenv }))) : nix.force(buildBazelPackage)));
+  const buildBazelPackage$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? nix.app(nix.sel(buildBazelPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: gcc14Stdenv }))) : nix.force(buildBazelPackage)));
   return nix.app(buildBazelPackage$, nix.thunk(() => (() => {
       const pname = "protoc-gen-js";
       const version = "3.21.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "protocolbuffers",
           repo: "protobuf-javascript",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,18 +36,18 @@ export default nix.lambda((args) => (() => {
       const bazelBuildFlags = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["--cxxopt=-x", "--cxxopt=c++", "--host_cxxopt=-x", "--host_cxxopt=c++"])));
       const removeRulesCC = false;
       const removeLocalConfigCC = false;
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$3, LIBTOOL: nix.thunk(() => nix.str`${cctools}/bin/libtool`) }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, LIBTOOL: nix.thunk(() => nix.str`${cctools}/bin/libtool`) }))));
       const fetchAttrs = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         preInstall: "rm -rv \"$bazelOut/external/host_platform\"\n",
         hash: "sha256-znkwUs984vbinz/BLo1uxQ+PvxkpXo719lJu4TD1Vmg=",
       }));
       const buildAttrs = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         installPhase: "mkdir -p $out/bin\ninstall -Dm755 bazel-bin/generator/protoc-gen-js $out/bin/\n",
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Protobuf plugin for generating JavaScript code",
         mainProgram: "protoc-gen-js",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

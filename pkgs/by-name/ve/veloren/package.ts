@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const timestamp = "1769191511";
   const rev = "1d12f35edd6cdbfc1fb921c167cdd7beeeffe248";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "veloren",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "veloren",
           repo: "veloren",
           rev: rev,
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: true,
       buildFeatures: nix.thunk(() => ["default-publish"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTC_BOOTSTRAP: true,
         VELOREN_GIT_VERSION: nix.thunk(() => nix.str`/${nix.app(nix.sel(lib, "substring"), 0n, 8n, rev)}/${timestamp}`),
         VELOREN_USERDATA_STRATEGY: "system",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         ]))),
       postInstall: "# Icons\ninstall -Dm644 assets/voxygen/net.veloren.veloren.desktop -t \"$out/share/applications\"\ninstall -Dm644 assets/voxygen/net.veloren.veloren.png -t \"$out/share/icons/hicolor/256x256/apps\"\ninstall -Dm644 assets/voxygen/net.veloren.veloren.metainfo.xml -t \"$out/share/metainfo\"\n\n# Assets directory\nmkdir -p \"$out/share/veloren\"; cp -ar assets \"$out/share/veloren/\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open world, open source voxel RPG",
         homepage: "https://www.veloren.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

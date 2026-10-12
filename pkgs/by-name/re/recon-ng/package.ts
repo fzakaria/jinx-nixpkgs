@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "recon-ng",
       version: "5.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lanmaster53",
           repo: "recon-ng",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       })()),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix_python12.patch",
             url: "https://github.com/lanmaster53/recon-ng/commit/e31c30e5c314cbc5e57a13f9d3ddf29afafc4cb3.patch",
             hash: "sha256-e8BTRkwb42mTTwivZ0sTxVw1hnYCUVInmy91jyVc/tw=",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: nix.thunk(() => (() => {
         const setup = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup.py"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           }))));
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
 cp -R recon/core/web/{definitions.yaml,static,templates} $out/${nix.sel(python3, "sitePackages")}/recon/core/web/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Full-featured framework providing a powerful environment to conduct web-based reconnaissance",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         homepage: "https://github.com/lanmaster53/recon-ng/",

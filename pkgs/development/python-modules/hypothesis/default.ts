@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const syrupy = nix.arg($, "syrupy");
   const tzdata = nix.arg($, "tzdata");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hypothesis",
       version: "6.156.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HypothesisWorks",
           repo: "hypothesis",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/hypothesis`),
       cargoRoot: "rust",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         pexpect,
         pytest_xdist,
         pytestCheckHook,
-        nix.thunk(() => nix.app(nix.sel(syrupy, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$3, doCheck: false })))),
+        nix.thunk(() => nix.app(nix.sel(syrupy, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: false })))),
       ], nix.app(nix.sel(lib, "optionals"), isPyPy, nix.thunk(() => [tzdata])))),
       doCheck: doCheck,
       preCheck: "rm tox.ini\nexport HYPOTHESIS_PROFILE=ci\nexport TMPDIR=$(mktemp -d)\n",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), isPyPy, nix.thunk(() => ["test_bordering_on_a_leap_year"])))),
       pythonImportsCheck: nix.thunk(() => ["hypothesis"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library for property based testing",
         mainProgram: "hypothesis",
         homepage: "https://github.com/HypothesisWorks/hypothesis",

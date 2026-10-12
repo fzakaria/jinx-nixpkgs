@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const iptables = nix.arg($, "iptables");
   const bash = nix.arg($, "bash");
   const sshuttle_telepresence = nix.thunk(() => nix.app(nix.sel(lib, "overrideDerivation"), sshuttle, (p) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       postInstall: "mv $out/bin/sshuttle $out/bin/sshuttle-telepresence",
     })));
   return nix.app(nix.sel(pythonPackages, "buildPythonPackage"), nix.thunk(() => (() => {
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.109";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "telepresenceio",
           repo: "telepresence",
           rev: version,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
 `);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.telepresence.io/",
         description: "Local development against a remote Kubernetes or OpenShift cluster",
         mainProgram: "telepresence",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

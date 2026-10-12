@@ -43,10 +43,10 @@ export default nix.lambda((args) => (() => {
   const version = "0.25.0";
   const pname = "tensorflow-probability";
   const bazel_wheel = nix.thunk(() => nix.app(buildBazelPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: nix.thunk(() => nix.str`tensorflow_probability-${version}-py2.py3-none-any.whl`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tensorflow",
           repo: "probability",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "future-proof-reference-to-deprecated-pytype_aval_mappings",
             url: "https://github.com/tensorflow/probability/commit/135080b6b1ac5724fc1731b0a9ca6f2010b1aea5.patch",
             hash: "sha256-27yWIw5pI86KcUz0TsYwRFyLDoeiqmxgsRMBXaauzVw=",
@@ -67,17 +67,17 @@ export default nix.lambda((args) => (() => {
       removeRulesCC: false,
       LIBTOOL: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`${cctools}/bin/libtool`))),
       fetchAttrs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         sha256: "sha256-RzX8Shr8It9EahXDd3KotcZ2CjFcuzZVyK5aQutLPA4=",
       })),
       buildAttrs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         preBuild: "patchShebangs .\n",
         installPhase: "# work around timestamp issues\n# https://github.com/NixOS/nixpkgs/issues/270#issuecomment-467583872\nexport SOURCE_DATE_EPOCH=315532800\n\n# First build, then move. Otherwise pip_pkg would create the dir $out\n# and then put the wheel in that directory. However we want $out to\n# point directly to the wheel file.\n./bazel-bin/pip_pkg . --release\nmv *.whl \"$out\"\n",
       })),
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: version,
       pname: pname,
       format: "wheel",
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [hypothesis, matplotlib, mock, mpmath, pandas, pytest, scipy]),
       pythonImportsCheck: nix.thunk(() => ["tensorflow_probability"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Library for probabilistic reasoning and statistical analysis",
         homepage: "https://www.tensorflow.org/probability/",
         changelog: nix.thunk(() => nix.str`https://github.com/tensorflow/probability/releases/tag/v${version}`),

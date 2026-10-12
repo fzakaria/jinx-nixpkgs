@@ -9,14 +9,14 @@ const pos$4 = nix.positions(here + "/gemset.nix", [["groups", 14, 5], ["platform
 const pos$5 = nix.positions(here + "/gemset.nix", [["homesick", 2, 3], ["thor", 13, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$5,
+  [nix.POS]: pos$5,
   homesick: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     dependencies: nix.thunk(() => ["thor"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0lxvnp4ncbx0irlblfxbd1f8h4hl11hgmyiy35q79w137r3prxml",
       type: "gem",
@@ -24,11 +24,11 @@ export default nix.thunk(() => ({
     version: "1.1.6",
   })),
   thor: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0gcarlmpfbmqnjvwfz44gdjhcmm634di7plcx2zdgwdhrhifhqw7",
       type: "gem",

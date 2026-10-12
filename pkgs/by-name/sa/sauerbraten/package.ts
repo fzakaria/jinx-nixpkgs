@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sauerbraten",
       version: "2020-12-29",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/sauerbraten/sauerbraten_${nix.builtins.replaceStrings(nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}_linux.tar.bz2`),
           hash: "sha256-os3SmonqHRw1+5dIRVt7EeXfnSq298GiyKpusS1K3rM=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "sauerbraten",
             exec: "sauerbraten_client %u",
             icon: "sauerbraten",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/icon/ $out/share/sauerbraten $out/share/doc/sauerbraten\ncp -r \"../docs/\"* $out/share/doc/sauerbraten/\ncp sauer_client sauer_server $out/share/sauerbraten/\ncp -r ../packages ../data $out/share/sauerbraten/\nln -s $out/share/sauerbraten/data/cube.png $out/share/icon/sauerbraten.png\n\nmakeWrapper $out/share/sauerbraten/sauer_server $out/bin/sauerbraten_server \\\n  --chdir \"$out/share/sauerbraten\"\nmakeWrapper $out/share/sauerbraten/sauer_client $out/bin/sauerbraten_client \\\n  --chdir \"$out/share/sauerbraten\" \\\n  --add-flags \"-q\\${HOME}/.config/sauerbraten\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free multiplayer & singleplayer first person shooter, the successor of the Cube FPS",
         homepage: "http://sauerbraten.org",
         maintainers: nix.thunk(() => (() => {

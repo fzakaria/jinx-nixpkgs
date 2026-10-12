@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const version = "4.0";
   const arch = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? "x64" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? "x86" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform ${nix.sel(stdenv, "hostPlatform", "system")}`)))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "Heaven",
       exec: "heaven",
       genericName: "A GPU Stress test tool from the UNIGINE",
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       desktopName: "Heaven Benchmark",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unigine-heaven",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://assets.unigine.com/d/Unigine_Heaven-${version}.run`),
           hash: "sha256-UtsuXe3VYh18K/qTa0gsCnzGmzBhYnjvGZUT1JTY45c=",
         })))),
@@ -86,7 +86,7 @@ ln -s ${desktopItem}/share/applications/* $out/share/applications
       ]),
       dontUnpack: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unigine Heaven GPU benchmarking tool",
         homepage: "https://benchmark.unigine.com/heaven",
         sourceProvenance: nix.thunk(() => (() => {

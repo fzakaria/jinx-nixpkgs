@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const librsvg = nix.arg($, "librsvg");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "piper",
       version: "0.8",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libratbag",
           repo: "piper",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Druntime-dependency-checks=false"]),
       postPatch: "chmod +x meson_install.sh # patchShebangs requires executable file\npatchShebangs meson_install.sh data/generate-piper-gresource.xml.py\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GTK frontend for ratbagd mouse config daemon",
         mainProgram: "piper",
         homepage: "https://github.com/libratbag/piper",

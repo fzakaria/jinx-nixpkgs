@@ -13,21 +13,21 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchurl = nix.arg($, "fetchurl");
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "2.11.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://download.snipaste.com/archives/Snipaste-2.11.3.dmg",
           hash: "sha256-oih4OIieexc0pl2VK65e9/R5vcFj0MMb6RhZvKEg/T4=",
         })))),
     })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.11.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://download.snipaste.com/archives/Snipaste-2.11.3-x86_64.AppImage",
           hash: "sha256-6ARv8gRbZoul+sbXc9g3MTE6TwC6FxFHxvoaE4UkAzQ=",
         })))),

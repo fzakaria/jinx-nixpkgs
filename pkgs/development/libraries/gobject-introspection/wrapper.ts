@@ -21,9 +21,9 @@ export default nix.lambda((args) => (() => {
   const overriddenUnwrappedGir = nix.thunk(() => nix.app(nix.sel(gobject_introspection_unwrapped, "override"), args_1));
   const overridenTargetUnwrappedGir = nix.thunk(() => (nix.asBool(nix.has(targetPackages, "gobject-introspection-unwrapped")) ? nix.app(nix.sel(targetPackages, "gobject-introspection-unwrapped", "override"), argsForTarget) : nix.force(overriddenUnwrappedGir)));
   return (nix.asBool((nix.asBool(!nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "targetPlatform"))))) && nix.asBool(nix.app(nix.sel(stdenv, "targetPlatform", "emulatorAvailable"), buildPackages)))) ? nix.app(nix.sel(overriddenUnwrappedGir, "overrideAttrs"), (previousAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gobject-introspection-wrapped",
-      passthru: nix.thunk(() => nix.update(nix.sel(previousAttrs, "passthru"), { __proto__: pos$1, unwrapped: overriddenUnwrappedGir })),
+      passthru: nix.thunk(() => nix.update(nix.sel(previousAttrs, "passthru"), { [nix.POS]: pos$1, unwrapped: overriddenUnwrappedGir })),
       dontStrip: true,
       depsTargetTargetPropagated: nix.thunk(() => [overridenTargetUnwrappedGir]),
       buildCommand: nix.thunk(() => nix.add(nix.str`eval fixupPhase
@@ -53,9 +53,9 @@ cp $dev/bin/g-ir-scanner $dev/bin/.g-ir-scanner-wrapped
 )
 `, "cat >> $dev/nix-support/setup-hook <<-'EOF'\n  # Override when gobject-introspection is a build-time dependency. Otherwise its $dev/bin\n  # is not on PATH.\n  [[ -z ${strictDeps-} ]] || (( \"$hostOffset\" < 0 )) || return 0\n\n  override-pkg-config-gir-variables() {\n    PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_G_IR_SCANNER=\"$(type -p g-ir-scanner)\"\n    PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_G_IR_COMPILER=\"$(type -p g-ir-compiler)\"\n    PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_G_IR_GENERATE=\"$(type -p g-ir-generate)\"\n    export PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_G_IR_SCANNER\n    export PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_G_IR_COMPILER\n    export PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_G_IR_GENERATE\n  }\n\n  preConfigureHooks+=(override-pkg-config-gir-variables)\nEOF\n")),
     })) : nix.app(nix.sel(overriddenUnwrappedGir, "overrideAttrs"), (previousAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gobject-introspection-wrapped",
-      passthru: nix.thunk(() => nix.update(nix.sel(previousAttrs, "passthru"), { __proto__: pos$3, unwrapped: overriddenUnwrappedGir })),
+      passthru: nix.thunk(() => nix.update(nix.sel(previousAttrs, "passthru"), { [nix.POS]: pos$3, unwrapped: overriddenUnwrappedGir })),
       dontStrip: true,
       depsTargetTargetPropagated: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(stdenv, "targetPlatform", "emulatorAvailable"), buildPackages)), nix.thunk(() => [overridenTargetUnwrappedGir]))),
       buildCommand: nix.thunk(() => nix.str`eval fixupPhase

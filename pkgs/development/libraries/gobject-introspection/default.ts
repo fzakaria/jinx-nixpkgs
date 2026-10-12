@@ -48,23 +48,23 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(pp, "markdown")),
     nix.thunk(() => nix.sel(pp, "setuptools")),
   ];
-  const glib$ = nix.thunk(() => nix.app(nix.sel(glib, "override"), nix.thunk(() => ({ __proto__: pos$1, withIntrospection: false }))));
+  const glib$ = nix.thunk(() => nix.app(nix.sel(glib, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withIntrospection: false }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "gobject-introspection",
       version: "1.86.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc", "man"]),
       outputBin: "dev",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gobject-introspection/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gobject-introspection-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-kg0aP87ercMqz/lcLiA7MZA53UtKCN0aLf0oPRnAua4=",
         })))),
       patches: nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./absolute_shlib_path.patch"), nix.thunk(() => ({ __proto__: pos$3, nixStoreDir: nixStoreDir })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./absolute_shlib_path.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, nixStoreDir: nixStoreDir })))),
       ], nix.app(nix.sel(lib, "optionals"), x11Support, nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./absolute_gir_path.patch"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               cairoLib: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), cairo)}/lib`),
               CAIRO_GIR_PACKAGE: null,
               CAIRO_SHARED_LIBRARY: null,
@@ -95,12 +95,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dgtk_doc=${nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))))}`),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => [
           nix.thunk(() => nix.str`-Dgi_cross_ldd_wrapper=${nix.app(replaceVarsWith, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "g-ir-scanner-lddwrapper",
               isExecutable: true,
               src: nix.path(here, "./wrappers/g-ir-scanner-lddwrapper.sh"),
               replacements: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 bash: nix.thunk(() => nix.attr(buildPackages, "bash")),
                 buildlddtree: nix.thunk(() => nix.str`${nix.sel(buildPackages, "pax-utils")}/bin/lddtree`),
               })),
@@ -126,19 +126,19 @@ ln -s $PWD/tests/scanner/libregress-1.0${nix.sel(stdenv, "hostPlatform", "extens
 `),
       setupHook: nix.path(here, "./setup-hook.sh"),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             packageName: "gobject-introspection",
             versionPolicy: "odd-unstable",
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Middleware layer between C libraries and language bindings",
         homepage: "https://gi.readthedocs.io/",
         maintainers: nix.thunk(() => (() => {

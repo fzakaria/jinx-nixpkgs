@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxrender = nix.arg($, "libxrender");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sxcs",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NRK",
           repo: "sxcs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ runHook postBuild
       outputs: nix.thunk(() => ["out", "man"]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 sxcs -t $out/bin\ninstallManPage sxcs.1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimal X11 Color Picker and Magnifier",
         homepage: "https://codeberg.org/NRK/sxcs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

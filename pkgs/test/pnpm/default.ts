@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const opencloud = nix.arg($, "opencloud");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "pnpm-empty-lockfile": nix.thunk(() => nix.app(callPackage, nix.path(here, "./pnpm-empty-lockfile"), nix.thunk(() => ({})))),
     "pnpm-fixup-state-db": nix.thunk(() => nix.app(callPackage, nix.path(here, "./pnpm-fixup-state-db"), nix.thunk(() => ({})))),
     "pnpm-workspaces": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./pnpm-workspaces"), nix.thunk(() => ({})))))),
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
     opencloud: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(opencloud, "passthru"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         web: nix.thunk(() => nix.attr(from, "web")),
         "idp-web": nix.thunk(() => nix.attr(from, "idp-web")),
       };

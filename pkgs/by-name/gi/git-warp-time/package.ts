@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const libgit2 = nix.arg($, "libgit2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "git-warp-time",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/alerque/git-warp-time/releases/download/v${nix.sel(finalAttrs, "version")}/git-warp-time-${nix.sel(finalAttrs, "version")}.tar.zst`),
           hash: "sha256-Fq0fb2EZkBHJvcwOF9xRIvfh6yAICQ6cpvkFLJtxF78=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")),
       ]),
       buildInputs: nix.thunk(() => [libgit2]),
-      env: nix.thunk(() => ({ __proto__: pos$3, LIBGIT2_NO_VENDOR: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, LIBGIT2_NO_VENDOR: "1" })),
       outputs: nix.thunk(() => ["out", "doc", "man", "dev"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Utility to reset filesystem timestamps based on Git history",
         longDescription: "A CLI utility that resets the timestamps of files in a Git repository\nworking directory to the exact timestamp of the last commit which\nmodified each file.\n",
         homepage: "https://github.com/alerque/git-warp-time",

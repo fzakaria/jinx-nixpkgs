@@ -40,20 +40,20 @@ export default nix.lambda((args) => (() => {
   const signingPrivateKeyId = "4D642DE8B678C79D";
   const supportedDbTypes = nix.thunk(() => ["mysql", "postgres", "sqlite3"]);
   const makeGiteaTest = (type) => nix.app(runTest, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       imports: nix.thunk(() => [module]),
       name: nix.thunk(() => nix.str`${nix.sel(gitea, "pname")}-${type}`),
       nodes: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         server: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             gitea: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               settings: nix.thunk(() => ({
-                __proto__: pos$2,
-                database: nix.thunk(() => ({ __proto__: pos$1, type: type })),
+                [nix.POS]: pos$2,
+                database: nix.thunk(() => ({ [nix.POS]: pos$1, type: type })),
               })),
             })),
           })),
@@ -64,42 +64,42 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const config = nix.arg($_1, "config");
     return {
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(gitea, "meta"));
         return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
       };
       })()),
       nodes: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         server: nix.lambda((args_2) => (() => {
           const $_2 = nix.formals(args_2, formals$3);
           const pkgs = nix.arg($_2, "pkgs");
           return {
-            __proto__: pos$20,
-            virtualisation: nix.thunk(() => ({ __proto__: pos$9, memorySize: 2047n })),
+            [nix.POS]: pos$20,
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$9, memorySize: 2047n })),
             services: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               gitea: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 enable: true,
                 package: nix.thunk(() => nix.sel(pkgs, "gitea")),
                 metricsTokenFile: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "writeText"), "metrics_secret", "fakesecret"), "outPath")),
                 settings: nix.thunk(() => ({
-                  __proto__: pos$15,
-                  "repository.signing": nix.thunk(() => ({ __proto__: pos$10, SIGNING_KEY: signingPrivateKeyId })),
-                  actions: nix.thunk(() => ({ __proto__: pos$11, ENABLED: true })),
-                  metrics: nix.thunk(() => ({ __proto__: pos$12, ENABLED: true })),
-                  server: nix.thunk(() => ({ __proto__: pos$13, ROOT_URL: "http://localhost:3000/" })),
-                  service: nix.thunk(() => ({ __proto__: pos$14, DISABLE_REGISTRATION: true })),
+                  [nix.POS]: pos$15,
+                  "repository.signing": nix.thunk(() => ({ [nix.POS]: pos$10, SIGNING_KEY: signingPrivateKeyId })),
+                  actions: nix.thunk(() => ({ [nix.POS]: pos$11, ENABLED: true })),
+                  metrics: nix.thunk(() => ({ [nix.POS]: pos$12, ENABLED: true })),
+                  server: nix.thunk(() => ({ [nix.POS]: pos$13, ROOT_URL: "http://localhost:3000/" })),
+                  service: nix.thunk(() => ({ [nix.POS]: pos$14, DISABLE_REGISTRATION: true })),
                 })),
               })),
-              openssh: nix.thunk(() => ({ __proto__: pos$17, enable: true })),
+              openssh: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               systemPackages: nix.thunk(() => [
                 nix.thunk(() => nix.sel(pkgs, "gitea")),
                 nix.thunk(() => nix.sel(pkgs, "gnupg")),
@@ -112,9 +112,9 @@ export default nix.lambda((args) => (() => {
           const $_2 = nix.formals(args_2, formals$4);
           const pkgs = nix.arg($_2, "pkgs");
           return {
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             environment: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "git"))]),
             })),
           };

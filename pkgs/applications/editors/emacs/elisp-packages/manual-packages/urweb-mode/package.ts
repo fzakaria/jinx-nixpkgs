@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const cl_lib = nix.arg($, "cl-lib");
   const flycheck = nix.arg($, "flycheck");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "urweb-mode",
       src: nix.thunk(() => nix.attr(urweb, "src")),
       version: nix.thunk(() => nix.attr(urweb, "version")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(urweb, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Major mode for editing Ur/Web",
         license: nix.thunk(() => nix.attr(from, "license")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

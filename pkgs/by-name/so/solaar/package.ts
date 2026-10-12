@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const acl = nix.arg($, "acl");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "solaar",
       version: "1.1.20",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pwr-Solaar",
           repo: "Solaar",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,12 +72,12 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.add("makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`makeWrapperArgs+=(--prefix DYLD_LIBRARY_PATH : '${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [hidapi]))}')
 `)))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         DYLD_LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [hidapi]))))),
       })),
       pythonImportsCheck: nix.thunk(() => ["solaar", "solaar.gtk"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Linux devices manager for the Logitech Unifying Receiver",
         longDescription: "Solaar is a Linux manager for many Logitech keyboards, mice, and trackpads that\nconnect wirelessly to a USB Unifying, Lightspeed, or Nano receiver, connect\ndirectly via a USB cable, or connect via Bluetooth. Solaar does not work with\nperipherals from other companies.\n\nSolaar can be used as a GUI application or via its command-line interface.\n\nThis tool requires either to be run with root/sudo or alternatively to have the udev rules files installed. On NixOS this can be achieved by setting `hardware.logitech.wireless.enable`.\n",
         homepage: "https://pwr-solaar.github.io/Solaar/",

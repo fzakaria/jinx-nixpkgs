@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     freeformType: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "type")),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       displayName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           default: "",
           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"Python 3\"\n\"Python 3 for Data Science\"\n")),
           description: "Name that will be shown to the user.\n",
         })))),
       argv: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           example: nix.thunk(() => [
             "{customEnv.interpreter}",
@@ -43,34 +43,34 @@ export default nix.lambda((args) => (() => {
           description: "Command and arguments to start the kernel.\n",
         })))),
       language: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           example: "python",
           description: "Language of the environment. Typically the name of the binary.\n",
         })))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           default: nix.thunk(() => ({})),
-          example: nix.thunk(() => ({ __proto__: pos$4, OMP_NUM_THREADS: "1" })),
+          example: nix.thunk(() => ({ [nix.POS]: pos$4, OMP_NUM_THREADS: "1" })),
           description: "Environment variables to set for the kernel.\n",
         })))),
       logo32: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
           default: null,
           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${env.sitePackages}/ipykernel/resources/logo-32x32.png\"")),
           description: "Path to 32x32 logo png.\n",
         })))),
       logo64: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
           default: null,
           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${env.sitePackages}/ipykernel/resources/logo-64x64.png\"")),
           description: "Path to 64x64 logo png.\n",
         })))),
       extraPaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
           default: nix.thunk(() => ({})),
           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"{ examples = ${env.sitePack}/IRkernel/kernelspec/kernel.js\"; }")),

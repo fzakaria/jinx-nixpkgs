@@ -29,39 +29,39 @@ export default nix.lambda((args) => (() => {
   const unbound = nix.arg($, "unbound");
   const zeromq = nix.arg($, "zeromq");
   const miniupnp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "miniupnp",
       repo: "miniupnp",
       rev: "miniupnpc_2_2_1",
       hash: "sha256-opd0hcZV+pjC3Mae3Yf6AR5fj6xVwGm9LuU5zEPxBKc=",
     }))));
   const supercop = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "monero-project",
       repo: "supercop",
       rev: "633500ad8c8759995049ccd022107d1fa8a1bbc9",
       hash: "sha256-26UmESotSWnQ21VbAYEappLpkEMyl0jiuCaezRYd/sE=",
     }))));
   const randomwow = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "wownero",
       repo: "RandomWOW",
       rev: "27b099b6dd6fef6e17f58c6dfe00009e9c5df587",
       hash: "sha256-imiXr4irXeKiQ6VMd6f3MJ46zvdvymnRdHGgnEvkT+o=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "wownero",
       version: "0.11.3.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "wownero",
           repo: "wownero",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-EioXFfUQ+CV6+Ipef1wbmc+taKI98I420J7eqzz15Ss=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=cast-user-defined",
             "-Wno-error=implicit-function-declaration",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       })),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://codeberg.org/wownero/wownero/commit/0d0a656618e396de7ff60368dde708ad9d45f866.patch",
             hash: "sha256-xnpEZxWg5YzOhDIWZjNyXH8GBdK7c2rxL9DewPKghIg=",
           })))),
@@ -91,7 +91,7 @@ ln -s ${supercop} $sourceRoot/external/supercop
         "-DMANUAL_SUBMODULES=ON",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "A privacy-centric memecoin that was fairly launched on April 1, 2018 with\nno pre-mine, stealth-mine or ICO\n",
         longDescription: "Wownero has a maximum supply of around 184 million WOW with a slow and\nsteady emission over 50 years. It is a fork of Monero, but with its own\ngenesis block, so there is no degradation of privacy due to ring\nsignatures using different participants for the same tx outputs on\nopposing forks.\n",
         homepage: "https://wownero.org/",

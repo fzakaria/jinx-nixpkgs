@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const ocamlPackages = nix.arg($, "ocamlPackages");
   const w = nix.withScope(ocamlPackages, null);
   return nix.app(nix.lookup(w, "buildDunePackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "msat-bin",
       version: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "msat")), "version")),
       src: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "msat")), "src")),
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.lookup(w, "msat")),
       ]),
       meta: nix.thunk(() => nix.update(nix.sel(nix.lookup(w, "msat"), "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "SAT solver binary based on the msat library",
         mainProgram: "msat",
       })),

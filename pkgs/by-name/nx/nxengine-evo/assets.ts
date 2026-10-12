@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nxengine-assets",
       version: "2.6.5-1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/nxengine/nxengine-evo/releases/download/v${nix.sel(finalAttrs, "version")}/NXEngine-Evo-v${nix.sel(finalAttrs, "version")}-Win64.zip`),
           hash: "sha256-+PjjhJYL1yk67QJ7ixfpCRg1coQnSPpXDUIwsqp9aIM=",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/nxengine/\ncp -r data/ $out/share/nxengine/data\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/nxengine/nxengine-evo",
         description: "Assets for nxengine-evo",
         license: nix.thunk(() => (() => {

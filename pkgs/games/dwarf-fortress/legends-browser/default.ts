@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const version = "1.19.2";
   const jar = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/robertjanetzko/LegendsBrowser/releases/download/${version}/legendsbrowser-${version}.jar`),
       hash: "sha256-jkv7InwaRn0K3VAa0LqkYpH6TnrT/tGYBtbvNGM6t98=",
     }))));
@@ -31,12 +31,12 @@ fi
 exec ${jre}/bin/java -jar ${jar}
 `)));
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "legends-browser",
       paths: nix.thunk(() => [script]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multi-platform, open source, java-based legends viewer for dwarf fortress",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

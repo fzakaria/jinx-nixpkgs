@@ -25,37 +25,37 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "rfdump",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.rfdump.org/dl/rfdump-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-fbEmh7i3ug5GCeyJ2wT45bbDq0ZEOv8yH+MOJwzER4U=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/pkg-security-team/rfdump/-/raw/debian/master/debian/patches/01_fix_desktop_file.patch",
             hash: "sha256-r6BR+eAg963GjcFvV6/1heW7uKi8tmi7j8LyxtpcgYk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://salsa.debian.org/pkg-security-team/rfdump/-/raw/debian/master/debian/patches/03_fix-format-security-errors.patch",
             hash: "sha256-rQKvFeSQ09P46lhvlov51Oej0HurlR++5Yv4kCLn9J8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://salsa.debian.org/pkg-security-team/rfdump/-/raw/debian/master/debian/patches/02_configure.in-preserve-CFLAGS.patch",
             hash: "sha256-4+Yj5I019ZkHbtE3s67miAlMeuV8aZdc9RzJrySLmgM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://salsa.debian.org/pkg-security-team/rfdump/-/raw/debian/master/debian/patches/04_gcc10.patch",
             hash: "sha256-LTsBkdwvmZ11+gwfe/XaapxzLaEVu7CdtCw8mqJcXr4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://salsa.debian.org/pkg-security-team/rfdump/-/raw/debian/master/debian/patches/05_gtk3.patch",
             hash: "sha256-1y/JFePfnQMMVwqLYgUQyP/SNZRMHgV+cHjbHP6szQs=",
           })))),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["LIBS=-lexpat"]),
       postInstall: "install -D $out/share/pixmaps/rfdump.png -t $out/share/icons/hicolor/128x128/apps\nrm -r $out/share/pixmaps\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Tool to detect RFID-Tags and show their meta information",
         homepage: "https://www.rfdump.org/",
         changelog: "https://salsa.debian.org/pkg-security-team/rfdump/-/blob/debian/master/ChangeLog",

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const ripgrep = nix.arg($, "ripgrep");
   const gh = nix.arg($, "gh");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gsd",
       version: "3.0.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gsd-build",
           repo: "gsd-2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-qOrMx2yBywxjavt7g5253mcWmYhTO6bbS6eecn04Kew=",
       webNpmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-web-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/web`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nodejs: nodejs_22,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      env: nix.thunk(() => ({ __proto__: pos$3, PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1" })),
       prePatch: "export npmDeps webNpmDeps\n",
       postPatch: "# The npm \"files\" array omits \"extensions/\" so workspace symlinks under\n# node_modules/@gsd-extensions/* end up dangling after `npm pack`. Include\n# the extensions sources so they ship with the package.\nsubstituteInPlace package.json \\\n  --replace-fail '\"packages\",' '\"packages\",\n    \"extensions\",'\n",
       preBuild: "pushd web\nmakeCacheWritable=1 npmDeps=\"$webNpmDeps\" npmConfigHook\npopd\n",
@@ -54,7 +54,7 @@ done
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Meta-prompting and spec-driven development system for autonomous coding agents",
         homepage: "https://github.com/gsd-build/gsd-2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

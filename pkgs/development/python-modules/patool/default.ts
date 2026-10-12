@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wummel",
           repo: "patool",
           tag: version,
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         "test_p7azip",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_ar"]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Portable archive file manager",
         mainProgram: "patool",
         homepage: "https://wummel.github.io/patool/",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

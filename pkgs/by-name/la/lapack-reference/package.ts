@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const blas64 = nix.argOr($, "blas64", () => false);
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "liblapack",
       version: "3.12.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Reference-LAPACK",
           repo: "lapack",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,10 +39,10 @@ export default nix.lambda((args) => (() => {
         "-DBUILD_TESTING=ON",
       ], nix.concat(nix.app(nix.sel(lib, "optional"), shared, "-DBUILD_SHARED_LIBS=ON"), nix.concat(nix.app(nix.sel(lib, "optional"), blas64, "-DBUILD_INDEX64=ON"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), "-DTEST_FORTRAN_COMPILER=OFF"))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         blas64: blas64,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
@@ -59,7 +59,7 @@ ctest ${nix.sel(finalAttrs, "ctestArgs")}
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Linear Algebra PACKage",
         homepage: "http://www.netlib.org/lapack/",
         maintainers: nix.thunk(() => (() => {

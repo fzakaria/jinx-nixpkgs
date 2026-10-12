@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
   const stateDir = "/var/lib/tandoor-recipes";
   const useNewMediaRoot = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "26.05"));
   const env = nix.thunk(() => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     GUNICORN_CMD_ARGS: nix.thunk(() => nix.str`--bind=${nix.sel(cfg, "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
     DEBUG: "0",
     DEBUG_TOOLBAR: "0",
     MEDIA_ROOT: nix.thunk(() => nix.str`${stateDir}${nix.app(nix.sel(lib, "optionalString"), useNewMediaRoot, "/media")}`),
     ALLOWED_HOSTS: nix.thunk(() => nix.sel(cfg, "address")),
-  }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(config, "time", "timeZone"), null)), nix.thunk(() => ({ __proto__: pos$2, TZ: nix.thunk(() => nix.sel(config, "time", "timeZone")) }))), nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "extraConfig"))))));
+  }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(config, "time", "timeZone"), null)), nix.thunk(() => ({ [nix.POS]: pos$2, TZ: nix.thunk(() => nix.sel(config, "time", "timeZone")) }))), nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "extraConfig"))))));
   const manage = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "manage", nix.thunk(() => nix.str`set -o allexport # Export the following env vars
 ${nix.app(nix.sel(lib, "toShellVars"), env)}
 # UID is a read-only shell variable
@@ -61,9 +61,9 @@ exec ${nix.sel(pkgs, "util-linux")}/bin/nsenter \\
   ${pkg}/bin/tandoor-recipes "$@"
 `)));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     meta: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jvanbruegge"))];
@@ -71,53 +71,53 @@ exec ${nix.sel(pkgs, "util-linux")}/bin/nsenter \\
       doc: nix.path(here, "./tandoor-recipes.md"),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         "tandoor-recipes": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable Tandoor Recipes.\n\nWhen started, the Tandoor Recipes database is automatically created if\nit doesn't exist and updated if the package has changed. Both tasks are\nachieved by running a Django migration.\n\nA script to manage the instance (by wrapping Django's manage.py) is linked to\n`/var/lib/tandoor-recipes/tandoor-recipes-manage`.\n",
             })))),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost",
               description: "Web interface address.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8080n,
               description: "Web interface port.",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({})),
               description: "Extra tandoor recipes config options.\n\nSee [the example dot-env file](https://raw.githubusercontent.com/vabene1111/recipes/master/.env.template)\nfor available options.\n",
-              example: nix.thunk(() => ({ __proto__: pos$7, ENABLE_SIGNUP: "1" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$7, ENABLE_SIGNUP: "1" })),
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "tandoor_recipes",
               description: "User account under which Tandoor runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "tandoor_recipes",
               description: "Group under which Tandoor runs.",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "tandoor-recipes", nix.thunk(() => ({})))),
           database: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Configure local PostgreSQL database server for Tandoor Recipes.\n",
@@ -127,33 +127,33 @@ exec ${nix.sel(pkgs, "util-linux")}/bin/nsenter \\
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.asBool(useNewMediaRoot)) && nix.asBool(!nix.asBool(nix.has(nix.sel(cfg, "extraConfig"), "MEDIA_ROOT"))))), nix.thunk(() => [
             "`services.tandoor-recipes.extraConfig.MEDIA_ROOT` is unset. This is considered insecure for `system.stateVersion` < 26.05. See https://nixos.org/manual/nixos/unstable/#module-services-tandoor-recipes-migrating-media for migration instructions.",
           ]))),
         users: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "tandoor_recipes")), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               tandoor_recipes: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 group: nix.thunk(() => nix.attr(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "tandoor_recipes")), nix.thunk(() => ({ __proto__: pos$18, tandoor_recipes: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "tandoor_recipes")), nix.thunk(() => ({ [nix.POS]: pos$18, tandoor_recipes: nix.thunk(() => ({})) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             "tandoor-recipes": nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Tandoor Recipes server",
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target")),
               after: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkg, "python", "pkgs", "gunicorn")}/bin/gunicorn recipes.wsgi
 `),
                 Restart: "on-failure",
@@ -197,18 +197,18 @@ exec ${nix.sel(pkgs, "util-linux")}/bin/nsenter \\
 ${pkg}/bin/tandoor-recipes migrate
 `),
               environment: nix.thunk(() => nix.update(env, {
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 PYTHONPATH: nix.thunk(() => nix.str`${nix.app(nix.sel(pkg, "python", "pkgs", "makePythonPath"), nix.thunk(() => nix.sel(pkg, "propagatedBuildInputs")))}:${pkg}/lib/tandoor-recipes`),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           "tandoor-recipes": nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 DB_ENGINE: "django.db.backends.postgresql",
                 POSTGRES_HOST: "/run/postgresql",
                 POSTGRES_USER: "tandoor_recipes",
@@ -216,11 +216,11 @@ ${pkg}/bin/tandoor-recipes migrate
               })))),
           })),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               enable: true,
               ensureDatabases: nix.thunk(() => ["tandoor_recipes"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$27, name: "tandoor_recipes", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$27, name: "tandoor_recipes", ensureDBOwnership: true })),
               ]),
             })))),
         })),

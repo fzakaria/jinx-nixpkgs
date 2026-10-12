@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2024.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-crispy-forms",
           repo: "crispy-bootstrap3",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["crispy_bootstrap3"]);
       const doCheck = nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(django, "version")), "5.1"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bootstrap 3 template pack for django-crispy-forms",
         homepage: "https://github.com/django-crispy-forms/crispy-bootstrap3",
         changelog: nix.thunk(() => nix.str`https://github.com/django-crispy-forms/crispy-bootstrap3/blob/${version}/CHANGELOG.md`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

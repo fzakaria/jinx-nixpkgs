@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const recutils = nix.arg($, "recutils");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "taldir",
       version: "1.0.5",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git-www.taler.net/taldir.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ZKNkMV0IV6E+yCQeabGXpIQclx1S4YEgFn4whGXTaks=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/taldir-cli", "cmd/taldir-server"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git-www.taler.net/taldir.git",
         description: "Directory service to resolve wallet mailboxes by messenger addresses",
         teams: nix.thunk(() => (() => {

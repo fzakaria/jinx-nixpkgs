@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cm-unicode",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/cm-unicode/cm-unicode/${nix.sel(finalAttrs, "version")}/cm-unicode-${nix.sel(finalAttrs, "version")}-otf.tar.xz`),
           hash: "sha256-VIp+vk1IYbEHW15wMrfGVOPqg1zBZDpgFx+jlypOHCg=",
         })))),
@@ -30,7 +30,7 @@ install -m444 -Dt $out/share/doc/cm-unicode-${nix.sel(finalAttrs, "version")}   
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://cm-unicode.sourceforge.io/",
         description: "Computer Modern Unicode fonts",
         maintainers: nix.thunk(() => (() => {

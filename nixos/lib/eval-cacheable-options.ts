@@ -25,26 +25,26 @@ export default nix.lambda((args) => (() => {
   const release = nix.arg($, "release");
   const lib = nix.thunk(() => nix.builtins.import(libPath));
   const modulesPath = nix.thunk(() => nix.str`${nixosPath}/modules`);
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(pkgsLibPath), nix.thunk(() => ({ __proto__: pos$1, lib: lib, pkgs: null }))));
-  const utils = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${nixosPath}/lib/utils.nix`)), nix.thunk(() => ({ __proto__: pos$2, config: config, lib: lib, pkgs: null }))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(pkgsLibPath), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, pkgs: null }))));
+  const utils = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${nixosPath}/lib/utils.nix`)), nix.thunk(() => ({ [nix.POS]: pos$2, config: config, lib: lib, pkgs: null }))));
   const config = nix.thunk(() => ({
-    __proto__: pos$5,
-    _module: nix.thunk(() => ({ __proto__: pos$3, check: false, args: nix.thunk(() => ({})) })),
-    system: nix.thunk(() => ({ __proto__: pos$4, stateVersion: stateVersion })),
+    [nix.POS]: pos$5,
+    _module: nix.thunk(() => ({ [nix.POS]: pos$3, check: false, args: nix.thunk(() => ({})) })),
+    system: nix.thunk(() => ({ [nix.POS]: pos$4, stateVersion: stateVersion })),
   }));
   const eval$ = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       modules: nix.thunk(() => nix.concat(nix.builtins.map((m) => nix.str`${modulesPath}/${m}`, modules), [config])),
-      specialArgs: nix.thunk(() => ({ __proto__: pos$6, config: config, pkgs: pkgs, utils: utils, class: "nixos" })),
+      specialArgs: nix.thunk(() => ({ [nix.POS]: pos$6, config: config, pkgs: pkgs, utils: utils, class: "nixos" })),
     }))));
   const docs = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${nixosPath}/doc/manual`)), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pkgs: nix.thunk(() => nix.update(pkgs, {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         lib: lib,
         buildPackages: nix.thunk(() => ({
-          __proto__: pos$9,
-          nixosOptionsDoc: (attrs) => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${nixosPath}/lib/make-options-doc`)), nix.thunk(() => nix.update({ __proto__: pos$8, pkgs: pkgs, lib: lib }, attrs))),
+          [nix.POS]: pos$9,
+          nixosOptionsDoc: (attrs) => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${nixosPath}/lib/make-options-doc`)), nix.thunk(() => nix.update({ [nix.POS]: pos$8, pkgs: pkgs, lib: lib }, attrs))),
         })),
       })),
       config: nix.thunk(() => nix.sel(config, "config")),

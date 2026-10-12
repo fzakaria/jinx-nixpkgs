@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const apple_sdk_15 = nix.arg($, "apple-sdk_15");
   const darwin = nix.arg($, "darwin");
   const llvmCcAndBintools = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "llvmCcAndBintools",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(buildPackages, "rustc", "llvmPackages", "llvm")),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "cronet-go",
       version: "150.0.7871.63-3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "SagerNet",
           repo: "cronet-go",
           rev: "049f2909701ca088c9569f6b303bba5376a2b2ff",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-705cctVHseRSJuEPFxlTRJJUWsNgZ4y5ZQ9nwhyTqFY=",
         })))),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./cflags.patch")], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libresolv.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             libresolv: nix.thunk(() => nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(darwin, "libresolv")))),
           }))))))),
       postPatch: "patchShebangs --build naiveproxy/src/build/toolchain/apple/linker_driver.py\n",
@@ -69,28 +69,28 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r lib include include_cgo.go $out/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "build-naive": nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             pname: nix.thunk(() => nix.add(nix.sel(finalAttrs, "pname"), "-build-naive")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             vendorHash: "sha256-pyeE+JPuRQEjNzrF+o9jslBcBM1vruuL+I/DCIa2BG0=",
             patches: nix.thunk(() => [
               nix.thunk(() => nix.app(replaceVars, nix.path(here, "./build-naive.patch"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   gn: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), gn)),
                   clang_base_path: llvmCcAndBintools,
                 })))),
             ]),
             subPackages: nix.thunk(() => ["cmd/build-naive"]),
-            meta: nix.thunk(() => ({ __proto__: pos$5, mainProgram: "build-naive" })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$5, mainProgram: "build-naive" })),
           })))),
       })),
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Go bindings for naiveproxy",
         homepage: "https://github.com/SagerNet/cronet-go",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

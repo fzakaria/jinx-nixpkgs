@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const squashfs_tools = nix.arg($, "squashfs-tools");
   const zip = nix.arg($, "zip");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dumpyara",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sebaubuntu-python",
           repo: "dumpyara",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [_7zz, android_tools, cpio, erofs_utils]))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           requiredTools: nix.thunk(() => nix.app(runCommand, "check-required-tools", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [android_tools, dumpyara, squashfs_tools, zip]),
             })), "echo foo > bar.txt\nmkbootimg --kernel bar.txt -o boot.img\nmksquashfs bar.txt system.img\nzip system.zip *.img\ndumpyara system.zip\ntouch $out\n")),
         })),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Android firmware dumper",
         homepage: "https://github.com/sebaubuntu-python/dumpyara",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -28,15 +28,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "hardware", "argonone"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         hardware: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           argonone: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the driver for Argon One Raspberry Pi case fan and power button")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "argononed", nix.thunk(() => ({})))),
           })),
@@ -44,20 +44,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         hardware: nix.thunk(() => ({
-          __proto__: pos$9,
-          i2c: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+          [nix.POS]: pos$9,
+          i2c: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
           deviceTree: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             overlays: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 name: "argononed",
                 dtboFile: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/boot/overlays/argonone.dtbo`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 name: "i2c1-okay-overlay",
                 dtsText: "/dts-v1/;\n/plugin/;\n/ {\n  compatible = \"brcm,bcm2711\";\n  fragment@0 {\n    target = <&i2c1>;\n    __overlay__ {\n      status = \"okay\";\n    };\n  };\n};\n",
               })),
@@ -65,19 +65,19 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             argononed: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Argon One Raspberry Pi case Daemon Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Type: "forking",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/argononed`),
                 PIDFile: "/run/argononed.pid",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "misterio77"))];

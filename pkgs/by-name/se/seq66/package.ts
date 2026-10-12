@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const liblo = nix.arg($, "liblo");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "seq66",
       version: "0.99.22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ahlstromcj",
           repo: "seq66",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ done
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ahlstromcj/seq66",
         description: "Loop based midi sequencer with Qt GUI derived from seq24 and sequencer64",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

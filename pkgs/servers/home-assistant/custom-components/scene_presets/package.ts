@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const domain = "scene_presets";
       const version = "2.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Hypfer",
           repo: "hass-scene_presets",
           tag: version,
           hash: "sha256-pHY68H0nr7eO3tGtVLtzj6cOZO3+VxC00VZmhZy+2Pk=",
         }))));
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           hash: "sha256-HgUf0BHUOOS2LIodPeJK0tZ9HwwLwMtYlaE1dvBtkFo=",
         }))));
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       const npmBuildScript = "build";
       const postInstall = "# Create custom presets directory to satisfy Python set-up code\nmkdir -p \"$out/custom_components/scene_presets/userdata/custom/assets\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/Hypfer/hass-scene_presets/releases/tag/${nix.sel(src, "tag")}`),
         description: "Hue-like scene presets for lights in Home Assistant",
         homepage: "https://github.com/Hypfer/hass-scene_presets",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         owner,
         domain,
         version,

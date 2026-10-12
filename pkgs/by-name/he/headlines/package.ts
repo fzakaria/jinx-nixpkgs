@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "headlines";
       const version = "0.7.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "caveman250",
           repo: "Headlines",
           rev: version,
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "gstreamer")),
           nix.thunk(() => nix.lookup(w, "gst-libav")),
           nix.thunk(() => nix.lookup(w, "gst-plugins-base")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "gst-plugins-good"), "override"), nix.thunk(() => ({ __proto__: pos$2, gtkSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "gst-plugins-good"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
           nix.thunk(() => nix.lookup(w, "gst-plugins-bad")),
         ];
       })()));
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
 )
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GTK4 / Libadwaita Reddit client written in C++",
         homepage: "https://gitlab.com/caveman250/Headlines",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "headlines",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

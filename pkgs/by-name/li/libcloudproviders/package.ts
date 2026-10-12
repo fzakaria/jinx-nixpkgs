@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const mesonEmulatorHook = nix.arg($, "mesonEmulatorHook");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libcloudproviders",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libcloudproviders/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libcloudproviders-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-JHsijRAnsmg4aOfXCA04aTpFfpCKrdDBGdUt5Zo5gGQ=",
         })))),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib]),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "libcloudproviders" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "libcloudproviders" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "DBus API that allows cloud storage sync clients to expose their services",
         homepage: "https://gitlab.gnome.org/World/libcloudproviders",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

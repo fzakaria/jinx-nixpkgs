@@ -47,88 +47,88 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   return (() => {
     const armv5tel_multiplatform = nix.thunk(() => ({
-      __proto__: pos$2,
-      gcc: nix.thunk(() => ({ __proto__: pos$1, arch: "armv5te" })),
+      [nix.POS]: pos$2,
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$1, arch: "armv5te" })),
     }));
     const raspberrypi = nix.thunk(() => ({
-      __proto__: pos$4,
-      gcc: nix.thunk(() => ({ __proto__: pos$3, arch: "armv6kz", fpu: "vfpv2" })),
+      [nix.POS]: pos$4,
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$3, arch: "armv6kz", fpu: "vfpv2" })),
     }));
     const armv7l_hf_multiplatform = nix.thunk(() => ({
-      __proto__: pos$6,
-      gcc: nix.thunk(() => ({ __proto__: pos$5, arch: "armv7-a", fpu: "vfpv3-d16" })),
+      [nix.POS]: pos$6,
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$5, arch: "armv7-a", fpu: "vfpv3-d16" })),
     }));
     const raspberrypi2 = armv7l_hf_multiplatform;
     const bluefield2 = nix.thunk(() => ({
-      __proto__: pos$8,
-      gcc: nix.thunk(() => ({ __proto__: pos$7, arch: "armv8-a+fp+simd+crc+crypto" })),
+      [nix.POS]: pos$8,
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$7, arch: "armv8-a+fp+simd+crc+crypto" })),
     }));
     const zero_gravitas = nix.thunk(() => ({
-      __proto__: pos$10,
-      gcc: nix.thunk(() => ({ __proto__: pos$9, fpu: "neon", cpu: "cortex-a9" })),
+      [nix.POS]: pos$10,
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$9, fpu: "neon", cpu: "cortex-a9" })),
     }));
     const zero_sugar = nix.thunk(() => ({
-      __proto__: pos$12,
-      gcc: nix.thunk(() => ({ __proto__: pos$11, cpu: "cortex-a7", fpu: "neon-vfpv4", "float-abi": "hard" })),
+      [nix.POS]: pos$12,
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$11, cpu: "cortex-a7", fpu: "neon-vfpv4", "float-abi": "hard" })),
     }));
     const armv7a_android = nix.thunk(() => ({
-      __proto__: pos$14,
-      gcc: nix.thunk(() => ({ __proto__: pos$13, arch: "armv7-a", "float-abi": "softfp", fpu: "vfpv3-d16" })),
+      [nix.POS]: pos$14,
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$13, arch: "armv7-a", "float-abi": "softfp", fpu: "vfpv3-d16" })),
     }));
     const aarch64_multiplatform = nix.thunk(() => ({
-      __proto__: pos$16,
-      gcc: nix.thunk(() => ({ __proto__: pos$15, arch: "armv8-a" })),
+      [nix.POS]: pos$16,
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$15, arch: "armv8-a" })),
     }));
     const apple_m1 = nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       gcc: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         arch: "armv8.3-a+crypto+sha2+aes+crc+fp16+lse+simd+ras+rdm+rcpc",
         cpu: "apple-a13",
       })),
     }));
     const ben_nanonote = nix.thunk(() => ({
-      __proto__: pos$20,
-      gcc: nix.thunk(() => ({ __proto__: pos$19, arch: "mips32", float: "soft" })),
+      [nix.POS]: pos$20,
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$19, arch: "mips32", float: "soft" })),
     }));
     const fuloong2f_n32 = nix.thunk(() => ({
-      __proto__: pos$22,
-      gcc: nix.thunk(() => ({ __proto__: pos$21, arch: "loongson2f", float: "hard", abi: "n32" })),
+      [nix.POS]: pos$22,
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$21, arch: "loongson2f", float: "hard", abi: "n32" })),
     }));
     const gcc_mips32r2_o32 = nix.thunk(() => ({
-      __proto__: pos$24,
-      gcc: nix.thunk(() => ({ __proto__: pos$23, arch: "mips32r2", abi: "32" })),
+      [nix.POS]: pos$24,
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$23, arch: "mips32r2", abi: "32" })),
     }));
     const gcc_mips32r6_o32 = nix.thunk(() => ({
-      __proto__: pos$26,
-      gcc: nix.thunk(() => ({ __proto__: pos$25, arch: "mips32r6", abi: "32" })),
+      [nix.POS]: pos$26,
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$25, arch: "mips32r6", abi: "32" })),
     }));
     const gcc_mips64r2_n32 = nix.thunk(() => ({
-      __proto__: pos$28,
-      gcc: nix.thunk(() => ({ __proto__: pos$27, arch: "mips64r2", abi: "n32" })),
+      [nix.POS]: pos$28,
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$27, arch: "mips64r2", abi: "n32" })),
     }));
     const gcc_mips64r6_n32 = nix.thunk(() => ({
-      __proto__: pos$30,
-      gcc: nix.thunk(() => ({ __proto__: pos$29, arch: "mips64r6", abi: "n32" })),
+      [nix.POS]: pos$30,
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$29, arch: "mips64r6", abi: "n32" })),
     }));
     const gcc_mips64r2_64 = nix.thunk(() => ({
-      __proto__: pos$32,
-      gcc: nix.thunk(() => ({ __proto__: pos$31, arch: "mips64r2", abi: "64" })),
+      [nix.POS]: pos$32,
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$31, arch: "mips64r2", abi: "64" })),
     }));
     const gcc_mips64r6_64 = nix.thunk(() => ({
-      __proto__: pos$34,
-      gcc: nix.thunk(() => ({ __proto__: pos$33, arch: "mips64r6", abi: "64" })),
+      [nix.POS]: pos$34,
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$33, arch: "mips64r6", abi: "64" })),
     }));
     const loongarch64_multiplatform = nix.thunk(() => ({
-      __proto__: pos$36,
-      gcc: nix.thunk(() => ({ __proto__: pos$35, arch: "la64v1.0", "strict-align": false, cmodel: "medium" })),
+      [nix.POS]: pos$36,
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$35, arch: "la64v1.0", "strict-align": false, cmodel: "medium" })),
     }));
     const select = (platform) => (nix.asBool(nix.sel(platform, "isAarch32")) ? (() => {
       const version = nix.thunk(() => nix.selOr(platform, () => null, "parsed", "cpu", "version"));
       return (nix.asBool(nix.eq(version, null)) ? {} : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "6")) ? nix.force(armv5tel_multiplatform) : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "7")) ? nix.force(raspberrypi) : nix.force(armv7l_hf_multiplatform))));
-    })() : (nix.asBool(nix.sel(platform, "isAarch64")) ? (nix.asBool(nix.sel(platform, "isDarwin")) ? nix.force(apple_m1) : nix.force(aarch64_multiplatform)) : (nix.asBool(nix.sel(platform, "isLoongArch64")) ? nix.force(loongarch64_multiplatform) : (nix.asBool(nix.eq(nix.sel(platform, "parsed", "cpu"), nix.sel(lib, "systems", "parse", "cpuTypes", "mipsel"))) ? nix.sel(nix.app(nix.builtins.import(nix.path(here, "./examples.nix")), nix.thunk(() => ({ __proto__: pos$37, lib: lib }))), "mipsel-linux-gnu") : {}))));
+    })() : (nix.asBool(nix.sel(platform, "isAarch64")) ? (nix.asBool(nix.sel(platform, "isDarwin")) ? nix.force(apple_m1) : nix.force(aarch64_multiplatform)) : (nix.asBool(nix.sel(platform, "isLoongArch64")) ? nix.force(loongarch64_multiplatform) : (nix.asBool(nix.eq(nix.sel(platform, "parsed", "cpu"), nix.sel(lib, "systems", "parse", "cpuTypes", "mipsel"))) ? nix.sel(nix.app(nix.builtins.import(nix.path(here, "./examples.nix")), nix.thunk(() => ({ [nix.POS]: pos$37, lib: lib }))), "mipsel-linux-gnu") : {}))));
     return {
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       "armv5tel-multiplatform": armv5tel_multiplatform,
       raspberrypi,
       raspberrypi2,

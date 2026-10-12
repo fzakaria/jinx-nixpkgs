@@ -14,24 +14,24 @@ export default (self) => (super$) => (() => {
   const lib = nix.thunk(() => nix.attr(self, "lib"));
   const config = nix.thunk(() => nix.attr(self, "config"));
   return nix.update(nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       callPackage: nix.thunk(() => nix.attr(super$, "callPackage")),
       directory: nix.path(here, "./ext"),
     }))), nix.update({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     callPackage: nix.thunk(() => nix.attr(super$, "callPackage")),
-    "timescaledb-apache": nix.thunk(() => nix.app(nix.sel(super$, "callPackage"), nix.path(here, "./ext/timescaledb.nix"), nix.thunk(() => ({ __proto__: pos$2, enableUnfree: false })))),
+    "timescaledb-apache": nix.thunk(() => nix.app(nix.sel(super$, "callPackage"), nix.path(here, "./ext/timescaledb.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, enableUnfree: false })))),
   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(self, "perlSupport"))), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       plperl: nix.thunk(() => nix.builtins.throw("PostgreSQL extension `plperl` is not available, because `postgresql` was built without Perl support. Override with `perlSupport = true` to enable the extension.")),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(self, "pythonSupport"))), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       plpython3: nix.thunk(() => nix.builtins.throw("PostgreSQL extension `plpython3` is not available, because `postgresql` was built without Python support. Override with `pythonSupport = true` to enable the extension.")),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(self, "tclSupport"))), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pltcl: nix.thunk(() => nix.builtins.throw("PostgreSQL extension `pltcl` is not available, because `postgresql` was built without Tcl support. Override with `tclSupport = true` to enable the extension.")),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       cstore_fdw: nix.thunk(() => nix.builtins.throw("PostgreSQL extension `cstore_fdw` has been removed due to being broken for more than a year; see RFC 180")),
       pg_embedding: nix.thunk(() => nix.builtins.throw("PostgreSQL extension `pg_embedding` has been removed since the project has been abandoned. Upstream's recommendation is to use pgvector instead (https://neon.tech/docs/extensions/pg_embedding#migrate-from-pg_embedding-to-pgvector)")),
       "pgvecto-rs": nix.thunk(() => nix.builtins.throw("PostgreSQL extension `pgvecto-rs` has been removed since the project has been abandoned. Upstream's recommendation is to use vectorchord instead (https://docs.vectorchord.ai/vectorchord/admin/migration.html#from-pgvecto-rs) ")),

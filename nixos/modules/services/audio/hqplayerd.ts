@@ -43,43 +43,43 @@ export default nix.lambda((args) => (() => {
   const stateDir = "/var/lib/hqplayer";
   const configDir = "/etc/hqplayer";
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         hqplayerd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "HQPlayer Embedded")),
           auth: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Username used for HQPlayer's WebUI.\n\nWithout this you will need to manually create the credentials after\nfirst start by going to http://your.ip/8088/auth\n",
               })))),
             password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Password used for HQPlayer's WebUI.\n\nWithout this you will need to manually create the credentials after\nfirst start by going to http://your.ip/8088/auth\n",
               })))),
           })),
           licenseFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path to the HQPlayer license key file.\n\nWithout this, the service will run in trial mode and restart every 30\nminutes.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Opens ports needed for the WebUI and controller API.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
               default: null,
               description: "HQplayer daemon configuration, written to /etc/hqplayer/hqplayerd.xml.\n\nRefer to share/doc/hqplayerd/readme.txt in the hqplayerd derivation for possible values.\n",
@@ -88,34 +88,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => (nix.asBool((!nix.asBool(!nix.eq(nix.sel(cfg, "auth", "username"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "auth", "password"), null)))) && nix.asBool((!nix.asBool(!nix.eq(nix.sel(cfg, "auth", "password"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "auth", "username"), null)))))),
             message: "You must set either both services.hqplayer.auth.username and password, or neither.",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           etc: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "hqplayer/hqplayerd.xml": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "config"), null)), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "hqplayerd.xml", nix.thunk(() => nix.sel(cfg, "config")))),
               })))),
-            "hqplayer/hqplayerd4-key.xml": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "licenseFile"), null)), nix.thunk(() => ({ __proto__: pos$12, source: nix.thunk(() => nix.sel(cfg, "licenseFile")) })))),
+            "hqplayer/hqplayerd4-key.xml": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "licenseFile"), null)), nix.thunk(() => ({ [nix.POS]: pos$12, source: nix.thunk(() => nix.sel(cfg, "licenseFile")) })))),
           })),
           systemPackages: nix.thunk(() => [pkg]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$16,
-          firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({ __proto__: pos$15, allowedTCPPorts: nix.thunk(() => [8088n, 4321n]) })))),
+          [nix.POS]: pos$16,
+          firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({ [nix.POS]: pos$15, allowedTCPPorts: nix.thunk(() => [8088n, 4321n]) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${configDir}      0755 hqplayer hqplayer - -`),
               nix.thunk(() => nix.str`d ${stateDir}       0755 hqplayer hqplayer - -`),
@@ -124,14 +124,14 @@ export default nix.lambda((args) => (() => {
           })),
           packages: nix.thunk(() => [pkg]),
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             hqplayerd: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["systemd-tmpfiles-setup.service"]),
-              environment: nix.thunk(() => ({ __proto__: pos$18, HOME: nix.thunk(() => nix.str`${stateDir}/home`) })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$18, HOME: nix.thunk(() => nix.str`${stateDir}/home`) })),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 ConditionPathExists: nix.thunk(() => [configDir, stateDir]),
               })),
               restartTriggers: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "config"), null)), nix.thunk(() => [
@@ -150,18 +150,18 @@ fi
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           groups: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             hqplayer: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "hqplayer")),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             hqplayer: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "hqplayer daemon user",
               extraGroups: nix.thunk(() => ["audio", "video"]),
               group: "hqplayer",

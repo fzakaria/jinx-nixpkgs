@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const clang = nix.thunk(() => nix.sel(llvmPackages, "clangUseLLVM"));
-  const clangWrapped = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(clang) : nix.app(runCommand, "clang-pocl", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
+  const clangWrapped = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(clang) : nix.app(runCommand, "clang-pocl", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
 cp -r ${clang}/bin/* $out/bin/
 LIBGCC_DIR=$(dirname $(find ${nix.sel(stdenv, "cc", "cc")}/lib/ -name libgcc.a))
 for F in ${clang}/bin/ld*; do
@@ -42,11 +42,11 @@ for F in ${clang}/bin/ld*; do
 done
 `))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pocl",
       version: "7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "pocl",
           repo: "pocl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ done
         })))),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace pocld/shared_cl_context.cc --replace-fail \\\n  \"Dev.getInfo<CL_DEVICE_GLOBAL_MEM_SIZE>()\" \\\n  \"static_cast<size_t>(Dev.getInfo<CL_DEVICE_GLOBAL_MEM_SIZE>())\"\n")),
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "cmakeBool")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           STATIC_LLVM: true,
           ENABLE_POCL_BUILDING: false,
           POCL_ICD_ABSOLUTE_PATH: true,
@@ -62,7 +62,7 @@ done
           ENABLE_REMOTE_CLIENT: true,
           ENABLE_REMOTE_SERVER: true,
         }))), nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "cmakeFeature")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           CLANG: nix.thunk(() => nix.str`${clangWrapped}/bin/clang`),
           CLANGXX: nix.thunk(() => nix.str`${clangWrapped}/bin/clang++`),
         }))), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => [
@@ -86,7 +86,7 @@ done
       installCheckPhase: "runHook preInstallCheck\n\nexport OCL_ICD_VENDORS=$out/etc/OpenCL/vendors\n$out/bin/poclcc -o poclcc.cl.pocl $src/examples/poclcc/poclcc.cl\n\nrunHook postInstallCheck\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Portable open source (MIT-licensed) implementation of the OpenCL standard",
         homepage: "https://portablecl.org",
         changelog: nix.thunk(() => nix.str`https://github.com/pocl/pocl/releases/tag/v${nix.sel(finalAttrs, "version")}`),

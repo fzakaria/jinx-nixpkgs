@@ -23,16 +23,16 @@ export default nix.lambda((args) => (() => {
   const pname = "proton-pass";
   const version = "1.41.1";
   const passthru = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     sources: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://proton.me/download/pass/linux/x64/proton-pass_${version}_amd64.deb`),
           hash: "sha256-vQLZtWAitEgADCsL43cafWYkZy+uvDO3FGyxd3XmXog=",
         })))),
       "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://proton.me/download/pass/macos/ProtonPass_${version}.dmg`),
           hash: "sha256-lUUUj6wbWdo3d/wYRZ8DtwxAYMqM4oJC3cpfNbF/g6M=",
         })))),
@@ -50,7 +50,7 @@ done
 `))),
   }));
   const meta = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     description: "Desktop application for Proton Pass",
     homepage: "https://proton.me/pass",
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -70,7 +70,7 @@ done
     mainProgram: "proton-pass",
   }));
   return nix.app(callPackage, nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.path(here, "./darwin.nix") : nix.path(here, "./linux.nix"))), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       passthru: passthru,

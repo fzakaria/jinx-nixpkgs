@@ -32,48 +32,48 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const enabledInstances = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (conf) => nix.sel(conf, "enable"), nix.thunk(() => nix.sel(cfg, "instances"))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "frp", "enable"]), nix.thunk(() => ["services", "frp", "instances", "", "enable"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "frp", "role"]), nix.thunk(() => ["services", "frp", "instances", "", "role"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "frp", "settings"]), nix.thunk(() => ["services", "frp", "instances", "", "settings"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         frp: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           instances: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     options: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "frp")),
                       role: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["server", "client"]))),
                           description: "The frp consists of `client` and `server`. The server is usually\ndeployed on the machine with a public IP address, and\nthe client is usually deployed on the machine\nwhere the Intranet service to be penetrated resides.\n",
                         })))),
                       environmentFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                           description: "List of paths files that follows systemd environmentfile structure.\nCan be used to pass secrets to settings attribute.\n\nExample content of a file: SECRET_TOKEN=1234\n",
                           default: [],
                         })))),
                       settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                           default: nix.thunk(() => ({})),
                           description: "Frp configuration, for configuration options\nsee the example of [client](https://github.com/fatedier/frp/blob/dev/conf/frpc_full_example.toml)\nor [server](https://github.com/fatedier/frp/blob/dev/conf/frps_full_example.toml) on github.\n",
                           example: nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             serverAddr: "x.x.x.x",
                             serverPort: 7000n,
                             proxies: nix.thunk(() => [
                               nix.thunk(() => ({
-                                __proto__: pos$3,
+                                [nix.POS]: pos$3,
                                 name: "ssh",
                                 type: "tcp",
                                 localIP: "127.0.0.1",
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
                           })),
                         })))),
                       extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                           default: "",
                           description: "Extra frp TOML configuration included at the end of the generated configuration file.\nEspecially useful for [port range mapping].\n\n[port range mapping]: https://github.com/fatedier/frp#port-range-mapping\n",
@@ -100,9 +100,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(enabledInstances, {})), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (instance) => (options) => (() => {
               const serviceName = nix.thunk(() => nix.add("frp", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(instance, "")), nix.thunk(() => nix.add("-", instance)))));
               const baseConfigFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), nix.thunk(() => nix.str`${serviceName}-base.toml`), nix.thunk(() => nix.sel(options, "settings"))));
@@ -117,13 +117,13 @@ ${nix.sel(options, "extraConfig")}
               const serviceCapability = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isServer, nix.thunk(() => ["CAP_NET_BIND_SERVICE"])));
               const executableFile = nix.thunk(() => (nix.asBool(isClient) ? "frpc" : "frps"));
               return nix.app(nix.sel(lib, "nameValuePair"), serviceName, nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   wants: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isClient, nix.thunk(() => ["network-online.target"]))),
                   after: nix.thunk(() => (nix.asBool(isClient) ? ["network-online.target"] : ["network.target"])),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   description: nix.thunk(() => nix.str`A fast reverse proxy frp ${nix.sel(options, "role")} for instance ${instance}`),
                   serviceConfig: nix.thunk(() => nix.update({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     Type: "simple",
                     Restart: "on-failure",
                     RestartSec: 15n,
@@ -148,7 +148,7 @@ ${nix.sel(options, "extraConfig")}
                     SystemCallArchitectures: "native",
                     SystemCallFilter: nix.thunk(() => ["@system-service"]),
                   }, nix.app(nix.sel(lib, "optionalAttrs"), isServer, nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       StateDirectory: "frp",
                       StateDirectoryMode: "0700",
                       UMask: "0007",
@@ -158,7 +158,7 @@ ${nix.sel(options, "extraConfig")}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

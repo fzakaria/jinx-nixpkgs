@@ -51,40 +51,40 @@ export default nix.lambda((args) => (() => {
   const tty = "tty1";
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "greetd", "vt"]), "The VT is now fixed to VT1.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         greetd: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "greetd, a minimal and flexible login manager daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "greetd", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  default_session = {\n    command = \"${pkgs.greetd}/bin/agreety --cmd sway\";\n  };\n}\n")),
               description: "greetd configuration ([documentation](https://man.sr.ht/~kennylevinsen/greetd/))\nas a Nix attribute set.\n",
             })))),
           greeterManagesPlymouth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               internal: true,
               default: false,
               description: "Don't configure the greetd service to wait for Plymouth to exit.\n\nEnable this if the greeter you're using can manage Plymouth itself to provide a smoother handoff.\n",
             })))),
           restart: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "settings"), "initial_session"))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "!(config.services.greetd.settings ? initial_session)")),
               description: "Whether to restart greetd when it terminates (e.g. on failure).\nThis is usually desirable so a user can always log in, but should be disabled when using 'settings.initial_session' (autologin),\nbecause every greetd restart will trigger the autologin again.\n",
             })))),
           useTextGreeter: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether the greeter uses text-based user interfaces (For example, tuigreet).\n\nWhen set to true, some systemd service configuration will be adjusted to avoid systemd boot messages interrupt TUI.\n",
@@ -93,47 +93,47 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           greetd: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             settings: nix.thunk(() => ({
-              __proto__: pos$10,
-              terminal: nix.thunk(() => ({ __proto__: pos$8, vt: 1n })),
+              [nix.POS]: pos$10,
+              terminal: nix.thunk(() => ({ [nix.POS]: pos$8, vt: 1n })),
               default_session: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 user: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "greeter")),
               })),
             })),
           })),
           displayManager: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           pam: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             services: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               greetd: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 useDefaultRules: false,
                 rules: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   auth: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$14, name: "login", control: "substack", modulePath: "login" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$14, name: "login", control: "substack", modulePath: "login" })),
                     ]))),
                   account: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$15, name: "login", control: "include", modulePath: "login" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$15, name: "login", control: "include", modulePath: "login" })),
                     ]))),
                   password: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$16, name: "login", control: "substack", modulePath: "login" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$16, name: "login", control: "substack", modulePath: "login" })),
                     ]))),
                   session: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$17, name: "login", control: "include", modulePath: "login" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$17, name: "login", control: "include", modulePath: "login" })),
                     ]))),
                 })),
               })),
@@ -141,14 +141,14 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           services: nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             greetd: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               aliases: nix.thunk(() => ["display-manager.service"]),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 Wants: nix.thunk(() => ["systemd-user-sessions.service"]),
                 After: nix.thunk(() => nix.concat([
                   "systemd-user-sessions.service",
@@ -157,7 +157,7 @@ export default nix.lambda((args) => (() => {
                 Conflicts: nix.thunk(() => [nix.thunk(() => nix.str`getty@${tty}.service`)]),
               })),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --config ${nix.app(nix.sel(settingsFormat, "generate"), "greetd.toml", nix.thunk(() => nix.sel(cfg, "settings")))}`),
                 Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "restart")), "on-success")),
                 IgnoreSIGPIPE: false,
@@ -166,7 +166,7 @@ export default nix.lambda((args) => (() => {
                 KeyringMode: "shared",
                 Type: "idle",
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "useTextGreeter")), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   StandardInput: "tty",
                   StandardOutput: "tty",
                   StandardError: "journal",
@@ -179,25 +179,25 @@ export default nix.lambda((args) => (() => {
               wantedBy: nix.thunk(() => ["graphical.target"]),
             })),
           }, [
-            [nix.str`autovt@${tty}`, nix.thunk(() => ({ __proto__: pos$27, enable: false }))],
+            [nix.str`autovt@${tty}`, nix.thunk(() => ({ [nix.POS]: pos$27, enable: false }))],
           ])),
           defaultUnit: "graphical.target",
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             rules: nix.thunk(() => ["d '/var/cache/tuigreet' - greeter greeter - -"]),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           users: nix.thunk(() => ({
-            __proto__: pos$32,
-            greeter: nix.thunk(() => ({ __proto__: pos$31, isSystemUser: true, group: "greeter" })),
+            [nix.POS]: pos$32,
+            greeter: nix.thunk(() => ({ [nix.POS]: pos$31, isSystemUser: true, group: "greeter" })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$33, greeter: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$33, greeter: nix.thunk(() => ({})) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "queezle"))];

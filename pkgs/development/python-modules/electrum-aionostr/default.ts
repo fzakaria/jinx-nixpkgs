@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "electrum_aionostr",
           version: version,
           hash: "sha256-N3T46DEjiCcuEIUahpyfTT1KVNjVZIUcNuLcQCl77IQ=",
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["electrum_aionostr"]);
       const disabledTests = nix.thunk(() => ["test_command_line_interface"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Asyncio nostr client",
         homepage: "https://github.com/spesmilo/electrum-aionostr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

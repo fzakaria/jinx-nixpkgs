@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const screenshotCommand = nix.argOr($, "screenshotCommand", () => "");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i3lock-fancy",
       version: "0.2-unstable-2023-04-28",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "meskarune",
           repo: "i3lock-fancy",
           rev: "55f5c30071403faf5ae4363a54b6d1f63876d5ce",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, fontconfig, gawk, getopt, i3lock_color, imagemagick, scrot]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bash script that takes a screenshot of the desktop, blurs the background and adds a lock icon and text",
         homepage: "https://github.com/meskarune/i3lock-fancy",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "reedrw"))]),

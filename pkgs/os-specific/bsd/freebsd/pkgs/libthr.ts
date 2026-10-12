@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const csu = nix.arg($, "csu");
   const extraSrc = nix.argOr($, "extraSrc", () => []);
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       path: "lib/libthr",
       extraPaths: nix.thunk(() => nix.concat(["lib/libthread_db", "lib/libc", "lib/libsys", "libexec/rtld-elf"], extraSrc)),
       outputs: nix.thunk(() => ["out", "man", "debug"]),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libcMinimal, include, libgcc, libsys]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "freebsd-libthr-use-nonstring-attribute.patch",
             url: "https://github.com/freebsd/freebsd-src/pull/1882/commits/650800993deb513dc31e99ef5cdecd50ee70bb04.diff",
             hash: "sha256-WKN7dfGAs1+XADT4aLUkkKmQQ4n7gsyFUTCeo6mcuMY=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -B${csu}/lib"
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), "rm $out/lib/libpthread.so\n")),
-      env: nix.thunk(() => ({ __proto__: pos$2, MK_TESTS: "no" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, MK_TESTS: "no" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=libthr.ts.map

@@ -69,12 +69,12 @@ export default nix.lambda((args) => (() => {
   ]));
   const version = "1.520.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tana",
       version: version,
       buildInputs: buildInputs,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/tanainc/tana-desktop-releases/releases/download/v${version}/tana_${version}_amd64.deb`),
           hash: "sha256-1FsoZLJBSi4BijlwO3VYwfU2z5TRapgMoSc+OfrpolU=",
         })))),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out\ncp -r usr/* $out\nrunHook postInstall\n",
       postFixup: "substituteInPlace $out/share/applications/tana.desktop \\\n  --replace \"Exec=tana\" \"Exec=$out/bin/tana\" \\\n  --replace \"Name=tana\" \"Name=Tana\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Intelligent all-in-one workspace",
         longDescription: "At its core, Tana is an outline editor which can be extended to\ncover multiple use-cases and different workflows.\nFor individuals, it supports GTD, P.A.R.A., Zettelkasten note-taking\nout of the box. Teams can leverage the powerful project management\nviews, like Kanban.\nTo complete all, a powerful AI system is integrated to help with most\nof the tasks.\n",
         homepage: "https://tana.inc",

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "hatch_fancy_pypi_readme",
           version: version,
           hash: "sha256-nFjtPf+Q1R9DQUzjcAmtHVsPCP/J/CFpmKBjgPAcAEU=",
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_build", "test_invalid_config"]);
       const pythonImportsCheck = nix.thunk(() => ["hatch_fancy_pypi_readme"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fancy PyPI READMEs with Hatch",
         mainProgram: "hatch-fancy-pypi-readme",
         homepage: "https://github.com/hynek/hatch-fancy-pypi-readme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const libxsmm = nix.arg($, "libxsmm");
   const mpiCheckPhaseHook = nix.arg($, "mpiCheckPhaseHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dbcsr",
       version: "2.10.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cp2k",
           repo: "dbcsr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "expose-c-api-procedures.patch",
             url: "https://github.com/cp2k/dbcsr/commit/a5d9bcfcd487e3181b981687334da1b89bc61dce.patch",
             hash: "sha256-a4glOtMx1EUzYdoQb66bZaRnCgatVFWTqvcQlvU3oIc=",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [mpiCheckPhaseHook]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Distributed Block Compressed Sparse Row matrix library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         homepage: "https://github.com/cp2k/dbcsr",

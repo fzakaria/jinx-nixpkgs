@@ -14,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         publisher: "oliver-ni",
         name: "scheme-fmt",
         version: "1.2.1",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(buildPackages, "jq")))} '.contributes.configuration.properties."scheme-fmt.pythonPath".default = "${nix.app(nix.sel(lib, "getExe"), python3)}"' package.json | ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(buildPackages, "moreutils")), "sponge")} package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Formats Scheme source code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=oliver-ni.scheme-fmt",
         homepage: "https://github.com/oliver-ni/scheme-fmt",

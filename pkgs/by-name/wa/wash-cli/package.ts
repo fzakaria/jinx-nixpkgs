@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wash-cli",
       version: "1.0.0-beta.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wasmCloud",
           repo: "wash",
           tag: nix.thunk(() => nix.str`wash-v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         "--skip=test_pull_and_validate_ghcr_component",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line tool for developing, building, and managing WebAssembly components",
         homepage: "https://github.com/wasmCloud/wash",
         changelog: nix.thunk(() => nix.str`https://github.com/wasmCloud/wash/releases/tag/wash-v${nix.sel(finalAttrs, "version")}`),

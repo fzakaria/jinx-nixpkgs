@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const glibcLocales = nix.arg($, "glibcLocales");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ilspycmd",
       version: "9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "icsharpcode",
           repo: "ILSpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([powershell], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isAarch64")))), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook"))])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LOCALE_ARCHIVE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`${glibcLocales}/lib/locale/locale-archive`))),
       })),
       "dotnet-sdk": nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nugetDeps: nix.path(here, "./deps.json"),
       linkNugetPackages: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for decompiling .NET assemblies and generating portable PDBs",
         mainProgram: "ilspycmd",
         homepage: "https://github.com/icsharpcode/ILSpy",

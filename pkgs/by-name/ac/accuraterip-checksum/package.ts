@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libsndfile = nix.arg($, "libsndfile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "accuraterip-checksum",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leo-bogert",
           repo: "accuraterip-checksum",
           tag: nix.thunk(() => nix.str`version${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libsndfile]),
       installPhase: "runHook preInstall\n\ninstall -D -m755 accuraterip-checksum \"$out/bin/accuraterip-checksum\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program for computing the AccurateRip checksum of singletrack WAV files",
         homepage: "https://github.com/leo-bogert/accuraterip-checksum",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

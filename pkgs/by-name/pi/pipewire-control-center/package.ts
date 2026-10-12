@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pipewire-control-center",
       version: "0.6.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "knightinfected",
           repo: "PipeWireController",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       })()),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "io.github.knightinfected.PipeWireControlCenter",
             desktopName: "PipeWire Controller",
             comment: "Configure PipeWire, filter chains and HRIR virtual surround without editing files",
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["pwctl"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GTK4/libadwaita audio control center for PipeWire",
         longDescription: "A GUI control center for PipeWire providing audio management, signal paths,\nvirtual devices, a live patchbay, parametric equalizer, performance monitoring,\nfilter chains, microphone cleanup (echo/noise reduction), HRIR virtual surround,\nrouting snapshots, per-app policies, and LADSPA/LV2 effect inserts.\n",
         homepage: "https://github.com/knightinfected/PipeWireController",

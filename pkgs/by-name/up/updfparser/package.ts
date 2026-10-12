@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitea = nix.arg($, "fetchFromGitea");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "updfparser",
       version: "0-unstable-2024-03-24",
       rev: "6060d123441a06df699eb275ae5ffdd50409b8f3",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: nix.thunk(() => nix.attr(finalAttrs, "rev")),
           domain: "forge.soutade.fr",
           owner: "soutade",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["BUILD_STATIC=1", "BUILD_SHARED=1"]),
       installPhase: "runHook preInstall\ninstall -Dt $out/include include/*.h\ninstall -Dt $out/lib libupdfparser.so\ninstall -Dt $out/lib libupdfparser.a\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Very simple PDF parser",
         homepage: "https://forge.soutade.fr/soutade/updfparser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

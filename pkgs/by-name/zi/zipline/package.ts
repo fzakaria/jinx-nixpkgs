@@ -33,18 +33,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const python3 = nix.arg($, "python3");
   const environment = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     NEXT_TELEMETRY_DISABLED: "1",
     FFMPEG_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ffmpeg)),
     FFPROBE_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), ffmpeg, "ffprobe")),
   }));
-  const pnpm$ = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ __proto__: pos$2, "nodejs-slim": nodejs_24 }))));
+  const pnpm$ = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "nodejs-slim": nodejs_24 }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "zipline",
       version: "4.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "diced",
           repo: "zipline",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
           postFetch: "git -C $out rev-parse --short HEAD > $out/.git_head\nrm -rf $out/.git\n",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, vips]),
       nativeBuildInputs: nix.thunk(() => [pnpmConfigHook, pnpm$, nodejs_24, makeWrapper, node_gyp, pkg_config, python3]),
       env: nix.thunk(() => nix.update(environment, {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         DATABASE_URL: "dummy",
         NODE_PATH: nix.thunk(() => nix.str`${node_gyp}/lib/node_modules`),
       })),
@@ -109,12 +109,12 @@ runHook postInstall
       versionCheckKeepEnvironment: nix.thunk(() => ["DATABASE_URL"]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
-        tests: nix.thunk(() => ({ __proto__: pos$6, zipline: nix.thunk(() => nix.attr(nixosTests, "zipline")) })),
+        [nix.POS]: pos$7,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$6, zipline: nix.thunk(() => nix.attr(nixosTests, "zipline")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "ShareX/file upload server that is easy to use, packed with features, and with an easy setup",
         homepage: "https://zipline.diced.sh/",
         downloadPage: "https://github.com/diced/zipline",

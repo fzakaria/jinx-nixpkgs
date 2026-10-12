@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gauge-plugin-js";
       const version = "5.0.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getgauge",
           repo: "gauge-js",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ unzip deploy/gauge-js-${version}.zip -d $out/share/gauge-plugins/js/${version}
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(gauge_unwrapped, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gauge plugin that lets you write tests in JavaScript",
         homepage: "https://github.com/getgauge/gauge-js/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -46,7 +46,7 @@ unzip deploy/gauge-js-${version}.zip -d $out/share/gauge-plugins/js/${version}
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const dune = nix.arg($, "dune");
   const stdune = nix.arg($, "stdune");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dune-private-libs",
       src: nix.thunk(() => nix.attr(dune, "src")),
       version: nix.thunk(() => nix.attr(dune, "version")),
       dontAddPrefix: true,
       propagatedBuildInputs: nix.thunk(() => [stdune]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Private libraries of Dune",
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -53,32 +53,32 @@ export default nix.lambda((args) => (() => {
     const lib_1 = nix.arg($_1, "lib");
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       options: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         enable: nix.thunk(() => nix.app(nix.sel(lib_1, "mkEnableOption"), "blockbook-frontend application")),
         package: nix.thunk(() => nix.app(nix.sel(lib_1, "mkPackageOption"), pkgs, "blockbook", nix.thunk(() => ({})))),
         user: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(lib_1, "types", "str")),
             default: nix.thunk(() => nix.str`blockbook-frontend-${name}`),
             description: nix.thunk(() => nix.str`The user as which to run blockbook-frontend-${name}.`),
           })))),
         group: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib_1, "types", "str")),
             default: nix.thunk(() => nix.str`${nix.sel(config_1, "user")}`),
             description: nix.thunk(() => nix.str`The group as which to run blockbook-frontend-${name}.`),
           })))),
         certFile: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "nullOr"), nix.thunk(() => nix.sel(lib_1, "types", "path")))),
             default: null,
             example: nix.thunk(() => nix.str`/etc/secrets/blockbook-frontend-${name}/certFile`),
             description: "To enable SSL, specify path to the name of certificate files without extension.\nExpecting {file}`certFile.crt` and {file}`certFile.key`.\n",
           })))),
         configFile: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "types")), null);
               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -88,13 +88,13 @@ export default nix.lambda((args) => (() => {
             description: "Location of the blockbook configuration file.",
           })))),
         coinName: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(lib_1, "types", "str")),
             default: "Bitcoin",
             description: "See <https://github.com/trezor/blockbook/blob/master/bchain/coins/blockchain.go#L61>\nfor current of coins supported in master (Note: may differ from release).\n",
           })))),
         cssDir: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(lib_1, "types", "path")),
             default: nix.thunk(() => nix.str`${nix.sel(config_1, "package")}/share/css/`),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib_1, "literalExpression"), "\"${package}/share/css/\"")),
@@ -102,76 +102,76 @@ export default nix.lambda((args) => (() => {
             description: "Location of the dir with {file}`main.css` CSS file.\nBy default, the one shipped with the package is used.\n",
           })))),
         dataDir: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.sel(lib_1, "types", "path")),
             default: nix.thunk(() => nix.str`/var/lib/blockbook-frontend-${name}`),
             description: nix.thunk(() => nix.str`Location of blockbook-frontend-${name} data directory.`),
           })))),
         debug: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.sel(lib_1, "types", "bool")),
             default: false,
             description: "Debug mode, return more verbose errors, reload templates on each request.",
           })))),
         internal: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "nullOr"), nix.thunk(() => nix.sel(lib_1, "types", "str")))),
             default: ":9030",
             description: "Internal http server binding `[address]:port`.",
           })))),
         messageQueueBinding: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.sel(lib_1, "types", "str")),
             default: "tcp://127.0.0.1:38330",
             description: "Message Queue Binding `address:port`.",
           })))),
         public: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "nullOr"), nix.thunk(() => nix.sel(lib_1, "types", "str")))),
             default: ":9130",
             description: "Public http server binding `[address]:port`.",
           })))),
         rpc: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           url: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib_1, "types", "str")),
               default: "http://127.0.0.1",
               description: "URL for JSON-RPC connections.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib_1, "types", "port")),
               default: 8030n,
               description: "Port for JSON-RPC connections.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib_1, "types", "str")),
               default: "rpc",
               description: "Username for JSON-RPC connections.",
             })))),
           password: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib_1, "types", "str")),
               default: "rpc",
               description: "RPC password for JSON-RPC connections.\nWarning: this is stored in cleartext in the Nix store!!!\nUse `configFile` or `passwordFile` if needed.\n",
             })))),
           passwordFile: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "nullOr"), nix.thunk(() => nix.sel(lib_1, "types", "path")))),
               default: null,
               description: "File containing password of the RPC user.\nNote: This options is ignored when `configFile` is used.\n",
             })))),
         })),
         sync: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => nix.sel(lib_1, "types", "bool")),
             default: true,
             description: "Synchronizes until tip, if together with zeromq, keeps index synchronized.",
           })))),
         templateDir: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             type: nix.thunk(() => nix.sel(lib_1, "types", "path")),
             default: nix.thunk(() => nix.str`${nix.sel(config_1, "package")}/share/templates/`),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib_1, "literalExpression"), "\"${package}/share/templates/\"")),
@@ -179,14 +179,14 @@ export default nix.lambda((args) => (() => {
             description: "Location of the HTML templates. By default, ones shipped with the package are used.",
           })))),
         extraConfig: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             type: nix.thunk(() => nix.sel(lib_1, "types", "attrs")),
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.sel(lib_1, "literalExpression"), "{\n         \"alternative_estimate_fee\" = \"whatthefee-disabled\";\n         \"alternative_estimate_fee_params\" = \"{\\\"url\\\": \\\"https://whatthefee.io/data.json\\\", \\\"periodSeconds\\\": 60}\";\n         \"fiat_rates\" = \"coingecko\";\n         \"fiat_rates_params\" = \"{\\\"url\\\": \\\"https://api.coingecko.com/api/v3\\\", \\\"coin\\\": \\\"bitcoin\\\", \\\"periodSeconds\\\": 60}\";\n         \"coin_shortcut\" = \"BTC\";\n         \"coin_label\" = \"Bitcoin\";\n         \"parse\" = true;\n         \"subversion\" = \"\";\n         \"address_format\" = \"\";\n         \"xpub_magic\" = 76067358;\n         \"xpub_magic_segwit_p2sh\" = 77429938;\n         \"xpub_magic_segwit_native\" = 78792518;\n         \"mempool_workers\" = 8;\n         \"mempool_sub_workers\" = 2;\n         \"block_addresses_to_keep\" = 300;\n       }")),
             description: "Additional configurations to be appended to {file}`coin.conf`.\nOverrides any already defined configuration options.\nSee <https://github.com/trezor/blockbook/tree/master/configs/coins>\nfor current configuration options supported in master (Note: may differ from release).\n",
           })))),
         extraCmdLineOptions: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "listOf"), nix.thunk(() => nix.sel(lib_1, "types", "str")))),
             default: [],
             example: nix.thunk(() => ["-workers=1", "-dbcache=0", "-logtosderr"]),
@@ -196,13 +196,13 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         "blockbook-frontend": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), blockbookOpts)))),
             default: nix.thunk(() => ({})),
             description: "Specification of one or more blockbook-frontend instances.",
@@ -210,12 +210,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(eachBlockbook, {})), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         systemd: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (blockbookName) => (cfg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`blockbook-frontend-${blockbookName}`), nix.thunk(() => (() => {
                 const configFile = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.sel(cfg, "configFile") : nix.app(nix.sel(pkgs, "writeText"), "config.conf", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.update({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       coin_name: nix.thunk(() => nix.str`${nix.sel(cfg, "coinName")}`),
                       rpc_user: nix.thunk(() => nix.str`${nix.sel(cfg, "rpc", "user")}`),
                       rpc_pass: nix.thunk(() => nix.str`${nix.sel(cfg, "rpc", "password")}`),
@@ -223,7 +223,7 @@ export default nix.lambda((args) => (() => {
                       message_queue_binding: nix.thunk(() => nix.str`${nix.sel(cfg, "messageQueueBinding")}`),
                     }, nix.sel(cfg, "extraConfig"))))))));
                 return {
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   description: nix.thunk(() => nix.str`blockbook-frontend-${blockbookName} daemon`),
                   after: nix.thunk(() => ["network.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -235,7 +235,7 @@ mv $CONFIGTMP ${nix.sel(cfg, "dataDir")}/${blockbookName}-config.json
 `))}
 `),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     Group: nix.thunk(() => nix.sel(cfg, "group")),
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/blockbook \\
@@ -255,7 +255,7 @@ ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "extraCmdLineOptions")))}
                 };
               })())), eachBlockbook)),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             rules: nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (blockbookName) => (cfg) => [
                   nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")} 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
                   nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")}/static 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
@@ -263,9 +263,9 @@ ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "extraCmdLineOptions")))}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (blockbookName) => (cfg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`blockbook-frontend-${blockbookName}`), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 name: nix.thunk(() => nix.sel(cfg, "user")),
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -275,7 +275,7 @@ ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "extraCmdLineOptions")))}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "_1000101"))];

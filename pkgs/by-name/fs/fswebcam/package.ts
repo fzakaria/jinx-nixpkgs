@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const libv4l = nix.arg($, "libv4l");
   const gd = nix.arg($, "gd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fswebcam",
       version: "20200725",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.sanslogic.co.uk/fswebcam/files/fswebcam-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1dazsrcaw9s30zz3jpxamk9lkff5dkmflp1s0jjjvdbwa0k6k6ii",
         })))),
       buildInputs: nix.thunk(() => [libv4l, gd]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Neat and simple webcam app",
         mainProgram: "fswebcam",
         homepage: "http://www.sanslogic.co.uk/fswebcam",

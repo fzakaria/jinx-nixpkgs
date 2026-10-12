@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), withGtkDoc, nix.thunk(() => ["devdoc"]))));
       const outputBin = "dev";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "libdmapsharing",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace configure.ac \\\n  --replace-fail pkg-config \"$PKG_CONFIG\"\n";
       const preConfigure = "NOCONFIGURE=1 ./autogen.sh\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.flyn.org/projects/libdmapsharing/",
         description: "Library that implements the DMAP family of protocols",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         outputs,

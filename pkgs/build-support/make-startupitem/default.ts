@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
     const prependExtraArgs = nix.argOr($_1, "prependExtraArgs", () => []);
     const appendExtraArgs = nix.argOr($_1, "appendExtraArgs", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`autostart-${name}`),
         priority: 5n,
         buildCommand: nix.thunk(() => (() => {

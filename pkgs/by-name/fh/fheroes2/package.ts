@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fheroes2",
       version: "1.1.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ihhub",
           repo: "fheroes2",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       postBuild: "# Pick guaranteed to be present UTF-8 locale.\n# Otherwise `iconv` calls fail to produce valid translations.\nLANG=en_US.UTF_8 make -C files/lang\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 $PWD/src/dist/fheroes2/fheroes2 $out/bin/fheroes2\n\ninstall -Dm644 -t $out/share/fheroes2/files/lang $PWD/files/lang/*.mo\ninstall -Dm644 -t $out/share/fheroes2/files/data $PWD/files/data/resurrection.h2d\n\ninstall -Dm644 -t $out/share/applications $PWD/script/packaging/common/fheroes2.desktop\n\nfor size in 16 24 32 48 64 128; do\n  mkdir -p $out/share/icons/hicolor/\"$size\"x\"$size\"/apps\n  convert -resize \"$size\"x\"$size\" $PWD/src/resources/fheroes2.png $out/share/icons/hicolor/\"$size\"x\"$size\"/apps/fheroes2.png\ndone;\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "https://github.com/ihhub/fheroes2.git" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://github.com/ihhub/fheroes2.git" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/ihhub/fheroes2",
         description: "Free implementation of Heroes of Might and Magic II game engine",
         mainProgram: "fheroes2",

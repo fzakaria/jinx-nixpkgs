@@ -10,11 +10,11 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDprintPlugin = nix.arg($, "mkDprintPlugin");
   return nix.app(mkDprintPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Jupyter notebook code block formatter",
       hash: "sha256-7qM9MTTvvuPfx3WScO3jR0GEb8L0kHg24BJLsJYBiZg=",
       initConfig: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         configExcludes: [],
         configKey: "jupyter",
         fileExtensions: nix.thunk(() => ["ipynb"]),

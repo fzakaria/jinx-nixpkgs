@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const helpers = nix.thunk(() => nix.app(callPackage, nix.path(here, "./helpers.nix"), nix.thunk(() => ({}))));
   const pythonPackages = python3Packages;
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.1.0",
       pyproject: true,
       pname: "flatten-references-graph",
@@ -36,10 +36,10 @@ export default nix.lambda((args) => (() => {
       checkPhase: nix.thunk(() => nix.str`${nix.sel(helpers, "unittest")}/bin/unittest
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "dev-shell": nix.thunk(() => nix.app(callPackage, nix.path(here, "./dev-shell.nix"), nix.thunk(() => ({})))),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

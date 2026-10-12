@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const vendorHash = nix.arg($, "vendorHash");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: version,
       src: src,
       vendorHash: vendorHash,

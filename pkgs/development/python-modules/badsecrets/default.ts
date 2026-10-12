@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const yara_python = nix.arg($, "yara-python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "badsecrets",
       version: "1.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blacklanternsecurity",
           repo: "badsecrets",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(pyjwt, "optional-dependencies", "crypto"))),
       pythonImportsCheck: nix.thunk(() => ["badsecrets"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for detecting known secrets across many web frameworks",
         homepage: "https://github.com/blacklanternsecurity/badsecrets",
         changelog: nix.thunk(() => nix.str`https://github.com/blacklanternsecurity/badsecrets/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

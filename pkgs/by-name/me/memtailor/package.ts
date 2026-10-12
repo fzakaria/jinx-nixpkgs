@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "memtailor",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Macaulay2",
           repo: "memtailor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ library of special purpose memory allocators",
         longDescription: "Memtailor is a C++ library of special purpose memory allocators. It\ncurrently offers an arena allocator and a memory pool.\n\nThe main motivation to use a memtailor allocator is better and more\npredictable performance than you get with new/delete. Sometimes a\nmemtailor allocator can also be more convenient due to the ability to\nfree many allocations at one time.\n",
         homepage: "https://github.com/Macaulay2/memtailor",

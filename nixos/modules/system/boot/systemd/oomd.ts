@@ -41,79 +41,79 @@ export default nix.lambda((args) => (() => {
   const utils = nix.arg($, "utils");
   const cfg = nix.thunk(() => nix.sel(config, "systemd", "oomd"));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["systemd", "oomd", "enableUserServices"]), nix.thunk(() => ["systemd", "oomd", "enableUserSlices"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["systemd", "oomd", "extraConfig"]), nix.thunk(() => ["systemd", "oomd", "settings", "OOM"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       systemd: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         oomd: nix.thunk(() => ({
-          __proto__: pos$6,
-          enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the `systemd-oomd` OOM killer"), { __proto__: pos$1, default: true })),
+          [nix.POS]: pos$6,
+          enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the `systemd-oomd` OOM killer"), { [nix.POS]: pos$1, default: true })),
           enableRootSlice: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "oomd on the root slice (`-.slice`)")),
           enableSystemSlice: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "oomd on the system slice (`system.slice`)")),
           enableUserSlices: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "oomd on all user slices (`user@.slice`) and all user owned slices")),
           settings: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             OOM: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 description: "Settings option for systemd-oomd.\nSee {manpage}`oomd.conf(5)` for available options.\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(utils, "systemdUtils", "unitOptions", "unitOption")))),
                   })))),
                 default: nix.thunk(() => ({})),
-                example: nix.thunk(() => ({ __proto__: pos$3, DefaultMemoryPressureLimit: "60%" })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$3, DefaultMemoryPressureLimit: "60%" })),
               })))),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           additionalUpstreamSystemUnits: nix.thunk(() => ["systemd-oomd.service", "systemd-oomd.socket"]),
           services: nix.thunk(() => ({
-            __proto__: pos$10,
-            "systemd-oomd": nix.thunk(() => ({ __proto__: pos$9, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+            [nix.POS]: pos$10,
+            "systemd-oomd": nix.thunk(() => ({ [nix.POS]: pos$9, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
           })),
           slices: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "-": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               sliceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableRootSlice")), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   ManagedOOMMemoryPressure: "kill",
                   ManagedOOMMemoryPressureLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "80%")),
                 })))),
             })),
             system: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               sliceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableSystemSlice")), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   ManagedOOMMemoryPressure: "kill",
                   ManagedOOMMemoryPressureLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "80%")),
                 })))),
             })),
             user: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               sliceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableUserSlices")), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   ManagedOOMMemoryPressure: "kill",
                   ManagedOOMMemoryPressureLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "80%")),
                 })))),
             })),
           })),
           user: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             units: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               slice: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableUserSlices")), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   text: "[Slice]\nManagedOOMMemoryPressure=kill\nManagedOOMMemoryPressureLimit=80%\n",
                   overrideStrategy: "asDropin",
                 })))),
@@ -121,27 +121,27 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           etc: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             "systemd/oomd.conf": nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               text: nix.thunk(() => nix.app(nix.sel(utils, "systemdUtils", "lib", "settingsToSections"), nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           users: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "systemd-oom": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "systemd-oomd service user",
               group: "systemd-oom",
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$27, "systemd-oom": nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$27, "systemd-oom": nix.thunk(() => ({})) })),
         })),
       })))),
   };

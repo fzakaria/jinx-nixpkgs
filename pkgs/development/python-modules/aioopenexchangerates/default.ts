@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aioopenexchangerates",
       version: "0.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MartinHjelmare",
           repo: "aioopenexchangerates",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aioresponses, pytest_aiohttp, pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["aioopenexchangerates"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for the Openexchangerates API",
         homepage: "https://github.com/MartinHjelmare/aioopenexchangerates",
         changelog: nix.thunk(() => nix.str`https://github.com/MartinHjelmare/aioopenexchangerates/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

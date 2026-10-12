@@ -25,19 +25,19 @@ export default nix.lambda((args) => (() => {
   const pname = "josm";
   const version = "19613";
   const srcs = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     jar: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://josm.openstreetmap.de/download/josm-snapshot-${version}.jar`),
         hash: "sha256-e7qbXV61fbOQZy3c5XGmfenVzwsOj+YQxNveFfvlkHc=",
       })))),
     macosx: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://josm.openstreetmap.de/download/macosx/josm-macos-${version}-java21.zip`),
         hash: "sha256-9qSb8gGNuWhIIV/ZOtLTVnUAGME1HfGuA9zeatWLKmY=",
       })))),
     pkg: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: "https://josm.openstreetmap.de/svn/trunk/native/linux/tested",
         rev: version,
         hash: "sha256-sAG9GI0SQpmdDqIXbSH/FN1io/QcsAJFv6/YT483aMA=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       "--add-exports=java.desktop/com.sun.imageio.spi=ALL-UNNAMED",
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       dontUnpack: true,
@@ -67,9 +67,9 @@ makeWrapper ${jre}/bin/java $out/bin/josm \\
   --prefix _JAVA_AWT_WM_NONREPARENTING : 1 \\
   --prefix _JAVA_OPTIONS " " "-Dawt.useSystemAAFontSettings=gasp"
 `)),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, srcs: srcs, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, srcs: srcs, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Extensible editor for OpenStreetMap",
         homepage: "https://josm.openstreetmap.de/",
         changelog: "https://josm.openstreetmap.de/wiki/Changelog",

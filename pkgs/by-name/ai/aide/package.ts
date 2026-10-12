@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libgcrypt = nix.arg($, "libgcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aide",
       version: "0.19.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/aide/aide/releases/download/v${nix.sel(finalAttrs, "version")}/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-R6t8aW8HRZEUeaQfkNetmdJlNuGG1mxKrQk7xy0g/18=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [flex, bison, libmhash, zlib, acl, attr, libselinux, pcre2, libgcrypt]),
       configureFlags: nix.thunk(() => ["--with-posix-acl", "--with-selinux", "--with-xattr", "--sysconfdir=/etc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://aide.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/aide/aide/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog`),
         description: "File and directory integrity checker",

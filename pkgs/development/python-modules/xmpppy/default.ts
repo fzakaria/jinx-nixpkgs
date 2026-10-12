@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xmpppy",
           repo: "xmpppy",
           tag: version,
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [six]);
       const build_system = nix.thunk(() => [setuptools]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python 2/3 implementation of XMPP",
         homepage: "https://github.com/xmpppy/xmpppy",
         changelog: nix.thunk(() => nix.str`https://github.com/xmpppy/xmpppy/blob/${version}/CHANGES.rst`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "antares";
       const version = "0.7.35";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "antares-sql",
           repo: "antares",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-X2dG75fpeXeU40wb22KAI7tDBybFwWUpKVj0Mlo3xhc=";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/antares-sql/antares/commit/6b2a45d93cf7fefdc92e0d87f390cd21a069b9a4.patch?full_index=1",
             hash: "sha256-2dOGY0K6jMxSLNLDhwy/+ysTRB24XRXSoDu1AVxi4w4=",
           })))),
@@ -58,13 +58,13 @@ cp icon_1_256x256x32.png $out/share/icon/antares.png
 `);
       const npmFlags = nix.thunk(() => ["--legacy-peer-deps"]);
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1",
       }));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: pname,
             desktopName: "Antares SQL",
             exec: pname,
@@ -77,7 +77,7 @@ cp icon_1_256x256x32.png $out/share/icon/antares.png
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Modern, fast and productivity driven SQL client with a focus in UX",
         homepage: "https://github.com/antares-sql/antares",
         changelog: nix.thunk(() => nix.str`https://github.com/antares-sql/antares/blob/v${version}/CHANGELOG.md`),
@@ -88,7 +88,7 @@ cp icon_1_256x256x32.png $out/share/icon/antares.png
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

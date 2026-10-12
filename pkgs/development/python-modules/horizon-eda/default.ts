@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const base = nix.thunk(() => nix.sel(horizon_eda, "passthru", "base"));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(base, "pname")),
       version: nix.thunk(() => nix.attr(base, "version")),
       src: nix.thunk(() => nix.attr(base, "src")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       pyproject: false,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://github.com/horizon-eda/horizon/commit/663a8adaa1cb7eae7a824de07df8909bc33677c3.patch",
             hash: "sha256-g0rP9NBDdDijh35Y2h4me9N5R/mjCn+2w7uhnv9bweY=",
           })))),

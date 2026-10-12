@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const tree_sitter = nix.arg($, "tree-sitter");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tree-sitter-typescript",
       version: "0.23.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tree-sitter",
           repo: "tree-sitter-typescript",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-CU55+YoFJb6zWbJnbd38B7iEGkhukSVpBN7sli6GkGY=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, core: nix.thunk(() => [tree_sitter]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, core: nix.thunk(() => [tree_sitter]) })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["tree_sitter_typescript"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "TypeScript grammar for tree-sitter",
         homepage: "https://github.com/tree-sitter/tree-sitter-typescript",
         changelog: nix.thunk(() => nix.str`https://github.com/tree-sitter/tree-sitter-typescript/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),

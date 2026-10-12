@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gd, iml, libpng]);
       const mesonFlags = nix.thunk(() => ["-Dbuild-docs=false"]);
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           NIX_CFLAGS_COMPILE: "-Wno-error=c++11-narrowing-const-reference",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [
@@ -186,7 +186,7 @@ export default nix.lambda((args) => (() => {
       const preBuild = "patchShebangs src/sage_setup/autogen/interpreters/__main__.py\n";
       const doCheck = false;
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version,
         pname,
         src,

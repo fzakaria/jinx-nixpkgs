@@ -72,11 +72,11 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const fetchgit = nix.arg($, "fetchgit");
   const wemeet_wayland_screenshare = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wemeet-wayland-screenshare",
       version: "0-unstable-2025-05-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xuwd1",
           repo: "wemeet-wayland-screenshare",
           rev: "7f338966e162612b09d838512b11af5901414d05",
@@ -97,18 +97,18 @@ export default nix.lambda((args) => (() => {
       ]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hooked WeMeet that enables screenshare on Wayland",
         homepage: "https://github.com/xuwd1/wemeet-wayland-screenshare",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     }))));
   const libwemeetwrap = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libwemeetwrap",
       version: "0-unstable-2023-12-14",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: "https://aur.archlinux.org/wemeet-bin.git",
           rev: "8f03fbc4d5ae263ed7e670473886cfa1c146aecc",
           hash: "sha256-ExzLCIoLu4KxaoeWNhMXixdlDTIwuPiYZkO+XVK8X10=",
@@ -119,12 +119,12 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nread -ra openssl_args < <(pkg-config --libs openssl)\nread -ra libpulse_args < <(pkg-config --cflags --libs libpulse)\n# Comment out `-D WRAP_FORCE_SINK_HARDWARE` to disable the patch that forces wemeet detects sink as hardware sink\n$CC $CFLAGS -Wall -Wextra -fPIC -shared \\\n  \"${openssl_args[@]}\" \"${libpulse_args[@]}\" \\\n  -o libwemeetwrap.so wrap.c -D WRAP_FORCE_SINK_HARDWARE\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 ./libwemeetwrap.so $out/lib/libwemeetwrap.so\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
     }))));
   const wemeet_x11_fix = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "wemeet-x11-fix",
       version: "0-unstable-2025-11-07",
       src: nix.path(here, "./wemeet-x11-fix.c"),
@@ -135,13 +135,13 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n$CC $CFLAGS -Wall -Wextra -fPIC -shared \\\n  -o libwemeet-x11-fix.so $src \\\n  -ldl -lX11\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 ./libwemeet-x11-fix.so $out/lib/libwemeet-x11-fix.so\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Fix for wemeet Wayland XSetInputFocus crash",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     }))));
   const wemeet_camera_fix = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "wemeet-camera-fix",
       version: "0-unstable-2026-05-20",
       src: nix.path(here, "./wemeet-camera-fix.c"),
@@ -151,25 +151,25 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n$CC $CFLAGS -Wall -Wextra -fPIC -shared \\\n  -o libwemeet-camera-fix.so $src \\\n  -ldl -lEGL -lX11\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 ./libwemeet-camera-fix.so $out/lib/libwemeet-camera-fix.so\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Fix for WeMeet Wayland camera preview rendering",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     }))));
   const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`wemeet: ${nix.sel(stdenv, "hostPlatform", "system")} is not supported`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "wemeet",
       version: "3.26.10.401",
       src: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               url: "https://updatecdn.meeting.qq.com/cos/72e0e0023e1d1e6d4123fba28821aea1/TencentMeeting_0300000000_3.26.10.401_x86_64_default.publish.officialwebsite.deb",
               hash: "sha256-cPN7ApIJwO+RvpgT7r9mUMbLmgD3xxhJAVh3Pi/mrK8=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               url: "https://updatecdn.meeting.qq.com/cos/c06d6bc4a3370dbfb2f43bbc6ff8969e/TencentMeeting_0300000000_3.26.10.401_arm64_default.publish.officialwebsite.deb",
               hash: "sha256-W50E1bmqJLPDU7FY0qNKPlh1z8A9Ez1Gc+NrHQhBwgI=",
             })))),
@@ -207,7 +207,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/app\ncp -r opt/wemeet $out/app/wemeet\ncp -r usr/share $out/share\n# bundled libcurl depends on openssl 1.1 which is not available in nixpkgs\nrm -f $out/app/wemeet/lib/libcurl.so\nsubstituteInPlace $out/share/applications/wemeetapp.desktop \\\n  --replace-fail \"/opt/wemeet/wemeetapp.sh\" \"wemeet\" \\\n  --replace-fail \"/opt/wemeet/wemeet.svg\" \"wemeet\"\nsubstituteInPlace $out/app/wemeet/bin/qt.conf \\\n  --replace-fail \"Prefix = ../\" \"Prefix = $out/app/wemeet/lib\"\ncp -r $out/app/wemeet/icons $out/share/icons || true\ninstall -Dm0644 $out/app/wemeet/wemeet.svg $out/share/icons/hicolor/scalable/apps/wemeet.svg\nln -s $out/app/wemeet/bin/raw/xcast.conf $out/app/wemeet/bin/xcast.conf\nln -s $out/app/wemeet/plugins $out/app/wemeet/lib/plugins\nln -s $out/app/wemeet/resources $out/app/wemeet/lib/resources\nln -s $out/app/wemeet/translations $out/app/wemeet/lib/translations\n\nrunHook postInstall\n",
       postInstall: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           "x86_64-linux": "# According to @mnixry:\n#   The thing is, it's a coroutine library that involves a series of low-level operations like stack and register restoration and saving, so there's quite a bit of code that looks like hand-written assembly.\n#   Then they apparently changed the usage of co_jump_to_link, but the registers used in the assembly weren't updated accordingly.\n#   And then under certain versions of libc/libcpp implementations, that original register happens to have a value, so the tests also pass.\n\n# cmp rdi, 0 -> cmp r12, 0, at co_jump_to_link to address coroutine context resume issue\necho -ne '\\x49\\x83\\xfc\\x00' | dd of=$out/app/wemeet/lib/libwemeet_base.so bs=1 seek=$((0x94c833)) conv=notrunc\n",
           "aarch64-linux": "# I don't know if aarch64-linux version needs similar patch, I don't have aarch64 device.\n",
         })))),
@@ -238,7 +238,7 @@ makeWrapper $out/app/wemeet/bin/wemeetapp $out/bin/wemeet-xwayland \\
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         description: "Tencent Video Conferencing",
         homepage: "https://wemeet.qq.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

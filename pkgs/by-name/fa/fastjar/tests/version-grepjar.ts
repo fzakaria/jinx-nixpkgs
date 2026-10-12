@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fastjar = nix.arg($, "fastjar");
   const testers = nix.arg($, "testers");
-  return nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$1, package: fastjar, command: "grepjar --version" })));
+  return nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$1, package: fastjar, command: "grepjar --version" })));
 })(), formals$1);
 //# sourceMappingURL=version-grepjar.ts.map

@@ -93,16 +93,16 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const filterConfig = nix.thunk(() => nix.app(converge, nix.thunk(() => nix.app(filterAttrsRecursive, (_) => (v) => !nix.eq(v, null)))));
   const python = nix.thunk(() => nix.app(nix.sel(cfg, "package", "python", "override"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       self: python,
       packageOverrides: (_final) => (prev) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         gunicorn: nix.thunk(() => nix.app(nix.sel(prev, "gunicorn", "overridePythonAttrs"), (old) => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             dependencies: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "dependencies"), nix.sel(old, "optional-dependencies", "setproctitle"))),
           }))),
-        canaille: nix.thunk(() => nix.app(nix.sel(prev, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$2, python3: python }))), "overridePythonAttrs"), (old) => ({
-              __proto__: pos$3,
+        canaille: nix.thunk(() => nix.app(nix.sel(prev, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, python3: python }))), "overridePythonAttrs"), (old) => ({
+              [nix.POS]: pos$3,
               dependencies: nix.thunk(() => nix.concat(nix.sel(old, "dependencies"), nix.concat(nix.sel(old, "optional-dependencies", "front"), nix.concat(nix.sel(old, "optional-dependencies", "oidc"), nix.concat(nix.sel(old, "optional-dependencies", "scim"), nix.concat(nix.sel(old, "optional-dependencies", "ldap"), nix.concat(nix.sel(old, "optional-dependencies", "sentry"), nix.concat(nix.sel(old, "optional-dependencies", "postgresql"), nix.concat(nix.sel(old, "optional-dependencies", "otp"), nix.sel(old, "optional-dependencies", "sms")))))))))),
               makeWrapperArgs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "makeWrapperArgs"), [
                 "--set CANAILLE_CONFIG /etc/canaille/config.toml",
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   const commonServiceConfig = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     WorkingDirectory: dataDir,
     User: "canaille",
     Group: "canaille",
@@ -131,90 +131,90 @@ export default nix.lambda((args) => (() => {
   const postgresqlHost = "postgresql://localhost/canaille?host=/run/postgresql";
   const createLocalPostgresqlDb = nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "CANAILLE_SQL", "DATABASE_URI"), postgresqlHost));
   return {
-    __proto__: pos$68,
+    [nix.POS]: pos$68,
     options: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       services: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         canaille: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Canaille")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "canaille", nix.thunk(() => ({})))),
           secretKeyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "File containing the Flask secret key. Its content is going to be\nprovided to Canaille as `SECRET_KEY`. Make sure it has appropriate\npermissions. For example, copy the output of this to the specified\nfile:\n\n```\npython3 -c 'import secrets; print(secrets.token_hex())'\n```\n",
               type: nix.thunk(() => nix.sel(types, "path")),
             })))),
           smtpPasswordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "File containing the SMTP password. Make sure it has appropriate permissions.\n",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
             })))),
           jwtPrivateKeyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "File containing the JWT private key. Make sure it has appropriate permissions.\n\nYou can generate one using\n```\nopenssl genrsa -out private.pem 4096\nopenssl rsa -in private.pem -pubout -outform PEM -out public.pem\n```\n",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
             })))),
           ldapBindPasswordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "File containing the LDAP bind password.\n",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               default: nix.thunk(() => ({})),
               description: "Settings for Canaille. See [the documentation](https://canaille.readthedocs.io/en/latest/references/configuration.html) for details.",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     SECRET_KEY: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         readOnly: true,
                         description: "Flask Secret Key. Can't be set and must be provided through\n`services.canaille.settings.secretKeyFile`.\n",
                         default: null,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                       })))),
                     SERVER_NAME: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         description: "The domain name on which canaille will be served.",
                         example: "auth.example.org",
                         type: nix.thunk(() => nix.sel(types, "str")),
                       })))),
                     PREFERRED_URL_SCHEME: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         description: "The url scheme by which canaille will be served.",
                         default: "https",
                         type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["http", "https"]))),
                       })))),
                     CANAILLE: nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       ACL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           default: null,
                           description: "Access Control Lists.\n\nSee also [the documentation](https://canaille.readthedocs.io/en/latest/references/configuration.html#canaille.core.configuration.ACLSettings).\n",
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                __proto__: pos$14,
+                                [nix.POS]: pos$14,
                                 freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                                 options: nix.thunk(() => ({})),
                               })))))),
                         })))),
                       SMTP: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           default: null,
                           example: nix.thunk(() => ({})),
                           description: "SMTP configuration. By default, sending emails is not enabled.\n\nSet to an empty attrs to send emails from localhost without\nauthentication.\n\nSee also [the documentation](https://canaille.readthedocs.io/en/latest/references/configuration.html#canaille.core.configuration.SMTPSettings).\n",
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                __proto__: pos$18,
+                                [nix.POS]: pos$18,
                                 freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$17,
+                                  [nix.POS]: pos$17,
                                   PASSWORD: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$16,
+                                      [nix.POS]: pos$16,
                                       readOnly: true,
                                       description: "SMTP Password. Can't be set and has to be provided using\n`services.canaille.smtpPasswordFile`.\n",
                                       default: null,
@@ -225,18 +225,18 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     CANAILLE_OIDC: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         default: null,
                         description: "OpenID Connect settings. See [the documentation](https://canaille.readthedocs.io/en/latest/references/configuration.html#canaille.oidc.configuration.OIDCSettings).\n",
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                              __proto__: pos$24,
+                              [nix.POS]: pos$24,
                               freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                               options: nix.thunk(() => ({
-                                __proto__: pos$23,
+                                [nix.POS]: pos$23,
                                 JWT: nix.thunk(() => ({
-                                  __proto__: pos$22,
+                                  [nix.POS]: pos$22,
                                   PRIVATE_KEY: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$21,
+                                      [nix.POS]: pos$21,
                                       readOnly: true,
                                       description: "JWT private key. Can't be set and has to be provided using\n`services.canaille.jwtPrivateKeyFile`.\n",
                                       default: null,
@@ -247,16 +247,16 @@ export default nix.lambda((args) => (() => {
                             })))))),
                       })))),
                     CANAILLE_LDAP: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$29,
+                        [nix.POS]: pos$29,
                         default: null,
                         description: "Configuration for the LDAP backend. This storage backend is not\nyet supported by the module, so use at your own risk!\n",
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                              __proto__: pos$28,
+                              [nix.POS]: pos$28,
                               freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                               options: nix.thunk(() => ({
-                                __proto__: pos$27,
+                                [nix.POS]: pos$27,
                                 BIND_PW: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$26,
+                                    [nix.POS]: pos$26,
                                     readOnly: true,
                                     description: "The LDAP bind password. Can't be set and has to be provided using\n`services.canaille.ldapBindPasswordFile`.\n",
                                     default: null,
@@ -266,9 +266,9 @@ export default nix.lambda((args) => (() => {
                             })))))),
                       })))),
                     CANAILLE_SQL: nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       DATABASE_URI: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$30,
+                          [nix.POS]: pos$30,
                           description: "The SQL server URI. Will configure a local PostgreSQL db if\nleft to default. Please note that the NixOS module only really\nsupports PostgreSQL for now. Change at your own risk!\n",
                           default: postgresqlHost,
                           type: nix.thunk(() => nix.sel(types, "str")),
@@ -281,13 +281,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$66,
+        [nix.POS]: pos$66,
         environment: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           etc: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             "canaille/config.toml": nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.toml", nix.thunk(() => nix.app(filterConfig, nix.thunk(() => nix.sel(cfg, "settings")))))),
               user: "canaille",
               group: "canaille",
@@ -295,40 +295,40 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             rules: nix.thunk(() => nix.concat([
               nix.thunk(() => nix.str`Z  ${secretsDir} 700 canaille canaille - -`),
               nix.thunk(() => nix.str`L+ ${secretsDir}/SECRET_KEY - - - - ${nix.sel(cfg, "secretKeyFile")}`),
             ], nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "smtpPasswordFile"), null)), nix.thunk(() => nix.str`L+ ${secretsDir}/CANAILLE_SMTP__PASSWORD - - - - ${nix.sel(cfg, "smtpPasswordFile")}`)), nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "jwtPrivateKeyFile"), null)), nix.thunk(() => nix.str`L+ ${secretsDir}/CANAILLE_OIDC__JWT__PRIVATE_KEY - - - - ${nix.sel(cfg, "jwtPrivateKeyFile")}`)), nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "ldapBindPasswordFile"), null)), nix.thunk(() => nix.str`L+ ${secretsDir}/CANAILLE_LDAP__BIND_PW - - - - ${nix.sel(cfg, "ldapBindPasswordFile")}`)))))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             "canaille-install": nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.app(optional, createLocalPostgresqlDb, "postgresql.target")),
               serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 Type: "oneshot",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(python, "pkgs", "canaille")))} install`),
               })),
             })),
             canaille: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               description: "Canaille",
               documentation: nix.thunk(() => ["https://canaille.readthedocs.io/en/latest/tutorial/deployment.html"]),
               after: nix.thunk(() => nix.concat(["network.target", "canaille-install.service"], nix.app(optional, createLocalPostgresqlDb, "postgresql.target"))),
               requires: nix.thunk(() => ["canaille-install.service", "canaille.socket"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 PYTHONPATH: nix.thunk(() => nix.str`${pythonEnv}/${nix.sel(python, "sitePackages")}/`),
                 CANAILLE_CONFIG: "/etc/canaille/config.toml",
                 SECRETS_DIR: secretsDir,
               })),
               serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 Restart: "on-failure",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(getExe$, pythonEnv, "gunicorn")} \\
   --name=canaille \\
@@ -342,13 +342,13 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             canaille: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               before: nix.thunk(() => ["nginx.service"]),
               wantedBy: nix.thunk(() => ["sockets.target"]),
               socketConfig: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 ListenStream: "/run/canaille.socket",
                 SocketUser: "canaille",
                 SocketGroup: "canaille",
@@ -358,27 +358,27 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           nginx: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             enable: true,
             recommendedGzipSettings: true,
             recommendedProxySettings: true,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "settings", "SERVER_NAME")}`, nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 forceSSL: true,
                 enableACME: true,
                 extraConfig: "charset utf-8;\nclient_max_body_size 10M;\n\nadd_header Strict-Transport-Security \"max-age=31536000; includeSubDomains; preload\" always;\nadd_header X-Frame-Options                      \"SAMEORIGIN\"    always;\nadd_header X-Content-Type-Options               \"nosniff\"       always;\nadd_header Referrer-Policy                      \"same-origin\"   always;\n",
                 locations: nix.thunk(() => ({
-                  __proto__: pos$55,
-                  "/": nix.thunk(() => ({ __proto__: pos$52, proxyPass: "http://unix:///run/canaille.socket" })),
+                  [nix.POS]: pos$55,
+                  "/": nix.thunk(() => ({ [nix.POS]: pos$52, proxyPass: "http://unix:///run/canaille.socket" })),
                   "/static": nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     root: nix.thunk(() => nix.str`${nix.sel(python, "pkgs", "canaille")}/${nix.sel(python, "sitePackages")}/canaille`),
                   })),
                   "~* ^/static/.+\\.(?:css|cur|js|jpe?g|gif|htc|ico|png|html|xml|otf|ttf|eot|woff|woff2|svg)$": nix.thunk(() => ({
-                    __proto__: pos$54,
+                    [nix.POS]: pos$54,
                     root: nix.thunk(() => nix.str`${nix.sel(python, "pkgs", "canaille")}/${nix.sel(python, "sitePackages")}/canaille`),
                     extraConfig: "access_log off;\nexpires 30d;\nmore_set_headers Cache-Control public;\n",
                   })),
@@ -387,36 +387,36 @@ export default nix.lambda((args) => (() => {
             ])),
           })),
           postgresql: nix.thunk(() => nix.app(mkIf, createLocalPostgresqlDb, nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               enable: true,
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$58, name: "canaille", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$58, name: "canaille", ensureDBOwnership: true })),
               ]),
               ensureDatabases: nix.thunk(() => ["canaille"]),
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$65,
+          [nix.POS]: pos$65,
           users: nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             canaille: nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               isSystemUser: true,
               group: "canaille",
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(python, "pkgs", "canaille"))]),
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             canaille: nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               members: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "nginx", "user"))]),
             })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$67,
+      [nix.POS]: pos$67,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "erictapen"))];

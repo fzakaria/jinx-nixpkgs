@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const yder = nix.arg($, "yder");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ulfius",
       version: "2.7.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "babelouest",
           repo: "ulfius",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [cmake]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       propagatedBuildInputs: nix.thunk(() => nix.concat([libmicrohttpd, orcania], nix.concat(nix.app(nix.sel(lib, "optionals"), withJson, nix.thunk(() => [jansson])), nix.concat(nix.app(nix.sel(lib, "optionals"), withCurl, nix.thunk(() => [curl])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(withHttps) || nix.asBool(withWebsockets))), nix.thunk(() => [gnutls])), nix.concat(nix.app(nix.sel(lib, "optionals"), withLogger, nix.thunk(() => [yder])), nix.app(nix.sel(lib, "optionals"), withWebsockets, nix.thunk(() => [zlib])))))))),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_CURL", withCurl)),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_WEBSOCKET_MESSAGE_LIST", withWebsockets)),
       ]),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Web Framework to build REST APIs, Webservices or any HTTP endpoint in C language. Can stream large amount of data, integrate JSON data with Jansson, and create websocket services",
         homepage: "https://github.com/babelouest/ulfius",
         changelog: nix.thunk(() => nix.str`https://github.com/babelouest/ulfius/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "drupol"))];
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(withUwsc) && nix.asBool(withWebsockets))), nix.thunk(() => ({ __proto__: pos$4, mainProgram: "uwsc" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(withUwsc) && nix.asBool(withWebsockets))), nix.thunk(() => ({ [nix.POS]: pos$4, mainProgram: "uwsc" }))))),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

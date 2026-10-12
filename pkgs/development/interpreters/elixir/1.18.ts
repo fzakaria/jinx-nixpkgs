@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/1.18.nix", [["version", 2, 3], ["hash", 3, 3], ["minimumOTPVersion", 5, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic-builder.nix")), nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "1.18.5",
     hash: "sha256-C7RXBjZZbdSgz4jdoOCKv8xfM95ChrYjXIIS/ahX+3Y=",
     minimumOTPVersion: "25",

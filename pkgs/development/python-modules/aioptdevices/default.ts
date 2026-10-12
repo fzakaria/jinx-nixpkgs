@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aioptdevices",
       version: "2026.07.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ParemTech-Inc",
           repo: "aioptdevices",
           tag: "v2026.07.1",
@@ -46,7 +46,7 @@ echo 'DEVICE_ID = "device-id"' >> tests/secret.py
       pythonImportsCheck: nix.thunk(() => ["aioptdevices"]),
       disabledTests: nix.thunk(() => ["test_real_server", "test_real_server_multi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fetch PTDevices information from the PTDevices servers",
         homepage: "https://github.com/ParemTech-Inc/aioptdevices",
         changelog: nix.thunk(() => nix.str`https://github.com/ParemTech-Inc/aioptdevices/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

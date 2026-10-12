@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const argtable = nix.arg($, "argtable");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.2.4",
       pname: "clustal-omega",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.clustal.org/omega/clustal-omega-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1vm30mzncwdv881vrcwg11vzvrsmwy4wg80j5i0lcfk6dlld50w6",
         })))),
       buildInputs: nix.thunk(() => [argtable]),
       preConfigure: "for f in configure \\\n         src/clustal-omega-config.h \\\n         src/clustal-omega-config.h \\\n         src/config.h.in \\\n         src/mymain.c\ndo\n  sed -i -re 's/argtable2/argtable3/g' $f\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "General purpose multiple sequence alignment program for protein and DNA/RNA",
         homepage: "http://www.clustal.org/omega/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

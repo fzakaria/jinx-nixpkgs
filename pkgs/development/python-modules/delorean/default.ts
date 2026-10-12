@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const tzlocal = nix.arg($, "tzlocal");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "delorean",
       version: "1.0.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "Delorean",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-/md4bhIzhSOEi+xViKZYxNQl4S1T61HP74cL7I9XYTQ=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["delorean"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Delorean: Time Travel Made Easy",
         homepage: "https://github.com/myusuf3/delorean",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -22,27 +22,27 @@ export default nix.lambda((args) => (() => {
   const tail = nix.thunk(() => nix.attr(lib, "tail"));
   return (() => {
     const textClosureList = (predefined) => (arg) => (() => {
-      const f = (done) => (todo) => (nix.asBool(nix.eq(todo, [])) ? { __proto__: pos$1, result: [], done: done } : (() => {
+      const f = (done) => (todo) => (nix.asBool(nix.eq(todo, [])) ? { [nix.POS]: pos$1, result: [], done: done } : (() => {
         const entry = nix.thunk(() => nix.app(head, todo));
         return (nix.asBool(nix.app(isAttrs, entry)) ? (() => {
           const x = nix.thunk(() => nix.app(f, done, nix.thunk(() => nix.sel(entry, "deps"))));
           const y = nix.thunk(() => nix.app(f, nix.thunk(() => nix.sel(x, "done")), nix.thunk(() => nix.app(tail, todo))));
           return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             result: nix.thunk(() => nix.concat(nix.sel(x, "result"), nix.concat([nix.thunk(() => nix.sel(entry, "text"))], nix.sel(y, "result")))),
             done: nix.thunk(() => nix.sel(y, "done")),
           };
-        })() : (nix.asBool(nix.has(done, nix.key(nix.force(entry)))) ? nix.app(f, done, nix.thunk(() => nix.app(tail, todo))) : nix.app(f, nix.thunk(() => nix.update(done, nix.app(listToAttrs, nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$3, name: entry, value: 1n }))])))), nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(predefined, nix.key(nix.force(entry))))], nix.app(tail, todo))))));
+        })() : (nix.asBool(nix.has(done, nix.key(nix.force(entry)))) ? nix.app(f, done, nix.thunk(() => nix.app(tail, todo))) : nix.app(f, nix.thunk(() => nix.update(done, nix.app(listToAttrs, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$3, name: entry, value: 1n }))])))), nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(predefined, nix.key(nix.force(entry))))], nix.app(tail, todo))))));
       })());
       return nix.sel(nix.app(f, nix.thunk(() => ({})), arg), "result");
     })();
     const textClosureMap = (f) => (predefined) => (names) => nix.app(concatMapStringsSep, "\n", f, nix.thunk(() => nix.app(textClosureList, predefined, names)));
-    const noDepEntry = (text) => ({ __proto__: pos$4, text: text, deps: [] });
-    const fullDepEntry = (text) => (deps) => ({ __proto__: pos$5, text: text, deps: deps });
-    const packEntry = (deps) => ({ __proto__: pos$6, deps: deps, text: "" });
-    const stringAfter = (deps) => (text) => ({ __proto__: pos$7, text: text, deps: deps });
+    const noDepEntry = (text) => ({ [nix.POS]: pos$4, text: text, deps: [] });
+    const fullDepEntry = (text) => (deps) => ({ [nix.POS]: pos$5, text: text, deps: deps });
+    const packEntry = (deps) => ({ [nix.POS]: pos$6, deps: deps, text: "" });
+    const stringAfter = (deps) => (text) => ({ [nix.POS]: pos$7, text: text, deps: deps });
     return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       textClosureList,
       textClosureMap,
       noDepEntry,

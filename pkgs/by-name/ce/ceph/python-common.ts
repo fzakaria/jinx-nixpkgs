@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const ceph_meta = nix.arg($, "ceph-meta");
   const ceph_src = nix.arg($, "ceph-src");
   return nix.app(nix.sel(ceph_python, "pkgs", "buildPythonPackage"), (finalAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "ceph",
       version: nix.thunk(() => nix.attr(ceph_src, "version")),
       src: ceph_src,

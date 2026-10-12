@@ -50,89 +50,89 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.thunk(() => nix.attr(pkgs, "runCommand"));
   const writeText = nix.thunk(() => nix.attr(pkgs, "writeText"));
   const configFile = nix.thunk(() => nix.app(writeText, "swapspace.conf", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({})), nix.thunk(() => nix.sel(cfg, "settings"))))));
-  const userWrapper = nix.thunk(() => nix.app(runCommand, "swapspace", nix.thunk(() => ({ __proto__: pos$1, buildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p "$out/bin"
+  const userWrapper = nix.thunk(() => nix.app(runCommand, "swapspace", nix.thunk(() => ({ [nix.POS]: pos$1, buildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p "$out/bin"
 makeWrapper '${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}' "$out/bin/swapspace" \\
   --add-flags "-c '${configFile}'"
 `)));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         swapspace: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Swapspace, a dynamic swap space manager")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "swapspace", nix.thunk(() => ({})))),
           extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["-P", "-v"]),
               description: "Any extra arguments to pass to swapspace",
             })))),
           installWrapper: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "This will add swapspace wrapped with the generated config, to environment.systemPackages\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   options: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     swappath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "/var/lib/swapspace",
                         description: "Location where swapspace may create and delete swapfiles",
                       })))),
                     lower_freelimit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 0n, 99n)),
                         default: 20n,
                         description: "Lower free-space threshold: if the percentage of free space drops below this number, additional swapspace is allocated",
                       })))),
                     upper_freelimit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 0n, 100n)),
                         default: 60n,
                         description: "Upper free-space threshold: if the percentage of free space exceeds this number, swapspace will attempt to free up swapspace",
                       })))),
                     freetarget: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 2n, 99n)),
                         default: 30n,
                         description: "Percentage of free space swapspace should aim for when adding swapspace.\nThis should fall somewhere between lower_freelimit and upper_freelimit.\n",
                       })))),
                     min_swapsize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "4m",
                         description: "Smallest allowed size for individual swapfiles",
                       })))),
                     max_swapsize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "2t",
                         description: "Greatest allowed size for individual swapfiles",
                       })))),
                     cooldown: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
                         default: 600n,
                         description: "Duration (roughly in seconds) of the moratorium on swap allocation that is instated if disk space runs out, or the cooldown time after a new swapfile is successfully allocated before swapspace will consider deallocating swap space again.\nThe default cooldown period is about 10 minutes.\n",
                       })))),
                     buffer_elasticity: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 0n, 100n)),
                         default: 30n,
                         description: "Percentage of buffer space considered to be \"free\"",
                       })))),
                     cache_elasticity: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 0n, 100n)),
                         default: 80n,
                         description: "Percentage of cache space considered to be \"free\"",
@@ -146,23 +146,23 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "pac
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => (nix.asBool(nix.sel(cfg, "installWrapper")) ? nix.force(userWrapper) : nix.sel(cfg, "package"))),
           ]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             swapspace: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 ExecStart: nix.thunk(() => [
                   "",
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -c ${configFile} ${nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.sel(cfg, "extraArgs")))}`),
@@ -171,18 +171,18 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "pac
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             settings: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               swapspace: nix.thunk(() => nix.attrsDyn({}, [
-                [nix.sel(cfg, "settings", "swappath"), nix.thunk(() => ({ __proto__: pos$24, d: nix.thunk(() => ({ __proto__: pos$23, mode: "0700" })) }))],
+                [nix.sel(cfg, "settings", "swappath"), nix.thunk(() => ({ [nix.POS]: pos$24, d: nix.thunk(() => ({ [nix.POS]: pos$23, mode: "0700" })) }))],
               ])),
             })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

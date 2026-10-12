@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const sdl3 = nix.arg($, "sdl3");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lite-xl",
       version: "2.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lite-xl",
           repo: "lite-xl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/meson.build \\\n  --replace-fail \"dependency('sdl3', static: true)\" \"dependency('sdl3', static: false)\"\n",
       mesonFlags: nix.thunk(() => ["-Duse_system_lua=true"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight text editor written in Lua",
         homepage: "https://github.com/lite-xl/lite-xl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

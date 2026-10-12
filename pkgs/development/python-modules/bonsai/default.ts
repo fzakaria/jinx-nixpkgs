@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "noirello",
           repo: "bonsai",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const buildInputs = nix.thunk(() => [cyrus_sasl, openldap]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         gevent: nix.thunk(() => [gevent]),
         tornado: nix.thunk(() => [tornado]),
         trio: nix.thunk(() => [trio]),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_set_async_connect"]);
       const pythonImportsCheck = nix.thunk(() => ["bonsai"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/noirello/bonsai/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
         description: "Python 3 module for accessing LDAP directory servers",
         homepage: "https://github.com/noirello/bonsai",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

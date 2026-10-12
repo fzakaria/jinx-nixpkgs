@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stdman",
       version: "2024.07.05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jeaye",
           repo: "stdman",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "\n    patchShebangs ./do_install\n  ",
       buildInputs: nix.thunk(() => [curl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Formatted C++17 stdlib man pages (cppreference)",
         longDescription: "stdman is a tool that parses archived HTML\n      files from cppreference and generates groff-formatted manual\n      pages for Unix-based systems. The goal is to provide excellent\n      formatting for easy readability.",
         homepage: "https://github.com/jeaye/stdman",

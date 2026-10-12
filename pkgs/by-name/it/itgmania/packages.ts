@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const newScope = nix.arg($, "newScope");
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "itgmania-unwrapped": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({})))),
       "arrowcloud-theme": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./themes/arrowcloud-theme.nix"), nix.thunk(() => ({})))),
       "digital-dance": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./themes/digital-dance.nix"), nix.thunk(() => ({})))),

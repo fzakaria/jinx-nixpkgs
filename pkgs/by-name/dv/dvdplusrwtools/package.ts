@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const cdrtools = nix.arg($, "cdrtools");
   const m4 = nix.arg($, "m4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: "dvd+rw-tools",
       version: "7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://anduin.linuxfromscratch.org/BLFS/dvd+rw-tools/dvd+rw-tools-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://github.com/openeuler-mirror/dvdplusrw-tools/raw/refs/heads/master/dvd+rw-tools-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -45,58 +45,58 @@ export default nix.lambda((args) => (() => {
           const pfile = nix.arg($_1, "pfile");
           const sha256 = nix.arg($_1, "sha256");
           return nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://gitweb.gentoo.org/repo/gentoo.git/plain/app-cdr/dvd+rw-tools/files/${pfile}?id=b510df361241e8f16314b1f14642305f0111dac6`),
               sha256: sha256,
             })));
         })(), formals$2), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pfile: "dvd+rw-tools-7.0-dvddl-r1.patch",
             sha256: "12l33jq6405shfwdycrj52qmd07h5bsp1vjaddknfri456azjny5",
           })),
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pfile: "dvd+rw-tools-7.0-glibc2.6.90.patch",
             sha256: "1fb3gap2in782pa4164h1w0ha8ggsq3inissa1k0zn2p2r3rb5ln",
           })),
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             pfile: "dvd+rw-tools-7.0-reload.patch",
             sha256: "12v2y2y6ci5hh6lbmsk97dzgznrm4bxwhc81mq684ix0qspb9mq4",
           })),
           nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             pfile: "dvd+rw-tools-7.0-sysmacros.patch",
             sha256: "1rkb26cyhfxklkmna3l9b4797f6gzlxyqqin44jwnq3jmwfrs6v0",
           })),
           nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             pfile: "dvd+rw-tools-7.0-wctomb-r1.patch",
             sha256: "1xg770l0b4bjn30y7nqg619v4m5ickcn2n8hv9k2an6r191daq58",
           })),
           nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             pfile: "dvd+rw-tools-7.0-wexit.patch",
             sha256: "0sqzlkm19fmjx4lzxkxwn2ymrj9fq0zk0jkys3xm6xvd2ibb6kxl",
           })),
           nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             pfile: "dvd+rw-tools-7.1-bluray_pow_freespace.patch",
             sha256: "0iscz8fs5002ymk6wl2fz4x06b7bdnc57rfz8kbv3216acqi5rv3",
           })),
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             pfile: "dvd+rw-tools-7.1-bluray_srm+pow.patch",
             sha256: "0sy40m12w987i6g0cyxv8cfmab4vp7cd222lv05apknfi2y7smmw",
           })),
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             pfile: "dvd+rw-tools-7.1-lastshort.patch",
             sha256: "01wspv70sil20khkg5kj086b1x8rrig4yhcq9s88bdjd42nv0vpx",
           })),
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             pfile: "dvd+rw-tools-7.1-noevent.patch",
             sha256: "1kbmxpg15wci33f2h6pxxvf3qm0kpyzx9wj5a3l67sk34hvza3z6",
           })),
@@ -109,11 +109,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`CXX=${nix.sel(stdenv, "cc", "targetPrefix")}c++`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-Wno-reserved-user-defined-literal", "-Wno-c++11-narrowing"]))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         homepage: "https://en.wikipedia.org/wiki/Dvd%2Brw-tools",
         description: "Tools for mastering Blu-ray and DVD+-RW/+-R media",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

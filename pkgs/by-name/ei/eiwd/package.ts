@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const enableManpages = nix.argOr($, "enableManpages", () => true);
   const docutils = nix.arg($, "docutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eiwd",
       version: "2.22-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "illiliti",
           repo: "eiwd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir install-data-local\nsubstituteInPlace Makefile --replace \\\n  '$(MKDIR_P) -m 700 $(DESTDIR)$(daemon_storagedir)' \\\n  'true'\n",
       postInstall: nix.thunk(() => nix.add("mkdir -p $doc/share/doc\ncp -a doc $doc/share/doc/iwd\ncp -a README AUTHORS TODO $doc/share/doc/iwd\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), "mkdir -p $test/bin\ncp -a test/* $test/bin/\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/illiliti/eiwd/",
         description: "Fork of iwd (wifi daemon) which does not require dbus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

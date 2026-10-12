@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "json-plot",
       version: "1.1.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sgreben",
           repo: "jp",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-EPrlaUHAGATNFv3qgWKGmJdu9EHsV/0DJKEvQck+fWc=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/sgreben/jp/commit/9516fb4d7c5b011071b4063ea8e8e9667e57a777.patch",
             hash: "sha256-Vz5HnStrCpMN1L7dne7JDX5F57up3EBPPf/9hN9opRc=",
           })))),
       ]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dead simple terminal plots from JSON (or CSV) data. Bar charts, line charts, scatter plots, histograms and heatmaps are supported",
         homepage: "https://github.com/sgreben/jp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

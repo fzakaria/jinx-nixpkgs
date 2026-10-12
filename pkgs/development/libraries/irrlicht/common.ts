@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
     const pname = "irrlicht";
     const version = "1.8.5";
     const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`mirror://sourceforge/irrlicht/${pname}-${version}.zip`),
         hash: "sha256-cTkzxquMLl84/cSDZnSSQsmXRX/htV8M5NUTbnQuHoM=",
       }))));
-    return { __proto__: pos$2, pname, version, src };
+    return { [nix.POS]: pos$2, pname, version, src };
   })();
 })(), formals$1);
 //# sourceMappingURL=common.ts.map

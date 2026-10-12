@@ -7,14 +7,14 @@ const pos$2 = nix.positions(here + "/16.nix", [["dont-use-locale-a", 6, 5]]);
 const pos$3 = nix.positions(here + "/16.nix", [["version", 2, 3], ["rev", 3, 3], ["hash", 4, 3], ["muslPatches", 5, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$3,
+  [nix.POS]: pos$3,
   version: "16.15",
   rev: "refs/tags/REL_16_15",
   hash: "sha256-HHNROwOzfTatZif+hog/DZnDafV+mZ2Z9Jrq87XN0cY=",
   muslPatches: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "dont-use-locale-a": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://git.alpinelinux.org/aports/plain/main/postgresql16/dont-use-locale-a-on-musl.patch?id=08a24be262339fd093e641860680944c3590238e",
       hash: "sha256-fk+y/SvyA4Tt8OIvDl7rje5dLs3Zw+Ln1oddyYzerOo=",
     })),

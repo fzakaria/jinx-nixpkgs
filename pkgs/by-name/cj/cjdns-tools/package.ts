@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "cjdns-tools",
       version: nix.thunk(() => nix.sel(cjdns, "version")),
       src: nix.thunk(() => nix.sel(cjdns, "src")),
@@ -30,7 +30,7 @@ find $out/tools -maxdepth 1 -type f -exec chmod -v a+x {} \\;
 cp -r node_modules $out/node_modules
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://github.com/cjdelisle/cjdns",
         description: "Tools for cjdns management",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

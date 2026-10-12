@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const patchelf = nix.arg($, "patchelf");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hinoirisetr",
       version: "1.6.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromForgejo, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.vavakado.xyz",
           owner: "me",
           repo: "hinoirisetr",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "pandoc manpages/hinoirisetr.1.md -s -t man -o hinoirisetr.1\n",
       postInstall: "installManPage hinoirisetr.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "a lightweight daemon that automatically adjusts your screen's color temperature and gamma",
         homepage: "https://git.vavakado.xyz/me/hinoirisetr",
         changelog: nix.thunk(() => nix.str`https://git.vavakado.xyz/me/hinoirisetr/releases/tag/v${nix.sel(finalAttrs, "version")}`),

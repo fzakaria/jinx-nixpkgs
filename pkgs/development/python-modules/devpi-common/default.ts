@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const packaging_legacy = nix.arg($, "packaging-legacy");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "devpi-common",
       version: "4.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "devpi",
           repo: "devpi",
           tag: nix.thunk(() => nix.str`common-${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, packaging_legacy]),
       pythonImportsCheck: nix.thunk(() => ["devpi_common"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/devpi/devpi",
         description: "Utilities jointly used by devpi-server and devpi-client",
         changelog: nix.thunk(() => nix.str`https://github.com/devpi/devpi/blob/common-${nix.sel(finalAttrs, "version")}/common/CHANGELOG`),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wd";
       const version = "0.10.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mfaerevaag",
           repo: "wd",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const installPhase = "install -Dm755 wd.plugin.zsh $out/share/wd/wd.plugin.zsh\ninstall -Dm755 wd.sh $out/share/wd/wd.sh\ninstallManPage wd.1\ninstallShellCompletion --zsh _wd.sh\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Jump to custom directories in zsh",
         longDescription: "`wd` (warp directory) lets you jump to custom directories in zsh, without\nusing `cd`. Why? Because `cd` seems inefficient when the folder is\nfrequently visited or has a long path.\n",
         homepage: "https://github.com/mfaerevaag/wd",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wd",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

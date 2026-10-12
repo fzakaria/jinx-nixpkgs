@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const cmdliner = nix.arg($, "cmdliner");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "github-unix",
       version: nix.thunk(() => nix.attr(github, "version")),
       src: nix.thunk(() => nix.attr(github, "src")),
       postPatch: "substituteInPlace unix/dune --replace-fail 'github bytes' 'github'\n",
       propagatedBuildInputs: nix.thunk(() => [github, cohttp, cohttp_lwt_unix, stringext, cmdliner, lwt]),
-      meta: nix.thunk(() => nix.update(nix.sel(github, "meta"), { __proto__: pos$1, description: "GitHub APIv3 Unix library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(github, "meta"), { [nix.POS]: pos$1, description: "GitHub APIv3 Unix library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=unix.ts.map

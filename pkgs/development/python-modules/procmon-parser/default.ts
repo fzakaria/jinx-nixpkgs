@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const python_dateutil = nix.arg($, "python-dateutil");
   const rich = nix.arg($, "rich");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "procmon-parser",
       version: "0.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eronnen",
           repo: "procmon-parser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, python_dateutil, rich]),
       pythonImportsCheck: nix.thunk(() => ["procmon_parser"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parser to process monitor file formats",
         homepage: "https://github.com/eronnen/procmon-parser/",
         changelog: nix.thunk(() => nix.str`https://github.com/eronnen/procmon-parser/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

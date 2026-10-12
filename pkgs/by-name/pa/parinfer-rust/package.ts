@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "parinfer-rust",
       version: "0.4.3-unstable-2024-05-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eraserhd",
           repo: "parinfer-rust",
           rev: "d84828b453e158d06406f6b5e9056f6b54ff76c9",
@@ -38,7 +38,7 @@ sed "s,let s:libdir = .*,let s:libdir = '${nix.builtins.placeholder("out")}/lib'
   plugin/parinfer.vim > $rtpPath/parinfer.vim
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Infer parentheses for Clojure, Lisp, and Scheme",
         mainProgram: "parinfer-rust",
         homepage: "https://github.com/eraserhd/parinfer-rust",

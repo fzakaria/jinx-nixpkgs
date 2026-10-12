@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyvisa",
           repo: "pyvisa-py",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [pyvisa, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "gpib-ctypes": nix.thunk(() => [gpib_ctypes]),
         serial: nix.thunk(() => [pyserial]),
         usb: nix.thunk(() => [pyusb]),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module that implements the Virtual Instrument Software Architecture",
         homepage: "https://github.com/pyvisa/pyvisa-py",
         changelog: nix.thunk(() => nix.str`https://github.com/pyvisa/pyvisa-py/blob/${nix.sel(src, "tag")}/CHANGES`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

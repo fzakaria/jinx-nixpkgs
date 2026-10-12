@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const version = "0.5.13";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pdf2docx",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ArtifexSoftware",
           repo: "pdf2docx",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["./test/test.py::TestConversion"]),
       disabledTests: nix.thunk(() => ["test_unnamed_fonts"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert PDF to DOCX",
         mainProgram: "pdf2docx",
         homepage: "https://github.com/ArtifexSoftware/pdf2docx",

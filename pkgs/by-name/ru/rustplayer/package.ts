@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const ffmpeg_6 = nix.arg($, "ffmpeg_6");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rustplayer",
       version: "1.1.2-unstable-2024-07-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kingtous",
           repo: "RustPlayer",
           rev: "29a16f01912bc3e92008c7ae2f9569c8d7250bd3",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [alsa_lib, openssl, ffmpeg_6]),
       checkFlags: nix.thunk(() => ["--skip=fetch_and_play"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Kingtous/RustPlayer",
         description: "Local audio player and network m3u8 radio player using a terminal interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const CXX = nix.thunk(() => nix.str`PATH= ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(stdenv, "cc")), nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}c++`))}`);
   const READELF = nix.thunk(() => nix.str`PATH= ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(stdenv, "cc")), nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}readelf`))}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`cc-wrapper-test-${nix.sel(stdenv, "cc", "cc", "pname")}${libcxxStdenvSuffix}`),
       version: nix.thunk(() => nix.sel(stdenv, "cc", "version")),
       buildCommand: nix.thunk(() => nix.str`echo "Testing: ${nix.sel(stdenv, "cc", "name")}" >&2
@@ -138,7 +138,7 @@ NIX_CC_USE_RESPONSE_FILE=1 NIX_LD_USE_RESPONSE_FILE=1 ${CC} -v
 touch $out
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })));

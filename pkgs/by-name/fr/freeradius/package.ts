@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const pname = "freeradius";
       const version = "3.2.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FreeRADIUS",
           repo: "freeradius-server",
           tag: nix.thunk(() => nix.str`release_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`),
@@ -66,18 +66,18 @@ export default nix.lambda((args) => (() => {
       const installFlags = nix.thunk(() => ["sysconfdir=${out}/etc", "localstatedir=${TMPDIR}", "INSTALL_CERT_FILES="]);
       const outputs = nix.thunk(() => ["out", "dev", "man", "doc"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "networking", "networkmanager"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           eap: nix.thunk(() => nix.attr(from, "eap")),
           eapFiles: nix.thunk(() => nix.attr(from, "eapFiles")),
         };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://freeradius.org/",
         description: "Modular, high performance free RADIUS suite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

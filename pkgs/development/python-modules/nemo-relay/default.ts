@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nemo-relay",
       version: "0.7.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "nemo-relay",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail '"0.7.0"' '"${nix.sel(finalAttrs, "version")}"'
 `),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         cli: [],
         langchain: nix.thunk(() => [langchain, langchain_core, langgraph, langgraph_checkpoint, langsmith]),
         langgraph: nix.thunk(() => nix.concat([langgraph], nix.sel(finalAttrs, "passthru", "optional-dependencies", "langchain"))),
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python bindings for the NeMo Relay agent runtime",
         homepage: "https://github.com/NVIDIA/NeMo-Relay",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/NeMo-Relay/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

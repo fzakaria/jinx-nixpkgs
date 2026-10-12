@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xeus-zmq";
       const version = "1.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jupyter-xeus",
           repo: "xeus-zmq",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [cppzmq, libuuid, openssl, xeus, xtl, zeromq]);
       const propagatedBuildInputs = nix.thunk(() => [nlohmann_json]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ZeroMQ-based middleware for xeus",
         homepage: "https://github.com/jupyter-xeus/xeus-zmq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

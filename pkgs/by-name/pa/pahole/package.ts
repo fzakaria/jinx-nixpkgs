@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const musl_obstack = nix.arg($, "musl-obstack");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pahole",
       version: "1.32",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/devel/pahole/pahole.git/snapshot/pahole-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-+vydbVzkM+VUROo3Zo+XJeJMkvwtwEIS/4GgxmqvAZE=",
         })))),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([elfutils, zlib, libbpf], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => [argp_standalone, musl_obstack])))),
       cmakeFlags: nix.thunk(() => ["-DCMAKE_INSTALL_LIBDIR=lib", "-DLIBBPF_EMBEDDED=OFF"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, bpf: nix.thunk(() => nix.attr(nixosTests, "bpf")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, bpf: nix.thunk(() => nix.attr(nixosTests, "bpf")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://git.kernel.org/pub/scm/devel/pahole/pahole.git/",
         description: "Shows, manipulates, and pretty-prints debugging information in DWARF, CTF, and BTF formats",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

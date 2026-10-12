@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const playwright = nix.arg($, "playwright");
   const poetry_core = nix.arg($, "poetry-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "playwright-stealth",
       version: "2.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "playwright_stealth",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-HY5Ij73Y8ZDxJp6oz11X0U3zqfGvEAHEHuNYiyqsMTM=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [playwright]),
       pythonImportsCheck: nix.thunk(() => ["playwright_stealth"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Make your playwright instance stealthy",
         homepage: "https://github.com/AtuboDad/playwright_stealth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

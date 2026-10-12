@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const yapf = nix.arg($, "yapf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "etils",
       version: "1.14.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "etils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [flit_core]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "array-types": nix.thunk(() => nix.sel(self, "enp")),
           eapp: nix.thunk(() => nix.concat([absl_py, simple_parsing], nix.sel(self, "epy"))),
           ecolab: nix.thunk(() => nix.concat([jupyter, numpy, mediapy, packaging, protobuf], nix.concat(nix.sel(self, "enp"), nix.concat(nix.sel(self, "epy"), nix.sel(self, "etree"))))),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
           "etils/etree/tree_utils_test.py",
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Collection of eclectic utils",
         homepage: "https://github.com/google/etils",
         changelog: nix.thunk(() => nix.str`https://github.com/google/etils/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

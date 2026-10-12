@@ -31,22 +31,22 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`${gnused}/bin`),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "shorewall",
       version: "5.2.8",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://shorewall.org/pub/shorewall/5.2/shorewall-5.2.8/shorewall-core-${nix.sel(finalAttrs, "version")}.tar.bz2`),
             hash: "sha256-OZlrlpeiAXlHBJrT8DyyeOj5Of+SSyu0vyoLwXxZmI4=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://shorewall.org/pub/shorewall/5.2/shorewall-5.2.8/shorewall-${nix.sel(finalAttrs, "version")}.tar.bz2`),
             hash: "sha256-+7WrSS7TcuqvAoF8xzD4LEmoHFpfXO5LyPG86EbyMG0=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://shorewall.org/pub/shorewall/5.2/shorewall-5.2.8/shorewall6-${nix.sel(finalAttrs, "version")}.tar.bz2`),
             hash: "sha256-6Cw6lTi2VIGVOY3DnIOwG89m61oigUyRWpJLmtwIjNE=",
           })))),
@@ -106,7 +106,7 @@ sed -i $out/share/shorewall/shorewallrc \\
     -e 's~^CONFDIR=.*~CONFDIR=/etc~'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://shorewall.org/",
         description: "IP gateway/firewall configuration tool for GNU/Linux",
         longDescription: "Shorewall is a high-level tool for configuring Netfilter. You describe your\nfirewall/gateway requirements using entries in a set of configuration\nfiles. Shorewall reads those configuration files and with the help of the\niptables, iptables-restore, ip and tc utilities, Shorewall configures\nNetfilter and the Linux networking subsystem to match your requirements.\nShorewall can be used on a dedicated firewall system, a multi-function\ngateway/router/server or on a standalone GNU/Linux system. Shorewall does\nnot use Netfilter's ipchains compatibility mode and can thus take\nadvantage of Netfilter's connection state tracking capabilities.\n",

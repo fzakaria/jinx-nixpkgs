@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const httpx = nix.arg($, "httpx");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fastapi-versionizer",
       version: "4.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alexschimpf",
           repo: "fastapi-versionizer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [httpx, pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => ["tests/test_simple.py", "tests/test_with_root_path.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/alexschimpf/fastapi-versionizer/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "API versionizer for FastAPI web applications",
         downloadPage: nix.thunk(() => nix.str`https://github.com/alexschimpf/fastapi-versionizer/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

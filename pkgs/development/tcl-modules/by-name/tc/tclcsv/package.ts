@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const mkTclDerivation = nix.arg($, "mkTclDerivation");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tclcsv",
       version: "2.4.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tclcsv/tclcsv${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-bNRMgIyUSy4TnOGq9FPCXr79NIkcRfy2SqO5/i+DC/w=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://tclcsv.magicsplat.com/#_version_history",
         description: "Tcl extension for reading and writing CSV files",
         downloadPage: "https://sourceforge.net/projects/tclcsv/files/",

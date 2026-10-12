@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const tk = nix.arg($, "tk");
   return nix.app(nix.sel(tcl, "mkTclDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eltclsh",
       version: "1.20",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.openrobots.org/robots/eltclsh.git",
           tag: nix.thunk(() => nix.str`eltclsh-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-kNUT190DkY+NNUmBwHfSxgBLbSyc0MutVDLsRh7kFDE=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-libtool=${libtool}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interactive shell for the TCL programming language based on editline",
         homepage: "https://homepages.laas.fr/mallet/soft/shell/eltclsh",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

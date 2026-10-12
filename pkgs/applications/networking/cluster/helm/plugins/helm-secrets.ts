@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "helm-secrets";
       const version = "4.7.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jkroepke",
           repo: "helm-secrets",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ wrapProgram $out/helm-secrets/scripts/run.sh \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helm plugin that helps manage secrets",
         homepage: "https://github.com/jkroepke/helm-secrets",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -56,7 +56,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

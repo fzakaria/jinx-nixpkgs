@@ -97,29 +97,29 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const activationScript = "# will be rebuilt automatically\nrm -fv \"${XDG_CACHE_HOME:-$HOME/.cache}/ksycoca\"*\n";
   return {
-    __proto__: pos$77,
+    [nix.POS]: pos$77,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         desktopManager: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           plasma6: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Enable the Plasma 6 (KDE 6) desktop environment.",
               })))),
             enableQt5Integration: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Enable Qt 5 integration (theming, etc). Disable for a pure Qt 6 system.",
               })))),
             notoPackage: nix.thunk(() => nix.app(mkPackageOption, pkgs, "Noto fonts - used for UI by default", nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: nix.thunk(() => ["noto-fonts"]),
                 example: "noto-fonts-lgc-plus",
               })))),
@@ -127,11 +127,11 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         plasma6: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           excludePackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "List of default packages to exclude from the configuration",
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
               default: [],
@@ -146,52 +146,52 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "xserver", "desktopManager", "plasma6", "notoPackage"]), nix.thunk(() => ["services", "desktopManager", "plasma6", "notoPackage"]))),
     ]),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$76,
-        qt: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+        [nix.POS]: pos$76,
+        qt: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
         programs: nix.thunk(() => ({
-          __proto__: pos$25,
-          xwayland: nix.thunk(() => ({ __proto__: pos$12, enable: true })),
+          [nix.POS]: pos$25,
+          xwayland: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
           "gdk-pixbuf": nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             modulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "librsvg"))]),
           })),
           gnupg: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             agent: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               pinentryPackage: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(pkgs, "pinentry-qt")))),
             })),
           })),
-          "kde-pim": nix.thunk(() => ({ __proto__: pos$16, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          "kde-pim": nix.thunk(() => ({ [nix.POS]: pos$16, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
           ssh: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             askPassword: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.str`${nix.sel(kdePackages, "ksshaskpass", "out")}/bin/ksshaskpass`))),
           })),
-          fuse: nix.thunk(() => ({ __proto__: pos$18, enable: true })),
-          dconf: nix.thunk(() => ({ __proto__: pos$19, enable: true })),
+          fuse: nix.thunk(() => ({ [nix.POS]: pos$18, enable: true })),
+          dconf: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true })),
           firefox: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             nativeMessagingHosts: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(kdePackages, "plasma-browser-integration"))]),
             })),
           })),
           chromium: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             enablePlasmaBrowserIntegration: true,
             plasmaBrowserIntegrationPackage: nix.thunk(() => nix.sel(pkgs, "kdePackages", "plasma-browser-integration")),
           })),
           kdeconnect: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             package: nix.thunk(() => nix.sel(kdePackages, "kdeconnect-kde")),
           })),
           "partition-manager": nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             package: nix.thunk(() => nix.sel(kdePackages, "partitionmanager")),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(kdePackages, null);
             const requiredPackages = nix.thunk(() => [
@@ -304,28 +304,28 @@ ln -s ${kio}/${kioPluginPath}/* $out/${kioPluginPath}
           })()),
           pathsToLink: nix.thunk(() => ["/share", "/libexec"]),
           etc: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             "X11/xkb": nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               source: nix.thunk(() => nix.sel(config, "services", "xserver", "xkb", "dir")),
             })),
           })),
           sessionVariables: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             XDG_CONFIG_DIRS: nix.thunk(() => ["$HOME/.config/kdedefaults"]),
             KPACKAGE_DEP_RESOLVERS_PATH: nix.thunk(() => nix.str`${nix.sel(kdePackages, "frameworkintegration", "out")}/libexec/kf6/kpackagehandlers`),
           })),
         })),
         fonts: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           packages: nix.thunk(() => [
             nix.thunk(() => nix.sel(cfg, "notoPackage")),
             nix.thunk(() => nix.sel(pkgs, "hack-font")),
           ]),
           fontconfig: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             defaultFonts: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               monospace: nix.thunk(() => ["Hack", "Noto Sans Mono"]),
               sansSerif: nix.thunk(() => ["Noto Sans"]),
               serif: nix.thunk(() => ["Noto Serif"]),
@@ -333,39 +333,39 @@ ln -s ${kio}/${kioPluginPath}/* $out/${kioPluginPath}
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$47,
-          "accounts-daemon": nix.thunk(() => ({ __proto__: pos$33, enable: true })),
-          "power-profiles-daemon": nix.thunk(() => ({ __proto__: pos$34, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          [nix.POS]: pos$47,
+          "accounts-daemon": nix.thunk(() => ({ [nix.POS]: pos$33, enable: true })),
+          "power-profiles-daemon": nix.thunk(() => ({ [nix.POS]: pos$34, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
           "system-config-printer": nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             enable: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "services", "printing", "enable")), nix.thunk(() => nix.app(mkDefault, true)))),
           })),
-          udisks2: nix.thunk(() => ({ __proto__: pos$36, enable: true })),
+          udisks2: nix.thunk(() => ({ [nix.POS]: pos$36, enable: true })),
           upower: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             enable: nix.thunk(() => nix.sel(config, "powerManagement", "enable")),
           })),
-          libinput: nix.thunk(() => ({ __proto__: pos$38, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-          geoclue2: nix.thunk(() => ({ __proto__: pos$39, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-          fwupd: nix.thunk(() => ({ __proto__: pos$40, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          libinput: nix.thunk(() => ({ [nix.POS]: pos$38, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          geoclue2: nix.thunk(() => ({ [nix.POS]: pos$39, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          fwupd: nix.thunk(() => ({ [nix.POS]: pos$40, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
           udev: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             packages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "libmtp", "out")),
               nix.thunk(() => nix.sel(pkgs, "media-player-info")),
             ]),
           })),
-          pipewire: nix.thunk(() => ({ __proto__: pos$42, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-          orca: nix.thunk(() => ({ __proto__: pos$43, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          pipewire: nix.thunk(() => ({ [nix.POS]: pos$42, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          orca: nix.thunk(() => ({ [nix.POS]: pos$43, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
           displayManager: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             sessionPackages: nix.thunk(() => [nix.thunk(() => nix.sel(kdePackages, "plasma-workspace", "sessions"))]),
             defaultSession: nix.thunk(() => nix.app(mkDefault, "plasma")),
             sddm: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               package: nix.thunk(() => nix.sel(kdePackages, "sddm")),
               theme: nix.thunk(() => nix.app(mkDefault, "breeze")),
-              wayland: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => ({ __proto__: pos$44, enable: true, compositor: "kwin" })))),
+              wayland: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => ({ [nix.POS]: pos$44, enable: true, compositor: "kwin" })))),
               extraPackages: nix.thunk(() => (() => {
                 const w = nix.withScope(kdePackages, null);
                 return [
@@ -381,39 +381,39 @@ ln -s ${kio}/${kioPluginPath}/* $out/${kioPluginPath}
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           services: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             "accounts-daemon": nix.thunk(() => ({
-              __proto__: pos$49,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$48, PrivateTmp: false })),
+              [nix.POS]: pos$49,
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$48, PrivateTmp: false })),
             })),
-            "drkonqi-coredump-processor@": nix.thunk(() => ({ __proto__: pos$50, wantedBy: nix.thunk(() => ["systemd-coredump@.service"]) })),
+            "drkonqi-coredump-processor@": nix.thunk(() => ({ [nix.POS]: pos$50, wantedBy: nix.thunk(() => ["systemd-coredump@.service"]) })),
           })),
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(kdePackages, "drkonqi"))]),
           user: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             services: nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               "nixos-rebuild-sycoca": nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 description: "Rebuild KDE system configuration cache",
                 wantedBy: nix.thunk(() => ["graphical-session-pre.target"]),
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$52, Type: "oneshot" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$52, Type: "oneshot" })),
                 script: activationScript,
               })),
             })),
           })),
         })),
         xdg: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           icons: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             enable: true,
             fallbackCursorThemes: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => ["breeze_cursors"]))),
           })),
           portal: nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             enable: true,
             extraPortals: nix.thunk(() => [
               nix.thunk(() => nix.sel(kdePackages, "kwallet")),
@@ -424,52 +424,52 @@ ln -s ${kio}/${kioPluginPath}/* $out/${kioPluginPath}
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$73,
+          [nix.POS]: pos$73,
           pam: nix.thunk(() => ({
-            __proto__: pos$67,
+            [nix.POS]: pos$67,
             services: nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               login: nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 kwallet: nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   enable: true,
                   package: nix.thunk(() => nix.sel(kdePackages, "kwallet-pam")),
                 })),
               })),
               kde: nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 allowNullPassword: true,
                 kwallet: nix.thunk(() => ({
-                  __proto__: pos$62,
+                  [nix.POS]: pos$62,
                   enable: true,
                   package: nix.thunk(() => nix.sel(kdePackages, "kwallet-pam")),
                 })),
                 fprintAuth: false,
                 p11Auth: false,
               })),
-              "kde-fingerprint": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "fprintd", "enable")), nix.thunk(() => ({ __proto__: pos$64, fprintAuth: true, p11Auth: false })))),
-              "kde-smartcard": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "security", "pam", "p11", "enable")), nix.thunk(() => ({ __proto__: pos$65, p11Auth: true, fprintAuth: false })))),
+              "kde-fingerprint": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "fprintd", "enable")), nix.thunk(() => ({ [nix.POS]: pos$64, fprintAuth: true, p11Auth: false })))),
+              "kde-smartcard": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "security", "pam", "p11", "enable")), nix.thunk(() => ({ [nix.POS]: pos$65, p11Auth: true, fprintAuth: false })))),
             })),
           })),
           wrappers: nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             kwin_wayland: nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               owner: "root",
               group: "root",
               capabilities: "cap_sys_nice+ep",
               source: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "kdePackages", "kwin")))}/bin/kwin_wayland`),
             })),
             ksystemstats_intel_helper: nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               owner: "root",
               group: "root",
               capabilities: "cap_perfmon+ep",
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "kdePackages", "ksystemstats")}/libexec/ksystemstats_intel_helper`),
             })),
             ksgrd_network_helper: nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               owner: "root",
               group: "root",
               capabilities: "cap_net_raw+ep",
@@ -477,13 +477,13 @@ ln -s ${kio}/${kioPluginPath}/* $out/${kioPluginPath}
             })),
           })),
           polkit: nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "time", "timeZone"), null)), "polkit.addRule(function(action, subject) {\n  if (action.id == \"org.freedesktop.timedate1.set-timezone\" && subject.active) {\n    return polkit.Result.YES;\n  }\n});\n")),
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$75,
-          userActivationScripts: nix.thunk(() => ({ __proto__: pos$74, rebuildSycoca: activationScript })),
+          [nix.POS]: pos$75,
+          userActivationScripts: nix.thunk(() => ({ [nix.POS]: pos$74, rebuildSycoca: activationScript })),
         })),
       })))),
   };

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const llama_index_core = nix.arg($, "llama-index-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "llama-index-vector-stores-faiss",
       version: "0.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_index_vector_stores_faiss",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ZTHrDeP72ogqFuRCvu7tWQIJxf16CfLPI1l32U6X/WM=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [faiss, llama_index_core]),
       pythonImportsCheck: nix.thunk(() => ["llama_index.vector_stores.faiss"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LlamaIndex Vector Store Integration for Faiss",
         homepage: "https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-faiss",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

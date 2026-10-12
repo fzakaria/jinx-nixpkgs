@@ -56,18 +56,18 @@ pathAbsoluteFallback -> ${pathAbsoluteFallback}
   })();
   const yarnHash = "sha256-ItLl8OwgeVahBtMvI2z8uA9EvPgS3tNWG8Q/uHGtDy0=";
   const prettier_oxc_wasm_parser = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "binding-wasm32-wasi",
       version: "0.139.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/@oxc-parser/${nix.sel(finalAttrs, "pname")}/-/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "sha256-mQYWVK52hHi3gsXKpPxK7liQEg16wxKjY2hjkX9NPZE=",
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm]),
       patches: nix.thunk(() => [nix.path(here, "./pnpm-lock_prettier-oxc-wasm-parser.patch")]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -81,18 +81,18 @@ pathAbsoluteFallback -> ${pathAbsoluteFallback}
       doCheck: false,
       doInstallCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Oxc Parser Node API",
         homepage: "https://oxc.rs/docs/guide/usage/parser",
         license: "MIT",
       })),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "prettier",
       version: "3.9.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "prettier",
           repo: "prettier",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -100,7 +100,7 @@ pathAbsoluteFallback -> ${pathAbsoluteFallback}
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: yarnHash,
@@ -137,9 +137,9 @@ makeBinaryWrapper "${nix.app(nix.sel(lib, "getExe"), nodejs)}" "$out/bin/prettie
 `))), "runHook postInstall\n")),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-      passthru: nix.thunk(() => ({ __proto__: pos$7, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://github.com/prettier/prettier/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Code formatter",
         homepage: "https://prettier.io/",

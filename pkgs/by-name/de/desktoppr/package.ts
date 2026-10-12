@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "desktoppr",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scriptingosx",
           repo: "desktoppr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/scriptingosx/desktoppr/commit/419363c28c99eb0f391bf231813af5e507c35573.patch",
             hash: "sha256-7A3hsXO0hZYlZMrX1U0zC2vy59M9H5OZebEbPY8E9fA=",
             includes: nix.thunk(() => ["desktoppr/main.swift"]),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/scriptingosx/desktoppr/commit/eaf08da7cdd5fe9aa656516b3a5a0a9ac9969e72.patch",
             hash: "sha256-8sAUNnTGqQ2UHIFUPwTP0dd3QKgI0HfOrG0HzcIStMM=",
           })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple command line tool to read and set the desktop picture/wallpaper",
         homepage: "https://github.com/scriptingosx/desktoppr",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),

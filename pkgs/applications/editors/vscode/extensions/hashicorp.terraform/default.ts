@@ -18,9 +18,9 @@ export default nix.lambda((args) => (() => {
   const terraform_ls = nix.arg($, "terraform-ls");
   const vscode_extension_update_script = nix.arg($, "vscode-extension-update-script");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "terraform",
         publisher: "hashicorp",
         version: "2.40.0",
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "getExe"), jq)} '.contributes.configuration[0].properties."terraform.languageServer.path".default = "${terraform_ls}/bin/terraform-ls"' package.json | ${nix.app(nix.sel(lib, "getExe'"), moreutils, "sponge")} package.json
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => [
               "--override-filename",
               "pkgs/applications/editors/vscode/extensions/hashicorp.terraform/default.nix",
@@ -40,7 +40,7 @@ ${nix.app(nix.sel(lib, "getExe"), jq)} '.contributes.configuration[0].properties
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rhoriguchi"))]),
       })),

@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cmucl-binary",
       version: "21d",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.add(nix.add("http://common-lisp.net/project/cmucl/downloads/release/", nix.sel(finalAttrs, "version")), nix.str`/cmucl-${nix.sel(finalAttrs, "version")}-x86-linux.tar.bz2`)),
             hash: "sha256-RdctcqPTtQh1Yb3BrpQ8jtRFQn85OcwOt1l90H6xDZs=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.add(nix.add("http://common-lisp.net/project/cmucl/downloads/release/", nix.sel(finalAttrs, "version")), nix.str`/cmucl-${nix.sel(finalAttrs, "version")}-x86-linux.extra.tar.bz2`)),
             hash: "sha256-zEmiW3m5VPpFgPxV1WJNCqgYRlHMovtaMXcgXyNukls=",
           })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -pv $out $doc/share $man\nmv bin lib -t $out\nmv -v doc -t $doc/share\ninstallManPage man/man1/*\n\nrunHook postInstall\n",
       postFixup: "patchelf --set-interpreter \"$(cat $NIX_CC/nix-support/dynamic-linker)\" \\\n  $out/bin/lisp\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CMU implementation of Common Lisp",
         homepage: "http://www.cons.org/cmucl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

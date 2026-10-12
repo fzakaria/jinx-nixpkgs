@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Tigge",
           repo: "openant",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,21 +34,21 @@ export default nix.lambda((args) => (() => {
       const postInstall = "install -dm755 \"$out/etc/udev/rules.d\"\ninstall -m644 resources/42-ant-usb-sticks.rules \"$out/etc/udev/rules.d/99-ant-usb-sticks.rules\"\n";
       const propagatedBuildInputs = nix.thunk(() => [pyusb]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         serial: nix.thunk(() => [pyserial]),
         influx: nix.thunk(() => [influxdb_client]),
       }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["openant"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Tigge/openant",
         description: "ANT and ANT-FS Python Library",
         mainProgram: "openant",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

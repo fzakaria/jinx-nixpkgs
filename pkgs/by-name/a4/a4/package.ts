@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libtickit = nix.arg($, "libtickit");
   const libvterm_neovim = nix.arg($, "libvterm-neovim");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "a4",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rpmohn",
           repo: "a4",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libtickit, libvterm_neovim]),
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dynamic terminal window manager",
         homepage: "https://www.a4term.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

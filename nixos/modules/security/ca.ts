@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "security", "pki"));
   const cacertPackage = nix.thunk(() => nix.app(nix.sel(pkgs, "cacert", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       blacklist: nix.thunk(() => nix.sel(cfg, "caCertificateBlacklist")),
       extraCertificateFiles: nix.thunk(() => nix.sel(cfg, "certificateFiles")),
       extraCertificateStrings: nix.thunk(() => nix.sel(cfg, "certificates")),
@@ -39,31 +39,31 @@ export default nix.lambda((args) => (() => {
   const caBundleName = nix.thunk(() => (nix.asBool(nix.sel(cfg, "useCompatibleBundle")) ? "ca-no-trust-rules-bundle.crt" : "ca-bundle.crt"));
   const caBundle = nix.thunk(() => nix.str`${cacertPackage}/etc/ssl/certs/${caBundleName}`);
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       security: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pki: nix.thunk(() => ({
-          __proto__: pos$7,
-          installCACerts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "installing CA certificates to the system"), { __proto__: pos$2, default: true, internal: true })),
+          [nix.POS]: pos$7,
+          installCACerts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "installing CA certificates to the system"), { [nix.POS]: pos$2, default: true, internal: true })),
           useCompatibleBundle: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "usage of a compatibility bundle.\n\nSuch a bundle consists exclusively of `BEGIN CERTIFICATE` and no `BEGIN TRUSTED CERTIFICATE`,\nwhich is an OpenSSL specific PEM format.\n\nIt is known to be incompatible with certain software stacks.\n\nNevertheless, enabling this will strip all additional trust rules provided by the\ncertificates themselves. This can have security consequences depending on your usecases\n")),
           certificateFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"${pkgs.dn42-cacert}/etc/ssl/certs/dn42-ca.crt\" ]")),
               description: "A list of files containing trusted root certificates in PEM\nformat. These are concatenated to form\n{file}`/etc/ssl/certs/ca-certificates.crt`, which is\nused by many programs that use OpenSSL, such as\n{command}`curl` and {command}`git`.\n",
             })))),
           certificates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ ''\n    NixOS.org\n    =========\n    -----BEGIN CERTIFICATE-----\n    MIIGUDCCBTigAwIBAgIDD8KWMA0GCSqGSIb3DQEBBQUAMIGMMQswCQYDVQQGEwJJ\n    TDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjErMCkGA1UECxMiU2VjdXJlIERpZ2l0\n    ...\n    -----END CERTIFICATE-----\n  ''\n]\n")),
               description: "A list of trusted root certificates in PEM format.\n",
             })))),
           caCertificateBlacklist: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => [
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
               description: "A list of blacklisted CA certificate names that won't be imported from\nthe Mozilla Trust Store into\n{file}`/etc/ssl/certs/ca-certificates.crt`. Use the\nnames from that file.\n",
             })))),
           caBundle: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               readOnly: true,
               description: "(Read-only) the path to the final bundle of certificate authorities as a single file.\n",
@@ -85,26 +85,26 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "installCACerts")), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             environment: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               etc: nix.thunk(() => ({
-                __proto__: pos$14,
-                "ssl/certs/ca-certificates.crt": nix.thunk(() => ({ __proto__: pos$10, source: caBundle })),
-                "ssl/certs/ca-bundle.crt": nix.thunk(() => ({ __proto__: pos$11, source: caBundle })),
-                "pki/tls/certs/ca-bundle.crt": nix.thunk(() => ({ __proto__: pos$12, source: caBundle })),
+                [nix.POS]: pos$14,
+                "ssl/certs/ca-certificates.crt": nix.thunk(() => ({ [nix.POS]: pos$10, source: caBundle })),
+                "ssl/certs/ca-bundle.crt": nix.thunk(() => ({ [nix.POS]: pos$11, source: caBundle })),
+                "pki/tls/certs/ca-bundle.crt": nix.thunk(() => ({ [nix.POS]: pos$12, source: caBundle })),
                 "ssl/trust-source": nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   source: nix.thunk(() => nix.str`${nix.sel(cacertPackage, "p11kit")}/etc/ssl/trust-source`),
                 })),
               })),
             })),
           })))),
         nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           security: nix.thunk(() => ({
-            __proto__: pos$18,
-            pki: nix.thunk(() => ({ __proto__: pos$17, caBundle: caBundle })),
+            [nix.POS]: pos$18,
+            pki: nix.thunk(() => ({ [nix.POS]: pos$17, caBundle: caBundle })),
           })),
         })),
       ]))),

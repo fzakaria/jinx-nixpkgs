@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.20.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-CrPOu0T+y1Mrd9WitAG1AYeh1wtyUabMLfVJTlL/31c=",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ble: nix.thunk(() => [bleak]),
         extra: nix.thunk(() => [pillow]),
         hidapi: nix.thunk(() => [hidapi]),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["trezorlib"]);
       const postCheck = "$out/bin/trezorctl --version\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for communicating with Trezor Hardware Wallet",
         mainProgram: "trezorctl",
         homepage: "https://github.com/trezor/trezor-firmware/tree/master/python",
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

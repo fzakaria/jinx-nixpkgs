@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const version = "20260716";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "aajanki",
       repo: "yle-dl",
       tag: nix.thunk(() => nix.str`releases/${version}`),
       hash: "sha256-UU1IWvg6uwsjnnBcv1WgQMxcraBZQwDYVAQ+58DrzFo=",
     }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yle-dl",
       version: version,
       src: src,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       pythonPath: nix.thunk(() => [wget, ffmpeg]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Downloads videos from Yle (Finnish Broadcasting Company) servers",
         homepage: "https://aajanki.github.io/yle-dl/",
         changelog: nix.thunk(() => nix.str`https://github.com/aajanki/yle-dl/blob/${nix.sel(src, "tag")}/ChangeLog`),

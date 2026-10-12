@@ -30,17 +30,17 @@ export default nix.lambda((args) => (() => {
   const n64recomp = nix.arg($, "n64recomp");
   const directx_shader_compiler = nix.arg($, "directx-shader-compiler");
   const baseRom = nix.thunk(() => (nix.asBool(!nix.eq(mk64baserom, null)) ? nix.force(mk64baserom) : nix.app(requireFile, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "mk64.us.z64",
       message: "mariokart64recomp only supports the US version of Mario Kart 64.\nPlease dump your copy and rename it to mk64.us.z64\nand add it to the nix store using\nnix-store --add-fixed sha256 mk64.us.z64\nSee https://dumping.guide/carts/nintendo/n64 for more details.\n",
       hash: "sha256-1rhTjdY/ATLssoVufTKBbtPDDj5HmuzSPPg/troXpdo=",
     })))));
   return nix.app(nix.sel(llvmPackages_19, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mariokart64recomp",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "sonicdcer",
           repo: "MarioKart64Recomp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, gtk3, vulkan_loader]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "MarioKart64Recompiled",
             icon: "MarioKart64Recompiled",
             exec: "MarioKart64Recompiled",
@@ -94,7 +94,7 @@ substituteInPlace CMakeLists.txt \\
 `),
       postFixup: "wrapProgram $out/bin/MarioKart64Recompiled --chdir \"$out/share/mariokart64recomp\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Recompilation of MarioKart 64",
         homepage: "https://github.com/sonicdcer/MarioKart64Recomp",
         license: nix.thunk(() => (() => {

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libmd",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://archive.hadrons.org/software/libmd/libmd-${nix.sel(finalAttrs, "version")}.tar.xz`),
             nix.thunk(() => nix.str`https://libbsd.freedesktop.org/releases/libmd-${nix.sel(finalAttrs, "version")}.tar.xz`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.hadrons.org/software/libmd/",
         changelog: nix.thunk(() => nix.str`https://archive.hadrons.org/software/libmd/libmd-${nix.sel(finalAttrs, "version")}.announce`),
         description: "Message Digest functions from BSD systems",

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "addchain";
       const version = "0.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mmcloughlin",
           repo: "addchain",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/mmcloughlin/addchain/meta.buildversion=${version}`),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const subPackages = nix.thunk(() => ["cmd/addchain"]);
       const __structuredAttrs = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "addchain generates short addition chains for exponents of cryptographic interest with results rivaling the best hand-optimized chains",
         homepage: "https://github.com/mmcloughlin/addchain",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "addchain",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

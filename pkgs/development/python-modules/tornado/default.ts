@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const sockjs_tornado = nix.arg($, "sockjs-tornado");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tornado",
       version: "6.5.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tornadoweb",
           repo: "tornado",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
-      env: nix.thunk(() => ({ __proto__: pos$2, ASYNC_TEST_TIMEOUT: 30n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ASYNC_TEST_TIMEOUT: 30n })),
       disabledTestPaths: nix.thunk(() => ["maint/test"]),
       pythonImportsCheck: nix.thunk(() => ["tornado"]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           distributed: distributed,
           "jupyter-server": jupyter_server,
           jupyterlab: jupyterlab,
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://www.tornadoweb.org/en/stable/releases/${nix.sel(finalAttrs, "src", "tag")}.html`),
         description: "Web framework and asynchronous networking library",
         homepage: "https://www.tornadoweb.org/",

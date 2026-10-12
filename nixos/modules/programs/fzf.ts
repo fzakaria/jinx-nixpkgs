@@ -23,51 +23,51 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "fzf"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       programs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         fzf: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           fuzzyCompletion: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "fuzzy completion with fzf")),
           keybindings: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "fzf keybindings")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "keybindings")) || nix.asBool(nix.sel(cfg, "fuzzyCompletion")))), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "fzf"))]),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           bash: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             promptPluginInit: nix.thunk(() => nix.app(nix.sel(lib, "mkAfter"), nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "fuzzyCompletion")), nix.thunk(() => nix.str`source ${nix.sel(pkgs, "fzf")}/share/fzf/completion.bash
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "keybindings")), nix.thunk(() => nix.str`source ${nix.sel(pkgs, "fzf")}/share/fzf/key-bindings.bash
 `)))))),
           })),
           zsh: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(config, "programs", "zsh", "ohMyZsh", "enable"))), nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "fuzzyCompletion")), nix.thunk(() => nix.str`source ${nix.sel(pkgs, "fzf")}/share/fzf/completion.zsh
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "keybindings")), nix.thunk(() => nix.str`source ${nix.sel(pkgs, "fzf")}/share/fzf/key-bindings.zsh
 `)))))),
             ohMyZsh: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "programs", "zsh", "ohMyZsh", "enable")), nix.thunk(() => ["fzf"]))),
             })),
           })),
           fish: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "keybindings")), nix.thunk(() => nix.str`source ${nix.sel(pkgs, "fzf")}/share/fzf/key-bindings.fish && fzf_key_bindings
 `))),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "laalsaas"))];

@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Argmaster",
           repo: "pygerber",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,9 +49,9 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [numpy, click, pillow, pydantic, pyparsing, typing_extensions]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "optional-dependencies": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           language_server: nix.thunk(() => [pygls, lsprotocol]),
           svg: nix.thunk(() => [drawsvg]),
           pygments: nix.thunk(() => [pygments]),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--override-ini=required_plugins="]);
       const pythonImportsCheck = nix.thunk(() => ["pygerber"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Implementation of the Gerber X3/X2 format, based on Ucamco's The Gerber Layer Format Specification",
         homepage: "https://github.com/Argmaster/pygerber",
         changelog: "https://argmaster.github.io/pygerber/stable/Changelog.html",
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

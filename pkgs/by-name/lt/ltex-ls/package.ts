@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ltex-ls";
       const version = "16.0.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/valentjn/ltex-ls/releases/download/${version}/ltex-ls-${version}.tar.gz`),
           sha256: "sha256-lW1TfTckqhCmhjcvduISY9qAdKPM/0cobxbIrCq5JkQ=",
         }))));
@@ -35,7 +35,7 @@ done
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://valentjn.github.io/ltex/",
         description: "LSP language server for LanguageTool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -46,7 +46,7 @@ runHook postInstall
         })()),
         platforms: nix.thunk(() => nix.sel(jre_headless, "meta", "platforms")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

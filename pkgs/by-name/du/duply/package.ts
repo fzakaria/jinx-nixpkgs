@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "duply",
       version: "2.5.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/ftplicity/duply%20%28simple%20duplicity%29/2.5.x/duply_${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-DSSnjfbcgWIuWaA+4h7d/0HqpDoXqkJOyGapYX4rtP0=",
         })))),
@@ -46,7 +46,7 @@ wrapProgram "$out/bin/duply" --prefix PATH : \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shell front end for the duplicity backup tool",
         mainProgram: "duply",
         longDescription: "Duply is a shell front end for the duplicity backup tool\nhttps://www.nongnu.org/duplicity. It greatly simplifies its usage by\nimplementing backup job profiles, batch commands and more. Who says\nsecure backups on non-trusted spaces are no child's play?\n",

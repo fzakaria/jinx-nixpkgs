@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "transcribe";
       const version = "9.60.3";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.seventhstring.com/xscribe/downlo/xscsetup-${version}.tar.gz`),
           sha256: "sha256-13dM4+PYQTyTmM4pEhQ3FGTA/ELo8uDslWPbPxfJpow=",
         }))) : nix.builtins.throw("Platform not supported")));
@@ -90,7 +90,7 @@ patchelf \\
 `);
       const postFixup = "ln -s $out/libexec/transcribe $out/bin/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software to help transcribe recorded music",
         longDescription: "The Transcribe! application is an assistant for people who want\nto work out a piece of music from a recording, in order to write\nit out, or play it themselves, or both. It doesn't do the\ntranscribing for you, but it is essentially a specialised player\nprogram which is optimised for the purpose of transcription. It\nhas many transcription-specific features not found on\nconventional music players.\n",
         homepage: "https://www.seventhstring.com/xscribe/",
@@ -108,7 +108,7 @@ patchelf \\
         mainProgram: "transcribe",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

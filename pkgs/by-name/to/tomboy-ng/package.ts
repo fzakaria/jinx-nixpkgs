@@ -26,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const libnotify = nix.arg($, "libnotify");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "tomboy-ng",
       version: "0.42",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tomboy-notes",
           repo: "tomboy-ng",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ppvEZeVHJ4DHIdEXfLOWcb4Wbsi6YVKqm6NGQ7lPtdg=",
         })))),
       kcontrols: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "davidbannon",
           repo: "KControls",
           rev: "4b74f50599544aa05d76385c21795ca9026e9657",
@@ -63,19 +63,19 @@ export default nix.lambda((args) => (() => {
       preBuild: "touch Qt6\n",
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         COMPILER: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), fpc, "fpc")),
         LAZ_DIR: nix.thunk(() => nix.str`${lazarus_qt6}/share/lazarus`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Note taking app that works and synchronises between Linux, Windows and macOS",
         homepage: "https://github.com/tomboy-notes/tomboy-ng",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

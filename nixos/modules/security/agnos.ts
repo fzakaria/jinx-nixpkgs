@@ -57,17 +57,17 @@ export default nix.lambda((args) => (() => {
     const types = nix.thunk(() => nix.attr(lib, "types"));
     const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
     return nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(format, "type")))),
         options: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           email: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "Email associated with this account.\n",
             })))),
           private_key_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               description: nix.thunk(() => nix.str`Path of the PEM-encoded private key for this account.
 Currently, only RSA keys are supported.
@@ -82,7 +82,7 @@ the key will be looked up (or generated and saved to) under \`${stateDir}\`.
 `),
             })))),
           certificates: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), certificateType)),
               description: "Certificates for agnos to issue or renew.\n",
             })))),
@@ -94,25 +94,25 @@ the key will be looked up (or generated and saved to) under \`${stateDir}\`.
     const literalExpression = nix.thunk(() => nix.attr(lib, "literalExpression"));
     const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
     return nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(format, "type")))),
         options: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           domains: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               description: "Domains the certificate represents\n",
               example: nix.thunk(() => nix.app(literalExpression, "[\"a.example.com\", \"b.example.com\", \"*b.example.com\"]")),
             })))),
           fullchain_output_file: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "str")),
               description: nix.thunk(() => nix.str`Output path for the full chain including the acquired certificate.
 If a relative path is specified, the file will be created in \`${stateDir}\`.
 `),
             })))),
           key_output_file: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(types, "str")),
               description: nix.thunk(() => nix.str`Output path for the certificate private key.
 If a relative path is specified, the file will be created in \`${stateDir}\`.
@@ -122,34 +122,34 @@ If a relative path is specified, the file will be created in \`${stateDir}\`.
       })));
   })());
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     options: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       security: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         agnos: nix.thunk(() => (() => {
           const types = nix.thunk(() => nix.attr(lib, "types"));
           const mkEnableOption = nix.thunk(() => nix.attr(lib, "mkEnableOption"));
           const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
           return {
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             enable: nix.thunk(() => nix.app(mkEnableOption, name)),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: "Settings",
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(format, "type")))),
                     options: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       dns_listen_addr: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "0.0.0.0:53",
                           description: "Address for agnos to listen on.\nNote that this needs to be reachable by the outside world,\nand 53 is required in most situations\nsince `NS` records do not allow specifying the port.\n",
                         })))),
                       accounts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), accountType)),
                           description: "A list of ACME accounts.\nEach account is associated with an email address\nand can be used to obtain an arbitrary amount of certificate\n(subject to provider's rate limits,\nsee e.g. [Let's Encrypt Rate Limits](https://letsencrypt.org/docs/rate-limits/)).\n",
                         })))),
@@ -157,59 +157,59 @@ If a relative path is specified, the file will be created in \`${stateDir}\`.
                   })))),
               })))),
             generateKeys: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   type: nix.thunk(() => nix.sel(types, "bool")),
                   default: false,
                   description: "Enable automatic generation of account keys.\n\nWhen this is `true`, a key will be generated for each account where\nthe file referred to by the `private_key` path does not exist yet.\n\nCurrently, only RSA keys can be generated.\n",
                 })))),
               keySize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   type: nix.thunk(() => nix.sel(types, "int")),
                   default: 4096n,
                   description: "Key size in bits to use when generating new keys.\n",
                 })))),
             })),
             server: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 default: null,
                 description: "ACME Directory Resource URI. Defaults to Let's Encrypt's production endpoint,\n`https://acme-v02.api.letsencrypt.org/directory`, if unset.\n",
               })))),
             serverCa: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 description: "The root certificate (in PEM format) of the ACME server's HTTPS interface.\n",
               })))),
             persistent: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "When `true`, use a persistent systemd timer.\n",
               })))),
             startAt: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "str")), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))))),
                 default: "daily",
                 example: "02:00",
                 description: "How often or when to run agnos.\n\nThe format is described in\n{manpage}`systemd.time(7)`.\n",
               })))),
             temporarilyOpenFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "When `true`, will open the port specified in `settings.dns_listen_addr`\nbefore running the agnos service, and close it when agnos finishes running.\n",
               })))),
             group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: name,
                 description: "Group to run Agnos as. The acquired certificates will be owned by this group.\n",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: name,
                 description: "User to run Agnos as. The acquired certificates will be owned by this user.\n",
@@ -243,22 +243,22 @@ ip46tables -D INPUT -p tcp ${fwFilter}
 ip46tables -D INPUT -p udp ${fwFilter}
 `)));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "temporarilyOpenFirewall"))) || nix.asBool(nix.sel(config, "networking", "firewall", "enable")))),
               message: "temporarilyOpenFirewall is only useful when firewall is enabled",
             })),
           ]),
           systemd: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             services: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               agnos: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   ExecStartPre: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "generateKeys", "enable")), nix.thunk(() => nix.str`${nix.sel(pkgs, "agnos")}/bin/agnos-generate-accounts-keys \\
   --no-confirm \\
   --key-size ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "generateKeys", "keySize")))} \\
@@ -284,11 +284,11 @@ ip46tables -D INPUT -p udp ${fwFilter}
               })),
             })),
             timers: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               agnos: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   OnCalendar: nix.thunk(() => nix.sel(cfg, "startAt")),
                   Persistent: nix.thunk(() => nix.sel(cfg, "persistent")),
                   Unit: "agnos.service",
@@ -298,11 +298,11 @@ ip46tables -D INPUT -p udp ${fwFilter}
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), name)), nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])))),
             users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), name)), nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "user"), nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   isSystemUser: true,
                   description: "Agnos service user",
                   group: nix.thunk(() => nix.sel(cfg, "group")),

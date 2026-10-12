@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const libsndfileSupport = nix.argOr($, "libsndfileSupport", () => true);
   const libsndfile = nix.arg($, "libsndfile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "roc-toolkit",
       version: "0.4.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "roc-streaming",
           repo: "roc-toolkit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,12 +53,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-openfec-includes=${nix.sel(openfec, "dev")}/include`),
       ])))))))))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: "-D_XOPEN_SOURCE=700 -D__BSD_VISIBLE",
           NIX_LDFLAGS: "-lpthread",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Roc is a toolkit for real-time audio streaming over the network",
         homepage: "https://github.com/roc-streaming/roc-toolkit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

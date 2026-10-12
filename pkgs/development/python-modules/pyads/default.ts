@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stlehmann",
           repo: "pyads",
           tag: version,
@@ -49,14 +49,14 @@ substituteInPlace src/pyads/pyads_ex.py \\
       const disabledTests = nix.thunk(() => ["test_correct_route", "test_get_ams"]);
       const pythonImportsCheck = nix.thunk(() => ["pyads"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python wrapper for TwinCAT ADS library",
         homepage: "https://github.com/MrLeeh/pyads",
         changelog: nix.thunk(() => nix.str`https://github.com/stlehmann/pyads/releases/tag/${nix.sel(src, "tag")}`),
@@ -67,7 +67,7 @@ substituteInPlace src/pyads/pyads_ex.py \\
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

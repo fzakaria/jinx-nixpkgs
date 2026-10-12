@@ -43,7 +43,7 @@ export MATHJAX_DIR="${mathjax}/lib/node_modules/mathjax"
 export THREEJS_DIR="${three}/lib/node_modules/three"
 export SAGE_INCLUDE_DIRECTORIES="${cysignals}/${nix.sel(cysignals, "pythonModule", "sitePackages")}"
 `);
-      return { __proto__: pos$1, name, destination, text };
+      return { [nix.POS]: pos$1, name, destination, text };
     })()));
 })(), formals$1);
 //# sourceMappingURL=env-locations.ts.map

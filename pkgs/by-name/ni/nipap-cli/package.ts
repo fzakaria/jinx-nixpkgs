@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(python3Packages, "nipap"));
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nipap-cli",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["nipap_cli.nipap_cli"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
-        tests: nix.thunk(() => ({ __proto__: pos$1, nixos: nix.thunk(() => nix.sel(nixosTests, "nipap")) })),
+        [nix.POS]: pos$2,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$1, nixos: nix.thunk(() => nix.sel(nixosTests, "nipap")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Neat IP Address Planner CLI",
         longDescription: "NIPAP is the best open source IPAM in the known universe,\nchallenging classical IP address management (IPAM) systems in many areas.\n",
         homepage: "https://github.com/SpriteLink/NIPAP",

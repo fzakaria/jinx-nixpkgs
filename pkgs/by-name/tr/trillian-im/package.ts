@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "trillian-im";
       const version = "6.3.0.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.trillian.im/get/linux/6.3/trillian_${version}_amd64.deb`),
           hash: "sha256-5QvvAld9IC+6DAWVsyT6BoyKx+0WUA+UC8q1RBnwjqg=",
         }))));
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const dontUnpack = true;
       const installPhase = "runHook preInstall\n\nmkdir -p $out\ndpkg -x $src $out\ncp -av $out/usr/* $out\nrm -rf $out/usr\n\nrm $out/bin/trillian\nln -s \"$out/share/trillian/trillian\" \"$out/bin/trillian\"\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern instant messaging for home and work that prioritizes chat interoperability and security",
         homepage: "https://www.trillian.im/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

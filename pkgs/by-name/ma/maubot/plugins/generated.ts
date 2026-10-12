@@ -31,17 +31,17 @@ export default nix.lambda((args) => (() => {
       const reqDeps = nix.thunk(() => nix.app(resolveDeps, nix.thunk(() => nix.app(nix.sel(lib, "toList"), nix.thunk(() => nix.selOr(manifest, () => null, "dependencies"))))));
       const optDeps = nix.thunk(() => nix.app(resolveDeps, nix.thunk(() => nix.app(nix.sel(lib, "toList"), nix.thunk(() => nix.selOr(manifest, () => null, "soft_dependencies"))))));
       return nix.app(nix.sel(lib, "makeOverridable"), buildMaubotPlugin, nix.thunk(() => nix.update(nix.sel(entry, "attrs"), nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.sel(manifest, "id")),
           version: nix.thunk(() => nix.attr(manifest, "version")),
           src: nix.thunk(() => (nix.asBool(nix.has(entry, "github")) ? nix.app(fetchFromGitHub, nix.thunk(() => nix.sel(entry, "github"))) : (nix.asBool(nix.has(entry, "git")) ? nix.app(fetchgit, nix.thunk(() => nix.sel(entry, "git"))) : (nix.asBool(nix.has(entry, "gitlab")) ? nix.app(fetchFromGitLab, nix.thunk(() => nix.sel(entry, "gitlab"))) : (nix.asBool(nix.has(entry, "gitea")) ? nix.app(fetchFromGitea, nix.thunk(() => nix.sel(entry, "gitea"))) : nix.builtins.throw(nix.thunk(() => nix.str`Invalid generated entry for ${nix.sel(manifest, "id")}: missing source`))))))),
           propagatedBuildInputs: nix.thunk(() => nix.builtins.filter((x) => !nix.eq(x, null), nix.thunk(() => nix.concat(reqDeps, optDeps)))),
           passthru: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             isOfficial: nix.thunk(() => nix.selOr(entry, () => false, "isOfficial")),
           })),
           meta: nix.thunk(() => nix.update(nix.sel(entry, "attrs", "meta"), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             license: nix.thunk(() => (() => {
               const spdx = nix.thunk(() => nix.selOr(entry, () => nix.selOr(manifest, () => "unfree", "license"), "attrs", "meta", "license"));
               const spdxLicenses = nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((x) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(x, "spdxId")), x), nix.thunk(() => nix.builtins.filter((x) => nix.has(x, "spdxId"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(lib, "licenses"))))))))));
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
             broken: nix.thunk(() => nix.builtins.elem(null, reqDeps)),
           })),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(entry, () => false, "isPoetry")), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             nativeBuildInputs: nix.thunk(() => [
               poetry,
               nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (p) => (() => {

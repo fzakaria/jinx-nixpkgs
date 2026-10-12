@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const targetSubdirectory = nix.argOr($, "targetSubdirectory", () => nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget"));
   const kernelName = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name"));
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "tauri-hook",
       propagatedBuildInputs: nix.thunk(() => nix.concat([cargo, cargo_tauri], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.sel(cargo_tauri, "gst-plugin"))])))),
       substitutions: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(rust, "envVars"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         targetSubdirectory: targetSubdirectory,
         rustHostPlatformSpec: nix.thunk(() => nix.attr(from, "rustHostPlatformSpec")),
         setEnv: nix.thunk(() => nix.attr(from, "setEnv")),
-        defaultTauriBundleType: nix.thunk(() => nix.selOr({ __proto__: pos$1, darwin: "app", linux: "deb" }, () => nix.builtins.throw(nix.thunk(() => nix.str`${kernelName} is not supported by cargo-tauri.hook`)), nix.key(nix.force(kernelName)))),
+        defaultTauriBundleType: nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, darwin: "app", linux: "deb" }, () => nix.builtins.throw(nix.thunk(() => nix.str`${kernelName} is not supported by cargo-tauri.hook`)), nix.key(nix.force(kernelName)))),
         fixupScript: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`gappsWrapperArgs+=(
   --prefix WEBKIT_GST_ALLOWED_URI_PROTOCOLS : "asset"
   # Not picked up automatically by the wrappers from the propagatedBuildInputs.
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
 )
 `))),
         installScript: nix.thunk(() => nix.selOr({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           darwin: "mkdir -p \"$out/Applications\"\n\nshopt -s nullglob\nappBundles=(\"$targetDir\"/bundle/macos/*.app)\nshopt -u nullglob\n\nif [ \"${#appBundles[@]}\" -eq 0 ]; then\n  echo \"cargo-tauri.hook: no .app bundles found in $targetDir/bundle/macos\" >&2\n  exit 1\nfi\n\nmv -- \"${appBundles[@]}\" \"$out/Applications/\"\n",
           linux: "mkdir -p $out\nmv \"$targetDir\"/bundle/deb/*/data/usr/* $out/\n",
         }, () => nix.builtins.throw(nix.thunk(() => nix.str`${kernelName} is not supported by cargo-tauri.hook`)), nix.key(nix.force(kernelName)))),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cargo_tauri, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         broken: nix.thunk(() => nix.attr(from, "broken")),
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), nix.sel(lib, "platforms", "linux"))),

@@ -17,9 +17,9 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const vscode_extension_update_script = nix.arg($, "vscode-extension-update-script");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "todo-tree",
         publisher: "Gruntfuggly",
         version: "0.0.226",
@@ -35,11 +35,11 @@ jq '(.contributes.configuration[] | select(.title == "%todo-tree.configuration.r
   package.json | sponge package.json
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: "https://marketplace.visualstudio.com/items/Gruntfuggly.todo-tree/changelog",
         description: "Show TODO, FIXME, etc. comment tags in a tree view",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree",

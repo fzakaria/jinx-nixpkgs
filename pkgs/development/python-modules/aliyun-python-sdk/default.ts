@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const toUnderscore = (str) => nix.builtins.replaceStrings(nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), str);
   const buildAliyunSdkPackage = (serviceName) => (version) => (hash) => nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`aliyun-python-sdk-${serviceName}`),
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.str`aliyun-python-sdk-${serviceName}`),
           version: version,
           hash: hash,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => [nix.thunk(() => nix.str`aliyunsdk${nix.app(toUnderscore, serviceName)}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`Module of Aliyun Python SDK (${serviceName})`),
         homepage: "https://github.com/aliyun/aliyun-python-sdk",
         changelog: nix.thunk(() => nix.str`https://github.com/aliyun/aliyun-openapi-python-sdk/blob/master/aliyun-python-sdk-${serviceName}/ChangeLog.txt`),
@@ -47,12 +47,12 @@ export default nix.lambda((args) => (() => {
       })),
     }));
   const buildAliyunSdkWheelPackage = (serviceName) => (version) => (hash) => nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`aliyun-python-sdk-${serviceName}`),
       version: version,
       format: "wheel",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.str`aliyun_python_sdk_${nix.app(toUnderscore, serviceName)}`),
           version: version,
           hash: hash,
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => [nix.thunk(() => nix.str`aliyunsdk${nix.app(toUnderscore, serviceName)}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: nix.thunk(() => nix.str`Module of Aliyun Python SDK (${serviceName})`),
         homepage: "https://github.com/aliyun/aliyun-python-sdk",
         changelog: nix.thunk(() => nix.str`https://github.com/aliyun/aliyun-openapi-python-sdk/blob/master/aliyun-python-sdk-${serviceName}/ChangeLog.txt`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       })),
     }));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     "aliyun-python-sdk-actiontrail": nix.thunk(() => nix.app(buildAliyunSdkPackage, "actiontrail", "2.2.0", "sha256-Vy4wSVKf1sIZdP0uT8mLBX0shcodkMojQlwiKI0mWjc=")),
     "aliyun-python-sdk-adb": nix.thunk(() => nix.app(buildAliyunSdkPackage, "adb", "1.1.10", "sha256-kA1pYyBC0xQ4kAzAe2z43S2ADKyRmPFrhlXkLLaFqsc=")),
     "aliyun-python-sdk-adcp": nix.thunk(() => nix.app(buildAliyunSdkPackage, "adcp", "1.0.0", "sha256-pG1G6sWiFWzz1HFW3pXkwopriSIrf3tDrRyLU48qGpM=")),

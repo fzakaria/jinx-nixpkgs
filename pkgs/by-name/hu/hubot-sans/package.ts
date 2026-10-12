@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hubot-sans",
       version: "1.0.1",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/github/hubot-sans/releases/download/v${nix.sel(finalAttrs, "version")}/Hubot-Sans.zip`),
           hash: "sha256-EWTyoGNqyZcqlF1H1Tdcodc8muHIo8C9gbSPAjiogRk=",
           stripRoot: false,
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Variable font from GitHub",
         homepage: "https://github.com/github/hubot-sans",
         changelog: nix.thunk(() => nix.str`https://github.com/github/hubot-sans/releases/tag/v${nix.sel(finalAttrs, "version")}`),

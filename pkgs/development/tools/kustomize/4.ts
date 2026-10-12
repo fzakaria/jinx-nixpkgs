@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kustomize_4";
       const version = "4.5.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kubernetes-sigs",
           repo: "kustomize",
           rev: nix.thunk(() => nix.str`kustomize/v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd kustomize \\\n  --bash <($out/bin/kustomize completion bash) \\\n  --fish <($out/bin/kustomize completion fish) \\\n  --zsh <($out/bin/kustomize completion zsh)\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Customization of kubernetes YAML configurations",
         mainProgram: "kustomize",
         longDescription: "kustomize lets you customize raw, template-free YAML files for\nmultiple purposes, leaving the original YAML untouched and usable\nas is.\n",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

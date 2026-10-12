@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "trust-store",
       version: "2.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/trust-store",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,14 +51,14 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "doc", "bin"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-trust-store-Fix-boost-184-compat.patch",
             url: "https://gitlab.com/ubports/development/core/trust-store/-/commit/569f6b35d8bcdb2ae5ff84549cd92cfc0899675b.patch",
             hash: "sha256-3lrdVIzscXGiLKwftC5oECICVv3sBoS4UedfRHx7uOs=",
           })))),
         nix.path(here, "./1001-treewide-Switch-to-glog-CMake-module.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "1002-trust-store-CMakeLists.txt-Bump-minimum-version-to-3.10.patch",
             url: "https://gitlab.com/ubports/development/core/trust-store/-/commit/64bc51f45e1407f16d389120508c2bcddf9e0d5b.patch",
             hash: "sha256-+ZkTQd6wphd29dTmEIBI7nADFjPQD5012/FVFOtdGbI=",
@@ -98,15 +98,15 @@ substituteInPlace src/core/trust/terminal_agent.h \\
       preCheck: "export XDG_DATA_HOME=$TMPDIR\n",
       enableParallelChecking: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Common implementation of a trust store to be used by trusted helpers",
         homepage: "https://gitlab.com/ubports/development/core/trust-store",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const libxtst = nix.arg($, "libxtst");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "stepmania",
       version: "5.1.0-b2-unstable-2022-11-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stepmania",
           repo: "stepmania",
           rev: "d55acb1ba26f1c5b5e3048d6d6c0bd116625216f",
@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-building-with-newer-ffmpeg.patch",
             url: "https://github.com/stepmania/stepmania/commit/3fef5ef60b7674d6431f4e1e4ba8c69b0c21c023.patch?full_index=1",
             hash: "sha256-m+5sP+mIpcSjioRBdzChqja5zwNcwdSNAfvSJ2Lww+g=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-crash-newer-ffmpeg.patch",
             url: "https://github.com/stepmania/stepmania/commit/e0d2a5182dcd855e181fffa086273460c553c7ff.patch?full_index=1",
             hash: "sha256-XacaMn29FwG3WgFBfB890I8mzVrvuOL4wPWcHHNYfXM=",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DWITH_SYSTEM_FFMPEG=1", "-DWITH_SYSTEM_PNG=on", "-DWITH_SYSTEM_ZLIB=on"]),
       postInstall: "mkdir -p $out/bin\nln -s $out/stepmania-5.1/stepmania $out/bin/stepmania\n\nmkdir -p $out/share/\ncp -r $src/icons $out/share/\n\ninstall -Dm444 $src/stepmania.desktop -t $out/share/applications\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.stepmania.com/",
         description: "Free dance and rhythm game for Windows, Mac, and Linux",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const sox = nix.arg($, "sox");
   const hackrfSupport = nix.argOr($, "hackrfSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "trunk-recorder",
       version: "5.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TrunkRecorder",
           repo: "trunk-recorder",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/TrunkRecorder/trunk-recorder/commit/a7810f36fd3c1e0fb61877f5b8e02a1376f01635.patch",
             hash: "sha256-AB0EPHnJJwwHrz59mNlOcyAFOgzisYI0cJOnHjeu3V4=",
           })))),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/trunk-recorder --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [sox, fdk_aac_encoder]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Record calls from trunked radio systems",
         homepage: "https://trunkrecorder.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/TrunkRecorder/trunk-recorder/releases/tag/v${nix.sel(finalAttrs, "version")}`),

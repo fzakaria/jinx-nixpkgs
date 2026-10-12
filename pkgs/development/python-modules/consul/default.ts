@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "criteo",
           repo: "py-consul",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/python-team/packages/python-consul/-/raw/master/debian/patches/avoir-usr-requirements.txt.patch",
             hash: "sha256-lB9Irzuc2IpbQOIP/C3JQ4iYqugf1U6CVlAEXrrFUfI=",
           })))),
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["consul"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python client for Consul (https://www.consul.io/)",
         homepage: "https://github.com/criteo/py-consul",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

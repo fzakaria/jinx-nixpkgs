@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "signal";
       const version = "1.4.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gnu-octave",
           repo: "octave-signal",
           tag: version,
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
       const requiredOctavePackages = nix.thunk(() => [control]);
       const nativeOctavePkgTestInputs = nix.thunk(() => [gnuplot, writableTmpDirAsHomeHook]);
       const octavePkgTestEnv = nix.thunk(() => ({
-        __proto__: pos$3,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$2, fontDirectories: [] })))),
+        [nix.POS]: pos$3,
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))),
       }));
       const __structuredAttrs = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gnu-octave.github.io/packages/signal/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         description: "Signal processing tools, including filtering, windowing and display functions",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

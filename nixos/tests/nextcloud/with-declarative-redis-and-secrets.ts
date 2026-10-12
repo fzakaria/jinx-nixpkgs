@@ -39,58 +39,58 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const testBase = nix.arg($, "testBase");
   const system = nix.arg($, "system");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$1, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, pkgs: pkgs })))), null);
   return nix.app(nix.lookup(w, "runTest"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       const lib = nix.arg($_1, "lib");
       const adminuser = nix.thunk(() => nix.attr(config, "adminuser"));
       return {
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         name: name,
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           maintainers: nix.thunk(() => nix.sel(lib, "teams", "nextcloud", "members")),
         })),
         imports: nix.thunk(() => [testBase]),
         nodes: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           nextcloud: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const config_1 = nix.arg($_2, "config");
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               environment: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
                 etc: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   "nextcloud-secrets.json": nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     mode: "0600",
                     text: nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-                        __proto__: pos$4,
-                        redis: nix.thunk(() => ({ __proto__: pos$3, password: "secret" })),
+                        [nix.POS]: pos$4,
+                        redis: nix.thunk(() => ({ [nix.POS]: pos$3, password: "secret" })),
                       })))),
                   })),
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 nextcloud: nix.thunk(() => ({
-                  __proto__: pos$14,
-                  caching: nix.thunk(() => ({ __proto__: pos$8, apcu: false, redis: true, memcached: false })),
+                  [nix.POS]: pos$14,
+                  caching: nix.thunk(() => ({ [nix.POS]: pos$8, apcu: false, redis: true, memcached: false })),
                   notify_push: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     enable: true,
                     bendDomainToLocalhost: true,
                     logLevel: "debug",
                   })),
                   extraAppsEnable: true,
-                  database: nix.thunk(() => ({ __proto__: pos$10, createLocally: false })),
+                  database: nix.thunk(() => ({ [nix.POS]: pos$10, createLocally: false })),
                   config: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     dbtype: "pgsql",
                     dbname: "nextcloud",
                     dbuser: adminuser,
@@ -98,32 +98,32 @@ export default nix.lambda((args) => (() => {
                   })),
                   secretFile: "/etc/nextcloud-secrets.json",
                   settings: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     allow_local_remote_servers: true,
-                    redis: nix.thunk(() => ({ __proto__: pos$12, dbindex: 0n, timeout: 1.5 })),
+                    redis: nix.thunk(() => ({ [nix.POS]: pos$12, dbindex: 0n, timeout: 1.5 })),
                   })),
                   configureRedis: true,
                 })),
                 redis: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   servers: nix.thunk(() => ({
-                    __proto__: pos$16,
-                    nextcloud: nix.thunk(() => ({ __proto__: pos$15, enable: true, port: 6379n, requirePass: "secret" })),
+                    [nix.POS]: pos$16,
+                    nextcloud: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true, port: 6379n, requirePass: "secret" })),
                   })),
                 })),
-                postgresql: nix.thunk(() => ({ __proto__: pos$18, enable: true })),
+                postgresql: nix.thunk(() => ({ [nix.POS]: pos$18, enable: true })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 services: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   "nextcloud-setup": nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     requires: nix.thunk(() => ["postgresql.target"]),
                     after: nix.thunk(() => ["postgresql.target"]),
                   })),
                   "postgresql-setup": nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     postStart: nix.thunk(() => nix.str`password=$(cat ${nix.sel(config_1, "services", "nextcloud", "config", "dbpassFile")})
 ${nix.sel(config_1, "services", "postgresql", "package")}/bin/psql <<EOF
   CREATE ROLE ${adminuser} WITH LOGIN PASSWORD '$password' CREATEDB;
@@ -138,7 +138,7 @@ EOF
           })(), formals$3),
         })),
         "test-helpers": nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           extraTests: nix.thunk(() => nix.str`with subtest("non-empty redis cache"):
     # redis cache should not be empty
     assert nextcloud.succeed('redis-cli --pass secret --json KEYS "*" | jq length').strip() != "0", """

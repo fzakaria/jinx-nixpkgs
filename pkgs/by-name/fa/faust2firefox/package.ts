@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const faust = nix.arg($, "faust");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(faust, "wrap"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       baseName: "faust2firefox",
       runtimeInputs: nix.thunk(() => [xdg_utils]),
     })));

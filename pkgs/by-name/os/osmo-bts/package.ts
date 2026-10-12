@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libosmoabis = nix.arg($, "libosmoabis");
   const libosmo_netif = nix.arg($, "libosmo-netif");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "osmo-bts",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osmocom",
           repo: "osmo-bts",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libosmocore, libosmoabis, libosmo_netif]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Osmocom GSM Base Transceiver Station (BTS)",
         homepage: "https://osmocom.org/projects/osmobts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

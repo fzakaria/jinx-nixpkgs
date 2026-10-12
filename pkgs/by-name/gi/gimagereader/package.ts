@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "pygobject3"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gimagereader",
       version: "3.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "manisandro",
           repo: "gImageReader",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
         })())))),
       cmakeFlags: nix.thunk(() => nix.concat(["-DINTERFACE_TYPE=gtk"], nix.app(nix.sel(lib, "optionals"), withQt6, nix.thunk(() => ["-DINTERFACE_TYPE=qt6 -DQT_VER=6"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple Gtk/Qt front-end to tesseract-ocr",
         mainProgram: nix.thunk(() => (nix.asBool(withQt6) ? "gImageReader-qt6" : "gImageReader")),
         homepage: "https://github.com/manisandro/gImageReader",

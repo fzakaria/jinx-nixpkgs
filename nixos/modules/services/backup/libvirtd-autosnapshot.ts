@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "libvirtd", "autoSnapshot"));
   const getVMConfig = (vm) => (nix.asBool(nix.app(nix.sel(lib, "isString"), vm)) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     name: vm,
     snapshotType: nix.thunk(() => nix.attr(cfg, "snapshotType")),
     keep: nix.thunk(() => nix.attr(cfg, "keep")),
   } : {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     name: nix.thunk(() => nix.attr(vm, "name")),
     snapshotType: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(vm, "snapshotType"), null)) ? nix.sel(vm, "snapshotType") : nix.sel(cfg, "snapshotType"))),
     keep: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(vm, "keep"), null)) ? nix.sel(vm, "keep") : nix.sel(cfg, "keep"))),
@@ -144,55 +144,55 @@ fi
 exit 0
 `);
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         libvirtd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           autoSnapshot: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "LibVirt VM snapshots")),
             calendar: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "04:15:00",
                 description: "When to create snapshots (systemd calendar format).\nDefault is 4:15 AM.\n",
               })))),
             prefix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "autosnap",
                 description: "Prefix for automatic snapshot names.\nThis is used to identify and manage automatic snapshots\nseparately from manual ones.\n",
               })))),
             keep: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 2n,
                 description: "Default number of snapshots to keep for VMs that don't specify a keep value.",
               })))),
             snapshotType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["internal", "external"]))),
                 default: "internal",
                 description: "Type of snapshot to create (internal or external).",
               })))),
             vms: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                         nix.thunk(() => nix.sel(lib, "types", "str")),
                         nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             options: nix.thunk(() => ({
-                              __proto__: pos$10,
+                              [nix.POS]: pos$10,
                               name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$7,
+                                  [nix.POS]: pos$7,
                                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                   description: "Name of the VM",
                                 })))),
                               snapshotType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$8,
+                                  [nix.POS]: pos$8,
                                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["internal", "external"]))))),
                                   default: null,
                                   description: nix.thunk(() => nix.str`Type of snapshot to create (internal or external).
@@ -200,7 +200,7 @@ If not specified, uses global snapshotType (${nix.builtins.toString(nix.thunk(()
 `),
                                 })))),
                               keep: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$9,
+                                  [nix.POS]: pos$9,
                                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                                   default: null,
                                   description: nix.thunk(() => nix.str`Number of snapshots to keep for this VM.
@@ -219,29 +219,29 @@ If not specified, uses global keep (${nix.builtins.toString(nix.thunk(() => nix.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "vms"), null)) || nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isList"), nix.thunk(() => nix.sel(cfg, "vms")))) && nix.asBool(!nix.eq(nix.sel(cfg, "vms"), [])))))),
             message: "'services.libvirtd.autoSnapshot.vms' must either be null for all VMs or a non-empty list of VM configurations",
           })),
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => nix.sel(config, "virtualisation", "libvirtd", "enable")),
             message: "virtualisation.libvirtd must be enabled to use services.libvirtd.autoSnapshot",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           timers: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "libvirtd-autosnapshot": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "LibVirt VM snapshot timer",
               wantedBy: nix.thunk(() => ["timers.target"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 OnCalendar: nix.thunk(() => nix.sel(cfg, "calendar")),
                 AccuracySec: "5m",
                 Unit: "libvirtd-autosnapshot.service",
@@ -249,20 +249,20 @@ If not specified, uses global keep (${nix.builtins.toString(nix.thunk(() => nix.
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             "libvirtd-autosnapshot": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "LibVirt VM snapshot service",
               after: nix.thunk(() => ["libvirtd.service"]),
               requires: nix.thunk(() => ["libvirtd.service"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$22, Type: "oneshot", User: "root" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$22, Type: "oneshot", User: "root" })),
               script: backupScript,
             })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "_6543"))]),
     })),
   };

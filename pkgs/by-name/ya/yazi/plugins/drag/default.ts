@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "drag.yazi",
       version: "0-unstable-2026-09-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Joao-Queiroga",
           repo: "drag.yazi",
           rev: "5f6b284245086010f92403536409a6249f73f1f2",
           hash: "sha256-VHuSCi106iP8EEwLdY91eD64kUJEye7vVHjf6sIdpQA=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yazi plugin to drag and drop files using ripdrag",
         homepage: "https://github.com/Joao-Queiroga/drag.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

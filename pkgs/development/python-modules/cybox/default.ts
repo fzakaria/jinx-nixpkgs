@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0.21";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CybOXProject",
           repo: "python-cybox",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "collections-abc.patch",
             url: "https://github.com/CybOXProject/python-cybox/commit/fd4631dac12943d89e9ea2e94105cbc3b81d52f9.patch",
             hash: "sha256-dXEsJujtbU/SuUBge8abWgMPeYO1ZR3c5758Bd0dnwE=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["cybox"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for parsing, manipulating, and generating CybOX content",
         homepage: "https://github.com/CybOXProject/python-cybox/",
         changelog: nix.thunk(() => nix.str`https://github.com/CybOXProject/python-cybox/blob/${nix.sel(src, "rev")}/CHANGES.txt`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

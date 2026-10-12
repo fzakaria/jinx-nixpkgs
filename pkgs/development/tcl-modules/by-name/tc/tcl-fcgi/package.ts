@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const tclx = nix.arg($, "tclx");
   const tcl = nix.arg($, "tcl");
   return nix.app(mkTclDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tcl-fcgi",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mpcjanssen",
           repo: "tcl-fcgi",
           rev: "62452dbf3177ba9458fbb42457834ca77bdf5a82",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [tclx]),
       unpackPhase: "mkdir -p $out/lib/tcl-fcgi\ncp -r $src/tcl-src/* $out/lib/tcl-fcgi/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mpcjanssen/tcl-fcgi",
         description: "Tcl interface for the FastCGI protocol",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -39,43 +39,43 @@ const pos$32 = nix.positions(here + "/sslh.nix", [["server", 5, 5], ["client", 4
 const pos$33 = nix.positions(here + "/sslh.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 65, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     name: "sslh",
     nodes: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       server: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const pkgs = nix.arg($, "pkgs");
         const lib = nix.arg($, "lib");
         return {
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           networking: nix.thunk(() => ({
-            __proto__: pos$6,
-            firewall: nix.thunk(() => ({ __proto__: pos$1, allowedTCPPorts: nix.thunk(() => [443n]) })),
+            [nix.POS]: pos$6,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$1, allowedTCPPorts: nix.thunk(() => [443n]) })),
             interfaces: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               eth1: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 ipv6: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$2, address: "fe00:aa:bb:cc::2", prefixLength: 64n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$2, address: "fe00:aa:bb:cc::2", prefixLength: 64n })),
                   ]),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             sslh: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 transparent: true,
                 protocols: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     name: "ssh",
                     service: "ssh",
                     host: "localhost",
@@ -83,7 +83,7 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
                     probe: "builtin",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     name: "http",
                     host: "localhost",
                     port: "80",
@@ -92,14 +92,14 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
                 ]),
               })),
             })),
-            openssh: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+            openssh: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 localhost: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   addSSL: false,
                   default: true,
                   root: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "testdir", nix.thunk(() => ({})), "mkdir \"$out\"\necho hello world > \"$out/index.html\"\n")),
@@ -108,15 +108,15 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             users: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               root: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 openssh: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   authorizedKeys: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     keyFiles: nix.thunk(() => [nix.path(here, "./initrd-network-ssh/id_ed25519.pub")]),
                   })),
                 })),
@@ -128,29 +128,29 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
       client: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$2);
         return {
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           networking: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               eth1: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 ipv6: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$22, address: "fe00:aa:bb:cc::1", prefixLength: 64n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$22, address: "fe00:aa:bb:cc::1", prefixLength: 64n })),
                   ]),
                 })),
               })),
             })),
-            hosts: nix.thunk(() => ({ __proto__: pos$26, "fe00:aa:bb:cc::2": nix.thunk(() => ["server"]) })),
+            hosts: nix.thunk(() => ({ [nix.POS]: pos$26, "fe00:aa:bb:cc::2": nix.thunk(() => ["server"]) })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             etc: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               sshKey: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 source: nix.path(here, "./initrd-network-ssh/id_ed25519"),
                 mode: "0600",
               })),

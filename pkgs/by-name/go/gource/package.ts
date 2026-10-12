@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const glm = nix.arg($, "glm");
   const tinyxml = nix.arg($, "tinyxml");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gource",
       version: "0.56",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/acaudwell/Gource/releases/download/gource-${nix.sel(finalAttrs, "version")}/gource-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-My2Jual5sXQX+84O3XKxmRTxQJ/RJqE9EXh9DhXcDXk=",
         })))),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gource.io/",
         description: "Software version control visualization tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

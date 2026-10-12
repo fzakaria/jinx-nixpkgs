@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const arch = nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), info, 0n));
   const plat = nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), info, 1n));
   const hashes = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "sha512-xlbdx/fFQxilECdDiN80U+s+huBowo9Qf5tDIYwZ1z9gUCriNL0rMNDkvzUDL73BEI3WMFMqHdbi3cn7b5l9gA==",
     "aarch64-linux": "sha512-MPrDfBMcwNCgWW8dpOeAtlz9Odfk/0z8i+Rn08hTp35kU849KdPQLTmexlvnf/jVwqfwzN2xWJtNF0sQO26pUA==",
     "aarch64-darwin": "sha512-uq5VVwvbOX4Rv32iLFw+RalFPBxQqA+1hBjFw3svzOaD1caOOrGHD4lJVHFxsFw0xl//AZuSG7S3r7Eh9AmWvQ==",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elasticsearch";
       const version = elk7Version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://artifacts.elastic.co/downloads/elasticsearch/${pname}-${version}-${plat}-${arch}.tar.gz`),
           hash: nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw("Unknown architecture"), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
         }))));
@@ -58,9 +58,9 @@ wrapProgram $out/bin/elasticsearch \\
 
 wrapProgram $out/bin/elasticsearch-plugin --set JAVA_HOME "${jre_headless}"
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, enableUnfree: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, enableUnfree: true }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open Source, Distributed, RESTful Search Engine",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -86,7 +86,7 @@ wrapProgram $out/bin/elasticsearch-plugin --set JAVA_HOME "${jre_headless}"
         ]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

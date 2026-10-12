@@ -9,22 +9,22 @@ const pos$4 = nix.positions(here + "/hashes.nix", [["aarch64-linux", 5, 5], ["x8
 const pos$5 = nix.positions(here + "/hashes.nix", [["version", 3, 3], ["hashes", 4, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$5,
+  [nix.POS]: pos$5,
   version: "25.2.4",
   hashes: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       sha256: "1xb4z42xc8962sz3ib8dg8h3fyp5xkdav2f1vs28259qidyfk9fx",
       url: "https://github.com/oracle/graalpython/releases/download/graal-25.2.4/graalpy3.12-community-25.2.4-linux-aarch64.tar.gz",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       sha256: "10mf20gs18v6rca1xmh6xzfj707pahr76m3k0wwxwjvidcx31bwq",
       url: "https://github.com/oracle/graalpython/releases/download/graal-25.2.4/graalpy3.12-community-25.2.4-linux-amd64.tar.gz",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       sha256: "0yrmy4wczdf6h2m2x5vsccwmi2pcc4l6qrmr83v6kkk06rqq58bn",
       url: "https://github.com/oracle/graalpython/releases/download/graal-25.2.4/graalpy3.12-community-25.2.4-macos-aarch64.tar.gz",
     })),

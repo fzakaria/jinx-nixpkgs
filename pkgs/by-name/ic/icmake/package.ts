@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gcc = nix.arg($, "gcc");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "icmake",
       version: "9.03.01",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "05r0a69w0hv2qhjpb2bxd0lmp2vv5r2d4iggg6ly4miam0i318jy",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           repo: "icmake",
@@ -37,7 +37,7 @@ wrapProgram $out/bin/icmbuild \\
  --prefix PATH : ${ncurses}/bin
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program maintenance (make) utility using a C-like grammar",
         homepage: "https://fbb-git.gitlab.io/icmake/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   nix.assert_(nix.sel(faiss, "pythonSupport"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/faiss/pytest.nix:10:1");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "faiss-pytest-suite",
       version: nix.thunk(() => nix.attr(faiss, "version")),
       pyproject: false,
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(faiss, "cudaSupport")), nix.thunk(() => ["test_contrib.py"]))),
       disabledTests: nix.thunk(() => ["test_update_codebooks_with_double"]),
       nativeCheckInputs: nix.thunk(() => [faiss, pytestCheckHook, scipy]),
-      meta: nix.thunk(() => nix.update(nix.sel(faiss, "meta"), { __proto__: pos$1, description: "Faiss test suite" })),
+      meta: nix.thunk(() => nix.update(nix.sel(faiss, "meta"), { [nix.POS]: pos$1, description: "Faiss test suite" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=pytest.ts.map

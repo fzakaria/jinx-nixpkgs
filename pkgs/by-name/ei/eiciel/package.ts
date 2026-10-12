@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const gtk4 = nix.arg($, "gtk4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eiciel",
       version: "0.10.1",
       outputs: nix.thunk(() => ["out", "nautilusExtension"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rofirrim",
           repo: "eiciel",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dnautilus-extension-dir=${nix.builtins.placeholder("nautilusExtension")}/lib/nautilus/extensions-4`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical editor for ACLs and extended attributes",
         homepage: "https://rofi.roger-ferrer.org/eiciel/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

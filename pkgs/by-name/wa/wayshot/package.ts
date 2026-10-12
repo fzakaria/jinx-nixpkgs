@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const notificationsSupport = nix.argOr($, "notificationsSupport", () => true);
   const selectorSupport = nix.argOr($, "selectorSupport", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wayshot",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "waycrate",
           repo: "wayshot",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), jpegSupport, "jpeg"), nix.concat(nix.app(nix.sel(lib, "optional"), pnmSupport, "pnm"), nix.concat(nix.app(nix.sel(lib, "optional"), qoiSupport, "qoi"), nix.concat(nix.app(nix.sel(lib, "optional"), webpSupport, "webp"), nix.concat(nix.app(nix.sel(lib, "optional"), avifSupport, "avif"), nix.concat(nix.app(nix.sel(lib, "optional"), jxlSupport, "jxl"), nix.concat(nix.app(nix.sel(lib, "optional"), clipboardSupport, "clipboard"), nix.concat(nix.app(nix.sel(lib, "optional"), colorPickerSupport, "color_picker"), nix.concat(nix.app(nix.sel(lib, "optional"), completionsSupport, "completions"), nix.concat(nix.app(nix.sel(lib, "optional"), loggerSupport, "logger"), nix.concat(nix.app(nix.sel(lib, "optional"), notificationsSupport, "notifications"), nix.app(nix.sel(lib, "optional"), selectorSupport, "selector"))))))))))))),
       postInstall: nix.thunk(() => nix.add("installManPage docs/wayshot.1.gz docs/wayshot.5.gz docs/wayshot.7.gz\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd wayshot \\\n  --bash <($out/bin/wayshot --completions bash) \\\n  --fish <($out/bin/wayshot --completions fish) \\\n  --zsh <($out/bin/wayshot --completions zsh)\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Screenshot crate for wlroots based compositors implementing the zwlr_screencopy_v1 protocol.",
         homepage: "https://crates.io/crates/wayshot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.3";
       const pname = "molden";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.science.ru.nl/Molden//molden${version}.tar.gz`),
           sha256: "02qi16pz2wffn3cc47dpjqhfafzwfmb79waw4nnhfyir8a4h3cq1",
         }))));
@@ -31,18 +31,18 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gfortran, libGLU, libx11, libxmu]);
       const patches = nix.thunk(() => [nix.path(here, "./dont_register_file_types.patch")]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration -Wno-implicit-int -Wno-return-mismatch -std=gnu17",
       }));
       const postPatch = "substituteInPlace ./makefile --replace '-L/usr/X11R6/lib'  \"\" \\\n                             --replace '-I/usr/X11R6/include' \"\" \\\n                             --replace '/usr/local/' $out/ \\\n                             --replace 'sudo' \"\" \\\n                             --replace '-C surf depend' '-C surf' \\\n                             --replace 'FFLAGS =' 'FFLAGS = -fallow-argument-mismatch'\n\nsubstituteInPlace ambfor/makefile --replace 'FFLAGS =' 'FFLAGS = -fallow-argument-mismatch'\n\nsed -i '/^# DO NOT DELETE THIS LINE/q;' surf/Makefile\n";
       const preInstall = "mkdir -p $out/bin\n";
       const enableParallelBuilding = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Display and manipulate molecular structures",
         homepage: "http://www3.cmbi.umcn.nl/molden/",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             shortName: "molden",
             fullName: "Free for academic/non-profit use",
             url: "http://www3.cmbi.umcn.nl/molden/CopyRight.html",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version,
         pname,
         src,

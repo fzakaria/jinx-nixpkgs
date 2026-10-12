@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "ast"))];
       })());
     })(), formals$2)), "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "phan",
       version: "6.0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "phan",
           repo: "phan",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Static analyzer for PHP",
         homepage: "https://github.com/phan/phan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

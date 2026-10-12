@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-caldav",
           repo: "icalendar-searcher",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [hatch_vcs, hatchling]);
       const dependencies = nix.thunk(() => [icalendar, recurring_ical_events]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, collation: nix.thunk(() => [pyicu]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, collation: nix.thunk(() => [pyicu]) }));
       const pythonImportsCheck = nix.thunk(() => ["icalendar_searcher"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/python-caldav/icalendar-searcher/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Search, filter and sort iCalendar components",
         homepage: "https://github.com/python-caldav/icalendar-searcher",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dotlambda"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

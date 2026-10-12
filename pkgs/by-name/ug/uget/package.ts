@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const aria2 = nix.arg($, "aria2");
   const aria2Support = nix.argOr($, "aria2Support", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uget",
       version: "2.2.3-1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/urlget/uget-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0jchvgkkphhwp2z7vd4axxr9ns8b6vqc22b2z8a906qm8916wd8i",
         })))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), aria2Support, nix.thunk(() => nix.str`gappsWrapperArgs+=(--suffix PATH : "${aria2}/bin")`))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Download manager using GTK and libcurl",
         longDescription: "uGet is a VERY Powerful download manager application with a large\ninventory of features but is still very light-weight and low on\nresources, so don't let the impressive list of features scare you into\nthinking that it \"might be too powerful\" because remember power is good\nand lightweight power is uGet!\n",
         homepage: "https://sourceforge.net/projects/urlget/",

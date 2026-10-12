@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const stdenv = nix.arg($, "stdenv");
   const shlomif_cmake_modules = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "shlomif",
       repo: "shlomif-cmake-modules",
       rev: "2fa3e9be1a1df74ad0e10f0264bfa60e1e3a755c",
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wml",
       version: "2.32.0-unstable-2026-05-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "thewml",
           repo: "website-meta-language",
           rev: "673e78b37887f4d40c422759d634913c52e7334d",
@@ -65,7 +65,7 @@ for f in $(find $out/bin/ -type f -executable); do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Offline HTML preprocessor",
         homepage: "https://www.shlomifish.org/open-source/projects/website-meta-language/",
         downloadPage: "https://github.com/thewml/website-meta-language/releases",

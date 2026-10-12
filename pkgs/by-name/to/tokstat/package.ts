@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tokstat",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pbek",
           repo: "tokstat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, installShellFiles]),
       buildInputs: nix.thunk(() => nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [dbus])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           PKG_CONFIG_PATH: nix.thunk(() => nix.str`${nix.sel(dbus, "dev")}/lib/pkgconfig`),
         })))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "# Generate shell completions\ninstallShellCompletion --cmd tokstat \\\n  --bash <($out/bin/tokstat --generate bash 2>/dev/null) \\\n  --fish <($out/bin/tokstat --generate fish 2>/dev/null) \\\n  --zsh <($out/bin/tokstat --generate zsh 2>/dev/null)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI application to monitor token quotas across multiple AI providers",
         homepage: "https://github.com/pbek/tokstat",
         changelog: nix.thunk(() => nix.str`https://github.com/pbek/tokstat/releases/tag/v${nix.sel(finalAttrs, "version")}`),

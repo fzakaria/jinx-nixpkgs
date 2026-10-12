@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytest_golden = nix.arg($, "pytest-golden");
   const mkdocs_material = nix.arg($, "mkdocs-material");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mkdocs-section-index",
       version: "0.3.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oprypin",
           repo: "mkdocs-section-index",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mkdocs_material,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MkDocs plugin to allow clickable sections that lead to an index page",
         homepage: "https://github.com/oprypin/mkdocs-section-index",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

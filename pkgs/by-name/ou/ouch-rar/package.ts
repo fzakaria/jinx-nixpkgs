@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["enableUnfree", 1, 27]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const ouch = nix.arg($, "ouch");
-  return nix.app(nix.sel(ouch, "override"), nix.thunk(() => ({ __proto__: pos$1, enableUnfree: true })));
+  return nix.app(nix.sel(ouch, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableUnfree: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

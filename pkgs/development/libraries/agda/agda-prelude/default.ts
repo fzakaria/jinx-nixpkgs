@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0-unstable-2024-08-22",
       pname: "agda-prelude",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "UlfNorell",
           repo: "agda-prelude",
           rev: "4230566d3ae229b6a00258587651ac7bfd38d088",
           hash: "sha256-ab+KojzRbkUTAFNH5OA78s0F5SUuXTbliai6badveg4=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/UlfNorell/agda-prelude",
         description: "Programming library for Agda",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

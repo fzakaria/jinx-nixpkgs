@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const generator_out = nix.arg($, "generator-out");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonPackage"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "nanopb",
       version: version,
       src: generator_out,

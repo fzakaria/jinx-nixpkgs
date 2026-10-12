@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "LIBPATH=\"$(toPythonPath \"$out\")/libscanbuild\"\nmkdir -p \"$LIBPATH\"\n\ncp -r \"$src/\"* \"$LIBPATH\"\n";
       const pythonImportsCheck = nix.thunk(() => ["libscanbuild"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Captures all child process creation and log information about it",
         homepage: nix.thunk(() => nix.str`https://github.com/llvm/llvm-project/tree/llvmorg-${version}/clang/tools/scan-build-py/lib/libscanbuild`),
         license: nix.thunk(() => (() => {
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         pyproject,

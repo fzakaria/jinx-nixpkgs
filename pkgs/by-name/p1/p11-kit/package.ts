@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libffi = nix.arg($, "libffi");
   const libintl = nix.arg($, "libintl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "p11-kit",
       version: "0.26.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "p11-glue",
           repo: "p11-kit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "# Tests run in fakeroot for non-root users (with Nix single-user install)\nif [ \"$(id -u)\" != \"0\" ]; then\n  export FAKED_MODE=1\nfi\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for loading and sharing PKCS#11 modules",
         longDescription: "Provides a way to load and enumerate PKCS#11 modules.\nProvides a standard configuration setup for installing\nPKCS#11 modules in such a way that they're discoverable.\n",
         homepage: "https://p11-glue.github.io/p11-glue/p11-kit.html",
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         mainProgram: "p11-kit",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "p11-kit_project", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

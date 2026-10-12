@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fastly-exporter";
       const version = "10.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fastly",
           repo: "fastly-exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,20 +27,20 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-TtR2jdccSjNyZ6y5STwJC/isI1Nqno7lUu5iNBr+KCg=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, fastly: nix.thunk(() => nix.attr(from, "fastly")) };
+          return { [nix.POS]: pos$2, fastly: nix.thunk(() => nix.attr(from, "fastly")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus exporter for the Fastly Real-time Analytics API",
         homepage: "https://github.com/fastly/fastly-exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         mainProgram: "fastly-exporter",
       }));
-      return { __proto__: pos$5, pname, version, src, vendorHash, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, vendorHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

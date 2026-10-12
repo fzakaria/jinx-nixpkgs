@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const tldextract = nix.arg($, "tldextract");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "surt",
       version: "0.3.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "internetarchive",
           repo: "surt",
           rev: "6934c321b3e2f66af9c001d882475949f00570c5",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["surt"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sort-friendly URI Reordering Transform (SURT) python module",
         homepage: "https://github.com/internetarchive/surt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

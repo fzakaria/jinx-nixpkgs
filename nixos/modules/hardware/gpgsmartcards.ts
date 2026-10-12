@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const scdaemonUdevRev = "01898735a015541e3ffb43c7245ac1e612f40836";
   const scdaemonRules = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://salsa.debian.org/debian/gnupg2/-/raw/${scdaemonUdevRev}/debian/scdaemon.udev`),
       sha256: "08v0vp6950bz7galvc92zdss89y9vcwbinmbfcdldy8x72w6rqr3",
     }))));
@@ -30,22 +30,22 @@ cp "${scdaemonRules}" "\${loc}/${destination}"
 `)));
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "gpgSmartcards"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       hardware: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         gpgSmartcards: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "udev rules for gnupg smart cards")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         services: nix.thunk(() => ({
-          __proto__: pos$6,
-          udev: nix.thunk(() => ({ __proto__: pos$5, packages: nix.thunk(() => [scdaemonUdevRulesPkg]) })),
+          [nix.POS]: pos$6,
+          udev: nix.thunk(() => ({ [nix.POS]: pos$5, packages: nix.thunk(() => [scdaemonUdevRulesPkg]) })),
         })),
       })))),
   };

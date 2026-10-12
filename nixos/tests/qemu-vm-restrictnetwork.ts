@@ -12,17 +12,17 @@ const pos$5 = nix.positions(here + "/qemu-vm-restrictnetwork.nix", [["unrestrict
 const pos$6 = nix.positions(here + "/qemu-vm-restrictnetwork.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 18, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "qemu-vm-restrictnetwork",
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       unrestricted: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const config = nix.arg($, "config");
         const pkgs = nix.arg($, "pkgs");
         return {
-          __proto__: pos$2,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$1, restrictNetwork: false })),
+          [nix.POS]: pos$2,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, restrictNetwork: false })),
         };
       })(), formals$1),
       restricted: nix.lambda((args) => (() => {
@@ -30,8 +30,8 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
         const config = nix.arg($, "config");
         const pkgs = nix.arg($, "pkgs");
         return {
-          __proto__: pos$4,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$3, restrictNetwork: true })),
+          [nix.POS]: pos$4,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, restrictNetwork: true })),
         };
       })(), formals$2),
     })),

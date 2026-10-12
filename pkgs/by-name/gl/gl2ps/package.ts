@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libglut = nix.arg($, "libglut");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gl2ps",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://geuz.org/gl2ps/src/gl2ps-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1sgzv547h7hrskb9qd0x5yp45kmhvibjwj2mfswv95lg070h074d",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => nix.concat([zlib, libpng], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [libGL, libGLU, libglut])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://geuz.org/gl2ps",
         description: "OpenGL to PostScript printing library",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

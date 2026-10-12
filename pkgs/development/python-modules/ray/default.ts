@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
   const tensorboardx = nix.arg($, "tensorboardx");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "ray",
       version: "2.59.0",
       format: "wheel",
@@ -82,29 +82,29 @@ export default nix.lambda((args) => (() => {
       src: nix.thunk(() => (() => {
         const pyShortVersion = nix.thunk(() => nix.str`cp${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(python, "pythonVersion")))}`);
         const platforms = nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "aarch64-darwin": "macosx_12_0_arm64",
           "aarch64-linux": "manylinux2014_aarch64",
           "x86_64-linux": "manylinux2014_x86_64",
         }));
         const hashes = nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "x86_64-linux": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             cp311: "sha256-ZF9Gdu9v8sqBVOg+3ws4WD0iW2xvuDtgUMoWgdw6hog=",
             cp312: "sha256-QFWnpgKT/+5BAFq5s+2ZM+D5tdhFCyFPPAp7HeVQPw4=",
             cp313: "sha256-cP3FvsR8wzpPTg2bCB9mUF4Rmr2Ki8bLLF1JJkJ/zm0=",
             cp314: "sha256-BQeBCZzmQbfYmJbnsNecgggTUp2obJtcZey3yJQD5mc=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             cp311: "sha256-5Zu+7Z/TrinjJrz3Om3GuVcCkAQjDp8eh0ZwxOOQsUc=",
             cp312: "sha256-CeLdi6Nn8H8YKfwuNfQenD+p9uwLq6zhPXDr4U6M9mI=",
             cp313: "sha256-WD8m4fGgSu/SMLkIYh3D8+HKXg0gHuCdXwQMpLgk6AA=",
             cp314: "sha256-bWD5t6lPwTisR6B1ZBgnaf1rbO+uBxSqdJmlU73aKUk=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             cp311: "sha256-ztzmr4ZdB40xi8P2keQVJzMdUy3KABf7gkGRyITlmiI=",
             cp312: "sha256-aiQLOTgZwMjAOUDRb6+VIiMAOrHZc21TKMxaX3HJXhw=",
             cp313: "sha256-hDv0j0JyLgwUPrpoRrWBlxa7fl4ES55HebHTrFkzBAs=",
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
           })),
         }));
         return nix.app(fetchPypi, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             format: "wheel",
@@ -126,7 +126,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       dependencies: nix.thunk(() => [click, filelock, jsonschema, msgpack, packaging, protobuf, pyyaml, requests]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           adag: nix.thunk(() => nix.sel(self, "cgraph")),
           air: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(nix.sel(self, "data"), nix.concat(nix.sel(self, "serve"), nix.concat(nix.sel(self, "tune"), nix.sel(self, "train"))))))),
           all: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(nix.sel(self, "adag"), nix.concat(nix.sel(self, "air"), nix.concat(nix.sel(self, "cgraph"), nix.concat(nix.sel(self, "client"), nix.concat(nix.sel(self, "data"), nix.concat(nix.sel(self, "default"), nix.concat(nix.sel(self, "observability"), nix.concat(nix.sel(self, "rllib"), nix.concat(nix.sel(self, "serve"), nix.concat(nix.sel(self, "serve-async-inference"), nix.concat(nix.sel(self, "serve-grpc"), nix.concat(nix.sel(self, "train"), nix.sel(self, "tune")))))))))))))))),
@@ -173,7 +173,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["ray"]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Unified framework for scaling AI and Python applications",
         homepage: "https://github.com/ray-project/ray",
         changelog: nix.thunk(() => nix.str`https://github.com/ray-project/ray/releases/tag/ray-${nix.sel(finalAttrs, "version")}`),

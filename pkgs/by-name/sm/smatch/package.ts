@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const buildc2xml = nix.argOr($, "buildc2xml", () => false);
   const version = "1.75";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "smatch",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "error27",
           repo: "smatch",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           const clang_major = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(llvmPackages, "clang-unwrapped"))))));
           const clang_lib = nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "clang-unwrapped"))));
           return nix.app(replaceVars, nix.path(here, "./fix_include_path.patch"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               clang: nix.thunk(() => nix.str`${clang_lib}/lib/clang/${clang_major}/include`),
               libc: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(stdenv, "cc", "libc")))}/include`),
             })));
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`CXX=${nix.sel(stdenv, "cc", "targetPrefix")}c++`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Semantic analysis tool for C",
         homepage: "https://sparse.docs.kernel.org/",
         maintainers: [],

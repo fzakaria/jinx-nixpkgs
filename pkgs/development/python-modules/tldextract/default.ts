@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const sybil = nix.arg($, "sybil");
   const syrupy = nix.arg($, "syrupy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tldextract",
       version: "5.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "john-kurkowski",
           repo: "tldextract",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_mock, pytestCheckHook, responses, sybil, syrupy]),
       pythonImportsCheck: nix.thunk(() => ["tldextract"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to accurately separate the TLD from the domain of an URL",
         longDescription: "tldextract accurately separates the gTLD or ccTLD (generic or country code top-level domain)\nfrom the registered domain and subdomains of a URL.\n",
         homepage: "https://github.com/john-kurkowski/tldextract",

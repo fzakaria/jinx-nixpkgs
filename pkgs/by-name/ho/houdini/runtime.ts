@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
       const version = "22.0.368";
       const eulaDate = "2021-10-13";
       const src = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`houdini-${version}-linux_x86_64_gcc14.2.tar.gz`),
           hash: "sha256-h2UzXwkKgyl2i0FbZLyfuAoNmWOxP2NFWtBC4y01NhY=",
           url: "https://www.sidefx.com/download/daily-builds/?show_launcher=false&production=true&linux=true",
         }))));
       const outputHash = "sha256-sJwKbkmHykgyP6yio5W8FVxLWm2S0PEQz5RVRF3cbfI=";
-      return { __proto__: pos$2, version, eulaDate, src, outputHash };
+      return { [nix.POS]: pos$2, version, eulaDate, src, outputHash };
     })()));
 })(), formals$1);
 //# sourceMappingURL=runtime.ts.map

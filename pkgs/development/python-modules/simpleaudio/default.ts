@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hamiltron",
           repo: "py-simple-audio",
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./python312-fix.patch")]);
       const buildInputs = nix.thunk(() => [alsa_lib]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/hamiltron/py-simple-audio",
         description: "Simple audio playback Python extension - cross-platform, asynchronous, dependency-free",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "lucus16"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, patches, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, patches, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

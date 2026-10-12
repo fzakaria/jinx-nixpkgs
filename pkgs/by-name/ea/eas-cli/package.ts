@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const version = "20.4.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "expo",
       repo: "eas-cli",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-WfzCV304xgTqiKBCsZc5rnzaC+UHA6c155FG+HWBY7s=",
       postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           src: nix.path(here, "./yarn-fix.patch"),
           substitutions: nix.thunk(() => [
             "--replace-fail",
@@ -42,13 +42,13 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
     }))));
   const missingHashes = nix.path(here, "./missing-hashes.json");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "eas-cli",
       src: src,
       version: version,
       missingHashes: missingHashes,
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: src,
           missingHashes: missingHashes,
           hash: "sha256-Iqdk0MpXeiKm5hgF68XOKvl0a+5LpXsNNcelCcbfj3s=",
@@ -68,7 +68,7 @@ ln -sf $out/lib/node_modules/eas-cli-root/packages/eas-cli/bin/run $out/bin/eas
 wrapProgram $out/bin/eas --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nodejs]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/expo/eas-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "EAS command line tool from submodule",
         homepage: "https://github.com/expo/eas-cli",

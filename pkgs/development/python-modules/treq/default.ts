@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const twisted = nix.arg($, "twisted");
   const httpbin = nix.arg($, "httpbin");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "treq",
       version: "25.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Jd3jpVroXsLyxWMyyZrvJVqxT5l9DQBVLr/xNTipgEo=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [httpbin, twisted]),
       checkPhase: "runHook preCheck\n\ntrial treq\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/twisted/treq",
         description: "Requests-like API built on top of twisted.web's Agent",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

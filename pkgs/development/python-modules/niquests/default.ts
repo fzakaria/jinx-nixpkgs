@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const urllib3_future = nix.arg($, "urllib3-future");
   const wassima = nix.arg($, "wassima");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "niquests",
       version: "3.21.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jawah",
           repo: "niquests",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(urllib3_future, "optional-dependencies"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         brotli: nix.thunk(() => nix.attr(from, "brotli")),
         socks: nix.thunk(() => nix.attr(from, "socks")),
         ws: nix.thunk(() => nix.attr(from, "ws")),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       disabledTests: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["test_docker_version_info", "test_docker_404_unknown_path"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_use_proxy_from_environment"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/jawah/niquests/blob/${nix.sel(finalAttrs, "src", "tag")}/HISTORY.md`),
         description: "Simple HTTP library that is a drop-in replacement for Requests",
         homepage: "https://github.com/jawah/niquests",

@@ -58,7 +58,7 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, 
 ${confServer}
 ${confNoServer}
 `)));
-  const confFile = nix.thunk(() => (nix.asBool(nix.sel(cfg, "checkconf")) ? nix.app(nix.sel(pkgs, "runCommand"), "unbound-checkconf", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`cp ${confFileUnchecked} unbound.conf
+  const confFile = nix.thunk(() => (nix.asBool(nix.sel(cfg, "checkconf")) ? nix.app(nix.sel(pkgs, "runCommand"), "unbound-checkconf", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`cp ${confFileUnchecked} unbound.conf
 
 # fake stateDir which is not accessible in the sandbox
 mkdir -p $PWD/state
@@ -71,66 +71,66 @@ cp ${confFileUnchecked} $out
 `)) : nix.force(confFileUnchecked)));
   const rootTrustAnchorFile = nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/root.key`);
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         unbound: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Unbound domain name server")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "unbound-with-systemd", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "unbound",
               description: "User account under which unbound runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "unbound",
               description: "Group under which unbound runs.",
             })))),
           stateDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/lib/unbound",
               description: "Directory holding all state for unbound to run.",
             })))),
           checkconf: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: nix.thunk(() => (nix.asBool(!nix.asBool(nix.has(nix.sel(cfg, "settings"), "include"))) && nix.asBool(!nix.asBool(nix.has(nix.sel(cfg, "settings"), "remote-control"))))),
               defaultText: "!services.unbound.settings ? include && !services.unbound.settings ? remote-control",
               description: "Whether to check the resulting config file with unbound checkconf for syntax errors.\n\nIf settings.include is used, this options is disabled, as the import can likely not be accessed at build time.\nIf settings.remote-control is used, this option is disabled, too as the control-key-file, server-cert-file and server-key-file cannot be accessed at build time.\n",
             })))),
           resolveLocalQueries: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Whether unbound should resolve local queries (i.e. add 127.0.0.1 to\n/etc/resolv.conf and set name servers to localhost respectively).\n",
             })))),
           enableRootTrustAnchor: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: true,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Use and update root trust anchor for DNSSEC validation.",
             })))),
           localControlSocketPath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               example: "/run/unbound/unbound.ctl",
               description: "When not set to `null` this option defines the path\nat which the unbound remote control socket should be created at. The\nsocket will be owned by the unbound user (`unbound`)\nand group will be `nogroup`.\n\nUsers that should be permitted to access the socket must be in the\n`config.services.unbound.group` group.\n\nIf this option is `null` remote control will not be\nenabled. Unbounds default values apply.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     freeformType: nix.thunk(() => (() => {
                       const validSettingsPrimitiveTypes = nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
                           nix.thunk(() => nix.lookup(w_1, "int")),
@@ -150,16 +150,16 @@ cp ${confFileUnchecked} $out
                             settingsType,
                             nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), settingsType)),
                           ])))), {
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         description: "unbound.conf configuration type. The format consist of an attribute\nset of settings. Each settings can be either one value, a list of\nvalues or an attribute set. The allowed values are integers,\nstrings, booleans or floats.\n",
                       });
                     })()),
                     options: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       "remote-control": nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         "control-enable": nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.lookup(w_1, "bool")),
                             default: false,
                             internal: true,
@@ -175,15 +175,15 @@ cp ${confFileUnchecked} $out
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         services: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           unbound: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             settings: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               server: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 directory: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(cfg, "stateDir")))),
                 username: "\"\"",
                 chroot: "\"\"",
@@ -197,7 +197,7 @@ cp ${confFileUnchecked} $out
                 "define-tag": nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), "")),
               })),
               "remote-control": nix.thunk(() => nix.update({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 "control-enable": nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), false)),
                 "control-interface": nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.concat(["127.0.0.1"], nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(config, "networking", "enableIPv6")), "::1"))))),
                 "server-key-file": nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/unbound_server.key`))),
@@ -205,7 +205,7 @@ cp ${confFileUnchecked} $out
                 "control-key-file": nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/unbound_control.key`))),
                 "control-cert-file": nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/unbound_control.pem`))),
               }, nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "localControlSocketPath"), null)), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   "control-enable": true,
                   "control-interface": nix.thunk(() => nix.sel(cfg, "localControlSocketPath")),
                 }))))),
@@ -213,40 +213,40 @@ cp ${confFileUnchecked} $out
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$25,
-            "unbound/unbound.conf": nix.thunk(() => ({ __proto__: pos$24, source: confFile })),
+            [nix.POS]: pos$25,
+            "unbound/unbound.conf": nix.thunk(() => ({ [nix.POS]: pos$24, source: confFile })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           users: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "unbound")), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               unbound: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 description: "unbound daemon user",
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "unbound")), nix.thunk(() => ({ __proto__: pos$29, unbound: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "unbound")), nix.thunk(() => ({ [nix.POS]: pos$29, unbound: nix.thunk(() => ({})) })))),
         })),
         networking: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "resolveLocalQueries")), nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             resolvconf: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               useLocalResolver: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
             })),
             nameservers: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => nix.concat(["127.0.0.1"], nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(config, "networking", "enableIPv6")), "::1"))))),
           })))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           services: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             unbound: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               description: "Unbound recursive Domain Name Server",
               after: nix.thunk(() => ["network.target"]),
               before: nix.thunk(() => ["nss-lookup.target"]),
@@ -259,7 +259,7 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(cfg, "setting
 `),
               restartTriggers: nix.thunk(() => [confFile]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/unbound -p -d -c /etc/unbound/unbound.conf`),
                 ExecReload: "+/run/current-system/sw/bin/kill -HUP $MAINPID",
                 NotifyAccess: "main",

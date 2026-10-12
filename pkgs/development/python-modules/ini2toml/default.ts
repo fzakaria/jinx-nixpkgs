@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const tomlkit = nix.arg($, "tomlkit");
   const validate_pyproject = nix.arg($, "validate-pyproject");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ini2toml",
       version: "0.16",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "abravalheri",
           repo: "ini2toml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [distutils, packaging, setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [configupdater, tomli_w, tomlkit]),
         full: nix.thunk(() => [configupdater, tomlkit]),
         lite: nix.thunk(() => [tomli_w]),
@@ -77,11 +77,11 @@ export default nix.lambda((args) => (() => {
           ], examples));
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Automatically conversion of .ini/.cfg files to TOML equivalents",
         homepage: "https://github.com/abravalheri/ini2toml",
         changelog: nix.thunk(() => nix.str`https://github.com/abravalheri/ini2toml/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.rst`),

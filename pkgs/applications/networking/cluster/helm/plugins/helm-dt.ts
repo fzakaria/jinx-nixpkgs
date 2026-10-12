@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "helm-dt";
       const version = "0.9.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vmware-labs",
           repo: "distribution-tooling-for-helm",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
       ]);
       const postPatch = "sed -i '/^hooks:/,+2 d' plugin.yaml\n";
       const doCheck = false;
-      const env = nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n }));
       const postInstall = "install -dm755 $out/helm-dt/bin\nmv $out/bin/dt $out/helm-dt/bin/dt\nrmdir $out/bin\ninstall -m644 -Dt $out/helm-dt plugin.yaml\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Helm Distribution plugin is a set of utilities and Helm Plugin for making offline work with Helm Charts easier",
         homepage: "https://github.com/vmware-labs/distribution-tooling-for-helm",
         maintainers: nix.thunk(() => (() => {
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

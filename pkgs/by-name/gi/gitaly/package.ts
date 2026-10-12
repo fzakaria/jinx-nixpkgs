@@ -22,10 +22,10 @@ export default nix.lambda((args) => (() => {
   const gitaly_package = nix.thunk(() => nix.str`gitlab.com/gitlab-org/gitaly/${package_version}`);
   const git = nix.thunk(() => nix.app(callPackage, nix.path(here, "./git.nix"), nix.thunk(() => ({}))));
   const commonOpts = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: version,
     src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "gitlab-org",
         repo: "gitaly",
         rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
     doCheck: false,
   }));
   const auxBins = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => nix.update({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gitaly-aux",
       subPackages: nix.thunk(() => [
         "cmd/gitaly-hooks",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
     }, commonOpts))));
   return nix.app(buildGoModule, nix.thunk(() => nix.update({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gitaly",
       subPackages: nix.thunk(() => ["cmd/gitaly", "cmd/gitaly-backup"]),
       dontStrip: true,
@@ -77,9 +77,9 @@ HOME=/build PAGER=cat ${git}/bin/git config -l
 runHook postInstallCheck
 `),
       outputs: nix.thunk(() => ["out"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, git: git })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, git: git })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://gitlab.com/gitlab-org/gitaly",
         description: "Git RPC service for handling all the git calls made by GitLab",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

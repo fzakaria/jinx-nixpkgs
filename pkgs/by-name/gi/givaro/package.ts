@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "givaro";
       const version = "4.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linbox-team",
           repo: "givaro",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./skip-gmp-check.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "libc++-support.patch",
             url: "https://github.com/linbox-team/givaro/commit/464d53db36038c36a72bbad48c97bc141f62e161.diff?full_index=1",
             hash: "sha256-aI9PPjIQCvt9QKywxid+FVx71Buo8d6U7d+PLsKR4+k=",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const installCheckTarget = "check";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C++ library for arithmetic and algebraic computations",
         homepage: "https://casys.gricad-pages.univ-grenoble-alpes.fr/givaro/",
         mainProgram: "givaro-config",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pytest_cov = nix.arg($, "pytest-cov");
   const mock = nix.arg($, "mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hepdata-validator",
       version: "0.3.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HEPData",
           repo: "hepdata-validator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["hepdata_validator"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JSON schema and validation code for HEPData submissions",
         homepage: "https://github.com/HEPData/hepdata-validator",
         changelog: nix.thunk(() => nix.str`https://github.com/HEPData/hepdata-validator/releases/tag/${nix.sel(finalAttrs, "version")}`),

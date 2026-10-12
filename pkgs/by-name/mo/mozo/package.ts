@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = false;
       const doCheck = false;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/mozo-${version}.tar.xz`),
           sha256: "/piYT/1qqMNtBZS879ugPeObQtQeAHJRaAOE8870SSQ=",
         }))));
@@ -37,16 +37,16 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gtk3, glib]);
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.mate-desktop.org/mozo",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "MATE Desktop menu editor",
         mainProgram: "mozo",
         homepage: "https://github.com/mate-desktop/mozo",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "mate"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

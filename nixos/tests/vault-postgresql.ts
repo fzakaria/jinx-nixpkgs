@@ -23,50 +23,50 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "vault-postgresql",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "roberth"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           environment: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "vault"))]),
-            variables: nix.thunk(() => ({ __proto__: pos$2, VAULT_ADDR: "http://127.0.0.1:8200" })),
+            variables: nix.thunk(() => ({ [nix.POS]: pos$2, VAULT_ADDR: "http://127.0.0.1:8200" })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             vault: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               extraSettingsPaths: nix.thunk(() => ["/run/vault.hcl"]),
             })),
             postgresql: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "init.psql", "CREATE USER vaultuser WITH ENCRYPTED PASSWORD 'thisisthepass';\nGRANT CONNECT ON DATABASE postgres TO vaultuser;\n\n-- https://www.vaultproject.io/docs/configuration/storage/postgresql\nCREATE TABLE vault_kv_store (\n  parent_path TEXT COLLATE \"C\" NOT NULL,\n  path        TEXT COLLATE \"C\",\n  key         TEXT COLLATE \"C\",\n  value       BYTEA,\n  CONSTRAINT pkey PRIMARY KEY (path, key)\n);\nCREATE INDEX parent_path_idx ON vault_kv_store (parent_path);\n\nGRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO vaultuser;\n")),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             services: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               vault: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 after: nix.thunk(() => ["postgresql.target"]),
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$7, RestartSec: 1n })),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$8, StartLimitBurst: 600n })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$7, RestartSec: 1n })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$8, StartLimitBurst: 600n })),
               })),
             })),
           })),

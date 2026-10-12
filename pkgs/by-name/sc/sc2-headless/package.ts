@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   const licenseAccepted = nix.argOr($, "licenseAccepted", () => nix.selOr(config, () => false, "sc2-headless", "accept_license"));
-  const maps = nix.thunk(() => nix.app(callPackage, nix.path(here, "./maps.nix"), nix.thunk(() => ({ __proto__: pos$1, licenseAccepted: licenseAccepted }))));
+  const maps = nix.thunk(() => nix.app(callPackage, nix.path(here, "./maps.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, licenseAccepted: licenseAccepted }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const version = "4.7.1";
       const pname = "sc2-headless";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://blzdistsc2-a.akamaihd.net/Linux/SC2.${version}.zip`),
           sha256: "0q1ry9bd3dm8y4hvh57yfq7s05hl2k2sxi2wsl6h0r3w690v1kdd",
         }))));
@@ -52,7 +52,7 @@ cp -ur "${nix.sel(maps, "minigames")}"/* "${nix.sel(maps, "melee")}"/* "${nix.se
 done
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         description: "Starcraft II headless linux client for machine learning research",
         sourceProvenance: nix.thunk(() => (() => {
@@ -60,7 +60,7 @@ done
           return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];
         })()),
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             shortName: "starcraft2",
             fullName: "BLIZZARD® STARCRAFT® II AI AND MACHINE LEARNING LICENSE",
             url: "https://blzdistsc2-a.akamaihd.net/AI_AND_MACHINE_LEARNING_LICENSE.html",
@@ -69,7 +69,7 @@ done
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version,
         pname,
         src,

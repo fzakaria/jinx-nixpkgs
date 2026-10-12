@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-y4J3kCoRON7qt5bsW+9wdqbgJIyjYHo/Pe4LbZ6bhBU=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_pytype.py"]);
       const pythonImportsCheck = nix.thunk(() => ["vulture"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Finds unused code in Python programs",
         homepage: "https://github.com/jendrikseipp/vulture",
         changelog: nix.thunk(() => nix.str`https://github.com/jendrikseipp/vulture/releases/tag/v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "vulture",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const python = nix.argOr($, "python", () => null);
   const usePython = nix.argOr($, "usePython", () => false);
   return nix.app(nix.sel(soapysdr, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       extraPackages: nix.thunk(() => nix.concat([
         limesuite,
         soapyairspy,

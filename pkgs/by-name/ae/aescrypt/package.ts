@@ -15,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "3.16",
       pname: "aescrypt",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.aescrypt.com/download/v3/linux/aescrypt-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "sha256-4uGS0LReq5dI7+Wel7ZWzFXx+utZWi93q4TUSw7AhNI=",
         })))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-liconv" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-liconv" })))),
       preBuild: "substituteInPlace src/Makefile --replace-fail \"CC=gcc\" \"CC?=gcc\"\ncd src\n",
       installPhase: "mkdir -p $out/bin\ncp aescrypt $out/bin\ncp aescrypt_keygen $out/bin\n",
       buildInputs: nix.thunk(() => [libiconv]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Encrypt files with Advanced Encryption Standard (AES)",
         homepage: "https://www.aescrypt.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

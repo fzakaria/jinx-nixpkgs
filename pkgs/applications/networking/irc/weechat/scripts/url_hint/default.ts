@@ -15,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const weechat = nix.arg($, "weechat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "url_hint",
       version: "0.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://raw.githubusercontent.com/weechat/scripts/10671d785ea3f9619d0afd0d7a1158bfa4ee3938/python/url_hint.py",
           sha256: "0aw59kq74yqh0qbdkldfl6l83d0bz833232xr2w4741szck43kss",
         })))),
       dontUnpack: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, scripts: nix.thunk(() => ["url_hint.py"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, scripts: nix.thunk(() => ["url_hint.py"]) })),
       installPhase: "runHook preInstall\ninstall -D $src $out/share/url_hint.py\nrunHook postInstall\n",
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(weechat, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "WeeChat URL opening script",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "truehdd",
       version: "0.6.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "truehdd",
           repo: "truehdd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,15 +29,15 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-BWJUIJcXRjrb2P0EXNdvhVkyq93J3CkYPUYdXgEsYQ4=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         VERGEN_GIT_DESCRIBE: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tools for inspecting and decoding Dolby TrueHD bitstreams",
         homepage: "https://github.com/truehdd/truehdd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

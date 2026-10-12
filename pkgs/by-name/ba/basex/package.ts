@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "basex",
       version: "12.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://files.basex.org/releases/${nix.sel(finalAttrs, "version")}/BaseX${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           hash: "sha256-qIaAy05V5JUZ+YuuesFecCvdpCYoZm0/dWFnInpHvKE=",
         })))),
       nativeBuildInputs: nix.thunk(() => [unzip, copyDesktopItems]),
       buildInputs: nix.thunk(() => [jre]),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "basex",
             exec: "basexgui %f",
             icon: nix.thunk(() => nix.str`${nix.path(here, "./basex.svg")}`),
@@ -65,7 +65,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "XML database and XPath/XQuery processor",
         longDescription: "BaseX is a very fast and light-weight, yet powerful XML database and\nXPath/XQuery processor, including support for the latest W3C Full Text\nand Update Recommendations. It supports large XML instances and offers a\nhighly interactive front-end (basexgui). Apart from two local standalone\nmodes, BaseX offers a client/server architecture.\n",
         homepage: "https://basex.org/",

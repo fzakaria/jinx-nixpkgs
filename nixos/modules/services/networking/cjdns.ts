@@ -62,33 +62,33 @@ export default nix.lambda((args) => (() => {
   const connectToSubmodule = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     return {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       options: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Authorized password to the opposite end of the tunnel.",
           })))),
         login: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             default: "",
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "(optional) name your peer has for you",
           })))),
         peerName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             default: "",
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "(optional) human-readable name for peer",
           })))),
         publicKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Public key at the opposite end of the tunnel.",
           })))),
         hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             default: "",
             example: "foobar.hype",
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
@@ -101,23 +101,23 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(v, "hostname"), "")), nix.thunk(() => nix.str`echo $(${nix.sel(pkgs, "cjdns")}/bin/cjdnstool util key2ip6 ${nix.sel(v, "publicKey")}) ${nix.sel(v, "hostname")}`)), nix.thunk(() => nix.update(nix.sel(cfg, "ETHInterface", "connectTo"), nix.sel(cfg, "UDPInterface", "connectTo"))))))}
 `)));
   const parseModules = (x) => nix.update(x, {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     connectTo: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         password: nix.thunk(() => nix.attr(value, "password")),
         publicKey: nix.thunk(() => nix.attr(value, "publicKey")),
       }), nix.thunk(() => nix.sel(x, "connectTo")))),
   });
   const cjdrouteConf = nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         admin: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           bind: nix.thunk(() => nix.sel(cfg, "admin", "bind")),
           password: "@CJDNS_ADMIN_PASSWORD@",
         })),
-        authorizedPasswords: nix.thunk(() => nix.builtins.map((p) => ({ __proto__: pos$11, password: p }), nix.thunk(() => nix.sel(cfg, "authorizedPasswords")))),
+        authorizedPasswords: nix.thunk(() => nix.builtins.map((p) => ({ [nix.POS]: pos$11, password: p }), nix.thunk(() => nix.sel(cfg, "authorizedPasswords")))),
         interfaces: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           ETHInterface: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "ETHInterface", "bind"), "")) ? [
             nix.thunk(() => nix.app(parseModules, nix.thunk(() => nix.sel(cfg, "ETHInterface")))),
           ] : [])),
@@ -128,48 +128,48 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
         privateKey: "@CJDNS_PRIVATE_KEY@",
         resetAfterInactivitySeconds: 100n,
         router: nix.thunk(() => ({
-          __proto__: pos$15,
-          interface: nix.thunk(() => ({ __proto__: pos$13, type: "TUNInterface" })),
-          ipTunnel: nix.thunk(() => ({ __proto__: pos$14, allowedConnections: [], outgoingConnections: [] })),
+          [nix.POS]: pos$15,
+          interface: nix.thunk(() => ({ [nix.POS]: pos$13, type: "TUNInterface" })),
+          ipTunnel: nix.thunk(() => ({ [nix.POS]: pos$14, allowedConnections: [], outgoingConnections: [] })),
         })),
-        security: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$16, exemptAngel: 1n, setuser: "nobody" }))]),
+        security: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$16, exemptAngel: 1n, setuser: "nobody" }))]),
       })), nix.thunk(() => nix.sel(cfg, "extraConfig"))))));
   return {
-    __proto__: pos$47,
+    [nix.POS]: pos$47,
     options: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       services: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         cjdns: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the cjdns network encryption\nand routing engine. A file at /etc/cjdns.keys will\nbe created if it does not exist to contain a random\nsecret key that your IPv6 address will be derived from.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 router: nix.thunk(() => ({
-                  __proto__: pos$20,
-                  interface: nix.thunk(() => ({ __proto__: pos$19, tunDevice: "tun10" })),
+                  [nix.POS]: pos$20,
+                  interface: nix.thunk(() => ({ [nix.POS]: pos$19, tunDevice: "tun10" })),
                 })),
               })),
               description: "Extra configuration, given as attrs, that will be merged recursively\nwith the rest of the JSON generated by this module, at the root node.\n",
             })))),
           confFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/etc/cjdroute.conf",
               description: "Ignore all other cjdns options and load configuration from this file.\n",
             })))),
           authorizedPasswords: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => [
@@ -180,25 +180,25 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
               description: "Any remote cjdns nodes that offer these passwords on\nconnection will be allowed to route through this node.\n",
             })))),
           admin: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             bind: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "127.0.0.1:11234",
                 description: "Bind the administration port to this address and port.\n",
               })))),
           })),
           UDPInterface: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             bind: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 example: "192.168.1.32:43211",
                 description: "Address and port to bind UDP tunnels to.\n",
               })))),
             connectTo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), connectToSubmodule)))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"192.168.1.1:27313\" = {\n    hostname = \"homer.hype\";\n    password = \"5kG15EfpdcKNX3f2GSQ0H1HC7yIfxoCoImnO5FHM\";\n    publicKey = \"371zpkgs8ss387tmr81q04mp0hg1skb51hw34vk1cq644mjqhup0.k\";\n  };\n}\n")),
@@ -206,22 +206,22 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
               })))),
           })),
           ETHInterface: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             bind: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 example: "eth0",
                 description: "Bind to this device for native ethernet operation.\n`all` is a pseudo-name which will try to connect to all devices.\n",
               })))),
             beacon: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 2n,
                 description: "Auto-connect to other cjdns nodes on the same network.\nOptions:\n  0: Disabled.\n  1: Accept beacons, this will cause cjdns to accept incoming\n     beacon messages and try connecting to the sender.\n  2: Accept and send beacons, this will cause cjdns to broadcast\n     messages on the local network which contain a randomly\n     generated per-session password, other nodes which have this\n     set to 1 or 2 will hear the beacon messages and connect\n     automatically.\n",
               })))),
             connectTo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), connectToSubmodule)))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"01:02:03:04:05:06\" = {\n    hostname = \"homer.hype\";\n    password = \"5kG15EfpdcKNX3f2GSQ0H1HC7yIfxoCoImnO5FHM\";\n    publicKey = \"371zpkgs8ss387tmr81q04mp0hg1skb51hw34vk1cq644mjqhup0.k\";\n  };\n}\n")),
@@ -229,7 +229,7 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
               })))),
           })),
           addExtraHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to add cjdns peers with an associated hostname to\n{file}`/etc/hosts`.  Beware that enabling this\nincurs heavy eval-time costs.\n",
@@ -238,14 +238,14 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$46,
-        boot: nix.thunk(() => ({ __proto__: pos$38, kernelModules: nix.thunk(() => ["tun"]) })),
+        [nix.POS]: pos$46,
+        boot: nix.thunk(() => ({ [nix.POS]: pos$38, kernelModules: nix.thunk(() => ["tun"]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           services: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             cjdns: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               description: "cjdns: routing engine designed for security, scalability, speed and ease of use",
               wantedBy: nix.thunk(() => ["multi-user.target", "sleep.target"]),
               after: nix.thunk(() => ["network-online.target"]),
@@ -276,7 +276,7 @@ EOF
 `)),
               startLimitIntervalSec: 0n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 Type: "forking",
                 Restart: "always",
                 RestartSec: 1n,
@@ -290,17 +290,17 @@ EOF
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           hostFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "addExtraHosts")), nix.thunk(() => [cjdnsExtraHosts]))),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             assertion: nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "ETHInterface", "bind"), "")) || nix.asBool(!nix.eq(nix.sel(cfg, "UDPInterface", "bind"), "")))) || nix.asBool(!nix.eq(nix.sel(cfg, "confFile"), null)))),
             message: "Neither cjdns.ETHInterface.bind nor cjdns.UDPInterface.bind defined.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             assertion: nix.thunk(() => nix.sel(config, "networking", "enableIPv6")),
             message: "networking.enableIPv6 must be enabled for CJDNS to work",
           })),

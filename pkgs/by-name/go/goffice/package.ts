@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const gtk_doc = nix.arg($, "gtk-doc");
   const gnumeric = nix.arg($, "gnumeric");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "goffice",
       version: "0.10.61",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/goffice/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/goffice-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-VYWX/Zylm5P/VidQIY0efqjsPI0O1qXMCWqnFe+QmhU=",
         })))),
@@ -45,12 +45,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxslt, librsvg]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "goffice", versionPolicy: "odd-unstable" })))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, gnumeric: gnumeric })),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "goffice", versionPolicy: "odd-unstable" })))),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, gnumeric: gnumeric })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Glib/GTK set of document centric objects and utilities",
         longDescription: "There are common operations for document centric applications that are\nconceptually simple, but complex to implement fully: plugins, load/save\ndocuments, undo/redo.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

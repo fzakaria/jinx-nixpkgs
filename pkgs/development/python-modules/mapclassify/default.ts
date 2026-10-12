@@ -25,19 +25,19 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mapclassify",
       version: "2.10.0-unstable-2026-07-20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pysal",
           repo: "mapclassify",
           rev: "e8d0550986742de3a4aca6e4e590dfc48d384f0f",
           hash: "sha256-UIPMOdDh4sfcFzDqWE70krMywPgXEUOqvPXU73wJQuM=",
         })))),
       "build-system": nix.thunk(() => [setuptools_scm]),
-      env: nix.thunk(() => ({ __proto__: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: "2.10.0.dev20260720" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: "2.10.0.dev20260720" })),
       propagatedBuildInputs: nix.thunk(() => [networkx, numpy, pandas, scikit_learn, scipy]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, geopandas, libpysal, matplotlib]),
       disabledTestPaths: nix.thunk(() => ["mapclassify/tests/test_greedy.py", "mapclassify/tests/test_rgba.py"]),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["mapclassify"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Classification Schemes for Choropleth Maps",
         homepage: "https://pysal.org/mapclassify/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

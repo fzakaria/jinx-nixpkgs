@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const tk = nix.arg($, "tk");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(tcl, "mkTclDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tkgl",
       version: "1.2.1-unstable-2026-01-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "3-manifolds",
           repo: "TkGL",
           rev: "e47636bc56f02ddca503f98abc65e31a0f0f0a7c",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [tk, libGL]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenGL drawing surface for Tk 8 and 9",
         homepage: "https://github.com/3-manifolds/TkGL",
         license: nix.thunk(() => nix.sel(lib, "licenses", "tcltk")),

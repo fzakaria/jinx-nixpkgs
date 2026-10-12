@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const json_data_encoding_bson = nix.arg($, "json-data-encoding-bson");
   const ppx_expect = nix.arg($, "ppx_expect");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "data-encoding",
       src: nix.thunk(() => nix.attr(json_data_encoding, "src")),
       version: nix.thunk(() => nix.attr(json_data_encoding, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [ppx_expect]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://gitlab.com/nomadic-labs/data-encoding",
         description: "Library of JSON and binary encoding combinators",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

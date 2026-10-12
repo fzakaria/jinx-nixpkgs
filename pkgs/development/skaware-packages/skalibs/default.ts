@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const skawarePackages = nix.arg($, "skawarePackages");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "skalibs",
       version: "2.15.1.0",
       sha256: "sha256-+ckF50k1xv6RHH40Tj6J1fvSAUwaBGULUksVzptWNdE=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Set of general-purpose C programming libraries",
       })),
       outputs: nix.thunk(() => ["lib", "dev", "doc", "out"]),
@@ -40,8 +40,8 @@ export default nix.lambda((args) => (() => {
         ])))),
       postInstall: "rm -rf sysdeps.cfg\nrm libskarnet.*\n\nmv doc $doc/share/doc/skalibs/html\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, fdtools: nix.thunk(() => nix.sel(pkgs, "fdtools")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, fdtools: nix.thunk(() => nix.sel(pkgs, "fdtools")) })),
       })),
     })));
 })(), formals$1);

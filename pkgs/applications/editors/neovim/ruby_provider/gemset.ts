@@ -13,13 +13,13 @@ const pos$8 = nix.positions(here + "/gemset.nix", [["dependencies", 33, 5], ["gr
 const pos$9 = nix.positions(here + "/gemset.nix", [["logger", 2, 3], ["msgpack", 12, 3], ["multi_json", 22, 3], ["neovim", 32, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$9,
+  [nix.POS]: pos$9,
   logger: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0lwncq2rf8gm79g2rcnnyzs26ma1f4wnfjm6gs4zf2wlsdz5in9s",
       type: "gem",
@@ -27,11 +27,11 @@ export default nix.thunk(() => ({
     version: "1.6.1",
   })),
   msgpack: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1a5fsgchkpcca4wf3pipbb2jbj523l7fbaq37j10cr0yymwlkc7z",
       type: "gem",
@@ -39,11 +39,11 @@ export default nix.thunk(() => ({
     version: "1.7.5",
   })),
   multi_json: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "sha256-H9BBOLbkqQAX6NG4BMA5AxOZhm/z+6u3girqNnx4YV0=",
       type: "gem",
@@ -51,12 +51,12 @@ export default nix.thunk(() => ({
     version: "1.15.0",
   })),
   neovim: nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     dependencies: nix.thunk(() => ["msgpack", "multi_json"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0gl34rriwwmj6p1s6ms0b311wmqaqiyc510svq31283jk0kp0qcd",
       type: "gem",

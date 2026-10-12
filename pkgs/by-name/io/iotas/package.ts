@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const gtksourceview5 = nix.arg($, "gtksourceview5");
   const webkitgtk_6_0 = nix.arg($, "webkitgtk_6_0");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iotas",
       version: "2026.7",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "iotas",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/iotas/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Simple note taking with mobile-first design and Nextcloud sync",
         homepage: "https://gitlab.gnome.org/World/iotas",

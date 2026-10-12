@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pew",
       version: "1.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "04anak82p4v9w0lgfs55s7diywxil6amq8c8bhli143ca8l2fcdq",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "$out/bin/pew > /dev/null\n",
       pythonImportsCheck: nix.thunk(() => ["pew"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/berdario/pew",
         description: "Tools to manage multiple virtualenvs written in pure python",
         mainProgram: "pew",

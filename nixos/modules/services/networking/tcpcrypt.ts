@@ -24,15 +24,15 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "networking", "tcpcrypt"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       networking: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tcpcrypt: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to enable opportunistic TCP encryption. If the other end\nspeaks Tcpcrypt, then your traffic will be encrypted; otherwise\nit will be sent in clear text. Thus, Tcpcrypt alone provides no\nguarantees -- it is best effort. If, however, a Tcpcrypt\nconnection is successful and any attackers that exist are\npassive, then Tcpcrypt guarantees privacy.\n",
@@ -41,24 +41,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         users: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           users: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             tcpcryptd: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "tcpcryptd")),
               description: "tcpcrypt daemon user",
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             tcpcrypt: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "tcpcrypt",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),

@@ -28,59 +28,59 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     config: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       assertions: nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrsToList")), nix.thunk(() => nix.sel(config, "services", "github-runners")), (name) => (cfg) => nix.builtins.map(nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")))), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 assertion: nix.thunk(() => !nix.eq(nix.eq(nix.sel(cfg, "tokenFile"), null), nix.eq(nix.sel(cfg, "githubApp"), null))),
                 message: nix.thunk(() => nix.str`\`services.github-runners.${name}\`: Exactly one of \`tokenFile\` and \`githubApp\` must be set`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "orgs"), {})) || nix.asBool(!nix.eq(nix.sel(cfg, "url"), null)))),
                 message: nix.thunk(() => nix.str`\`services.github-runners.${name}\`: \`url\` must be set unless \`orgs\` is used`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 assertion: nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "orgs"), {})) || nix.asBool(nix.eq(nix.sel(cfg, "githubApp"), null)))) || nix.asBool(!nix.eq(nix.sel(cfg, "githubApp", "login"), null)))),
                 message: nix.thunk(() => nix.str`\`services.github-runners.${name}\`: \`githubApp.login\` must be set unless \`orgs\` is used (the login is then derived per org)`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 assertion: nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "orgs"), {})) || nix.asBool(nix.eq(nix.sel(cfg, "count"), 1n)))) || nix.asBool(!nix.eq(nix.sel(cfg, "name"), null)))),
                 message: nix.thunk(() => nix.str`\`services.github-runners.${name}\`: \`name\` must not be null when \`count > 1\` (each replica needs a distinct registration name)`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "noDefaultLabels"))) || nix.asBool(!nix.eq(nix.sel(cfg, "extraLabels"), [])))),
                 message: nix.thunk(() => nix.str`\`services.github-runners.${name}\`: The \`extraLabels\` option is mandatory if \`noDefaultLabels\` is set`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "group"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "user"), null)))),
                 message: nix.thunk(() => nix.str`\`services.github-runners.${name}\`: Setting \`group\` while leaving \`user\` unset runs the service as \`root\`. If this is really what you want, set \`user = "root"\` explicitly`),
               })),
             ])))))),
       systemd: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         services: nix.thunk(() => (() => {
           const enabledRunners = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (cfg) => nix.sel(cfg, "enable"), nix.thunk(() => nix.sel(config, "services", "github-runners"))));
           const runnerInstances = nix.thunk(() => nix.app(nix.sel(lib, "concatMapAttrs"), (name) => (cfg) => (nix.asBool(nix.eq(nix.sel(cfg, "orgs"), {})) ? (() => {
               const suffixes = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "count"), 1n)) ? [""] : nix.builtins.map((n) => nix.str`-${nix.builtins.toString(n)}`, nix.thunk(() => nix.app(nix.sel(lib, "range"), 1n, nix.thunk(() => nix.sel(cfg, "count")))))));
               return nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((suffix) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`${name}${suffix}`), nix.thunk(() => nix.update(cfg, {
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       name: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "name"), null)) ? null : nix.str`${nix.sel(cfg, "name")}${suffix}`)),
                     }))), suffixes)));
             })() : nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "orgs")), (orgName) => (org) => nix.builtins.map((n) => (() => {
                       const key = nix.thunk(() => nix.str`${name}-${orgName}-${nix.builtins.toString(n)}`);
                       return nix.app(nix.sel(lib, "nameValuePair"), key, nix.thunk(() => nix.update(cfg, {
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           url: nix.thunk(() => nix.sel(org, "url")),
                           name: key,
                           extraLabels: nix.thunk(() => nix.concat(nix.sel(cfg, "extraLabels"), nix.sel(org, "extraLabels"))),
-                          githubApp: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "githubApp"), null)) ? null : nix.update(nix.sel(cfg, "githubApp"), { __proto__: pos$8, login: nix.thunk(() => nix.sel(org, "login")) }))),
+                          githubApp: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "githubApp"), null)) ? null : nix.update(nix.sel(cfg, "githubApp"), { [nix.POS]: pos$8, login: nix.thunk(() => nix.sel(org, "login")) }))),
                         })));
                     })(), nix.thunk(() => nix.app(nix.sel(lib, "range"), 1n, nix.thunk(() => nix.sel(org, "count"))))))))))), enabledRunners));
           return nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs'")), runnerInstances, (name) => (cfg) => (() => {
@@ -105,7 +105,7 @@ ${lines}
               const ghUrlSegments = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (s) => !nix.eq(s, ""), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "/", ghUrlPath))));
               const runnerScope = nix.thunk(() => (nix.asBool(nix.ge(nix.app(nix.sel(lib, "length"), ghUrlSegments), 2n)) ? "repo" : "org"));
               const appHelper = (helperName) => (scriptFile) => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   name: helperName,
                   runtimeInputs: nix.thunk(() => (() => {
                     const w = nix.withScope(pkgs, null);
@@ -132,12 +132,12 @@ export REPO_URL=${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.se
 ${(nix.asBool(!nix.eq(nix.sel(cfg, "name"), null)) ? nix.str`export RUNNER_NAME=${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.sel(cfg, "name")))}` : "export RUNNER_NAME=\"$(uname -n)\"")}
 `)));
               return nix.app(nix.sel(lib, "nameValuePair"), svcName, nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   description: "GitHub Actions runner",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   wants: nix.thunk(() => ["network-online.target"]),
                   after: nix.thunk(() => ["network.target", "network-online.target"]),
-                  environment: nix.thunk(() => nix.update({ __proto__: pos$11, HOME: workDir, RUNNER_ROOT: stateDir }, nix.sel(cfg, "extraEnvironment"))),
+                  environment: nix.thunk(() => nix.update({ [nix.POS]: pos$11, HOME: workDir, RUNNER_ROOT: stateDir }, nix.sel(cfg, "extraEnvironment"))),
                   path: nix.thunk(() => nix.concat((() => {
                     const w = nix.withScope(pkgs, null);
                     return [
@@ -150,7 +150,7 @@ ${(nix.asBool(!nix.eq(nix.sel(cfg, "name"), null)) ? nix.str`export RUNNER_NAME=
                   })(), nix.concat([nix.thunk(() => nix.sel(config, "nix", "package"))], nix.sel(cfg, "extraPackages")))),
                   serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/Runner.Listener run --startuptype service`),
                         ExecStartPre: nix.thunk(() => (() => {
                           const runnerRegistrationConfig = nix.thunk(() => nix.app(nix.sel(lib, "getAttrs"), nix.thunk(() => [
@@ -341,12 +341,12 @@ ${nix.app(nix.sel(lib, "getExe'"), removeRunner, "github-runner-remove")} || tru
                         DynamicUser: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                       })),
                       nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "user"), null)), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           DynamicUser: false,
                           User: nix.thunk(() => nix.sel(cfg, "user")),
                         })))),
                       nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "group"), null)), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           DynamicUser: false,
                           Group: nix.thunk(() => nix.sel(cfg, "group")),
                         })))),

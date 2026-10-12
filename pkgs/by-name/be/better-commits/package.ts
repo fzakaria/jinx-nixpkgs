@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "better-commits";
       const version = "1.26.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Everduin94",
           repo: "better-commits",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-N6B9wVxc14W7KN24bBYj0G+YRT4xSCr0X3bYs1Gusj8=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI for creating better commits following the conventional commits specification",
         homepage: "https://github.com/Everduin94/better-commits",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         mainProgram: "better-commits",
       }));
-      return { __proto__: pos$4, pname, version, src, npmDepsHash, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, npmDepsHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

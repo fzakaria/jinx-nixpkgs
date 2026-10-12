@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
       const version = "5.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "django_tinymce",
           hash: "sha256-YldmntWWrM9fqWf/MGEnayxTUrqsG7xlj82CUrEso4o=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [django]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" }));
       const checkInputs = nix.thunk(() => [pytest_django, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["tinymce"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Django application that contains a widget to render a form field as a TinyMCE editor",
         homepage: "https://github.com/jazzband/django-tinymce",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-tinymce/blob/${version}/CHANGELOG.rst`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

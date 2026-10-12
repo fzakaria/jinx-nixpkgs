@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.33-unstable-2026-09-30";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "johnfanv2",
           repo: "LenovoLegionLinux",
           rev: "f68ba248fb24b995f87e2fb01b58f9ac71e8b75c",
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
       const dontWrapQtApps = true;
       const preFixup = "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Utility to control Lenovo Legion laptop",
         homepage: "https://github.com/johnfanv2/LenovoLegionLinux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "legion_gui",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const fetchNpmDeps = nix.arg($, "fetchNpmDeps");
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lasuite-meet-mail",
       src: src,
       version: version,
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
     '${nix.builtins.placeholder("out")}'
 `),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
           version: version,
           src: src,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmBuildScript: "build",
       dontInstall: true,
-      meta: nix.thunk(() => nix.update(meta, { __proto__: pos$2, description: "HTML mail templates for LaSuite Meet" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$2, description: "HTML mail templates for LaSuite Meet" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=mail.ts.map

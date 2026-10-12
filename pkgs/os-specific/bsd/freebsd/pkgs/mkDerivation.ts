@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
           const version = nix.thunk(() => nix.attr(freebsd_lib, "version"));
           const pname = nix.thunk(() => nix.str`${nix.selOr(attrs, () => nix.builtins.baseNameOf(nix.thunk(() => nix.sel(attrs, "path"))), "pname")}`);
           const src = nix.thunk(() => nix.app(filterSource, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               pname: pname,
               path: nix.thunk(() => nix.attr(attrs, "path")),
               extraPaths: nix.thunk(() => nix.selOr(attrs, () => [], "extraPaths")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
           const preBuild = nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv$, "hasCC")) && nix.asBool(nix.selOr(stdenv$, () => false, "cc", "isClang")))) && nix.asBool(nix.selOr(attrs, () => true, "clangFixup")))), "export NIX_CFLAGS_COMPILE=\"$NIX_CFLAGS_COMPILE -D_VA_LIST -D_VA_LIST_DECLARED -Dva_list=__builtin_va_list -D_SIZE_T_DECLARED -D_SIZE_T -Dsize_t=__SIZE_TYPE__ -D_WCHAR_T\"\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(versionData, "major"), 13n)), "export NIX_LDFLAGS=\"$NIX_LDFLAGS --undefined-version\"\n")), nix.selOr(attrs, () => "", "preBuild")));
           const makeFlags = nix.thunk(() => nix.concat(["STRIP=-s"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv$, "hostPlatform", "isFreeBSD"))), "MK_WERROR=no"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), "SHLIB_NAME="))));
           const env = nix.thunk(() => nix.update({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             HOST_SH: nix.thunk(() => nix.sel(stdenv$, "shell")),
             MACHINE_ARCH: nix.thunk(() => nix.app(nix.sel(freebsd_lib, "mkBsdArch"), stdenv$)),
             MACHINE: nix.thunk(() => nix.app(nix.sel(freebsd_lib, "mkBsdMachine"), stdenv$)),
@@ -73,13 +73,13 @@ export default nix.lambda((args) => (() => {
             HAVE_LLVM: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.selOr(stdenv$, () => false, "cc", "isClang")), nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(stdenv$, "cc", "cc")))))))),
             HAVE_GCC: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.selOr(stdenv$, () => false, "cc", "isGNU")), nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(stdenv$, "cc", "cc")))))))),
           }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv$, "hasCC")), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               CPP: nix.thunk(() => nix.str`${nix.sel(stdenv$, "cc", "targetPrefix")}cpp`),
               STRIPBIN: nix.thunk(() => nix.str`${nix.sel(stdenv$, "cc", "bintools", "targetPrefix")}strip`),
-            }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD"))), nix.thunk(() => ({ __proto__: pos$4, BOOTSTRAPPING: true }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv$, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$5, MKRELRO: "no" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv$, "hostPlatform", "isx86_32")), nix.thunk(() => ({ __proto__: pos$6, USE_SSP: "no" }))), nix.selOr(attrs, () => ({}), "env")))))));
+            }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD"))), nix.thunk(() => ({ [nix.POS]: pos$4, BOOTSTRAPPING: true }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv$, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$5, MKRELRO: "no" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv$, "hostPlatform", "isx86_32")), nix.thunk(() => ({ [nix.POS]: pos$6, USE_SSP: "no" }))), nix.selOr(attrs, () => ({}), "env")))))));
           const strictDeps = true;
           const meta = nix.thunk(() => nix.update({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
               return [
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "freebsd")),
           }, nix.selOr(attrs, () => ({}), "meta")));
           return {
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             version,
             pname,
             src,
@@ -103,14 +103,14 @@ export default nix.lambda((args) => (() => {
             strictDeps,
             meta,
           };
-        })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(attrs, () => false, "headersOnly")), nix.thunk(() => ({ __proto__: pos$9, installPhase: "includesPhase", dontBuild: true }))), nix.update(nix.builtins.removeAttrs(attrs, nix.thunk(() => ["env", "meta"])), nix.update({
-          __proto__: pos$10,
+        })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(attrs, () => false, "headersOnly")), nix.thunk(() => ({ [nix.POS]: pos$9, installPhase: "includesPhase", dontBuild: true }))), nix.update(nix.builtins.removeAttrs(attrs, nix.thunk(() => ["env", "meta"])), nix.update({
+          [nix.POS]: pos$10,
           patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.selOr(attrs, () => true, "autoPickPatches")), nix.thunk(() => nix.app(nix.sel(freebsd_lib, "filterPatches"), patchesRoot, nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "extraPaths"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(attrs, "path")), nix.thunk(() => nix.sel(attrs, "path")))))))), nix.selOr(attrs, () => [], "patches"))),
         }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))) && nix.asBool(!nix.asBool(nix.selOr(attrs, () => false, "alwaysKeepStatic"))))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD")))), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             postInstall: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postInstall"), "rm -f $out/lib/*.a\n")),
           }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")) || nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD"))))) && nix.asBool(nix.has(attrs, "outputs")))), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             outputs: nix.thunk(() => nix.app(nix.sel(lib, "lists", "remove"), "debug", nix.thunk(() => nix.sel(attrs, "outputs")))),
           }))))))))));
     })());

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const patsh = nix.arg($, "patsh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "csvquote",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dbro",
           repo: "csvquote",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
 patsh $out/bin/csvheader -fs ${nix.builtins.storeDir} --path "$HOST_PATH"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Enables common unix utilities like cut, awk, wc, head to work correctly with csv data containing delimiters and newlines",
         homepage: "https://github.com/dbro/csvquote",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

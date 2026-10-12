@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   const version = "0.5.1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nix-lib-nmt",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~rycee",
           repo: "nmt",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       outputHash: "sha256-N7kGGDDXsXtc1S3Nqw7lCIbnVHtGNNLM1oO+Xe64hSE=",
       installPhase: "mkdir -pv \"$out\"\ncp -rv * \"$out\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.sr.ht/~rycee/nmt",
         description: "Basic test framework for projects using the Nixpkgs module system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

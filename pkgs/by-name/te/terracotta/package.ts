@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "terracotta",
       version: "0.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "burningtnt",
           repo: "Terracotta",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./0001-nix-read-timestamp-from-SOURCE_DATE_EPOCH.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-nix-use-easytier-from-nix-input.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             TERRACOTTA_ET_PATH: easytier,
             TERRACOTTA_ET_EXE: nix.thunk(() => nix.str`${easytier}/bin/easytier-core`),
             TERRACOTTA_ET_CLI: nix.thunk(() => nix.str`${easytier}/bin/easytier-cli`),
@@ -53,9 +53,9 @@ ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
       nativeBuildInputs: nix.thunk(() => [imagemagick]),
       cargoBuildFlags: nix.thunk(() => ["--bin", "terracotta"]),
       cargoTestFlags: nix.thunk(() => ["--bin", "terracotta"]),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$3, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$3, lockFile: nix.path(here, "./Cargo.lock") })),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         RUSTC_BOOTSTRAP: 1n,
         TERRACOTTA_ET_VERSION: nix.thunk(() => nix.str`v${nix.sel(easytier, "version")}`),
         TERRACOTTA_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,8 +66,8 @@ cp -r build/macos/terracotta.app $out/Applications/
 ln -sr $out/bin/terracotta $out/Applications/terracotta.app/Contents/MacOS/terracotta
 
 cat > "$daemon_plist" <<EOF
-${nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ __proto__: pos$5, escape: true })), nix.thunk(() => ({
-            __proto__: pos$6,
+${nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: pos$5, escape: true })), nix.thunk(() => ({
+            [nix.POS]: pos$6,
             Label: "org.nixos.terracotta.daemon",
             ProgramArguments: nix.thunk(() => ["@TERRACOTTA_BIN@", "--daemon"]),
             KeepAlive: true,
@@ -77,11 +77,11 @@ substituteInPlace "$daemon_plist" \\
   --replace-fail '@TERRACOTTA_BIN@' "$out/bin/terracotta"
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Terracotta provides out-of-the-box multiplayer support for Minecraft",
         homepage: "https://github.com/burningtnt/Terracotta",
         changelog: nix.thunk(() => nix.str`https://github.com/burningtnt/Terracotta/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

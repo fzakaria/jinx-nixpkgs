@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "20210215.5a9cb02",
       pname: "ipbt",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.chiark.greenend.org.uk/~sgtatham/ipbt/ipbt-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0w6blpv22jjivzr58y440zv6djvi5iccdmj4y2md52fbpjngmsha",
         })))),
       nativeBuildInputs: nix.thunk(() => [perl]),
       buildInputs: nix.thunk(() => [ncurses]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-tech ttyrec player for Unix",
         homepage: "https://www.chiark.greenend.org.uk/~sgtatham/ipbt/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libhx = nix.arg($, "libhx");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hxtools",
       version: "20251011",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           tag: nix.thunk(() => nix.str`rel-${nix.sel(finalAttrs, "version")}`),
           owner: "jengelh",
           repo: "hxtools",
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       })())),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://inai.de/projects/hxtools/",
         description: "Collection of small tools over the years by j.eng",
         license: nix.thunk(() => (() => {

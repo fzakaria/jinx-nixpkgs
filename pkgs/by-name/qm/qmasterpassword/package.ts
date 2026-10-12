@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const x11Support = nix.argOr($, "x11Support", () => true);
   const waylandSupport = nix.argOr($, "waylandSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "qmasterpassword",
       version: "2.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bkueng",
           repo: "qMasterPassword",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,18 +49,18 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => ["-DDISABLE_FILL_FORM_SHORTCUTS=1"]))),
       installPhase: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p \"$out\"/{Applications,bin}\nmv qMasterPassword.app \"$out\"/Applications/\nln -s ../Applications/qMasterPassword.app/Contents/MacOS/qMasterPassword \"$out\"/bin/qMasterPassword\n" : "mkdir -p $out/bin\nmkdir -p $out/share/{applications,doc/qMasterPassword,icons/qmasterpassword,icons/hicolor/512x512/apps,qMasterPassword/translations}\ncp qMasterPassword $out/bin\ncp $src/data/qMasterPassword.desktop $out/share/applications\ncp $src/LICENSE $src/README.md $out/share/doc/qMasterPassword\ncp $src/data/icons/app_icon.png $out/share/icons/hicolor/512x512/apps/qmasterpassword.png\ncp $src/data/icons/* $out/share/icons/qmasterpassword\ncp ./translations/translation_de.qm $out/share/qMasterPassword/translations/translation_de.qm\ncp ./translations/translation_pl.qm $out/share/qMasterPassword/translations/translation_pl.qm\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Stateless Master Password Manager",
         mainProgram: "qMasterPassword",
         longDescription: "Access all your passwords using only a single master password. But in\ncontrast to other managers it does not store any passwords: Unique\npasswords are generated from the master password and a site name. This\nmeans you automatically get different passwords for each account and\nthere is no password file that can be lost or get stolen. There is also\nno need to trust any online password service.\n",

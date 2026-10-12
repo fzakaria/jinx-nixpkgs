@@ -23,28 +23,28 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "interception-tools"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "interception-tools": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the interception tools service.",
             })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "interception-tools-plugins", "caps2esc"))]),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.interception-tools-plugins.caps2esc ]")),
               description: "A list of interception tools plugins that will be made available to use\ninside the udevmon configuration.\n",
             })))),
           udevmonConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "str")), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: "- JOB: \"intercept -g $DEVNODE | caps2esc | uinput -d $DEVNODE\"\n  DEVICE:\n    EVENTS:\n      EV_KEY: [KEY_CAPSLOCK, KEY_ESC]\n",
               example: "- JOB: \"intercept -g $DEVNODE | y2z | x2y | uinput -d $DEVNODE\"\n  DEVICE:\n    EVENTS:\n      EV_KEY: [KEY_X, KEY_Y]\n",
@@ -54,20 +54,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "interception-tools": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Interception tools",
               path: nix.thunk(() => nix.concat([
                 nix.thunk(() => nix.sel(pkgs, "bash")),
                 nix.thunk(() => nix.sel(pkgs, "interception-tools")),
               ], nix.sel(cfg, "plugins"))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "interception-tools")}/bin/udevmon -c \\
 ${(nix.asBool(nix.eq(nix.builtins.typeOf(nix.thunk(() => nix.sel(cfg, "udevmonConfig"))), "path")) ? nix.sel(cfg, "udevmonConfig") : nix.app(nix.sel(pkgs, "writeText"), "udevmon.yaml", nix.thunk(() => nix.sel(cfg, "udevmonConfig"))))}
 `),

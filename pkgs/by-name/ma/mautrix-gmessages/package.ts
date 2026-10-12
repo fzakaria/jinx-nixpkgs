@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.09";
       const tag = "v0.2609.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mautrix",
           repo: "gmessages",
           tag: tag,
@@ -37,15 +37,15 @@ export default nix.lambda((args) => (() => {
       const tags = nix.thunk(() => nix.app(nix.sel(lib, "optional"), withGoolm, "goolm"));
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: mautrix_gmessages })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: mautrix_gmessages })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Matrix-Google Messages puppeting bridge",
         homepage: "https://github.com/mautrix/gmessages",
         changelog: nix.thunk(() => nix.str`https://github.com/mautrix/gmessages/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mautrix-gmessages",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         tag,

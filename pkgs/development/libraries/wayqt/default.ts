@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const qtwayland = nix.arg($, "qtwayland");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wayqt",
       version: "0.3.0-unstable-2026-03-03",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "desktop-frameworks",
           repo: "wayqt",
           rev: "a7dfc9c682dce2721ddd84c17738619a95a23998",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/desktop-frameworks/wayqt",
         description: "Qt-based library to handle Wayland and Wlroots protocols to be used with any Qt project",
         maintainers: nix.thunk(() => (() => {

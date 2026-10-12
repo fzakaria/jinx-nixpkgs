@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "easylpac";
       const version = "0.8.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "creamlike1024",
           repo: "EasyLPAC",
           tag: version,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "EasyLPAC",
             exec: "EasyLPAC",
             icon: "EasyLPAC",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const __structuredAttrs = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GUI frontend for lpac, a C-based eUICC LPA",
         homepage: "https://github.com/creamlike1024/EasyLPAC",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

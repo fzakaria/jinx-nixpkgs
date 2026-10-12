@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const nix_update = nix.arg($, "nix-update");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fasm-bin",
       version: "1.73.35",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://flatassembler.net/fasm-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-o03sfQvC3Hn6q7aL2LwvYrbPsx1pwBRJNnzkzYCYk04=",
         })))),
@@ -32,7 +32,7 @@ install -D fasm${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-fasm", nix.thunk(() => nix.str`set -euo pipefail
 
 version=""
@@ -52,7 +52,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} fasm-bin --version "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "x86(-64) macro assembler to binary, MZ, PE, COFF, and ELF",
         homepage: "https://flatassembler.net/",
         downloadPage: "https://flatassembler.net/download.php",

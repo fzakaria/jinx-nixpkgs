@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "harvid",
       version: "0.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "x42",
           repo: "harvid",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Decodes still images from movie files and serves them via HTTP",
         longDescription: "harvid's intended use-case is to efficiently provide frame-accurate data\nand act as second level cache for rendering the video-timeline in Ardour,\nbut it is not limited to that: it has applications for any task that\nrequires a high-performance frame-accurate online image extraction\nprocessor.\n",
         homepage: "http://x42.github.io/harvid",

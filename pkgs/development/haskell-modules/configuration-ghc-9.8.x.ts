@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
     return (() => {
       const from_1 = nix.thunk(() => (() => {
         const hls_overlay = (lself) => (lsuper) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "Cabal-syntax": nix.thunk(() => nix.sel(lself, "Cabal-syntax_3_10_3_0")),
           Cabal: nix.thunk(() => nix.sel(lself, "Cabal_3_10_3_0")),
           extensions: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(lself, "extensions_0_1_0_1")))))),
         });
         return nix.app(nix.sel(lib, "mapAttrs"), (_) => (pkg) => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.app(nix.sel(pkg, "overrideScope"), hls_overlay))), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "apply-refact": nix.thunk(() => nix.app(nix.lookup(w, "addBuildDepend"), nix.thunk(() => nix.sel(self, "data-default-class")), nix.thunk(() => nix.sel(super$, "apply-refact")))),
             floskell: nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(super$, "floskell")))),
             fourmolu: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(self, "fourmolu_0_15_0_0")))))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
           })));
       })());
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       array: null,
       base: null,
       binary: null,
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
       "ghc-tags": nix.thunk(() => nix.sel(self, "ghc-tags_1_8")),
       hashing: nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(super$, "hashing")))),
       hevm: nix.thunk(() => nix.app(nix.lookup(w, "appendPatch"), nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://github.com/hellwolf/hevm/commit/338674d1fe22d46ea1e8582b24c224d76d47d0f3.patch",
             name: "release-0.54.2-ghc-9.8.4-patch",
             sha256: "sha256-Mo65FfP1nh7QTY+oLia22hj4eV2v9hpXlYsrFKljA3E=",

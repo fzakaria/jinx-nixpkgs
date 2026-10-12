@@ -29,16 +29,16 @@ export default nix.lambda((args) => (() => {
   const halibut = nix.arg($, "halibut");
   const isMobile = nix.argOr($, "isMobile", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "sgt-puzzles",
       version: "20260923.616da16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.chiark.greenend.org.uk/~sgtatham/puzzles/puzzles-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-zEGcgGC04ivjmKoD4wZR+84Ubu5RBkXDA/tvXxt3t44=",
         })))),
       "sgt-puzzles-menu": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://raw.githubusercontent.com/gentoo/gentoo/720e614d0107e86fc1e520bac17726578186843d/games-puzzle/sgt-puzzles/files/sgt-puzzles.menu",
           hash: "sha256-dXbx6C5/uu0S1FxfOLJ8TjdoJ/IW9VjEsRfJ8VIHHCE=",
         })))),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         halibut,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), isMobile, "-DSTYLUS_BASED")),
       })),
       buildInputs: nix.thunk(() => [gtk3, libx11]),
@@ -83,15 +83,15 @@ desktop-file-install --dir $out/share/desktop-directories \\
 install -Dm644 ${nix.sel(finalAttrs, "sgt-puzzles-menu")} -t $out/etc/xdg/menus/applications-merged/
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "sgt-puzzles": nix.thunk(() => nix.sel(nixosTests, "sgt-puzzles")),
         })),
         updateScript: nix.thunk(() => nix.app(writeScript, "update-sgt-puzzles", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\nversion=\"$(curl -sI 'https://www.chiark.greenend.org.uk/~sgtatham/puzzles/puzzles.tar.gz' | grep -Fi Location: | pcre2grep -o1 'puzzles-([0-9a-f.]*).tar.gz')\"\nupdate-source-version sgt-puzzles \"$version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Simon Tatham's portable puzzle collection",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

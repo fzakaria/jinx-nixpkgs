@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const makeWrapper = nix.arg($, "makeWrapper");
   const openjdk17 = nix.arg($, "openjdk17");
-  const jre = nix.thunk(() => nix.app(nix.sel(openjdk17, "override"), nix.thunk(() => ({ __proto__: pos$1, enableJavaFX: true }))));
+  const jre = nix.thunk(() => nix.app(nix.sel(openjdk17, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ganttproject-bin",
       version: "3.3.3316",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://dl.ganttproject.biz/ganttproject-${nix.sel(finalAttrs, "version")}/ganttproject-${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-tiEq/xdC0gXiUInLS9xGR/vI/BpdSA+mSf5yukuejc4=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [jre]),
       installPhase: nix.thunk(() => (() => {
         const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "ganttproject",
             exec: "ganttproject",
             icon: "ganttproject",
@@ -56,7 +56,7 @@ cp -rv "${desktopItem}/share/applications" "$out/share"
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Project scheduling and management",
         homepage: "https://www.ganttproject.biz/",
         downloadPage: "https://www.ganttproject.biz/download",

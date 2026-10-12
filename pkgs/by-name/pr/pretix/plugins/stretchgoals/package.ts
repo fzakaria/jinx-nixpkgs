@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pretix_plugin_build = nix.arg($, "pretix-plugin-build");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pretix-stretchgoals",
       version: "1.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rixx",
           repo: "pretix-stretchgoals",
           rev: "177238920a863f71cf03f174e2841f5b630574e9",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pretix_stretchgoals"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Display the average ticket sales price over time",
         homepage: "https://github.com/rixx/pretix-stretchgoals",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

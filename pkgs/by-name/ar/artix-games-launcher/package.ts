@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pname = "artix-games-launcher";
   const version = "2.20";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://web.archive.org/web/20250924101414/https://launch.artix.com/latest/Artix_Games_Launcher-x86_64.AppImage",
       hash: "sha256-8eVXOm5g92wErWa6lbTXrCL04MWYlObjonHJk+oUI3E=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -33,7 +33,7 @@ install -m 444 -D ${appimageContents}/ArtixLogo.png $out/share/icons/ArtixLogo.p
 substituteInPlace $out/share/applications/ArtixGamesLauncher.desktop --replace-fail 'Exec=ArtixGameLauncher %u' 'Exec=artix-games-launcher %u'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Launcher for games by Artix Entertainment",
         homepage: "https://www.artix.com/downloads/artixlauncher",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "profile", profile, nix.thunk(() => ["Fast", "Debug", "Paranoid"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/go/goupile/package.nix:19:1");
   const stdenv$ = nix.thunk(() => (nix.asBool(nix.eq(profile, "Paranoid")) ? nix.force(clangStdenv) : nix.force(stdenv)));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "goupile",
       version: "3.12.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Koromix",
           repo: "rygel",
           tag: nix.thunk(() => nix.str`goupile/${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(profile, "Paranoid")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "bintools"))])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-D_GNU_SOURCE"]))),
       })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
@@ -55,15 +55,15 @@ runHook postInstall
       versionCheckProgramArg: "--version",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$3, goupile: nix.thunk(() => nix.attr(nixosTests, "goupile")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, goupile: nix.thunk(() => nix.attr(nixosTests, "goupile")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex=goupile/(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/Koromix/rygel/blob/${nix.sel(finalAttrs, "src", "rev")}/src/goupile/CHANGELOG.md`),
         description: "Free design tool for secure forms including Clinical Report Forms (eCRF)",
         homepage: "https://goupile.org/en",

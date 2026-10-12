@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const gnugrep = nix.arg($, "gnugrep");
   const electron = electron_42;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "shogihome",
       version: "1.29.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sunfish-shogi",
           repo: "shogihome",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-1LQIhHCTx8ZY2r/kwkd+qPM1FNo4dxx2jDDTtBscemY=",
       postPatch: nix.thunk(() => nix.add("substituteInPlace package.json \\\n  --replace-fail 'npm run install:esbuild && ' \"\" \\\n  --replace-fail 'npm run install:electron && ' \"\"\n\nsubstituteInPlace .electron-builder.config.mjs \\\n  --replace-fail 'AppImage' 'dir' \\\n  --replace-fail 'await signMacApp' '// await signMacApp'\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "substituteInPlace src/background/proc/env.ts \\\n  --replace-fail 'process.resourcesPath' \"'$out/share/lib/shogihome/resources'\"\n"))),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         npm_config_build_from_source: "true",
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           NODE_EXTRA_CA_CERTS: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
         }))))),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [makeWrapper, copyDesktopItems]))),
@@ -92,7 +92,7 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' "$out/bin/shogihome" 
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p \"$out/Applications\"\nmv dist/mac*/ShogiHome.app \"$out/Applications\"\n")), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "shogihome",
             exec: "shogihome %U",
             icon: "shogihome",
@@ -104,23 +104,23 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' "$out/bin/shogihome" 
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-version-updater`),
                   runtimeInputs: nix.thunk(() => [curl, jq, common_updater_scripts]),
                   text: nix.thunk(() => nix.str`version="$(curl -s 'https://sunfish-shogi.github.io/shogihome/release.json' | jq -r '.latest.version')"
 update-source-version '${nix.sel(finalAttrs, "pname")}' "$version"
 `),
                 })))))),
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$6, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
             nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-electron-updater`),
                   runtimeInputs: nix.thunk(() => [nix$, jq, gnugrep]),
                   runtimeEnv: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     PNAME: nix.thunk(() => nix.sel(finalAttrs, "pname")),
                     PKG_FILE: nix.thunk(() => nix.builtins.toString(nix.path(here, "./package.nix"))),
                   })),
@@ -129,7 +129,7 @@ update-source-version '${nix.sel(finalAttrs, "pname")}' "$version"
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Shogi frontend supporting USI engines",
         homepage: "https://sunfish-shogi.github.io/shogihome/",
         license: nix.thunk(() => (() => {

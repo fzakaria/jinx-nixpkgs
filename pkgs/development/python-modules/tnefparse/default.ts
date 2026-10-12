@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "koodaamo",
           repo: "tnefparse",
           tag: version,
           hash: "sha256-t2ouuuy6fzwb6SZNpxeGSleL/11SgTT8Ce28/ST1glw=",
         }))));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, "compressed-rtf": nix.thunk(() => [compressed_rtf]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, "compressed-rtf": nix.thunk(() => [compressed_rtf]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_console_scripts, compressed_rtf]);
       const disabledTests = nix.thunk(() => ["test_help_is_printed"]);
       const pythonImportsCheck = nix.thunk(() => ["tnefparse"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "TNEF decoding library written in python, without external dependencies",
         homepage: "https://github.com/koodaamo/tnefparse",
         changelog: nix.thunk(() => nix.str`https://github.com/koodaamo/tnefparse/releases/tag/${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

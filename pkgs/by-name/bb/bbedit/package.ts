@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const _7zz = nix.arg($, "_7zz");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bbedit",
       version: "16.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://s3.amazonaws.com/BBSW-download/BBEdit_${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-rPKunlxovqzf11NIYfqMmS4b3VORpxs8CLPth5wrNXI=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -r *.app \"$out/Applications\"\n\nrunHook postInstall\n",
       dontFixup: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Powerful and full-featured professional HTML and text editor for macOS",
         homepage: "https://www.barebones.com/products/bbedit/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

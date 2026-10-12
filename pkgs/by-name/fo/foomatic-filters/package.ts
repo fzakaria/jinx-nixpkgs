@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const enscript = nix.arg($, "enscript");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "foomatic-filters",
       version: "4.0.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.openprinting.org/download/foomatic/foomatic-filters-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ouLlPlAlceiO65AQxFoNVGcfFXB+4QT1ycIrWep6M+M=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [perl, cups, dbus, enscript]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2015-8327+CVE-2015-8560.patch",
             url: "https://salsa.debian.org/debian/foomatic-filters/raw/a3abbef2d2f8c7e62d2fe64f64afe294563fdf8f/debian/patches/0500-r7406_also_consider_the_back_tick_as_an_illegal_shell_escape_character.patch",
             sha256: "055nwi3sjf578nk40bqsch3wx8m2h65hdih0wmxflb6l0hwkq4p4",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`substituteInPlace foomaticrip.c \\
   --replace-fail /bin/bash ${nix.sel(stdenv, "shell")}
 `),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
       installTargets: nix.thunk(() => ["install-cups"]),
       installFlags: nix.thunk(() => [
         "CUPS_FILTERS=$(out)/lib/cups/filter",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Foomatic printing filters",
         mainProgram: "foomatic-rip",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

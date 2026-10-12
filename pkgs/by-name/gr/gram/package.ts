@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const buildRemoteServer = nix.argOr($, "buildRemoteServer", () => true);
   const buildExtensionCli = nix.argOr($, "buildExtensionCli", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gram",
       version: "3.3.0",
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), buildRemoteServer, nix.thunk(() => ["remote_server"])), nix.app(nix.sel(lib, "optionals"), buildExtensionCli, nix.thunk(() => ["extension_cli"]))))),
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GramEditor",
           repo: "gram",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +64,7 @@ substituteInPlace script/generate-licenses \\
       buildInputs: nix.thunk(() => nix.concat([openssl, sqlite, zlib, zstd], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [fontconfig, libxcb, libxkbcommon])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [git]))))),
       cargoBuildFlags: nix.thunk(() => nix.concat(["--package=gram", "--package=cli"], nix.concat(nix.app(nix.sel(lib, "optionals"), buildRemoteServer, nix.thunk(() => ["--package=remote_server"])), nix.app(nix.sel(lib, "optionals"), buildExtensionCli, nix.thunk(() => ["--package=extension_cli"]))))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CARGO_PROFILE_RELEASE_DEBUG: "false",
         ALLOW_MISSING_LICENSES: true,
         OPENSSL_NO_VENDOR: true,
@@ -122,19 +122,19 @@ install -Dm644 $src/crates/gram/resources/app.liten.Gram-symbolic.svg $out/share
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           remoteServerVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "remote_server")),
               command: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "remoteServerExecutableName")} version`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Powerful and modern source code editor",
         homepage: "https://gram-editor.com",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/GramEditor/gram/releases/tag/${nix.sel(finalAttrs, "version")}`),

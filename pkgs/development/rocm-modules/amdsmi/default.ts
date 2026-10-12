@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const wrapPython = nix.arg($, "wrapPython");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const esmi_ib_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "amd",
       repo: "esmi_ib_library",
       tag: "esmi_pkg_ver-4.2",
       hash: "sha256-czF9ezkAO0PuDkXh8y639AcOZH+KVcWiXPX74H5W/nw=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "amdsmi",
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ROCm",
           repo: "rocm-systems",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -70,11 +70,11 @@ rm $out/bin/amd-smi
 ln -sf $out/libexec/amdsmi_cli/amdsmi_cli.py $out/bin/amd-smi
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ __proto__: pos$3, finalAttrs: finalAttrs })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$3, finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "System management interface for AMD GPUs supported by ROCm",
         homepage: "https://github.com/ROCm/rocm-systems/tree/develop/projects/amdsmi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

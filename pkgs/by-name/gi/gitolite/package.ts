@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gitolite",
       version: "3.6.15",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sitaramc",
           repo: "gitolite",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,11 +56,11 @@ perl ./install -to $out/bin
 echo ${nix.sel(finalAttrs, "version")} > $out/bin/VERSION
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, gitolite: nix.thunk(() => nix.sel(nixosTests, "gitolite")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, gitolite: nix.thunk(() => nix.sel(nixosTests, "gitolite")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Finely-grained git repository hosting",
         homepage: "https://gitolite.com/gitolite/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -28,18 +28,18 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "hyperrogue",
       version: "13.1o",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zenorogue",
           repo: "hyperrogue",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-kbkUUpx4gcHUuT/pg0d2zfNnT9TOlmdhcOD36LE2U7s=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         FONTCONFIG: 1n,
         HYPERROGUE_USE_GLEW: 1n,
         HYPERROGUE_USE_PNG: 1n,
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL, SDL_ttf, SDL_gfx, SDL_mixer, libpng, glew, fontconfig]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "hyperrogue",
             desktopName: "HyperRogue",
             genericName: "HyperRogue",
@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Roguelike game set in hyperbolic geometry",
         homepage: "https://www.roguetemple.com/z/hyper/",
         changelog: nix.thunk(() => nix.str`https://github.com/zenorogue/hyperrogue/releases/tag/v${nix.sel(finalAttrs, "version")}`),

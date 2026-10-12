@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const android_tools = nix.arg($, "android-tools");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "spytrap-adb",
       version: "0.3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spytrap-org",
           repo: "spytrap-adb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-VoUzAHTxJLeyi60ftuOkI6PAuLUsSsQSUjk9rcGz86A=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SPYTRAP_ADB_BINARY: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), android_tools, "adb")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Test a phone for stalkerware using adb and usb debugging to scan for suspicious apps and configuration",
         homepage: "https://github.com/spytrap-org/spytrap-adb",
         changelog: nix.thunk(() => nix.str`https://github.com/spytrap-org/spytrap-adb/releases/tag/v${nix.sel(finalAttrs, "version")}`),

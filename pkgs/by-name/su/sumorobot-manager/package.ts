@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sumorobot-manager";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robokoding",
           repo: "sumorobot-manager",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "mkdir -p $out/opt/sumorobot-manager\ncp -r main.py lib res $out/opt/sumorobot-manager\nchmod -R 644 $out/opt/sumorobot-manager/lib/*\nmkdir $out/bin\ndos2unix $out/opt/sumorobot-manager/main.py\nmakeQtWrapper $out/opt/sumorobot-manager/main.py $out/bin/sumorobot-manager \\\n  --chdir \"$out/opt/sumorobot-manager\"\n";
       const preFixup = "patchShebangs $out/opt/sumorobot-manager/main.py\nwrapPythonProgramsIn \"$out/opt\" \"${pythonPath[*]}\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Desktop App for managing SumoRobots",
         mainProgram: "sumorobot-manager",
         homepage: "https://www.robokoding.com/kits/sumorobot/sumomanager/",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

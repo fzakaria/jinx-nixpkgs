@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
       const pname = "cov-build";
       const version = "2022.12.2";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://archive.org/download/cov-analysis-linux-${version}.tar/cov-analysis-linux-${version}.tar.gz`),
           hash: "sha256-Jr9bMUo9GRp+dgoAPqKxaTqWYWh4djGArdG9ukUK+ZY=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://archive.org/download/cov-analysis-linux64-${version}.tar/cov-analysis-linux64-${version}.tar.gz`),
           hash: "sha256-CyNKILJXlDMOCXbZZF4r/knz0orRx32oSj+Kpq/nxXQ=",
         }))) : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform '${nix.sel(stdenv, "hostPlatform", "system")}'`)))));
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "mkdir -p $out/bin $out/libexec\nmv * $out/libexec\nfor x in cov-build cov-capture cov-configure cov-emit cov-emit-java \\\n  cov-export-cva cov-extract-scm cov-help cov-import-scm cov-link \\\n  cov-internal-clang cov-internal-emit-clang cov-internal-nm \\\n  cov-internal-emit-java-bytecode cov-internal-reduce cov-translate \\\n  cov-preprocess cov-internal-pid-to-db cov-manage-emit \\\n  cov-manage-history; do\n    ln -s $out/libexec/bin/$x $out/bin/$x;\ndone\n";
       const dontStrip = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Coverity Scan build tools",
         homepage: "https://scan.coverity.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "thoughtpolice"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

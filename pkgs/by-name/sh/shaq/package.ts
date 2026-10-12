@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "woodruffw",
           repo: "shaq",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           dev: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_1, "build")),
             nix.thunk(() => nix.lookup(w_1, "shaq")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg]))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI client for Shazam",
         homepage: "https://github.com/woodruffw/shaq",
         changelog: nix.thunk(() => nix.str`https://github.com/woodruffw/shaq/releases/tag/${nix.sel(src, "rev")}`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "shaq",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mailman3-exporter";
       const version = "0.9.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rivimey",
           repo: "mailman3_exporter",
           tag: version,
@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/MarcelCoding/mailman3_exporter/commit/65070106451c6aafe8956387111343e490e34df8.patch?full_index=1",
             hash: "sha256-2XM0ktLC4+7/PEgeToVR84Gfjx1UKxl/+jo6JGnVZMw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/MarcelCoding/mailman3_exporter/commit/a7850a1e9ce65f91683eef67eb1c6537c2c2eb77.patch?full_index=1",
             hash: "sha256-bBIin/7Y1bWrvxCuw1kJG8gaoKjkKdQnxfqpRipvyFs=",
           })))),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [python]);
       const installPhase = "install -D mailman_exporter.py $out/bin/mailman3_exporter\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Mailman3 Exporter for Prometheus",
         homepage: "https://github.com/rivimey/mailman3_exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

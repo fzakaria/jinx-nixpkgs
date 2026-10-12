@@ -76,13 +76,13 @@ export default nix.lambda((args) => (() => {
   const top = nix.thunk(() => nix.sel(config, "services", "kubernetes"));
   const cfg = nix.thunk(() => nix.sel(top, "pki"));
   const csrCA = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "kube-pki-cacert-csr.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-        __proto__: pos$2,
-        key: nix.thunk(() => ({ __proto__: pos$1, algo: "rsa", size: 2048n })),
+        [nix.POS]: pos$2,
+        key: nix.thunk(() => ({ [nix.POS]: pos$1, algo: "rsa", size: 2048n })),
         names: nix.thunk(() => nix.app(nix.lookup(w, "singleton"), nix.thunk(() => nix.sel(cfg, "caSpec")))),
       }))))));
   const csrCfssl = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "kube-pki-cfssl-csr.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-        __proto__: pos$4,
-        key: nix.thunk(() => ({ __proto__: pos$3, algo: "rsa", size: 2048n })),
+        [nix.POS]: pos$4,
+        key: nix.thunk(() => ({ [nix.POS]: pos$3, algo: "rsa", size: 2048n })),
         CN: nix.thunk(() => nix.sel(top, "masterAddress")),
         hosts: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(top, "masterAddress"))], nix.sel(cfg, "cfsslAPIExtraSANs"))),
       }))))));
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
   const clusterAdminKubeconfig = nix.thunk(() => (() => {
     const w_1 = nix.withScope(nix.thunk(() => nix.sel(cfg, "certs", "clusterAdmin")), w);
     return nix.app(nix.sel(top, "lib", "mkKubeConfig"), "cluster-admin", nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         server: nix.thunk(() => nix.sel(top, "apiserverAddress")),
         certFile: nix.thunk(() => nix.lookup(w_1, "cert")),
         keyFile: nix.thunk(() => nix.lookup(w_1, "key")),
@@ -104,67 +104,67 @@ export default nix.lambda((args) => (() => {
     return nix.str`https://${nix.sel(nix.lookup(w_2, "kubernetes"), "masterAddress")}:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(nix.lookup(w_2, "cfssl"), "port")))}`;
   })());
   return {
-    __proto__: pos$63,
+    [nix.POS]: pos$63,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         kubernetes: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           pki: nix.thunk(() => (() => {
             const w_3 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
             return {
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               enable: nix.thunk(() => nix.app(nix.lookup(w_3, "mkEnableOption"), "easyCert issuer service")),
               certs: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   description: "List of certificate specs to feed to cert generator.",
                   default: nix.thunk(() => ({})),
                   type: nix.thunk(() => nix.lookup(w_3, "attrs")),
                 })))),
               genCfsslCACert: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   description: "Whether to automatically generate cfssl CA certificate and key,\nif they don't exist.\n",
                   default: true,
                   type: nix.thunk(() => nix.lookup(w_3, "bool")),
                 })))),
               genCfsslAPICerts: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   description: "Whether to automatically generate cfssl API webserver TLS cert and key,\nif they don't exist.\n",
                   default: true,
                   type: nix.thunk(() => nix.lookup(w_3, "bool")),
                 })))),
               cfsslAPIExtraSANs: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   description: "Extra x509 Subject Alternative Names to be added to the cfssl API webserver TLS cert.\n",
                   default: [],
                   example: nix.thunk(() => ["subdomain.example.com"]),
                   type: nix.thunk(() => nix.app(nix.lookup(w_3, "listOf"), nix.thunk(() => nix.lookup(w_3, "str")))),
                 })))),
               genCfsslAPIToken: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   description: "Whether to automatically generate cfssl API-token secret,\nif they doesn't exist.\n",
                   default: true,
                   type: nix.thunk(() => nix.lookup(w_3, "bool")),
                 })))),
               pkiTrustOnBootstrap: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   description: "Whether to always trust remote cfssl server upon initial PKI bootstrap.",
                   default: true,
                   type: nix.thunk(() => nix.lookup(w_3, "bool")),
                 })))),
               caCertPathPrefix: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   description: "Path-prefrix for the CA-certificate to be used for cfssl signing.\nSuffixes \".pem\" and \"-key.pem\" will be automatically appended for\nthe public and private keys respectively.\n",
                   default: nix.thunk(() => nix.str`${nix.sel(config, "services", "cfssl", "dataDir")}/ca`),
                   defaultText: nix.thunk(() => nix.app(nix.lookup(w_3, "literalExpression"), "\"${config.services.cfssl.dataDir}/ca\"")),
                   type: nix.thunk(() => nix.lookup(w_3, "str")),
                 })))),
               caSpec: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   description: "Certificate specification for the auto-generated CAcert.",
                   default: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     CN: "kubernetes-cluster-ca",
                     O: "NixOS",
                     OU: "services.kubernetes.pki.caSpec",
@@ -173,7 +173,7 @@ export default nix.lambda((args) => (() => {
                   type: nix.thunk(() => nix.lookup(w_3, "attrs")),
                 })))),
               etcClusterAdminKubeconfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   description: "Symlink a kubeconfig with cluster-admin privileges to environment path\n(/etc/\\<path\\>).\n",
                   default: null,
                   type: nix.thunk(() => nix.app(nix.lookup(w_3, "nullOr"), nix.thunk(() => nix.lookup(w_3, "str")))),
@@ -188,23 +188,23 @@ export default nix.lambda((args) => (() => {
         const cfsslCert = nix.thunk(() => nix.str`${cfsslCertPathPrefix}.pem`);
         const cfsslKey = nix.thunk(() => nix.str`${cfsslCertPathPrefix}-key.pem`);
         return {
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           services: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             cfssl: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(top, "apiserver", "enable")), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 enable: true,
                 address: "0.0.0.0",
                 tlsCert: cfsslCert,
                 tlsKey: cfsslKey,
                 configFile: nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "cfssl-config.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         signing: nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           profiles: nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             default: nix.thunk(() => ({
-                              __proto__: pos$20,
+                              [nix.POS]: pos$20,
                               usages: nix.thunk(() => ["digital signature"]),
                               auth_key: "default",
                               expiry: "720h",
@@ -212,9 +212,9 @@ export default nix.lambda((args) => (() => {
                           })),
                         })),
                         auth_keys: nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           default: nix.thunk(() => ({
-                            __proto__: pos$23,
+                            [nix.POS]: pos$23,
                             type: "standard",
                             key: nix.thunk(() => nix.str`file:${cfsslAPITokenPath}`),
                           })),
@@ -222,28 +222,28 @@ export default nix.lambda((args) => (() => {
                       })))))))),
               })))),
             certmgr: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "certmgr")),
               svcManager: "command",
               specs: nix.thunk(() => (() => {
                 const mkSpec = (_) => (cert) => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   action: nix.thunk(() => nix.attr(cert, "action")),
                   authority: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     remote: remote,
                     root_ca: nix.thunk(() => nix.sel(cert, "caCert")),
                     profile: "default",
                     auth_key_file: certmgrAPITokenPath,
                   })),
-                  certificate: nix.thunk(() => ({ __proto__: pos$28, path: nix.thunk(() => nix.sel(cert, "cert")) })),
+                  certificate: nix.thunk(() => ({ [nix.POS]: pos$28, path: nix.thunk(() => nix.sel(cert, "cert")) })),
                   private_key: nix.thunk(() => nix.sel(cert, "privateKeyOptions")),
                   request: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     hosts: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cert, "CN"))], nix.sel(cert, "hosts"))),
                     CN: nix.thunk(() => nix.attr(cert, "CN")),
-                    key: nix.thunk(() => ({ __proto__: pos$29, algo: "rsa", size: 2048n })),
+                    key: nix.thunk(() => ({ [nix.POS]: pos$29, algo: "rsa", size: 2048n })),
                     names: nix.thunk(() => [nix.thunk(() => nix.sel(cert, "fields"))]),
                   })),
                 });
@@ -253,7 +253,7 @@ export default nix.lambda((args) => (() => {
             etcd: nix.thunk(() => (() => {
               const w_3 = nix.withScope(nix.thunk(() => nix.sel(cfg, "certs", "etcd")), w);
               return {
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 listenClientUrls: nix.thunk(() => ["https://127.0.0.1:2379"]),
                 listenPeerUrls: nix.thunk(() => ["https://127.0.0.1:2380"]),
                 advertiseClientUrls: nix.thunk(() => ["https://etcd.local:2379"]),
@@ -269,9 +269,9 @@ export default nix.lambda((args) => (() => {
             flannel: nix.thunk(() => (() => {
               const w_4 = nix.withScope(nix.thunk(() => nix.sel(cfg, "certs", "flannelClient")), w);
               return {
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 kubeconfig: nix.thunk(() => nix.app(nix.sel(top, "lib", "mkKubeConfig"), "flannel", nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     server: nix.thunk(() => nix.sel(top, "apiserverAddress")),
                     certFile: nix.thunk(() => nix.lookup(w_4, "cert")),
                     keyFile: nix.thunk(() => nix.lookup(w_4, "key")),
@@ -279,15 +279,15 @@ export default nix.lambda((args) => (() => {
               };
             })()),
             kubernetes: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               apiserver: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(top, "apiserver", "enable")), nix.thunk(() => (() => {
                   const w_5 = nix.withScope(nix.thunk(() => nix.sel(cfg, "certs", "apiServer")), w);
                   return {
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     etcd: nix.thunk(() => (() => {
                       const w_6 = nix.withScope(nix.thunk(() => nix.sel(cfg, "certs", "apiserverEtcdClient")), w_5);
                       return {
-                        __proto__: pos$36,
+                        [nix.POS]: pos$36,
                         servers: nix.thunk(() => ["https://etcd.local:2379"]),
                         certFile: nix.thunk(() => nix.app(nix.lookup(w_6, "mkDefault"), nix.thunk(() => nix.lookup(w_6, "cert")))),
                         keyFile: nix.thunk(() => nix.app(nix.lookup(w_6, "mkDefault"), nix.thunk(() => nix.lookup(w_6, "key")))),
@@ -307,49 +307,49 @@ export default nix.lambda((args) => (() => {
                   };
                 })()))),
               controllerManager: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(top, "controllerManager", "enable")), nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   serviceAccountKeyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(cfg, "certs", "serviceAccount", "key")))),
                   rootCaFile: nix.thunk(() => nix.sel(cfg, "certs", "controllerManagerClient", "caCert")),
                   kubeconfig: nix.thunk(() => (() => {
                     const w_6 = nix.withScope(nix.thunk(() => nix.sel(cfg, "certs", "controllerManagerClient")), w);
                     return {
-                      __proto__: pos$38,
+                      [nix.POS]: pos$38,
                       certFile: nix.thunk(() => nix.app(nix.lookup(w_6, "mkDefault"), nix.thunk(() => nix.lookup(w_6, "cert")))),
                       keyFile: nix.thunk(() => nix.app(nix.lookup(w_6, "mkDefault"), nix.thunk(() => nix.lookup(w_6, "key")))),
                     };
                   })()),
                 })))),
               scheduler: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(top, "scheduler", "enable")), nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   kubeconfig: nix.thunk(() => (() => {
                     const w_6 = nix.withScope(nix.thunk(() => nix.sel(cfg, "certs", "schedulerClient")), w);
                     return {
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       certFile: nix.thunk(() => nix.app(nix.lookup(w_6, "mkDefault"), nix.thunk(() => nix.lookup(w_6, "cert")))),
                       keyFile: nix.thunk(() => nix.app(nix.lookup(w_6, "mkDefault"), nix.thunk(() => nix.lookup(w_6, "key")))),
                     };
                   })()),
                 })))),
               kubelet: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(top, "kubelet", "enable")), nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   clientCaFile: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(cfg, "certs", "kubelet", "caCert")))),
                   tlsCertFile: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(cfg, "certs", "kubelet", "cert")))),
                   tlsKeyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(cfg, "certs", "kubelet", "key")))),
                   kubeconfig: nix.thunk(() => (() => {
                     const w_6 = nix.withScope(nix.thunk(() => nix.sel(cfg, "certs", "kubeletClient")), w);
                     return {
-                      __proto__: pos$42,
+                      [nix.POS]: pos$42,
                       certFile: nix.thunk(() => nix.app(nix.lookup(w_6, "mkDefault"), nix.thunk(() => nix.lookup(w_6, "cert")))),
                       keyFile: nix.thunk(() => nix.app(nix.lookup(w_6, "mkDefault"), nix.thunk(() => nix.lookup(w_6, "key")))),
                     };
                   })()),
                 })))),
               proxy: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(top, "proxy", "enable")), nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   kubeconfig: nix.thunk(() => (() => {
                     const w_6 = nix.withScope(nix.thunk(() => nix.sel(cfg, "certs", "kubeProxyClient")), w);
                     return {
-                      __proto__: pos$44,
+                      [nix.POS]: pos$44,
                       certFile: nix.thunk(() => nix.app(nix.lookup(w_6, "mkDefault"), nix.thunk(() => nix.lookup(w_6, "cert")))),
                       keyFile: nix.thunk(() => nix.app(nix.lookup(w_6, "mkDefault"), nix.thunk(() => nix.lookup(w_6, "key")))),
                     };
@@ -358,11 +358,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             services: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               cfssl: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 preStart: nix.thunk(() => (() => {
                   const w_3 = nix.withScope(pkgs, w);
                   const w_4 = nix.withScope(nix.thunk(() => nix.sel(config, "services", "cfssl")), w_3);
@@ -386,7 +386,7 @@ fi
                 })()),
               })),
               "kube-certmgr-bootstrap": nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 description: "Kubernetes certmgr bootstrapper",
                 wantedBy: nix.thunk(() => ["certmgr.service"]),
                 after: nix.thunk(() => ["cfssl.target"]),
@@ -411,17 +411,17 @@ fi
 fi
 `))),
                   ]))),
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$49, RestartSec: "10s", Restart: "on-failure" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$49, RestartSec: "10s", Restart: "on-failure" })),
               })),
               "kube-addon-manager": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(top, "addonManager", "enable")), nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$53,
+                      [nix.POS]: pos$53,
                       environment: nix.thunk(() => ({
-                        __proto__: pos$52,
+                        [nix.POS]: pos$52,
                         KUBECONFIG: nix.thunk(() => (() => {
                           const w_3 = nix.withScope(nix.thunk(() => nix.sel(cfg, "certs", "addonManager")), w);
                           return nix.app(nix.sel(top, "lib", "mkKubeConfig"), "addon-manager", nix.thunk(() => ({
-                              __proto__: pos$51,
+                              [nix.POS]: pos$51,
                               server: nix.thunk(() => nix.sel(top, "apiserverAddress")),
                               certFile: nix.thunk(() => nix.lookup(w_3, "cert")),
                               keyFile: nix.thunk(() => nix.lookup(w_3, "key")),
@@ -430,8 +430,8 @@ fi
                       })),
                     })),
                     nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(top, "addonManager", "bootstrapAddons"), {})), nix.thunk(() => ({
-                        __proto__: pos$55,
-                        serviceConfig: nix.thunk(() => ({ __proto__: pos$54, PermissionsStartOnly: true })),
+                        [nix.POS]: pos$55,
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$54, PermissionsStartOnly: true })),
                         preStart: nix.thunk(() => (() => {
                           const w_3 = nix.withScope(pkgs, w);
                           const files = nix.thunk(() => nix.app(nix.lookup(w_3, "mapAttrsToList"), (n) => (v) => nix.app(nix.lookup(w_3, "writeText"), nix.thunk(() => nix.str`${n}.json`), nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), v))), nix.thunk(() => nix.sel(top, "addonManager", "bootstrapAddons"))));
@@ -444,10 +444,10 @@ ${nix.sel(top, "package")}/bin/kubectl apply -f ${nix.app(nix.lookup(w_3, "conca
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             etc: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "etcClusterAdminKubeconfig"), nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 source: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "etcClusterAdminKubeconfig"), null)), clusterAdminKubeconfig)),
               }))],
             ])),
@@ -501,13 +501,13 @@ echo "Node joined successfully"
               ]))),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             extraHosts: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "etcd", "enable")), nix.thunk(() => nix.str`127.0.0.1 etcd.${nix.sel(top, "addons", "dns", "clusterDomain")} etcd.local
 `))),
           })),
         };
       })()))),
-    meta: nix.thunk(() => ({ __proto__: pos$62, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$62, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=pki.ts.map

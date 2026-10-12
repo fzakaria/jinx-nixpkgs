@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ncftp",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.ncftp.com/public_ftp/ncftp/ncftp-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-eSD4hMKtr8gsjkHEbW89ImmHhcez9W9Wd6jVyGY5Y4Y=",
         })))),
       buildInputs: nix.thunk(() => [ncurses]),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fcommon", "-Wno-implicit-int", "-Wno-implicit-function-declaration"]))),
       })),
       preConfigure: nix.thunk(() => nix.str`find -name Makefile.in | xargs sed -i '/^TMPDIR=/d'
@@ -39,7 +39,7 @@ find . -name '*.sh' -or -name '*.in' -or -name '*.c' -or -name configure | xargs
       postInstall: "rmdir $out/etc\nmkdir -p $out/share/doc\ncp -r doc $out/share/doc/ncftp\n",
       configureFlags: nix.thunk(() => ["--enable-ssp", "--mandir=$(out)/share/man/"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command line FTP (File Transfer Protocol) client",
         homepage: "https://www.ncftp.com/ncftp/",
         maintainers: nix.thunk(() => (() => {

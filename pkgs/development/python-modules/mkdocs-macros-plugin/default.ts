@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fralau",
           repo: "mkdocs-macros-plugin",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, mkdocs_test, mkdocs_material, mkdocs_macros_test]);
       const disabledTestPaths = nix.thunk(() => ["test/plugin_d2/test_t2.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create richer and more beautiful pages in MkDocs, by using variables and calls to macros in the markdown code",
         homepage: "https://github.com/fralau/mkdocs-macros-plugin",
         changelog: nix.thunk(() => nix.str`https://github.com/fralau/mkdocs-macros-plugin/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

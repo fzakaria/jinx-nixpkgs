@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const webgl = nix.arg($, "webgl");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "console",
       version: "2017-04-20",
       idrisDeps: nix.thunk(() => [idrisscript, hrtime, webgl]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pierrebeaucamp",
           repo: "idris-console",
           rev: "14b6bd6bf6bd78dd3935e3de12e16f8ee41e29e4",
           sha256: "0cn4fwnf3sg6269pbfbhnmsvyaya4d8479n2hy039idxzzkxw0yb",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Idris library to interact with the browser console",
         homepage: "https://github.com/pierrebeaucamp/idris-console",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

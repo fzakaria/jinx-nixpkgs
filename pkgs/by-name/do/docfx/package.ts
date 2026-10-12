@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const buildDotnetGlobalTool = nix.arg($, "buildDotnetGlobalTool");
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   return nix.app(buildDotnetGlobalTool, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "docfx",
       version: "2.81.0",
       "dotnet-sdk": nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0")),
       "dotnet-runtime": nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_8_0")),
       nugetHash: "sha256-9AQN5UUVVgchNLx8wqXB0GKZGi3sqf0hEaXISGCtPD4=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Build your technical documentation site with docfx, with landing pages, markdown, API reference docs for .NET, REST API and more",
         homepage: "https://github.com/dotnet/docfx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

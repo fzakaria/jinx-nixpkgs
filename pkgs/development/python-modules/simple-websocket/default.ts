@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "simple-websocket",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "miguelgrinberg",
           repo: "simple-websocket",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["simple_websocket"]),
       disabledTests: nix.thunk(() => nix.concat(["SimpleWebSocketClientTestCase"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["AioSimpleWebSocketServerTestCase"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple WebSocket server and client for Python",
         homepage: "https://github.com/miguelgrinberg/simple-websocket",
         changelog: nix.thunk(() => nix.str`https://github.com/miguelgrinberg/simple-websocket/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

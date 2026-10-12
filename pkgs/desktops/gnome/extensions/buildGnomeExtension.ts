@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
     const sha256 = nix.arg($_1, "sha256");
     const metadata = nix.arg($_1, "metadata");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: nix.thunk(() => nix.str`gnome-shell-extension-${pname}`),
         version: nix.thunk(() => nix.builtins.toString(version)),
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://extensions.gnome.org/extension-data/${nix.builtins.replaceStrings(nix.thunk(() => ["@"]), nix.thunk(() => [""]), uuid)}.v${nix.builtins.toString(version)}.shell-extension.zip`),
             sha256: sha256,
             stripRoot: false,
@@ -50,7 +50,7 @@ cp -r -T . $out/share/gnome-shell/extensions/${uuid}
 runHook postInstall
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "\n", description)))),
           longDescription: description,
           homepage: link,
@@ -59,11 +59,11 @@ runHook postInstall
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "honnip"))]),
         })),
         passthru: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           extensionPortalSlug: pname,
           extensionUuid: uuid,
           tests: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "gnome-extensions": nix.thunk(() => nix.sel(nixosTests, "gnome-extensions")),
           })),
         })),

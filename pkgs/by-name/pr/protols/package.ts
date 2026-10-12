@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "protols",
       version: "0.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coder3101",
           repo: "protols",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-R7OgjUEx2Q0rWTIO1CIXS3ogeC9G/RoxvGQBL1Xh/8k=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         FALLBACK_INCLUDE_PATH: nix.thunk(() => nix.str`${protobuf}/include`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Protocol Buffers language server written in Rust",
         homepage: "https://github.com/coder3101/protols",
         changelog: nix.thunk(() => nix.str`https://github.com/coder3101/protols/releases/tag/${nix.sel(finalAttrs, "version")}`),

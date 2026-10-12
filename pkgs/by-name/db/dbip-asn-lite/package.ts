@@ -14,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dbip-asn-lite",
       version: "2026-10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.db-ip.com/free/dbip-asn-lite-${nix.sel(finalAttrs, "version")}.mmdb.gz`),
           hash: "sha256-bN3gK6qMG9YZq4TC5QXs2R1FKItah/qt8bfEFSWhepQ=",
         })))),
       dontUnpack: true,
       installPhase: "runHook preBuild\n\ngzip -c -d \"$src\" > dbip-asn-lite.mmdb\ninstall -Dm444 dbip-asn-lite.mmdb \"$out/share/dbip/dbip-asn-lite.mmdb\"\n\nrunHook postBuild\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mmdb: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/dbip/dbip-asn-lite.mmdb`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free IP to ASN Lite database by DB-IP",
         homepage: "https://db-ip.com/db/download/ip-to-asn-lite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-40")),

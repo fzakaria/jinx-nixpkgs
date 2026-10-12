@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const freedvSupport = nix.argOr($, "freedvSupport", () => false);
   const lpcnet = nix.arg($, "lpcnet");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "codec2",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "drowe67",
           repo: "codec2",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DCMAKE_CXX_COMPILER=${nix.sel(stdenv, "cc", "targetPrefix")}c++`),
       ], nix.app(nix.sel(lib, "optionals"), freedvSupport, nix.thunk(() => ["-DLPCNET=ON"])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Speech codec designed for communications quality speech at low data rates",
         homepage: "https://www.rowetel.com/codec2.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

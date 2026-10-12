@@ -45,32 +45,32 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     imports: nix.thunk(() => [nix.path(here, "../image/file-options.nix")]),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       proxmoxLXC: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: true,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             description: "Whether to enable the Proxmox VE LXC module.",
           })))),
         privileged: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: false,
             description: "Whether to enable privileged mounts\n",
           })))),
         manageNetwork: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: false,
             description: "Whether to manage network interfaces through nix options\nWhen false, systemd-networkd is enabled to accept network\nconfiguration from proxmox.\n",
           })))),
         manageHostName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: false,
             description: "Whether to manage hostname through nix options\nWhen false, the hostname is picked up from /etc/hostname\npopulated by proxmox.\n",
@@ -80,26 +80,26 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const cfg = nix.thunk(() => nix.sel(config, "proxmoxLXC"));
       return nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           system: nix.thunk(() => ({
-            __proto__: pos$12,
-            nixos: nix.thunk(() => ({ __proto__: pos$7, tags: nix.thunk(() => ["proxmox", "lxc"]) })),
+            [nix.POS]: pos$12,
+            nixos: nix.thunk(() => ({ [nix.POS]: pos$7, tags: nix.thunk(() => ["proxmox", "lxc"]) })),
             build: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               image: nix.thunk(() => nix.sel(config, "system", "build", "tarball")),
               tarball: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../../lib/make-system-tarball.nix"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   fileName: nix.thunk(() => nix.sel(config, "image", "baseName")),
                   storeContents: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       object: nix.thunk(() => nix.sel(config, "system", "build", "toplevel")),
                       symlink: "none",
                     })),
                   ]),
                   contents: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       source: nix.thunk(() => nix.add(nix.sel(config, "system", "build", "toplevel"), "/init")),
                       target: "/sbin/init",
                     })),
@@ -109,32 +109,32 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           image: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             extension: "tar.xz",
             filePath: nix.thunk(() => nix.str`tarball/${nix.sel(config, "image", "fileName")}`),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             isContainer: true,
             loader: nix.thunk(() => ({
-              __proto__: pos$15,
-              initScript: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
+              [nix.POS]: pos$15,
+              initScript: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
             })),
           })),
-          console: nix.thunk(() => ({ __proto__: pos$17, enable: true })),
+          console: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
           networking: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "manageNetwork"))), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               useDHCP: false,
               useHostResolvConf: false,
               useNetworkd: true,
               hostName: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "manageHostName"))), nix.thunk(() => nix.app(nix.lookup(w, "mkForce"), "")))),
             })))),
           security: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             wrappers: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               ping: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "privileged"))), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   owner: "root",
                   group: "root",
                   capabilities: "cap_net_raw+p",
@@ -143,22 +143,22 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             openssh: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               startWhenNeeded: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             services: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               "register-nix-paths": nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 description: "Register Nix Store Paths",
                 unitConfig: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   DefaultDependencies: false,
                   ConditionPathExists: "/nix-path-registration",
                 })),
@@ -172,7 +172,7 @@ export default nix.lambda((args) => (() => {
                 after: nix.thunk(() => ["local-fs.target"]),
                 conflicts: nix.thunk(() => ["shutdown.target"]),
                 restartIfChanged: false,
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$25, Type: "oneshot", RemainAfterExit: true })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$25, Type: "oneshot", RemainAfterExit: true })),
                 script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "nix", "package", "out")), "nix-store")} --load-db < /nix-path-registration
 rm /nix-path-registration
 
@@ -181,17 +181,17 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "nix", "packa
 `),
               })),
               "autovt@": nix.thunk(() => ({
-                __proto__: pos$28,
-                unitConfig: nix.thunk(() => ({ __proto__: pos$27, ConditionPathExists: nix.thunk(() => ["", "/dev/%I"]) })),
+                [nix.POS]: pos$28,
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$27, ConditionPathExists: nix.thunk(() => ["", "/dev/%I"]) })),
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), true)),
               })),
               "getty@tty1": nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), true)),
               })),
             })),
             mounts: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "privileged"))), nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$31, enable: false, where: "/sys/kernel/debug" })),
+                nix.thunk(() => ({ [nix.POS]: pos$31, enable: false, where: "/sys/kernel/debug" })),
               ]))),
           })),
         })));

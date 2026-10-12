@@ -21,34 +21,34 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(config, "boot", "initrd", "enable")) && nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")))), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         boot: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           initrd: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             systemd: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               contents: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "loader", "supportsInitrdSecrets"))), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (dest) => (source) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`/.initrd-secrets/${dest}`), nix.thunk(() => ({
-                      __proto__: pos$1,
+                      [nix.POS]: pos$1,
                       source: nix.thunk(() => (nix.asBool(nix.eq(source, null)) ? nix.force(dest) : nix.force(source))),
                     }))), nix.thunk(() => nix.sel(config, "boot", "initrd", "secrets")))))),
               services: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 "initrd-nixos-copy-secrets": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "boot", "initrd", "secrets"), {})), nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     description: "Copy secrets into place",
                     wantedBy: nix.thunk(() => ["sysinit.target"]),
                     before: nix.thunk(() => ["cryptsetup-pre.target", "shutdown.target"]),
                     conflicts: nix.thunk(() => ["shutdown.target"]),
-                    unitConfig: nix.thunk(() => ({ __proto__: pos$2, DefaultDependencies: false })),
+                    unitConfig: nix.thunk(() => ({ [nix.POS]: pos$2, DefaultDependencies: false })),
                     script: "for secret in $(cd /.initrd-secrets; find . -type f -o -type l); do\n  mkdir -p \"$(dirname \"/$secret\")\"\n  cp \"/.initrd-secrets/$secret\" \"/$secret\"\ndone\n",
-                    serviceConfig: nix.thunk(() => ({ __proto__: pos$3, Type: "oneshot", RemainAfterExit: true })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$3, Type: "oneshot", RemainAfterExit: true })),
                   })))),
               })),
               extraBin: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 find: nix.thunk(() => nix.str`${nix.sel(pkgs, "findutils")}/bin/find`),
               })),
             })),

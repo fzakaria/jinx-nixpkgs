@@ -31,40 +31,40 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "cpu", "intel", "sgx"));
   const defaultPrvGroup = "sgx_prv";
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       hardware: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         cpu: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           intel: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             sgx: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enableDcapCompat: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   description: "Whether to enable backward compatibility for SGX software build for the\nout-of-tree Intel SGX DCAP driver.\n\nCreates symbolic links for the SGX devices `/dev/sgx_enclave`\nand `/dev/sgx_provision` to make them available as\n`/dev/sgx/enclave`  and `/dev/sgx/provision`,\nrespectively.\n",
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: true,
                 })))),
               provision: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "access to the Intel SGX provisioning device")),
                 user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     description: "Owner to assign to the SGX provisioning device.",
                     type: nix.thunk(() => nix.sel(lib, "types", "str")),
                     default: "root",
                   })))),
                 group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     description: "Group to assign to the SGX provisioning device.",
                     type: nix.thunk(() => nix.sel(lib, "types", "str")),
                     default: defaultPrvGroup,
                   })))),
                 mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     description: "Mode to set for the SGX provisioning device.",
                     type: nix.thunk(() => nix.sel(lib, "types", "str")),
                     default: "0660",
@@ -77,27 +77,27 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "provision", "enable")), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 assertion: nix.thunk(() => nix.app(nix.sel(lib, "hasAttr"), nix.thunk(() => nix.sel(cfg, "provision", "user")), nix.thunk(() => nix.sel(config, "users", "users")))),
                 message: "Given user does not exist",
               })),
               nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "provision", "group"), defaultPrvGroup)) || nix.asBool(nix.app(nix.sel(lib, "hasAttr"), nix.thunk(() => nix.sel(cfg, "provision", "group")), nix.thunk(() => nix.sel(config, "users", "groups")))))),
                 message: "Given group does not exist",
               })),
             ]),
             users: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "provision", "group"), defaultPrvGroup)), nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "provision", "group")}`, nix.thunk(() => ({}))]])))),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               udev: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 extraRules: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(cfg, "provision")), null);
                   return nix.str`SUBSYSTEM=="misc", KERNEL=="sgx_provision", OWNER="${nix.lookup(w, "user")}", GROUP="${nix.lookup(w, "group")}", MODE="${nix.lookup(w, "mode")}"
@@ -107,11 +107,11 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableDcapCompat")), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             services: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               udev: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 extraRules: "SUBSYSTEM==\"misc\", KERNEL==\"sgx_enclave\",   SYMLINK+=\"sgx/enclave\"\nSUBSYSTEM==\"misc\", KERNEL==\"sgx_provision\", SYMLINK+=\"sgx/provision\"\n",
               })),
             })),

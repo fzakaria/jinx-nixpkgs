@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pandas = nix.arg($, "pandas");
   const patsy = nix.arg($, "patsy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "statsmodels",
       version: "0.14.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "statsmodels",
           repo: "statsmodels",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail 'setuptools_scm[toml]>=8,<9' 'setuptools_scm[toml]'\n",
       "build-system": nix.thunk(() => [cython, numpy, scipy, setuptools, setuptools_scm]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-function-declaration", "-Wno-error=int-conversion"]))),
         })))),
       dependencies: nix.thunk(() => [numpy, packaging, pandas, patsy, scipy]),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["statsmodels"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Statistical computations and models for use with SciPy",
         homepage: "https://www.github.com/statsmodels/statsmodels",
         changelog: nix.thunk(() => nix.str`https://github.com/statsmodels/statsmodels/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

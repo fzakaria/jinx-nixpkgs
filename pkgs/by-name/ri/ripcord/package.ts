@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.29";
       const src = nix.thunk(() => (() => {
         const appimage = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://cancel.fm/dl/Ripcord-${version}-x86_64.AppImage`),
             sha256: "sha256-4yDLPEBDsPKWtLwdpmSyl3b5XCwLAr2/EVtNRrFmmJk=",
             name: nix.thunk(() => nix.str`${pname}-${version}.AppImage`),
           }))));
-        return nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: appimage })));
+        return nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: appimage })));
       })());
       const nativeBuildInputs = nix.thunk(() => [
         autoPatchelfHook,
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         libxcursor,
         xkeyboard_config,
       ]);
-      const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$3, fontDirectories: nix.thunk(() => [twemoji_color_font]) }))));
+      const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$3, fontDirectories: nix.thunk(() => [twemoji_color_font]) }))));
       const installPhase = nix.thunk(() => nix.str`runHook preInstall
 
 mkdir -p $out
@@ -92,7 +92,7 @@ makeQtWrapper $out/Ripcord $out/bin/ripcord \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Desktop chat client for Slack and Discord",
         homepage: "https://cancel.fm/ripcord/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -104,7 +104,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

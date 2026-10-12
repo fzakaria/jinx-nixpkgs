@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const libminc = nix.arg($, "libminc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mni_autoreg",
       version: "0.99.70-unstable-2024-10-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BIC-MNI",
           repo: "mni_autoreg",
           rev: "85265398d90dc1bfef886e2cf876a1a2caae86b4",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=implicit-function-declaration",
             "-Wno-error=incompatible-pointer-types",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "for prog in autocrop mritoself mritotal xfmtool; do\n  echo $out/bin/$prog\n  wrapProgram $out/bin/$prog --prefix PERL5LIB : $PERL5LIB;\ndone\n",
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"CMAKE_MINIMUM_REQUIRED(VERSION 3.1)\" \"cmake_minimum_required(VERSION 3.10)\" \\\n  --replace-fail \"CMAKE_POLICY(SET CMP0026 OLD)\" \"CMAKE_POLICY(SET CMP0026 NEW)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/BIC-MNI/mni_autoreg",
         description: "Tools for automated registration using the MINC image format",
         maintainers: nix.thunk(() => (() => {

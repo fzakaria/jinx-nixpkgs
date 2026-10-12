@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wtforms",
           repo: "wtforms",
           tag: version,
@@ -32,18 +32,18 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [babel, hatchling, setuptools]);
       const propagatedBuildInputs = nix.thunk(() => [markupsafe]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, email: nix.thunk(() => [email_validator]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, email: nix.thunk(() => [email_validator]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["wtforms"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Flexible forms validation and rendering library for Python",
         homepage: "https://github.com/wtforms/wtforms",
         changelog: nix.thunk(() => nix.str`https://github.com/wtforms/wtforms/blob/${version}/CHANGES.rst`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

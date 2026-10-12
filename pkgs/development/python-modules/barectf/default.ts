@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "efficios",
           repo: "barectf",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "setuptools-82-compat.patch",
             url: "https://github.com/efficios/barectf/commit/e16d289546bb4f6b0d909f79b8d6188eabe32640.patch",
             hash: "sha256-5tSOxc6trSHFPnVj+7YVO9J65bZ1H2MFKrZAbRy1WTM=",
@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["barectf"]);
       const nativeCheckInputs = nix.thunk(() => [pytest7CheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Generator of ANSI C tracers which output CTF data streams",
         mainProgram: "barectf",
         homepage: "https://github.com/efficios/barectf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

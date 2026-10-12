@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const spdlog = nix.arg($, "spdlog");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "g2o",
       version: "20241228",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RainerKuemmerle",
           repo: "g2o",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}_git`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./remove-compiler-reference.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-fmt-format-string.patch",
             url: "https://github.com/RainerKuemmerle/g2o/commit/18b1894778a7a758a8fb1d4db49f45661ea4ea38.patch",
             hash: "sha256-sS9dYNB1RCTLVc5dnO/fDpcUD2i3ag8Gl/nDwUP43yw=",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "DISABLE_SSE4_A", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "sse4_aSupport"))))),
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "General Framework for Graph Optimization",
         homepage: "https://github.com/RainerKuemmerle/g2o",
         license: nix.thunk(() => (() => {

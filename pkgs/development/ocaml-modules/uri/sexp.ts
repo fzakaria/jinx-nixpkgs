@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const ppx_sexp_conv = nix.arg($, "ppx_sexp_conv");
   const sexplib0 = nix.arg($, "sexplib0");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "uri-sexp",
       version: nix.thunk(() => nix.attr(uri, "version")),
       src: nix.thunk(() => nix.attr(uri, "src")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ppx_sexp_conv, sexplib0, uri]),
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       meta: nix.thunk(() => nix.update(nix.sel(uri, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         broken: nix.thunk(() => (nix.asBool(nix.selOr(uri, () => false, "meta", "broken")) || nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.04")))),
       })),
     })));

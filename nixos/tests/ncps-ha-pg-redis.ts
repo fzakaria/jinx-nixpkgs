@@ -71,31 +71,31 @@ mc mb local/${bucket}
 mc admin user svcacct add --access-key "$(cat ${accessKey})" --secret-key "$(cat ${secretKey})" local minioadmin
 `)));
   const ncpsAttrs = (hostname) => ({
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     services: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       ncps: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         enable: true,
         analytics: nix.thunk(() => ({
-          __proto__: pos$2,
-          reporting: nix.thunk(() => ({ __proto__: pos$1, enable: false })),
+          [nix.POS]: pos$2,
+          reporting: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
         })),
         cache: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hostName: hostname,
           databaseURL: nix.thunk(() => nix.str`postgres://ncps:${nix.app(nix.sel(lib, "escapeURL"), postgresPassword)}@postgres:5432/ncps?sslmode=disable`),
-          lock: nix.thunk(() => ({ __proto__: pos$3, backend: "redis" })),
+          lock: nix.thunk(() => ({ [nix.POS]: pos$3, backend: "redis" })),
           secretKeyPath: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "ncps-cache-key", "ncps:dcrGsrku0KvltFhrR5lVIMqyloAdo0y8vYZOeIFUSLJS2IToL7dPHSSCk/fi+PJf8EorpBn8PU7MNhfvZoI8mA==")))),
           redis: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             addresses: nix.thunk(() => ["redis:6379"]),
             passwordFile: nix.thunk(() => nix.builtins.toFile("redis-password", redisPassword)),
           })),
           storage: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             s3: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               bucket: bucket,
               region: region,
               endpoint: "http://minio:9000",
@@ -104,7 +104,7 @@ mc admin user svcacct add --access-key "$(cat ${accessKey})" --secret-key "$(cat
             })),
           })),
           upstream: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             urls: nix.thunk(() => ["http://harmonia:5000"]),
             publicKeys: nix.thunk(() => ["cache.example.com-1:eIGQXcGQpc00x6/XFcyacLEUmC07u4RAEHt5Y8vdglo="]),
           })),
@@ -112,17 +112,17 @@ mc admin user svcacct add --access-key "$(cat ${accessKey})" --secret-key "$(cat
       })),
     })),
     networking: nix.thunk(() => ({
-      __proto__: pos$12,
-      firewall: nix.thunk(() => ({ __proto__: pos$11, allowedTCPPorts: nix.thunk(() => [8501n]) })),
+      [nix.POS]: pos$12,
+      firewall: nix.thunk(() => ({ [nix.POS]: pos$11, allowedTCPPorts: nix.thunk(() => [8501n]) })),
     })),
   });
   return {
-    __proto__: pos$49,
+    [nix.POS]: pos$49,
     name: "ncps-storage-s3",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "aciceri")),
           nix.thunk(() => nix.lookup(w, "kalbasit")),
@@ -130,76 +130,76 @@ mc admin user svcacct add --access-key "$(cat ${accessKey})" --secret-key "$(cat
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       client0: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         nix: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           settings: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ["http://ncps0:8501"]))),
             "trusted-public-keys": nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ["ncps:UtiE6C+3Tx0kgpP34vjyX/BKK6QZ/D1OzDYX72aCPJg="]))),
           })),
         })),
       })),
       client1: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         nix: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           settings: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ["http://ncps1:8501"]))),
             "trusted-public-keys": nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ["ncps:UtiE6C+3Tx0kgpP34vjyX/BKK6QZ/D1OzDYX72aCPJg="]))),
           })),
         })),
       })),
       harmonia: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         services: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           harmonia: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             enable: true,
             signKeyPaths: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "cache-key", "cache.example.com-1:9FhO0w+7HjZrhvmzT1VlAZw4OSAlFGTgC24Seg3tmPl4gZBdwZClzTTHr9cVzJpwsRSYLTu7hEAQe3ljy92CWg==")),
             ]),
-            settings: nix.thunk(() => ({ __proto__: pos$21, priority: 35n })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$21, priority: 35n })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$25,
-          firewall: nix.thunk(() => ({ __proto__: pos$24, allowedTCPPorts: nix.thunk(() => [5000n]) })),
+          [nix.POS]: pos$25,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$24, allowedTCPPorts: nix.thunk(() => [5000n]) })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           extraDependencies: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "emptyFile"))]),
         })),
       })),
       minio: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         services: nix.thunk(() => ({
-          __proto__: pos$29,
-          minio: nix.thunk(() => ({ __proto__: pos$28, region: region, enable: true })),
+          [nix.POS]: pos$29,
+          minio: nix.thunk(() => ({ [nix.POS]: pos$28, region: region, enable: true })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$31,
-          firewall: nix.thunk(() => ({ __proto__: pos$30, allowedTCPPorts: nix.thunk(() => [9000n]) })),
+          [nix.POS]: pos$31,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$30, allowedTCPPorts: nix.thunk(() => [9000n]) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "minio-client")), initMinio]),
         })),
       })),
       ncps0: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => nix.app(ncpsAttrs, "ncps0")),
           nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             services: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               ncps: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 cache: nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   databaseURL: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), null)),
                   databaseURLFile: nix.thunk(() => nix.builtins.toFile("db-url", nix.thunk(() => nix.str`postgres://ncps:${nix.app(nix.sel(lib, "escapeURL"), postgresPassword)}@postgres:5432/ncps?sslmode=disable`))),
                 })),
@@ -209,11 +209,11 @@ mc admin user svcacct add --access-key "$(cat ${accessKey})" --secret-key "$(cat
         ]))),
       ncps1: nix.thunk(() => nix.app(ncpsAttrs, "ncps1")),
       postgres: nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         services: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           postgresql: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             enable: true,
             enableTCPIP: true,
             authentication: "host all all all scram-sha-256\n",
@@ -224,20 +224,20 @@ ALTER DATABASE "ncps" OWNER TO "ncps";
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$41,
-          firewall: nix.thunk(() => ({ __proto__: pos$40, allowedTCPPorts: nix.thunk(() => [5432n]) })),
+          [nix.POS]: pos$41,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$40, allowedTCPPorts: nix.thunk(() => [5432n]) })),
         })),
       })),
       redis: nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         services: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           redis: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             servers: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               ncps: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 enable: true,
                 openFirewall: true,
                 port: 6379n,

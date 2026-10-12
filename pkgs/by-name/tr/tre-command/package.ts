@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tre-command",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dduan",
           repo: "tre",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "installManPage manual/tre.1\ninstallShellCompletion scripts/completion/tre.{bash,fish}\ninstallShellCompletion --zsh scripts/completion/_tre\n",
       checkFlags: nix.thunk(() => ["--skip", "respect_git_ignore"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tree command, improved",
         homepage: "https://github.com/dduan/tre",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

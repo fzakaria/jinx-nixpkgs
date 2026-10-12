@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const flac = nix.arg($, "flac");
   const fmt_11 = nix.arg($, "fmt_11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "SDL_audiolib",
       version: "0-unstable-2022-07-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "realnc",
           repo: "SDL_audiolib",
           rev: "cc1bb6af8d4cf5e200259072bde1edd1c8c5137e",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL2, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Audio decoding, resampling and mixing library for SDL",
         homepage: "https://github.com/realnc/SDL_audiolib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

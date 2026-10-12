@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "phalcon";
       const version = "5.10.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "phalcon",
           repo: "cphalcon",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(php, "extensions", "pdo")),
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       }));
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [pcre2]);
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/build/phalcon`);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Phalcon is a full stack PHP framework offering low resource consumption and high performance",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://phalcon.io",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(php, "version")), "8.5")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

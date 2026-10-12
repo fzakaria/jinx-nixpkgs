@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "bashup-events32": nix.thunk(() => nix.app(callPackage, nix.path(here, "./3.2.nix"), nix.thunk(() => ({})))),
     "bashup-events44": nix.thunk(() => nix.app(callPackage, nix.path(here, "./4.4.nix"), nix.thunk(() => ({})))),
   };

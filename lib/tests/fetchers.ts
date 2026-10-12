@@ -64,60 +64,60 @@ export default nix.thunk(() => (() => {
   const normalizeHash = nix.thunk(() => nix.attr(from, "normalizeHash"));
   const withNormalizedHash = nix.thunk(() => nix.attr(from, "withNormalizedHash"));
   const testingThrow = (expr) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     expr: nix.thunk(() => (() => {
       const w = nix.withScope(nix.builtins, null);
       return nix.app(nix.lookup(w, "tryEval"), nix.thunk(() => nix.app(nix.lookup(w, "seq"), expr, "didn't throw")));
     })()),
-    expected: nix.thunk(() => ({ __proto__: pos$1, success: false, value: false })),
+    expected: nix.thunk(() => ({ [nix.POS]: pos$1, success: false, value: false })),
   });
   const sri256 = "sha256-d6xi4mKdjkX2JFicDIv5niSzpyI0m/Hnm8GGAIU04kY=";
   const sri512 = "sha512-AXFyVo7jiZ5we10fxZ5E9qfPjSfqkizY2apCzORKFVYZaNhCIVbooY+J4cYST00ztLf0EjivIBPPdtIYFUMfzQ==";
   const unionOfDisjoints = nix.thunk(() => nix.app(nix.sel(lib, "foldl"), nix.thunk(() => nix.sel(lib, "attrsets", "unionOfDisjoint")), nix.thunk(() => ({}))));
   const genTests = (n) => (f) => nix.attrsDyn({}, [
     [nix.str`test${n}AlreadyNormalized`, nix.thunk(() => ({
-      __proto__: pos$5,
-      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$3, outputHash: "", outputHashAlgo: "md42" })))),
-      expected: nix.thunk(() => ({ __proto__: pos$4, outputHash: "", outputHashAlgo: "md42" })),
+      [nix.POS]: pos$5,
+      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$3, outputHash: "", outputHashAlgo: "md42" })))),
+      expected: nix.thunk(() => ({ [nix.POS]: pos$4, outputHash: "", outputHashAlgo: "md42" })),
     }))],
     [nix.str`test${n}EmptySha256`, nix.thunk(() => ({
-      __proto__: pos$8,
-      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$6, sha256: "" })))),
-      expected: nix.thunk(() => ({ __proto__: pos$7, outputHash: fakeSha256, outputHashAlgo: "sha256" })),
+      [nix.POS]: pos$8,
+      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$6, sha256: "" })))),
+      expected: nix.thunk(() => ({ [nix.POS]: pos$7, outputHash: fakeSha256, outputHashAlgo: "sha256" })),
     }))],
     [nix.str`test${n}EmptySha512`, nix.thunk(() => ({
-      __proto__: pos$12,
-      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({ __proto__: pos$9, hashTypes: nix.thunk(() => ["sha512"]) })), nix.thunk(() => ({ __proto__: pos$10, sha512: "" })))),
-      expected: nix.thunk(() => ({ __proto__: pos$11, outputHash: fakeSha512, outputHashAlgo: "sha512" })),
+      [nix.POS]: pos$12,
+      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({ [nix.POS]: pos$9, hashTypes: nix.thunk(() => ["sha512"]) })), nix.thunk(() => ({ [nix.POS]: pos$10, sha512: "" })))),
+      expected: nix.thunk(() => ({ [nix.POS]: pos$11, outputHash: fakeSha512, outputHashAlgo: "sha512" })),
     }))],
     [nix.str`test${n}EmptyHash`, nix.thunk(() => ({
-      __proto__: pos$15,
-      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$13, hash: "" })))),
-      expected: nix.thunk(() => ({ __proto__: pos$14, outputHash: fakeHash, outputHashAlgo: null })),
+      [nix.POS]: pos$15,
+      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$13, hash: "" })))),
+      expected: nix.thunk(() => ({ [nix.POS]: pos$14, outputHash: fakeHash, outputHashAlgo: null })),
     }))],
     [nix.str`test${n}Sri256`, nix.thunk(() => ({
-      __proto__: pos$18,
-      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$16, hash: sri256 })))),
-      expected: nix.thunk(() => ({ __proto__: pos$17, outputHash: sri256, outputHashAlgo: null })),
+      [nix.POS]: pos$18,
+      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$16, hash: sri256 })))),
+      expected: nix.thunk(() => ({ [nix.POS]: pos$17, outputHash: sri256, outputHashAlgo: null })),
     }))],
     [nix.str`test${n}Sri512`, nix.thunk(() => ({
-      __proto__: pos$21,
-      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$19, hash: sri512 })))),
-      expected: nix.thunk(() => ({ __proto__: pos$20, outputHash: sri512, outputHashAlgo: null })),
+      [nix.POS]: pos$21,
+      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$19, hash: sri512 })))),
+      expected: nix.thunk(() => ({ [nix.POS]: pos$20, outputHash: sri512, outputHashAlgo: null })),
     }))],
     [nix.str`test${n}PreservesAttrs`, nix.thunk(() => ({
-      __proto__: pos$24,
-      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$22, hash: "aaaa", destination: "Earth" })))),
+      [nix.POS]: pos$24,
+      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$22, hash: "aaaa", destination: "Earth" })))),
       expected: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         outputHash: "aaaa",
         outputHashAlgo: null,
         destination: "Earth",
       })),
     }))],
-    [nix.str`test${n}RejectsSha1ByDefault`, nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$25, sha1: "" }))))))],
-    [nix.str`test${n}RejectsSha512ByDefault`, nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$26, sha512: "" }))))))],
-    [nix.str`test${n}ThrowsOnMissing`, nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$27, gibi: false }))))))],
+    [nix.str`test${n}RejectsSha1ByDefault`, nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$25, sha1: "" }))))))],
+    [nix.str`test${n}RejectsSha512ByDefault`, nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$26, sha512: "" }))))))],
+    [nix.str`test${n}ThrowsOnMissing`, nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$27, gibi: false }))))))],
   ]);
   return nix.app(runTests, nix.thunk(() => nix.app(unionOfDisjoints, nix.thunk(() => [
         nix.thunk(() => nix.app(genTests, "NormalizeHash", normalizeHash)),
@@ -129,40 +129,40 @@ export default nix.thunk(() => (() => {
               return nix.force(args_1);
             })(), formals$1))))),
         nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           testNormalizeNotRequiredEquivalent: nix.thunk(() => ({
-            __proto__: pos$31,
-            expr: nix.thunk(() => nix.app(normalizeHash, nix.thunk(() => ({ __proto__: pos$28, required: false })), nix.thunk(() => ({ __proto__: pos$29, hash: "", prof: "shadoko" })))),
-            expected: nix.thunk(() => nix.app(normalizeHash, nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$30, hash: "", prof: "shadoko" })))),
+            [nix.POS]: pos$31,
+            expr: nix.thunk(() => nix.app(normalizeHash, nix.thunk(() => ({ [nix.POS]: pos$28, required: false })), nix.thunk(() => ({ [nix.POS]: pos$29, hash: "", prof: "shadoko" })))),
+            expected: nix.thunk(() => nix.app(normalizeHash, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$30, hash: "", prof: "shadoko" })))),
           })),
           testNormalizeNotRequiredPassthru: nix.thunk(() => ({
-            __proto__: pos$35,
-            expr: nix.thunk(() => nix.app(normalizeHash, nix.thunk(() => ({ __proto__: pos$32, required: false })), nix.thunk(() => ({ __proto__: pos$33, "ga bu": "zo meu" })))),
-            expected: nix.thunk(() => ({ __proto__: pos$34, "ga bu": "zo meu" })),
+            [nix.POS]: pos$35,
+            expr: nix.thunk(() => nix.app(normalizeHash, nix.thunk(() => ({ [nix.POS]: pos$32, required: false })), nix.thunk(() => ({ [nix.POS]: pos$33, "ga bu": "zo meu" })))),
+            expected: nix.thunk(() => ({ [nix.POS]: pos$34, "ga bu": "zo meu" })),
           })),
           testOptionalArg: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             expr: nix.thunk(() => nix.app(withNormalizedHash, nix.thunk(() => ({})), nix.lambda((args) => (() => {
                 const $ = nix.formals(args, formals$2);
                 const args_1 = args;
                 const outputHash = nix.argOr($, "outputHash", () => "");
                 const outputHashAlgo = nix.argOr($, "outputHashAlgo", () => null);
                 return nix.force(args_1);
-              })(), formals$2), nix.thunk(() => ({ __proto__: pos$36, author: "Jacques Rouxel" })))),
-            expected: nix.thunk(() => ({ __proto__: pos$37, author: "Jacques Rouxel" })),
+              })(), formals$2), nix.thunk(() => ({ [nix.POS]: pos$36, author: "Jacques Rouxel" })))),
+            expected: nix.thunk(() => ({ [nix.POS]: pos$37, author: "Jacques Rouxel" })),
           })),
           testOptionalArgMetadata: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             expr: nix.thunk(() => nix.app(functionArgs, nix.thunk(() => nix.app(withNormalizedHash, nix.thunk(() => ({})), nix.lambda((args) => (() => {
                   const $ = nix.formals(args, formals$3);
                   const outputHash = nix.argOr($, "outputHash", () => "");
                   const outputHashAlgo = nix.argOr($, "outputHashAlgo", () => null);
                   return {};
                 })(), formals$3))))),
-            expected: nix.thunk(() => ({ __proto__: pos$39, hash: true })),
+            expected: nix.thunk(() => ({ [nix.POS]: pos$39, hash: true })),
           })),
           testPreservesArgsMetadata: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             expr: nix.thunk(() => nix.app(functionArgs, nix.thunk(() => nix.app(withNormalizedHash, nix.thunk(() => ({})), nix.lambda((args) => (() => {
                   const $ = nix.formals(args, formals$4);
                   const outputHash = nix.arg($, "outputHash");
@@ -170,7 +170,7 @@ export default nix.thunk(() => (() => {
                   const pumping = nix.argOr($, "pumping", () => true);
                   return {};
                 })(), formals$4))))),
-            expected: nix.thunk(() => ({ __proto__: pos$41, hash: false, pumping: true })),
+            expected: nix.thunk(() => ({ [nix.POS]: pos$41, hash: false, pumping: true })),
           })),
           testRejectsMissingHashArg: nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(withNormalizedHash, nix.thunk(() => ({})), nix.lambda((args) => (() => {
                 const $ = nix.formals(args, formals$5);

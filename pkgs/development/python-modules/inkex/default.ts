@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "inkex",
       version: nix.thunk(() => nix.attr(inkscape, "version")),
       pyproject: true,
       src: nix.thunk(() => nix.attr(inkscape, "src")),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://gitlab.com/inkscape/extensions/-/commit/b04ab718b400778a264f2085bbc779faebc08368.patch",
             hash: "sha256-BXRcfoeX7X8+x6CuKKBhrnzUHIwgnPay22Z8+rPZS54=",
             stripLen: 1n,
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "cd share/extensions\n\nsubstituteInPlace pyproject.toml \\\n  --replace-fail 'scour = \"^0.37\"' 'scour = \">=0.37\"'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for manipulating SVG documents which is the basis for Inkscape extensions",
         homepage: "https://gitlab.com/inkscape/extensions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

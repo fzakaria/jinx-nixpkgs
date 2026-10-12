@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const torchvision = nix.arg($, "torchvision");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clean-fid",
       version: "0.1.35",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GaParmar",
           repo: "clean-fid",
           rev: "c8ffa420a3923e8fd87c1e75170de2cf59d2644b",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["cleanfid"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PyTorch - FID calculation with proper image resizing and quantization steps [CVPR 2022]",
         homepage: "https://www.cs.cmu.edu/~clean-fid/",
         downloadPage: "https://github.com/GaParmar/clean-fid",

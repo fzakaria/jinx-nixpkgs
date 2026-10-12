@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lightwalletd";
       const version = "0.4.19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zcash",
           repo: "lightwalletd",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const excludedPackages = nix.thunk(() => ["genblocks", "testclient", "zap"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: lightwalletd,
               command: "lightwalletd version",
               version: nix.thunk(() => nix.str`v${nix.sel(lightwalletd, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Backend service that provides a bandwidth-efficient interface to the Zcash blockchain",
         homepage: "https://github.com/zcash/lightwalletd",
         maintainers: nix.thunk(() => (() => {
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lightwalletd",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

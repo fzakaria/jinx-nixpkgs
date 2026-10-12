@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cryptoverif",
       version: "2.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://prosecco.gforge.inria.fr/personal/bblanche/cryptoverif/cryptoverif${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-d3MIYb57+95bB493hdtHiGnTOronYaQo1Qqq1TcJh1c=",
         })))),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n./build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/libexec\ncp ./cryptoverif   $out/bin\ncp ./default.cvl   $out/libexec\ncp ./default.ocvl  $out/libexec\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-cryptoverif", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts curl pcre2\n\nset -eu -o pipefail\n\nversion=\"$(curl -s https://bblanche.gitlabpages.inria.fr/CryptoVerif/ |\n  pcre2grep -o1 '\\bCryptoVerif version ([.[:alnum:]]+),')\"\n\nupdate-source-version \"$UPDATE_NIX_ATTR_PATH\" \"$version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cryptographic protocol verifier in the computational model",
         mainProgram: "cryptoverif",
         homepage: "https://bblanche.gitlabpages.inria.fr/CryptoVerif/",

@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const tzlocal = nix.arg($, "tzlocal");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "extract-msg",
       version: "0.56.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TeamMsgExtractor",
           repo: "msg-extractor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["extract_msg"]),
       enabledTestPaths: nix.thunk(() => ["extract_msg_tests/*.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extracts emails and attachments saved in Microsoft Outlook's .msg files",
         homepage: "https://github.com/TeamMsgExtractor/msg-extractor",
         changelog: nix.thunk(() => nix.str`https://github.com/TeamMsgExtractor/msg-extractor/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

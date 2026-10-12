@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.0.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "plone",
           repo: "plone.testing",
           tag: version,
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonNamespaces = nix.thunk(() => ["plone"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Testing infrastructure for Zope and Plone projects",
         homepage: "https://github.com/plone/plone.testing",
         changelog: nix.thunk(() => nix.str`https://github.com/plone/plone.testing/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

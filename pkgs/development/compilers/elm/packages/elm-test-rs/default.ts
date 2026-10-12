@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const elmDeps = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./elm-srcs.json")))));
   const setupDepsCache = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (dep) => (() => {
       const dep_src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.str`${nix.sel(dep, "author")}_${nix.sel(dep, "package")}`),
           sha256: nix.thunk(() => nix.attr(dep, "sha256")),
           version: nix.thunk(() => nix.attr(dep, "version")),
@@ -36,7 +36,7 @@ mkdir -p $dep_dir
 cp -r ${dep_src}/. $dep_dir
 `;
     })(), elmDeps));
-  const elm_deps = nix.thunk(() => nix.app(runCommand, "elm-deps", nix.thunk(() => ({ __proto__: pos$2, buildInputs: [] })), nix.thunk(() => nix.str`pkgs_dir=$out/${nix.sel(elmPackages, "elm", "version")}/packages
+  const elm_deps = nix.thunk(() => nix.app(runCommand, "elm-deps", nix.thunk(() => ({ [nix.POS]: pos$2, buildInputs: [] })), nix.thunk(() => nix.str`pkgs_dir=$out/${nix.sel(elmPackages, "elm", "version")}/packages
 
 mkdir -p $pkgs_dir
 cp ${nix.path(here, "./registry.dat")} $pkgs_dir/registry.dat
@@ -44,11 +44,11 @@ cp ${nix.path(here, "./registry.dat")} $pkgs_dir/registry.dat
 ${setupDepsCache}
 `)));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "elm-test-rs",
       version: "3.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "mpizenberg",
           repo: "elm-test-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,12 +65,12 @@ ${setupDepsCache}
 cp -r --no-preserve=mode ${nix.sel(finalAttrs, "passthru", "elm-deps")}/. $HOME/.elm
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "elm-deps": elm_deps,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fast and portable executable to run your Elm tests",
         mainProgram: "elm-test-rs",
         homepage: "https://github.com/mpizenberg/elm-test-rs",

@@ -36,18 +36,18 @@ export default nix.lambda((args) => (() => {
         opentelemetry_util_http,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         asgi: nix.thunk(() => [opentelemetry_instrumentation_asgi]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([opentelemetry_test_utils, pytestCheckHook], nix.sel(optional_dependencies, "asgi")));
       const pythonImportsCheck = nix.thunk(() => ["opentelemetry.instrumentation.django"]);
       const meta = nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-django",
         description: "OpenTelemetry Instrumentation for Django",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         src,
         pname,

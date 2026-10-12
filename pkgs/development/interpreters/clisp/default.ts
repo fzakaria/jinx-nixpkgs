@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(x11Support) || nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.eq(libx11, null)) && nix.asBool(!nix.eq(libxau, null)))) && nix.asBool(!nix.eq(libxt, null)))) && nix.asBool(!nix.eq(libxpm, null)))) && nix.asBool(!nix.eq(xorgproto, null)))) && nix.asBool(!nix.eq(libxext, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/interpreters/clisp/default.nix:43:1");
   const ffcallAvailable = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.eq(libffcall, null))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.49.95-unstable-2024-12-28",
       pname: "clisp",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gnu-clisp",
           repo: "clisp",
           rev: "c3ec11bab87cfdbeba01523ed88ac2a16b22304d",
@@ -69,11 +69,11 @@ find "$out"/lib/clisp*/full -type l -name "*.o" | while read -r symlink; do
 done
 `))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-O0 -falign-functions=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "is64bit")) ? "8" : "4")}`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ANSI Common Lisp Implementation",
         homepage: "http://clisp.org",
         mainProgram: "clisp",

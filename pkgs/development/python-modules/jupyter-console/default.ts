@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.6.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jupyter",
           repo: "jupyter_console",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_console_starts", "test_display_text"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Jupyter terminal console",
         mainProgram: "jupyter-console",
         homepage: "https://github.com/jupyter/jupyter_console",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "jupyter"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

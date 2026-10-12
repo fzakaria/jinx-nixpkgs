@@ -28,31 +28,31 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "graylog",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             memorySize: 4096n,
             diskSize: nix.thunk(() => nix.mul(1024n, 6n)),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$6,
-            mongodb: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+            [nix.POS]: pos$6,
+            mongodb: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
             elasticsearch: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               extraConf: "network.publish_host: 127.0.0.1\nnetwork.bind_host: 127.0.0.1\n",
             })),
             graylog: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               passwordSecret: "YGhZ59wXMrYOojx5xdgEpBpDw2N6FbhM4lTtaJ1KPxxmKrUvSlDbtWArwAWMQ5LKx1ojHEVrQrBMVRdXbRyZLqffoUzHfssc",
               elasticsearchHosts: nix.thunk(() => ["http://localhost:9200"]),
@@ -60,15 +60,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             services: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               graylog: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "netcat"))]),
                 preStart: "until nc -z localhost 9200; do\n  sleep 2\ndone\n",
               })),
@@ -79,21 +79,21 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: nix.thunk(() => (() => {
       const payloads = nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         login: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "login.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               host: "127.0.0.1:9000",
               username: "admin",
               password: "nixos",
             })))))),
         input: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "input.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               title: "Demo",
               global: false,
               type: "org.graylog2.inputs.gelf.udp.GELFUDPInput",
               node: "@node@",
               configuration: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 bind_address: "0.0.0.0",
                 decompress_size_limit: 8388608n,
                 number_worker_threads: 1n,
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
               })),
             })))))),
         gelf_message: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "gelf.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               host: "example.org",
               short_message: "A short message",
               full_message: "A long message",

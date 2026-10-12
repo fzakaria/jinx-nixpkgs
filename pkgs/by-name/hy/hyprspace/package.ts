@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const nix$ = nix.arg($, "nix");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hyprspace",
       version: "0.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hyprspace",
           repo: "hyprspace",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-DmcfR8hA0IsFVEJPZ50jL81u3rw0ieVReTDDC8fTREQ=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
       vendorHash: "sha256-Pkj4q5v35JWwd4OPqj3AX8QLdrjnceT+90sioK5+VvQ=",
       ldflags: nix.thunk(() => [
         "-s",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./config_generated.go")} ./schema/config_generated.go
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} hyprspace
 nix () {
   ${nix.app(nix.sel(lib, "getExe"), nix$)} --extra-experimental-features 'flakes nix-command' "$@"
@@ -53,7 +53,7 @@ cat "$(
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight VPN Built on top of Libp2p for Truly Distributed Networks",
         homepage: "https://github.com/hyprspace/hyprspace",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

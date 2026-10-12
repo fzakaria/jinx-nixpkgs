@@ -16,26 +16,26 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libloragw-2g4",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Lora-net",
           repo: "gateway_2g4_hal",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-EvsYCkZ55nEdZXhxp7AjCw954+uUIoi2Fc3xhaIjZys=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "V" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "V" })))),
       })),
       makeFlags: nix.thunk(() => ["-e", "-C", "libloragw"]),
       preBuild: nix.thunk(() => nix.str`make -C libtools CROSS_COMPILE=${nix.sel(stdenv, "cc", "targetPrefix")}
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/{lib,include/libloragw-2g4}\ncp libloragw/libloragw.a $out/lib/libloragw-2g4.a\ncp libloragw/inc/* $out/include/libloragw-2g4\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "LoRa 2.4Ghz Gateway - Linux host Hardware Abstraction Layer, and tools (Packet Forwarder...)",
         homepage: "https://github.com/Lora-net/gateway_2g4_hal",
         license: nix.thunk(() => [

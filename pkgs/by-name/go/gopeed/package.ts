@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const libayatana_appindicator = nix.arg($, "libayatana-appindicator");
   const version = "1.9.3";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "GopeedLab",
       repo: "gopeed",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-a/q02UKNa2324XK5f0gF6Wh4qmBmPDcYA35VWup54/4=",
     }))));
   const metaCommon = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Modern download manager",
     homepage: "https://github.com/GopeedLab/gopeed",
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
   }));
   const libgopeed = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       src: src,
       pname: "libgopeed",
@@ -52,7 +52,7 @@ runHook postBuild
       meta: metaCommon,
     }))));
   return nix.app(nix.sel(flutter338, "buildFlutterApplication"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: version,
       src: src,
       pname: "gopeed",
@@ -68,11 +68,11 @@ cp ${libgopeed}/bin/host assets/exec/host
       postInstall: "install -Dm644 linux/assets/com.gopeed.Gopeed.desktop $out/share/applications/gopeed.desktop\ninstall -Dm644 assets/icon/icon_512.png $out/share/icons/hicolor/512x512/apps/com.gopeed.Gopeed.png\ninstall -Dm644 assets/icon/icon_1024.png $out/share/icons/hicolor/1024x1024/apps/com.gopeed.Gopeed.png\n",
       preFixup: "patchelf --add-needed libgopeed.so \\\n  --add-rpath $out/app/gopeed/lib $out/app/gopeed/gopeed\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         libgopeed: libgopeed,
         updateScript: nix.path(here, "./update.sh"),
       })),
-      meta: nix.thunk(() => nix.update(metaCommon, { __proto__: pos$5, mainProgram: "gopeed" })),
+      meta: nix.thunk(() => nix.update(metaCommon, { [nix.POS]: pos$5, mainProgram: "gopeed" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

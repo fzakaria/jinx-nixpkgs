@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const sol2 = nix.arg($, "sol2");
   const gtest = nix.arg($, "gtest");
   const stringTheory = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/zrax/string_theory/archive/3.8.tar.gz",
       hash: "sha256-mq7pW3qRZs03/SijzbTl1txJHCSW/TO+gvRLWZh/11M=",
     }))));
   const magicEnum = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://github.com/Neargye/magic_enum/archive/v0.8.2.zip",
       hash: "sha256-oQ+mUDB8YJULcSploz+0bprJbqclhc+p/Pmsn1AsAes=",
     }))));
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ja2-stracciatella";
       const version = "0.21.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "ja2-stracciatella",
           repo: "ja2-stracciatella",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -67,7 +67,7 @@ substituteInPlace dependencies/lib-magic_enum/getter/CMakeLists.txt.in \\
       const buildInputs = nix.thunk(() => [SDL2, fltk, lua5_3, rapidjson, sol2, gtest]);
       const cargoRoot = "rust";
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: pname,
           version: version,
           src: src,
@@ -87,11 +87,11 @@ substituteInPlace dependencies/lib-magic_enum/getter/CMakeLists.txt.in \\
       const doInstallCheck = true;
       const installCheckPhase = "HOME=$(mktemp -d) $out/bin/ja2 -unittests\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         broken: true,
         description: "Jagged Alliance 2, with community fixes",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             shortName: "strategyFirst",
             fullName: "Strategy First Inc. Source Code License Agreement",
             url: "https://github.com/ja2-stracciatella/ja2-stracciatella/blob/master/SFI%20Source%20Code%20license%20agreement.txt",
@@ -101,7 +101,7 @@ substituteInPlace dependencies/lib-magic_enum/getter/CMakeLists.txt.in \\
         maintainers: [],
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

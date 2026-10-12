@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jupyter-server",
           repo: "jupyter_server_fileid",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [jupyter_events, jupyter_server]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [click]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [click]) }));
       const pythonImportsCheck = nix.thunk(() => ["jupyter_server_fileid"]);
       const checkInputs = nix.thunk(() => [pytest_jupyter, pytestCheckHook]);
       const preCheck = "export HOME=$TEMPDIR\n";
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter-server/jupyter_server_fileid/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Extension that maintains file IDs for documents in a running Jupyter Server",
         mainProgram: "jupyter-fileid",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

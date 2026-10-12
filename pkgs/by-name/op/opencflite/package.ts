@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const tzdata = nix.arg($, "tzdata");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opencflite",
       version: "635.21.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gerickson",
           repo: "opencflite",
           rev: nix.thunk(() => nix.str`opencflite-${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [icu, libkqueue, libuuid, tzdata, zlib]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross platform port of the macOS CoreFoundation",
         homepage: "https://github.com/gerickson/opencflite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "apple-psl20")),

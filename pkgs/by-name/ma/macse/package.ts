@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "macse",
       version: "2.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://bioweb.supagro.inra.fr/macse/releases/macse_v${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "0jnjyz4f255glg37rawzdv4m6nfs7wfwc5dny7afvx4dz2sv4ssh",
         })))),
@@ -33,7 +33,7 @@ makeWrapper ${jre}/bin/java $out/bin/macse --add-flags "-jar $out/share/java/mac
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multiple alignment of coding sequences",
         mainProgram: "macse",
         homepage: "https://bioweb.supagro.inra.fr/macse/",

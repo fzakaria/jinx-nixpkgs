@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "berkeley_upc",
       version: "2022.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://upc.lbl.gov/download/release/berkeley_upc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ZckvdxDixr06BTzJ0ErEdtmR4G05llIUsVgLEUR65LU=",
         })))),
       postPatch: "patchShebangs .\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-incompatible-pointer-types",
         ENVCMD: nix.thunk(() => nix.str`${coreutils}/bin/env`),
       })),
       buildInputs: nix.thunk(() => [perl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Compiler for the Berkely Unified Parallel C language",
         longDescription: "Unified Parallel C (UPC) is an extension of the C programming language\ndesigned for high performance computing on large-scale parallel\nmachines.The language provides a uniform programming model for both\nshared and distributed memory hardware. The programmer is presented with\na single shared, partitioned address space, where variables may be\ndirectly read and written by any processor, but each variable is\nphysically associated with a single processor. UPC uses a Single Program\nMultiple Data (SPMD) model of computation in which the amount of\nparallelism is fixed at program startup time, typically with a single\nthread of execution per processor.\n",
         homepage: "https://upc.lbl.gov/",

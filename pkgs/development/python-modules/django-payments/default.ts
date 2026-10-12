@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jazzband",
           repo: "django-payments",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["payments"]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         braintree: nix.thunk(() => [braintree]),
         cybersource: nix.thunk(() => [suds_community]),
         mercadopago: nix.thunk(() => [mercadopago]),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         stripe: nix.thunk(() => [stripe]),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Universal payment handling for Django",
         homepage: "https://github.com/jazzband/django-payments/",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-payments/blob/${nix.sel(src, "rev")}/CHANGELOG.rst`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

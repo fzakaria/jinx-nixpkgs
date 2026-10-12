@@ -30,20 +30,20 @@ export default nix.lambda((args) => (() => {
   const lua5_4 = nix.arg($, "lua5_4");
   const pcre2 = nix.arg($, "pcre2");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "sslLibrary", sslLibrary, nix.thunk(() => ["aws-lc", "libressl", "openssl"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ha/haproxy/package.nix:20:1");
-  const sslPkgs = nix.thunk(() => ({ __proto__: pos$1, "aws-lc": aws_lc, libressl: libressl, openssl: openssl }));
+  const sslPkgs = nix.thunk(() => ({ [nix.POS]: pos$1, "aws-lc": aws_lc, libressl: libressl, openssl: openssl }));
   const sslPkg = nix.thunk(() => nix.sel(sslPkgs, nix.key(nix.force(sslLibrary))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "haproxy",
       version: "3.4.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://www.haproxy.org/download/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/src/haproxy-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-sMUFPE1GhA7N7jklc2/po95kclWbQ8aRg9cOWT2RM98=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "CVE-2026-90678.patch",
             url: "https://github.com/haproxy/haproxy/commit/86a4ebc761a278838e8cb06f3a292282ba704c65.patch?full_index=1",
             hash: "sha256-GTI9c1Y3d7DN2m11eODM3FkY2Aitrndi3CTI2Tr95OU=",
@@ -68,11 +68,11 @@ export default nix.lambda((args) => (() => {
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["USE_GETADDRINFO=1"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withPrometheusExporter, nix.thunk(() => ["USE_PROMEX=yes"])), [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)])))))))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, haproxy: nix.thunk(() => nix.sel(nixosTests, "haproxy")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, haproxy: nix.thunk(() => nix.sel(nixosTests, "haproxy")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://www.haproxy.org/download/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/src/CHANGELOG`),
         description: "Reliable, high performance TCP/HTTP load balancer",
         homepage: "https://haproxy.org",

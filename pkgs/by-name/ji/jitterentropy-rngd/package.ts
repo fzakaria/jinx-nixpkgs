@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jitterentropy-rngd",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smuellerDD",
           repo: "jitterentropy-rngd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/smuellerDD/jitterentropy-rngd/compare/v1.3.1...cee0c7a035e9564d161053012c6ea36b2ce27383.patch",
             hash: "sha256-zwcY9z9EikrhxZa39p4+gl+/EeZ4sAKaItQfrL1DFSo=",
           })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out\nmake install DESTDIR= PREFIX=$out UNITDIR=$out/lib/systemd/system\n\nrunHook postInstall\n",
       hardeningDisable: nix.thunk(() => ["fortify", "fortify3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Random number generator, which injects entropy to the kernel",
         homepage: "https://github.com/smuellerDD/jitterentropy-rngd",
         changelog: nix.thunk(() => nix.str`https://github.com/smuellerDD/jitterentropy-rngd/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

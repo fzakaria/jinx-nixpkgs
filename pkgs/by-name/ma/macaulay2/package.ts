@@ -74,18 +74,18 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const downloadDocs = nix.argOr($, "downloadDocs", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "macaulay2",
       version: "1.26.06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Macaulay2",
           repo: "M2",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-kYxqbMKW+7r6nI4i3o7vvJVf0TGRVLaDviZTFx3PTBI=",
         })))),
       docs: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://macaulay2.com/Downloads/OtherSourceCode/Macaulay2-docs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-0+ilvDh87Gmwzx0bLhT6nnadcPwgU3uB6pKhP9VqW0Q=",
         })))),
@@ -170,7 +170,7 @@ make -C libraries all-in-Macaulay2-docs
 `))),
       buildFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), downloadDocs, nix.thunk(() => ["MakeDocumentation=false"]))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-lblas"]))))),
       })),
       postInstall: nix.thunk(() => nix.str`rm "$out/bin/M2"
@@ -197,21 +197,21 @@ makeWrapper "$out/bin/M2-binary" "$out/bin/M2" \\
       installCheckPhase: "runHook preInstallCheck\n$out/bin/M2 --check 1\nrunHook postInstallCheck\n",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           core: nix.thunk(() => nix.app(runCommand, "macaulay2-core-tests", nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "M2 -q --check 2 && touch $out\n")),
           "all-packages": nix.thunk(() => nix.app(runCommand, "macaulay2-all-package-tests", nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "M2 -q --check 3 && touch $out\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "System for computing in commutative algebra, algebraic geometry and related fields",
         mainProgram: "M2",
         longDescription: "Macaulay2 is a software system devoted to supporting research in\nalgebraic geometry and commutative algebra, whose creation has been\nfunded by the National Science Foundation since 1992.\n\nMacaulay2 includes core algorithms for computing Gröbner bases and graded\nor multi-graded free resolutions of modules over quotient rings of graded\nor multi-graded polynomial rings with a monomial ordering. The core\nalgorithms are accessible through a versatile high level interpreted user\nlanguage with a powerful debugger supporting the creation of new classes\nof mathematical objects and the installation of methods for computing\nspecifically with them. Macaulay2 can compute Betti numbers, Ext,\ncohomology of coherent sheaves on projective varieties, primary\ndecomposition of ideals, integral closure of rings, and more.\n",

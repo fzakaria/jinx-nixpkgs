@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const libepoxy = nix.arg($, "libepoxy");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0.52.1",
       pname: "xcpc",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ponceto",
           repo: "xcpc-emulator",
           rev: nix.thunk(() => nix.str`xcpc-${nix.sel(finalAttrs, "version")}`),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, autoconf_archive, wrapGAppsHook3, pkg_config]),
       buildInputs: nix.thunk(() => [libepoxy]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postInstall: "install -D $out/share/pixmaps/xcpc.png -t $out/share/icons/hicolor/64x64/apps\nrm -r $out/share/pixmaps\nsubstituteInPlace $out/share/applications/xcpc.desktop --replace-fail \\\n  \"$out/bin/\" \"\"\nsubstituteInPlace $out/share/applications/xcpc.desktop --replace-fail \\\n  \"$out/share/pixmaps/\" \"\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Portable Amstrad CPC 464/664/6128 emulator written in C",
         homepage: "https://www.xcpc-emulator.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

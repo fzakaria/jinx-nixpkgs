@@ -27,27 +27,27 @@ export default nix.lambda((args) => (() => {
       const pname = "pdfchain";
       const version = "0.4.4.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/pdfchain/pdfchain-${version}/pdfchain-${version}.tar.gz`),
           hash: "sha256-Hu4Pk9voyc75+f5OwKEOCkXKjN5nzWzv+izmyEN1Lz0=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [pkg_config, wrapGAppsHook3, autoconf]);
       const buildInputs = nix.thunk(() => [gtkmm3, pdftk, glib]);
       const patches = nix.thunk(() => (() => {
-        const fetchDebianPatch$ = (args_1) => nix.app(fetchDebianPatch, nix.thunk(() => nix.update({ __proto__: pos$2, pname: pname, version: "1:0.4.4.2", debianRevision: "2" }, args_1)));
+        const fetchDebianPatch$ = (args_1) => nix.app(fetchDebianPatch, nix.thunk(() => nix.update({ [nix.POS]: pos$2, pname: pname, version: "1:0.4.4.2", debianRevision: "2" }, args_1)));
         return [
           nix.thunk(() => nix.app(fetchDebianPatch$, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               patch: "fix_crash_on_startup",
               hash: "sha256-1UyMHHGrmUIFhY53ILdMMsyocSIbcV6CKQ7sLVNhNQw=",
             })))),
           nix.thunk(() => nix.app(fetchDebianPatch$, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               patch: "fix_desktop_file",
               hash: "sha256-L6lhUs7GqVN1XOQO6bbz6BT29n4upsJtlHCAIGzk1Bw=",
             })))),
           nix.thunk(() => nix.app(fetchDebianPatch$, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               patch: "fix_spelling",
               hash: "sha256-sOUUslPfcOo2K3zuaLcux+CNdgfWM0phsfe6g4GUFes=",
             })))),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
     --replace "/usr/share" "$out/share"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Graphical user interface for the PDF Toolkit (PDFtk)",
         homepage: "https://pdfchain.sourceforge.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pdfchain",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

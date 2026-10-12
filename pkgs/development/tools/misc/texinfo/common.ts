@@ -43,18 +43,18 @@ export default nix.lambda((args) => (() => {
     const versionOlder = nix.thunk(() => nix.attr(lib, "versionOlder"));
     const crossBuildTools = nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform")));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: nix.thunk(() => nix.str`texinfo${nix.app(optionalString, interactive, "-interactive")}`),
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`mirror://gnu/texinfo/texinfo-${version}.tar.xz`),
             hash: hash,
           })))),
         patches: nix.thunk(() => nix.concat(patches, nix.concat(nix.app(optional, nix.thunk(() => (nix.asBool((nix.asBool(interactive) && nix.asBool(nix.app(versionAtLeast, version, "7.2")))) && nix.asBool(nix.app(versionOlder, version, "7.3")))), nix.path(here, "./fix-test-suite-failures-with-perl-5.42.patch")), nix.app(optional, crossBuildTools, nix.path(here, "./cross-tools-flags.patch"))))),
         postPatch: "patchShebangs tta/maintain/regenerate_commands_perl_info.pl\n",
         env: nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           XFAIL_TESTS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(optionals, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => [
                 "different_languages_gen_master_menu.sh",
                 "test_scripts/formatting_documentlanguage_cmdline.sh",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
                 "test_scripts/layout_formatting_fr_icons.sh",
               ])), nix.app(optionals, nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))) && nix.asBool(nix.app(versionOlder, version, "7")))), nix.thunk(() => ["test_scripts/layout_formatting_fr_icons.sh"])))))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), crossBuildTools, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             NATIVE_TOOLS_CFLAGS: nix.thunk(() => nix.str`-I${nix.app(getDev, nix.thunk(() => nix.sel(buildPackages, "ncurses")))}/include`),
             NATIVE_TOOLS_LDFLAGS: nix.thunk(() => nix.str`-L${nix.app(getLib, nix.thunk(() => nix.sel(buildPackages, "ncurses")))}/lib`),
           }))))),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
 done
 `))),
         __structuredAttrs: true,
-        meta: nix.thunk(() => nix.update(meta, { __proto__: pos$4, branch: version })),
+        meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$4, branch: version })),
       })));
   })(), formals$2);
 })(), formals$1);

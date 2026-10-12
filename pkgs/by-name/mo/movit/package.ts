@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "movit";
       const version = "1.7.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://movit.sesse.net/movit-${version}.tar.gz`),
           sha256: "sha256-AKwfjkbC0+OMdcu3oa8KYVdRwVjGEctwBTCUtl7P6NU=",
         }))));
@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [SDL2, fftw, gtest, libGL, libx11]);
       const propagatedBuildInputs = nix.thunk(() => [eigen, libepoxy]);
       const env = nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         GTEST_DIR: nix.thunk(() => nix.str`${nix.sel(gtest, "src")}/googletest`),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-std=c++17" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$4, NIX_LDFLAGS: "-framework OpenGL" }))))));
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=c++17" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$4, NIX_LDFLAGS: "-framework OpenGL" }))))));
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "High-performance, high-quality video filters for the GPU",
         homepage: "https://movit.sesse.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

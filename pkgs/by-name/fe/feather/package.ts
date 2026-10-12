@@ -36,15 +36,15 @@ export default nix.lambda((args) => (() => {
   const unbound = nix.arg($, "unbound");
   const zxing_cpp = nix.arg($, "zxing-cpp");
   const protobuf$ = nix.thunk(() => nix.app(nix.sel(protobuf, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
-      "abseil-cpp": nix.thunk(() => nix.app(nix.sel(abseil_cpp, "override"), nix.thunk(() => ({ __proto__: pos$1, cxxStandard: "17" })))),
+      [nix.POS]: pos$2,
+      "abseil-cpp": nix.thunk(() => nix.app(nix.sel(abseil_cpp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cxxStandard: "17" })))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "feather",
       version: "2.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "feather-wallet",
           repo: "feather",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -82,11 +82,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DTOR_VERSION=${nix.sel(tor, "version")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.str`QT_QPA_PLATFORM=minimal ${nix.sel(finalAttrs, "finalPackage", "meta", "mainProgram")} --version
 `),
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Free Monero desktop wallet",
         homepage: "https://featherwallet.org/",
         changelog: nix.thunk(() => nix.str`https://featherwallet.org/changelog/#${nix.sel(finalAttrs, "version")}%20changelog`),

@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
         ];
       })())))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ns-3",
       version: "47",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nsnam",
           repo: "ns-3-dev",
           rev: nix.thunk(() => nix.str`ns-3.${nix.sel(finalAttrs, "version")}`),
@@ -81,8 +81,8 @@ export default nix.lambda((args) => (() => {
       preConfigure: " substituteInPlace src/tap-bridge/CMakeLists.txt \\\n   --replace-fail '-DTAP_CREATOR=\"${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/src/tap-bridge/' \"-DTAP_CREATOR=\\\"$out/libexec/ns3/\"\n\nsubstituteInPlace src/fd-net-device/CMakeLists.txt \\\n  --replace-fail '-DRAW_SOCK_CREATOR=\"${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/src/fd-net-device/' \"-DRAW_SOCK_CREATOR=\\\"$out/libexec/ns3/\"\n\nsubstituteInPlace src/fd-net-device/CMakeLists.txt \\\n  --replace-fail '-DTAP_DEV_CREATOR=\"${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/src/fd-net-device/' \"-DTAP_DEV_CREATOR=\\\"$out/libexec/ns3/\"\n",
       doCheck: false,
       buildTargets: nix.thunk(() => nix.add(nix.add("build", nix.app(nix.sel(lib, "optionalString"), enableDoxygen, " doxygen")), nix.app(nix.sel(lib, "optionalString"), withManual, "sphinx"))),
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-D_GLIBCXX_PERMIT_BACKWARD_HASH" })),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, pythonModule: python3 })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-D_GLIBCXX_PERMIT_BACKWARD_HASH" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, pythonModule: python3 })),
       cmakeFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.str`-DPython3_LIBRARY_DIRS=${pythonEnv}/lib`),
         nix.thunk(() => nix.str`-DPython3_INCLUDE_DIRS=${pythonEnv}/include`),
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), "-DNS3_TESTS=ON"))),
       hardeningDisable: nix.thunk(() => ["fortify", "strictoverflow"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://www.nsnam.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         description: "Discrete time event network simulator",

@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "parfive",
       version: "2.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Cadair",
           repo: "parfive",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools_scm]),
       dependencies: nix.thunk(() => [aiohttp, tqdm]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, ftp: nix.thunk(() => [aioftp]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, ftp: nix.thunk(() => [aioftp]) })),
       nativeCheckInputs: nix.thunk(() => [aiofiles, pytest_asyncio, pytest_localserver, pytest_socket, pytestCheckHook]),
       pytestFlags: nix.thunk(() => ["-Wignore::ResourceWarning"]),
       disabledTests: nix.thunk(() => [
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["parfive"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "HTTP and FTP parallel file downloader",
         mainProgram: "parfive",
         homepage: "https://parfive.readthedocs.io/",

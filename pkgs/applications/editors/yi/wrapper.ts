@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(haskellPackages, "yi"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "yi-custom",
       dontUnpack: true,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
 makeWrapper ${nix.sel(haskellPackages, "yi")}/bin/yi $out/bin/yi \\
   --set NIX_GHC ${yiEnv}/bin/ghc
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, env: yiEnv })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, env: yiEnv })),
       meta: nix.thunk(() => nix.attr(from, "meta")),
       version: nix.thunk(() => nix.attr(from, "version")),
     };

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const enableCurses = nix.argOr($, "enableCurses", () => true);
   const enableTests = nix.argOr($, "enableTests", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hasciicam",
       version: "2.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dyne",
           repo: "hasciicam",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: enableTests,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ASCII art webcam and video viewer",
         homepage: "https://github.com/dyne/hasciicam",
         changelog: nix.thunk(() => nix.str`https://github.com/dyne/hasciicam/releases/tag/v${nix.sel(finalAttrs, "version")}`),

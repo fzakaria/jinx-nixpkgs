@@ -79,11 +79,11 @@ export default nix.lambda((args) => (() => {
     const cargoHash = nix.argOr($_1, "cargoHash", () => null);
     const patches = nix.argOr($_1, "patches", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         pname: "mir",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "canonical",
             repo: "mir",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -169,7 +169,7 @@ substituteInPlace src/platform/graphics/CMakeLists.txt \\
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "MIR_COMPILER_QUIRKS", nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), ";", nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionOlder"), version, "2.22.0")), nix.thunk(() => ["test_touchspot_controller.cpp:array-bounds"]))))))),
         ]),
         env: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionOlder"), version, "2.20.0")), nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=deprecated-declarations"]))))),
         })),
         doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
@@ -177,32 +177,32 @@ substituteInPlace src/platform/graphics/CMakeLists.txt \\
         preCheck: "export HOME=$TMP # shader cache\nexport XDG_RUNTIME_DIR=$TMP\n",
         outputs: nix.thunk(() => ["out", "dev"]),
         passthru: nix.thunk(() => nix.update({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           tests: nix.thunk(() => nix.update({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(pinned)), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               miriway: nix.thunk(() => nix.attr(nixosTests, "miriway")),
               "miracle-wm": nix.thunk(() => nix.attr(nixosTests, "miracle-wm")),
             }))))),
           providedSessions: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionOlder"), version, "2.16.0")), nix.thunk(() => ["mir-shell"]))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(pinned)), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             updateScript: nix.thunk(() => (() => {
               const cusWithFlag = nix.thunk(() => nix.app(nix.sel(common_updater_scripts, "overrideAttrs"), (oa) => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   installPhase: nix.thunk(() => nix.add(nix.sel(oa, "installPhase"), "wrapProgram $out/bin/update-source-version \\\n  --add-flag '--file=pkgs/servers/mir/default.nix'\n")),
                 })));
               return nix.app(nix.sel(gitUpdater, "override"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   "common-updater-scripts": cusWithFlag,
-                  genericUpdater: nix.thunk(() => nix.app(nix.sel(genericUpdater, "override"), nix.thunk(() => ({ __proto__: pos$7, "common-updater-scripts": cusWithFlag })))),
-                })), nix.thunk(() => ({ __proto__: pos$9, "rev-prefix": "v", ignoredVersions: "-(dev|rc)$" })));
+                  genericUpdater: nix.thunk(() => nix.app(nix.sel(genericUpdater, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, "common-updater-scripts": cusWithFlag })))),
+                })), nix.thunk(() => ({ [nix.POS]: pos$9, "rev-prefix": "v", ignoredVersions: "-(dev|rc)$" })));
             })()),
           }))))),
         meta: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           broken: broken,
           description: "Display server and Wayland compositor developed by Canonical",
           homepage: "https://mir-server.io",
@@ -225,9 +225,9 @@ substituteInPlace src/platform/graphics/CMakeLists.txt \\
           ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionOlder"), version, "2.17.0")), nix.thunk(() => ["mircookie"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionAtLeast"), version, "2.17.0")), nix.thunk(() => ["mirserver-internal"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "strings", "versionAtLeast"), version, "2.17.0")) && nix.asBool(nix.app(nix.sel(lib, "strings", "versionOlder"), version, "2.26.0")))), nix.thunk(() => ["mircommon-internal"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionOlder"), version, "2.25.0")), nix.thunk(() => ["mir-renderer-gl-dev", "mirrenderer"]))))))),
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionAtLeast"), version, "2.22.0")), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               src: nix.thunk(() => nix.sel(finalAttrs, "src")),
               sourceRoot: nix.thunk(() => nix.sel(finalAttrs, "src", "name")),
               hash: cargoHash,

@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const _7zz = nix.arg($, "_7zz");
   const sources = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tinycast",
       version: nix.thunk(() => nix.attr(sources, "version")),
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/abue-ammar/tinycast/releases/download/${nix.sel(sources, "tag")}/Tinycast-${nix.sel(sources, "version")}.dmg`),
           hash: nix.thunk(() => nix.attr(sources, "hash")),
         })))),
@@ -33,9 +33,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [_7zz]),
       sourceRoot: "Tinycast Beta.app",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications/Tinycast Beta.app\"\ncp -R . \"$out/Applications/Tinycast Beta.app\"\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Beta release of Tinycast, a native macOS launcher, hotkeys, and clipboard history",
         homepage: "https://github.com/abue-ammar/tinycast",
         changelog: nix.thunk(() => nix.str`https://github.com/abue-ammar/tinycast/releases/tag/v${nix.sel(finalAttrs, "version")}`),

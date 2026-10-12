@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "plus42",
       version: "1.3.15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://thomasokken.com/plus42/upstream/plus42-upstream-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-qJteqxEDVdqgPdIQCOsNvdPS7S7pq/nVfavfXdOrnAQ=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "plus42bin",
             desktopName: "Plus42Bin",
             genericName: "Calculator",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
             categories: nix.thunk(() => ["Utility", "Calculator"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "plus42dec",
             desktopName: "Plus42Dec",
             genericName: "Calculator",
@@ -71,14 +71,14 @@ wrapProgram $out/bin/plus42bin \\
   "\${gappsWrapperArgs[@]}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--url=https://codeberg.org/thomasokken/plus42desktop"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://thomasokken.com/plus42/",
         changelog: "https://thomasokken.com/plus42/history.html",
         description: "Software clone of the HP-42S calculator (enhanced version)",

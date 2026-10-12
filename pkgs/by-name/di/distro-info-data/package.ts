@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "distro-info-data",
       version: "0.70",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "distro-info-data",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Information about Debian and Ubuntu releases",
         homepage: "https://salsa.debian.org/debian/distro-info-data",
         changelog: nix.thunk(() => nix.str`https://salsa.debian.org/debian/distro-info-data/-/blob/${nix.sel(finalAttrs, "src", "tag")}/debian/changelog`),

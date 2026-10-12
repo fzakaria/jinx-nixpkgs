@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const freetype = nix.arg($, "freetype");
   const libbluray_full = nix.arg($, "libbluray-full");
   const jre = nix.thunk(() => nix.app(nix.sel(jre21_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       modules: nix.thunk(() => ["java.base", "java.datatransfer", "java.desktop", "java.rmi", "java.xml"]),
       jdk: jdk21,
     }))));
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libbluray";
       const version = "1.4.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://get.videolan.org/libbluray/${version}/libbluray-${version}.tar.xz`),
           hash: "sha256-drXcQAl/KNyk67AJyY7VEyGyknRT91zHLPdKzQm59Ek=",
         }))));
@@ -54,16 +54,16 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.concat([fontconfig], nix.concat(nix.app(nix.sel(lib, "optional"), withMetadata, libxml2), nix.app(nix.sel(lib, "optional"), withFonts, freetype))));
       const propagatedBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optional"), withAACS, libaacs));
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_LDFLAGS: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), withAACS, nix.thunk(() => nix.str`-L${libaacs}/lib -laacs`)), nix.app(nix.sel(lib, "optionalString"), withBDplus, nix.thunk(() => nix.str` -L${libbdplus}/lib -lbdplus`)))),
       }));
       const mesonFlags = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withJava)), "-Dbdj_jar=disabled"), nix.concat(nix.app(nix.sel(lib, "optional"), withJava, nix.thunk(() => nix.str`-Djdk_home=${nix.sel(jre, "home")}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withMetadata)), "-dlibxml2=disabled"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withFonts)), "-Dfreetype=disabled")))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, "libbluray-full": libbluray_full })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, "libbluray-full": libbluray_full })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "http://www.videolan.org/developers/libbluray.html",
         description: "Library to access Blu-Ray disks for video playback",
         longDescription: "See <https://wiki.archlinux.org/title/Blu-ray> how to use",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

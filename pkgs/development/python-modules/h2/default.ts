@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-hyper",
           repo: "h2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_changing_max_frame_size"]);
       const pythonImportsCheck = nix.thunk(() => ["h2.connection", "h2.config"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/python-hyper/h2/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
         description: "HTTP/2 State-Machine based protocol implementation",
         homepage: "https://github.com/python-hyper/h2",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

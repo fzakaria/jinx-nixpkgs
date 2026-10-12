@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const version = "1.3.1";
   const commit = "b6be8bac78605c21a9670db0e44faf5e1eafe0d4";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gg-scm",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gg-scm",
           repo: "gg",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -55,7 +55,7 @@ installShellCompletion --cmd gg \\
   --zsh misc/_gg.zsh
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "gg",
         description: "Git with less typing",
         longDescription: "gg is an alternative command-line interface for Git heavily inspired by Mercurial.\nIt's designed for less typing in common workflows,\nmaking Git easier to use for both novices and advanced users alike.\n",

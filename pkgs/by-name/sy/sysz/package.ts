@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sysz";
       const version = "1.4.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joehillen",
           repo: "sysz",
           rev: version,
@@ -34,7 +34,7 @@ makeWrapper $out/libexec/sysz $out/bin/sysz \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/joehillen/sysz",
         description: "Fzf terminal UI for systemctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -47,7 +47,7 @@ runHook postInstall
         mainProgram: "sysz",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

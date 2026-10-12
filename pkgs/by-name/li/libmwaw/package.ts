@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libwpd = nix.arg($, "libwpd");
   const librevenge = nix.arg($, "librevenge");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libmwaw",
       version: "0.3.23",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libmwaw/libmwaw/libmwaw-${nix.sel(finalAttrs, "version")}/libmwaw-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-rDWQ9pGikE64x9yLdXuKKfEl9ZJEnkIUWa6PqSizmes=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, cppunit, zlib, libwpg, libwpd, librevenge]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Import library for some old mac text documents",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         maintainers: nix.thunk(() => (() => {

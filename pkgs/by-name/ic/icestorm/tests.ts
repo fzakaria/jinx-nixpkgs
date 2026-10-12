@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pname = nix.arg($, "pname");
   const src = nix.arg($, "src");
   return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-test-examples`), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [icestorm, nextpnr, yosys]),
     })), nix.thunk(() => nix.str`cp -r ${src}/examples .
 chmod -R +w examples

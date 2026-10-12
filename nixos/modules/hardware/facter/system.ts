@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const options = nix.arg($, "options");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     config: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nixpkgs: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.selOr(config, () => null, "hardware", "facter", "report", "system"), null)) && nix.asBool(!nix.asBool(nix.selOr(options, () => false, "nixpkgs", "hostPlatform", "readOnly"))))), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hostPlatform: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "hardware", "facter", "report", "system")))),
         })))),
     })),

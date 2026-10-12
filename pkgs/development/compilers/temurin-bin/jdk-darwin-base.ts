@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
     const validCpuTypes = nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(lib, "systems", "parse", "cpuTypes"))));
     const providedCpuTypes = nix.thunk(() => nix.builtins.filter((arch) => nix.builtins.elem(arch, validCpuTypes), nix.thunk(() => nix.builtins.attrNames(sourcePerArch))));
     const result = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(sourcePerArch, "packageType"), "jdk")) ? nix.str`${name_prefix}-bin` : nix.str`${name_prefix}-${nix.sel(sourcePerArch, "packageType")}-bin`)),
         version: nix.thunk(() => nix.selOr(sourcePerArch, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported CPU ${cpuName}`)), nix.key(nix.force(cpuName)), "version")),
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.selOr(sourcePerArch, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.force(cpuName))));
             return {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.attr(from, "url")),
             sha256: nix.thunk(() => nix.attr(from, "sha256")),
           };
@@ -66,13 +66,13 @@ if [ -z "\\\${JAVA_HOME-}" ]; then export JAVA_HOME=$out; fi
 EOF
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           jre: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           home: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           bundle: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/Library/Java/JavaVirtualMachines/${name_prefix}-${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.jdk`),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           license: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
             return [

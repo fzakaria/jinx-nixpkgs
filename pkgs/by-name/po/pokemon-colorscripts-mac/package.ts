@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pokemon-colorscripts-mac",
       version: "stable-2021-08-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nuke-dash",
           repo: "pokemon-colorscripts-mac",
           rev: "6aa0cd93b255bee35c5716652b8b7dfecb5fcfa2",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "patchShebangs ./install.sh\n\n# Fix hardcoded prefixed coreutils\nsubstituteInPlace pokemon-colorscripts.sh --replace greadlink readlink\nsubstituteInPlace pokemon-colorscripts.sh --replace gshuf shuf\n\nsubstituteInPlace install.sh --replace /usr/local $out\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/opt\nmkdir -p $out/bin\n./install.sh\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pokémon colorscripts for the terminal, compatible for mac",
         longDescription: "Show colored sprites of pokémons in your terminal.\nContains almost 900 pokemon from gen 1 to gen 8.\nInspired by DT's colorscripts.\n",
         homepage: "https://github.com/nuke-dash/pokemon-colorscripts-mac",

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nerd-font-patcher",
       version: "3.5.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ryanoasis/nerd-fonts/releases/download/v${nix.sel(finalAttrs, "version")}/FontPatcher.zip`),
           hash: "sha256-gZ41oZPnsVLcchA58eJ1Vl28ccqePpOZd/ZCEKYywX4=",
           stripRoot: false,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out/bin $out/share $out/lib\ninstall -Dm755 font-patcher $out/bin/nerd-font-patcher\ninstall -Dm644 glyphnames.json $out/share/glyphnames.json\ncp -ra src/glyphs $out/share/\ncp -ra bin/scripts/{braille,name_parser} $out/lib/\nrunHook postInstall\n",
       preFixup: "substituteInPlace \"$out\"/bin/nerd-font-patcher \\\n    --replace-fail \"'glyphnames.json'\" \"'$out/share/glyphnames.json'\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Font patcher to generate Nerd font",
         mainProgram: "nerd-font-patcher",
         homepage: "https://nerdfonts.com/",

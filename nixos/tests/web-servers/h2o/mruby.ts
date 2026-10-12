@@ -29,45 +29,45 @@ export default nix.lambda((args) => (() => {
   const domain = "h2o.local";
   const sawatdi_chao_lok = "สวัสดีชาวโลก";
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "h2o-mruby",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "toastal"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             h2o: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
-              package: nix.thunk(() => nix.app(nix.sel(pkgs, "h2o", "override"), nix.thunk(() => ({ __proto__: pos$2, withMruby: true })))),
+              package: nix.thunk(() => nix.app(nix.sel(pkgs, "h2o", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withMruby: true })))),
               settings: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 listen: 8080n,
                 hosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${domain}`, nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     paths: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       "/hello_world": nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         "mruby.handler": nix.thunk(() => nix.str`Proc.new do |env|
   [200, {'content-type' => 'text/plain'}, ["${sawatdi_chao_lok}"]]
 end
 `),
                       })),
-                      "/file_handler": nix.thunk(() => ({ __proto__: pos$4, "mruby.handler-file": nix.path(here, "./file_handler.rb") })),
+                      "/file_handler": nix.thunk(() => ({ [nix.POS]: pos$4, "mruby.handler-file": nix.path(here, "./file_handler.rb") })),
                     })),
                   }))],
                 ])),
@@ -75,9 +75,9 @@ end
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             firewall: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "h2o", "settings", "listen"))]),
             })),
           })),
@@ -87,9 +87,9 @@ end
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           environment: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
           })),
         };

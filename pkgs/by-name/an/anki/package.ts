@@ -102,20 +102,20 @@ export default nix.lambda((args) => (() => {
       ])));
   })());
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "ankitects",
       repo: "anki",
       rev: version,
       hash: srcHash,
       fetchSubmodules: true,
     }))));
-  const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src, hash: cargoHash }))));
+  const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src, hash: cargoHash }))));
   const noInstallYarn = nix.thunk(() => nix.app(writeShellScriptBin, "yarn", nix.thunk(() => nix.str`[[ "$1" == "install" ]] && exit 0
 exec ${yarn}/bin/yarn "$@"
 `)));
   const uvWheels = nix.thunk(() => nix.app(runCommand, "uv-wheels", nix.thunk(() => ({})), nix.thunk(() => nix.add("mkdir -p $out\n", nix.app(nix.sel(lib, "strings", "concatMapStringsSep"), "\n", (dep) => nix.str`ln -vsf ${nix.sel(dep, "dist")}/*.whl $out`, pythonDeps)))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pyproject: false,
       pname: pname,
       version: version,
@@ -127,7 +127,7 @@ exec ${yarn}/bin/yarn "$@"
         nix.path(here, "./patches/skip-formatting-python-code.patch"),
         nix.path(here, "./patches/allow-setting-addons-folder.patch"),
         nix.thunk(() => nix.app(substitute, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             src: nix.path(here, "./patches/yarn-fix.patch"),
             substitutions: nix.thunk(() => [
               "--replace-fail",
@@ -139,7 +139,7 @@ exec ${yarn}/bin/yarn "$@"
       cargoDeps: cargoDeps,
       missingHashes: nix.path(here, "./missing-hashes.json"),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -183,7 +183,7 @@ exec ${yarn}/bin/yarn "$@"
       dontWrapQtApps: true,
       dontWrapGApps: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         RELEASE: true,
         OFFLINE_BUILD: "1",
         NODE_BINARY: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nodejs)),
@@ -262,17 +262,17 @@ runHook postCheck
 )
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
-        withAddons: (ankiAddons) => nix.app(callPackage, nix.path(here, "./with-addons.nix"), nix.thunk(() => ({ __proto__: pos$6, ankiAddons: ankiAddons }))),
+        [nix.POS]: pos$8,
+        withAddons: (ankiAddons) => nix.app(callPackage, nix.path(here, "./with-addons.nix"), nix.thunk(() => ({ [nix.POS]: pos$6, ankiAddons: ankiAddons }))),
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "anki-sync-server": nix.thunk(() => nix.sel(nixosTests, "anki-sync-server")),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Spaced repetition flashcard program",
         mainProgram: "anki",
         longDescription: "Anki is a program which makes remembering things easy. Because it is a lot\nmore efficient than traditional study methods, you can either greatly\ndecrease your time spent studying, or greatly increase the amount you learn.\n\nAnyone who needs to remember things in their daily life can benefit from\nAnki. Since it is content-agnostic and supports images, audio, videos and\nscientific markup (via LaTeX), the possibilities are endless. For example:\nlearning a language, studying for medical and law exams, memorizing\npeople's names and faces, brushing up on geography, mastering long poems,\nor even practicing guitar chords!\n",

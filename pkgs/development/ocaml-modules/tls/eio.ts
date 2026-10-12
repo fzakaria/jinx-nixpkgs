@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const ptime = nix.arg($, "ptime");
   const tls = nix.arg($, "tls");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "tls-eio",
       src: nix.thunk(() => nix.attr(tls, "src")),
       meta: nix.thunk(() => nix.attr(tls, "meta")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [
         crowbar,
         eio_main,
-        nix.thunk(() => nix.app(nix.sel(mdx, "override"), nix.thunk(() => ({ __proto__: pos$1, logs: logs })))),
+        nix.thunk(() => nix.app(nix.sel(mdx, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, logs: logs })))),
       ]),
       propagatedBuildInputs: nix.thunk(() => [ptime, eio, mirage_crypto_rng, tls]),
     })));

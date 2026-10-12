@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const lxml = nix.arg($, "lxml");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bandcamp-api",
       version: "0.2.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "bandcamp_api",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-7/WXMo7fCDMHATp4hEB8b7fNJWisUv06hbP+O878Phs=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["bandcamp_api"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Obtains information from bandcamp.com",
         homepage: "https://github.com/RustyRin/bandcamp-api",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

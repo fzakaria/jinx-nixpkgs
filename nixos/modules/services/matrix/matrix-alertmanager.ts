@@ -37,50 +37,50 @@ export default nix.lambda((args) => (() => {
   const rooms = (room) => nix.app(nix.sel(lib, "concatStringsSep"), "/", nix.thunk(() => nix.concat(nix.sel(room, "receivers"), [nix.thunk(() => nix.sel(room, "roomId"))])));
   const concatenatedRooms = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "|", nix.thunk(() => nix.builtins.map(rooms, nix.thunk(() => nix.sel(cfg, "matrixRooms"))))));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "erethon"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         "matrix-alertmanager": nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "matrix-alertmanager")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "matrix-alertmanager", nix.thunk(() => ({})))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 3000n,
               description: "Port that matrix-alertmanager listens on.",
             })))),
           homeserverUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "URL of the Matrix homeserver to use.",
               example: "https://matrix.example.com",
             })))),
           matrixUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Matrix user to use for the bot.",
               example: "@alertmanageruser:example.com",
             })))),
           matrixRooms: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     options: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       receivers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           description: "List of receivers for this room",
                         })))),
                       roomId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Matrix room ID",
                           apply: (x) => (() => {
@@ -93,30 +93,30 @@ export default nix.lambda((args) => (() => {
               description: "Combination of Alertmanager receiver(s) and rooms for the bot to join.\nEach Alertmanager receiver can be mapped to post to a matrix room.\n\nNote, you must use a room ID and not a room alias/name. Room IDs start\nwith a \"!\".\n",
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   receivers: nix.thunk(() => ["receiver1", "receiver2"]),
                   roomId: "!roomid@example.com",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   receivers: nix.thunk(() => ["receiver3"]),
                   roomId: "!differentroomid@example.com",
                 })),
               ]),
             })))),
           mention: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Makes the bot mention @room when posting an alert",
             })))),
           tokenFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "externalPath")),
               description: "File that contains a valid Matrix token for the Matrix user.",
             })))),
           secretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "externalPath")),
               description: "File that contains a secret for the Alertmanager webhook.",
             })))),
@@ -124,18 +124,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "matrix-alertmanager": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "A bot to receive Alertmanager webhook events and forward them to chosen rooms.",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 DynamicUser: true,
                 Restart: "always",
                 RestartSec: "10s",
@@ -145,7 +145,7 @@ export default nix.lambda((args) => (() => {
                 ]),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 APP_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
                 MATRIX_HOMESERVER_URL: nix.thunk(() => nix.sel(cfg, "homeserverUrl")),
                 MATRIX_ROOMS: concatenatedRooms,

@@ -16,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(anki_utils, "buildAnkiAddon"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "yomichan-forvo-server",
       version: "0-unstable-2024-10-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jamesnicolas",
           repo: "yomichan-forvo-server",
           rev: "364fc6d5d10969f516e0fa283460dfaf08c98e15",
           hash: "sha256-Jpee9hkXCiBmSW7hzJ1rAg45XVIiLC8WENc09+ySFVI=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Audio server for yomichan that scrapes forvo for audio files",
         homepage: "https://github.com/jamesnicolas/yomichan-forvo-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

@@ -25,33 +25,33 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "nextjs-ollama-llm-ui"));
-  const nextjs_ollama_llm_ui = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$1, ollamaUrl: nix.thunk(() => nix.attr(cfg, "ollamaUrl")) }))));
+  const nextjs_ollama_llm_ui = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, ollamaUrl: nix.thunk(() => nix.attr(cfg, "ollamaUrl")) }))));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "nextjs-ollama-llm-ui": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Simple Ollama web UI service; an easy to use web frontend for a Ollama backend service.\nRun state-of-the-art AI large language models (LLM) similar to ChatGPT locally with privacy\non your personal computer.\nThis service is stateless and doesn't store any data on the server; all data is kept\nlocally in your web browser.\nSee <https://github.com/jakobhoeg/nextjs-ollama-llm-ui>.\n\nRequired: You need the Ollama backend service running by having\n\"services.nextjs-ollama-llm-ui.ollamaUrl\" point to the correct url.\nYou can host such a backend service with NixOS through \"services.ollama\".\n")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nextjs-ollama-llm-ui", nix.thunk(() => ({})))),
           hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               example: "ui.example.org",
               description: "The hostname under which the Ollama UI interface should be accessible.\nBy default it uses localhost/127.0.0.1 to be accessible only from the local machine.\nChange to \"0.0.0.0\" to make it directly accessible from the local network.\n\nNote: You should keep it at 127.0.0.1 and only serve to the local\nnetwork or internet from a (home) server behind a reverse-proxy and secured encryption.\nSee <https://wiki.nixos.org/wiki/Nginx> for instructions on how to set up a reverse-proxy.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 3000n,
               example: 3000n,
               description: "The port under which the Ollama UI interface should be accessible.\n",
             })))),
           ollamaUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "http://127.0.0.1:11434",
               example: "https://ollama.example.org",
@@ -61,24 +61,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "nextjs-ollama-llm-ui": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               description: "Nextjs Ollama LLM Ui.",
               after: nix.thunk(() => ["network.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 HOSTNAME: nix.thunk(() => nix.sel(cfg, "hostname")),
                 PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
                 NEXT_PUBLIC_OLLAMA_URL: nix.thunk(() => nix.sel(cfg, "ollamaUrl")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nextjs_ollama_llm_ui)}`),
                 DynamicUser: true,
                 CacheDirectory: "nextjs-ollama-llm-ui",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "malteneuss"))];

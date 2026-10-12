@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const sphinxygen = nix.arg($, "sphinxygen");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "serd",
       version: "0.32.10",
       outputs: nix.thunk(() => ["out", "dev", "doc", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.drobilla.net/serd-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-sOk7SeUvAaBJR1t4hu8UBAcRWjLTseXcX5UUHIgnXRw=",
         })))),
       nativeBuildInputs: nix.thunk(() => [doxygen, mandoc, meson, ninja, pkg_config, python3, sphinx, sphinxygen]),
       postPatch: "patchShebangs .\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-poke", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -49,7 +49,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$new_version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight C library for RDF syntax which supports reading and writing Turtle and NTriples",
         homepage: "https://drobilla.net/software/serd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

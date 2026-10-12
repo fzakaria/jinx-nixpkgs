@@ -24,39 +24,39 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "tetrd"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tetrd: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "tetrd")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "tetrd", nix.thunk(() => ({})))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$6,
-          resolvconf: nix.thunk(() => ({ __proto__: pos$5, enable: false })),
+          [nix.POS]: pos$6,
+          resolvconf: nix.thunk(() => ({ [nix.POS]: pos$5, enable: false })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
-          tmpfiles: nix.thunk(() => ({ __proto__: pos$7, rules: nix.thunk(() => ["f /etc/tetrd/resolv.conf - - -"]) })),
+          [nix.POS]: pos$11,
+          tmpfiles: nix.thunk(() => ({ [nix.POS]: pos$7, rules: nix.thunk(() => ["f /etc/tetrd/resolv.conf - - -"]) })),
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             tetrd: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: nix.thunk(() => nix.sel(cfg, "package", "meta", "description")),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/opt/Tetrd/bin/tetrd`),
                 Restart: "always",
                 RuntimeDirectory: "tetrd",

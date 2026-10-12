@@ -21,21 +21,21 @@ export default nix.lambda((args) => (() => {
       const pname = "btfdump";
       const version = "0.0.4";
       const src = nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-iLYGFXB4goiY7eJXXBhX9Y1TOltsW40ogeBhvTV2NvU=",
         }))));
       const cargoHash = "sha256-uGp9XaqepceUmaEKBVEcu8oorfMAOk8BCPIHtun8Sto=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "BTF introspection tool",
         mainProgram: "btf",
         homepage: "https://github.com/anakryiko/btfdump",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, cargoHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, cargoHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

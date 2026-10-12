@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const hash = nix.argOr($, "hash", () => "");
   const archurl = nix.thunk(() => (nix.asBool(nix.eq(arch, "")) ? "" : nix.str`?targetPlatform=${arch}`));
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: nix.thunk(() => nix.str`https://${publisher}.gallery.vsassets.io/_apis/public/gallery/publisher/${publisher}/extension/${name}/${version}/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage${archurl}`),
     sha256: sha256,
     hash: hash,

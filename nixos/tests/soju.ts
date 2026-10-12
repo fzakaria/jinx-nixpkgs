@@ -21,21 +21,21 @@ export default nix.lambda((args) => (() => {
   const user = "testuser";
   const pass = "hunter2";
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "soju",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             soju: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
-              adminSocket: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+              adminSocket: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
               hostName: domain,
               tlsCertificate: nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "cert")),
               tlsCertificateKey: nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "key")),

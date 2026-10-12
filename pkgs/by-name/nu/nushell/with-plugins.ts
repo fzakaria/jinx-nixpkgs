@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const nushell = nix.arg($, "nushell");
   const plugins = nix.argOr($, "plugins", () => []);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: nix.thunk(() => nix.attr(nushell, "version")),
       pname: nix.thunk(() => nix.str`${nix.sel(nushell, "pname")}-with-plugins`),
       paths: nix.thunk(() => nix.concat([nushell], plugins)),

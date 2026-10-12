@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "safecopy",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/safecopy/safecopy/safecopy-${nix.sel(finalAttrs, "version")}/safecopy-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1zf4kk9r8za9pn4hzy1y3j02vrhl1rxfk5adyfq0w0k48xfyvys2",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Data recovery tool for damaged hardware",
         longDescription: "Safecopy is a data recovery tool which tries to extract as much data as possible from a\nproblematic (i.e. damaged sectors) source - like floppy drives, hard disk partitions, CDs,\ntape devices, etc, where other tools like dd would fail due to I/O errors.\n\nSafecopy includes a low level IO layer to read CDROM disks in raw mode, and issue device\nresets and other helpful low level operations on a number of other device classes.\n",
         homepage: "https://safecopy.sourceforge.net",

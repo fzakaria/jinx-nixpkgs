@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const luaValue = nix.thunk(() => (nix.asBool(luaSupport) ? nix.force(lua5_5) : "no"));
   const optional = nix.thunk(() => nix.sel(lib, "optional"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "modsecurity",
       version: "2.9.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "owasp-modsecurity",
           repo: "modsecurity",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-v",
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/mlogc`),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source, cross-platform web application firewall (WAF)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://github.com/owasp-modsecurity/ModSecurity",

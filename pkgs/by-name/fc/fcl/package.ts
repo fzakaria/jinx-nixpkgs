@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libccd = nix.arg($, "libccd");
   const octomap = nix.arg($, "octomap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fcl",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flexible-collision-library",
           repo: "fcl",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [eigen, libccd, octomap]),
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flexible Collision Library",
         longDescription: "FCL is a library for performing three types of proximity queries on a\npair of geometric models composed of triangles.\n",
         homepage: "https://github.com/flexible-collision-library/fcl",

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const withFacter = nix.thunk(() => nix.sel(nixosTests, "facter", "nodes", "machine", "system", "build", "toplevel"));
   const noFacter = nix.thunk(() => nix.sel(nixosTests, "facter", "nodes", "machine", "system", "build", "noFacter", "config", "system", "build", "toplevel"));
   return nix.app(runCommand, "facter-debug-nvd-test", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(facterDebug, "nvd")), jq, nix$]),
       __structuredAttrs: true,
-      unsafeDiscardReferences: nix.thunk(() => ({ __proto__: pos$1, out: true })),
+      unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: pos$1, out: true })),
       exportReferencesGraph: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         withFacter: nix.thunk(() => [withFacter]),
         noFacter: nix.thunk(() => [noFacter]),
       })),

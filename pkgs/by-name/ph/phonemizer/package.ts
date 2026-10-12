@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const python3Packages = nix.arg($, "python3Packages");
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (self) => (super$) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       bibtexparser: nix.thunk(() => nix.sel(self, "bibtexparser_2")),
     })));
   const w = nix.withScope(pythonPackages, null);

@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const handleTest = nix.arg($, "handleTest");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     unencrypted: nix.thunk(() => nix.app(handleTest, nix.path(here, "./unencrypted.nix"), nix.thunk(() => ({})))),
     tls: nix.thunk(() => nix.app(handleTest, nix.path(here, "./tls.nix"), nix.thunk(() => ({})))),
   };

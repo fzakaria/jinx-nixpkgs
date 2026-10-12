@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bc-decaf",
       version: "1.0.2-unstable-2025-06-25",
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [python3]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.linphone.org",
           group: "BC",
           owner: "public/external",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cmakeFlags: nix.thunk(() => ["-DENABLE_STATIC=NO", "-DBUILD_SHARED_LIBS=ON", "-DENABLE_STRICT=NO"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Elliptic curve library supporting Ed448-Goldilocks and Curve25519. Belledonne Communications' fork for Linphone",
         homepage: "https://gitlab.linphone.org/BC/public/external/decaf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

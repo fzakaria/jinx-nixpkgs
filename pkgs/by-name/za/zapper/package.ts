@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const glibc = nix.arg($, "glibc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zapper",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hackerschoice",
           repo: "zapper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["zapper"]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 zapper $out/bin/zapper\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Zaps arguments and environment from the process list",
         homepage: "https://github.com/hackerschoice/zapper",
         changelog: nix.thunk(() => nix.str`https://github.com/hackerschoice/zapper/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

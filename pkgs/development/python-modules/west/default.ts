@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-cIj+Dpr+Bxnr7pXFHFKRSfe8/JGdg6ggbTX6nGg+0KU=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["west"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Zephyr RTOS meta tool",
         mainProgram: "west",
         longDescription: "West lets you manage multiple Git repositories under a single directory using a single file,\ncalled the west manifest file, or manifest for short.\n\nThe manifest file is named west.yml.\nYou use west init to set up this directory,\nthen west update to fetch and/or update the repositories\nnamed in the manifest.\n\nBy default, west uses upstream Zephyr’s manifest file\n(https://github.com/zephyrproject-rtos/zephyr/blob/master/west.yml),\nbut west doesn’t care if the manifest repository is a Zephyr tree or not.\n\nFor more details, see Multiple Repository Management in the west documentation\n(https://docs.zephyrproject.org/latest/guides/west/repo-tool.html).\n",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

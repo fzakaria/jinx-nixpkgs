@@ -60,16 +60,16 @@ export default nix.lambda((args) => (() => {
   const libicns = nix.arg($, "libicns");
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   const dr_libs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "mackron",
       repo: "dr_libs",
       rev: "da35f9d6c7374a95353fd1df1d394d44ab66cf01",
       hash: "sha256-ydFhQ8LTYDBnRTuETtfWwIHZpRciWfqGsZC6SuViEn0=",
     }))));
   const imgui$ = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ocornut",
           repo: "imgui",
           tag: "v1.91.9b-docking",
@@ -80,35 +80,35 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const libgfxd = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "glankk",
       repo: "libgfxd",
       rev: "008f73dca8ebc9151b205959b17773a19c5bd0da",
       hash: "sha256-AmHAa3/cQdh7KAMFOtz5TQpcM6FqO9SppmDpKPTjTt8=",
     }))));
   const monocypher = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       owner: "LoupVaillant",
       repo: "Monocypher",
       rev: "0d85f98c9d9b0227e42cf795cb527dff372b40a4",
       hash: "sha256-RrM8Ep/CM7U5Q4+4FAHfBknb6b0upohoiqy4f7eMye0=",
     }))));
   const prism = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       owner: "KiritoDv",
       repo: "prism-processor",
       rev: "bbcbc7e3f890a5806b579361e7aa0336acd547e7",
       hash: "sha256-jRPwO1Vub0cH12YMlME6kd8zGzKmcfIrIJZYpQJeOks=",
     }))));
   const stb_impl = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "stb_impl.c",
       text: "#define STB_IMAGE_IMPLEMENTATION\n#include \"stb_image.h\"\n",
     }))));
   const stormlib$ = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "ladislav-zezula",
           repo: "StormLib",
           tag: "v9.25",
@@ -119,25 +119,25 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const thread_pool = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       owner: "bshoshany",
       repo: "thread-pool",
       tag: "v4.1.0",
       hash: "sha256-zhRFEmPYNFLqQCfvdAaG5VBNle9Qm8FepIIIrT9sh88=",
     }))));
   const metalcpp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       owner: "briaguya-ai",
       repo: "single-header-metal-cpp",
       tag: "macOS13_iOS16",
       hash: "sha256-CSYIpmq478bla2xoPL/cGYKIWAeiORxyFFZr0+ixd7I",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "2ship2harkinian",
       version: "5.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           owner: "HarbourMasters",
           repo: "2ship2harkinian",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -181,7 +181,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "FETCHCONTENT_SOURCE_DIR_SPDLOG", nix.thunk(() => nix.str`${spdlog}`))),
         ])))),
       env: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-int-conversion -Wno-implicit-int -Wno-elaborated-enum-base")),
       })),
       strictDeps: true,
@@ -237,7 +237,7 @@ install -Dm644 -t $out/share/licenses/2ship2harkinian/thread_pool ${thread_pool}
 `))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               name: "2s2h",
               icon: "2s2h",
               exec: "2s2h",
@@ -248,7 +248,7 @@ install -Dm644 -t $out/share/licenses/2ship2harkinian/thread_pool ${thread_pool}
             })))),
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         homepage: "https://github.com/HarbourMasters/2ship2harkinian",
         description: "PC port of Majora's Mask with modern controls, widescreen, high-resolution, and more",
         mainProgram: "2s2h",

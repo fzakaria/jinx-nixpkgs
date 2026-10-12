@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         useMupdf: useMupdf,
         zathura_core: nix.thunk(() => nix.app(callPackage, nix.path(here, "./core"), nix.thunk(() => ({})))),
         zathura_pdf_poppler: nix.thunk(() => nix.app(callPackage, nix.path(here, "./pdf-poppler"), nix.thunk(() => ({})))),

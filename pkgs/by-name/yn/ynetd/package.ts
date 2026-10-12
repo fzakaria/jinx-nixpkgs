@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ynetd",
       version: "2024.02.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://yx7.cc/code/ynetd/ynetd-2024.02.17.tar.xz",
           hash: "sha256-7gioQ0r0LlUftIWKRwTqeZQl0GtskcRKaEE5z6A0S24=",
         })))),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace Makefile --replace-fail \"-Wl,-z,relro,-z,now\" \"\"\n")),
       installPhase: "runHook preInstall\ninstall -Dm755 ynetd $out/bin/ynetd\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         hardened: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hardened.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Small server for binding programs to TCP ports",
         homepage: "https://yx7.cc/code/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

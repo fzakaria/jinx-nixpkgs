@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rmtrash";
       const version = "1.15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PhrozenByte",
           repo: "rmtrash",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
 done
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/PhrozenByte/rmtrash",
         description: "Trash-put made compatible with GNUs rm and rmdir",
         longDescription: "Put files (and directories) in trash using the `trash-put` command in a\nway that is, otherwise as `trash-put` itself, compatible to GNUs `rm`\nand `rmdir`.\n",
@@ -46,7 +46,7 @@ done
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

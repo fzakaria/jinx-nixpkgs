@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libnbd";
       const version = "1.22.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.libguestfs.org/libnbd/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}-stable/libnbd-${version}.tar.gz`),
           hash: "sha256-y/Ria/R8jC+Zu5bHnlqM7JozNzyt6i/Bu/4E5uFbbjw=",
         }))));
@@ -52,7 +52,7 @@ install -Dm644 -T ${nix.path(here, "./libnbd-metadata")} $LIBNBD_PYTHON_METADATA
 substituteAllInPlace $LIBNBD_PYTHON_METADATA
 `)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/nbdkit/libnbd",
         description: "Network Block Device client library in userspace",
         longDescription: "NBD — Network Block Device — is a protocol for accessing Block Devices\n(hard disks and disk-like things) over a Network.  This is the NBD client\nlibrary in userspace, a simple library for writing NBD clients.\n\nThe key features are:\n- Synchronous API for ease of use.\n- Asynchronous API for writing non-blocking, multithreaded clients. You\n  can mix both APIs freely.\n- High performance.\n- Minimal dependencies for the basic library.\n- Well-documented, stable API.\n- Bindings in several programming languages.\n- Shell (nbdsh) for command line and scripting.\n",
@@ -71,7 +71,7 @@ substituteAllInPlace $LIBNBD_PYTHON_METADATA
         broken: nix.thunk(() => (nix.asBool(buildOcamlBindings) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocamlPackages, "ocaml", "version")), "4.05"))))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -15,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "typespeed",
       version: "0.6.5",
       buildInputs: nix.thunk(() => [ncurses]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://typespeed.sourceforge.net/typespeed-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "5c860385ceed8a60f13217cc0192c4c2b4705c3e80f9866f7d72ff306eb72961",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./typespeed-config-in-home.patch")]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
       configureFlags: nix.thunk(() => ["--datadir=${out}/share/"]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Curses based typing game",
         mainProgram: "typespeed",
         homepage: "https://typespeed.sourceforge.net/",

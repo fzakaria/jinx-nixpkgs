@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const llama_index_llms_openai = nix.arg($, "llama-index-llms-openai");
   const nltk = nix.arg($, "nltk");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "llama-index",
       version: nix.thunk(() => nix.attr(llama_index_core, "version")),
       src: nix.thunk(() => nix.attr(llama_index_core, "src")),

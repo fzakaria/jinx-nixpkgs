@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const unix = nix.arg($, "unix");
   const word8 = nix.arg($, "word8");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nix-output-monitor",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://code.maralorn.de/maralorn/nix-output-monitor/archive/v2.2.0.tar.gz",
           sha256: "14qlawcwi4zq586rq75msxh19nkwh3zigzl41g7gdj7fzg030rnl",
         })))),

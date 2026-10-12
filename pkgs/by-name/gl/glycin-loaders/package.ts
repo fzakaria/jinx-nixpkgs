@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const enabledLoaders = nix.argOr($, "enabledLoaders", () => ["heif", "image-rs", "jxl", "svg"]);
   nix.assert_(!nix.eq(enabledLoaders, []), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gl/glycin-loaders/package.nix:35:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "glycin-loaders",
       version: nix.thunk(() => nix.attr(libglycin, "version")),
       src: nix.thunk(() => nix.attr(libglycin, "src")),
@@ -73,19 +73,19 @@ export XDG_CACHE_HOME=$(mktemp -d)
 `))),
       postInstall: "rm -r $out/share/thumbnailers\n",
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         enabledLoaders: enabledLoaders,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          withTests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: true })))),
+          [nix.POS]: pos$3,
+          withTests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Glycin loaders for several formats",
         homepage: "https://gitlab.gnome.org/GNOME/glycin",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),

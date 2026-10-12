@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const version = "0.3.0";
   const libraryPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [wayland, libxkbcommon])));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       buildNoDefaultFeatures: true,
       buildFeatures: nix.thunk(() => nix.concat(["yaml-cfg", "json-cfg"], nix.concat(nix.app(nix.sel(lib, "optionals"), enableAlsaWidget, nix.thunk(() => ["alsa-widget"])), nix.app(nix.sel(lib, "optionals"), enablePulseaudioWidget, nix.thunk(() => ["pulseaudio-widget"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kennylevinsen",
           repo: "wldash",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`patchelf --set-rpath ${libraryPath}:$(patchelf --print-rpath $out/bin/wldash) $out/bin/wldash
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wayland launcher/dashboard",
         homepage: "https://github.com/kennylevinsen/wldash",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -61,19 +61,19 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "pyyaml"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "ostree",
       version: "2026.2",
       outputs: nix.thunk(() => ["out", "dev", "man", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ostreedev/ostree/releases/download/v${nix.sel(finalAttrs, "version")}/libostree-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ooHy22MfNyHs1Lnid5oer1bi0D8sxHYpqfARfxIBaoM=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./fix-1592.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-test-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             python3: nix.thunk(() => nix.sel(testPython, "interpreter")),
             openssl: nix.thunk(() => nix.str`${openssl}/bin/openssl`),
           })))),
@@ -133,20 +133,20 @@ done
 `));
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           musl: nix.thunk(() => nix.sel(pkgsCross, "musl64", "ostree")),
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "ostree")),
           "ostree-full": ostree_full,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Git for operating system binaries",
         homepage: "https://ostreedev.github.io/ostree/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

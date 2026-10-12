@@ -27,43 +27,43 @@ export default nix.lambda((args) => (() => {
   const enableWlrPortal = nix.argOr($, "enableWlrPortal", () => true);
   const enableGtkPortal = nix.argOr($, "enableGtkPortal", () => true);
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     security: nix.thunk(() => ({
-      __proto__: pos$4,
-      polkit: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+      [nix.POS]: pos$4,
+      polkit: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
       pam: nix.thunk(() => ({
-        __proto__: pos$3,
-        services: nix.thunk(() => ({ __proto__: pos$2, swaylock: nix.thunk(() => ({})) })),
+        [nix.POS]: pos$3,
+        services: nix.thunk(() => ({ [nix.POS]: pos$2, swaylock: nix.thunk(() => ({})) })),
       })),
     })),
     programs: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       dconf: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
       })),
       xwayland: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enableXWayland, nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)))),
       })),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$11,
-      "graphical-desktop": nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+      [nix.POS]: pos$11,
+      "graphical-desktop": nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
       xserver: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         desktopManager: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           runXdgAutostartIfNone: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
         })),
       })),
     })),
     xdg: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       portal: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         wlr: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enableWlrPortal, true)),
         })),
         extraPortals: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enableGtkPortal, nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xdg-desktop-portal-gtk"))]))),

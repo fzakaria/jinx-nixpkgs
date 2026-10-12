@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const dart = nix.arg($, "dart");
   const version = "2.5.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "LinwoodDev",
       repo: "Butterfly",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-TRIchx3BK+ImF+oORU922BeOnUKG8nvyOh8luLTpi5E=",
     }))));
   return nix.app(nix.sel(flutter344, "buildFlutterApplication"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "butterfly",
       version: version,
       src: src,
@@ -41,13 +41,13 @@ export default nix.lambda((args) => (() => {
       gitHashes: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./git-hashes.json"))),
       postInstall: "cp -r linux/debian/usr/share $out/share\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
-        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ __proto__: pos$2, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/app/pubspec.lock > \"$out\"\n")),
+        [nix.POS]: pos$7,
+        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: pos$2, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/app/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.update(nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, ignoredVersions: ".*(rc|beta).*", "rev-prefix": "v" }))), { __proto__: pos$4, supportedFeatures: [] })),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "butterfly.pubspecSource", nix.path(here, "./pubspec.lock.json")), { __proto__: pos$5, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, ignoredVersions: ".*(rc|beta).*", "rev-prefix": "v" }))), { [nix.POS]: pos$4, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "butterfly.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$5, supportedFeatures: [] })),
             nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               command: nix.thunk(() => [
                 nix.thunk(() => nix.sel(dart, "fetchGitHashesScript")),
                 "--input",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Note taking app where your ideas come first",
         homepage: "https://github.com/LinwoodDev/Butterfly",
         mainProgram: "butterfly",

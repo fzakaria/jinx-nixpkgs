@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const lightyear = nix.arg($, "lightyear");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tomladris",
       version: "2017-11-14",
       idrisDeps: nix.thunk(() => [lightyear, contrib]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emptyflash",
           repo: "tomladris",
           rev: "0fef663e20528c455f410f01124c8e3474a96606",
           sha256: "0a0fc0bsr356plgzsr5sr4qmqx4838998wjwmflz10qwsv1j3zsw",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TOML parser for Idris",
         homepage: "https://github.com/emptyflash/tomladris",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

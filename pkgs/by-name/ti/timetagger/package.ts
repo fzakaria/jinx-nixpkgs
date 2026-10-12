@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(python3, "pkgs", "timetagger"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),

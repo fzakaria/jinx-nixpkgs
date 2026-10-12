@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-8lrmhCvwczqBpiQRCkPjmiYsJPHEFnZab/Azkh+i7ls=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["pandas"]);
       const propagatedBuildInputs = nix.thunk(() => [ipytablewidgets, jupyter, jupyter_core, pandas]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         widget: nix.thunk(() => [ipywidgets]),
         jupyterlab: nix.thunk(() => [jupyterlab]),
       }));
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["vega/tests/test_entrypoint.py"]);
       const pythonImportsCheck = nix.thunk(() => ["vega"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "IPython/Jupyter widget for Vega and Vega-Lite",
         longDescription: "To use this you have to enter a nix-shell with vega. Then run:\n\njupyter nbextension install --user --py vega\njupyter nbextension enable --user vega\n",
         homepage: "https://github.com/vega/ipyvega",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

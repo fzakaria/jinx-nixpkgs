@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gtkmm3 = nix.arg($, "gtkmm3");
   const libpulseaudio = nix.arg($, "libpulseaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gmetronome",
       version: "0.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "dqpb",
           repo: "gmetronome",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [gtkmm3, libpulseaudio]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free software metronome and tempo measurement tool",
         homepage: "https://gitlab.gnome.org/dqpb/gmetronome",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/dqpb/gmetronome/-/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

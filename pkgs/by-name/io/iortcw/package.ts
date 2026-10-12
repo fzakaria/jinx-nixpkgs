@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const iortcw_sp = nix.arg($, "iortcw_sp");
   const mp = nix.thunk(() => nix.app(nix.sel(iortcw_sp, "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(oldAttrs, "src", "name")}/MP`),
     })));
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: nix.thunk(() => nix.attr(iortcw_sp, "version")),
       pname: "iortcw",
       paths: nix.thunk(() => [iortcw_sp, mp]),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postBuild: "for i in `find -L $out/opt/iortcw -maxdepth 1 -type f -executable`; do\n  makeWrapper $i $out/bin/`basename $i` --chdir \"$out/opt/iortcw\"\ndone\n",
       meta: nix.thunk(() => nix.update(nix.sel(iortcw_sp, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Game engine for Return to Castle Wolfenstein",
       })),
     })));

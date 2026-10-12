@@ -139,7 +139,7 @@ export default nix.lambda((args) => (() => {
   const flags = nix.thunk(() => nix.attr(cudaPackages, "flags"));
   const shouldUsePkg = (pkg) => (nix.asBool((nix.asBool(!nix.eq(pkg, null)) && nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), pkg)))) ? nix.force(pkg) : null);
   const cutlass = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "cutlass-source",
       owner: "NVIDIA",
       repo: "cutlass",
@@ -147,14 +147,14 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-0q9Ad0Z6E/rO2PdM4uQc8H0E0qs9uKc3reHepiHhjEc=",
     }))));
   const cutlass_flashmla = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "NVIDIA",
       repo: "cutlass",
       rev: "147f5673d0c1c3dcf66f78d677fd647e4a020219",
       hash: "sha256-dHQto08IwTDOIuFUp9jwm1MWkFi8v2YJ/UESrLuG71g=",
     }))));
   const deepgemm = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "deepseek-ai",
       repo: "DeepGEMM",
       rev: "8b1392b978f5a03c828dd1711090d7fb50958b8a",
@@ -162,11 +162,11 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   const flashmla = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "flashmla",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "FlashMLA-source",
           owner: "vllm-project",
           repo: "FlashMLA",
@@ -180,7 +180,7 @@ ln -sf ${cutlass_flashmla} csrc/cutlass
       installPhase: "cp -rva . $out\n",
     }))));
   const fmha_sm100 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       owner: "vllm-project",
       repo: "MSA",
       rev: "087c161814d4d9c735b46c21212a09e5f8eb92fa",
@@ -188,14 +188,14 @@ ln -sf ${cutlass_flashmla} csrc/cutlass
       fetchSubmodules: true,
     }))));
   const triton_kernels = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       owner: "triton-lang",
       repo: "triton",
       tag: "v3.6.0",
       hash: "sha256-JFSpQn+WsNnh7CAPlcpOcUp0nyKXNbJEANdXqmkt4Tc=",
     }))));
   const tml_fa4 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "tml-fa4-source",
       owner: "vllm-project",
       repo: "tml-fa4",
@@ -203,7 +203,7 @@ ln -sf ${cutlass_flashmla} csrc/cutlass
       hash: "sha256-LDA5bW4Bf5+w41K9aJ5flz372hy+Ukm//RT55L7nbbU=",
     }))));
   const flashkda = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       name: "FlashKDA-source",
       owner: "vllm-project",
       repo: "FlashKDA",
@@ -212,7 +212,7 @@ ln -sf ${cutlass_flashmla} csrc/cutlass
       fetchSubmodules: true,
     }))));
   const qutlass = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       name: "qutlass-source",
       owner: "IST-DASLab",
       repo: "qutlass",
@@ -220,11 +220,11 @@ ln -sf ${cutlass_flashmla} csrc/cutlass
       hash: "sha256-Gzl3KuYXXLXMrVciEYrBPu1FH2cplGUPTFpWzFfUmMo=",
     }))));
   const vllm_flash_attn$ = nix.thunk(() => nix.app(nix.sel(lib, "defaultTo"), nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         pname: "vllm-flash-attn",
         version: "2.7.2.post1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             name: "flash-attention-source",
             owner: "vllm-project",
             repo: "flash-attention",
@@ -233,7 +233,7 @@ ln -sf ${cutlass_flashmla} csrc/cutlass
           })))),
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               url: "https://github.com/Dao-AILab/flash-attention/commit/dad67c88d4b6122c69d0bed1cebded0cded71cea.patch",
               hash: "sha256-JSgXWItOp5KRpFbTQj/cZk+Tqez+4mEz5kmH5EUeQN4=",
             })))),
@@ -309,14 +309,14 @@ ln -sf ${nix.sel(rocmPackages, "composable_kernel")} csrc/composable_kernel
     nix.thunk(() => nix.app(nix.sel(lib, "getLib"), p)),
     nix.thunk(() => nix.app(nix.sel(lib, "getDev"), p)),
   ];
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$14, stdenv: nix.thunk(() => nix.sel(torch, "stdenv")) })), (finalAttrs) => ({
-      __proto__: pos$26,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$14, stdenv: nix.thunk(() => nix.sel(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: pos$26,
       pname: "vllm",
       version: "0.29.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           owner: "vllm-project",
           repo: "vllm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -324,7 +324,7 @@ ln -sf ${nix.sel(rocmPackages, "composable_kernel")} csrc/composable_kernel
         })))),
       cargoRoot: "rust",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -494,7 +494,7 @@ substituteInPlace tools/build_rust.py \\
           timm,
         ]))))))))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         audio: nix.thunk(() => nix.concat([librosa, soundfile, mistral_common], nix.sel(mistral_common, "optional-dependencies", "audio"))),
       })),
       dontUseCmakeConfigure: true,
@@ -509,7 +509,7 @@ substituteInPlace tools/build_rust.py \\
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "TORCH_CUDA_ARCH_LIST", nix.thunk(() => nix.str`${gpuTargetString}`))),
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CUTLASS_NVCC_ARCHS_ENABLED", nix.thunk(() => nix.str`${nix.sel(cudaPackages, "flags", "cmakeCudaArchitecturesString")}`))),
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CUDA_TOOLKIT_ROOT_DIR", nix.thunk(() => nix.str`${nix.app(symlinkJoin, nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 name: nix.thunk(() => nix.str`cuda-merged-${nix.sel(cudaPackages, "cudaMajorMinorVersion")}`),
                 paths: nix.thunk(() => nix.builtins.concatMap(getAllOutputs, mergedCudaLibraries)),
               })))}`))),
@@ -518,17 +518,17 @@ substituteInPlace tools/build_rust.py \\
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CUTLASS_ENABLE_CUBLAS", "ON")),
         ])))),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         VLLM_REQUIRE_RUST_FRONTEND: "1",
         VLLM_VERSION_OVERRIDE: nix.thunk(() => nix.sel(finalAttrs, "version")),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           VLLM_TARGET_DEVICE: "cuda",
           CUDA_HOME: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc")))}`),
           TRITON_KERNELS_SRC_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), triton_kernels)}/python/triton_kernels/triton_kernels`),
           TML_FA4_SRC_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), tml_fa4)}`),
         }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           VLLM_TARGET_DEVICE: "rocm",
           PYTORCH_ROCM_ARCH: gpuTargetString,
           ROCM_PATH: nix.thunk(() => nix.str`${nix.sel(rocmPackages, "clr")}`),
@@ -536,11 +536,11 @@ substituteInPlace tools/build_rust.py \\
           HIPFLAGS: rocmExtraIncludeFlags,
           CXXFLAGS: rocmExtraIncludeFlags,
         }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), cpuSupport, nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           VLLM_TARGET_DEVICE: "cpu",
           VLLM_VERSION_OVERRIDE: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}+cpu`),
           FETCHCONTENT_SOURCE_DIR_ONEDNN: nix.thunk(() => nix.str`${nix.sel(onednn, "src")}`),
-        }))), nix.app(nix.sel(lib, "optionalAttrs"), emptyDevice, nix.thunk(() => ({ __proto__: pos$23, VLLM_TARGET_DEVICE: "empty" })))))))),
+        }))), nix.app(nix.sel(lib, "optionalAttrs"), emptyDevice, nix.thunk(() => ({ [nix.POS]: pos$23, VLLM_TARGET_DEVICE: "empty" })))))))),
       preConfigure: "# See: https://github.com/vllm-project/vllm/blob/v0.7.1/setup.py#L75-L109\n# There's also NVCC_THREADS but Nix/Nixpkgs doesn't really have this concept.\nexport MAX_JOBS=\"$NIX_BUILD_CORES\"\n",
       pythonImportsCheck: nix.thunk(() => ["vllm"]),
       dontCheckPythonMetadata: cpuSupport,
@@ -557,9 +557,9 @@ substituteInPlace tools/build_rust.py \\
           ":",
           nix.thunk(() => nix.str`${nix.sel(rocmPackages, "clr")}/bin:${bash}/bin`),
         ])))),
-      passthru: nix.thunk(() => ({ __proto__: pos$24, "vllm-flash-attn": vllm_flash_attn$, skipBulkUpdate: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$24, "vllm-flash-attn": vllm_flash_attn$, skipBulkUpdate: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         description: "High-throughput and memory-efficient inference and serving engine for LLMs",
         changelog: nix.thunk(() => nix.str`https://github.com/vllm-project/vllm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/vllm-project/vllm",

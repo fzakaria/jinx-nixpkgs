@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const from_1 = nix.thunk(() => nix.sel(lib, "generators"));
   const toPlist = nix.thunk(() => nix.attr(from_1, "toPlist"));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const escape = nix.argOr($_1, "escape", () => true);
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: nix.thunk(() => (() => {
           const valueType = nix.thunk(() => nix.update(nix.app(nullOr, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [
                 bool,
@@ -41,10 +41,10 @@ export default nix.lambda((args) => (() => {
                 path,
                 nix.thunk(() => nix.app(attrsOf, valueType)),
                 nix.thunk(() => nix.app(listOf, valueType)),
-              ])))), { __proto__: pos$1, description: "Property list (plist) value" }));
+              ])))), { [nix.POS]: pos$1, description: "Property list (plist) value" }));
           return nix.force(valueType);
         })()),
-        generate: (name) => (value) => nix.app(nix.sel(pkgs, "writeText"), name, nix.thunk(() => nix.app(toPlist, nix.thunk(() => ({ __proto__: pos$2, escape: escape })), value))),
+        generate: (name) => (value) => nix.app(nix.sel(pkgs, "writeText"), name, nix.thunk(() => nix.app(toPlist, nix.thunk(() => ({ [nix.POS]: pos$2, escape: escape })), value))),
       };
     })(), formals$2),
   };

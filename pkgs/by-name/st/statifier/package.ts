@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "statifier";
       const version = "1.7.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/statifier/statifier-${version}.tar.gz`),
           sha256: "03lzkla6knjhh186b43cac410x2fmhi28pkmzb3d211n3zp5i9y8",
         }))));
@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
 sed -e s@/bin/bash@"${nix.sel(multiStdenv, "shell")}"@g -i src/*.sh
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for creating static Linux binaries",
         mainProgram: "statifier",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       }));
-      return { __proto__: pos$3, pname, version, src, phaseNames, postPatch, meta };
+      return { [nix.POS]: pos$3, pname, version, src, phaseNames, postPatch, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

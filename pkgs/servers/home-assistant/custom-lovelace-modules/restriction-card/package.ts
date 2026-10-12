@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "restriction-card",
       version: "1.2.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iantrich",
           repo: "restriction-card",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-9Hz+7Q4i5baIWxVIo6e8d5isvZWnJW2947q5Uk0Gm9w=",
       installPhase: "runHook preInstall\n\nmkdir $out\ninstall -m0644 dist/restriction-card.js $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/iantrich/restriction-card/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Apply restrictions to Lovelace cards",
         homepage: "https://github.com/iantrich/restriction-card",

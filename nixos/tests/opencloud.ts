@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const adminUser = "admin";
   const adminPassword = "hunter2";
   const testRunner = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "test-runner", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "selenium"))]),
       flakeIgnore: nix.thunk(() => ["E501"]),
     })), nix.thunk(() => nix.str`import sys
@@ -62,10 +62,10 @@ wait.until(EC.visibility_of_element_located((By.ID, 'app-floating-action-button-
 wait.until(EC.title_contains("Personal"))
 `)));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "opencloud",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -75,12 +75,12 @@ wait.until(EC.title_contains("Personal"))
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       machine: nix.thunk(() => ({
-        __proto__: pos$12,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$3, memorySize: 2048n })),
+        [nix.POS]: pos$12,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, memorySize: 2048n })),
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "firefox-unwrapped")),
             nix.thunk(() => nix.sel(pkgs, "geckodriver")),
@@ -88,24 +88,24 @@ wait.until(EC.title_contains("Personal"))
           ]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$6,
-          hosts: nix.thunk(() => ({ __proto__: pos$5, "127.0.0.1": nix.thunk(() => [domain]) })),
+          [nix.POS]: pos$6,
+          hosts: nix.thunk(() => ({ [nix.POS]: pos$5, "127.0.0.1": nix.thunk(() => [domain]) })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           pki: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           opencloud: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
             url: nix.thunk(() => nix.str`https://${domain}:9200`),
             environment: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               ADMIN_PASSWORD: adminPassword,
               IDM_CREATE_DEMO_USERS: "true",
               IDM_LDAPS_ADDR: "127.0.0.1:9235",

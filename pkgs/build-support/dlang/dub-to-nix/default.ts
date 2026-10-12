@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const nix_prefetch_git = nix.arg($, "nix-prefetch-git");
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix$, nix_prefetch_git])));
   return nix.app(runCommand, "dub-to-nix", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "dub-to-nix",
       version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

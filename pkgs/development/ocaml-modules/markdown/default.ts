@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const tyxml = nix.arg($, "tyxml");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "markdown",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/gildor478/ocaml-markdown/releases/download/v${nix.sel(finalAttrs, "version")}/markdown-v${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-nFdbdK0UIpqwiYGaNIoaj0UwI7/PHCDrxfxHNDYj3l4=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/gildor478/ocaml-markdown",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

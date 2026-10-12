@@ -20,25 +20,25 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const hostPlatform = nix.thunk(() => nix.attr(stdenv, "hostPlatform"));
   const sources = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "https://downloads.cursor.com/lab/2026.10.01-e373342/linux/x64/agent-cli-package.tar.gz",
         hash: "sha256-p5cmxuZEUg6ZOXC+TEV3WmiJgCtnq+RhpnelMhmuKOg=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "https://downloads.cursor.com/lab/2026.10.01-e373342/linux/arm64/agent-cli-package.tar.gz",
         hash: "sha256-eFxfa/KmDrESHiftjBT17gftG1tmkjJPLZqZcjgkXrU=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: "https://downloads.cursor.com/lab/2026.10.01-e373342/darwin/arm64/agent-cli-package.tar.gz",
         hash: "sha256-Yp5R3kOgt/s7hvXrx+V59999+UGznynoKUXN51AUWvw=",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "cursor-cli",
       version: "0-unstable-2026-10-01",
       src: nix.thunk(() => nix.sel(sources, nix.key(nix.sel(hostPlatform, "system")))),
@@ -46,12 +46,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(hostPlatform, "isLinux")), nix.thunk(() => [autoPatchelfHook, nix.thunk(() => nix.sel(stdenv, "cc", "cc", "lib"))]))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/cursor-agent\ncp -r * $out/share/cursor-agent/\nln -s $out/share/cursor-agent/cursor-agent $out/bin/cursor-agent\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sources: sources,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Cursor CLI",
         homepage: "https://cursor.com/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const blend2d = nix.arg($, "blend2d");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pdf4qt",
       version: "1.5.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JakubMelka",
           repo: "PDF4QT",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         blend2d,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(blend2d, "dev")}/include/blend2d`),
       })),
       cmakeFlags: nix.thunk(() => [
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "qtWrapperArgs+=(${gappsWrapperArgs[@]})\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open source PDF editor",
         longDescription: "This software is consisting of PDF rendering library,\nand several applications, such as advanced document\nviewer, command line tool, and document page\nmanipulator application. Software is implementing PDF\nfunctionality based on PDF Reference 2.0.\n",
         homepage: "https://jakubmelka.github.io",

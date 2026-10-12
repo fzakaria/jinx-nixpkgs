@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const amdgpuVersion = "6.4.4";
   const ubuntuVersion = "24.04";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "amf",
       version: "1.4.37-2203192",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://repo.radeon.com/amdgpu/${amdgpuVersion}/ubuntu/pool/proprietary/a/amf-amdgpu-pro/amf-amdgpu-pro_${nix.sel(finalAttrs, "version")}.${ubuntuVersion}_amd64.deb`),
           hash: "sha256-pklpKaWLrcClRRaY9jJhFZLbyFXPUY9H5UpmARrgFPU=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm755 opt/amdgpu-pro/lib/x86_64-linux-gnu/* -t $out/lib\n\nrunHook postInstall\n",
       preFixup: "patchelf $out/lib/* --add-needed libamdenc64.so\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "AMD's closed source Advanced Media Framework (AMF) driver",
         homepage: "https://www.amd.com/en/support/download/drivers.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

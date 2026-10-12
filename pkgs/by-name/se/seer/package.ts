@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "seer";
       const version = "2.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "epasveer",
           repo: "seer",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       })());
       const nativeBuildInputs = nix.thunk(() => [cmake, nix.thunk(() => nix.sel(kdePackages, "wrapQtAppsHook"))]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt gui frontend for GDB",
         mainProgram: "seergdb",
         homepage: "https://github.com/epasveer/seer",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

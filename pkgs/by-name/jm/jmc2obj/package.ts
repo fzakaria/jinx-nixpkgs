@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "j-mc-2-obj";
       const version = "128";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jmc2obj",
           repo: "j-mc-2-obj",
           tag: version,
@@ -38,11 +38,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/jMc2Obj \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/jmc2obj/j-mc-2-obj/releases/tag/${version}`),
         description: "Java-based Minecraft-to-OBJ exporter",
         homepage: "https://github.com/jmc2obj/j-mc-2-obj",
@@ -54,7 +54,7 @@ runHook postInstall
         mainProgram: "jMc2Obj",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

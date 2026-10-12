@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
   const bintools = nix.arg($, "bintools");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "7.1.0",
       pname: "staruml",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://files.staruml.io/releases-v7/StarUML_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-5jJD5Nh+fw82PEdYb63nprdmcg8gr3KFN+intX5Yxl4=",
         })))),
@@ -115,7 +115,7 @@ runHook postInstall
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sophisticated software modeler",
         homepage: "https://staruml.io/",
         sourceProvenance: nix.thunk(() => (() => {

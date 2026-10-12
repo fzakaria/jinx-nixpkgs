@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const pname = "pymol";
   const description = "Python-enhanced molecular graphics tool";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: pname,
       exec: pname,
       desktopName: "PyMol Molecular Graphics System",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "schrodinger",
           repo: "pymol-open-source",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -67,22 +67,22 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./script-already-exists.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/schrodinger/pymol-open-source/commit/fef4a026425d195185e84d46ab88b2bbd6d96cf8.patch",
             hash: "sha256-F/5UcYwgHgcMQ+zeigedc1rr3WkN9rhxAxH+gQfWKIY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/schrodinger/pymol-open-source/commit/97cc1797695ee0850621762491e93dc611b04165.patch",
             hash: "sha256-H2PsRFn7brYTtLff/iMvJbZ+RZr7GYElMSINa4RDYdA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/schrodinger/pymol-open-source/commit/17c6cbd96d52e9692fd298daec6c9bda273a8aad.patch",
             hash: "sha256-dcYRzUhiaGlR3CjQ0BktA5L+8lFyVdw0+hIz3Li7gDQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://github.com/schrodinger/pymol-open-source/commit/71246845f77ecfa2e14f01887abd180c18ebfb55.patch",
             hash: "sha256-ES7v38daaDXgbHqtxJ6Pt6Xa3ggKwXcx1txWJWkkLgI=",
           })))),
@@ -94,7 +94,7 @@ substituteInPlace pyproject.toml \\
   --replace-fail '"cmake>=3.13.3",' ""
 `);
       const env = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         PREFIX_PATH: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.str`${msgpack_cxx}`))),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I ${nix.sel(libxml2, "dev")}/include/libxml2`),
       }));
@@ -147,7 +147,7 @@ ln -s $out/${nix.sel(python3Packages, "python", "sitePackages")}/pymol/pymol_pat
       const __darwinAllowLocalNetworking = true;
       const preFixup = "wrapQtApp \"$out/bin/pymol\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: description,
         mainProgram: "pymol",
         homepage: "https://www.pymol.org/",
@@ -161,7 +161,7 @@ ln -s $out/${nix.sel(python3Packages, "python", "sitePackages")}/pymol/pymol_pat
         })()),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: pname_1,
         version,
         pyproject,

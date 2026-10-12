@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
     const unpack = nix.argOr($_1, "unpack", () => true);
     nix.assert_((nix.asBool(nix.eq(pname, null)) || nix.asBool(nix.eq(pname, crateName))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/rust/fetchcrate.nix:18:1");
     return nix.app((nix.asBool(unpack) ? nix.force(fetchzip) : nix.force(fetchurl)), nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.str`${crateName}-${version}.tar.gz`),
         url: nix.thunk(() => nix.str`${registryDl}/${crateName}/${version}/download`),
-        passthru: nix.thunk(() => ({ __proto__: pos$1, pname: pname, version: version })),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), unpack, nix.thunk(() => ({ __proto__: pos$3, extension: "tar.gz" }))), nix.builtins.removeAttrs(args_2, nix.thunk(() => ["crateName", "pname", "registryDl", "version", "unpack"]))))));
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$1, pname: pname, version: version })),
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), unpack, nix.thunk(() => ({ [nix.POS]: pos$3, extension: "tar.gz" }))), nix.builtins.removeAttrs(args_2, nix.thunk(() => ["crateName", "pname", "registryDl", "version", "unpack"]))))));
   })(), formals$2);
 })(), formals$1);
 //# sourceMappingURL=fetchcrate.ts.map

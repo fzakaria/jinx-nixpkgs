@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "google-cloud-bigtable";
       const version = "2.35.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googleapis",
           repo: "python-bigtable",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         proto_plus,
         protobuf,
       ], nix.sel(google_api_core, "optional-dependencies", "grpc")));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, libcst: nix.thunk(() => [libcst]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, libcst: nix.thunk(() => [libcst]) }));
       const nativeCheckInputs = nix.thunk(() => [grpcio, mock, pytestCheckHook]);
       const checkPhase = "# Prevent google directory from shadowing google imports\nrm -r google\n";
       const disabledTests = nix.thunk(() => ["policy"]);
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         "google.cloud.bigtable",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Google Cloud Bigtable API client library",
         homepage: "https://github.com/googleapis/python-bigtable",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/python-bigtable/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sarahec"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

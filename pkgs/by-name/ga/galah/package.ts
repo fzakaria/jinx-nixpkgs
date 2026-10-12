@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "galah",
       version: "0-unstable-2024-04-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "0x4D31",
           repo: "galah",
           rev: "69346522df6e5849ca808546d40f1ee0a70f56d8",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-+I4K5T6fQcS7KJexFGxpjq5QUX9VnopK8i81veeP6Cw=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LLM-powered web honeypot using the OpenAI API",
         homepage: "https://github.com/0x4D31/galah",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

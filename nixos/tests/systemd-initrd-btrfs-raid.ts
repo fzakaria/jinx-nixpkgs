@@ -27,55 +27,55 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "systemd-initrd-btrfs-raid",
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             emptyDiskImages: nix.thunk(() => [512n, 512n]),
             useBootLoader: true,
             mountHostNixStore: true,
             useEFIBoot: true,
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             loader: nix.thunk(() => ({
-              __proto__: pos$4,
-              "systemd-boot": nix.thunk(() => ({ __proto__: pos$2, enable: true })),
-              efi: nix.thunk(() => ({ __proto__: pos$3, canTouchEfiVariables: true })),
+              [nix.POS]: pos$4,
+              "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+              efi: nix.thunk(() => ({ [nix.POS]: pos$3, canTouchEfiVariables: true })),
             })),
             initrd: nix.thunk(() => ({
-              __proto__: pos$6,
-              systemd: nix.thunk(() => ({ __proto__: pos$5, enable: true, emergencyAccess: true })),
+              [nix.POS]: pos$6,
+              systemd: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, emergencyAccess: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "btrfs-progs"))];
             })()),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "boot-btrfs-raid": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               configuration: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 fileSystems: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       fsType: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "btrfs")),
                     })),
                   })))),
-                virtualisation: nix.thunk(() => ({ __proto__: pos$11, rootDevice: "/dev/vdb" })),
+                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$11, rootDevice: "/dev/vdb" })),
               })),
             })),
           })),

@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "signing-party",
       version: "2.12",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "signing-party-team",
           repo: "signing-party",
@@ -161,7 +161,7 @@ export default nix.lambda((args) => (() => {
       })()}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://salsa.debian.org/signing-party-team/signing-party",
         description: "Collection of several projects relating to OpenPGP",
         longDescription: "This is a collection of several projects relating to OpenPGP.\n\n* caff: CA - Fire and Forget signs and mails a key\n* pgp-clean: removes all non-self signatures from key\n* pgp-fixkey: removes broken packets from keys\n* gpg-mailkeys: simply mail out a signed key to its owner\n* gpg-key2ps: generate PostScript file with fingerprint paper slips\n* gpgdir: recursive directory encryption tool\n* gpglist: show who signed which of your UIDs\n* gpgsigs: annotates list of GnuPG keys with already done signatures\n* gpgparticipants: create list of party participants for the organiser\n* gpgwrap: a passphrase wrapper\n* keyanalyze: minimum signing distance (MSD) analysis on keyrings\n* keylookup: ncurses wrapper around gpg --search\n* sig2dot: converts a list of GnuPG signatures to a .dot file\n* springgraph: creates a graph from a .dot file\n* keyart: creates a random ASCII art of a PGP key file\n* gpg-key2latex: generate LaTeX file with fingerprint paper slips\n",

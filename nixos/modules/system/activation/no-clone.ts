@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     boot: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       loader: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         grub: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           device: nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), 0n, "nodev")),
         })),
       })),

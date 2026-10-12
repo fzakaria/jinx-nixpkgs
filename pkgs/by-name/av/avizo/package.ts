@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const pamixer = nix.arg($, "pamixer");
   const brightnessctl = nix.arg($, "brightnessctl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "avizo",
       version: "1.3-unstable-2024-11-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "heyjuvi",
           repo: "avizo",
           rev: "5efaa22968b2cc1a3c15a304cac3f22ec2727b17",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/lightctl --suffix PATH : $out/bin:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [brightnessctl]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Neat notification daemon for Wayland",
         homepage: "https://github.com/heyjuvi/avizo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "icingaweb2-theme-snow";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mikesch-mp",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const patchPhase = "# Module info contains some fancy ascii art which breaks the module list\n\nawk -i inplace 'BEGIN {empty=0;write=1;}{if ($0 == \"\"){empty++;};if(empty==2){write=0};if (write==1){print $0}}' module.info\n";
       const installPhase = "mkdir -p \"$out\"\ncp -r * \"$out\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Snow theme for Icingaweb 2",
         homepage: "https://github.com/Mikesch-mp/icingaweb2-theme-snow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, patchPhase, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, patchPhase, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

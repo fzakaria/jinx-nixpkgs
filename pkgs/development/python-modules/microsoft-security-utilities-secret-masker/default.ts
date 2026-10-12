@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0b4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "microsoft_security_utilities_secret_masker",
           version: version,
           hash: "sha256-owvTYawYyLUvaEQHa8JkZTNZSeqcegBNlfUZbsb97z4=",
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, wheel]);
       const pythonImportsCheck = nix.thunk(() => ["microsoft_security_utilities_secret_masker"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for detecting and masking secrets",
         homepage: "https://pypi.org/project/microsoft-security-utilities-secret-masker/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

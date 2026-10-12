@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
     const passthru = nix.argOr($_1, "passthru", () => ({}));
     const meta = nix.argOr($_1, "meta", () => ({}));
     return nix.app(buildPythonPackage, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: pname,
         version: version,
         dependencies: dependencies,

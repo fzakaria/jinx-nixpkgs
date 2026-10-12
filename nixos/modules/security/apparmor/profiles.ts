@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const apparmor = nix.thunk(() => nix.sel(config, "security", "apparmor"));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     config: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       security: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         apparmor: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "apparmor-profiles"))]),
         })),
       })),

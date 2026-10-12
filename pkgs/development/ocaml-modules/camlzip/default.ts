@@ -20,22 +20,22 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const findlib = nix.arg($, "findlib");
   const common = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     patches: [],
     postPatchInit: "cp META-zip META-camlzip\necho 'directory=\"../zip\"' >> META-camlzip\n",
   }));
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.07")) ? nix.update(common, {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "1.11",
     url: "https://github.com/xavierleroy/camlzip/archive/rel111.tar.gz",
     sha256: "sha256-/7vF3j4cE9wOWScjdtIy0u3pGzJ1UQY9R/3bdPHV7Tc=",
   }) : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.02")) ? nix.update(common, {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     version: "1.10",
     url: "https://github.com/xavierleroy/camlzip/archive/rel110.tar.gz",
     sha256: "X0YcczaQ3lFeJEiTIgjSSZ1zi32KFMtmZsP0FFpyfbI=",
   }) : {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     version: "1.05",
     download_id: "1037",
     url: nix.thunk(() => nix.str`http://forge.ocamlcore.org/frs/download.php/${nix.sel(param, "download_id")}/camlzip-${nix.sel(param, "version")}.tar.gz`),
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
 `),
   })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-camlzip`),
       version: nix.thunk(() => nix.sel(param, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.attr(param, "url")),
           sha256: nix.thunk(() => nix.attr(param, "sha256")),
         })))),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "http://cristal.inria.fr/~xleroy/software.html#camlzip",
         description: "Library for handling ZIP and GZIP files in OCaml",
         longDescription: "This Objective Caml library provides easy access to compressed files in\nZIP and GZIP format, as well as to Java JAR files.  It provides functions\nfor reading from and writing to compressed files in these formats.\n",

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.10.11";
       const pname = "hdf5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${pname}-${version}/src/${pname}-${version}.tar.bz2`),
           sha256: "sha256-Cvx32lxGIXcJR1u++8qRwMtvHqYozNjDYZbPbFpN4wQ=",
         }))));
@@ -41,7 +41,7 @@ moveToOutput 'bin/h5fc' "\${!outputDev}"
 moveToOutput 'bin/h5pcc' "\${!outputDev}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Data model, library, and file format for storing and managing data",
         longDescription: "HDF5 supports an unlimited variety of datatypes, and is designed for flexible and efficient\nI/O and for high volume and complex data. HDF5 is portable and is extensible, allowing\napplications to evolve in their use of HDF5. The HDF5 Technology suite includes tools and\napplications for managing, manipulating, viewing, and analyzing data in the HDF5 format.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -53,7 +53,7 @@ moveToOutput 'bin/h5pcc' "\${!outputDev}"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

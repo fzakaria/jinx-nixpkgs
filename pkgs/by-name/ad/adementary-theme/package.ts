@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const sassc = nix.arg($, "sassc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "adementary-theme",
       version: "201905r1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hrdwrrsk",
           repo: "adementary-theme",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs .",
       installPhase: "mkdir -p $out/share/themes\n./install.sh -d $out/share/themes\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Adwaita-based GTK theme with design influence from elementary OS and Vertex GTK theme",
         homepage: "https://github.com/hrdwrrsk/adementary-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

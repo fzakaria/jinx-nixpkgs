@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const emptyFile = nix.arg($, "emptyFile");
   const biber_dev_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "plk",
       repo: "biber",
       rev: "d43e352586f5c9f98f0331978ca9d0b908986e09",
@@ -36,7 +36,7 @@ else
 fi
 `);
   const networkRequiringTestPkg = (name) => (script) => nix.app(runCommand, nix.thunk(() => nix.str`test-${nix.app(nix.sel(lib, "removePrefix"), nix.thunk(() => nix.str`${nix.builtins.storeDir}/`), nix.thunk(() => nix.sel(tectonic, "outPath")))}-${name}`), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       outputHashMode: nix.thunk(() => nix.attr(emptyFile, "outputHashMode")),
       outputHash: nix.thunk(() => nix.attr(emptyFile, "outputHash")),
       allowSubstitutes: false,
@@ -46,7 +46,7 @@ ${script}
 cp "${emptyFile}" "$out"
 `));
   return nix.app(nix.sel(lib, "mapAttrs"), networkRequiringTestPkg, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       "biber-compatibility": nix.thunk(() => nix.str`# import the test files
 cp "${testfiles}"/* .
 

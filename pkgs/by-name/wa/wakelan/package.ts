@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wakelan",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://ibiblioPubLinux/system/network/misc/wakelan-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-PfXrj4d2SHmatiPPFxjsxvhusML1HTRNjoYEQtzFzW8=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, CFLAGS: "-std=c89" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-std=c89" })),
       preInstall: "mkdir -p $out/man/man1 $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Send a wake-on-lan packet",
         longDescription: "WakeLan sends a properly formatted UDP packet across the\nnetwork which will cause a wake-on-lan enabled computer to\npower on.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -23,21 +23,21 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$10,
-      "miniz-versions-match": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ __proto__: pos$1, package: miniz, versionCheck: true })))),
-      "miniz-versions-mismatch": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ __proto__: pos$2, package: miniz, version: "1.2.3", versionCheck: true })))))),
-      "miniz-no-versionCheck": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ __proto__: pos$3, package: miniz, version: "1.2.3" })))),
-      "zlib-has-zlib": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ __proto__: pos$4, package: zlib, moduleNames: nix.thunk(() => ["zlib"]) })))),
-      "zlib-has-meta-pkgConfigModules": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ __proto__: pos$5, package: zlib })))),
+      [nix.POS]: pos$10,
+      "miniz-versions-match": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$1, package: miniz, versionCheck: true })))),
+      "miniz-versions-mismatch": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$2, package: miniz, version: "1.2.3", versionCheck: true })))))),
+      "miniz-no-versionCheck": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$3, package: miniz, version: "1.2.3" })))),
+      "zlib-has-zlib": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$4, package: zlib, moduleNames: nix.thunk(() => ["zlib"]) })))),
+      "zlib-has-meta-pkgConfigModules": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$5, package: zlib })))),
       "openssl-has-openssl": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           package: openssl,
           moduleNames: nix.thunk(() => ["openssl"]),
         })))),
-      "openssl-has-all-meta-pkgConfigModules": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ __proto__: pos$7, package: openssl })))),
+      "openssl-has-all-meta-pkgConfigModules": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$7, package: openssl })))),
       "zlib-does-not-have-ylib": nix.thunk(() => nix.app(runCommand, "zlib-does-not-have-ylib", nix.thunk(() => ({
-          __proto__: pos$9,
-          failed: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ __proto__: pos$8, package: zlib, moduleNames: nix.thunk(() => ["ylib"]) })))))),
+          [nix.POS]: pos$9,
+          failed: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$8, package: zlib, moduleNames: nix.thunk(() => ["ylib"]) })))))),
         })), "echo 'it logs a relevant error message'\n{\n  grep -F \"pkg-config module ylib was not found\" $failed/testBuildFailure.log\n}\n\necho 'it logs which pkg-config modules are available, to be helpful'\n{\n  # grep -v: the string zlib does also occur in a store path in an earlier message, which isn't particularly helpful\n  grep -v \"checking pkg-config module\" < $failed/testBuildFailure.log \\\n    | grep -F \"zlib\"\n}\n\n# done\ntouch $out\n")),
     })));
 })(), formals$1);

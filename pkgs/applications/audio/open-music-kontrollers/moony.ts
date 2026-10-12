@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const robodoc = nix.arg($, "robodoc");
   const cmake = nix.arg($, "cmake");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(args_1, {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "moony",
       version: "0.40.0",
       sha256: "sha256-9a3gR3lV8xFFTDZD+fJPCALVztgmggzyIpsPZCOw/uY=",

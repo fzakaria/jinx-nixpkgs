@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "pydispatcher";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "PyDispatcher",
           version: version,
           hash: "sha256-t3fGrQgNwbrXSkwp1qRpFPpnAaxw+UsNZvvP3mL1vjE=",
         }))));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://pydispatcher.sourceforge.net/",
         description: "Signal-registration and routing infrastructure for use in multiple contexts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
-      return { __proto__: pos$3, version, format, pname, src, nativeCheckInputs, meta };
+      return { [nix.POS]: pos$3, version, format, pname, src, nativeCheckInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

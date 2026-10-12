@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "onesixtyone",
       version: "0.3.4-unstable-2025-08-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trailofbits",
           repo: "onesixtyone",
           rev: "3bedd7cab7fe1bcfc2def208f87fbf10a013efc7",
@@ -29,16 +29,16 @@ export default nix.lambda((args) => (() => {
       buildPhase: "$CC -o onesixtyone onesixtyone.c\n",
       installPhase: "install -D onesixtyone $out/bin/onesixtyone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/trailofbits/onesixtyone",
             tagPrefix: "v",
             branch: "master",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast SNMP Scanner",
         homepage: "https://github.com/trailofbits/onesixtyone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

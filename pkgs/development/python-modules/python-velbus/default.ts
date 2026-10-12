@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pyserial = nix.arg($, "pyserial");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-velbus",
       version: "2.1.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-3eDfXPMO167QI/umLBjlHTBV67XQ8QYkg4EzfrRTw6M=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["velbus"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to control the Velbus home automation system",
         homepage: "https://github.com/thomasdelaet/python-velbus",
         changelog: nix.thunk(() => nix.str`https://github.com/thomasdelaet/python-velbus/releases/tag/${nix.sel(finalAttrs, "version")}`),

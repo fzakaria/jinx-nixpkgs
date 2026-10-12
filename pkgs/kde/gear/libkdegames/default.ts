@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const openal = nix.arg($, "openal");
   const libsndfile = nix.arg($, "libsndfile");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "libkdegames",
       extraNativeBuildInputs: nix.thunk(() => [_7zz, svgcleaner]),
       extraBuildInputs: nix.thunk(() => [openal, libsndfile, qtdeclarative, qtsvg]),

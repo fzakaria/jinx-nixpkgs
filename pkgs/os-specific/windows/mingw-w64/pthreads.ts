@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const mingw_w64_headers = nix.arg($, "mingw_w64_headers");
   const withStatic = nix.argOr($, "withStatic", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mingw_w64-pthreads",
       version: nix.thunk(() => nix.attr(mingw_w64_headers, "version")),
       src: nix.thunk(() => nix.attr(mingw_w64_headers, "src")),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), withStatic, "static")),
       ]),
       preConfigure: "cd mingw-w64-libraries/winpthreads\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$1, threadModel: "posix" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, threadModel: "posix" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=pthreads.ts.map

@@ -21,20 +21,20 @@ export default nix.lambda((args) => (() => {
   const hasAmdCpu = nix.thunk(() => nix.app(nix.sel(facterLib, "hasAmdCpu"), report));
   const hasIntelCpu = nix.thunk(() => nix.app(nix.sel(facterLib, "hasIntelCpu"), report));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(config, "hardware", "facter", "enable")) && nix.asBool(isBaremetal))), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         hardware: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enableRedistributableFirmware: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           cpu: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             amd: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               updateMicrocode: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), hasAmdCpu, nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "hardware", "enableRedistributableFirmware")))))),
             })),
             intel: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               updateMicrocode: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), hasIntelCpu, nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "hardware", "enableRedistributableFirmware")))))),
             })),
           })),

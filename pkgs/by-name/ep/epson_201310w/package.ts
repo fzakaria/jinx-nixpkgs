@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const cups = nix.arg($, "cups");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "epson_201310w",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download3.ebz.epson.net/dsc/f/03/00/15/64/77/6f825c323a9f4b8429e3f9f0f4e9c50b1b15f583/epson-inkjet-printer-201310w-${nix.sel(finalAttrs, "version")}-1.src.rpm`),
           hash: "sha256-596qMon5KmMHe7mh+ykdpWeazJOCGA6HmmtvdGheRmA=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "cd ../epson-inkjet-printer-201310w-1.0.1\ncp -a lib64 resource watermark $out\ninstall --mode=0644 -Dt $out/share/cups/model ppds/EPSON_L120.ppd\nmkdir -p $out/doc\ncp -a Manual.txt $out/doc\ncp -a README $out/doc/README.driver\n",
       postFixup: "substituteInPlace $out/share/cups/model/EPSON_L120.ppd \\\n  --replace-fail \"/home/epson/projects/PrinterDriver/P2/_rpmbuild/SOURCES/epson-inkjet-printer-201310w-1.0.1/watermark\" \"$out/watermark\" \\\n  --replace-fail \"Epson_201310w.1.data\" \"$out/resource/Epson_201310w.1.data\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.epson.eu/en_EU/support/sc/epson-l120/s/s1346",
         description: "Epson printer driver for L120 series inkjet printers",
         longDescription: "This software is a filter program used with the Common UNIX Printing\nSystem (CUPS) under Linux. It supplies high quality printing with\nSeiko Epson L120 series printers.\n\nTo use the driver adjust your configuration.nix file:\n  services.printing = {\n    enable = true;\n    drivers = [ pkgs.epson_201310w ];\n  };\n",

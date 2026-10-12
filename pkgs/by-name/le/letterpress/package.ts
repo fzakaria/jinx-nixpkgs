@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "letterpress",
       version: "2.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "letterpress",
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`makeWrapperArgs+=(\${gappsWrapperArgs[@]} --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "runtimeDeps")))})
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Create beautiful ASCII art",
         longDescription: "Letterpress converts your images into a picture made up of ASCII characters.\nYou can save the output to a file, copy it, and even change its resolution!\nHigh-res output can still be viewed comfortably by lowering the zoom factor.\n",
         homepage: "https://apps.gnome.org/Letterpress/",

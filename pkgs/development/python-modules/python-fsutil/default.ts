@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "python-fsutil",
       version: "0.18.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fabiocaccamo",
           repo: "python-fsutil",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [requests]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, yaml: nix.thunk(() => [pyyaml]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, yaml: nix.thunk(() => [pyyaml]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       disabledTests: nix.thunk(() => ["test_download_file", "test_read_file_from_url"]),
       pythonImportsCheck: nix.thunk(() => ["fsutil"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module with file-system utilities",
         homepage: "https://github.com/fabiocaccamo/python-fsutil",
         changelog: nix.thunk(() => nix.str`https://github.com/fabiocaccamo/python-fsutil/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

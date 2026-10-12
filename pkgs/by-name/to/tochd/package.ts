@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const mame_tools = nix.arg($, "mame-tools");
   const p7zip = nix.arg($, "p7zip");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tochd",
       version: "0.13-unstable-2024-06-08",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thingsiplay",
           repo: "tochd",
           rev: "eea871b51cd4962d23a6426194f6f524e864c0ac",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mv $out/bin/tochd.py $out/bin/tochd\ninstall -Dm644 README.md -t $out/share/doc/tochd\ninstall -Dm644 LICENSE -t $out/share/licenses/tochd\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert game ISO and archives to CD/DVD CHD",
         homepage: "https://github.com/thingsiplay/tochd",
         changelog: nix.thunk(() => nix.str`https://github.com/thingsiplay/tochd/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGES.md`),

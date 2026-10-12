@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "hello-go",
       src: nix.path(here, "./src"),
       vendorHash: null,
-      env: nix.thunk(() => ({ __proto__: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
       postInstall: "[[ -f \"$out/bin/hello-go\" ]] || ln -s ./${GOOS}_${GOARCH}/hello-go $out/bin/hello-go\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple program printing hello world in Go",
         longDescription: "hello-go is a simple program printing \"Hello, world!\" written in Go,\naiming at testing programs that involves analyzing executables or\nemulating foreign architectures, without pulling in a heavy cross\ntoolchain.\n\nSpecify target platform by setting GOOS and GOARCH:\n\n```nix\nhello-go.overrideAttrs (previousAttrs: {\n  env = previousAttrs.env or { } // {\n    GOOS = \"linux\";\n    GOARCH = \"arm64\";\n  };\n})\n```\n\nSee https://pkg.go.dev/internal/platform#pkg-variables for a list\nof available platforms.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

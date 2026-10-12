@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const numactl = nix.arg($, "numactl");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "py-libnuma",
       version: "1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eedalong",
           repo: "pynuma",
           rev: "66cab0e008b850a04cfec5c4fb3f50bf28e3d488",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["numa"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python3 Interface to numa Linux library",
         homepage: "https://github.com/eedalong/pynuma",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

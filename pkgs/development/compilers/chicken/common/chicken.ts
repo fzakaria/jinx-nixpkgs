@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.lookup(w, "isDarwin")) ? "macosx" : (nix.asBool(nix.lookup(w, "isCygwin")) ? "cygwin" : (nix.asBool((nix.asBool(nix.lookup(w, "isFreeBSD")) || nix.asBool(nix.lookup(w, "isOpenBSD")))) ? "bsd" : (nix.asBool(nix.lookup(w, "isSunOS")) ? "solaris" : "linux"))));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "chicken",
       version: version,
       binaryVersion: binaryVersion,
       postPatch: postPatch,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://code.call-cc.org/releases/${nix.sel(finalAttrs, "version")}/chicken-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: hash,
         })))),
       setupHook: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup-hook.sh"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           binaryVersion: nix.thunk(() => nix.builtins.toString(binaryVersion)),
         })))),
       dontConfigure: true,
@@ -66,18 +66,18 @@ export default nix.lambda((args) => (() => {
    -p "(assert (equal? \\"${nix.builtins.toString(nix.thunk(() => nix.sel(finalAttrs, "binaryVersion")))}\\" (pathname-file (car (repository-path)))))"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "csi -version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://call-cc.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => (() => {

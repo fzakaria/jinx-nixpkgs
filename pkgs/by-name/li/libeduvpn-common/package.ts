@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libeduvpn-common",
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://codeberg.org/eduVPN/eduvpn-common/releases/download/${nix.sel(finalAttrs, "version")}/eduvpn-common-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-pMxcHiX6Ct6QpU13JnoEyqt7bd58dmOxoncIp6PDvgo=",
         })))),
@@ -31,7 +31,7 @@ install -Dt $out/lib libeduvpn-common-${nix.sel(finalAttrs, "version")}.so
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://codeberg.org/eduVPN/eduvpn-common/raw/tag/${nix.sel(finalAttrs, "version")}/CHANGES.md`),
         description: "Code to be shared between eduVPN clients",
         homepage: "https://codeberg.org/eduVPN/eduvpn-common",

@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pyarrow = nix.arg($, "pyarrow");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyspark",
       version: "4.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-+l1hWfcA0JkKB/T2LfG3RJQB3M7pzX1dbfiVdTCEFgI=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "# find_python_home.py has been wrapped as a shell script\nsubstituteInPlace $out/bin/find-spark-home \\\n    --replace 'export SPARK_HOME=$($PYSPARK_DRIVER_PYTHON \"$FIND_SPARK_HOME_PYTHON_SCRIPT\")' \\\n              'export SPARK_HOME=$(\"$FIND_SPARK_HOME_PYTHON_SCRIPT\")'\n# patch PYTHONPATH in pyspark so that it properly looks at SPARK_HOME\nsubstituteInPlace $out/bin/pyspark \\\n    --replace 'export PYTHONPATH=\"${SPARK_HOME}/python/:$PYTHONPATH\"' \\\n              'export PYTHONPATH=\"${SPARK_HOME}/..:${SPARK_HOME}/python/:$PYTHONPATH\"'\n",
       dependencies: nix.thunk(() => [py4j]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         connect: nix.thunk(() => [
           pandas,
           pyarrow,
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pyspark"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python bindings for Apache Spark",
         homepage: "https://github.com/apache/spark/tree/master/python",
         sourceProvenance: nix.thunk(() => (() => {

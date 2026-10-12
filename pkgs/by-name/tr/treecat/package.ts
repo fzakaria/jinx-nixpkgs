@@ -17,24 +17,24 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "treecat",
       version: "1.0.3",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~autumnull",
           repo: "treecat",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-UCGx1v+AP9BeAktrniTXctkPp5mprf77fkapdhPWrqg=",
         })))),
       nativeBuildInputs: nix.thunk(() => [hareHook, haredo, scdoc]),
-      env: nix.thunk(() => ({ __proto__: pos$2, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
       dontConfigure: true,
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hareHook, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Serialize a directory to a tree diagram, and vice versa",
         longDescription: "Treecat is an amalgamation of `tree(1)` and `cat(1)`, with the added\nbonus that it can reconstruct its output back into the original filetree.\n",
         homepage: "https://sr.ht/~autumnull/treecat/",

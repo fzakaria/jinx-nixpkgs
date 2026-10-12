@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const mpv = nix.arg($, "mpv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ff2mpv-go",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.clsr.net/util/ff2mpv-go/",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-e/AuOA3isFTyBf97Zwtr16yo49UdYzvktV5PKB/eH/s=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/ff2mpv-go --suffix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [mpv]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Native messaging host for ff2mpv written in Go",
         homepage: "https://git.clsr.net/util/ff2mpv-go/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

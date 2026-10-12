@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gqrx";
       const version = "2.17.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gqrx-sdr",
           repo: "gqrx",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       const dontWrapGApps = true;
       const preFixup = "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software defined radio (SDR) receiver",
         mainProgram: "gqrx",
         longDescription: "Gqrx is a software defined radio receiver powered by GNU Radio and the Qt\nGUI toolkit. It can process I/Q data from many types of input devices,\nincluding Funcube Dongle Pro/Pro+, rtl-sdr, HackRF, and Universal\nSoftware Radio Peripheral (USRP) devices.\n",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

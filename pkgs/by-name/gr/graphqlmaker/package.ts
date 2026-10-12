@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "graphqlmaker",
       version: "0-unstable-2024-05-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xssdoctor",
           repo: "graphqlMaker",
           rev: "ff884ce39156d8458da35c0b0b5d7eb1e1146bb5",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-1mDOqTsQ3kHs3MEWlRcdqhjIRul7um2mfBAxObhoSlE=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to find graphql queries in Javascript files",
         homepage: "https://github.com/xssdoctor/graphqlMaker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -58,31 +58,31 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$48,
+    [nix.POS]: pos$48,
     name: "temporal",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "jpds"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       temporal: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$46,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, cores: 2n })),
+          [nix.POS]: pos$46,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, cores: 2n })),
           networking: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             useDHCP: false,
-            firewall: nix.thunk(() => ({ __proto__: pos$3, allowedTCPPorts: nix.thunk(() => [7233n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedTCPPorts: nix.thunk(() => [7233n]) })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "temporal-hello-workflow.py", nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "temporalio"))]),
                 })), "import asyncio\nfrom concurrent.futures import ThreadPoolExecutor\nfrom dataclasses import dataclass\nfrom datetime import timedelta\n\nfrom temporalio import activity, workflow\nfrom temporalio.client import Client\nfrom temporalio.worker import Worker\n\n\n# While we could use multiple parameters in the activity, Temporal strongly\n# encourages using a single dataclass instead which can have fields added to it\n# in a backwards-compatible way.\n@dataclass\nclass ComposeGreetingInput:\n    greeting: str\n    name: str\n\n\n# Basic activity that logs and does string concatenation\n@activity.defn\ndef compose_greeting(input: ComposeGreetingInput) -> str:\n    activity.logger.info(\"Running activity with parameter %s\" % input)\n    return f\"{input.greeting}, {input.name}!\"\n\n\n# Basic workflow that logs and invokes an activity\n@workflow.defn\nclass GreetingWorkflow:\n    @workflow.run\n    async def run(self, name: str) -> str:\n        workflow.logger.info(\"Running workflow with parameter %s\" % name)\n        return await workflow.execute_activity(\n            compose_greeting,\n            ComposeGreetingInput(\"Hello\", name),\n            start_to_close_timeout=timedelta(seconds=10),\n        )\n\n\nasync def main():\n    # Uncomment the lines below to see logging output\n    # import logging\n    # logging.basicConfig(level=logging.INFO)\n\n    # Start client\n    client = await Client.connect(\"localhost:7233\")\n\n    # Run a worker for the workflow\n    async with Worker(\n        client,\n        task_queue=\"hello-activity-task-queue\",\n        workflows=[GreetingWorkflow],\n        activities=[compose_greeting],\n        # Non-async activities require an executor;\n        # a thread pool executor is recommended.\n        # This same thread pool could be passed to multiple workers if desired.\n        activity_executor=ThreadPoolExecutor(5),\n    ):\n\n        # While the worker is running, use the client to run the workflow and\n        # print out its result. Note, in many production setups, the client\n        # would be in a completely separate process from the worker.\n        result = await client.execute_workflow(\n            GreetingWorkflow.run,\n            \"World\",\n            id=\"hello-activity-workflow-id\",\n            task_queue=\"hello-activity-task-queue\",\n        )\n        print(f\"Result: {result}\")\n\n\nif __name__ == \"__main__\":\n    asyncio.run(main())\n")),
               nix.thunk(() => nix.sel(pkgs_1, "grpc-health-probe")),
@@ -90,19 +90,19 @@ export default nix.lambda((args) => (() => {
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             temporal: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$43,
-                log: nix.thunk(() => ({ __proto__: pos$7, stdout: true, level: "info" })),
+                [nix.POS]: pos$43,
+                log: nix.thunk(() => ({ [nix.POS]: pos$7, stdout: true, level: "info" })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   frontend: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     rpc: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       grpcPort: 7233n,
                       membershipPort: 6933n,
                       bindOnLocalHost: true,
@@ -110,27 +110,27 @@ export default nix.lambda((args) => (() => {
                     })),
                   })),
                   matching: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     rpc: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       grpcPort: 7235n,
                       membershipPort: 6935n,
                       bindOnLocalHost: true,
                     })),
                   })),
                   history: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     rpc: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       grpcPort: 7234n,
                       membershipPort: 6934n,
                       bindOnLocalHost: true,
                     })),
                   })),
                   worker: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     rpc: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       grpcPort: 7239n,
                       membershipPort: 6939n,
                       bindOnLocalHost: true,
@@ -138,28 +138,28 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 persistence: nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   defaultStore: "sqlite-default",
                   visibilityStore: "sqlite-visibility",
                   numHistoryShards: 1n,
                   datastores: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     "sqlite-default": nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       sql: nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         user: "",
                         password: "",
                         pluginName: "sqlite",
                         databaseName: "default",
                         connectAddr: "localhost",
                         connectProtocol: "tcp",
-                        connectAttributes: nix.thunk(() => ({ __proto__: pos$17, mode: "memory", cache: "private" })),
+                        connectAttributes: nix.thunk(() => ({ [nix.POS]: pos$17, mode: "memory", cache: "private" })),
                         maxConns: 1n,
                         maxIdleConns: 1n,
                         maxConnLifetime: "1h",
                         tls: nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           enabled: false,
                           caFile: "",
                           certFile: "",
@@ -170,21 +170,21 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     "sqlite-visibility": nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       sql: nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         user: "",
                         password: "",
                         pluginName: "sqlite",
                         databaseName: "default",
                         connectAddr: "localhost",
                         connectProtocol: "tcp",
-                        connectAttributes: nix.thunk(() => ({ __proto__: pos$21, mode: "memory", cache: "private" })),
+                        connectAttributes: nix.thunk(() => ({ [nix.POS]: pos$21, mode: "memory", cache: "private" })),
                         maxConns: 1n,
                         maxIdleConns: 1n,
                         maxConnLifetime: "1h",
                         tls: nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           enabled: false,
                           caFile: "",
                           certFile: "",
@@ -197,15 +197,15 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 clusterMetadata: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   enableGlobalNamespace: false,
                   failoverVersionIncrement: 10n,
                   masterClusterName: "active",
                   currentClusterName: "active",
                   clusterInformation: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     active: nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       enabled: true,
                       initialFailoverVersion: 1n,
                       rpcName: "frontend",
@@ -214,40 +214,40 @@ export default nix.lambda((args) => (() => {
                     })),
                   })),
                 })),
-                dcRedirectionPolicy: nix.thunk(() => ({ __proto__: pos$30, policy: "noop" })),
+                dcRedirectionPolicy: nix.thunk(() => ({ [nix.POS]: pos$30, policy: "noop" })),
                 archival: nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   history: nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     state: "enabled",
                     enableRead: true,
                     provider: nix.thunk(() => ({
-                      __proto__: pos$33,
-                      filestore: nix.thunk(() => ({ __proto__: pos$31, fileMode: "0666", dirMode: "0766" })),
-                      gstorage: nix.thunk(() => ({ __proto__: pos$32, credentialsPath: "/tmp/gcloud/keyfile.json" })),
+                      [nix.POS]: pos$33,
+                      filestore: nix.thunk(() => ({ [nix.POS]: pos$31, fileMode: "0666", dirMode: "0766" })),
+                      gstorage: nix.thunk(() => ({ [nix.POS]: pos$32, credentialsPath: "/tmp/gcloud/keyfile.json" })),
                     })),
                   })),
                   visibility: nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     state: "enabled",
                     enableRead: true,
                     provider: nix.thunk(() => ({
-                      __proto__: pos$36,
-                      filestore: nix.thunk(() => ({ __proto__: pos$35, fileMode: "0666", dirMode: "0766" })),
+                      [nix.POS]: pos$36,
+                      filestore: nix.thunk(() => ({ [nix.POS]: pos$35, fileMode: "0666", dirMode: "0766" })),
                     })),
                   })),
                 })),
                 namespaceDefaults: nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   archival: nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     history: nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       state: "disabled",
                       URI: "file:///tmp/temporal_archival/development",
                     })),
                     visibility: nix.thunk(() => ({
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       state: "disabled",
                       URI: "file:///tmp/temporal_vis_archival/development",
                     })),

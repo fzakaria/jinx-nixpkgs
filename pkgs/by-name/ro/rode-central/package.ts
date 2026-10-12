@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gzip = nix.arg($, "gzip");
   const xar = nix.arg($, "xar");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rode-central",
       version: "2.0.101-212",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20250730140348/https://update.rode.com/central/RODE_Central_MACOS.zip",
           hash: "sha256-qgOosVOETeIbKBUhRvp2WGaO0mWEceOjtahF0fYrZ1E=",
         })))),
@@ -35,7 +35,7 @@ runHook postUnpack
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\nmv Applications/RODE\\ Central.app $out/Applications\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Companion app for configuring compatible RØDE devices, unlocking advanced features, enabling or disabling functions and updating firmware",
         homepage: "https://rode.com/en-us/apps/rode-central",
         changelog: "https://rode.com/en-us/release-notes/rode-central",

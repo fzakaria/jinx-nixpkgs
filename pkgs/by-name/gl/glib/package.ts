@@ -54,23 +54,23 @@ export default nix.lambda((args) => (() => {
   const libsysprof_capture = nix.arg($, "libsysprof-capture");
   const mesonEmulatorHook = nix.arg($, "mesonEmulatorHook");
   const withIntrospection = nix.argOr($, "withIntrospection", () => (nix.asBool((nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages)) && nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gobject_introspection)))) && nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "isLittleEndian"), nix.sel(stdenv, "buildPlatform", "isLittleEndian")))));
-  const glib_untested = nix.thunk(() => nix.app(nix.sel(glib, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$1, doCheck: false }))));
-  const dbus$ = nix.thunk(() => nix.app(nix.sel(dbus, "override"), nix.thunk(() => ({ __proto__: pos$2, enableSystemd: false }))));
-  const shared_mime_info$ = nix.thunk(() => nix.app(nix.sel(shared_mime_info, "override"), nix.thunk(() => ({ __proto__: pos$3, glib: glib_untested }))));
-  const desktop_file_utils$ = nix.thunk(() => nix.app(nix.sel(desktop_file_utils, "override"), nix.thunk(() => ({ __proto__: pos$4, glib: glib_untested }))));
-  const gobject_introspection$ = nix.thunk(() => nix.app(nix.sel(buildPackages, "gobject-introspection", "override"), nix.thunk(() => ({ __proto__: pos$5, propagateFullGlib: false, x11Support: false }))));
+  const glib_untested = nix.thunk(() => nix.app(nix.sel(glib, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1, doCheck: false }))));
+  const dbus$ = nix.thunk(() => nix.app(nix.sel(dbus, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableSystemd: false }))));
+  const shared_mime_info$ = nix.thunk(() => nix.app(nix.sel(shared_mime_info, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, glib: glib_untested }))));
+  const desktop_file_utils$ = nix.thunk(() => nix.app(nix.sel(desktop_file_utils, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, glib: glib_untested }))));
+  const gobject_introspection$ = nix.thunk(() => nix.app(nix.sel(buildPackages, "gobject-introspection", "override"), nix.thunk(() => ({ [nix.POS]: pos$5, propagateFullGlib: false, x11Support: false }))));
   const librarySuffix = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "extensions", "library"), ".so")) ? "2.0.so.0" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "extensions", "library"), ".dylib")) ? "2.0.0.dylib" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "extensions", "library"), ".a")) ? "2.0.a" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "extensions", "library"), ".dll")) ? "2.0-0.dll" : "2.0-0.lib")))));
   const systemtap$ = nix.thunk(() => nix.sel(buildPackages, "systemtap-sdt"));
   const withDtrace = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")), systemtap$)) && nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), libsystemtap))));
   const withSysprofCapture = nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "glib",
       version: "2.88.3",
       outputs: nix.thunk(() => ["bin", "out", "dev", "devdoc"]),
       setupHook: nix.path(here, "./setup-hook.sh"),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/glib/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/glib-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-qyTSTmmN+h5Ai3vNtQj0qvyQYYWouM5y/febu9ybODs=",
         })))),
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "sysprof", withSysprofCapture)),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ["-Dxattr=false"])))),
       env: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=nonnull", "-DG_DISABLE_CAST_CHECKS"]))),
         DETERMINISTIC_BUILD: 1n,
       })),
@@ -159,13 +159,13 @@ rm $out/lib/libglib-${librarySuffix}
         const getSchemaPath = (pkg) => nix.app(makeSchemaPath, pkg, nix.thunk(() => nix.sel(pkg, "name")));
         const getSchemaDataDirPath = (pkg) => nix.app(makeSchemaDataDirPath, pkg, nix.thunk(() => nix.sel(pkg, "name")));
         const tests = nix.thunk(() => ({
-          __proto__: pos$9,
-          withChecks: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ __proto__: pos$8, doCheck: true }))),
+          [nix.POS]: pos$9,
+          withChecks: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ [nix.POS]: pos$8, doCheck: true }))),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         }));
-        const updateScript = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$10, packageName: "glib", versionPolicy: "odd-unstable" }))));
+        const updateScript = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$10, packageName: "glib", versionPolicy: "odd-unstable" }))));
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           gioModuleDir,
           makeSchemaDataDirPath,
           makeSchemaPath,
@@ -177,7 +177,7 @@ rm $out/lib/libglib-${librarySuffix}
       })()),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "C library of programming buildings blocks",
         homepage: "https://gitlab.gnome.org/GNOME/glib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

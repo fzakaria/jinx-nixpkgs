@@ -57,17 +57,17 @@ export default nix.lambda((args) => (() => {
   const libnoise = nix.arg($, "libnoise");
   const withSystemd = nix.argOr($, "withSystemd", () => nix.sel(clangStdenv, "hostPlatform", "isLinux"));
   const withNvidiaGLWorkaround = nix.argOr($, "withNvidiaGLWorkaround", () => false);
-  const wxGTK$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(wxwidgets_3_3, "override"), nix.thunk(() => ({ __proto__: pos$1, withPrivateFonts: true, withWebKit: true, withEGL: true }))), "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+  const wxGTK$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(wxwidgets_3_3, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withPrivateFonts: true, withWebKit: true, withEGL: true }))), "overrideAttrs"), (old) => ({
+      [nix.POS]: pos$2,
       buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [libsecret])),
       configureFlags: nix.thunk(() => nix.concat(nix.sel(old, "configureFlags"), ["--enable-debug=no", "--enable-secretstore"])),
     })));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "orca-slicer",
       version: "2.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "OrcaSlicer",
           repo: "OrcaSlicer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([
         binutils,
         nix.thunk(() => nix.app(nix.sel(boost186, "override"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enableShared: true,
             enableStatic: false,
             extraFeatures: nix.thunk(() => ["log", "thread", "filesystem"]),
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(gst_all_1, "gstreamer")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-bad")),
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ __proto__: pos$5, gtkSupport: true })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$5, gtkSupport: true })))),
         gtk3,
         hicolor_icon_theme,
         libsecret,
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./patches/0001-not-for-upstream-CMakeLists-Link-against-webkit2gtk-.patch"),
         nix.path(here, "./patches/dont-link-opencv-world-orca.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "pr-7650-configurable-update-check.patch",
             url: "https://github.com/OrcaSlicer/OrcaSlicer/commit/300df7c99b0a2173f645c8bf40e8758eb5f2c486.patch",
             hash: "sha256-hgQeagPhS3aNQoFSq0S+Ch60ygm81uHMIvGopw/AZT8=",
@@ -133,7 +133,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [gtest]),
       separateDebugInfo: true,
       env: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         NLOPT: nlopt,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-ignored-attributes",
@@ -184,7 +184,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "rm $out/LICENSE.txt\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "G-code generator for 3D printers (Bambu, Prusa, Voron, VzBot, RatRig, Creality, etc.)",
         homepage: "https://github.com/OrcaSlicer/OrcaSlicer",
         changelog: nix.thunk(() => nix.str`https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/v${nix.sel(finalAttrs, "version")}`),

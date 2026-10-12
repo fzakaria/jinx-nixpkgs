@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JakobDev",
           repo: "desktop-entry-lib",
           rev: version,
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["desktop_entry_lib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Allows reading and writing .desktop files according to the Desktop Entry Specification",
         homepage: "https://codeberg.org/JakobDev/desktop-entry-lib",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/JakobDev/desktop-entry-lib/releases/tag/${version}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -58,104 +58,104 @@ fallback_local_ip=${nix.app(boolToYesNo, nix.thunk(() => nix.sel(cfg, "fallbackL
 accept_env_factor=${nix.app(boolToYesNo, nix.thunk(() => nix.sel(cfg, "acceptEnvFactor")))}
 `));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["security", "duosec", "group"]), nix.thunk(() => ["security", "duosec", "groups"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["security", "duosec", "ikey"]), nix.thunk(() => ["security", "duosec", "integrationKey"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["security", "duosec", "skey"]), "The insecure security.duosec.skey option has been replaced by a new security.duosec.secretKeyFile option. Use this new option to store a secure copy of your key instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       security: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         duosec: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           ssh: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "If enabled, protect SSH logins with Duo Security.",
               })))),
           })),
           pam: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "If enabled, protect logins with Duo Security using PAM support.",
               })))),
           })),
           integrationKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Integration key.",
             })))),
           secretKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "A file containing your secret key. The security of your Duo application is tied to the security of your secret key.\n",
               example: "/run/keys/duo-skey",
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Duo API hostname.",
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               example: "users,!wheel,!*admin guests",
               description: "If specified, Duo authentication is required only for users\nwhose primary group or supplementary group list matches one\nof the space-separated pattern lists. Refer to\n<https://duo.com/docs/duounix> for details.\n",
             })))),
           failmode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["safe", "secure"]))),
               default: "safe",
               description: "On service or configuration errors that prevent Duo\nauthentication, fail \"safe\" (allow access) or \"secure\" (deny\naccess). The default is \"safe\".\n",
             })))),
           pushinfo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Include information such as the command to be executed in\nthe Duo Push message.\n",
             })))),
           autopush: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If `true`, Duo Unix will automatically send\na push login request to the user’s phone, falling back on a\nphone call if push is unavailable. If\n`false`, the user will be prompted to\nchoose an authentication method. When configured with\n`autopush = yes`, we recommend setting\n`prompts = 1`.\n",
             })))),
           motd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Print the contents of `/etc/motd` to screen\nafter a successful login.\n",
             })))),
           prompts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [1n, 2n, 3n]))),
               default: 3n,
               description: "If a user fails to authenticate with a second factor, Duo\nUnix will prompt the user to authenticate again. This option\nsets the maximum number of prompts that Duo Unix will\ndisplay before denying access. Must be 1, 2, or 3. Default\nis 3.\n\nFor example, when `prompts = 1`, the user\nwill have to successfully authenticate on the first prompt,\nwhereas if `prompts = 2`, if the user\nenters incorrect information at the initial prompt, he/she\nwill be prompted to authenticate again.\n\nWhen configured with `autopush = true`, we\nrecommend setting `prompts = 1`.\n",
             })))),
           acceptEnvFactor: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Look for factor selection or passcode in the\n`$DUO_PASSCODE` environment variable before\nprompting the user for input.\n\nWhen $DUO_PASSCODE is non-empty, it will override\nautopush. The SSH client will need SendEnv DUO_PASSCODE in\nits configuration, and the SSH server will similarly need\nAcceptEnv DUO_PASSCODE.\n",
             })))),
           fallbackLocalIP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Duo Unix reports the IP address of the authorizing user, for\nthe purposes of authorization and whitelisting. If Duo Unix\ncannot detect the IP address of the client, setting\n`fallbackLocalIP = yes` will cause Duo Unix\nto send the IP address of the server it is running on.\n\nIf you are using IP whitelisting, enabling this option could\ncause unauthorized logins if the local IP is listed in the\nwhitelist.\n",
             })))),
           allowTcpForwarding: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "By default, when SSH forwarding, enabling Duo Security will\ndisable TCP forwarding. By enabling this, you potentially\nundermine some of the SSH based login security. Note this is\nnot needed if you use PAM.\n",
@@ -164,17 +164,17 @@ accept_env_factor=${nix.app(boolToYesNo, nix.thunk(() => nix.sel(cfg, "acceptEnv
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "ssh", "enable")) || nix.asBool(nix.sel(cfg, "pam", "enable")))), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         environment: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "duo-unix"))]),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             login_duo: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               setuid: true,
               owner: "root",
               group: "root",
@@ -183,15 +183,15 @@ accept_env_factor=${nix.app(boolToYesNo, nix.thunk(() => nix.sel(cfg, "acceptEnv
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             "login-duo": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ssh", "enable")), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 wantedBy: nix.thunk(() => ["sysinit.target"]),
                 before: nix.thunk(() => ["sysinit.target", "shutdown.target"]),
                 conflicts: nix.thunk(() => ["shutdown.target"]),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$24, DefaultDependencies: false })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$24, DefaultDependencies: false })),
                 script: nix.thunk(() => nix.str`if test -f "${nix.sel(cfg, "secretKeyFile")}"; then
   mkdir -p /etc/duo
   chmod 0755 /etc/duo
@@ -209,11 +209,11 @@ fi
 `),
               })))),
             "pam-duo": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ssh", "enable")), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 wantedBy: nix.thunk(() => ["sysinit.target"]),
                 before: nix.thunk(() => ["sysinit.target", "shutdown.target"]),
                 conflicts: nix.thunk(() => ["shutdown.target"]),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$26, DefaultDependencies: false })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$26, DefaultDependencies: false })),
                 script: nix.thunk(() => nix.str`if test -f "${nix.sel(cfg, "secretKeyFile")}"; then
   mkdir -p /etc/duo
   chmod 0755 /etc/duo
@@ -232,9 +232,9 @@ fi
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           openssh: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "ssh", "enable")) || nix.asBool(nix.sel(cfg, "pam", "enable")))), nix.thunk(() => (nix.asBool(nix.sel(cfg, "pam", "enable")) ? "UseDNS no" : nix.str`# Duo Security configuration
 ForceCommand ${nix.sel(config, "security", "wrapperDir")}/login_duo
 PermitTunnel no

@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
     "-Wno-implicit-void-ptr-cast",
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "unity-test",
       version: "2.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ThrowTheSwitch",
           repo: "Unity",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,12 +48,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://patch-diff.githubusercontent.com/raw/ThrowTheSwitch/Unity/pull/771.patch?full_index=1",
             hash: "sha256-b1TGYkqeAVbYftN5/YBdiFB7EsSh56S8PCx53fY8lDo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://patch-diff.githubusercontent.com/raw/ThrowTheSwitch/Unity/pull/790.patch?full_index=1",
             hash: "sha256-N3DVkSuhZUA+9RIynPwuISf4XkVSA2eNqJqrt67XOhA=",
           })))),
@@ -77,20 +77,20 @@ runHook postCheck
 `),
       postInstall: "mkdir -p \"$out/share\"\ninstall -Dm755 ../auto/* -t \"$out/share/\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           iniparser: iniparser,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Unity Unit Testing Framework",
         homepage: "https://www.throwtheswitch.org/unity",
         changelog: nix.thunk(() => nix.str`https://github.com/ThrowTheSwitch/Unity/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "collabora-online",
       version: "25.04.12-4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CollaboraOnline",
           repo: "online.mirror",
           tag: nix.thunk(() => nix.str`cp-${nix.sel(finalAttrs, "version")}`),
@@ -70,16 +70,16 @@ substituteInPlace configure.ac --replace-fail '/usr/bin/env python3' python3
 `),
       postInstall: "cp etc/ca-chain.cert.pem etc/cert.pem etc/key.pem $out/etc/coolwsd\n",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           unpackPhase: "true",
           postPatch: nix.thunk(() => nix.str`cp ${nix.path(here, "./package-lock.json")} package-lock.json
 `),
           hash: "sha256-7lOmv5NOYCf9lF9+To+ha9oIgbX3haTd/zo1iArQBBs=",
         })))),
       npmRoot: "browser",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, libreoffice: libreoffice_collabora })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, libreoffice: libreoffice_collabora })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Collaborative online office suite based on LibreOffice technology",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "xzfc"))]),

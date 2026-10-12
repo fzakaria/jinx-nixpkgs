@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wayland_protocols = nix.arg($, "wayland-protocols");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wlsunset",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~kennylevinsen",
           repo: "wlsunset",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, pkg_config, ninja, wayland_scanner, scdoc]),
       buildInputs: nix.thunk(() => [wayland, wayland_protocols]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Day/night gamma adjustments for Wayland",
         longDescription: "Day/night gamma adjustments for Wayland compositors supporting\nwlr-gamma-control-unstable-v1.\n",
         homepage: "https://sr.ht/~kennylevinsen/wlsunset/",

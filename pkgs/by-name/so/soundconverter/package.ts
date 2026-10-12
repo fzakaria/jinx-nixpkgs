@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.6";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kassoulet",
           repo: "soundconverter",
           tag: version,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-good")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-ugly")),
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-bad", "override"), nix.thunk(() => ({ __proto__: pos$2, faacSupport: faacSupport })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-bad", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, faacSupport: faacSupport })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [intltool, wrapGAppsHook3, gobject_introspection]);
       const dependencies = nix.thunk(() => (() => {
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace  bin/soundconverter --replace \\\n  \"DATA_PATH = os.path.join(SOURCE_PATH, 'data')\" \\\n  \"DATA_PATH = '$out/share/soundconverter'\"\n";
       const preCheck = nix.thunk(() => (() => {
         const self = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           outPath: "$out",
           name: nix.thunk(() => nix.str`${pname}-${version}`),
         }));
@@ -74,7 +74,7 @@ sed -i '49 a\\    @unittest.skip("Gio.file_parse_name issues")' tests/testcases/
       const dontWrapGApps = true;
       const preFixup = "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://soundconverter.org/",
         description: "Leading audio file converter for the GNOME Desktop",
         mainProgram: "soundconverter",
@@ -90,7 +90,7 @@ sed -i '49 a\\    @unittest.skip("Gio.file_parse_name issues")' tests/testcases/
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         format,

@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "dnscache"));
-  const dnscache_root = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "dnscache-root", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out/{servers,ip}
+  const dnscache_root = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "dnscache-root", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out/{servers,ip}
 
 ${nix.app(nix.sel(lib, "concatMapStrings"), (ip) => nix.str`touch "$out/ip/"${nix.app(nix.sel(lib, "escapeShellArg"), ip)}
 `, nix.thunk(() => nix.sel(cfg, "clientIps")))}
@@ -50,42 +50,42 @@ if [ ! -e $out/servers/@ ]; then
 fi
 `)));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         dnscache: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to run the dnscache caching dns server.",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "djbdns", nix.thunk(() => ({})))),
           ip: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "0.0.0.0",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "IP address on which to listen for connections.",
             })))),
           clientIps: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: nix.thunk(() => ["127.0.0.1"]),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Client IP addresses (or prefixes) from which to accept connections.",
               example: nix.thunk(() => ["192.168", "172.23.75.82"]),
             })))),
           domainServers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               description: "Table of {hostname: server} pairs to use as authoritative servers for hosts (and subhosts).\nIf entry for @ is not specified predefined list of root servers is used.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"@\" = [\"8.8.8.8\" \"8.8.4.4\"];\n  \"example.com\" = [\"192.168.100.100\"];\n}\n")),
             })))),
           forwardOnly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to treat root servers (for @) as caching\nservers, requesting addresses the same way a client does. This is\nneeded if you want to use e.g. Google DNS as your upstream DNS.\n",
@@ -94,25 +94,25 @@ fi
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "dnscache", "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           users: nix.thunk(() => ({
-            __proto__: pos$12,
-            dnscache: nix.thunk(() => ({ __proto__: pos$11, isSystemUser: true, group: "dnscache" })),
+            [nix.POS]: pos$12,
+            dnscache: nix.thunk(() => ({ [nix.POS]: pos$11, isSystemUser: true, group: "dnscache" })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$13, dnscache: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$13, dnscache: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             dnscache: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "djbdns dnscache server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => (() => {
@@ -124,11 +124,11 @@ fi
                 ];
               })()),
               environment: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 FORWARDONLY: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "forwardOnly")), "1")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 StateDirectory: "dnscache",
                 WorkingDirectory: "/var/lib/dnscache",
                 ExecStartPre: nix.thunk(() => [

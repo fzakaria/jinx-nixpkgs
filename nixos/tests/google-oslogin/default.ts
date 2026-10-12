@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   const ssh_config = nix.thunk(() => nix.builtins.toFile("ssh.conf", "UserKnownHostsFile=/dev/null\nStrictHostKeyChecking=no\nIdentityFile=~/.ssh/id_snakeoil\n"));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     name: "google-oslogin",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       server: nix.path(here, "./server.nix"),
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);

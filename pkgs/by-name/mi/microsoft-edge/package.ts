@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
   const libuuid = nix.arg($, "libuuid");
   const withSymlink = nix.argOr($, "withSymlink", () => true);
   const pname = "microsoft-edge";
-  const opusWithCustomModes = nix.thunk(() => nix.app(nix.sel(libopus, "override"), nix.thunk(() => ({ __proto__: pos$1, withCustomModes: true }))));
+  const opusWithCustomModes = nix.thunk(() => nix.app(nix.sel(libopus, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCustomModes: true }))));
   const deps = nix.thunk(() => nix.concat([
     alsa_lib,
     at_spi2_atk,
@@ -168,12 +168,12 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(kdePackages, "breeze")),
     ]))))));
   const linux = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       meta: meta,
       version: "154.0.4258.62",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/microsoft-edge-stable_${nix.sel(finalAttrs, "version")}-1_amd64.deb`),
           hash: "sha256-9CXepZ8Ki6wAIBaFoHDpR1Q8V9E1wTC6c+CGPPLFBrE=",
         })))),
@@ -249,25 +249,25 @@ runHook postInstall
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withSymlink, "ln -s $out/bin/microsoft-edge-stable $out/bin/microsoft-edge\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
     })));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: pname,
       meta: meta,
       version: "154.0.4258.62",
       uuid: "0f45f474-1930-45f2-aec6-2c58136eb0fd",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           url: nix.thunk(() => nix.str`https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/${nix.sel(finalAttrs, "uuid")}/MicrosoftEdge-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-kPWWjoDJIU7+2i+lZlebfhurZj/hGtCXlktWWM5ApMA=",
         })))),
@@ -292,19 +292,19 @@ runHook postInstall
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withSymlink, "ln -s $out/bin/microsoft-edge-stable $out/bin/microsoft-edge\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
     })));
   const meta = nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     description: "Web browser from Microsoft",
     homepage: "https://www.microsoft.com/en-us/edge",
     changelog: "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel",

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zopefoundation",
           repo: "zope.hookable",
           tag: version,
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const unittestFlagsArray = nix.thunk(() => ["src/zope/hookable/tests"]);
       const pythonNamespaces = nix.thunk(() => ["zope"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Supports the efficient creation of “hookable” objects",
         homepage: "https://github.com/zopefoundation/zope.hookable",
         changelog: nix.thunk(() => nix.str`https://github.com/zopefoundation/zope.hookable/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "zpl21")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

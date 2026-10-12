@@ -18,21 +18,21 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const patchPrefix = "https://web.archive.org/web/20220422205751/https://github.com/samuelgrf/kjv/commit/";
   const add_apocrypha = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.add(patchPrefix, "0856fa0d37b45de0d6b47d163b5ea9a0b7f2c061.patch")),
       sha256: "1jkajdg4wvpbbwc5mn37i4c8nfis4z0pv5rl7gqs0laj0gpj7jn8",
     }))));
   const add_install_target = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.add(patchPrefix, "50a83256ee45430fb06b7aea1945dd91c6813bc3.patch")),
       sha256: "0bv9yma67jdj496a6vn6y007c9gwjpg3rzld1i9m9y9xmlzq4yzv",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "kjv",
       version: "0-unstable-2021-03-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "layeh",
           repo: "kjv",
           rev: "108595dcbb9bb12d40e0309f029b6fb3ccd81309",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [readline]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Bible, King James Version",
         homepage: "https://github.com/layeh/kjv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

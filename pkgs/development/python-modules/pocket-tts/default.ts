@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const soundfile = nix.arg($, "soundfile");
   const torchao = nix.arg($, "torchao");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pocket-tts",
       version: "3.3.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kyutai-labs",
           repo: "pocket-tts",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,14 +63,14 @@ export default nix.lambda((args) => (() => {
         uvicorn,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         audio: nix.thunk(() => [soundfile]),
         quantize: nix.thunk(() => [torchao]),
       })),
       pythonImportsCheck: nix.thunk(() => ["pocket_tts"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight text-to-speech (TTS) application designed to run efficiently on CPUs",
         homepage: "https://github.com/kyutai-labs/pocket-tts",
         changelog: nix.thunk(() => nix.str`https://github.com/kyutai-labs/pocket-tts/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

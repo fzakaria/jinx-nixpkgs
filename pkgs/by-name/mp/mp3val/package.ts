@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mp3val",
       version: "0.1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/mp3val/mp3val-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           sha256: "17y3646ghr38r620vkrxin3dksxqig5yb3nn4cfv6arm7kz6x8cm",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "install -Dv mp3val \"$out/bin/mp3val\"\n",
       hardeningDisable: nix.thunk(() => ["fortify"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for validating and repairing MPEG audio streams",
         longDescription: "MP3val is a small, high-speed, free software tool for checking MPEG audio\nfiles' integrity. It can be useful for finding corrupted files (e.g.\nincompletely downloaded, truncated, containing garbage). MP3val is\nalso able to fix most of the problems. Being a multiplatform application,\nMP3val can be run both under Windows and under Linux (or BSD). The most\ncommon MPEG audio file type is MPEG 1 Layer III (mp3), but MP3val supports\nalso other MPEG versions and layers. The tool is also aware of the most\ncommon types of tags (ID3v1, ID3v2, APEv2).\n",
         homepage: "https://mp3val.sourceforge.net/index.shtml",

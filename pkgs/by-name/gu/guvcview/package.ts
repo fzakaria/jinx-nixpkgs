@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const wrapGAppsHook3 = nix.argOr($, "wrapGAppsHook3", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guvcview",
       version: "2.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/guvcview/source/guvcview-src-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-ahsTSLmeedqVeg2eI3OVpUdXoJ234MCAn2wwZotp2js=",
         })))),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), pulseaudioSupport, nix.thunk(() => [libpulseaudio])), nix.concat(nix.app(nix.sel(lib, "optionals"), useGtk, nix.thunk(() => [gtk3])), nix.app(nix.sel(lib, "optionals"), useQt, nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtbase"))])))))),
       configureFlags: nix.thunk(() => nix.concat(["--enable-sfml"], nix.concat(nix.app(nix.sel(lib, "optionals"), useGtk, nix.thunk(() => ["--enable-gtk3"])), nix.app(nix.sel(lib, "optionals"), useQt, nix.thunk(() => ["--enable-qt5"]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple interface for devices supported by the linux UVC driver",
         mainProgram: "guvcview",
         homepage: "https://guvcview.sourceforge.net",

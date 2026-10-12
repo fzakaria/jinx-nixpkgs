@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const taler_exchange = nix.arg($, "taler-exchange");
   const taler_merchant = nix.arg($, "taler-merchant");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "taler-mdb",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git-www.taler.net/taler-mdb.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           fetchSubmodules: true,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git-www.taler.net/taler-mdb.git",
         description: "Sales integration with the Multi-Drop-Bus of Snack machines, NFC readers and QR code display",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

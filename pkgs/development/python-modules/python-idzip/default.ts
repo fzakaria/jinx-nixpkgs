@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bauman",
           repo: "python-idzip",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTests = nix.thunk(() => ["test_bufferedio_compat"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Seekable, gzip compatible, compression format",
         mainProgram: "idzip",
         homepage: "https://github.com/bauman/python-idzip",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

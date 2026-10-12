@@ -23,37 +23,37 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const moduleWithoutKey = nix.thunk(() => ({
-    __proto__: pos$2,
-    config: nix.thunk(() => ({ __proto__: pos$1, raw: "pear" })),
+    [nix.POS]: pos$2,
+    config: nix.thunk(() => ({ [nix.POS]: pos$1, raw: "pear" })),
   }));
   const moduleWithKey = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     key: nix.thunk(() => nix.add(nix.sel({ file: nix.add(here, "/merge-module-with-key.nix"), line: 12n, column: 11n }, "file"), "#moduleWithKey")),
-    config: nix.thunk(() => ({ __proto__: pos$3, raw: "pear" })),
+    config: nix.thunk(() => ({ [nix.POS]: pos$3, raw: "pear" })),
   }));
   const decl = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
-      raw: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$5, type: nix.thunk(() => nix.sel(types, "lines")) })))),
+      [nix.POS]: pos$6,
+      raw: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$5, type: nix.thunk(() => nix.sel(types, "lines")) })))),
     })),
   }));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       once: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               imports: nix.thunk(() => [decl, moduleWithKey, moduleWithKey]),
             })))),
           default: nix.thunk(() => ({})),
         })))),
       twice: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               imports: nix.thunk(() => [decl, moduleWithoutKey, moduleWithoutKey]),
             })))),
           default: nix.thunk(() => ({})),

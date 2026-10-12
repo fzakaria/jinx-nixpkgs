@@ -24,16 +24,16 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "i2c"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       hardware: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         i2c: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "i2c devices support. By default access is granted to users in the \"i2c\"\ngroup (will be created if non-existent) and any user with a seat, meaning\nlogged on the computer locally\n")),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "i2c",
               description: "Grant access to i2c devices (/dev/i2c-*) to users in this group.\n",
@@ -42,18 +42,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
-        boot: nix.thunk(() => ({ __proto__: pos$5, kernelModules: nix.thunk(() => ["i2c-dev"]) })),
+        [nix.POS]: pos$11,
+        boot: nix.thunk(() => ({ [nix.POS]: pos$5, kernelModules: nix.thunk(() => ["i2c-dev"]) })),
         users: nix.thunk(() => ({
-          __proto__: pos$7,
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "i2c")), nix.thunk(() => ({ __proto__: pos$6, i2c: nix.thunk(() => ({})) })))),
+          [nix.POS]: pos$7,
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "i2c")), nix.thunk(() => ({ [nix.POS]: pos$6, i2c: nix.thunk(() => ({})) })))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           udev: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             packages: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   name: "i2c-udev-rules",
                   text: nix.thunk(() => nix.str`# allow group ${nix.sel(cfg, "group")} and users with a seat use of i2c devices
 ACTION!="remove", KERNEL=="i2c-[0-9]*", TAG+="uaccess", GROUP="${nix.sel(cfg, "group")}", MODE="660"
@@ -64,7 +64,7 @@ ACTION!="remove", KERNEL=="i2c-[0-9]*", TAG+="uaccess", GROUP="${nix.sel(cfg, "g
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rnhmjoj"))]),
     })),
   };

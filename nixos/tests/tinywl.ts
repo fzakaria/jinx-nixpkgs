@@ -26,27 +26,27 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "tinywl",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            getty: nix.thunk(() => ({ __proto__: pos$2, autologinUser: "alice" })),
+            [nix.POS]: pos$3,
+            getty: nix.thunk(() => ({ [nix.POS]: pos$2, autologinUser: "alice" })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$5,
-            polkit: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+            [nix.POS]: pos$5,
+            polkit: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -57,20 +57,20 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           hardware: nix.thunk(() => ({
-            __proto__: pos$8,
-            graphics: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+            [nix.POS]: pos$8,
+            graphics: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
           })),
           programs: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             bash: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               loginShellInit: "if [ \"$(tty)\" = \"/dev/tty1\" ]; then\n  set -e\n  test ! -e /tmp/tinywl.log # Only start tinywl once\n  readonly TEST_CMD=\"wayland-info |& tee /tmp/test-wayland.out && touch /tmp/test-wayland-exit-ok; read\"\n  readonly FOOT_CMD=\"foot sh -c '$TEST_CMD'\"\n  tinywl -s \"$FOOT_CMD\" |& tee /tmp/tinywl.log\n  touch /tmp/tinywl-exit-ok\nfi\n",
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             qemu: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               options: nix.thunk(() => ["-vga none -device virtio-gpu-pci"]),
             })),
           })),

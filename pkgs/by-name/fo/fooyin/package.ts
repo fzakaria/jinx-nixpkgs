@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const pluginSelection = nix.argOr($, "pluginSelection", () => "");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fooyin",
       version: "0.12.6",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fooyin",
           repo: "fooyin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,9 +80,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "INSTALL_FHS", true)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "PLUGIN_SELECTION", pluginSelection)),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LANG: "C.UTF-8" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Customisable music player",
         homepage: "https://www.fooyin.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/fooyin/fooyin/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "v4l2loopback";
       const version = "0.15.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "umlaeute",
           repo: "v4l2loopback",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
         "v4l2loopback.ko",
       ]));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Kernel module to create V4L2 loopback devices",
         mainProgram: "v4l2loopback-ctl",
         homepage: "https://github.com/umlaeute/v4l2loopback",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         outputsToInstall: nix.thunk(() => ["out"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

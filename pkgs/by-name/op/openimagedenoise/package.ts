@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const onetbb = nix.arg($, "onetbb");
   const xcodebuild = nix.arg($, "xcodebuild");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openimagedenoise",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/RenderKit/oidn/releases/download/v${nix.sel(finalAttrs, "version")}/oidn-${nix.sel(finalAttrs, "version")}.src.tar.gz`),
           hash: "sha256-SM0Bn4qgeqRJAXr2MMjNjfWJVTcciERZxMHiyx4Z1hA=",
         })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "TBB_ROOT", nix.thunk(() => nix.str`${onetbb}`))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.openimagedenoise.org",
         description: "High-Performance Denoising Library for Ray Tracing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

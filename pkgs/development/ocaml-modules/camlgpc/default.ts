@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pname = "camlgpc";
   const version = "1.2";
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "johnwhitington",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "camlgpc-pr-5-switch-to-dune",
             url: "https://github.com/johnwhitington/camlgpc/pull/5.diff",
             hash: "sha256-znm+mX60RwYNCYXwm9HYCO8BRbzUM0Bm6dI1f1FzncA=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OCaml interface to Alan Murta's General Polygon Clipper",
         homepage: "https://github.com/johnwhitington/camlgpc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

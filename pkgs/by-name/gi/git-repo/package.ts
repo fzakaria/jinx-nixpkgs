@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const less = nix.arg($, "less");
   const openssh = nix.arg($, "openssh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "git-repo",
       version: "2.68.1",
       src: nix.thunk(() => nix.app(fetchFromGitiles, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://android.googlesource.com/tools/repo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-RtwxFBshaY80aK3X0wkZjhrMLKSxbfq/1gY3R2B8mrA=",
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/repo --prefix PATH ":" \\
   "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git, gnupg, less, openssh]))}"
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Android's repo management tool",
         longDescription: "Repo is a Python script based on Git that helps manage many Git\nrepositories, does the uploads to revision control systems, and automates\nparts of the development workflow. Repo is not meant to replace Git, only\nto make it easier to work with Git.\n",
         homepage: "https://android.googlesource.com/tools/repo",

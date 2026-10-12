@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bicep";
       const version = "0.47.16";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Azure",
           repo: "bicep",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const dotnetTestFlags = "-p:UseAppHost=false";
       const testProjectFile = "src/Bicep.Cli.UnitTests/Bicep.Cli.UnitTests.csproj";
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./updater.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./updater.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Domain Specific Language (DSL) for deploying Azure resources declaratively",
         homepage: "https://github.com/Azure/bicep/",
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/bicep/releases/tag/v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "bicep",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

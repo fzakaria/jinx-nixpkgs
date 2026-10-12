@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const withCuda = nix.argOr($, "withCuda", () => nix.sel(config, "cudaSupport"));
   const hwloc = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "hwloc",
       version: "2.2.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.open-mpi.org/release/hwloc/v${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/hwloc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ZgHkj1kJR9Fk1UD8Vv0syKZk7kba81nr+OjdmyAJfMU=",
         })))),
@@ -60,13 +60,13 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "lib", "dev", "doc", "man"]),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "firestarter",
       version: "2.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "tud-zih-energy",
           repo: "FIRESTARTER",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -97,7 +97,7 @@ substituteInPlace lib/json/CMakeLists.txt \\
         nix.thunk(() => nix.sel(cudaPackages, "libcurand")),
       ] : [nix.thunk(() => nix.sel(glibc, "static"))]))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withCuda, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           NIX_LDFLAGS: nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/lib/stubs`),
         })))),
       cmakeFlags: nix.thunk(() => nix.concat([
@@ -115,7 +115,7 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withCuda, "addDriverRunpath $out/bin/FIRESTARTER_CUDA\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         homepage: "https://tu-dresden.de/zih/forschung/projekte/firestarter",
         description: "Processor Stress Test Utility",

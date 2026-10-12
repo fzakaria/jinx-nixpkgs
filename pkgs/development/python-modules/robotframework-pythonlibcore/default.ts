@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robotframework",
           repo: "PythonLibCore",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [approvaltests, pytest_mockito, pytestCheckHook, typing_extensions]);
       const pythonImportsCheck = nix.thunk(() => ["robotlibcore"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/robotframework/PythonLibCore/blob/${nix.sel(src, "tag")}/docs/PythonLibCore-${nix.sel(src, "tag")}.rst`),
         description: "Tools to ease creating larger test libraries for Robot Framework using Python",
         homepage: "https://github.com/robotframework/PythonLibCore",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

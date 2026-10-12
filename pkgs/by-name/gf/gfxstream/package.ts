@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gfxstream",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitiles, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://android.googlesource.com/platform/hardware/google/gfxstream",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-gfxstream-release`),
           hash: "sha256-AN6OpZQ2te4iVuh/kFHXzmLAWIMyuoj9FHTVicnbiPw=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, python3]),
       buildInputs: nix.thunk(() => nix.concat([aemu, libglvnd, vulkan_headers, vulkan_loader, libx11], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), libdrm)), nix.thunk(() => [libdrm])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               "-framework Cocoa",
               "-framework IOKit",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "mesonFlagsArray=(-Dcpp_link_args=\"-Wl,--push-state -Wl,--no-as-needed -lvulkan -Wl,--pop-state\")\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://android.googlesource.com/platform/hardware/google/gfxstream",
         description: "Graphics Streaming Kit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

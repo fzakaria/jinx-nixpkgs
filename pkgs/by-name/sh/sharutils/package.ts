@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const updateAutotoolsGnuConfigScriptsHook = nix.arg($, "updateAutotoolsGnuConfigScriptsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "sharutils",
       version: "4.15.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/sharutils/sharutils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "16isapn8f39lnffc3dp4dan05b7x6mnc76v6q5nn8ysxvvvwy19b",
         })))),
@@ -36,23 +36,23 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [updateAutotoolsGnuConfigScriptsHook]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.org/data/main/s/sharutils/1:4.15.2-2+deb9u1/debian/patches/01-fix-heap-buffer-overflow-cve-2018-1000097.patch",
             sha256: "19g0sxc8g79aj5gd5idz5409311253jf2q8wqkasf0handdvsbxx",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://sources.debian.org/data/main/s/sharutils/1:4.15.2-4/debian/patches/02-fix-ftbfs-with-glibc-2.28.patch",
             sha256: "15kpjqnfs98n6irmkh8pw7masr08xala7gx024agv7zv14722vkc",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "sharutils-4.15.2-Fix-building-with-GCC-10.patch",
             url: "https://lists.gnu.org/archive/html/bug-gnu-utils/2020-01/txtDL8i6V6mUU.txt",
             sha256: "0kfch1vm45lg237hr6fdv4b2lh5b1933k0fn8yj91gqm58svskvl",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "sharutils-4.15.2-Do-not-include-lib-md5.c-into-src-shar.c.patch",
             url: "https://lists.gnu.org/archive/html/bug-gnu-utils/2020-01/txt5Z_KZup0yN.txt",
             sha256: "0an8vfy3qj6sss9w0i4j8ilf7g5mbc7y13l644jy5bcm9przcjbd",
@@ -69,10 +69,10 @@ substituteInPlace tests/shar-2 --replace '${shar_sub}' '${shar_sub} -s submitter
 substituteInPlace intl/Makefile.in --replace "AR = ar" ""
 `;
       })()),
-      env: nix.thunk(() => ({ __proto__: pos$6, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$6, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Tools for remote synchronization and `shell archives'",
         longDescription: "GNU shar makes so-called shell archives out of many files, preparing\nthem for transmission by electronic mail services.  A shell archive\nis a collection of files that can be unpacked by /bin/sh.  A wide\nrange of features provide extensive flexibility in manufacturing\nshars and in specifying shar smartness.  For example, shar may\ncompress files, uuencode binary files, split long files and\nconstruct multi-part mailings, ensure correct unsharing order, and\nprovide simplistic checksums.\n\nGNU unshar scans a set of mail messages looking for the start of\nshell archives.  It will automatically strip off the mail headers\nand other introductory text.  The archive bodies are then unpacked\nby a copy of the shell. unshar may also process files containing\nconcatenated shell archives.\n",
         homepage: "https://www.gnu.org/software/sharutils/",

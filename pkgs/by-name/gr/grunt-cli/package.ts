@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "grunt-cli";
       const version = "1.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gruntjs",
           repo: "grunt-cli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-SJmgMDw+BBm6NGUzFD4q5PVAZvYXelpM1d20xvL9U9c=";
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "The grunt command line interface",
         homepage: "https://github.com/gruntjs/grunt-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "grunt",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

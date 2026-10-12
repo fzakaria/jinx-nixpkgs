@@ -21,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const pythonPackages = nix.argOr($, "pythonPackages", () => null);
   const llvmPackages = nix.arg($, "llvmPackages");
   const great_cmake_cookoff = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/UCL/GreatCMakeCookOff/archive/v2.1.9.tar.gz",
       hash: "sha256-ggMcgKfpYHWWgyYY84u4Q79IGCVTVkmIMw+N/soapfk=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "galario",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "mtazzari",
           repo: "galario",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +60,7 @@ ${nix.app(nix.sel(lib, "optionalString"), enablePython, nix.thunk(() => nix.str`
       doCheck: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(enablePython))), "install_name_tool -change libgalario.dylib $out/lib/libgalario.dylib $out/lib/python*/site-packages/galario/double/libcommon.so\ninstall_name_tool -change libgalario_single.dylib $out/lib/libgalario_single.dylib $out/lib/python*/site-packages/galario/single/libcommon.so\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GPU Accelerated Library for Analysing Radio Interferometer Observations",
         longDescription: "Galario is a library that exploits the computing power of modern\ngraphic cards (GPUs) to accelerate the comparison of model\npredictions to radio interferometer observations. Namely, it\nspeeds up the computation of the synthetic visibilities given a\nmodel image (or an axisymmetric brightness profile) and their\ncomparison to the observations.\n",
         homepage: "https://mtazzari.github.io/galario/",

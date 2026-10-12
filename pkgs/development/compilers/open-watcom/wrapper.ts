@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const listToDirs = (list) => nix.app(nix.sel(lib, "strings", "concatMapStringsSep"), ":", (dir) => nix.str`${nix.builtins.placeholder("out")}/${dir}`, list);
       const name = nix.thunk(() => nix.str`${nix.sel(open_watcom, "passthru", "prettyName")}-${nix.sel(open_watcom, "version")}`);
       return nix.app(symlinkJoin, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.attr(open_watcom, "version")),
           pname: nix.thunk(() => nix.sel(open_watcom, "passthru", "prettyName")),
           paths: nix.thunk(() => [open_watcom]),
@@ -69,13 +69,13 @@ for binDir in ${nix.app(nix.sel(lib, "strings", "concatStringsSep"), " ", binDir
 done
 `),
           passthru: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             unwrapped: open_watcom,
             tests: nix.thunk(() => (() => {
               const wrapped = nix.thunk(() => nix.app(wrapper, nix.thunk(() => ({}))));
               return {
-                __proto__: pos$3,
-                simple: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${name}-test-simple`), nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [wrapped]) })), nix.thunk(() => nix.str`cat <<EOF >test.c
+                [nix.POS]: pos$3,
+                simple: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${name}-test-simple`), nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [wrapped]) })), nix.thunk(() => nix.str`cat <<EOF >test.c
 #include <stdio.h>
 int main() {
   printf ("Testing OpenWatcom C89 compiler.\\n");
@@ -108,7 +108,7 @@ wcl386 -fe=test_cpp test.cpp
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch"))))), "./test_cpp")}
 touch $out
 `))),
-                cross: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${name}-test-cross`), nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [wrapped, file]) })), "cat <<EOF >test.c\n#include <stdio.h>\nint main() {\n  printf (\"Testing OpenWatcom cross-compilation.\\n\");\n  return 0;\n}\nEOF\ncat test.c\n\necho \"Test compiling\"\nwcl386 -bcl=linux -fe=linux test.c\nwcl386 -bcl=nt -fe=nt test.c\nwcl386 -bcl=dos4g -fe=dos4g test.c\nwcl -bcl=windows -fe=windows test.c\nwcl -bcl=dos -fe=dos test.c\n\necho \"Test file format\"\nfile ./linux\nfile ./linux | grep \"ELF 32-bit\" | grep -q \"Linux\"\nfile ./nt.exe\nfile ./nt.exe | grep \"PE32 executable\" | grep -q \"Windows\"\nfile ./dos4g.exe\nfile ./dos4g.exe | grep \"MS-DOS executable\" | grep -q \"LE executable\"\nfile ./windows.exe\nfile ./windows.exe | grep \"MS-DOS executable\" | grep -q \"NE for MS Windows 3.\"\nfile ./dos.exe\nfile ./dos.exe | grep \"MS-DOS executable\" | grep -q \"MZ for MS-DOS\"\ntouch $out\n")),
+                cross: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${name}-test-cross`), nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [wrapped, file]) })), "cat <<EOF >test.c\n#include <stdio.h>\nint main() {\n  printf (\"Testing OpenWatcom cross-compilation.\\n\");\n  return 0;\n}\nEOF\ncat test.c\n\necho \"Test compiling\"\nwcl386 -bcl=linux -fe=linux test.c\nwcl386 -bcl=nt -fe=nt test.c\nwcl386 -bcl=dos4g -fe=dos4g test.c\nwcl -bcl=windows -fe=windows test.c\nwcl -bcl=dos -fe=dos test.c\n\necho \"Test file format\"\nfile ./linux\nfile ./linux | grep \"ELF 32-bit\" | grep -q \"Linux\"\nfile ./nt.exe\nfile ./nt.exe | grep \"PE32 executable\" | grep -q \"Windows\"\nfile ./dos4g.exe\nfile ./dos4g.exe | grep \"MS-DOS executable\" | grep -q \"LE executable\"\nfile ./windows.exe\nfile ./windows.exe | grep \"MS-DOS executable\" | grep -q \"NE for MS Windows 3.\"\nfile ./dos.exe\nfile ./dos.exe | grep \"MS-DOS executable\" | grep -q \"MZ for MS-DOS\"\ntouch $out\n")),
               };
             })()),
           })),

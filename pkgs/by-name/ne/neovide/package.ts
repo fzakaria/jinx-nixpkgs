@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const enableWayland = nix.argOr($, "enableWayland", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const wayland = nix.arg($, "wayland");
-  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: clangStdenv })), (finalAttrs) => ({
-      __proto__: pos$7,
+  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: clangStdenv })), (finalAttrs) => ({
+      [nix.POS]: pos$7,
       pname: "neovide",
       version: "0.16.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "neovide",
           repo: "neovide",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,17 +53,17 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-WVNmG+KJK93yLrL2/KPc2czAxwt5brKxRkrPB7Bv46M=",
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         SKIA_SOURCE_DIR: nix.thunk(() => (() => {
           const repo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               owner: "rust-skia",
               repo: "skia",
               tag: "m145-0.92.0",
               hash: "sha256-9N780AwheKBJRcZC4l/uWFNq+oOyoNp4M6dJAVVAFeo=",
             }))));
           const externals = nix.thunk(() => nix.app(linkFarm, "skia-externals", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 name: name,
                 path: nix.thunk(() => nix.app(fetchgit, value)),
               }), nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./skia-externals.json")))))));
@@ -87,7 +87,7 @@ ln -s ${externals} $out/third_party/externals
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\ncp -r extra/osx/Neovide.app $out/Applications\nln -s $out/bin $out/Applications/Neovide.app/Contents/MacOS\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "for n in 16x16 32x32 48x48 256x256; do\n  install -m444 -D \"assets/neovide-$n.png\" \\\n    \"$out/share/icons/hicolor/$n/apps/neovide.png\"\ndone\ninstall -m444 -Dt $out/share/icons/hicolor/scalable/apps assets/neovide.svg\ninstall -m444 -Dt $out/share/applications assets/neovide.desktop\n"))),
       disallowedReferences: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "env", "SKIA_SOURCE_DIR"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Simple, no-nonsense, cross-platform graphical user interface for Neovim",
         mainProgram: "neovide",
         homepage: "https://neovide.dev/",

@@ -53,19 +53,19 @@ export default nix.lambda((args) => (() => {
   const brandingRev = "6687dc6d3d8552948458d00d35e2bee3a40ab66b";
   const brandingHash = "sha256-yD4O50gz2mtby1h4o+9PqjMfYmTbBOX6XDc5Ez5fgnY=";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "GraphiteEditor",
       repo: "Graphite",
       rev: rev,
       hash: srcHash,
     }))));
   const shaders = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/timon-schelling/graphite-artifacts/refs/heads/main/rev/${rev}/raster_nodes_shaders_entrypoint.wgsl`),
       hash: shaderHash,
     }))));
   const branding = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://github.com/Keavon/graphite-branded-assets/archive/${brandingRev}.tar.gz`),
       hash: brandingHash,
     }))));
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
     libx11,
   ]);
   const cefPath = nix.thunk(() => nix.app(nix.sel(cef_binary, "overrideAttrs"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cef-path",
       postInstall: nix.thunk(() => nix.str`find $out -mindepth 1 -delete
 strip ./Release/*.so*
@@ -95,7 +95,7 @@ cat ./CREDITS.html | ${xz}/bin/xz -9 -e -c > $out/CREDITS.html.xz
 `),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "graphite",
       version: version,
       src: src,
@@ -114,12 +114,12 @@ cat ./CREDITS.html | ${xz}/bin/xz -9 -e -c > $out/CREDITS.html.xz
       ]),
       buildInputs: libraries,
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           src: nix.thunk(() => nix.sel(finalAttrs, "src")),
           hash: cargoHash,
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/frontend`),
@@ -137,7 +137,7 @@ substituteInPlace $cargoDepsCopy/*/cef-dll-sys-*/build.rs \\
 `),
       postConfigure: "# Prevent `package-installer.js` from trying to update npm dependencies\ntouch -r frontend/package-lock.json -d '+1 year' frontend/node_modules/.install-timestamp\n",
       env: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         CEF_PATH: cefPath,
         RASTER_NODES_SHADER_PATH: shaders,
         GRAPHITE_GIT_COMMIT_HASH: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
@@ -165,9 +165,9 @@ runHook postInstall
 remove-references-to -t ${rustc} $out/bin/graphite
 `),
       disallowedReferences: nix.thunk(() => [rustc]),
-      passthru: nix.thunk(() => ({ __proto__: pos$8, updateScript: nix.path(here, "./update.nu") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$8, updateScript: nix.path(here, "./update.nu") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Open source vector graphics editor and procedural design engine",
         homepage: "https://graphite.art",
         mainProgram: "graphite",
@@ -177,7 +177,7 @@ remove-references-to -t ${rustc} $out/bin/graphite
           return [
             nix.thunk(() => nix.lookup(w, "asl20")),
             nix.thunk(() => nix.app(nix.lookup(w, "mkLicense"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 shortName: "graphite",
                 fullName: "Graphite Branding License",
                 url: "https://graphite.art/license/#branding",

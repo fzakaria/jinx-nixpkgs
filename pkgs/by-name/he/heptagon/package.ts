@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const ocamlPackages = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_5_3"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "heptagon",
       version: "1.05.00",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.inria.fr",
           owner: "synchrone",
           repo: "heptagon",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.inria.fr/synchrone/heptagon/-/commit/f10405e385ca25dc737727e0c210a44986929bf0.patch",
             hash: "sha256-Sn55jEoRDYnEUg4SjuBDCNN4TNl2Dwn1fTjb9O8O1bo=",
           })))),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Compiler for the Heptagon/BZR synchronous programming language",
         homepage: "https://gitlab.inria.fr/synchrone/heptagon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

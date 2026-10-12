@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const sysbench = nix.arg($, "sysbench");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sysbench",
       version: "1.0.20",
       nativeBuildInputs: nix.thunk(() => [autoconf269, autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([libmysqlclient, luajit], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libaio])))),
       depsBuildBuild: nix.thunk(() => [pkg_config]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "akopytov",
           repo: "sysbench",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,14 +58,14 @@ substituteInPlace \\
       "${nix.sel(stdenv, "cc", "targetPrefix")}ar rcs"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          versionTest: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: sysbench })))),
+          [nix.POS]: pos$3,
+          versionTest: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: sysbench })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Modular, cross-platform and multi-threaded benchmark tool",
         mainProgram: "sysbench",
         longDescription: "sysbench is a scriptable multi-threaded benchmark tool based on LuaJIT.\nIt is most frequently used for database benchmarks, but can also be used\nto create arbitrarily complex workloads that do not involve a database\nserver.\n",

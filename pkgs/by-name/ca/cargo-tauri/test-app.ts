@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "test-app",
       version: nix.thunk(() => nix.attr(cargo_tauri, "version")),
       src: nix.thunk(() => nix.attr(cargo_tauri, "src")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
 `))),
       cargoDeps: nix.thunk(() => nix.attr(cargo_tauri, "cargoDeps")),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -64,7 +64,7 @@ touch "$bundleDir/test-visible-entry"
       installCheckPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "runHook preInstallCheck\n\ntest -d \"$out/Applications\"\n\nshopt -s nullglob dotglob\nappBundles=(\"$out\"/Applications/*.app)\nnonAppEntries=(\"$out\"/Applications/*)\nshopt -u nullglob dotglob\n\ntest \"${#appBundles[@]}\" -gt 0\n\nfor entry in \"${nonAppEntries[@]}\"; do\n  case \"$entry\" in\n    *.app) ;;\n    *)\n      echo \"unexpected non-.app entry in Applications: $entry\" >&2\n      exit 1\n      ;;\n  esac\ndone\n\nrunHook postInstallCheck\n")),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cargo_tauri, "hook", "meta"));
-        return { __proto__: pos$2, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+        return { [nix.POS]: pos$2, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
       })()),
     }));
 })(), formals$1);

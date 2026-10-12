@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dnstop",
       version: "2014-09-15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://dns.measurement-factory.com/tools/dnstop/src/dnstop-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["-"]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.tar.gz`),
           sha256: "0yn5s2825l826506gclbcfk3lzllx9brk9rzja6yj5jv0013vc5l",
         })))),
       buildInputs: nix.thunk(() => [libpcap, ncurses]),
       preInstall: "mkdir -p $out/share/man/man8 $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "libpcap application that displays DNS traffic on your network",
         homepage: "http://dns.measurement-factory.com/tools/dnstop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

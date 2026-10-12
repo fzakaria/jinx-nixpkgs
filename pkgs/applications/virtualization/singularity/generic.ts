@@ -75,13 +75,13 @@ export default nix.lambda((args) => (() => {
     const sourceFilesWithDefaultPaths = nix.argOr($_1, "sourceFilesWithDefaultPaths", () => ({}));
     const addShellDoubleQuotes = (s) => nix.add(nix.add(nix.app(nix.sel(lib, "escapeShellArg"), "\""), s), nix.app(nix.sel(lib, "escapeShellArg"), "\""));
     return nix.app(nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname,
         version: version,
         src: src,
         patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(projectName, "apptainer")), nix.thunk(() => [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./apptainer/0001-ldCache-patch-for-driverLink.patch"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 driverLink: nix.thunk(() => nix.attr(addDriverRunpath, "driverLink")),
               })))),
           ]))),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         allowGoReference: true,
         __structuredAttrs: true,
         passthru: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enableSeccomp: enableSeccomp,
           enableSuid: enableSuid,
           externalLocalStateDir: externalLocalStateDir,
@@ -168,7 +168,7 @@ ln -s ${nix.app(nix.sel(lib, "escapeShellArg"), starterSuidPath)} "$out/libexec/
         versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${projectName}`),
         doInstallCheck: true,
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: nix.thunk(() => nix.add("Application containers for linux", extraDescription)),
           longDescription: "Singularity (the upstream) renamed themselves to Apptainer\nto distinguish themselves from a fork made by Sylabs Inc.. See\n\nhttps://sylabs.io/2021/05/singularity-community-edition\nhttps://apptainer.org/news/community-announcement-20211130\n",
           license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -183,29 +183,29 @@ ln -s ${nix.app(nix.sel(lib, "escapeShellArg"), starterSuidPath)} "$out/libexec/
           mainProgram: projectName,
         }, extraMeta)),
       }))), "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         systemDefaultPath: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", systemBinPaths)),
         inputsDefaultPath: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "defaultPathInputs")))),
         passthru: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "passthru"), {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           sourceFilesWithDefaultPaths: sourceFilesWithDefaultPaths,
           tests: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "image-hello-cowsay": nix.thunk(() => nix.app(nix.sel(singularity_tools, "buildImage"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 name: "hello-cowsay",
                 contents: nix.thunk(() => [hello, cowsay]),
                 singularity: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           })),
           gpuChecks: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(projectName, "apptainer")), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               "image-saxpy": nix.thunk(() => nix.app(callPackage, nix.lambda((args_2) => (() => {
                   const $_2 = nix.formals(args_2, formals$3);
                   const singularity_tools_1 = nix.arg($_2, "singularity-tools");
                   const cudaPackages = nix.arg($_2, "cudaPackages");
                   return nix.app(nix.sel(singularity_tools_1, "buildImage"), nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       name: "saxpy",
                       contents: nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "saxpy"))]),
                       memSize: 2048n,
@@ -220,10 +220,10 @@ ln -s ${nix.app(nix.sel(lib, "escapeShellArg"), starterSuidPath)} "$out/libexec/
                   const unwrapped = nix.thunk(() => nix.app(writeShellScriptBin, "apptainer-cuda-saxpy", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} exec --nv $@ ${nix.sel(finalAttrs, "passthru", "gpuChecks", "image-saxpy")} saxpy
 `)));
                   return nix.app(runCommand, "run-apptainer-cuda-saxpy", nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       requiredSystemFeatures: nix.thunk(() => ["cuda"]),
                       nativeBuildInputs: nix.thunk(() => [unwrapped]),
-                      passthru: nix.thunk(() => ({ __proto__: pos$8, unwrapped: unwrapped })),
+                      passthru: nix.thunk(() => ({ [nix.POS]: pos$8, unwrapped: unwrapped })),
                     })), "apptainer-cuda-saxpy\n");
                 })(), formals$4), nix.thunk(() => ({})))),
             })))),

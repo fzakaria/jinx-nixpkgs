@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rblake2sum",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crev-dev",
           repo: "rblake2sum",
           rev: "cdbaba9f198bd28bfad2fbc17011ce5c8c7ad957",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-wIJWwU4D0OeVa2RMgmpN512TIvNdcBdorXU8KfFRTIg=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Recursive blake2 digest (hash) of a file-system path",
         homepage: "https://github.com/crev-dev/rblake2sum",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const kubo_migrator_unwrapped = nix.arg($, "kubo-migrator-unwrapped");
   const kubo_fs_repo_migrations = nix.arg($, "kubo-fs-repo-migrations");
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kubo-migrator",
       version: nix.thunk(() => nix.attr(kubo_migrator_unwrapped, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH ':' '${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [kubo_fs_repo_migrations]))}'
 `),
       meta: nix.thunk(() => nix.update(nix.sel(kubo_migrator_unwrapped, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Run the appropriate migrations for migrating the filesystem repository of Kubo",
       })),
     })));

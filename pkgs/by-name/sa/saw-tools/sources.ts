@@ -7,14 +7,14 @@ const pos$2 = nix.positions(here + "/sources.nix", [["url", 9, 5], ["hash", 10, 
 const pos$3 = nix.positions(here + "/sources.nix", [["aarch64-darwin", 4, 3], ["x86_64-linux", 8, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$3,
+  [nix.POS]: pos$3,
   "aarch64-darwin": nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: "https://github.com/GaloisInc/saw-script/releases/download/v1.5/saw-1.5-macos-15-ARM64-with-solvers.tar.gz",
     hash: "sha256-1mURJfcnIRhuLrG1Gf4SRXmTzLbztBBRQGcXFFiAWWU=",
   })),
   "x86_64-linux": nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     url: "https://github.com/GaloisInc/saw-script/releases/download/v1.5/saw-1.5-ubuntu-22.04-X64-with-solvers.tar.gz",
     hash: "sha256-k9Qo93d0IXBRe7P+wU20LjFjM+LdHf6Z2S0Nybmh/4E=",
   })),

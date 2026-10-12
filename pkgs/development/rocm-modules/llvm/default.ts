@@ -75,9 +75,9 @@ export default nix.lambda((args) => (() => {
   const version = "7.2.3";
   const rocmLlvmVersion = "22.0.0-rocm";
   const llvmPackages_base = llvmPackages_22;
-  const llvmPackagesNoBintools = nix.thunk(() => nix.app(nix.sel(llvmPackages_base, "override"), nix.thunk(() => ({ __proto__: pos$1, bootBintools: null, bootBintoolsNoLibc: null }))));
+  const llvmPackagesNoBintools = nix.thunk(() => nix.app(nix.sel(llvmPackages_base, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, bootBintools: null, bootBintoolsNoLibc: null }))));
   const stdenvToBuildRocmLlvm = nix.thunk(() => (nix.asBool(withLibcxx) ? nix.app(overrideCC, nix.thunk(() => nix.sel(llvmPackagesNoBintools, "libcxxStdenv")), nix.thunk(() => nix.sel(llvmPackagesNoBintools, "clangUseLLVM"))) : nix.app(overrideCC, nix.thunk(() => nix.sel(llvmPackagesNoBintools, "stdenv")), nix.thunk(() => nix.app(nix.sel(llvmPackagesNoBintools, "libstdcxxClang", "override"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         bintools: nix.thunk(() => nix.attr(llvmPackages_base, "bintools")),
       })))))));
   const gcc_include = nix.thunk(() => nix.app(runCommand, "gcc-include", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out
@@ -94,7 +94,7 @@ ln -s ${gcc_unwrapped}/lib/ $out/
     nix.thunk(() => nix.sel(stdenvToBuildRocmLlvm, "cc", "cc")),
   ]);
   const gcc_prefix_headers = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "gcc-prefix-headers",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(glibc, "dev")),
@@ -107,7 +107,7 @@ ln -s ${gcc_unwrapped}/lib/ $out/
       postBuild: "rm -rf $out/{bin,libexec,nix-support,lib64,share,etc}\nrm $out/lib/gcc/x86_64-unknown-linux-gnu/*/plugin/include/auto-host.h\n\nmkdir /build/tmpout\nmv $out/* /build/tmpout\ncp -Lr --no-preserve=mode /build/tmpout/* $out/\nset -x\nversionedIncludePath=\"$(echo $out/include/c++/*/)\"\nmv $versionedIncludePath/* $out/include/c++/\nrm -rf $versionedIncludePath/\n",
     }))));
   const gcc_prefix = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "gcc-prefix",
       paths: nix.thunk(() => [gcc_prefix_headers, glibc, nix.thunk(() => nix.sel(gcc_unwrapped, "lib"))]),
       disallowedRequisites: nix.thunk(() => [
@@ -117,7 +117,7 @@ ln -s ${gcc_unwrapped}/lib/ $out/
       postBuild: "rm -rf $out/{bin,libexec,nix-support,lib64,share,etc}\nrm $out/lib/ld-linux-x86-64.so.2\nln -s $out $out/x86_64-unknown-linux-gnu\n",
     }))));
   const llvmSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       owner: "ROCm",
       repo: "llvm-project",
       tag: nix.thunk(() => nix.str`rocm-${version}`),
@@ -125,7 +125,7 @@ ln -s ${gcc_unwrapped}/lib/ $out/
     }))));
   const llvmMajorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), rocmLlvmVersion));
   const llvmPackagesRocm = nix.thunk(() => nix.app(nix.sel(llvmPackages_base, "override"), (_old) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       stdenv: stdenvToBuildRocmLlvm,
       officialRelease: nix.thunk(() => ({})),
       version: rocmLlvmVersion,
@@ -142,9 +142,9 @@ ln -s ${gcc_unwrapped}/lib/ $out/
       nix.thunk(() => nix.sel(stdenv, "cc", "bintools")),
     ])));
   const overrideLlvmPackagesRocm = (f) => (() => {
-    const overridenScope = nix.thunk(() => nix.app(nix.sel(llvmPackagesRocm, "overrideScope"), (final) => (prev) => nix.app(f, nix.thunk(() => ({ __proto__: pos$7, final: final, prev: prev })))));
+    const overridenScope = nix.thunk(() => nix.app(nix.sel(llvmPackagesRocm, "overrideScope"), (final) => (prev) => nix.app(f, nix.thunk(() => ({ [nix.POS]: pos$7, final: final, prev: prev })))));
     return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       bintools: nix.thunk(() => nix.attr(overridenScope, "bintools")),
       "compiler-rt": nix.thunk(() => nix.attr(overridenScope, "compiler-rt")),
       "compiler-rt-libc": nix.thunk(() => nix.attr(overridenScope, "compiler-rt-libc")),
@@ -164,15 +164,15 @@ ln -s ${gcc_unwrapped}/lib/ $out/
     const name = nix.arg($_1, "name");
     const paths = nix.arg($_1, "paths");
     const linkPaths = nix.arg($_1, "linkPaths");
-    const linked = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ __proto__: pos$9, name: name, paths: paths }))));
+    const linked = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: pos$9, name: name, paths: paths }))));
     return nix.app(runCommand, name, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         pname: name,
         outputChecks: nix.thunk(() => ({
-          __proto__: pos$11,
-          out: nix.thunk(() => ({ __proto__: pos$10, disallowedRequisites: disallowedRefsForToolchain })),
+          [nix.POS]: pos$11,
+          out: nix.thunk(() => ({ [nix.POS]: pos$10, disallowedRequisites: disallowedRefsForToolchain })),
         })),
-        passthru: nix.thunk(() => ({ __proto__: pos$12, linked: linked })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$12, linked: linked })),
         linkPaths: linkPaths,
         __structuredAttrs: true,
       })), nix.thunk(() => nix.str`mkdir -p $out/
@@ -213,8 +213,8 @@ echo 'export CXX=clang++' >> $out/nix-support/setup-hook
 `));
   })(), formals$2);
   const tablegenUsage = (x) => !nix.asBool(nix.app(nix.sel(lib, "strings", "hasInfix"), "llvm-tblgen", x));
-  const llvmTargetsFlag = nix.thunk(() => nix.str`-DLLVM_TARGETS_TO_BUILD=AMDGPU;${nix.selOr({ __proto__: pos$14, x86_64: "X86", aarch64: "AArch64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported CPU architecture: ${nix.sel(stdenv, "targetPlatform", "parsed", "cpu", "name")}`)), nix.key(nix.sel(stdenv, "targetPlatform", "parsed", "cpu", "name")))}`);
-  const llvmMeta = nix.thunk(() => ({ __proto__: pos$15, platforms: nix.thunk(() => ["x86_64-linux"]) }));
+  const llvmTargetsFlag = nix.thunk(() => nix.str`-DLLVM_TARGETS_TO_BUILD=AMDGPU;${nix.selOr({ [nix.POS]: pos$14, x86_64: "X86", aarch64: "AArch64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported CPU architecture: ${nix.sel(stdenv, "targetPlatform", "parsed", "cpu", "name")}`)), nix.key(nix.sel(stdenv, "targetPlatform", "parsed", "cpu", "name")))}`);
+  const llvmMeta = nix.thunk(() => ({ [nix.POS]: pos$15, platforms: nix.thunk(() => ["x86_64-linux"]) }));
   const commonCmakeFlags = nix.thunk(() => nix.concat([
     llvmTargetsFlag,
     nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "LLVM_ENABLE_ZSTD", "FORCE_ON")),
@@ -239,26 +239,26 @@ echo 'export CXX=clang++' >> $out/nix-support/setup-hook
   const llvmExtraCflags = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")), nix.thunk(() => ["-march=skylake", "-mtune=znver3"])), nix.app(nix.sel(lib, "optionals"), profilableStdenv, nix.thunk(() => ["-gz", "-g1"]))))));
   const libcxx = nix.thunk(() => nix.attr(llvmPackagesRocm, "libcxx"));
   return nix.app(overrideLlvmPackagesRocm, (s) => ({
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       libllvm: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(s, "prev", "libllvm", "override"), nix.thunk(() => ({}))), "overrideAttrs"), (old) => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           patches: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 name: "amdgpu-add-baseline-load-select-ptr-combine-test.patch",
                 url: "https://github.com/llvm/llvm-project/commit/ac27b2455ad7c89cc1f928de7beb05933a035031.patch",
                 relative: "llvm",
                 hash: "sha256-1mine1h/oqnn2tKDYW4FntyZXu/foyifrKGkqKOHrPg=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 name: "amdgpu-fix-treating-divergent-loads-as-uniform.patch",
                 url: "https://github.com/llvm/llvm-project/commit/d3c3c6bab5df051d9db12ea96add2211df9d81be.patch",
                 relative: "llvm",
                 hash: "sha256-9VB77d4d+nwX8s+JBq1PXmbmqT7oD6lRC0uDIrTgjjo=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 name: "dag-allow-select-ptr-combine-for-non-0-address-spaces.patch",
                 url: "https://github.com/llvm/llvm-project/commit/0e1cb2de90aafa1d5dbd46fc9e6c4e743700fa8b.patch",
                 relative: "llvm",
@@ -266,28 +266,28 @@ echo 'export CXX=clang++' >> $out/nix-support/setup-hook
               })))),
           ], nix.concat([
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 name: "wasm-add-wasm32-linux-muslwali-target.patch",
                 url: "https://github.com/llvm/llvm-project/commit/7e7c923b5890e62f4b5920c2f8a2e51f586a186c.patch",
                 relative: "llvm",
                 hash: "sha256-KbM7M4osxaaxkn5UN+csNm+aKvaWgJ0KQnKHHpI+Qxo=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 name: "adt-allow-arbitrary-number-of-cases-in-stringswitch.patch",
                 url: "https://github.com/llvm/llvm-project/commit/8642762ac356f0b8432b78d7a32c1f5213e494b3.patch",
                 relative: "llvm",
                 hash: "sha256-aQBmMSJ+aunE7HLpfIizBH7Be1kmcN6nxUk2sV9d3Qo=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 name: "adt-migrate-stringswitch-cases-to-new-overload.patch",
                 url: "https://github.com/llvm/llvm-project/commit/2ed7baafc3bf5b4321e3f77dfb1ce291e62bcadc.patch",
                 relative: "llvm",
                 hash: "sha256-cV9POhuJFCnjCdPL6Lym2cmKLeW/2k34N2rwauxU7MA=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 name: "lfi-introduce-aarch64-lfi-target.patch",
                 url: "https://github.com/llvm/llvm-project/commit/2c05ae4b8f85927d55f862fdf61bea564e2ea944.patch",
                 relative: "llvm",
@@ -296,21 +296,21 @@ echo 'export CXX=clang++' >> $out/nix-support/setup-hook
           ], nix.concat(nix.sel(old, "patches"), [
             nix.path(here, "./perf-increase-namestring-size.patch"),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 name: "llvm-x86-v64i8-add-test-coverage.patch",
                 url: "https://github.com/llvm/llvm-project/commit/0e3a96d0ec01e3575674d72c4e23bf98affdca28.patch",
                 relative: "llvm",
                 hash: "sha256-qhRkB8Fjz/fNacuGv1OFkiTNOQ0/QQ9p4pLFudwrTzM=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 name: "llvm-x86-v64i8-prefer-vpermv3-on-vbmi.patch",
                 url: "https://github.com/llvm/llvm-project/commit/8f5880d3ae4e5dfc748985d90e5413671028aa3e.patch",
                 relative: "llvm",
                 hash: "sha256-4DU6gu/1+iQpzvVYBlTTUKtw77QSRyTja4hdel4D5Cw=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 name: "llvm-x86-v64i8-skip-repeated-mask-lane-permute-on-vbmi.patch",
                 url: "https://github.com/llvm/llvm-project/commit/1b9fea021840f17c41ea980300d0fc45e7285909.patch",
                 relative: "llvm",
@@ -323,7 +323,7 @@ echo 'export CXX=clang++' >> $out/nix-support/setup-hook
           buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [zstd])),
           preFixup: "moveToOutput \"lib/lib*.a\" \"$dev\"\nmoveToOutput \"lib/cmake\" \"$dev\"\nsed -Ei \"s|$lib/lib/(lib[^/]*)\\.a|$dev/lib/\\1.a|g\" $dev/lib/cmake/llvm/*.cmake\n",
           env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), {
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`${nix.selOr(nix.selOr(old, () => ({}), "env"), () => "", "NIX_CFLAGS_COMPILE")} ${llvmExtraCflags}`),
           })),
           cmakeFlags: nix.thunk(() => nix.concat(nix.builtins.filter(tablegenUsage, nix.thunk(() => nix.sel(old, "cmakeFlags"))), commonCmakeFlags)),
@@ -334,13 +334,13 @@ find $lib -type f -exec remove-references-to -t ${refsToRemove} {} +
           meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), llvmMeta)),
         }))),
       lld: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(s, "prev", "lld", "override"), nix.thunk(() => ({}))), "overrideAttrs"), (old) => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           dontStrip: profilableStdenv,
           hardeningDisable: nix.thunk(() => ["all"]),
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [removeReferencesTo])),
           buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [zstd])),
           env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), {
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`${nix.selOr(nix.selOr(old, () => ({}), "env"), () => "", "NIX_CFLAGS_COMPILE")} ${llvmExtraCflags}`),
           })),
           cmakeFlags: nix.thunk(() => nix.concat(nix.builtins.filter(tablegenUsage, nix.thunk(() => nix.sel(old, "cmakeFlags"))), commonCmakeFlags)),
@@ -350,12 +350,12 @@ find $lib -type f -exec remove-references-to -t ${refsToRemove} {} +
 `),
           meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), llvmMeta)),
         }))),
-      "clang-unwrapped": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(s, "prev", "clang-unwrapped", "override"), nix.thunk(() => ({ __proto__: pos$30, enableClangToolsExtra: false }))), "overrideAttrs"), (old) => ({
-          __proto__: pos$38,
-          passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), { __proto__: pos$31, "gcc-prefix": gcc_prefix })),
+      "clang-unwrapped": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(s, "prev", "clang-unwrapped", "override"), nix.thunk(() => ({ [nix.POS]: pos$30, enableClangToolsExtra: false }))), "overrideAttrs"), (old) => ({
+          [nix.POS]: pos$38,
+          passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), { [nix.POS]: pos$31, "gcc-prefix": gcc_prefix })),
           patches: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 name: "clang-scan-build-py-configurable.patch",
                 url: "https://github.com/llvm/llvm-project/commit/f5759eeb63a3a5ce7d555c13c3126cea84e0c7b1.patch",
                 relative: "clang",
@@ -363,21 +363,21 @@ find $lib -type f -exec remove-references-to -t ${refsToRemove} {} +
               })))),
           ], nix.concat([
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 name: "wasm-add-wasm32-linux-muslwali-target.patch",
                 url: "https://github.com/llvm/llvm-project/commit/7e7c923b5890e62f4b5920c2f8a2e51f586a186c.patch",
                 relative: "clang",
                 hash: "sha256-QGqil4rs9wFFa8J25ghWKTE8YG2+AbGG81dt5ReAw9k=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 name: "adt-migrate-stringswitch-cases-to-new-overload.patch",
                 url: "https://github.com/llvm/llvm-project/commit/2ed7baafc3bf5b4321e3f77dfb1ce291e62bcadc.patch",
                 relative: "clang",
                 hash: "sha256-w9sS+pwawHqxGkTAWMinzF1r9ZyWMTmI119X/NdQoc8=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 name: "lfi-introduce-aarch64-lfi-target.patch",
                 url: "https://github.com/llvm/llvm-project/commit/2c05ae4b8f85927d55f862fdf61bea564e2ea944.patch",
                 relative: "clang",
@@ -389,7 +389,7 @@ find $lib -type f -exec remove-references-to -t ${refsToRemove} {} +
             nix.path(here, "./opt-offload-compress-on-by-default.patch"),
             nix.path(here, "./perf-shorten-gcclib-include-paths.patch"),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 hash: "sha256-OsarDZXuJ5vAXTP4i0NBUeK/r6tQPumaqmMWkf29UtM=",
                 url: "https://github.com/GZGavinZhao/rocm-llvm-project/commit/c7de294b0d1d25f277f9d1cbb2c9e09c7600e210.patch",
                 relative: "clang",
@@ -403,7 +403,7 @@ ln -s "${llvmSrc}/openmp/device/include/EmissaryIds.h" "\${sourceRoot}/openmp/de
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [removeReferencesTo])),
           buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [zstd])),
           env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), {
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`${nix.selOr(nix.selOr(old, () => ({}), "env"), () => "", "NIX_CFLAGS_COMPILE")} ${llvmExtraCflags}`),
           })),
           dontStrip: profilableStdenv,
@@ -426,7 +426,7 @@ find $dev -type f -exec remove-references-to -t ${refsToRemove} {} +
       "rocm-toolchain": nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(s, "final")), null);
         return nix.update(nix.app(sysrootCompiler, nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             cc: nix.thunk(() => nix.lookup(w, "clang-unwrapped")),
             name: "rocm-toolchain",
             paths: nix.thunk(() => nix.concat([
@@ -439,7 +439,7 @@ find $dev -type f -exec remove-references-to -t ${refsToRemove} {} +
             ], nix.concat(nix.app(nix.sel(lib, "optionals"), withLibcxx, nix.thunk(() => [libcxx])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withLibcxx)), nix.thunk(() => [glibc, nix.thunk(() => nix.sel(glibc, "dev"))]))))),
             linkPaths: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(nix.lookup(w, "bintools"), "bintools", "out"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withLibcxx)), nix.thunk(() => [nix.thunk(() => nix.sel(gcc_include, "out"))])))),
           }))), {
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           version: llvmMajorVersion,
           cc: nix.thunk(() => nix.lookup(w, "rocm-toolchain")),
           libllvm: nix.thunk(() => nix.lookup(w, "llvm")),
@@ -448,10 +448,10 @@ find $dev -type f -exec remove-references-to -t ${refsToRemove} {} +
         });
       })()),
       "compiler-rt-libc": nix.thunk(() => nix.app(nix.sel(s, "prev", "compiler-rt-libc", "overrideAttrs"), (old) => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           patches: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 name: "lfi-introduce-aarch64-lfi-target.patch",
                 url: "https://github.com/llvm/llvm-project/commit/2c05ae4b8f85927d55f862fdf61bea564e2ea944.patch",
                 relative: "compiler-rt",
@@ -469,11 +469,11 @@ find $dev -type f -exec remove-references-to -t ${refsToRemove} {} +
       openmp: nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(s, "final")), null);
         return nix.app(nix.sel(nix.app(nix.sel(llvmPackagesRocm, "openmp", "override"), nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             llvm: nix.thunk(() => nix.lookup(w_2, "llvm")),
             "clang-unwrapped": nix.thunk(() => nix.lookup(w_2, "clang-unwrapped")),
           }))), "overrideAttrs"), (old) => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             disallowedReferences: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "disallowedReferences"), disallowedRefsForToolchain)),
             nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [removeReferencesTo])),
             cmakeFlags: nix.thunk(() => nix.concat(nix.sel(old, "cmakeFlags"), nix.concat(commonCmakeFlags, [

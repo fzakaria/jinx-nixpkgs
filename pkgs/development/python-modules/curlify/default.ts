@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "curlify",
       version: "2.2.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ofw",
           repo: "curlify",
           rev: "b914625b12f9b05c39f305b47ebd0d1f061af24d",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [requests]),
       pythonImportsCheck: nix.thunk(() => ["curlify"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert python requests request object to cURL command",
         homepage: "https://github.com/ofw/curlify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

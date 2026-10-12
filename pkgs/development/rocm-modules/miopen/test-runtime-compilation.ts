@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const name = nix.arg($, "name");
   const testScript = nix.arg($, "testScript");
   return nix.app(makeImpureTest, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: name,
       testedPackage: "rocmPackages.miopen",
       sandboxPaths: nix.thunk(() => ["/sys", "/dev/dri", "/dev/kfd"]),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
 ${testScript}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "rocm"))]),
       })),
     })));

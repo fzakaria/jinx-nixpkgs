@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-0iaGal2On+8zcDTY2jeoKY8KHZ0UibQBjmlXnrMh/qQ=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["xyzservices.providers"]);
       const nativeCheckInputs = nix.thunk(() => [mercantile, pytestCheckHook, requests]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/geopandas/xyzservices/releases/tag/${version}`),
         description: "Source of XYZ tiles providers",
         homepage: "https://github.com/geopandas/xyzservices",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "multidict",
       version: "6.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aio-libs",
           repo: "multidict",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       postPatch: "# `python3 -I -c \"import multidict\"` fails with ModuleNotFoundError\nsubstituteInPlace tests/test_circular_imports.py \\\n  --replace-fail '\"-I\",' \"\"\n",
       "build-system": nix.thunk(() => [setuptools]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: "-Wno-error=unused-command-line-argument",
         })))),
       nativeCheckInputs: nix.thunk(() => [objgraph, psutil, pytestCheckHook, pytest_codspeed, pytest_cov_stub]),
       preCheck: "# import from $out\nrm -r multidict\n",
       pythonImportsCheck: nix.thunk(() => ["multidict"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/aio-libs/multidict/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),
         description: "Multidict implementation",
         homepage: "https://github.com/aio-libs/multidict/",

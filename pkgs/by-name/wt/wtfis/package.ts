@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const pname = "wtfis";
   const version = "0.15.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "pirxthepilot",
       repo: "wtfis",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-2e8T2R33xOX4XZ3Lsk95kI9ea245eTWrxA1RPi2PqEI=",
     }))));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: src,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonRelaxDeps: nix.thunk(() => ["pydantic", "python-dotenv", "requests", "rich", "shodan", "types-requests"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/pirxthepilot/wtfis",
         description: "Passive hostname, domain and IP lookup tool for non-robots",
         mainProgram: "wtfis",

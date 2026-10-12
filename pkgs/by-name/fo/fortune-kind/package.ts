@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const fortuneAlias = nix.argOr($, "fortuneAlias", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fortune-kind",
       version: "0.1.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cafkafk",
           repo: "fortune-kind",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, installShellFiles]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))),
       buildNoDefaultFeatures: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, MAN_OUT: "./man" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, MAN_OUT: "./man" })),
       preBuild: "mkdir -p \"./$MAN_OUT\";\n",
       preInstall: "installManPage man/fortune-kind.1\ninstallShellCompletion \\\n  --fish man/fortune-kind.fish \\\n  --bash man/fortune-kind.bash \\\n  --zsh  man/_fortune-kind\nmkdir -p $out\ncp -r $src/fortunes $out/fortunes;\n",
       postInstall: nix.thunk(() => nix.add("wrapProgram $out/bin/fortune-kind \\\n  --set-default FORTUNE_DIR \"$out/fortunes\"\n", nix.app(nix.sel(lib, "optionalString"), fortuneAlias, "ln -s fortune-kind $out/bin/fortune\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Kinder, curated fortune, written in rust",
         longDescription: "Historically, contributions to fortune-mod have had a less-than ideal\nquality control process, and as such, many of the fortunes that a user may\nreceive from the program read more like cryptic inside jokes, or at the\nvery worst, locker-room banter. One of the major goals of fortune-kind is\ndefining and applying a somewhat more rigorous moderation and editing\nprocess to the fortune adoption workflow.\n",
         homepage: "https://github.com/cafkafk/fortune-kind",

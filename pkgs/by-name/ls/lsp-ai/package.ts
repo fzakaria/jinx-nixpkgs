@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lsp-ai",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SilasMarvin",
           repo: "lsp-ai",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,14 +60,14 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-KR6BmYj3q9w0yGHFq9+l1x989XjiG3mkaZiyDGCYWPA=",
       nativeBuildInputs: nix.thunk(() => [pkg_config, cmake, perl]),
       buildInputs: nix.thunk(() => [oniguruma, openssl, zlib]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTONIG_SYSTEM_LIBONIG: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: 1n })),
       cargoBuildFlags: nix.thunk(() => ["-p lsp-ai"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open-source language server that serves as a backend for AI-powered functionality",
         homepage: "https://github.com/SilasMarvin/lsp-ai",
         mainProgram: "lsp-ai",

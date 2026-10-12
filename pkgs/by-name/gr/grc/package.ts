@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "grc",
       version: "1.13",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "garabik",
           repo: "grc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\n./install.sh \"$out\" \"$out\"\ninstallShellCompletion --zsh --name _grc _grc\n\nrunHook postInstall\n",
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://kassiopeia.juls.savba.sk/~garabik/software/grc.html",
         description: "Generic text colouriser",
         longDescription: "Generic Colouriser is yet another colouriser (written in Python) for\nbeautifying your logfiles or output of commands.\n",

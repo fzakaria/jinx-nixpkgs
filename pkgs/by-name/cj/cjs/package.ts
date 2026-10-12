@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cjs",
       version: "140.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "cjs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => nix.concat(["-Dskip_gtk_tests=true"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ["-Dprofiler=disabled"])))),
       postPatch: "patchShebangs --build build/choose-tests-locale.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/linuxmint/cjs",
         description: "JavaScript bindings for Cinnamon",
         longDescription: "This module contains JavaScript bindings based on gobject-introspection.\n",

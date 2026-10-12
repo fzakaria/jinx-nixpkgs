@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const versionSuffix = nix.arg($, "versionSuffix");
   return nix.app(nix.sel(pkgs, "releaseTools", "makeSourceTarball"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "nixos-channel",
       src: nixpkgs,
       officialRelease: false,

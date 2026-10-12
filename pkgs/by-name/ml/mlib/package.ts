@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mlib",
       version: "0.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "P-p-H-d",
           repo: "mlib",
           rev: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library of generic and type safe containers in pure C language",
         longDescription: "M*LIB (M star lib) is a C library enabling to define and use generic and\ntype safe container, aka handling generic containers in in pure C\nlanguage. The objects within the containers can be trivial or very\ncomplex: they can have their own constructor, destructor, operators or can\nbe basic C type like the C type 'int'. This makes it possible to construct\nfully recursive objects (container-of[...]-container-of-type-T), without\nerasing type information (typically using void pointers or resorting to C\nmacro to access the container).\n",
         homepage: "https://github.com/P-p-H-d/mlib",

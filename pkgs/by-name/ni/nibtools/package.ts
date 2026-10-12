@@ -16,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const opencbm = nix.arg($, "opencbm");
   const cc65 = nix.arg($, "cc65");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nibtools",
       version: "0-unstable-2024-11-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenCBM",
           repo: "nibtools",
           rev: "91344e0ee357780a90ad7fe3a0a0721a2e11f265",
           hash: "sha256-0skAavJe01b+4Z7LEfS2qIhqkwj8XhOwmflhYPEynw4=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })),
       nativeBuildInputs: nix.thunk(() => [cc65]),
       buildInputs: nix.thunk(() => [opencbm]),
       preBuild: "mkdir build",
       makeFlags: nix.thunk(() => ["-f", "GNU/Makefile", "linux"]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\nmv nibread nibwrite nibscan nibconv nibrepair nibsrqtest $out/bin/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Disk transfer utility for imaging and converting commodore 64 disk images",
         homepage: "https://github.com/OpenCBM/nibtools/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

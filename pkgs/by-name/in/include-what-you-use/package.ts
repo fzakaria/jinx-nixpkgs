@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "include-what-you-use";
       const version = "0.26";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${nix.sel(meta, "homepage")}/downloads/${pname}-${version}.src.tar.gz`),
           hash: "sha256-UkfAyaWd+dFOiqdAj/7EE0xqSu8S9ZCSkRH7/qyTCgg=",
         }))));
@@ -58,7 +58,7 @@ chmod +x $out/bin/include-what-you-use
 patchShebangs $out/bin/include-what-you-use
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Analyze #includes in C/C++ source files with clang",
         longDescription: "For every symbol (type, function variable, or macro) that you use in\nfoo.cc, either foo.cc or foo.h should #include a .h file that exports the\ndeclaration of that symbol.  The main goal of include-what-you-use is to\nremove superfluous #includes, both by figuring out what #includes are not\nactually needed for this file (for both .cc and .h files), and by\nreplacing #includes with forward-declares when possible.\n",
         homepage: "https://include-what-you-use.org",
@@ -67,7 +67,7 @@ patchShebangs $out/bin/include-what-you-use
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

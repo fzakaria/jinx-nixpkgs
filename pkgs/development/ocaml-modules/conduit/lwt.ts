@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const sexplib0 = nix.arg($, "sexplib0");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "conduit-lwt",
       version: nix.thunk(() => nix.attr(conduit, "version")),
       src: nix.thunk(() => nix.attr(conduit, "src")),
       buildInputs: nix.thunk(() => [ppx_sexp_conv]),
       propagatedBuildInputs: nix.thunk(() => [conduit, lwt, sexplib0]),
       meta: nix.thunk(() => nix.update(nix.sel(conduit, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Network connection establishment library for Lwt",
       })),
     })));

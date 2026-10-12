@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jmcnamara",
           repo: "XlsxWriter",
           tag: nix.thunk(() => nix.str`RELEASE_${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["xlsxwriter"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for creating Excel XLSX files",
         homepage: "https://xlsxwriter.readthedocs.io/",
         changelog: "https://xlsxwriter.readthedocs.io/changes.html",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "vba_extract.py",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

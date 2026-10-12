@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "analog",
       version: "6.0.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "c-amie",
           repo: "analog-ce",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ substituteInPlace src/Makefile \\
 `),
       installPhase: "mkdir -p $out/bin $out/etc $out/share/doc/$pname $out/share/man/man1 $out/share/$pname\nmv analog $out/bin/\ncp examples/big.cfg $out/etc/analog.cfg\nmv analog.man $out/share/man/man1/analog.1\nmv docs $out/share/doc/$pname/manual\nmv how-to $out/share/doc/$pname/\nmv lang images examples $out/share/$pname/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/c-amie/analog-ce",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         description: "Powerful tool to generate web server statistics",

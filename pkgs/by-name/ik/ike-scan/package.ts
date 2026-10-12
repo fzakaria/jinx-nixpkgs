@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ike-scan",
       version: "1.9.5-unstable-2024-09-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "royhills",
           repo: "ike-scan",
           rev: "c74c01fd22d9a3aae3d8ba9a0bd2eb1a2146ac6f",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/royhills/ike-scan/pull/15/commits/d864811de08dcddd65ac9b8d0f2acf5d7ddb9dea.patch",
             hash: "sha256-VVJZSTZfDV0qHuxdNoZV1NXJYCEMtB0bO1oi2hLCeXE=",
           })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, openssl]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-openssl=${nix.sel(openssl, "dev")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to discover, fingerprint and test IPsec VPN servers",
         longDescription: "ike-scan is a command-line tool that uses the IKE protocol to discover,\nfingerprint and test IPsec VPN servers.\n",
         homepage: "https://github.com/royhills/ike-scan",

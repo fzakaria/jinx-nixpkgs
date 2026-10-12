@@ -211,7 +211,7 @@ export default nix.thunk(() => (() => {
     const fetchurl = nix.thunk(() => nix.attr(pkgs, "fetchurl"));
     const stdenv = nix.thunk(() => nix.attr(pkgs, "stdenv"));
     const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
-    const buildRPackage = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./generic-builder.nix"), nix.thunk(() => ({ __proto__: pos$1, R: R }))));
+    const buildRPackage = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./generic-builder.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, R: R }))));
     const mkDerive = nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const mkHomepage = nix.arg($_1, "mkHomepage");
@@ -232,20 +232,20 @@ export default nix.thunk(() => (() => {
             const hydraPlatforms_1 = nix.argOr($_2, "hydraPlatforms", () => (nix.asBool(!nix.eq(hydraPlatforms$, null)) ? nix.force(hydraPlatforms$) : nix.force(platforms)));
             const maintainers = nix.argOr($_2, "maintainers", () => []);
             return nix.app(buildRPackage, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 pname: name,
                 version: version,
                 src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     sha256: sha256,
-                    urls: nix.thunk(() => nix.app(mkUrls, nix.thunk(() => nix.update(args_2, { __proto__: pos$2, name: name, version: version })))),
+                    urls: nix.thunk(() => nix.app(mkUrls, nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$2, name: name, version: version })))),
                   })))),
                 doCheck: doCheck,
                 requireX: requireX,
                 propagatedBuildInputs: depends,
                 meta: nix.thunk(() => ({
-                  __proto__: pos$5,
-                  homepage: nix.thunk(() => nix.app(mkHomepage, nix.thunk(() => nix.update(args_2, { __proto__: pos$4, name: name })))),
+                  [nix.POS]: pos$5,
+                  homepage: nix.thunk(() => nix.app(mkHomepage, nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$4, name: name })))),
                   platforms: platforms,
                   hydraPlatforms: hydraPlatforms_1,
                   broken: broken,
@@ -256,7 +256,7 @@ export default nix.thunk(() => (() => {
       })();
     })(), formals$2);
     const deriveBioc = nix.thunk(() => nix.app(mkDerive, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         mkHomepage: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           const name = nix.arg($_1, "name");
@@ -276,7 +276,7 @@ export default nix.thunk(() => (() => {
         })(), formals$5),
       }))));
     const deriveBiocAnn = nix.thunk(() => nix.app(mkDerive, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         mkHomepage: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$6);
           const name = nix.arg($_1, "name");
@@ -295,7 +295,7 @@ export default nix.thunk(() => (() => {
         hydraPlatforms: [],
       }))));
     const deriveBiocExp = nix.thunk(() => nix.app(mkDerive, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         mkHomepage: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$8);
           const name = nix.arg($_1, "name");
@@ -314,7 +314,7 @@ export default nix.thunk(() => (() => {
         hydraPlatforms: [],
       }))));
     const deriveCran = nix.thunk(() => nix.app(mkDerive, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         mkHomepage: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$10);
           const name = nix.arg($_1, "name");
@@ -331,27 +331,27 @@ export default nix.thunk(() => (() => {
         })(), formals$11),
       }))));
     const overrideNativeBuildInputs = (overrides_1) => (old) => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.app(nix.sel(nix.builtins.getAttr(name, old), "overrideAttrs"), (attrs) => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "nativeBuildInputs"), value)),
         })), overrides_1);
     const overrideBuildInputs = (overrides_1) => (old) => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.app(nix.sel(nix.builtins.getAttr(name, old), "overrideAttrs"), (attrs) => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), value)),
         })), overrides_1);
-    const overrideMaintainers = (overrides_1) => (old) => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.app(nix.sel(nix.builtins.getAttr(name, old), "override"), nix.thunk(() => ({ __proto__: pos$13, maintainers: value }))), overrides_1);
+    const overrideMaintainers = (overrides_1) => (old) => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.app(nix.sel(nix.builtins.getAttr(name, old), "override"), nix.thunk(() => ({ [nix.POS]: pos$13, maintainers: value }))), overrides_1);
     const overrideRDepends = (overrides_1) => (old) => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.app(nix.sel(nix.builtins.getAttr(name, old), "overrideAttrs"), (attrs) => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "propagatedBuildInputs"), value)),
         })), overrides_1);
-    const overrideRequireX = (packageNames) => (old) => nix.app(nix.sel(lib, "genAttrs"), packageNames, (name) => nix.app(nix.sel(old, nix.key(nix.force(name)), "override"), nix.thunk(() => ({ __proto__: pos$15, requireX: true }))));
+    const overrideRequireX = (packageNames) => (old) => nix.app(nix.sel(lib, "genAttrs"), packageNames, (name) => nix.app(nix.sel(old, nix.key(nix.force(name)), "override"), nix.thunk(() => ({ [nix.POS]: pos$15, requireX: true }))));
     const overrideRequireHome = (packageNames) => (old) => nix.app(nix.sel(lib, "genAttrs"), packageNames, (name) => nix.app(nix.sel(old, nix.key(nix.force(name)), "overrideAttrs"), (oldAttrs) => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           preInstall: nix.thunk(() => nix.str`${nix.selOr(oldAttrs, () => "", "preInstall")}
 export HOME=$(mktemp -d)
 `),
         })));
-    const overrideSkipCheck = (packageNames) => (old) => nix.app(nix.sel(lib, "genAttrs"), packageNames, (name) => nix.app(nix.sel(old, nix.key(nix.force(name)), "override"), nix.thunk(() => ({ __proto__: pos$17, doCheck: false }))));
-    const overrideBroken = (packageNames) => (old) => nix.app(nix.sel(lib, "genAttrs"), packageNames, (name) => nix.app(nix.sel(old, nix.key(nix.force(name)), "override"), nix.thunk(() => ({ __proto__: pos$18, broken: true }))));
+    const overrideSkipCheck = (packageNames) => (old) => nix.app(nix.sel(lib, "genAttrs"), packageNames, (name) => nix.app(nix.sel(old, nix.key(nix.force(name)), "override"), nix.thunk(() => ({ [nix.POS]: pos$17, doCheck: false }))));
+    const overrideBroken = (packageNames) => (old) => nix.app(nix.sel(lib, "genAttrs"), packageNames, (name) => nix.app(nix.sel(old, nix.key(nix.force(name)), "override"), nix.thunk(() => ({ [nix.POS]: pos$18, broken: true }))));
     const defaultOverrides = (old) => (new$) => (() => {
       const old0 = old;
       const old1 = nix.thunk(() => nix.update(old0, nix.app(overrideRequireX, packagesRequiringX, old0)));
@@ -366,15 +366,15 @@ export HOME=$(mktemp -d)
       return nix.update(old_1, nix.app(otherOverrides, old_1, new$));
     })();
     const self = nix.thunk(() => nix.update(nix.app(defaultOverrides, _self, self), overrides));
-    const _self = nix.thunk(() => nix.update({ __proto__: pos$19, buildRPackage: buildRPackage }, nix.update(nix.app(mkPackageSet, deriveBioc, biocPackagesGenerated), nix.update(nix.app(mkPackageSet, deriveBiocAnn, biocAnnotationPackagesGenerated), nix.update(nix.app(mkPackageSet, deriveBiocExp, biocExperimentPackagesGenerated), nix.app(mkPackageSet, deriveCran, cranPackagesGenerated))))));
+    const _self = nix.thunk(() => nix.update({ [nix.POS]: pos$19, buildRPackage: buildRPackage }, nix.update(nix.app(mkPackageSet, deriveBioc, biocPackagesGenerated), nix.update(nix.app(mkPackageSet, deriveBiocAnn, biocAnnotationPackagesGenerated), nix.update(nix.app(mkPackageSet, deriveBiocExp, biocExperimentPackagesGenerated), nix.app(mkPackageSet, deriveCran, cranPackagesGenerated))))));
     const mkPackageSet = (derive) => (packagesJSON) => nix.app(nix.sel(lib, "mapAttrs"), (k) => (v) => nix.app(derive, nix.thunk(() => nix.sel(packagesJSON, "extraArgs")), nix.thunk(() => nix.update(v, {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           depends: nix.thunk(() => nix.app(nix.sel(lib, "map"), (name) => nix.builtins.getAttr(name, self), nix.thunk(() => nix.sel(v, "depends")))),
         }))), nix.thunk(() => nix.sel(packagesJSON, "packages")));
     const packagesWithMaintainers = nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         BiocManager: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "jbedo"))]),
         RQuantLib: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "kupac"))]),
         StructuralVariantAnnotation: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "jbedo"))]),
@@ -387,7 +387,7 @@ export HOME=$(mktemp -d)
       };
     })());
     const packagesWithRDepends = nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       BayesPET: nix.thunk(() => [nix.thunk(() => nix.sel(self, "rstantools"))]),
       TriDimRegression: nix.thunk(() => [nix.thunk(() => nix.sel(self, "rstantools"))]),
       bayesdfa: nix.thunk(() => [nix.thunk(() => nix.sel(self, "rstantools"))]),
@@ -402,7 +402,7 @@ export HOME=$(mktemp -d)
       tipsae: nix.thunk(() => [nix.thunk(() => nix.sel(self, "rstantools"))]),
     }));
     const packagesWithNativeBuildInputs = nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       Apollonius: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pkg-config"))]),
       BayesXsrc: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gsl"))]),
       BigDataStatMeth: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pkg-config"))]),
@@ -1250,7 +1250,7 @@ export HOME=$(mktemp -d)
       })()),
     }));
     const packagesWithBuildInputs = nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       AMOUNTAIN: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gsl"))]),
       Apollonius: nix.thunk(() => (() => {
         const w_1 = nix.withScope(pkgs, null);
@@ -2558,28 +2558,28 @@ export HOME=$(mktemp -d)
       "signatureSearch",
     ]);
     const otherOverrides = (old) => (new$) => ({
-      __proto__: pos$181,
+      [nix.POS]: pos$181,
       ACME: nix.thunk(() => nix.app(nix.sel(old, "ACME", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -Wno-incompatible-pointer-types")),
           })),
         }))),
       AneuFinder: nix.thunk(() => nix.app(nix.sel(old, "AneuFinder", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           postPatch: "substituteInPlace src/utility.cpp src/densities.cpp src/loghmm.cpp src/scalehmm.cpp \\\n  --replace-fail \"Calloc(\" \"R_Calloc(\" \\\n  --replace-fail \"Free(\" \"R_Free(\"\n",
         }))),
       BiocParallel: nix.thunk(() => nix.app(nix.sel(old, "BiocParallel", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), " -Wno-error=missing-template-arg-list-after-template-kw"))),
           })),
         }))),
-      ChIPXpress: nix.thunk(() => nix.app(nix.sel(old, "ChIPXpress", "override"), nix.thunk(() => ({ __proto__: pos$30, hydraPlatforms: [] })))),
+      ChIPXpress: nix.thunk(() => nix.app(nix.sel(old, "ChIPXpress", "override"), nix.thunk(() => ({ [nix.POS]: pos$30, hydraPlatforms: [] })))),
       ChemmineOB: nix.thunk(() => nix.app(nix.sel(old, "ChemmineOB", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           postPatch: nix.thunk(() => nix.str`substituteInPlace configure \\
   --replace-fail openbabel-3.0 openbabel-3
 substituteInPlace src/Makevars.in \\
@@ -2588,61 +2588,61 @@ substituteInPlace src/ChemmineOB.cpp \\
   --replace-fail "obsharedptr<" "std::shared_ptr<"
 `),
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), " -D_LIBCPP_ENABLE_CXX17_REMOVED_FEATURES"))),
           })),
         }))),
       FLAMES: nix.thunk(() => nix.app(nix.sel(old, "FLAMES", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           patches: nix.thunk(() => [nix.path(here, "./patches/FLAMES.patch")]),
         }))),
       FlexReg: nix.thunk(() => nix.app(nix.sel(old, "FlexReg", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -Wno-ignored-attributes")),
           })),
           enableParallelBuilding: false,
         }))),
-      HilbertVis: nix.thunk(() => nix.app(nix.sel(old, "HilbertVis", "overrideAttrs"), (attrs) => ({ __proto__: pos$36, hardeningDisable: nix.thunk(() => ["format"]) }))),
+      HilbertVis: nix.thunk(() => nix.app(nix.sel(old, "HilbertVis", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$36, hardeningDisable: nix.thunk(() => ["format"]) }))),
       JavaGD: nix.thunk(() => nix.app(nix.sel(old, "JavaGD", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           preConfigure: nix.thunk(() => nix.str`export JAVA_CPPFLAGS=-I${nix.sel(pkgs, "jdk")}/include/
 export JAVA_HOME=${nix.sel(pkgs, "jdk")}
 `),
         }))),
-      MANOR: nix.thunk(() => nix.app(nix.sel(old, "MANOR", "overrideAttrs"), (attrs) => ({ __proto__: pos$38, hardeningDisable: nix.thunk(() => ["format"]) }))),
+      MANOR: nix.thunk(() => nix.app(nix.sel(old, "MANOR", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$38, hardeningDisable: nix.thunk(() => ["format"]) }))),
       ModelMetrics: nix.thunk(() => nix.app(nix.sel(old, "ModelMetrics", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), " -fopenmp"))),
           })),
         }))),
       NGCHM: nix.thunk(() => nix.app(nix.sel(old, "NGCHM", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           postPatch: nix.thunk(() => nix.str`substituteInPlace "inst/base.config/conf.d/01-server-protocol-scl.R" \\
   --replace-fail \\
   "/bin/hostname" "${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "hostname")))}/bin/hostname"
 `),
         }))),
       OpenMx: nix.thunk(() => nix.app(nix.sel(old, "OpenMx", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -Wno-ignored-attributes")),
           })),
         }))),
       PICS: nix.thunk(() => nix.app(nix.sel(old, "PICS", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           postPatch: "# https://developer.r-project.org/blosxom.cgi/R-devel/NEWS/2025/01/08#n2025-01-08\nsubstituteInPlace \"src/segment.c\" \\\n--replace-fail \"Calloc\" \"R_Calloc\"\n",
         }))),
       RAppArmor: nix.thunk(() => nix.app(nix.sel(old, "RAppArmor", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "# ignore apparmor detection logic\nsubstituteInPlace configure \\\n  --replace-fail '[ ! -e \"/sys/module/apparmor\" ]' 'false'\n")),
         }))),
       RBioFormats: nix.thunk(() => nix.app(nix.sel(old, "RBioFormats", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "propagatedBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "bftools"))])),
           postPatch: nix.thunk(() => nix.str`substituteInPlace "R/zzz.R" \\
   --replace-fail '!file.exists(bf_jar)' 'FALSE' \\
@@ -2662,157 +2662,157 @@ fi
 `),
         }))),
       ROracle: nix.thunk(() => nix.app(nix.sel(old, "ROracle", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           configureFlags: nix.thunk(() => [
             nix.thunk(() => nix.str`--with-oci-lib=${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "oracle-instantclient")))}/lib`),
             nix.thunk(() => nix.str`--with-oci-inc=${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(pkgs, "oracle-instantclient")))}/include`),
           ]),
         }))),
       RProtoBuf: nix.thunk(() => nix.app(nix.sel(old, "RProtoBuf", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           configureFlags: nix.thunk(() => ["ac_cv_prog_cxx_cxx11="]),
         }))),
       RVowpalWabbit: nix.thunk(() => nix.app(nix.sel(old, "RVowpalWabbit", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           configureFlags: nix.thunk(() => [
             nix.thunk(() => nix.str`--with-boost=${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(pkgs, "boost")))}`),
             nix.thunk(() => nix.str`--with-boost-libdir=${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "boost")))}/lib`),
           ]),
         }))),
       RandomFieldsUtils: nix.thunk(() => nix.app(nix.sel(old, "RandomFieldsUtils", "override"), nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "x86_64"), nix.sel(lib, "platforms", "x86"))),
         })))),
       Rbwa: nix.thunk(() => nix.app(nix.sel(old, "Rbwa", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           postPatch: "substituteInPlace src/Makefile --replace-fail \\\n  \"all:\\$(PROG) ../inst/bwa clean\" \\\n  \"all:\\$(PROG) ../inst/bwa\"\n",
         }))),
-      Rdisop: nix.thunk(() => nix.app(nix.sel(old, "Rdisop", "overrideAttrs"), (_) => ({ __proto__: pos$52, hardeningDisable: nix.thunk(() => ["format"]) }))),
+      Rdisop: nix.thunk(() => nix.app(nix.sel(old, "Rdisop", "overrideAttrs"), (_) => ({ [nix.POS]: pos$52, hardeningDisable: nix.thunk(() => ["format"]) }))),
       Rhdf5lib: nix.thunk(() => (() => {
         const hdf5 = nix.thunk(() => nix.app(nix.sel(pkgs, "hdf5", "overrideAttrs"), (attrs) => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "cmakeFlags"), ["-DHDF5_ENABLE_ROS3_VFD:BOOL=TRUE"])),
             buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "curl"))])),
             postInstall: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postInstall"), "cp src/libhdf5.settings $dev/lib\n")),
           })));
         return nix.app(nix.sel(old, "Rhdf5lib", "overrideAttrs"), (attrs) => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "propagatedBuildInputs"), [hdf5, nix.thunk(() => nix.sel(pkgs, "libaec"))])),
             patches: nix.thunk(() => [nix.path(here, "./patches/Rhdf5lib.patch")]),
-            passthru: nix.thunk(() => ({ __proto__: pos$54, hdf5: hdf5 })),
+            passthru: nix.thunk(() => ({ [nix.POS]: pos$54, hdf5: hdf5 })),
           }));
       })()),
-      Rhisat2: nix.thunk(() => nix.app(nix.sel(old, "Rhisat2", "overrideAttrs"), (attrs) => ({ __proto__: pos$56, enableParallelBuilding: false }))),
+      Rhisat2: nix.thunk(() => nix.app(nix.sel(old, "Rhisat2", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$56, enableParallelBuilding: false }))),
       Rhtslib: nix.thunk(() => nix.app(nix.sel(old, "Rhtslib", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           preConfigure: nix.thunk(() => nix.str`substituteInPlace R/zzz.R --replace-fail "-lcurl" "-L${nix.sel(pkgs, "curl", "out")}/lib -lcurl"
 `),
         }))),
       Rrdrand: nix.thunk(() => nix.app(nix.sel(old, "Rrdrand", "override"), nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "x86_64"), nix.sel(lib, "platforms", "x86"))),
         })))),
       Rserve: nix.thunk(() => nix.app(nix.sel(old, "Rserve", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           configureFlags: nix.thunk(() => ["--with-server", "--with-client"]),
           patches: nix.thunk(() => [nix.path(here, "./patches/Rserve.patch")]),
           postInstall: "mkdir -p \"$out/bin/\"\nln -s \"$out\"/library/Rserve/libs/Rserve{,.dbg} \"$out/bin/\"\n",
         }))),
       SAIGEgds: nix.thunk(() => nix.app(nix.sel(old, "SAIGEgds", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -fpermissive")),
           })),
         }))),
       SICtools: nix.thunk(() => nix.app(nix.sel(old, "SICtools", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           postPatch: "substituteInPlace src/Makefile --replace-fail \"-lcurses\" \"-lncurses\"\n",
           hardeningDisable: nix.thunk(() => ["format"]),
         }))),
       SamplerCompare: nix.thunk(() => nix.app(nix.sel(old, "SamplerCompare", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$64,
+          [nix.POS]: pos$64,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             PKG_LIBS: nix.thunk(() => nix.str`-L${nix.sel(pkgs, "blas")}/lib -lblas -L${nix.sel(pkgs, "lapack")}/lib -llapack`),
           })),
         }))),
       SingleR: nix.thunk(() => nix.app(nix.sel(old, "SingleR", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$65,
+          [nix.POS]: pos$65,
           postPatch: "substituteInPlace src/find_classic_markers.cpp --replace-fail \\\n  \"Rcpp::IntegerVector val(de_n);\" \\\n  \"Rcpp::IntegerVector val(static_cast<int>(de_n));\"\n",
         }))),
-      SynExtend: nix.thunk(() => nix.app(nix.sel(old, "SynExtend", "overrideAttrs"), (attrs) => ({ __proto__: pos$66, enableParallelBuilding: false }))),
+      SynExtend: nix.thunk(() => nix.app(nix.sel(old, "SynExtend", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$66, enableParallelBuilding: false }))),
       V8: nix.thunk(() => nix.app(nix.sel(old, "V8", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           preConfigure: "export V8_PKG_CFLAGS=\"$(pkg-config --cflags v8)\";\nexport V8_PKG_LIBS=\"$(pkg-config --libs v8)\";\n",
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$67,
+            [nix.POS]: pos$67,
             R_MAKEVARS_SITE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(pkgs, "stdenv", "system"), "aarch64-linux")), nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "Makevars", "CXX14PICFLAGS = -fPIC\n")))),
           })),
         }))),
       XLConnect: nix.thunk(() => (() => {
         const poi_ooxml_full = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             url: "https://repo1.maven.org/maven2/org/apache/poi/poi-ooxml-full/5.4.1/poi-ooxml-full-5.4.1.jar",
             hash: "sha256-xRsFFlXVjXTV64nn03NscFLCV09Dx52wyKg60hb23Tc=",
           }))));
         const poi_ooxml = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             url: "https://repo1.maven.org/maven2/org/apache/poi/poi-ooxml/5.4.1/poi-ooxml-5.4.1.jar",
             hash: "sha256-/SAMnm901wQWCpfp1SBBmV7YdDlFRTAAHt2SBojxn1M=",
           }))));
         const poi = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             url: "https://repo1.maven.org/maven2/org/apache/poi/poi/5.4.1/poi-5.4.1.jar",
             hash: "sha256-2lq/QtpGBMWnvKOJVq9unW8ZbZttTLfqvuT0gLWA1QU=",
           }))));
         const commons_compress = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             url: "https://repo1.maven.org/maven2/org/apache/commons/commons-compress/1.27.1/commons-compress-1.27.1.jar",
             hash: "sha256-KT2A9UtTa3QJXc1+o88KKbv8NAJRkoEzJJX0Qg03DRY=",
           }))));
         const commons_lang3 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             url: "https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.16.0/commons-lang3-3.16.0.jar",
             hash: "sha256-CHCd101gK3Bc5AF9JlRCEAVqS6WD1bIMCTc0Bv56APg=",
           }))));
         const xmlbeans = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             url: "https://repo1.maven.org/maven2/org/apache/xmlbeans/xmlbeans/5.3.0/xmlbeans-5.3.0.jar",
             hash: "sha256-bMado7TTW4PF5HfNTauiBORBCYM+NK8rmoosh4gomRc=",
           }))));
         const commons_collections4 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             url: "https://repo1.maven.org/maven2/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar",
             hash: "sha256-Hfi5QwtcjtFD14FeQD4z71NxskAKrb6b2giDdi4IRtE=",
           }))));
         const commons_math3 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$76,
+            [nix.POS]: pos$76,
             url: "https://repo1.maven.org/maven2/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar",
             hash: "sha256-HlbXsFjSi2Wr0la4RY44hbZ0wdWI+kPNfRy7nH7yswg=",
           }))));
         const log4j_api = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$77,
+            [nix.POS]: pos$77,
             url: "https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.24.3/log4j-api-2.24.3.jar",
             hash: "sha256-W0oKDNDnUd7UMcFiRCvb3VMyjR+Lsrrl/Bu+7g9m2A8=",
           }))));
         const commons_codec = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$78,
+            [nix.POS]: pos$78,
             url: "https://repo1.maven.org/maven2/commons-codec/commons-codec/1.18.0/commons-codec-1.18.0.jar",
             hash: "sha256-ugBfMEzvkqPe3iSjitWsm4r8zw2PdYOdbBM4Y0z39uQ=",
           }))));
         const commons_io = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$79,
+            [nix.POS]: pos$79,
             url: "https://repo1.maven.org/maven2/commons-io/commons-io/2.18.0/commons-io-2.18.0.jar",
             hash: "sha256-88oPjWPEDiOlbVQQHGDV7e4Ta0LYS/uFvHljCTEJz4s=",
           }))));
         const SparseBitSet = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$80,
+            [nix.POS]: pos$80,
             url: "https://repo1.maven.org/maven2/com/zaxxer/SparseBitSet/1.3/SparseBitSet-1.3.jar",
             hash: "sha256-92uFrbDAByGuJnt8/eTaf3HTEhzCFgyfwAwMifjFPIo=",
           }))));
         return nix.app(nix.sel(old, "XLConnect", "overrideAttrs"), (attrs) => ({
-            __proto__: pos$81,
+            [nix.POS]: pos$81,
             preConfigure: nix.thunk(() => nix.str`cp ${poi_ooxml_full} inst/java/poi-ooxml-full-5.4.1.jar
 cp ${poi_ooxml} inst/java/poi-ooxml-5.4.1.jar
 cp ${poi} inst/java/poi-5.4.1.jar
@@ -2836,32 +2836,32 @@ substituteInPlace R/onAttach.R \\
           }));
       })()),
       alcyon: nix.thunk(() => nix.app(nix.sel(old, "alcyon", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$82,
+          [nix.POS]: pos$82,
           configureFlags: nix.thunk(() => ["--enable-force-openmp"]),
         }))),
       arrow: nix.thunk(() => nix.app(nix.sel(old, "arrow", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$83,
+          [nix.POS]: pos$83,
           src: nix.thunk(() => nix.sel(pkgs, "arrow-cpp", "src")),
           name: nix.thunk(() => nix.str`r-arrow-${nix.sel(pkgs, "arrow-cpp", "version")}`),
           prePatch: "cd r",
           buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "arrow-cpp"))])),
         }))),
-      cisPath: nix.thunk(() => nix.app(nix.sel(old, "cisPath", "overrideAttrs"), (attrs) => ({ __proto__: pos$84, hardeningDisable: nix.thunk(() => ["format"]) }))),
-      covidsymptom: nix.thunk(() => nix.app(nix.sel(old, "covidsymptom", "overrideAttrs"), (attrs) => ({ __proto__: pos$85, preConfigure: "rm R/covidsymptomdata.R" }))),
-      cubature: nix.thunk(() => nix.app(nix.sel(old, "cubature", "overrideAttrs"), (attrs) => ({ __proto__: pos$86, enableParallelBuilding: false }))),
+      cisPath: nix.thunk(() => nix.app(nix.sel(old, "cisPath", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$84, hardeningDisable: nix.thunk(() => ["format"]) }))),
+      covidsymptom: nix.thunk(() => nix.app(nix.sel(old, "covidsymptom", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$85, preConfigure: "rm R/covidsymptomdata.R" }))),
+      cubature: nix.thunk(() => nix.app(nix.sel(old, "cubature", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$86, enableParallelBuilding: false }))),
       data_table: nix.thunk(() => nix.app(nix.sel(old, "data_table", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$88,
+          [nix.POS]: pos$88,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$87,
+            [nix.POS]: pos$87,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -fopenmp")),
           })),
         }))),
       dbarts: nix.thunk(() => nix.app(nix.sel(old, "dbarts", "override"), nix.thunk(() => ({
-          __proto__: pos$89,
+          [nix.POS]: pos$89,
           platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "x86_64"), nix.sel(lib, "platforms", "x86"))),
         })))),
       exifr: nix.thunk(() => nix.app(nix.sel(old, "exifr", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$90,
+          [nix.POS]: pos$90,
           postPatch: nix.thunk(() => nix.str`for f in .onLoad .onAttach ; do
   substituteInPlace R/load_hook.R \\
     --replace-fail \\
@@ -2875,76 +2875,76 @@ done
 `),
         }))),
       findpython: nix.thunk(() => nix.app(nix.sel(old, "findpython", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$91,
+          [nix.POS]: pos$91,
           postPatch: nix.thunk(() => nix.str`substituteInPlace "R/find_python_cmd.r" \\
   --replace-fail 'python_cmds[which(python_cmds != "")]' \\
   'python_cmds <- c(python_cmds, file.path("${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "python3")))}", "bin", "python3"))
    python_cmds[which(python_cmds != "")]'
 `),
         }))),
-      float: nix.thunk(() => nix.app(nix.sel(old, "float", "overrideAttrs"), (attrs) => ({ __proto__: pos$92, enableParallelBuilding: false }))),
+      float: nix.thunk(() => nix.app(nix.sel(old, "float", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$92, enableParallelBuilding: false }))),
       flowClust: nix.thunk(() => nix.app(nix.sel(old, "flowClust", "override"), nix.thunk(() => ({
-          __proto__: pos$93,
+          [nix.POS]: pos$93,
           platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "x86_64"), nix.sel(lib, "platforms", "x86"))),
         })))),
       gdtools: nix.thunk(() => nix.app(nix.sel(old, "gdtools", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$95,
-          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { __proto__: pos$94, NIX_LDFLAGS: "-lfontconfig -lfreetype" })),
+          [nix.POS]: pos$95,
+          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$94, NIX_LDFLAGS: "-lfontconfig -lfreetype" })),
         }))),
       genoCN: nix.thunk(() => nix.app(nix.sel(old, "genoCN", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$96,
+          [nix.POS]: pos$96,
           postPatch: "# https://developer.r-project.org/blosxom.cgi/R-devel/NEWS/2025/01/08#n2025-01-08\nsubstituteInPlace \"src/xCNV.c\" \\\n--replace-fail \"Calloc\" \"R_Calloc\" \\\n--replace-fail \"Free\" \"R_Free\"\n",
         }))),
       geojsonio: nix.thunk(() => nix.app(nix.sel(old, "geojsonio", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$97,
+          [nix.POS]: pos$97,
           buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), [cacert])),
         }))),
       geomorph: nix.thunk(() => nix.app(nix.sel(old, "geomorph", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$99,
-          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { __proto__: pos$98, RGL_USE_NULL: "true" })),
+          [nix.POS]: pos$99,
+          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$98, RGL_USE_NULL: "true" })),
         }))),
       gmapR: nix.thunk(() => nix.app(nix.sel(old, "gmapR", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$101,
+          [nix.POS]: pos$101,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$100,
+            [nix.POS]: pos$100,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -Wno-implicit-function-declaration -Wno-incompatible-pointer-types")),
           })),
         }))),
-      gpuMagic: nix.thunk(() => nix.app(nix.sel(old, "gpuMagic", "overrideAttrs"), (_) => ({ __proto__: pos$102, hardeningDisable: nix.thunk(() => ["format"]) }))),
+      gpuMagic: nix.thunk(() => nix.app(nix.sel(old, "gpuMagic", "overrideAttrs"), (_) => ({ [nix.POS]: pos$102, hardeningDisable: nix.thunk(() => ["format"]) }))),
       h2o: nix.thunk(() => nix.app(nix.sel(old, "h2o", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$103,
+          [nix.POS]: pos$103,
           preConfigure: "# prevent download of jar file during install and postpone to first use\nsed -i '/downloadJar()/d' R/zzz.R\n\n# during runtime the package directory is not writable as it's in the\n# nix store, so store the jar in the user's cache directory instead\nsubstituteInPlace R/connection.R --replace-fail \\\n  'dest_file <- file.path(dest_folder, \"h2o.jar\")' \\\n  'dest_file <- file.path(\"~/.cache/\", \"h2o.jar\")'\n",
         }))),
       harbinger: nix.thunk(() => nix.app(nix.sel(old, "harbinger", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$105,
-          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { __proto__: pos$104, LC_ALL: "en_US.UTF-8" })),
+          [nix.POS]: pos$105,
+          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$104, LC_ALL: "en_US.UTF-8" })),
         }))),
       hdf5r: nix.thunk(() => nix.app(nix.sel(old, "hdf5r", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$106,
+          [nix.POS]: pos$106,
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(new$, "Rhdf5lib", "hdf5"))])),
           buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), [nix.thunk(() => nix.sel(new$, "Rhdf5lib", "hdf5"))])),
         }))),
       immunotation: nix.thunk(() => (() => {
         const MHC41alleleList = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$107,
+            [nix.POS]: pos$107,
             url: "https://services.healthtech.dtu.dk/services/NetMHCpan-4.1/allele.list",
             hash: "sha256-CRZ+0uHzcq5zK5eONucAChXIXO8tnq5sSEAS80Z7jhg=",
           }))));
         const MHCII40alleleList = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$108,
+            [nix.POS]: pos$108,
             url: "https://services.healthtech.dtu.dk/services/NetMHCIIpan-4.0/alleles_name.list",
             hash: "sha256-K4Ic2NUs3P4IkvOODwZ0c4Yh8caex5Ih0uO5jXRHp40=",
           }))));
         const validGeographics = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$109,
+            [nix.POS]: pos$109,
             url: "https://web.archive.org/web/20240418194005id_/http://www.allelefrequencies.net/hla6006a.asp",
             hash: "sha256-m7Wkmh/cPxeqn94LwoznIh+fcFXskmSGErUYj6kTqak=",
           }))));
         return nix.app(nix.sel(old, "immunotation", "overrideAttrs"), (attrs) => ({
-            __proto__: pos$111,
+            [nix.POS]: pos$111,
             patches: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "replaceVars"), nix.path(here, "./patches/immunotation.patch"), nix.thunk(() => ({
-                  __proto__: pos$110,
+                  [nix.POS]: pos$110,
                   mhc41_allele_list: MHC41alleleList,
                   mhcii40_alleles_name_list: MHCII40alleleList,
                   valid_geographics: validGeographics,
@@ -2953,82 +2953,82 @@ done
           }));
       })()),
       iscream: nix.thunk(() => nix.app(nix.sel(old, "iscream", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$112,
+          [nix.POS]: pos$112,
           propagatedBuildInputs: nix.thunk(() => nix.builtins.filter((el) => !nix.eq(nix.sel(el, "pname"), "Rhtslib"), nix.thunk(() => nix.sel(attrs, "propagatedBuildInputs")))),
           buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "htslib"))])),
           postPatch: "substituteInPlace \"DESCRIPTION\" \\\n  --replace-fail \", Rhtslib\" \"\"\n",
         }))),
       littler: nix.thunk(() => nix.app(nix.sel(old, "littler", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$113,
+          [nix.POS]: pos$113,
           postInstall: "install -d $out/bin $out/share/man/man1\nln -s ../library/littler/bin/r $out/bin/r\nln -s ../library/littler/bin/r $out/bin/lr\nln -s ../../../library/littler/man-page/r.1 $out/share/man/man1\n# these won't run without special provisions, so better remove them\nrm -r $out/library/littler/script-tests\n",
         }))),
       lpsymphony: nix.thunk(() => nix.app(nix.sel(old, "lpsymphony", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$114,
+          [nix.POS]: pos$114,
           postPatch: "substituteInPlace configure \\\n  --replace-fail '--libs SYMPHONY' '--libs symphony' \\\n  --replace-fail '--cflags SYMPHONY' '--cflags symphony'\n",
         }))),
-      luajr: nix.thunk(() => nix.app(nix.sel(old, "luajr", "overrideAttrs"), (attrs) => ({ __proto__: pos$115, hardeningDisable: nix.thunk(() => ["format"]) }))),
+      luajr: nix.thunk(() => nix.app(nix.sel(old, "luajr", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$115, hardeningDisable: nix.thunk(() => ["format"]) }))),
       metahdep: nix.thunk(() => nix.app(nix.sel(old, "metahdep", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$117,
+          [nix.POS]: pos$117,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$116,
+            [nix.POS]: pos$116,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -Wno-int-conversion")),
           })),
         }))),
       nanonext: nix.thunk(() => nix.app(nix.sel(old, "nanonext", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$119,
-          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { __proto__: pos$118, NIX_LDFLAGS: "-lnng -lmbedtls -lmbedx509 -lmbedcrypto" })),
+          [nix.POS]: pos$119,
+          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$118, NIX_LDFLAGS: "-lnng -lmbedtls -lmbedx509 -lmbedcrypto" })),
         }))),
       nearfar: nix.thunk(() => (() => {
         const angrist = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$120,
+            [nix.POS]: pos$120,
             url: "https://raw.githubusercontent.com/joerigdon/nearfar/master/angrist.csv",
             hash: "sha256-lb+HMHnRGonc26merFGB0B7Vk1Lk+sIJlay+JtQC8m4=",
           }))));
         return nix.app(nix.sel(old, "nearfar", "overrideAttrs"), (attrs) => ({
-            __proto__: pos$121,
+            [nix.POS]: pos$121,
             postPatch: nix.thunk(() => nix.str`substituteInPlace "R/nearfar.R" --replace-fail \\
  'url("https://raw.githubusercontent.com/joerigdon/nearfar/master/angrist.csv")'  '"${angrist}"'
 `),
           }));
       })()),
       networkscaleup: nix.thunk(() => nix.app(nix.sel(old, "networkscaleup", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$123,
+          [nix.POS]: pos$123,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$122,
+            [nix.POS]: pos$122,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -Wno-ignored-attributes")),
           })),
           enableParallelBuilding: false,
         }))),
-      oligo: nix.thunk(() => nix.app(nix.sel(old, "oligo", "overrideAttrs"), (_) => ({ __proto__: pos$124, hardeningDisable: nix.thunk(() => ["format"]) }))),
+      oligo: nix.thunk(() => nix.app(nix.sel(old, "oligo", "overrideAttrs"), (_) => ({ [nix.POS]: pos$124, hardeningDisable: nix.thunk(() => ["format"]) }))),
       opencv: nix.thunk(() => (() => {
-        const opencvGtk = nix.thunk(() => nix.app(nix.sel(pkgs, "opencv", "override"), (old_1) => ({ __proto__: pos$125, enableGtk3: true })));
+        const opencvGtk = nix.thunk(() => nix.app(nix.sel(pkgs, "opencv", "override"), (old_1) => ({ [nix.POS]: pos$125, enableGtk3: true })));
         return nix.app(nix.sel(old, "opencv", "overrideAttrs"), (attrs) => ({
-            __proto__: pos$126,
+            [nix.POS]: pos$126,
             buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), [opencvGtk])),
           }));
       })()),
       openssl: nix.thunk(() => nix.app(nix.sel(old, "openssl", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$127,
+          [nix.POS]: pos$127,
           postPatch: "substituteInPlace configure \\\n  --replace-fail 'PKG_LIBS=\"${PKG_LIBS_VERSIONED}\"' ':'\n",
         }))),
-      pak: nix.thunk(() => nix.app(nix.sel(old, "pak", "overrideAttrs"), (attrs) => ({ __proto__: pos$128, preConfigure: "patchShebangs src/library/*/configure\n" }))),
+      pak: nix.thunk(() => nix.app(nix.sel(old, "pak", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$128, preConfigure: "patchShebangs src/library/*/configure\n" }))),
       pbdZMQ: nix.thunk(() => nix.app(nix.sel(old, "pbdZMQ", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$129,
+          [nix.POS]: pos$129,
           postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`for file in R/*.{r,r.in}; do
     sed -i 's#system("which \\(\\w\\+\\)"[^)]*)#"${nix.sel(pkgs, "cctools")}/bin/\\1"#g' $file
 done
 `))),
         }))),
       quarto: nix.thunk(() => nix.app(nix.sel(old, "quarto", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$130,
+          [nix.POS]: pos$130,
           propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(attrs, "propagatedBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "quarto"))])),
           postPatch: nix.thunk(() => nix.str`substituteInPlace "R/quarto.R" \\
   --replace-fail "Sys.getenv(\\"QUARTO_PATH\\", unset = NA_character_)" "Sys.getenv(\\"QUARTO_PATH\\", unset = '${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "quarto")))}/bin/quarto')"
 `),
         }))),
-      rGADEM: nix.thunk(() => nix.app(nix.sel(old, "rGADEM", "overrideAttrs"), (attrs) => ({ __proto__: pos$131, hardeningDisable: nix.thunk(() => ["format"]) }))),
+      rGADEM: nix.thunk(() => nix.app(nix.sel(old, "rGADEM", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$131, hardeningDisable: nix.thunk(() => ["format"]) }))),
       rJava: nix.thunk(() => nix.app(nix.sel(old, "rJava", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$132,
+          [nix.POS]: pos$132,
           preConfigure: nix.thunk(() => nix.str`export JAVA_CPPFLAGS=-I${nix.sel(pkgs, "jdk")}/include/
 export JAVA_HOME=${nix.sel(pkgs, "jdk")}
 substituteInPlace R/zzz.R.in \\
@@ -3038,7 +3038,7 @@ substituteInPlace R/zzz.R.in \\
 `),
         }))),
       rawrr: nix.thunk(() => nix.app(nix.sel(old, "rawrr", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$133,
+          [nix.POS]: pos$133,
           postPatch: nix.thunk(() => nix.str`substituteInPlace "R/zzz.R" "R/dotNetAssembly.R" --replace-warn \\
   "Sys.which('mono')" "'${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "mono")))}/bin/mono'"
 
@@ -3059,25 +3059,25 @@ substituteInPlace "R/rawrr.R" --replace-warn \\
             const platform = nix.arg($_1, "platform");
             const hash = nix.arg($_1, "hash");
             return nix.app(nix.sel(pkgs, "fetchzip"), nix.thunk(() => ({
-                __proto__: pos$134,
+                [nix.POS]: pos$134,
                 name: nix.thunk(() => nix.str`redatam-core-${platform}-${nix.sel(finalAttrs, "version")}`),
                 url: nix.thunk(() => nix.str`https://redatam-core.s3.us-west-2.amazonaws.com/core-dev/${platform}/redatamx-core-${platform}-${nix.sel(finalAttrs, "version")}-final.zip`),
                 hash: hash,
               })));
           })(), formals$12);
           return {
-            __proto__: pos$140,
+            [nix.POS]: pos$140,
             passthru: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "passthru"), {
-              __proto__: pos$138,
+              [nix.POS]: pos$138,
               "redatam-core-per-system": nix.thunk(() => ({
-                __proto__: pos$137,
+                [nix.POS]: pos$137,
                 "x86_64-linux": nix.thunk(() => nix.app(fetchCore, nix.thunk(() => ({
-                    __proto__: pos$135,
+                    [nix.POS]: pos$135,
                     platform: "linux",
                     hash: "sha256-LNusDc4K6B+kAd+qWo789eiQG0dToEwu/RWwoFEjgRo=",
                   })))),
                 "aarch64-darwin": nix.thunk(() => nix.app(fetchCore, nix.thunk(() => ({
-                    __proto__: pos$136,
+                    [nix.POS]: pos$136,
                     platform: "macos-arm64",
                     hash: "sha256-l7qLjM6jDtytAPgY7qVuVPEE6HUnZ1fPFxAzS6VnFY4=",
                   })))),
@@ -3088,22 +3088,22 @@ substituteInPlace "R/rawrr.R" --replace-warn \\
             preConfigure: nix.thunk(() => nix.str`install -Dm755 ${nix.sel(finalAttrs, "passthru", "redatam-core")}/lib/libredengine* -t ./inst/redengine/
 `),
             meta: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "meta"), {
-              __proto__: pos$139,
+              [nix.POS]: pos$139,
               platforms: nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "redatam-core-per-system")))),
               license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
             })),
           };
         })())),
       redland: nix.thunk(() => nix.app(nix.sel(old, "redland", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$142,
+          [nix.POS]: pos$142,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$141,
+            [nix.POS]: pos$141,
             PKGCONFIG_CFLAGS: nix.thunk(() => nix.str`-I${nix.sel(pkgs, "redland")}/include -I${nix.sel(pkgs, "librdf_raptor2")}/include/raptor2 -I${nix.sel(pkgs, "librdf_rasqal")}/include/rasqal`),
             PKGCONFIG_LIBS: nix.thunk(() => nix.str`-L${nix.sel(pkgs, "redland")}/lib -L${nix.sel(pkgs, "librdf_raptor2")}/lib -L${nix.sel(pkgs, "librdf_rasqal")}/lib -lrdf -lraptor2 -lrasqal`),
           })),
         }))),
       rextendr: nix.thunk(() => nix.app(nix.sel(old, "rextendr", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$143,
+          [nix.POS]: pos$143,
           postPatch: nix.thunk(() => nix.str`substituteInPlace R/zzz.R --replace-fail \\
   ".onLoad <- function(...) {" \\
   '.onLoad <- function(...) {
@@ -3111,38 +3111,38 @@ substituteInPlace "R/rawrr.R" --replace-warn \\
 `),
         }))),
       rgl: nix.thunk(() => nix.app(nix.sel(old, "rgl", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$145,
-          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { __proto__: pos$144, RGL_USE_NULL: "true" })),
+          [nix.POS]: pos$145,
+          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$144, RGL_USE_NULL: "true" })),
         }))),
-      rgoslin: nix.thunk(() => nix.app(nix.sel(old, "rgoslin", "overrideAttrs"), (attrs) => ({ __proto__: pos$146, enableParallelBuilding: false }))),
+      rgoslin: nix.thunk(() => nix.app(nix.sel(old, "rgoslin", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$146, enableParallelBuilding: false }))),
       rhdf5: nix.thunk(() => nix.app(nix.sel(old, "rhdf5", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$148,
+          [nix.POS]: pos$148,
           patches: nix.thunk(() => [nix.path(here, "./patches/rhdf5.patch")]),
           env: nix.thunk(() => ({
-            __proto__: pos$147,
+            [nix.POS]: pos$147,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -Wno-error=implicit-function-declaration")),
           })),
         }))),
       rhdf5filters: nix.thunk(() => nix.app(nix.sel(old, "rhdf5filters", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$149,
+          [nix.POS]: pos$149,
           patches: nix.thunk(() => [nix.path(here, "./patches/rhdf5filters.patch")]),
         }))),
-      rlibkriging: nix.thunk(() => nix.app(nix.sel(old, "rlibkriging", "overrideAttrs"), (attrs) => ({ __proto__: pos$150, preConfigure: "patchShebangs tools/ src/libK/tools/\n" }))),
+      rlibkriging: nix.thunk(() => nix.app(nix.sel(old, "rlibkriging", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$150, preConfigure: "patchShebangs tools/ src/libK/tools/\n" }))),
       rmarkdown: nix.thunk(() => nix.app(nix.sel(old, "rmarkdown", "overrideAttrs"), (_) => ({
-          __proto__: pos$151,
+          [nix.POS]: pos$151,
           preConfigure: nix.thunk(() => nix.str`substituteInPlace R/pandoc.R \\
   --replace-fail '"~/opt/pandoc"' '"~/opt/pandoc", "${nix.sel(pkgs, "pandoc")}/bin"'
 `),
         }))),
       roxigraph: nix.thunk(() => nix.app(nix.sel(old, "roxigraph", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$153,
+          [nix.POS]: pos$153,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$152,
+            [nix.POS]: pos$152,
             LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "libclang")))}/lib`),
           })),
         }))),
       rpanel: nix.thunk(() => nix.app(nix.sel(old, "rpanel", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$154,
+          [nix.POS]: pos$154,
           postPatch: nix.thunk(() => nix.str`cat >> R/zzz.R <<EOF
 .onLoad <- function(...) {
   tcltk::tcl("lappend", "auto_path", "${nix.sel(pkgs, "tclPackages", "bwidget")}/lib/bwidget${nix.sel(pkgs, "tclPackages", "bwidget", "version")}")
@@ -3151,21 +3151,21 @@ EOF
 `),
         }))),
       rstan: nix.thunk(() => nix.app(nix.sel(old, "rstan", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$156,
+          [nix.POS]: pos$156,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$155,
+            [nix.POS]: pos$155,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -DBOOST_PHOENIX_NO_VARIADIC_EXPRESSION")),
           })),
         }))),
       rstanarm: nix.thunk(() => nix.app(nix.sel(old, "rstanarm", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$158,
+          [nix.POS]: pos$158,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$157,
+            [nix.POS]: pos$157,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -Wno-ignored-attributes")),
           })),
         }))),
       rvisidata: nix.thunk(() => nix.app(nix.sel(old, "rvisidata", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$159,
+          [nix.POS]: pos$159,
           postPatch: nix.thunk(() => nix.str`substituteInPlace R/main.r --replace-fail \\
   "system(\\"vd" "system(\\"${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "visidata")))}/bin/vd"
 substituteInPlace R/tmux.r --replace-fail \\
@@ -3173,18 +3173,18 @@ substituteInPlace R/tmux.r --replace-fail \\
 `),
         }))),
       s2: nix.thunk(() => nix.app(nix.sel(old, "s2", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$160,
+          [nix.POS]: pos$160,
           preConfigure: "substituteInPlace \"configure\" \\\n  --replace-fail \"absl_s2\" \"absl_flags absl_check\"\n",
         }))),
       slfm: nix.thunk(() => nix.app(nix.sel(old, "slfm", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$162,
+          [nix.POS]: pos$162,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$161,
+            [nix.POS]: pos$161,
             PKG_LIBS: nix.thunk(() => nix.str`-L${nix.sel(pkgs, "blas")}/lib -lblas -L${nix.sel(pkgs, "lapack")}/lib -llapack`),
           })),
         }))),
       sparklyr: nix.thunk(() => nix.app(nix.sel(old, "sparklyr", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$163,
+          [nix.POS]: pos$163,
           preConfigure: nix.thunk(() => nix.str`if grep "onLoad" R/zzz.R; then
   echo "onLoad is already present, patch needs to be updated!"
   exit 1
@@ -3199,28 +3199,28 @@ EOF
 `),
         }))),
       symengine: nix.thunk(() => nix.app(nix.sel(old, "symengine", "overrideAttrs"), (_) => ({
-          __proto__: pos$164,
+          [nix.POS]: pos$164,
           preConfigure: "rm configure\ncat > src/Makevars << EOF\nPKG_LIBS=-lsymengine\nall: $(SHLIB)\nEOF\n",
         }))),
       talib: nix.thunk(() => nix.app(nix.sel(old, "talib", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$166,
+          [nix.POS]: pos$166,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$165,
+            [nix.POS]: pos$165,
             NIX_LDFLAGS: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_LDFLAGS"), " -lm")),
           })),
         }))),
       tesseract: nix.thunk(() => nix.app(nix.sel(old, "tesseract", "overrideAttrs"), (_) => ({
-          __proto__: pos$167,
+          [nix.POS]: pos$167,
           preConfigure: "substituteInPlace configure \\\n  --replace-fail 'PKG_CONFIG_NAME=\"tesseract\"' 'PKG_CONFIG_NAME=\"tesseract lept\"'\n",
         }))),
       textshaping: nix.thunk(() => nix.app(nix.sel(old, "textshaping", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$169,
-          env: nix.thunk(() => ({ __proto__: pos$168, NIX_LDFLAGS: "-lfribidi -lharfbuzz" })),
+          [nix.POS]: pos$169,
+          env: nix.thunk(() => ({ [nix.POS]: pos$168, NIX_LDFLAGS: "-lfribidi -lharfbuzz" })),
         }))),
       timeless: nix.thunk(() => nix.app(nix.sel(old, "timeless", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$171,
+          [nix.POS]: pos$171,
           cargoDeps: nix.thunk(() => nix.app(nix.sel(pkgs, "rustPlatform", "fetchCargoVendor"), nix.thunk(() => ({
-              __proto__: pos$170,
+              [nix.POS]: pos$170,
               src: nix.thunk(() => nix.sel(attrs, "src")),
               sourceRoot: "timeless/src/rust",
               hash: "sha256-5TV7iCzaaFwROfJNO6pvSUbJBzV+wZlU5+ZK4AMT6X0=",
@@ -3232,33 +3232,33 @@ EOF
           ])),
         }))),
       trajeR: nix.thunk(() => nix.app(nix.sel(old, "trajeR", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$172,
+          [nix.POS]: pos$172,
           patches: nix.thunk(() => [nix.path(here, "./patches/trajeR.patch")]),
         }))),
       trigger: nix.thunk(() => nix.app(nix.sel(old, "trigger", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$173,
+          [nix.POS]: pos$173,
           postPatch: "# https://developer.r-project.org/blosxom.cgi/R-devel/NEWS/2025/01/08#n2025-01-08\nsubstituteInPlace \"src/trigger.c\" \\\n--replace-fail \"Calloc\" \"R_Calloc\" \\\n--replace-fail \"Free\" \"R_Free\"\n",
         }))),
       universalmotif: nix.thunk(() => nix.app(nix.sel(old, "universalmotif", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$174,
+          [nix.POS]: pos$174,
           patches: nix.thunk(() => [nix.path(here, "./patches/universalmotif.patch")]),
         }))),
       unix: nix.thunk(() => nix.app(nix.sel(old, "unix", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$175,
+          [nix.POS]: pos$175,
           postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "# ignore apparmor detection logic\nsubstituteInPlace configure \\\n  --replace-fail '[ ! -d \"/sys/module/apparmor\" ]' 'false'\n")),
         }))),
       vegan3d: nix.thunk(() => nix.app(nix.sel(old, "vegan3d", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$177,
-          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { __proto__: pos$176, RGL_USE_NULL: "true" })),
+          [nix.POS]: pos$177,
+          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$176, RGL_USE_NULL: "true" })),
         }))),
       websocket: nix.thunk(() => nix.app(nix.sel(old, "websocket", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$178,
+          [nix.POS]: pos$178,
           postPatch: "substituteInPlace configure \\\n  --replace-fail 'PKG_LIBS=\"${PKG_LIBS_VERSIONED}\"' ':'\n",
         }))),
       xslt: nix.thunk(() => nix.app(nix.sel(old, "xslt", "overrideAttrs"), (attrs) => ({
-          __proto__: pos$180,
+          [nix.POS]: pos$180,
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            __proto__: pos$179,
+            [nix.POS]: pos$179,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -fpermissive")),
           })),
         }))),

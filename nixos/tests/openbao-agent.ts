@@ -30,45 +30,45 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     name: "openbao-agent",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "kiara"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "openbao-agent": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               instances: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 example: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     vault: nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       address: nix.thunk(() => nix.sel(config, "environment", "variables", "BAO_ADDR")),
                     })),
                     auto_auth: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       method: nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: "token_file",
                           config: nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             token_file_path: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "bao-token", nix.thunk(() => nix.sel(config, "environment", "variables", "BAO_TOKEN")))),
                           })),
                         })),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
                     })),
                     template: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         contents: "{{- with secret \"secret/example\" }}\n{{ .Data.data.key }}\n{{- end }}\n",
                         perms: "0600",
                         destination: "/example",
@@ -88,17 +88,17 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             services: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               "openbao-dev": nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 description: "OpenBao dev server",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
-                environment: nix.thunk(() => ({ __proto__: pos$12, HOME: "/root" })),
+                environment: nix.thunk(() => ({ [nix.POS]: pos$12, HOME: "/root" })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "openbao")))} server -dev \\
   -dev-root-token-id=${nix.sel(config, "environment", "variables", "BAO_TOKEN")} \\
   -dev-listen-address=127.0.0.1:8200
@@ -108,9 +108,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openbao"))]),
-            variables: nix.thunk(() => ({ __proto__: pos$17, BAO_ADDR: "http://127.0.0.1:8200", BAO_TOKEN: "root" })),
+            variables: nix.thunk(() => ({ [nix.POS]: pos$17, BAO_ADDR: "http://127.0.0.1:8200", BAO_TOKEN: "root" })),
           })),
         };
       })(), formals$2),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const guile = nix.arg($, "guile");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libctl",
       version: "4.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NanoComp",
           repo: "libctl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, gfortran, guile, pkg_config]),
       configureFlags: nix.thunk(() => ["--enable-shared"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Guile-based library for supporting flexible control files in scientific simulations",
         mainProgram: "gen-ctl-io",
         homepage: "https://github.com/NanoComp/libctl",

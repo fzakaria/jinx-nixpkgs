@@ -58,59 +58,59 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "virtualbox", "host"));
   const virtualbox = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       enableHardening: nix.thunk(() => nix.attr(cfg, "enableHardening")),
       headless: nix.thunk(() => nix.attr(cfg, "headless")),
       enableWebService: nix.thunk(() => nix.attr(cfg, "enableWebService")),
       enableKvm: nix.thunk(() => nix.attr(cfg, "enableKvm")),
       extensionPack: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableExtensionPack")) ? nix.sel(pkgs, "virtualboxExtpack") : null)),
     }))));
-  const kernelModules = nix.thunk(() => nix.app(nix.sel(config, "boot", "kernelPackages", "virtualbox", "override"), nix.thunk(() => ({ __proto__: pos$2, virtualbox: virtualbox }))));
+  const kernelModules = nix.thunk(() => nix.app(nix.sel(config, "boot", "kernelPackages", "virtualbox", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, virtualbox: virtualbox }))));
   return {
-    __proto__: pos$47,
+    [nix.POS]: pos$47,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         virtualbox: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           host: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "VirtualBox"), {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Whether to enable VirtualBox.\n\n::: {.note}\nIn order to pass USB devices from the host to the guests, the user\nneeds to be in the `vboxusers` group.\n:::\n",
             })),
             enableExtensionPack: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "VirtualBox extension pack"), {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Whether to install the Oracle Extension Pack for VirtualBox.\n\n::: {.important}\nYou must set `nixpkgs.config.allowUnfree = true` in\norder to use this.  This requires you accept the VirtualBox PUEL.\n:::\n",
             })),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "virtualbox", nix.thunk(() => ({})))),
             addNetworkInterface: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Automatically set up a vboxnet0 host-only network interface.\n",
               })))),
             enableHardening: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Enable hardened VirtualBox, which ensures that only the binaries in the\nsystem path get access to the devices exposed by the kernel modules\ninstead of all users in the vboxusers group.\n\n::: {.important}\nDisabling this can put your system's security at risk, as local users\nin the vboxusers group can tamper with the VirtualBox device files.\n:::\n",
               })))),
             headless: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Use VirtualBox installation without GUI and Qt dependency. Useful to enable on servers\nand when virtual machines are controlled only via SSH.\n",
               })))),
             enableWebService: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Build VirtualBox web service tool (vboxwebsrv) to allow managing VMs via other webpage frontend tools. Useful for headless servers.\n",
               })))),
             enableKvm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Enable KVM support for VirtualBox. This increases compatibility with Linux kernel versions, because the VirtualBox kernel modules\nare not required.\n\nThis option is incompatible with `addNetworkInterface`.\n\nNote: This is experimental. Please check <https://github.com/cyberus-technology/virtualbox-kvm/issues>.\n",
@@ -121,39 +121,39 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             warnings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.selOr(pkgs, () => false, "config", "virtualbox", "enableExtensionPack")), nix.thunk(() => [
                 "'nixpkgs.virtualbox.enableExtensionPack' has no effect, please use 'virtualisation.virtualbox.host.enableExtensionPack'",
               ]))),
-            environment: nix.thunk(() => ({ __proto__: pos$14, systemPackages: nix.thunk(() => [virtualbox]) })),
+            environment: nix.thunk(() => ({ [nix.POS]: pos$14, systemPackages: nix.thunk(() => [virtualbox]) })),
             security: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               wrappers: nix.thunk(() => (() => {
                 const mkSuid = (program) => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   source: nix.thunk(() => nix.str`${virtualbox}/libexec/virtualbox/${program}`),
                   owner: "root",
                   group: "vboxusers",
                   setuid: true,
                 });
                 const executables = nix.thunk(() => nix.concat(["VBoxHeadless", "VBoxNetAdpCtl", "VBoxNetDHCP", "VBoxNetNAT", "VBoxVolInfo"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "headless"))), nix.thunk(() => ["VBoxSDL", "VirtualBoxVM"]))));
-                return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableHardening")), nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((x) => ({ __proto__: pos$16, name: x, value: nix.thunk(() => nix.app(mkSuid, x)) }), executables)))));
+                return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableHardening")), nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((x) => ({ [nix.POS]: pos$16, name: x, value: nix.thunk(() => nix.app(mkSuid, x)) }), executables)))));
               })()),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               groups: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 vboxusers: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   gid: nix.thunk(() => nix.sel(config, "ids", "gids", "vboxusers")),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               udev: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 extraRules: nix.thunk(() => nix.str`SUBSYSTEM=="usb_device", ACTION=="add", RUN+="${virtualbox}/libexec/virtualbox/VBoxCreateUSBNode.sh $major $minor $attr{bDeviceClass}"
 SUBSYSTEM=="usb", ACTION=="add", ENV{DEVTYPE}=="usb_device", RUN+="${virtualbox}/libexec/virtualbox/VBoxCreateUSBNode.sh $major $minor $attr{bDeviceClass}"
 SUBSYSTEM=="usb_device", ACTION=="remove", RUN+="${virtualbox}/libexec/virtualbox/VBoxCreateUSBNode.sh --remove $major $minor"
@@ -163,77 +163,77 @@ SUBSYSTEM=="usb", ACTION=="remove", ENV{DEVTYPE}=="usb_device", RUN+="${virtualb
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableKvm")), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               assertions: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   assertion: nix.thunk(() => !nix.asBool(nix.sel(cfg, "addNetworkInterface"))),
                   message: "VirtualBox KVM only supports standard NAT networking for VMs. Please turn off virtualisation.virtualbox.host.addNetworkInterface.",
                 })),
               ]),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "enableKvm"))), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               boot: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 kernelModules: nix.thunk(() => ["vboxdrv", "vboxnetadp", "vboxnetflt"]),
                 extraModulePackages: nix.thunk(() => [kernelModules]),
                 kernelParams: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "6.12")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "6.16")))), nix.thunk(() => ["kvm.enable_virt_at_load=0"]))),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 udev: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   extraRules: "KERNEL==\"vboxdrv\",    OWNER=\"root\", GROUP=\"vboxusers\", MODE=\"0660\", TAG+=\"systemd\"\nKERNEL==\"vboxdrvu\",   OWNER=\"root\", GROUP=\"root\",      MODE=\"0666\", TAG+=\"systemd\"\nKERNEL==\"vboxnetctl\", OWNER=\"root\", GROUP=\"vboxusers\", MODE=\"0660\", TAG+=\"systemd\"\n",
                 })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "addNetworkInterface")), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               systemd: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 services: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   vboxnet0: nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     description: "VirtualBox vboxnet0 Interface",
                     requires: nix.thunk(() => ["dev-vboxnetctl.device"]),
                     after: nix.thunk(() => ["dev-vboxnetctl.device"]),
                     wantedBy: nix.thunk(() => ["network.target", "sys-subsystem-net-devices-vboxnet0.device"]),
                     path: nix.thunk(() => [virtualbox]),
-                    serviceConfig: nix.thunk(() => ({ __proto__: pos$30, RemainAfterExit: true, Type: "oneshot", PrivateTmp: true })),
-                    environment: nix.thunk(() => ({ __proto__: pos$31, VBOX_USER_HOME: "/tmp" })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$30, RemainAfterExit: true, Type: "oneshot", PrivateTmp: true })),
+                    environment: nix.thunk(() => ({ [nix.POS]: pos$31, VBOX_USER_HOME: "/tmp" })),
                     script: "if ! [ -e /sys/class/net/vboxnet0 ]; then\n  VBoxManage hostonlyif create\n  cat /tmp/VBoxSVC.log >&2\nfi\n",
                     postStop: "VBoxManage hostonlyif remove vboxnet0\n",
                   })),
                 })),
               })),
               networking: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 interfaces: nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   vboxnet0: nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     ipv4: nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$35, address: "192.168.56.1", prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: pos$35, address: "192.168.56.1", prefixLength: 24n })),
                       ]),
                     })),
                   })),
                 })),
-                networkmanager: nix.thunk(() => ({ __proto__: pos$39, unmanaged: nix.thunk(() => ["vboxnet0"]) })),
+                networkmanager: nix.thunk(() => ({ [nix.POS]: pos$39, unmanaged: nix.thunk(() => ["vboxnet0"]) })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "networking", "useNetworkd")), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               systemd: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 network: nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   networks: nix.thunk(() => ({
-                    __proto__: pos$43,
-                    "40-vboxnet0": nix.thunk(() => ({ __proto__: pos$42, extraConfig: "[Link]\nRequiredForOnline=no\n" })),
+                    [nix.POS]: pos$43,
+                    "40-vboxnet0": nix.thunk(() => ({ [nix.POS]: pos$42, extraConfig: "[Link]\nRequiredForOnline=no\n" })),
                   })),
                 })),
               })),

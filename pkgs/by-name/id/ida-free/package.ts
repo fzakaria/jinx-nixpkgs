@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
 `;
     })(), hexPatches));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ida-free",
       version: "9.3",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`ida-free-pc_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}_x64linux.run`),
           url: nix.thunk(() => nix.str`https://my.hex-rays.com/dashboard/download-center/installers/release/${nix.sel(finalAttrs, "version")}/ida-free`),
           hash: "sha256-eSX6/nT9joEMs48qFq92qT8Qr25B38xy4FxxaPIOwLw=",
@@ -138,7 +138,7 @@ rm -r $out/.local
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Freeware version of the world's smartest and most feature-full disassembler",
         homepage: "https://hex-rays.com/ida-free/",
         changelog: "https://hex-rays.com/products/ida/news/",

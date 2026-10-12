@@ -25,48 +25,48 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "gns3-server",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "anthonyroussel"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const tls_cert = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "selfSignedCerts", nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
           })), "openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -nodes -days 365 \\\n  -subj '/CN=localhost'\ninstall -D -t $out key.pem cert.pem\n"));
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "gns3-server": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               auth: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 enable: true,
                 user: "user",
                 passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "gns3-auth-password-file", "password")),
               })),
               ssl: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 enable: true,
                 certFile: nix.thunk(() => nix.str`${tls_cert}/cert.pem`),
                 keyFile: nix.thunk(() => nix.str`${tls_cert}/key.pem`),
               })),
-              dynamips: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
-              ubridge: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
-              vpcs: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+              dynamips: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+              ubridge: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+              vpcs: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             pki: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${tls_cert}/cert.pem`)]),
             })),
           })),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       })(), formals$2),
     })),
     testScript: nix.thunk(() => (() => {
-      const createProject = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "createProject.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$14, name: "test_project" }))))));
+      const createProject = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "createProject.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$14, name: "test_project" }))))));
       return nix.str`start_all()
 
 machine.wait_for_unit("gns3-server.service")

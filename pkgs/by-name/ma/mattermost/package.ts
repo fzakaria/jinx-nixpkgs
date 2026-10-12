@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const removeUserLimit = nix.argOr($, "removeUserLimit", () => false);
   const removeFreeBadge = nix.argOr($, "removeFreeBadge", () => false);
   const versionInfo = nix.argOr($, "versionInfo", () => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     regex: "^v(11\\.7\\.[0-9]+)$",
     version: "11.7.12",
     srcHash: "sha256-j8ZpLnQ74mDW8mqwO3yhaxkmMEhMPYEHCbKNuPPup3E=",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
     const args_2 = args_1;
     const passthru = nix.arg($_1, "passthru");
     const wrapMattermost = (server) => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         server: server,
         pname: nix.thunk(() => nix.attr(server, "pname")),
         version: nix.thunk(() => nix.attr(server, "version")),
@@ -68,13 +68,13 @@ export default nix.lambda((args) => (() => {
         passthru: finalPassthru,
       })));
     const finalPassthru = nix.thunk(() => (() => {
-      const withoutTestsUnwrapped = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => nix.update(args_2, { __proto__: pos$3, passthru: finalPassthru }))));
-      const withTestsUnwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ __proto__: pos$4, mattermost: withoutTestsUnwrapped }))));
+      const withoutTestsUnwrapped = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$3, passthru: finalPassthru }))));
+      const withTestsUnwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, mattermost: withoutTestsUnwrapped }))));
       return nix.app(nix.sel(lib, "recursiveUpdate"), passthru, nix.thunk(() => (() => {
           const withoutTests = nix.thunk(() => nix.app(wrapMattermost, withoutTestsUnwrapped));
           const withTests = nix.thunk(() => nix.app(wrapMattermost, withTestsUnwrapped));
-          const tests = nix.thunk(() => ({ __proto__: pos$5, mattermostWithTests: withTests }));
-          return { __proto__: pos$6, withoutTests, withTests, tests };
+          const tests = nix.thunk(() => ({ [nix.POS]: pos$5, mattermostWithTests: withTests }));
+          return { [nix.POS]: pos$6, withoutTests, withTests, tests };
         })()));
     })());
     return nix.sel(finalPassthru, "withoutTests");
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mattermost";
       const version = nix.thunk(() => nix.attr(versionInfo$, "version"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "mattermost",
           repo: "mattermost",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -117,11 +117,11 @@ mv package-lock.fixed.json package-lock.json
         }))));
       const patches = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), removeUserLimit, nix.thunk(() => [nix.path(here, "./mattermost-remove-user-limit.patch")])));
       const overrideModAttrs = (_) => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         buildPhase: "runHook preBuild\n\nmake setup-go-work\ngo work vendor -e -v\n\nrunHook postBuild\n",
       });
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           src: src,
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/webapp`),
           hash: nix.thunk(() => nix.sel(versionInfo$, "npmDepsHash")),
@@ -147,9 +147,9 @@ mv package-lock.fixed.json package-lock.json
       const doInstallCheck = true;
       const installCheckPhase = "runHook preInstallCheck\n\nfor subPackage in $subPackages; do\n  echo \"Checking version for: $subPackage\" >&2\n  \"$out/bin/$(basename -- \"$subPackage\")\" version | grep \"$version\"\ndone\n\nrunHook postInstallCheck\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             extraArgs: nix.thunk(() => nix.concat([
               "--use-github-releases",
               "--version-regex",
@@ -157,7 +157,7 @@ mv package-lock.fixed.json package-lock.json
             ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.selOr(versionInfo$, () => null, "autoUpdate"), null)), nix.thunk(() => ["--override-filename", nix.thunk(() => nix.sel(versionInfo$, "autoUpdate"))])))),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           mattermost: nix.thunk(() => nix.sel(nixosTests, "mattermost")),
         })),
         buildPlugin: nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-plugin.nix"), nix.thunk(() => ({})))),
@@ -176,7 +176,7 @@ mv package-lock.fixed.json package-lock.json
             const buildPhase = "runHook preBuild\n\nfor ws in platform/{types,client,shared,components} channels; do\n  if [ -d \"$ws\" ]; then\n    npm run build --workspace=\"$ws\"\n  fi\ndone\n\nrunHook postBuild\n";
             const installPhase = "runHook preInstall\n\nmkdir -p $out/client\ncp -a channels/dist/* $out/client\n\nrunHook postInstall\n";
             return {
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               pname: pname_1,
               version: version_1,
               src: src_1,
@@ -194,7 +194,7 @@ mv package-lock.fixed.json package-lock.json
           })()))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Open source platform for secure collaboration across the entire software development lifecycle",
         homepage: "https://www.mattermost.org",
         license: nix.thunk(() => (() => {
@@ -216,7 +216,7 @@ mv package-lock.fixed.json package-lock.json
         mainProgram: "mattermost",
       }));
       return {
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         pname,
         version,
         src,

@@ -44,80 +44,80 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
-  const adhocOverrideType = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { __proto__: pos$1, check: (_) => false }));
+  const adhocOverrideType = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: pos$1, check: (_) => false }));
   const properlyCheckedType = nix.thunk(() => nix.app(nix.sel(types, "addCheck"), nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw")))), (v) => nix.has(v, "foo")));
   const failingCheckedType = nix.thunk(() => nix.app(nix.sel(types, "addCheck"), nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw")))), (v) => nix.has(v, "foo")));
-  const adhocOuterType = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "int"))), { __proto__: pos$2, check: (_) => false }));
-  const adhocEitherLeft = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { __proto__: pos$3, check: (_) => false }));
-  const adhocCoercedFrom = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { __proto__: pos$4, check: (_) => false }));
-  const adhocCoercedTo = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { __proto__: pos$5, check: (_) => false }));
-  const adhocAddCheck = nix.thunk(() => nix.app(nix.sel(types, "addCheck"), nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { __proto__: pos$6, check: (_) => false })), (v) => true));
+  const adhocOuterType = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "int"))), { [nix.POS]: pos$2, check: (_) => false }));
+  const adhocEitherLeft = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: pos$3, check: (_) => false }));
+  const adhocCoercedFrom = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: pos$4, check: (_) => false }));
+  const adhocCoercedTo = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: pos$5, check: (_) => false }));
+  const adhocAddCheck = nix.thunk(() => nix.app(nix.sel(types, "addCheck"), nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: pos$6, check: (_) => false })), (v) => true));
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       adhocFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), adhocOverrideType)),
           default: nix.thunk(() => ({})),
         })))),
-      adhocOuterFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$8, type: adhocOuterType, default: nix.thunk(() => ({})) })))),
+      adhocOuterFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$8, type: adhocOuterType, default: nix.thunk(() => ({})) })))),
       eitherLeftFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => nix.app(nix.sel(types, "either"), adhocEitherLeft, nix.thunk(() => nix.sel(types, "int")))),
         })))),
       eitherRightFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$11,
-          type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "int")), nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { __proto__: pos$10, check: (_) => false })))),
+          [nix.POS]: pos$11,
+          type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "int")), nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: pos$10, check: (_) => false })))),
         })))),
       coercedFromFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$13,
-          type: nix.thunk(() => nix.app(nix.sel(types, "coercedTo"), adhocCoercedFrom, (x) => ({ __proto__: pos$12, bar: 1n }), nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "int")))))),
+          [nix.POS]: pos$13,
+          type: nix.thunk(() => nix.app(nix.sel(types, "coercedTo"), adhocCoercedFrom, (x) => ({ [nix.POS]: pos$12, bar: 1n }), nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "int")))))),
         })))),
       coercedToFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           type: nix.thunk(() => nix.app(nix.sel(types, "coercedTo"), nix.thunk(() => nix.sel(types, "str")), (x) => ({}), adhocCoercedTo)),
         })))),
-      addCheckNested: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$15, type: adhocAddCheck })))),
+      addCheckNested: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$15, type: adhocAddCheck })))),
       addCheckPass: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), properlyCheckedType)),
           default: nix.thunk(() => ({})),
         })))),
       addCheckFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), failingCheckedType)),
           default: nix.thunk(() => ({})),
         })))),
       normalPass: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "int")))))),
           default: nix.thunk(() => ({})),
         })))),
       result: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$34,
-      adhocFail: nix.thunk(() => ({ __proto__: pos$21, foo: nix.thunk(() => ({})) })),
-      adhocOuterFail: nix.thunk(() => ({ __proto__: pos$22, bar: 42n })),
-      eitherLeftFail: nix.thunk(() => ({ __proto__: pos$23, foo: nix.thunk(() => ({})) })),
-      eitherRightFail: nix.thunk(() => ({ __proto__: pos$24, foo: nix.thunk(() => ({})) })),
-      coercedFromFail: nix.thunk(() => ({ __proto__: pos$25, foo: nix.thunk(() => ({})) })),
-      coercedToFail: nix.thunk(() => ({ __proto__: pos$26, foo: nix.thunk(() => ({})) })),
-      addCheckNested: nix.thunk(() => ({ __proto__: pos$27, foo: nix.thunk(() => ({})) })),
+      [nix.POS]: pos$34,
+      adhocFail: nix.thunk(() => ({ [nix.POS]: pos$21, foo: nix.thunk(() => ({})) })),
+      adhocOuterFail: nix.thunk(() => ({ [nix.POS]: pos$22, bar: 42n })),
+      eitherLeftFail: nix.thunk(() => ({ [nix.POS]: pos$23, foo: nix.thunk(() => ({})) })),
+      eitherRightFail: nix.thunk(() => ({ [nix.POS]: pos$24, foo: nix.thunk(() => ({})) })),
+      coercedFromFail: nix.thunk(() => ({ [nix.POS]: pos$25, foo: nix.thunk(() => ({})) })),
+      coercedToFail: nix.thunk(() => ({ [nix.POS]: pos$26, foo: nix.thunk(() => ({})) })),
+      addCheckNested: nix.thunk(() => ({ [nix.POS]: pos$27, foo: nix.thunk(() => ({})) })),
       addCheckPass: nix.thunk(() => ({
-        __proto__: pos$29,
-        bar: nix.thunk(() => ({ __proto__: pos$28, foo: "value" })),
+        [nix.POS]: pos$29,
+        bar: nix.thunk(() => ({ [nix.POS]: pos$28, foo: "value" })),
       })),
       addCheckFail: nix.thunk(() => ({
-        __proto__: pos$31,
-        bar: nix.thunk(() => ({ __proto__: pos$30, baz: "value" })),
+        [nix.POS]: pos$31,
+        bar: nix.thunk(() => ({ [nix.POS]: pos$30, baz: "value" })),
       })),
-      normalPass: nix.thunk(() => ({ __proto__: pos$33, foo: nix.thunk(() => ({ __proto__: pos$32, bar: 42n })) })),
+      normalPass: nix.thunk(() => ({ [nix.POS]: pos$33, foo: nix.thunk(() => ({ [nix.POS]: pos$32, bar: 42n })) })),
       result: true,
     })),
   };

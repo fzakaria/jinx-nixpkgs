@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "odt2txt",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/dstosberg/odt2txt/archive/v${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "23a889109ca9087a719c638758f14cc3b867a5dcf30a6c90bf6a0985073556dd",
         })))),
       configurePhase: "export makeFlags=\"DESTDIR=$out\"",
       buildInputs: nix.thunk(() => [zlib, libiconv]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple .odt to .txt converter",
         mainProgram: "odt2txt",
         homepage: "https://github.com/dstosberg/odt2txt",

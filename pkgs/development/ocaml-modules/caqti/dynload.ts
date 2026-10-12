@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const caqti = nix.arg($, "caqti");
   const findlib = nix.arg($, "findlib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "caqti-dynload",
       version: nix.thunk(() => nix.attr(caqti, "version")),
       src: nix.thunk(() => nix.attr(caqti, "src")),
       propagatedBuildInputs: nix.thunk(() => [caqti, findlib]),
       meta: nix.thunk(() => nix.update(nix.sel(caqti, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Dynamic linking of Caqti drivers using findlib.dynload",
       })),
     })));

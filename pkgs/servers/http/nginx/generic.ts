@@ -74,13 +74,13 @@ export default nix.lambda((args) => (() => {
     const mkDerivation = (args_2) => nix.app(nix.sel(lib, "foldl"), (drv) => (mod) => nix.app(nix.sel(drv, "overrideAttrs"), nix.thunk(() => nix.sel(mod, "forNginx"))), nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), args_2)), nix.thunk(() => nix.app(nix.sel(lib, "filter"), (mod) => nix.has(mod, "forNginx"), modules)));
     nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "unique"), moduleNames), moduleNames)), nix.thunk(() => nix.str`nginx: duplicate modules: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", moduleNames)}. A common cause for this is that services.nginx.additionalModules adds a module which the nixos module itself already adds.`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/servers/http/nginx/generic.nix:85:1");
     return nix.app(mkDerivation, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         pname: pname,
         version: version,
         nginxVersion: nginxVersion,
         outputs: nix.thunk(() => ["out", "doc"]),
         src: nix.thunk(() => (nix.asBool(!nix.eq(src, null)) ? nix.force(src) : nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://nginx.org/download/nginx-${version}.tar.gz`),
             hash: hash,
           }))))),
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
             return (nix.asBool(nix.lookup(w, "isLinux")) || nix.asBool(nix.lookup(w, "isFreeBSD")));
           })()), "--with-file-aio"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => nix.str`--crossbuild=${nix.sel(stdenv, "hostPlatform", "uname", "system")}::${nix.sel(stdenv, "hostPlatform", "uname", "processor")}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(dynamicModules, [])), nix.thunk(() => nix.str`--modules-path=${nix.builtins.placeholder("out")}/modules`)), configureFlags))))))))))))),
         env: nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
               nix.thunk(() => nix.str`-I${nix.sel(libxml2, "dev")}/include/libxml2`),
               "-Wno-error=implicit-fallthrough",
@@ -141,7 +141,7 @@ export default nix.lambda((args) => (() => {
                 "-Wno-error=unused-but-set-variable",
               ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ["-Wno-error=cpp"])))))))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             CONFIG_BIG_ENDIAN: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isBigEndian")) ? "y" : "n")),
           }))))),
         configurePlatforms: [],
@@ -151,22 +151,22 @@ export default nix.lambda((args) => (() => {
             nix.path(here, "./nix-skip-check-logs-path.patch"),
           ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   url: "https://raw.githubusercontent.com/openwrt/packages/c057dfb09c7027287c7862afab965a4cd95293a3/net/nginx/patches/102-sizeof_test_fix.patch",
                   sha256: "0i2k30ac8d7inj9l6bl0684kjglam2f68z8lf3xggcc2i5wzhh8a",
                 })))),
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   url: "https://raw.githubusercontent.com/openwrt/packages/c057dfb09c7027287c7862afab965a4cd95293a3/net/nginx/patches/101-feature_test_fix.patch",
                   sha256: "0v6890a85aqmw60pgj3mm7g8nkaphgq65dj4v9c6h58wdsrc6f0y",
                 })))),
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   url: "https://raw.githubusercontent.com/openwrt/packages/c057dfb09c7027287c7862afab965a4cd95293a3/net/nginx/patches/103-sys_nerr.patch",
                   sha256: "0s497x6mkz947aw29wdy073k8dyjq8j99lax1a1mzpikzr4rxlmd",
                 })))),
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   url: "https://raw.githubusercontent.com/openwrt/packages/c057dfb09c7027287c7862afab965a4cd95293a3/net/nginx/patches/104-endianness_fix.patch",
                   sha256: "sha256-M7V3ZJfKImur2OoqXcoL+CbgFj/huWnfZ4xMCmvkqfc=",
                 })))),
@@ -189,11 +189,11 @@ fi
           return nix.add(postInstall, dynamicPost);
         })()),
         passthru: nix.thunk(() => nix.update({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           modules: modules,
           dynamicModules: dynamicModules,
           tests: nix.thunk(() => nix.selOr(passthru, () => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               nginx: nix.thunk(() => nix.attr(nixosTests, "nginx")),
               "nginx-auth": nix.thunk(() => nix.attr(nixosTests, "nginx-auth")),
               "nginx-dynamic-modules": nix.thunk(() => nix.attr(nixosTests, "nginx-dynamic-modules")),
@@ -212,11 +212,11 @@ fi
               "acme-integration-without-reload": nix.thunk(() => nix.sel(nixosTests, "acme", "nginx-without-reload")),
             }), "tests")),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(passthru, "updateScript")), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             updateScript: nix.thunk(() => nix.attr(passthru, "updateScript")),
           }))))),
         meta: nix.thunk(() => (nix.asBool(!nix.eq(meta, null)) ? nix.force(meta) : {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           description: "Reverse proxy and lightweight webserver",
           mainProgram: "nginx",
           homepage: "https://nginx.org",

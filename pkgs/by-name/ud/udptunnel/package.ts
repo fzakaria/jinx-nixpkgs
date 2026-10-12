@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "udptunnel",
       version: "19",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/udptunnel/udptunnel-r${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1hkrn153rdyrp9g15z4d5dq44cqlnby2bfplp6z0g3862lnv7m3l",
         })))),
       installPhase: "mkdir -p $out/bin $out/share/udptunnel\ncp udptunnel $out/bin\ncp README COPYING* $out/share/udptunnel\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://code.google.com/archive/p/udptunnel/",
         description: "Tunnels TCP over UDP packets",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

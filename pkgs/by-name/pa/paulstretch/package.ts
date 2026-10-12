@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const portaudio = nix.arg($, "portaudio");
   const libsamplerate = nix.arg($, "libsamplerate");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "paulstretch",
       version: "2.2-2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "paulnasca",
           repo: "paulstretch_cpp",
           rev: "7f5c3993abe420661ea0b808304b0e2b4b0048c5",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/paulnasca/paulstretch_cpp/commit/d8671b36135fe66839b11eadcacb474cc8dae0d1.patch",
             sha256: "0lx1rfrs53afkiz1drp456asqgj5yv6hx3lkc01165cv1jsbw6q4",
           })))),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "bash compile_linux_fftw_jack.sh\n",
       installPhase: "install -Dm555 ./paulstretch $out/bin/paulstretch\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Produces high quality extreme sound stretching",
         longDescription: "This is a program for stretching the audio. It is suitable only for\nextreme sound stretching of the audio (like 50x) and for applying\nspecial effects by \"spectral smoothing\" the sounds.\nIt can transform any sound/music to a texture.\n",
         homepage: "https://github.com/paulnasca/paulstretch_cpp/",

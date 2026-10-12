@@ -40,22 +40,22 @@ export default nix.lambda((args) => (() => {
   const postgresSupport = nix.argOr($, "postgresSupport", () => false);
   const libpq = nix.arg($, "libpq");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "libgda",
       version: "5.2.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgda/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libgda-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-b2zfe4BT9VO5B+DIimBk60jPJ1GFLrJDI9zwJ3kjNMg=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.gnome.org/GNOME/libgda/-/commit/9859479884fad5f39e6c37e8995e57c28b11b1b9.diff",
             hash: "sha256-G2PS8LkUXj7deofEn8lgpEMbYg4RLB5injS9VRizGpU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "CVE-2021-39359.patch",
             url: "https://src.fedoraproject.org/rpms/libgda5/raw/72bb769f12e861e27e883dac5fab34f1ba4bd97e/f/bebdffb4de586fb43fd07ac549121f4b22f6812d.patch",
             hash: "sha256-hIKuY5NEqOzntdlLb541bA4xZU5ypTRmV1u765K6KbM=",
@@ -63,12 +63,12 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-gcc14-fix.patch"),
         nix.path(here, "./0002-c23-md5c.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://src.fedoraproject.org/rpms/libgda5/raw/945495e5c6cdd98a5360eff77245421876a97a57/f/gettext.patch",
             hash: "sha256-DOCsCbx+HLZvlpMgSQrW5YoWl/EhDuQEln18YDqgCVk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://src.fedoraproject.org/rpms/libgda5/raw/76be2c07cb747ce30cc63da21662abb589814404/f/types.patch",
             hash: "sha256-LdvDQm7p0uWznBCD8qhJ5h44zNWLmI0BoqYPCeTBN9M=",
           })))),
@@ -94,15 +94,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--enable-system-sqlite=${nix.app(nix.sel(lib, "boolToYesNo"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))}`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       enableParallelBuilding: true,
       hardeningDisable: nix.thunk(() => ["format"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             packageName: "libgda",
             attrPath: "libgda5",
             versionPolicy: "odd-unstable",
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Database access library",
         homepage: "https://www.gnome-db.org/",
         license: nix.thunk(() => (() => {

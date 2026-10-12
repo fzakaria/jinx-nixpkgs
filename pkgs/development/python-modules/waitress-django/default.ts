@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const django = nix.arg($, "django");
   const waitress = nix.arg($, "waitress");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "waitress-django",
       version: "1.0.0",
       pyproject: true,
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       pythonPath: nix.thunk(() => [django, waitress]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Waitress WSGI server serving django",
         mainProgram: "waitress-serve-django",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

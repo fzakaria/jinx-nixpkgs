@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const locale = nix.argOr($, "locale", () => null);
   nix.assert_((!nix.asBool((nix.asBool(doCheck) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))) || nix.asBool(!nix.eq(glibcLocales, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/tools/text/gawk/default.nix:24:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.add("gawk", nix.app(nix.sel(lib, "optionalString"), interactive, "-interactive"))),
       version: "5.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gawk/gawk-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-B/b3NCt/6+QxP8LCVCrZPWT+IK2HFyABCfEFqCb1/Tc=",
         })))),
@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => [
         nix.thunk(() => (nix.asBool(interactive) ? nix.str`--with-readline=${nix.sel(readline, "dev")}` : "--without-readline")),
       ]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })))),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`AR=${nix.sel(stdenv, "cc", "targetPrefix")}ar`)]),
       doCheck: doCheck,
       postInstall: nix.thunk(() => nix.add((nix.asBool(interactive) ? "remove-references-to -t \"$NIX_CC\" \"$out\"/bin/gawkbug\npatchShebangs --host \"$out\"/bin/gawkbug\n" : "rm \"$out\"/bin/gawkbug\n"), "rm \"$out\"/bin/gawk-*\nln -s gawk.1 \"${!outputMan}\"/share/man/man1/awk.1\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.gnu.org/software/gawk/",
         description: "GNU implementation of the Awk programming language",
         longDescription: "Many computer users need to manipulate text files: extract and then\noperate on data from parts of certain lines while discarding the rest,\nmake changes in various text files wherever certain patterns appear,\nand so on.  To write a program to do these things in a language such as\nC or Pascal is a time-consuming inconvenience that may take many lines\nof code.  The job is easy with awk, especially the GNU implementation:\nGawk.\n\nThe awk utility interprets a special-purpose programming language that\nmakes it possible to handle many data-reformatting jobs with just a few\nlines of code.\n",

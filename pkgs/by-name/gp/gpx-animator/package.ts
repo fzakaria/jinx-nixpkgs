@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gpx-animator",
       version: "1.8.2",
-      gradle: nix.thunk(() => nix.app(nix.sel(gradle_8, "override"), nix.thunk(() => ({ __proto__: pos$1, java: jdk17 })))),
+      gradle: nix.thunk(() => nix.app(nix.sel(gradle_8, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, java: jdk17 })))),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "gradle")), makeBinaryWrapper]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "gpx-animator",
           repo: "gpx-animator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-U6nrS7utnUCohCzkOdmehtSdu+5d0KJF81mXWc/666A=",
         })))),
       mitmCache: nix.thunk(() => nix.app(nix.sel(finalAttrs, "gradle", "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -47,11 +47,11 @@ makeWrapper ${jdk17}/bin/java $out/bin/gpx-animator \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "GPX track to video animator",
         longDescription: "GPX Animator generates video from GPX files, it supports:\n\n- Multiple GPX tracks with multiple track segments\n- Skipping idle parts\n- Configurable color, label, width and time offset per track\n- Configurable video size, fps and speedup or total video time\n- Background map from any public TMS server\n",
         homepage: "https://gpx-animator.app",

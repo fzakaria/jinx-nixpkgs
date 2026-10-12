@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const unixodbc = nix.arg($, "unixodbc");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "saga",
       version: "9.13.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/saga-gis/saga-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-uXqtayum63RpYMHV7Y0sNDGEdhmCyZehrCUb5tnUfDY=",
         })))),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "OpenMP_SUPPORT", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "System for Automated Geoscientific Analyses",
         homepage: "https://saga-gis.sourceforge.io",
         changelog: nix.thunk(() => nix.str`https://sourceforge.net/p/saga-gis/wiki/Changelog%20${nix.sel(finalAttrs, "version")}/`),

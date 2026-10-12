@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const libglvnd = nix.arg($, "libglvnd");
   const headless = nix.argOr($, "headless", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cardinal",
       version: "26.02",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/DISTRHO/Cardinal/releases/download/${nix.sel(finalAttrs, "version")}/cardinal+deps-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-4xjRCYN6Y7YtFc4gCd8F7CQxB02PLZQ6DN59rZVPYh0=",
         })))),
@@ -87,7 +87,7 @@ wrapProgram $out/bin/CardinalMini \\
 rm -f $out/bin/CardinalNative
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin wrapper around VCV Rack",
         homepage: "https://github.com/DISTRHO/cardinal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

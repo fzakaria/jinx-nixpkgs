@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytest_random_order = nix.arg($, "pytest-random-order");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oelint-parser",
       version: "8.13.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "priv-kweihmann",
           repo: "oelint-parser",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytest_forked, pytest_random_order, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["oelint_parser"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Alternative parser for bitbake recipes",
         homepage: "https://github.com/priv-kweihmann/oelint-parser",
         changelog: nix.thunk(() => nix.str`https://github.com/priv-kweihmann/oelint-parser/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

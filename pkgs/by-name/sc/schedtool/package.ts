@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "schedtool",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "freequaos",
           repo: "schedtool",
           rev: nix.thunk(() => nix.str`schedtool-${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace schedtool.c \\\n  --replace-fail 'TAB[policy] : policy' 'TAB[policy] : (char*)(intptr_t)policy'\n",
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)", "DESTPREFIX="]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Query or alter a process' scheduling policy under Linux",
         mainProgram: "schedtool",
         homepage: "https://github.com/freequaos/schedtool",

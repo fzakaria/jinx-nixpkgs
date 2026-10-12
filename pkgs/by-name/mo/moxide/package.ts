@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "moxide",
       version: "0.3.0",
       cargoHash: "sha256-j4yV86Hr6QZTZ/0Dy9y+2egxGqf1Z930Zg6dsKs5bxg=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dlurak",
           repo: "moxide",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-BTg1z3pU9mGnexlXBdJ5ZqJeykpzGmhCbEKtvVxGEKo=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tmux session manager with a modular configuration",
         mainProgram: "moxide",
         homepage: "https://github.com/dlurak/moxide",

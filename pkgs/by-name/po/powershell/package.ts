@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const ext = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
   const platformLdLibraryPath = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     darwin: "DYLD_FALLBACK_LIBRARY_PATH",
     linux: "LD_LIBRARY_PATH",
   }, () => nix.builtins.throw("unsupported platform"), nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name"))));
@@ -66,30 +66,30 @@ cp $out/share/powershell/pwsh $out/bin/pwsh
 `))), "runHook postInstall\n"));
       const dontStrip = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         shellPath: "/bin/pwsh",
         sources: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://github.com/PowerShell/PowerShell/releases/download/v${version}/powershell-${version}-osx-arm64.tar.gz`),
               hash: "sha256-bfgz0JTrrBwadDQNezQ39Kr14DzmQEhKHENZ886LPbE=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://github.com/PowerShell/PowerShell/releases/download/v${version}/powershell-${version}-linux-arm64.tar.gz`),
               hash: "sha256-kkgp5UyYNkj28UGaLcf5QzyGGy+1vVdzb/CWwk8TNyk=",
             })))),
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: nix.thunk(() => nix.str`https://github.com/PowerShell/PowerShell/releases/download/v${version}/powershell-${version}-linux-x64.tar.gz`),
               hash: "sha256-3bxKLRE7vUbSg8/ty80RenDK79dnP0HytOAAC63xA7w=",
             })))),
         })),
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               package: powershell,
               command: "HOME=$(mktemp -d) pwsh --version",
             })))),
@@ -109,7 +109,7 @@ done
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Powerful cross-platform (Windows, Linux, and macOS) shell and scripting language based on .NET",
         homepage: "https://microsoft.com/PowerShell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -128,7 +128,7 @@ done
         })()),
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version,
         src,

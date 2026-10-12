@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gnused = nix.arg($, "gnused");
   const nix_update = nix.arg($, "nix-update");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ytermusic",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ccgauche",
           repo: "ytermusic",
           tag: nix.thunk(() => nix.str`beta-${nix.sel(finalAttrs, "version")}`),
@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gitMinimal, pkg_config]),
       buildInputs: nix.thunk(() => [openssl, alsa_lib, dbus]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-script", nix.thunk(() => nix.str`latestVersion=$(${nix.app(nix.sel(lib, "getExe"), curl)} \${GITHUB_TOKEN:+-u ":$GITHUB_TOKEN"} --fail --silent https://api.github.com/repos/ccgauche/ytermusic/tags | ${nix.app(nix.sel(lib, "getExe"), jq)} --raw-output '.[0].name' | ${nix.app(nix.sel(lib, "getExe"), gnused)} -E 's/beta-//')
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} $UPDATE_NIX_ATTR_PATH --version $latestVersion
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "TUI based Youtube Music Player that aims to be as fast and simple as possible",
         homepage: "https://github.com/ccgauche/ytermusic",
         changelog: nix.thunk(() => nix.str`https://github.com/ccgauche/ytermusic/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const mkfontscale = nix.arg($, "mkfontscale");
   const fonttosfnt = nix.arg($, "fonttosfnt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dina-font",
       version: "2.92",
       outputs: nix.thunk(() => ["out", "bdf"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.dcmembers.com/jibsen/download/61/?wpdmdl=61",
           hash: "sha256-JK+vnOyhAbwT825S+WKbQuWgRrfZZHfyhaMQ/6ljO8s=",
           extension: "zip",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nnewName() {\n  local name=${1##*/}\n  test \"${name:5:1}\" = i && _it=Italic || _it=\n  case ${name:6:3} in\n      400) _weight=Medium ;;\n      700) _weight=Bold ;;\n  esac\n  _pt=${1%.bdf}\n  _pt=${_pt#*-}\n  echo \"Dina$_weight$_it$_pt\"\n}\n\n# Re-encode the provided BDF files from CP1252 to Unicode as fonttosfnt does\n# not support the former.\n# We could generate the PCF and OTB files with fontforge directly, but that\n# results in incorrect spacing in various places.\nfor f in BDF/*.bdf; do\n  basename=${f##*/} basename=${basename%.*}\n  fontforge -lang=ff -c \"Open(\\\"$f\\\"); Reencode(\\\"win\\\", 1); Reencode(\\\"unicode\\\"); Generate(\\\"$basename.bdf\\\")\"\n  mv \"$basename\"-*.bdf \"$basename\".bdf # remove the superfluous added size suffix\ndone\n\nfor f in *.bdf; do\n    name=$(newName \"$f\")\n    bdftopcf -t -o \"$name.pcf\" \"$f\"\n    fonttosfnt -v -o \"$name.otb\" \"$f\"\ndone\ngzip -n -9 *.pcf\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -D -m 644 -t \"$out/share/fonts/misc\" *.pcf.gz *.otb\ninstall -D -m 644 -t \"$bdf/share/fonts/misc\" *.bdf\nmkfontdir \"$out/share/fonts/misc\"\nmkfontdir \"$bdf/share/fonts/misc\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monospace bitmap font aimed at programmers",
         longDescription: "Dina is a monospace bitmap font, primarily aimed at programmers. It is\nrelatively compact to allow a lot of code on screen, while (hopefully)\nclear enough to remain readable even at high resolutions.\n",
         homepage: "https://www.dcmembers.com/jibsen/download/61/",

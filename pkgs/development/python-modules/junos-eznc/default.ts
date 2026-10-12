@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.7.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Juniper",
           repo: "py-junos-eznc",
           tag: version,
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["jnpr.junos"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Junos 'EZ' automation for non-programmers",
         homepage: "https://github.com/Juniper/py-junos-eznc",
         changelog: nix.thunk(() => nix.str`https://github.com/Juniper/py-junos-eznc/releases/tag/${nix.sel(src, "tag")}`),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const postgresql = nix.arg($, "postgresql");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pg-schema-diff",
       version: "1.0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stripe",
           repo: "pg-schema-diff",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [postgresql]),
       vendorHash: "sha256-9tronDAe3/5bBtiMW04YGSgxww/F7xlq84sjYFTfxnk=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Go library for diffing Postgres schemas and generating SQL migrations",
         homepage: "https://github.com/stripe/pg-schema-diff",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

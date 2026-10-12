@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const withColord = nix.argOr($, "withColord", () => true);
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xfce4-settings",
       version: "4.20.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.xfce.org",
           owner: "xfce",
           repo: "xfce4-settings",
@@ -88,11 +88,11 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), withUpower, nix.thunk(() => ["--enable-upower-glib"])), nix.app(nix.sel(lib, "optionals"), withColord, nix.thunk(() => ["--enable-colord"]))))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "xfce4-settings-", "odd-unstable": true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "xfce4-settings-", "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Settings manager for Xfce",
         homepage: "https://gitlab.xfce.org/xfce/xfce4-settings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

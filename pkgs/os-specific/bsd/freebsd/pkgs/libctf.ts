@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const libspl = nix.arg($, "libspl");
   const zlib = nix.arg($, "zlib");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "cddl/lib/libctf",
       extraPaths: nix.thunk(() => [
         "cddl/contrib/opensolaris/common/ctf",

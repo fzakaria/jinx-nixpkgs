@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flavors",
           repo: "django-graphiql-debug-toolbar",
           rev: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/flavors/django-graphiql-debug-toolbar/commit/2b42fdb1bc40109d9bb0ae1fb4d2163d13904724.patch",
             hash: "sha256-ywTLqXlAxA2DCacrJOqmB7jSzfpeuGTX2ETu0fKmhq4=",
           })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export DB_BACKEND=sqlite\nexport DB_NAME=:memory:\nexport DJANGO_SETTINGS_MODULE=tests.settings\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/flavors/django-graphiql-debug-toolbar/releases/tag/${nix.sel(src, "rev")}`),
         description: "Django Debug Toolbar for GraphiQL IDE",
         homepage: "https://github.com/flavors/django-graphiql-debug-toolbar",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

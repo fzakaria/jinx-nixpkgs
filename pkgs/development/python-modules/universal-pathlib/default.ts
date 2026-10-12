@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "universal_pathlib",
           version: version,
           hash: "sha256-6tK2W8o99uEcO3yzb8mEY0C8PC2071cTFVAmBCKwo+g=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [fsspec, pathlib_abc]);
       const pythonImportsCheck = nix.thunk(() => ["upath"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pathlib api extended to use fsspec backends",
         homepage: "https://github.com/fsspec/universal_pathlib",
         changelog: nix.thunk(() => nix.str`https://github.com/fsspec/universal_pathlib/releases/tag/v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

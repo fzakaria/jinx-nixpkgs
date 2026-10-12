@@ -38,21 +38,21 @@ export default nix.lambda((args) => (() => {
   const dart = nix.arg($, "dart");
   const version = "2.2.6";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Predidit",
       repo: "Kazumi",
       tag: version,
       hash: "sha256-a2N9ucF+KNHmQ7hnL9GPOLYM4S9DEFlQ0I9mzLM5eEU=",
     }))));
   return nix.app(nix.sel(flutter, "buildFlutterApplication"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "kazumi",
       version: version,
       src: src,
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       gitHashes: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./git-hashes.json"))),
       customSourceBuilders: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         media_kit_libs_linux: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const version_1 = nix.arg($_1, "version");
@@ -67,7 +67,7 @@ sed -i '/set(PLUGIN_NAME "media_kit_libs_linux_plugin")/i add_custom_target("MIM
 `);
               const installPhase = "runHook preInstall\n\ncp -r . \"$out\"\n\nrunHook postInstall\n";
               return {
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 pname,
                 version: version_2,
                 src: src_2,
@@ -94,7 +94,7 @@ sed -i '/if(MEDIA_KIT_LIBS_AVAILABLE)/i \\
 `);
               const installPhase = "runHook preInstall\n\ncp -r . \"$out\"\n\nrunHook postInstall\n";
               return {
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 pname,
                 version: version_2,
                 src: src_2,
@@ -129,13 +129,13 @@ install -Dm 0644 assets/images/logo/logo_linux.png $out/share/icons/hicolor/512x
 )
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
-        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ __proto__: pos$5, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
+        [nix.POS]: pos$8,
+        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: pos$5, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "kazumi.pubspecSource", nix.path(here, "./pubspec.lock.json")), { __proto__: pos$6, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "kazumi.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$6, supportedFeatures: [] })),
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               command: nix.thunk(() => [
                 nix.thunk(() => nix.sel(dart, "fetchGitHashesScript")),
                 "--input",
@@ -148,7 +148,7 @@ install -Dm 0644 assets/images/logo/logo_linux.png $out/share/icons/hicolor/512x
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Watch Animes online with danmaku support",
         homepage: "https://github.com/Predidit/Kazumi",
         mainProgram: "kazumi",

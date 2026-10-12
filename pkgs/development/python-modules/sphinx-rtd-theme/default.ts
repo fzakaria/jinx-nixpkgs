@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "sphinx_rtd_theme",
           version: version,
           hash: "sha256-tEJ28sJ26Qkjmk9slVqmZ6qv63hZeSOxxgurx223jkw=",
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_basic"]);
       const pythonImportsCheck = nix.thunk(() => ["sphinx_rtd_theme"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sphinx theme for readthedocs.org",
         homepage: "https://github.com/readthedocs/sphinx_rtd_theme",
         changelog: nix.thunk(() => nix.str`https://github.com/readthedocs/sphinx_rtd_theme/blob/${version}/docs/changelog.rst`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

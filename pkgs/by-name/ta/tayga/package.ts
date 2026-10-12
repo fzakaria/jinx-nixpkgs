@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "tayga",
       version: "0.9.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apalrd",
           repo: "tayga",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/apalrd/tayga/commit/b41bd030846451d72b277854678b58370b1d5c8f.patch?full_index=1",
             hash: "sha256-vFQTlZs9ghxdx4k/iODDOUBAglyll1OxUdTjzDtcwB0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/apalrd/tayga/commit/807fe4e4510e697fef6916cd76d393a8ab8e495e.patch?full_index=1",
             hash: "sha256-JqRKv5ZAlypQxYvhctBKPdWgC6Opxo1IV1niS5v2CfY=",
           })))),
@@ -51,16 +51,16 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "substituteInPlace \"$out/lib/systemd/system/tayga@.service\" \\\n  --replace-fail \"ExecSearchPath=/usr/local/sbin:/usr/sbin\" \"\" \\\n  --replace-fail \"ExecStart=tayga\" \"ExecStart=$out/bin/tayga\"\n",
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is32bit")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           NIX_CFLAGS_COMPILE: "-D_TIME_BITS=64 -D_FILE_OFFSET_BITS=64",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$5, tayga: nix.thunk(() => nix.sel(nixosTests, "tayga")) })),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, tayga: nix.thunk(() => nix.sel(nixosTests, "tayga")) })),
       })),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Userland stateless NAT64 daemon",
         longDescription: "TAYGA is an out-of-kernel stateless NAT64 implementation\nfor Linux that uses the TUN driver to exchange IPv4 and\nIPv6 packets with the kernel.\nIt is intended to provide production-quality NAT64 service\nfor networks where dedicated NAT64 hardware would be overkill.\n",
         homepage: "https://github.com/apalrd/tayga",

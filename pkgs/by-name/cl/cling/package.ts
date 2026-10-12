@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = clangStdenv;
   const version = "1.3";
   const clingSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "root-project",
       repo: "cling",
       rev: nix.thunk(() => nix.str`v${version}`),
       sha256: "sha256-/qCHd9KfPW4dMjktaSdnJG+VDD1lLSI4ZFllTcxWsmc=",
     }))));
   const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cling-unwrapped",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "root-project",
           repo: "llvm-project",
           rev: "cling-llvm20-20260119-01",
@@ -71,13 +71,13 @@ cd llvm
         "-DLLVM_ENABLE_RTTI=ON",
       ], nix.app(nix.sel(lib, "optionals"), useLLVMLibcxx, nix.thunk(() => ["-DLLVM_ENABLE_LIBCXX=ON", "-DLLVM_ENABLE_LIBCXXABI=ON"])))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CPPFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), useLLVMLibcxx, "-stdlib=libc++")),
       })),
       postInstall: "mkdir -p $out/share/Jupyter\ncp -r ../../cling-source/tools/Jupyter/kernel $out/share/Jupyter\n",
       dontStrip: debug,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Interactive C++ Interpreter",
         mainProgram: "cling",
         homepage: "https://root.cern/cling/",
@@ -124,7 +124,7 @@ cd llvm
       nix.thunk(() => nix.str`${apple_sdk}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include`),
     ])))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cling",
       version: nix.thunk(() => nix.sel(unwrapped, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

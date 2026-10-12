@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const generator_out = nix.arg($, "generator-out");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "nanopb-generator",
       version: version,
       dontUnpack: true,

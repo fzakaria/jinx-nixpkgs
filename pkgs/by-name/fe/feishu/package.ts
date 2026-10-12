@@ -72,14 +72,14 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const commandLineArgs = nix.argOr($, "commandLineArgs", () => "");
   const sources = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "https://sf3-cn.feishucdn.com/obj/ee-appcenter/6e3610b5/Feishu-linux_x64-7.66.11.deb",
         sha256: "sha256-3E8NLC2zzIO7l1jPcePhMfCafgjuyWOzeNZgxTTM/TE=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "https://sf3-cn.feishucdn.com/obj/ee-appcenter/36c6e858/Feishu-linux_arm64-7.66.11.deb",
         sha256: "sha256-2nMHCuJy2dYiokwR3dFAkITeBgH8K9poJ9gkJNp42aQ=",
       })))),
@@ -138,7 +138,7 @@ export default nix.lambda((args) => (() => {
       xdg_utils,
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "7.66.11",
       pname: "feishu",
       src: nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -189,7 +189,7 @@ mkdir -p $out/bin
 ln -s $out/opt/bytedance/feishu/bytedance-feishu $out/bin/bytedance-feishu
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         sources: sources,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-feishu.sh", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq common-updater-scripts
@@ -213,7 +213,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "All-in-one collaboration suite",
         homepage: "https://www.feishu.cn/en/",
         downloadPage: "https://www.feishu.cn/en/#en_home_download_block",

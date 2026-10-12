@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jdillard",
           repo: "sphinx-sitemap",
           tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [sphinx, sphinx_last_updated_by_git]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, sphinx_pytest, defusedxml]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/jdillard/sphinx-sitemap/releases/tag/${nix.sel(src, "tag")}`),
         description: "Sitemap generator for Sphinx",
         homepage: "https://github.com/jdillard/sphinx-sitemap",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname_1,
         version: version_1,
         pyproject,

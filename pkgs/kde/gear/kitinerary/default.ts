@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libphonenumber = nix.arg($, "libphonenumber");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kitinerary",
       extraNativeBuildInputs: nix.thunk(() => [shared_mime_info]),
       extraBuildInputs: nix.thunk(() => [qtsvg, qtdeclarative, poppler, libphonenumber, protobuf]),

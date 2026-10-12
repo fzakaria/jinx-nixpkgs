@@ -152,7 +152,7 @@ server.jvm.additional=-Dunsupported.dbms.udc.source=tarball
 ${nix.sel(cfg, "extraServerConfig")}
 `)));
   return {
-    __proto__: pos$64,
+    [nix.POS]: pos$64,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "neo4j", "host"]), nix.thunk(() => ["services", "neo4j", "defaultListenAddress"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "neo4j", "listenAddress"]), nix.thunk(() => ["services", "neo4j", "defaultListenAddress"]))),
@@ -167,113 +167,113 @@ ${nix.sel(cfg, "extraServerConfig")}
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "neo4j", "udc", "enabled"]), "udc.enabled was removed upstream")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       services: nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         neo4j: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable Neo4j Community Edition.\n",
             })))),
           constrainLoadCsv: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Sets the root directory for file URLs used with the Cypher\n`LOAD CSV` clause to be that defined by\n{option}`directories.imports`. It restricts\naccess to only those files within that directory and its\nsubdirectories.\n\nSetting this option to `false` introduces\npossible security problems.\n",
             })))),
           defaultListenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "Default network interface to listen for incoming connections. To\nlisten for connections on all interfaces, use \"0.0.0.0\".\n\nSpecifies the default IP address and address part of connector\nspecific {option}`listenAddress` options. To bind specific\nconnectors to a specific network interfaces, specify the entire\n{option}`listenAddress` option for that connector.\n",
             })))),
           extraServerConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra configuration for Neo4j Community server. Refer to the\n[complete reference](https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/)\nof Neo4j configuration settings.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "neo4j", nix.thunk(() => ({})))),
           readOnly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Only allow read operations from this Neo4j instance.\n",
             })))),
           workerCount: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 0n, 44738n)),
               default: 0n,
               description: "Number of Neo4j worker threads, where the default of\n`0` indicates a worker count equal to the number of\navailable processors.\n",
             })))),
           bolt: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Enable the BOLT connector for Neo4j. Setting this option to\n`false` will stop Neo4j from listening for incoming\nconnections on the BOLT port (7687 by default).\n",
               })))),
             listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: ":7687",
                 description: "Neo4j listen address for BOLT traffic. The listen address is\nexpressed in the format `<ip-address>:<port-number>`.\n",
               })))),
             advertisedAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.sel(cfg, "bolt", "listenAddress")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "bolt", "listenAddress")}`))),
                 description: "Neo4j advertised address for BOLT traffic. The advertised address is\nexpressed in the format `<ip-address>:<port-number>`.\n",
               })))),
             sslPolicy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "legacy",
                 description: "Neo4j SSL policy for BOLT traffic.\n\nThe legacy policy is a special policy which is not defined in\nthe policy configuration section, but rather derives from\n{option}`directories.certificates` and\nassociated files (by default: {file}`neo4j.key` and\n{file}`neo4j.cert`). Its use will be deprecated.\n\nNote: This connector must be configured to support/require\nSSL/TLS for the legacy policy to actually be utilized. See\n{option}`bolt.tlsLevel`.\n",
               })))),
             tlsLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["REQUIRED", "OPTIONAL", "DISABLED"]))),
                 default: "OPTIONAL",
                 description: "SSL/TSL requirement level for BOLT traffic.\n",
               })))),
           })),
           directories: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             certificates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 default: nix.thunk(() => nix.str`${nix.sel(cfg, "directories", "home")}/certificates`),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "directories", "home")}}/certificates"`))),
                 description: "Directory for storing certificates to be used by Neo4j for\nTLS connections.\n\nWhen setting this directory to something other than its default,\nensure the directory's existence, and that read/write permissions are\ngiven to the Neo4j daemon user `neo4j`.\n\nNote that changing this directory from its default will prevent\nthe directory structure required for each SSL policy from being\nautomatically generated. A policy's directory structure as defined by\nits {option}`baseDirectory`,{option}`revokedDir` and\n{option}`trustedDir` must then be setup manually. The\nexistence of these directories is mandatory, as well as the presence\nof the certificate file and the private key. Ensure the correct\npermissions are set on these directories and files.\n",
               })))),
             data: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 default: nix.thunk(() => nix.str`${nix.sel(cfg, "directories", "home")}/data`),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "directories", "home")}}/data"`))),
                 description: "Path of the data directory. You must not configure more than one\nNeo4j installation to use the same data directory.\n\nWhen setting this directory to something other than its default,\nensure the directory's existence, and that read/write permissions are\ngiven to the Neo4j daemon user `neo4j`.\n",
               })))),
             home: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 default: "/var/lib/neo4j",
                 description: "Path of the Neo4j home directory. Other default directories are\nsubdirectories of this path. This directory will be created if\nnon-existent, and its ownership will be {command}`chown` to\nthe Neo4j daemon user `neo4j`.\n",
               })))),
             imports: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 default: nix.thunk(() => nix.str`${nix.sel(cfg, "directories", "home")}/import`),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "directories", "home")}}/import"`))),
                 description: "The root directory for file URLs used with the Cypher\n`LOAD CSV` clause. Only meaningful when\n{option}`constrainLoadCvs` is set to\n`true`.\n\nWhen setting this directory to something other than its default,\nensure the directory's existence, and that read permission is\ngiven to the Neo4j daemon user `neo4j`.\n",
               })))),
             plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 default: nix.thunk(() => nix.str`${nix.sel(cfg, "directories", "home")}/plugins`),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "directories", "home")}}/plugins"`))),
@@ -281,21 +281,21 @@ ${nix.sel(cfg, "extraServerConfig")}
               })))),
           })),
           http: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Enable the HTTP connector for Neo4j. Setting this option to\n`false` will stop Neo4j from listening for incoming\nconnections on the HTTPS port (7474 by default).\n",
               })))),
             listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: ":7474",
                 description: "Neo4j listen address for HTTP traffic. The listen address is\nexpressed in the format `<ip-address>:<port-number>`.\n",
               })))),
             advertisedAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.sel(cfg, "http", "listenAddress")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "http", "listenAddress")}`))),
@@ -303,46 +303,46 @@ ${nix.sel(cfg, "extraServerConfig")}
               })))),
           })),
           https: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Enable the HTTPS connector for Neo4j. Setting this option to\n`false` will stop Neo4j from listening for incoming\nconnections on the HTTPS port (7473 by default).\n",
               })))),
             listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: ":7473",
                 description: "Neo4j listen address for HTTPS traffic. The listen address is\nexpressed in the format `<ip-address>:<port-number>`.\n",
               })))),
             advertisedAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.sel(cfg, "https", "listenAddress")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "https", "listenAddress")}`))),
                 description: "Neo4j advertised address for HTTPS traffic. The advertised address is\nexpressed in the format `<ip-address>:<port-number>`.\n",
               })))),
             sslPolicy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "legacy",
                 description: "Neo4j SSL policy for HTTPS traffic.\n\nThe legacy policy is a special policy which is not defined in the\npolicy configuration section, but rather derives from\n{option}`directories.certificates` and\nassociated files (by default: {file}`neo4j.key` and\n{file}`neo4j.cert`). Its use will be deprecated.\n",
               })))),
           })),
           shell: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Enable a remote shell server which Neo4j Shell clients can log in to.\nOnly applicable to {command}`neo4j-shell`.\n",
               })))),
           })),
           ssl: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             policies: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.lambda((args_1) => (() => {
@@ -351,75 +351,75 @@ ${nix.sel(cfg, "extraServerConfig")}
                         const config_1 = nix.arg($_1, "config");
                         const options_1 = nix.arg($_1, "options");
                         return {
-                          __proto__: pos$43,
+                          [nix.POS]: pos$43,
                           options: nix.thunk(() => ({
-                            __proto__: pos$41,
+                            [nix.POS]: pos$41,
                             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "this policy")),
                             allowKeyGeneration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$30,
+                                [nix.POS]: pos$30,
                                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                                 default: false,
                                 description: "Allows the generation of a private key and associated self-signed\ncertificate. Only performed when both objects cannot be found for\nthis policy. It is recommended to turn this off again after keys\nhave been generated.\n\nThe public certificate is required to be duplicated to the\ndirectory holding trusted certificates as defined by the\n{option}`trustedDir` option.\n\nKeys should in general be generated and distributed offline by a\ntrusted certificate authority and not by utilizing this mode.\n",
                               })))),
                             baseDirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$31,
+                                [nix.POS]: pos$31,
                                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                                 default: nix.thunk(() => nix.str`${nix.sel(cfg, "directories", "certificates")}/${name}`),
                                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "directories", "certificates")}}/\${name}"`))),
                                 description: "The mandatory base directory for cryptographic objects of this\npolicy. This path is only automatically generated when this\noption as well as {option}`directories.certificates` are\nleft at their default. Ensure read/write permissions are given\nto the Neo4j daemon user `neo4j`.\n\nIt is also possible to override each individual\nconfiguration with absolute paths. See the\n{option}`privateKey` and {option}`publicCertificate`\npolicy options.\n",
                               })))),
                             ciphers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$32,
+                                [nix.POS]: pos$32,
                                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
                                 default: null,
                                 description: "Restrict the allowed ciphers of this policy to those defined\nhere. The default ciphers are those of the JVM platform.\n",
                               })))),
                             clientAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$33,
+                                [nix.POS]: pos$33,
                                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["NONE", "OPTIONAL", "REQUIRE"]))),
                                 default: "REQUIRE",
                                 description: "The client authentication stance for this policy.\n",
                               })))),
                             privateKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$34,
+                                [nix.POS]: pos$34,
                                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                 default: "private.key",
                                 description: "The name of private PKCS #8 key file for this policy to be found\nin the {option}`baseDirectory`, or the absolute path to\nthe key file. It is mandatory that a key can be found or generated.\n",
                               })))),
                             publicCertificate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$35,
+                                [nix.POS]: pos$35,
                                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                 default: "public.crt",
                                 description: "The name of public X.509 certificate (chain) file in PEM format\nfor this policy to be found in the {option}`baseDirectory`,\nor the absolute path to the certificate file. It is mandatory\nthat a certificate can be found or generated.\n\nThe public certificate is required to be duplicated to the\ndirectory holding trusted certificates as defined by the\n{option}`trustedDir` option.\n",
                               })))),
                             revokedDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$36,
+                                [nix.POS]: pos$36,
                                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                                 default: nix.thunk(() => nix.str`${nix.sel(config_1, "baseDirectory")}/revoked`),
                                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(options_1, "baseDirectory")}}/revoked"`))),
                                 description: "Path to directory of CRLs (Certificate Revocation Lists) in\nPEM format. Must be an absolute path. The existence of this\ndirectory is mandatory and will need to be created manually when:\nsetting this option to something other than its default; setting\neither this policy's {option}`baseDirectory` or\n{option}`directories.certificates` to something other than\ntheir default. Ensure read/write permissions are given to the\nNeo4j daemon user `neo4j`.\n",
                               })))),
                             tlsVersions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$37,
+                                [nix.POS]: pos$37,
                                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                                 default: nix.thunk(() => ["TLSv1.2"]),
                                 description: "Restrict the TLS protocol versions of this policy to those\ndefined here.\n",
                               })))),
                             trustAll: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$38,
+                                [nix.POS]: pos$38,
                                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                                 default: false,
                                 description: "Makes this policy trust all remote parties. Enabling this is not\nrecommended and the policy's trusted directory will be ignored.\nUse of this mode is discouraged. It would offer encryption but\nno security.\n",
                               })))),
                             trustedDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$39,
+                                [nix.POS]: pos$39,
                                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                                 default: nix.thunk(() => nix.str`${nix.sel(config_1, "baseDirectory")}/trusted`),
                                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(options_1, "baseDirectory")}}/trusted"`))),
                                 description: "Path to directory of X.509 certificates in PEM format for\ntrusted parties. Must be an absolute path. The existence of this\ndirectory is mandatory and will need to be created manually when:\nsetting this option to something other than its default; setting\neither this policy's {option}`baseDirectory` or\n{option}`directories.certificates` to something other than\ntheir default. Ensure read/write permissions are given to the\nNeo4j daemon user `neo4j`.\n\nThe public certificate as defined by\n{option}`publicCertificate` is required to be duplicated\nto this directory.\n",
                               })))),
                             directoriesToCreate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$40,
+                                [nix.POS]: pos$40,
                                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                                 internal: true,
                                 readOnly: true,
@@ -427,7 +427,7 @@ ${nix.sel(cfg, "extraServerConfig")}
                               })))),
                           })),
                           config: nix.thunk(() => ({
-                            __proto__: pos$42,
+                            [nix.POS]: pos$42,
                             directoriesToCreate: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.ge(nix.sel(certDirOpt, "highestPrio"), 1500n)) && nix.asBool(nix.ge(nix.sel(options_1, "baseDirectory", "highestPrio"), 1500n)))), nix.thunk(() => nix.app(nix.builtins.map, (opt_1) => nix.sel(opt_1, "value"), nix.thunk(() => nix.app(nix.sel(lib, "filter"), isDefaultPathOption, nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), options_1)))))))),
                           })),
                         };
@@ -447,40 +447,40 @@ ${nix.sel(cfg, "extraServerConfig")}
       const defaultDirectoriesToCreate = nix.thunk(() => nix.builtins.map((opt_1) => nix.sel(opt_1, "value"), nix.thunk(() => nix.app(nix.sel(lib, "filter"), isDefaultPathOption, nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(options, "services", "neo4j", "directories"))))))));
       const policyDirectoriesToCreate = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (pol) => nix.sel(pol, "directoriesToCreate"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "ssl", "policies"))))));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "elem"), "legacy", policyNameList))),
               message: "The policy 'legacy' is special to Neo4j, and its name is reserved.",
             })),
             nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               assertion: nix.thunk(() => nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(cfg, "bolt", "sslPolicy")), validPolicyNameList)),
               message: nix.thunk(() => nix.str`Invalid policy assigned: \`services.neo4j.bolt.sslPolicy = "${nix.sel(cfg, "bolt", "sslPolicy")}"\`, defined policies are: ${validPolicyNameString}`),
             })),
             nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               assertion: nix.thunk(() => nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(cfg, "https", "sslPolicy")), validPolicyNameList)),
               message: nix.thunk(() => nix.str`Invalid policy assigned: \`services.neo4j.https.sslPolicy = "${nix.sel(cfg, "https", "sslPolicy")}"\`, defined policies are: ${validPolicyNameString}`),
             })),
           ]),
           systemd: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             services: nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               neo4j: nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 description: "Neo4j Daemon",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   NEO4J_HOME: nix.thunk(() => nix.str`${nix.sel(cfg, "directories", "home")}`),
                   NEO4J_CONF: nix.thunk(() => nix.str`${nix.sel(cfg, "directories", "home")}/conf`),
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$53,
+                  [nix.POS]: pos$53,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/neo4j console`),
                   User: "neo4j",
                   PermissionsStartOnly: true,
@@ -504,27 +504,27 @@ chown -R neo4j ${nix.sel(cfg, "directories", "home")}
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             users: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               neo4j: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 isSystemUser: true,
                 group: "neo4j",
                 description: "Neo4j daemon user",
                 home: nix.thunk(() => nix.sel(cfg, "directories", "home")),
               })),
             })),
-            groups: nix.thunk(() => ({ __proto__: pos$60, neo4j: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: pos$60, neo4j: nix.thunk(() => ({})) })),
           })),
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$63,
+      [nix.POS]: pos$63,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "c2fc2f"))]),
     })),
   };

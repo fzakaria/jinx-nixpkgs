@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "corn",
         publisher: "JakeStanger",
         version: "0.1.0",
         hash: "sha256-6c9lxwJDVUuT3VKAbIohd0mRHFbfmfDgKfYJ+XET5hQ=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://marketplace.visualstudio.com/items/JakeStanger.corn/changelog",
         description: "Visual Studio Code extension for Cornlang",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=JakeStanger.corn",

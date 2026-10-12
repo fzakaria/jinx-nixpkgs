@@ -19,27 +19,27 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.0")) ? "0.6.3" : "0.6.2"));
   const benchmark = nix.arg($, "benchmark");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rope",
       version: version,
       minimalOCamlVersion: "4.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/Chris00/ocaml-rope/releases/download/${version}/rope-${version}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "0.6.2": "sha256:15cvfa0s1vjx7gjd07d3fkznilishqf4z4h2q5f20wm9ysjh2h2i",
             "0.6.3": "sha256-M14fiP9BDiz3WEoMqAJqZaXk4PoZ8Z1YjOk+F97z05Y=",
           }, nix.key(nix.str`${version}`))),
         })))),
       buildInputs: nix.thunk(() => [benchmark]),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(version, "0.6.3")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/Chris00/ocaml-rope/commit/be53daa18dd3d1450a92881b33c997eafb1dc958.patch",
             hash: "sha256-fHJNfD1ph3+QLmVJ8C4hhJ8hvrWIh7D0EL0XhOW2yqQ=",
           })))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/Chris00/ocaml-rope",
         description: "Ropes (“heavyweight strings”) in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blast",
       version: "2.17.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/${nix.sel(finalAttrs, "version")}/ncbi-blast-${nix.sel(finalAttrs, "version")}+-src.tar.gz`),
           sha256: "sha256-UCBXqI6ZkONOYnWL4h6kdMwK1o1qY6LjeyNyrx5eoUc=",
         })))),
@@ -106,7 +106,7 @@ substituteInPlace $out/bin/update_blastdb.pl \\
       enableParallelBuilding: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Basic Local Alignment Search Tool (BLAST) finds regions of similarity between biological sequences",
         homepage: "https://blast.ncbi.nlm.nih.gov/Blast.cgi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

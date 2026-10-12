@@ -14,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const patchelf = nix.arg($, "patchelf");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "shared-libs-hook",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         patchelf: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), patchelf)),
         darwinLibxml: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch")), "--replace-needed libxml2.so.2 libxml2.so")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Setup hook that rewrites sonames in libraries bundled with JetBrains IDEs",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "jetbrains"))]),
       })),

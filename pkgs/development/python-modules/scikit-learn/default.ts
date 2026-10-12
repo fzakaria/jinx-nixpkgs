@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "scikit_learn",
           version: version,
           hash: "sha256-iDMmaYnTpREBeKn64weDZ1Rgck0OHvsTsUkB0sZgxVc=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/scikit-learn/scikit-learn/commit/aeadb51af96556dd0f884c0037c9dc9993449538.patch",
             hash: "sha256-J7igLpK8pdcbgMwxFqaAGDEwm87VrLHb+ckg/pEh6IY=",
           })))),
@@ -60,7 +60,7 @@ substituteInPlace pyproject.toml \\
       const build_system = nix.thunk(() => [cython, meson_python, numpy, scipy]);
       const dependencies = nix.thunk(() => [joblib, narwhals, numpy, scipy, threadpoolctl]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_xdist]);
-      const env = nix.thunk(() => ({ __proto__: pos$3, LC_ALL: "en_US.UTF-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, LC_ALL: "en_US.UTF-8" }));
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
       const disabledTests = nix.thunk(() => nix.concat([
         "test_feature_importance_regression",
@@ -73,7 +73,7 @@ substituteInPlace pyproject.toml \\
       const preCheck = "cd $TMPDIR\nexport HOME=$TMPDIR\n";
       const pythonImportsCheck = nix.thunk(() => ["sklearn"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Set of python modules for machine learning and data mining",
         changelog: nix.thunk(() => (() => {
           const major = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version));
@@ -89,7 +89,7 @@ substituteInPlace pyproject.toml \\
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         __structuredAttrs,
         pname,
         version,

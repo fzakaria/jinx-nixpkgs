@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const allCCNewerThan70 = nix.thunk(() => (nix.asBool(allCCNewerThan75) || nix.asBool(nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), "7.0")), cudaCapabilities))));
       const cudaCapabilitiesJSON = nix.thunk(() => nix.builtins.toJSON(cudaCapabilities));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         redistName: "tensorrt",
         pname: "tensorrt",
         outputs: nix.thunk(() => nix.concat(["out", "bin", "dev", "include", "lib"], nix.concat(nix.app(optionals, nix.thunk(() => nix.app(tensorrtOlder, "10.14.1")), nix.thunk(() => ["samples"])), nix.app(optionals, nix.thunk(() => nix.app(tensorrtOlder, "11.0.0")), nix.thunk(() => ["static"]))))),
@@ -104,33 +104,33 @@ unset -v cmakeFile
 `))), nix.app(optionalString, nix.thunk(() => nix.app(tensorrtAtLeast, "11.2.1")), "nixLog \"removing CMake import checks for Windows libraries\"\nsed -i '/_cmake_import_check_.*TRT::[A-Za-z_]*_win_/d' \\\n  \"${!outputDev:?}\"/lib/cmake/TensorRT-Enterprise/TensorRT-EnterpriseTargets-*.cmake\n"))),
         platformAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             message: nix.thunk(() => nix.add(nix.str`tensorrt releases since 10.0.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA compute capabilities 7.0 and newer (found ${cudaCapabilitiesJSON})`)),
             assertion: nix.thunk(() => (!nix.asBool(tensorrtAtLeast100) || nix.asBool(allCCNewerThan70))),
           })),
           nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             message: nix.thunk(() => nix.add(nix.add(nix.str`tensorrt releases since 10.0.0 (found ${nix.sel(finalAttrs, "version")})`, " support only CUDA compute capability 8.7 (Jetson Orin) for pre-Thor Jetson devices"), nix.str` (found ${cudaCapabilitiesJSON})`)),
             assertion: nix.thunk(() => (!nix.asBool((nix.asBool(tensorrtAtLeast100) && nix.asBool(nix.eq(hostRedistSystem, "linux-aarch64")))) || nix.asBool(nix.eq(cudaCapabilities, ["8.7"])))),
           })),
           nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             message: nix.thunk(() => nix.add(nix.str`tensorrt releases since 10.0.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA 12.4 and newer for pre-Thor Jetson devices (found ${cudaMajorMinorVersion})`)),
             assertion: nix.thunk(() => (!nix.asBool((nix.asBool(tensorrtAtLeast100) && nix.asBool(nix.eq(hostRedistSystem, "linux-aarch64")))) || nix.asBool(nix.app(cudaAtLeast, "12.4")))),
           })),
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             message: nix.thunk(() => nix.add(nix.str`tensorrt releases since 10.5.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA compute capabilities 7.5 and newer (found ${cudaCapabilitiesJSON})`)),
             assertion: nix.thunk(() => (!nix.asBool(tensorrtAtLeast105) || nix.asBool(allCCNewerThan75))),
           })),
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             message: nix.thunk(() => nix.add(nix.str`tensorrt releases since 11.2.1 (found ${nix.sel(finalAttrs, "version")})`, nix.str` do not support Jetson devices (found ${cudaCapabilitiesJSON})`)),
             assertion: nix.thunk(() => (!nix.asBool(nix.app(tensorrtAtLeast, "11.2.1")) || nix.asBool(!nix.asBool(hasJetsonCudaCapability)))),
           })),
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: "SDK that facilitates high-performance machine learning inference",
           longDescription: "NVIDIA TensorRT is an SDK that facilitates high-performance machine learning inference. It complements training\nframeworks such as TensorFlow, PyTorch, and MXNet. It focuses on running an already-trained network quickly and\nefficiently on NVIDIA hardware.\n",
           homepage: "https://developer.nvidia.com/tensorrt",

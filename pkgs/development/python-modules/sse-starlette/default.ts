@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sysid",
           repo: "sse-starlette",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [anyio]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         daphne: nix.thunk(() => [daphne]),
         examples: nix.thunk(() => nix.concat([aiosqlite, fastapi, sqlalchemy, starlette, uvicorn], nix.sel(sqlalchemy, "optional-dependencies", "asyncio"))),
         granian: nix.thunk(() => [granian]),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_stop_server_with_many_consumers", "test_sse_server_termination"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Server Sent Events for Starlette and FastAPI",
         homepage: "https://github.com/sysid/sse-starlette",
         changelog: nix.thunk(() => nix.str`https://github.com/sysid/sse-starlette/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

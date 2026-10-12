@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const incus_image = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../release.nix")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       configuration: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         documentation: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
         })),
       })),
@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
   const incus_image_metadata = nix.thunk(() => nix.add(nix.sel(incus_image, "incusContainerMeta", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))), nix.str`/tarball/nixos-image-lxc-*-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}.tar.xz`));
   const incus_image_rootfs = nix.thunk(() => nix.add(nix.sel(incus_image, "incusContainerImage", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))), nix.str`/nixos-lxc-image-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}.squashfs`));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     name: "lxd-image-server",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "mkg20001")),
           nix.thunk(() => nix.lookup(w, "patryk27")),
@@ -55,42 +55,42 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             cores: 2n,
             memorySize: 2048n,
             diskSize: 4096n,
-            incus: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+            incus: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$9,
-            nftables: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
-            hosts: nix.thunk(() => ({ __proto__: pos$8, "::1": nix.thunk(() => ["acme.test"]) })),
+            [nix.POS]: pos$9,
+            nftables: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            hosts: nix.thunk(() => ({ [nix.POS]: pos$8, "::1": nix.thunk(() => ["acme.test"]) })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             pki: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               certificates: nix.thunk(() => [
                 nix.thunk(() => nix.builtins.readFile(nix.path(here, "./common/acme/server/ca.cert.pem"))),
               ]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             nginx: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 "acme.test": nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   enableACME: false,
                   sslCertificate: nix.path(here, "./common/acme/server/acme.test.cert.pem"),
                   sslCertificateKey: nix.path(here, "./common/acme/server/acme.test.key.pem"),
@@ -98,9 +98,9 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "lxd-image-server": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               enable: true,
-              nginx: nix.thunk(() => ({ __proto__: pos$15, enable: true, domain: "acme.test" })),
+              nginx: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true, domain: "acme.test" })),
             })),
           })),
         };

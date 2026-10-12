@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
 Failed assertions:
 ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.builtins.map((x) => nix.str`- ${x}`, failedAssertions)))}`)) : nix.app(showWarnings, warnings, val));
     })();
-    return { __proto__: pos$1, assertMsg, assertOneOf, assertEachOneOf, checkAssertWarn };
+    return { [nix.POS]: pos$1, assertMsg, assertOneOf, assertEachOneOf, checkAssertWarn };
   })();
 })(), formals$1);
 //# sourceMappingURL=asserts.ts.map

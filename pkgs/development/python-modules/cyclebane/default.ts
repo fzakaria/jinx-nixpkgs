@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const scipp = nix.arg($, "scipp");
   const xarray = nix.arg($, "xarray");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cyclebane",
       version: "26.9.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scipp",
           repo: "cyclebane",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["cyclebane"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, numpy, pandas, scipp, xarray]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Transform directed acyclic graphs using map-reduce and groupby operations",
         homepage: "https://scipp.github.io/cyclebane/",
         changelog: nix.thunk(() => nix.str`https://github.com/scipp/cyclebane/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

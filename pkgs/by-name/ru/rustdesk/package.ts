@@ -47,12 +47,12 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rustdesk",
       version: "1.5.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rustdesk",
           repo: "rustdesk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./make-build-reproducible.patch")]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "rustdesk",
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             icon: "rustdesk",
@@ -124,9 +124,9 @@ install -Dm0644 $src/res/logo.svg $out/share/icons/hicolor/scalable/apps/rustdes
 `),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`patchelf --add-rpath "${libayatana_appindicator}/lib" "$out/lib/rustdesk/rustdesk"
 `))),
-      env: nix.thunk(() => ({ __proto__: pos$3, SODIUM_USE_PKG_CONFIG: true, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, SODIUM_USE_PKG_CONFIG: true, ZSTD_SYS_USE_PKG_CONFIG: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Virtual / remote desktop infrastructure for everyone! Open source TeamViewer / Citrix alternative",
         homepage: "https://rustdesk.com",
         changelog: nix.thunk(() => nix.str`https://github.com/rustdesk/rustdesk/releases/tag/${nix.sel(finalAttrs, "version")}`),

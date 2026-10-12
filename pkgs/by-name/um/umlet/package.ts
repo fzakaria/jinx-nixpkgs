@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "umlet",
       version: "15.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.umlet.com/download/umlet_15_1/umlet-standalone-15.1.zip",
           hash: "sha256-M6oVWbOmPBTygS+TFkY9PWucFfYLD33suNUuWpFLMIo=",
         })))),
@@ -44,7 +44,7 @@ EOF
 chmod a+x "$out/bin/umlet"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free, open-source UML tool with a simple user interface",
         longDescription: "UMLet is a free, open-source UML tool with a simple user interface:\ndraw UML diagrams fast, produce sequence and activity diagrams from\nplain text, export diagrams to eps, pdf, jpg, svg, and clipboard,\nshare diagrams using Eclipse, and create new, custom UML elements.\nUMLet runs stand-alone or as Eclipse plug-in on Windows, macOS and\nLinux.\n",
         homepage: "https://www.umlet.com",

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const redisTestHook = nix.arg($, "redisTestHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "redis-test-hook-test",
       nativeCheckInputs: nix.thunk(() => [valkey, redisTestHook]),
       dontUnpack: true,

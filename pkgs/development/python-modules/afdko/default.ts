@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const uharfbuzz = nix.arg($, "uharfbuzz");
   const afdko = nix.arg($, "afdko");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "afdko",
       version: "5.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adobe-type-tools",
           repo: "afdko",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-addfeatures-hmtx-avoid-unsigned-integer-underflow.patch"),
         nix.path(here, "./0002-otfautohint-fix-assertion-high-ghost-first-stem.patch"),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, FORCE_SYSTEM_ANTLR4: true, FORCE_SYSTEM_LIBXML2: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, FORCE_SYSTEM_ANTLR4: true, FORCE_SYSTEM_LIBXML2: true })),
       dontUseCmakeConfigure: true,
       dependencies: nix.thunk(() => nix.concat([
         booleanoperations,
@@ -88,14 +88,14 @@ export default nix.lambda((args) => (() => {
           "test_options",
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV")))), nix.thunk(() => ["test_spec"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), nix.thunk(() => ["test_dump_option", "test_type1mm_inputs"])))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          fullTestsuite: nix.thunk(() => nix.app(nix.sel(afdko, "override"), nix.thunk(() => ({ __proto__: pos$3, runAllTests: true })))),
+          [nix.POS]: pos$4,
+          fullTestsuite: nix.thunk(() => nix.app(nix.sel(afdko, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, runAllTests: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Adobe Font Development Kit for OpenType",
         changelog: nix.thunk(() => nix.str`https://github.com/adobe-type-tools/afdko/blob/${nix.sel(finalAttrs, "version")}/NEWS.md`),
         homepage: "https://adobe-type-tools.github.io/afdko",

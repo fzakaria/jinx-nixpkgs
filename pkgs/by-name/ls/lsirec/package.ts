@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lsirec",
       version: "0-unstable-2019-03-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marcan",
           repo: "lsirec",
           rev: "2dfb6dc92649feb01a3ddcfd117d4a99098084f2",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [python3]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 'lsirec' \"$out/bin/lsirec\"\ninstall -Dm755 'sbrtool.py' \"$out/bin/sbrtool\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LSI SAS2008/SAS2108 low-level recovery tool for Linux",
         homepage: "https://github.com/marcan/lsirec",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

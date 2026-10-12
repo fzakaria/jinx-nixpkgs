@@ -98,52 +98,52 @@ export default nix.lambda((args) => (() => {
   const otop = nix.thunk(() => nix.sel(options, "services", "kubernetes"));
   const cfg = nix.thunk(() => nix.sel(top, "kubelet"));
   const cniConfig = nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "cni", "config"), [])) && nix.asBool(!nix.eq(nix.sel(cfg, "cni", "configDir"), null)))) ? nix.app(nix.builtins.throw, "Verbatim CNI-config and CNI configDir cannot both be set.") : (nix.asBool(!nix.eq(nix.sel(cfg, "cni", "configDir"), null)) ? nix.sel(cfg, "cni", "configDir") : nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "kubernetes-cni-config",
       paths: nix.thunk(() => nix.app(nix.lookup(w, "imap"), (i) => (entry) => nix.app(nix.sel(pkgs, "writeTextDir"), nix.thunk(() => nix.str`${nix.app(nix.builtins.toString, nix.thunk(() => nix.add(10n, i)))}-${nix.sel(entry, "type")}.conf`), nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), entry))), nix.thunk(() => nix.sel(cfg, "cni", "config")))),
     }))))));
   const infraContainer = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "pause",
       tag: "latest",
       copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "image-root",
           pathsToLink: nix.thunk(() => ["/bin"]),
           paths: nix.thunk(() => [nix.thunk(() => nix.sel(top, "package", "pause"))]),
         })))),
-      config: nix.thunk(() => ({ __proto__: pos$3, Cmd: nix.thunk(() => ["/bin/pause"]) })),
+      config: nix.thunk(() => ({ [nix.POS]: pos$3, Cmd: nix.thunk(() => ["/bin/pause"]) })),
     }))));
   const kubeconfig = nix.thunk(() => nix.app(nix.sel(top, "lib", "mkKubeConfig"), "kubelet", nix.thunk(() => nix.sel(cfg, "kubeconfig"))));
   const kubeletConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "kubelet-config", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => nix.update({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         apiVersion: "kubelet.config.k8s.io/v1beta1",
         kind: "KubeletConfiguration",
         address: nix.thunk(() => nix.sel(cfg, "address")),
         port: nix.thunk(() => nix.sel(cfg, "port")),
         authentication: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           x509: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "clientCaFile"), null)), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               clientCAFile: nix.thunk(() => nix.sel(cfg, "clientCaFile")),
             })))),
-          webhook: nix.thunk(() => ({ __proto__: pos$6, enabled: true, cacheTTL: "10s" })),
+          webhook: nix.thunk(() => ({ [nix.POS]: pos$6, enabled: true, cacheTTL: "10s" })),
         })),
-        authorization: nix.thunk(() => ({ __proto__: pos$8, mode: "Webhook" })),
+        authorization: nix.thunk(() => ({ [nix.POS]: pos$8, mode: "Webhook" })),
         cgroupDriver: "systemd",
         hairpinMode: "hairpin-veth",
         registerNode: nix.thunk(() => nix.sel(cfg, "registerNode")),
         containerRuntimeEndpoint: nix.thunk(() => nix.sel(cfg, "containerRuntimeEndpoint")),
         healthzPort: nix.thunk(() => nix.sel(cfg, "healthz", "port")),
         healthzBindAddress: nix.thunk(() => nix.sel(cfg, "healthz", "bind")),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "tlsCertFile"), null)), nix.thunk(() => ({ __proto__: pos$10, tlsCertFile: nix.thunk(() => nix.sel(cfg, "tlsCertFile")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "tlsKeyFile"), null)), nix.thunk(() => ({
-          __proto__: pos$11,
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "tlsCertFile"), null)), nix.thunk(() => ({ [nix.POS]: pos$10, tlsCertFile: nix.thunk(() => nix.sel(cfg, "tlsCertFile")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "tlsKeyFile"), null)), nix.thunk(() => ({
+          [nix.POS]: pos$11,
           tlsPrivateKeyFile: nix.thunk(() => nix.sel(cfg, "tlsKeyFile")),
         }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "clusterDomain"), "")), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           clusterDomain: nix.thunk(() => nix.sel(cfg, "clusterDomain")),
-        }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "clusterDns"), [])), nix.thunk(() => ({ __proto__: pos$13, clusterDNS: nix.thunk(() => nix.sel(cfg, "clusterDns")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "featureGates"), {})), nix.thunk(() => ({
-          __proto__: pos$14,
+        }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "clusterDns"), [])), nix.thunk(() => ({ [nix.POS]: pos$13, clusterDNS: nix.thunk(() => nix.sel(cfg, "clusterDns")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "featureGates"), {})), nix.thunk(() => ({
+          [nix.POS]: pos$14,
           featureGates: nix.thunk(() => nix.sel(cfg, "featureGates")),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraConfig"), {})), nix.thunk(() => nix.sel(cfg, "extraConfig"))))))))))))));
   const manifestPath = "kubernetes/manifests";
@@ -153,23 +153,23 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const name = nix.arg($_1, "name");
       return {
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         options: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           key: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Key of taint.",
               default: name,
               defaultText: nix.thunk(() => nix.app(nix.lookup(w_1, "literalMD"), "Name of this submodule.")),
               type: nix.thunk(() => nix.lookup(w_1, "str")),
             })))),
           value: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Value of taint.",
               type: nix.thunk(() => nix.lookup(w_1, "str")),
             })))),
           effect: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Effect of taint.",
               example: "NoSchedule",
               type: nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["NoSchedule", "PreferNoSchedule", "NoExecute"]))),
@@ -180,7 +180,7 @@ export default nix.lambda((args) => (() => {
   })());
   const taints = nix.thunk(() => nix.app(nix.lookup(w, "concatMapStringsSep"), ",", (v) => nix.str`${nix.sel(v, "key")}=${nix.sel(v, "value")}:${nix.sel(v, "effect")}`, nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), nix.thunk(() => nix.sel(cfg, "taints"))))));
   return {
-    __proto__: pos$82,
+    [nix.POS]: pos$82,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "kubernetes", "kubelet", "applyManifests"]), "")),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "kubernetes", "kubelet", "cadvisorPort"]), "")),
@@ -189,167 +189,167 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "kubernetes", "kubelet", "containerRuntime"]), "")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       services: nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         kubernetes: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           kubelet: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
             return {
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               address: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   description: "Kubernetes kubelet info server listening address.",
                   default: "0.0.0.0",
                   type: nix.thunk(() => nix.lookup(w_2, "str")),
                 })))),
               clusterDns: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   description: "List of DNS resolvers (IP addresses) used inside containers.\n\nDefaulted to {option}`services.kubernetes.addons.dns.clusterIp`\nwhen {option}`services.kubernetes.addons.dns.enable` is `true`.\n\nRefer to the list of configuration attributes for [KubeletConfiguration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/#kubelet-config-k8s-io-v1beta1-KubeletConfiguration).\n",
                   default: nix.thunk(() => ["10.1.0.1"]),
                   type: nix.thunk(() => nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.lookup(w_2, "str")))),
                 })))),
               clusterDomain: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   description: "Search DNS domain used inside containers.\n\nRefer to the list of configuration attributes for [KubeletConfiguration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/#kubelet-config-k8s-io-v1beta1-KubeletConfiguration).\n",
                   default: nix.thunk(() => nix.sel(config, "services", "kubernetes", "addons", "dns", "clusterDomain")),
                   defaultText: nix.thunk(() => nix.app(nix.lookup(w_2, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(options, "services", "kubernetes", "addons", "dns", "clusterDomain")}`))),
                   type: nix.thunk(() => nix.lookup(w_2, "str")),
                 })))),
               clientCaFile: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   description: "Kubernetes apiserver CA file for client authentication.",
                   default: nix.thunk(() => nix.sel(top, "caFile")),
                   defaultText: nix.thunk(() => nix.app(nix.lookup(w_2, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(otop, "caFile")}`))),
                   type: nix.thunk(() => nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "path")))),
                 })))),
               cni: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 packages: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     description: "List of network plugin packages to install.",
                     type: nix.thunk(() => nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.lookup(w_2, "package")))),
                     default: [],
                   })))),
                 config: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     description: "Kubernetes CNI configuration.",
                     type: nix.thunk(() => nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.lookup(w_2, "attrs")))),
                     default: [],
                     example: nix.thunk(() => nix.app(nix.lookup(w_2, "literalExpression"), "[{\n  \"cniVersion\": \"0.3.1\",\n  \"name\": \"mynet\",\n  \"type\": \"bridge\",\n  \"bridge\": \"cni0\",\n  \"isGateway\": true,\n  \"ipMasq\": true,\n  \"ipam\": {\n      \"type\": \"host-local\",\n      \"subnet\": \"10.22.0.0/16\",\n      \"routes\": [\n          { \"dst\": \"0.0.0.0/0\" }\n      ]\n  }\n} {\n  \"cniVersion\": \"0.3.1\",\n  \"type\": \"loopback\"\n}]\n")),
                   })))),
                 configDir: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     description: "Path to Kubernetes CNI configuration directory.",
                     type: nix.thunk(() => nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "path")))),
                     default: null,
                   })))),
               })),
               containerRuntimeEndpoint: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   description: "Endpoint at which to find the container runtime api interface/socket",
                   type: nix.thunk(() => nix.lookup(w_2, "str")),
                   default: "unix:///run/containerd/containerd.sock",
                 })))),
               enable: nix.thunk(() => nix.app(nix.lookup(w_2, "mkEnableOption"), "Kubernetes kubelet")),
               extraOpts: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   description: "Kubernetes kubelet extra command line options.",
                   default: "",
                   type: nix.thunk(() => nix.app(nix.lookup(w_2, "separatedString"), " ")),
                 })))),
               extraConfig: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   description: "Kubernetes kubelet extra configuration file entries.\n\nSee also [Set Kubelet Parameters Via A Configuration File](https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/)\nand [Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/).\n",
                   default: nix.thunk(() => ({})),
                   type: nix.thunk(() => nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "type")))),
                 })))),
               featureGates: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   description: "Attribute set of feature gate",
                   default: nix.thunk(() => nix.sel(top, "featureGates")),
                   defaultText: nix.thunk(() => nix.app(nix.lookup(w_2, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(otop, "featureGates")}`))),
                   type: nix.thunk(() => nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.lookup(w_2, "bool")))),
                 })))),
               healthz: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 bind: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     description: "Kubernetes kubelet healthz listening address.",
                     default: "127.0.0.1",
                     type: nix.thunk(() => nix.lookup(w_2, "str")),
                   })))),
                 port: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     description: "Kubernetes kubelet healthz port.",
                     default: 10248n,
                     type: nix.thunk(() => nix.lookup(w_2, "port")),
                   })))),
               })),
               hostname: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   description: "Kubernetes kubelet hostname override.",
                   defaultText: nix.thunk(() => nix.app(nix.lookup(w_2, "literalExpression"), "config.networking.fqdnOrHostName")),
                   type: nix.thunk(() => nix.lookup(w_2, "str")),
                 })))),
               kubeconfig: nix.thunk(() => nix.app(nix.sel(top, "lib", "mkKubeConfigOptions"), "Kubelet")),
               manifests: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   description: "List of manifests to bootstrap with kubelet (only pods can be created as manifest entry)",
                   type: nix.thunk(() => nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.lookup(w_2, "attrs")))),
                   default: nix.thunk(() => ({})),
                 })))),
               nodeIp: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   description: "IP address of the node. If set, kubelet will use this IP address for the node.",
                   default: null,
                   type: nix.thunk(() => nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "str")))),
                 })))),
               registerNode: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   description: "Whether to auto register kubelet with API server.",
                   default: true,
                   type: nix.thunk(() => nix.lookup(w_2, "bool")),
                 })))),
               port: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   description: "Kubernetes kubelet info server listening port.",
                   default: 10250n,
                   type: nix.thunk(() => nix.lookup(w_2, "port")),
                 })))),
               seedDockerImages: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   description: "List of docker images to preload on system",
                   default: [],
                   type: nix.thunk(() => nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.lookup(w_2, "package")))),
                 })))),
               taints: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   description: "Node taints (https://kubernetes.io/docs/concepts/configuration/assign-pod-node/).",
                   default: nix.thunk(() => ({})),
                   type: nix.thunk(() => nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => [taintOptions]))))),
                 })))),
               tlsCertFile: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   description: "File containing x509 Certificate for HTTPS.",
                   default: null,
                   type: nix.thunk(() => nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "path")))),
                 })))),
               tlsKeyFile: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   description: "File containing x509 private key matching tlsCertFile.",
                   default: null,
                   type: nix.thunk(() => nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "path")))),
                 })))),
               unschedulable: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   description: "Whether to set node taint to unschedulable=true as it is the case of node that has only master role.",
                   default: false,
                   type: nix.thunk(() => nix.lookup(w_2, "bool")),
                 })))),
               verbosity: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   description: "Optional glog verbosity level for logging statements. See\n<https://github.com/kubernetes/community/blob/master/contributors/devel/logging.md>\n",
                   default: null,
                   type: nix.thunk(() => nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "int")))),
@@ -361,23 +361,23 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             environment: nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               etc: nix.thunk(() => ({
-                __proto__: pos$51,
-                "cni/net.d": nix.thunk(() => ({ __proto__: pos$50, source: cniConfig })),
+                [nix.POS]: pos$51,
+                "cni/net.d": nix.thunk(() => ({ [nix.POS]: pos$50, source: cniConfig })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               kubernetes: nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 kubelet: nix.thunk(() => ({
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   seedDockerImages: nix.thunk(() => [infraContainer]),
                   cni: nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     packages: nix.thunk(() => [
                       nix.thunk(() => nix.sel(pkgs, "cni-plugins")),
                       nix.thunk(() => nix.sel(pkgs, "cni-plugin-flannel")),
@@ -385,27 +385,27 @@ export default nix.lambda((args) => (() => {
                   })),
                   hostname: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.app(nix.sel(lib, "toLower"), nix.thunk(() => nix.sel(config, "networking", "fqdnOrHostName")))))),
                   kubeconfig: nix.thunk(() => ({
-                    __proto__: pos$54,
+                    [nix.POS]: pos$54,
                     server: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(top, "apiserverAddress")))),
                   })),
                 })),
                 pki: nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   certs: nix.thunk(() => (() => {
                     const w_2 = nix.withScope(nix.thunk(() => nix.sel(top, "lib")), w);
                     return {
-                      __proto__: pos$59,
+                      [nix.POS]: pos$59,
                       kubelet: nix.thunk(() => nix.app(nix.lookup(w_2, "mkCert"), nix.thunk(() => ({
-                          __proto__: pos$56,
+                          [nix.POS]: pos$56,
                           name: "kubelet",
                           CN: nix.thunk(() => nix.sel(top, "kubelet", "hostname")),
                           action: "systemctl restart kubelet.service",
                         })))),
                       kubeletClient: nix.thunk(() => nix.app(nix.lookup(w_2, "mkCert"), nix.thunk(() => ({
-                          __proto__: pos$58,
+                          [nix.POS]: pos$58,
                           name: "kubelet-client",
                           CN: nix.thunk(() => nix.str`system:node:${nix.sel(top, "kubelet", "hostname")}`),
-                          fields: nix.thunk(() => ({ __proto__: pos$57, O: "system:nodes" })),
+                          fields: nix.thunk(() => ({ [nix.POS]: pos$57, O: "system:nodes" })),
                           action: "systemctl restart kubelet.service",
                         })))),
                     };
@@ -414,11 +414,11 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             boot: nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               kernel: nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 sysctl: nix.thunk(() => ({
-                  __proto__: pos$63,
+                  [nix.POS]: pos$63,
                   "net.bridge.bridge-nf-call-iptables": 1n,
                   "net.ipv4.ip_forward": 1n,
                   "net.bridge.bridge-nf-call-ip6tables": 1n,
@@ -427,11 +427,11 @@ export default nix.lambda((args) => (() => {
               kernelModules: nix.thunk(() => ["br_netfilter", "overlay"]),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               services: nix.thunk(() => ({
-                __proto__: pos$69,
+                [nix.POS]: pos$69,
                 kubelet: nix.thunk(() => ({
-                  __proto__: pos$68,
+                  [nix.POS]: pos$68,
                   description: "Kubernetes Kubelet Service",
                   wantedBy: nix.thunk(() => ["kubernetes.target"]),
                   after: nix.thunk(() => ["containerd.service", "network.target", "kube-apiserver.service"]),
@@ -458,7 +458,7 @@ ln -fs ${package$}/bin/* /opt/cni/bin
 `, nix.thunk(() => nix.sel(cfg, "cni", "packages")))}
 `),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$66,
+                    [nix.POS]: pos$66,
                     Slice: "kubernetes.slice",
                     MemoryAccounting: true,
                     Restart: "on-failure",
@@ -476,40 +476,40 @@ ln -fs ${package$}/bin/* /opt/cni/bin
 `),
                     WorkingDirectory: nix.thunk(() => nix.sel(top, "dataDir")),
                   })),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$67, StartLimitIntervalSec: 0n })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$67, StartLimitIntervalSec: 0n })),
                 })),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "manifests"), {})))), nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             environment: nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               etc: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (name) => (manifest) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`${manifestPath}/${name}.json`), nix.thunk(() => ({
-                    __proto__: pos$72,
+                    [nix.POS]: pos$72,
                     text: nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), manifest)),
                     mode: "0755",
                   }))), nix.thunk(() => nix.sel(cfg, "manifests")))),
             })),
           })))),
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "unschedulable")) && nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => ({
-            __proto__: pos$80,
+            [nix.POS]: pos$80,
             services: nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               kubernetes: nix.thunk(() => ({
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 kubelet: nix.thunk(() => ({
-                  __proto__: pos$77,
+                  [nix.POS]: pos$77,
                   taints: nix.thunk(() => ({
-                    __proto__: pos$76,
-                    unschedulable: nix.thunk(() => ({ __proto__: pos$75, value: "true", effect: "NoSchedule" })),
+                    [nix.POS]: pos$76,
+                    unschedulable: nix.thunk(() => ({ [nix.POS]: pos$75, value: "true", effect: "NoSchedule" })),
                   })),
                 })),
               })),
             })),
           })))),
       ]))),
-    meta: nix.thunk(() => ({ __proto__: pos$81, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$81, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=kubelet.ts.map

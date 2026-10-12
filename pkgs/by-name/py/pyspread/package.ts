@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyspread",
       version: "2.4.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyspread",
           repo: "pyspread",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pyspread"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "pyspread",
             exec: "pyspread",
             icon: "pyspread",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preFixup: "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://pyspread.gitlab.io/",
         description: "Python-oriented spreadsheet application",
         longDescription: "pyspread is a non-traditional spreadsheet application that is based on and\nwritten in the programming language Python. The goal of pyspread is to be\nthe most pythonic spreadsheet.\n\npyspread expects Python expressions in its grid cells, which makes a\nspreadsheet specific language obsolete. Each cell returns a Python object\nthat can be accessed from other cells. These objects can represent\nanything including lists or matrices.\n",

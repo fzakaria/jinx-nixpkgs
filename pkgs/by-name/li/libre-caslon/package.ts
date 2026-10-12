@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.002";
       const srcs = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "impallari",
             repo: "Libre-Caslon-Text",
             rev: "c31e21f7e8cf91f18d90f778ce20e66c68219c74",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
             sha256: "0zczv9qm8cgc7w1p64mnf0p0fi7xv89zhf1zzf1qcna15kbgc705",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "impallari",
             repo: "Libre-Caslon-Display",
             rev: "3491f6a9cfde2bc15e736463b0bc7d93054d5da1",
@@ -45,7 +45,7 @@ cp -v libre-caslon-text-${version}-src/README.md libre-caslon-text-${version}-sr
       const outputHashMode = "recursive";
       const outputHash = "05aajwny99yqzn1nnq1blx6h7rl54x056y12hyawfbigkzxhscns";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Caslon fonts based on hand-lettered American Caslons of 1960s",
         homepage: nix.thunk(() => [
           "https://github.com/impallari/Libre-Caslon-Text",
@@ -56,7 +56,7 @@ cp -v libre-caslon-text-${version}-src/README.md libre-caslon-text-${version}-sr
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         srcs,

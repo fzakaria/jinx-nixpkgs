@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "darkman",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WhyNotHugo",
           repo: "darkman",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nmake build\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dm755 darkman -t $out/bin\nmake PREFIX=$out install\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Framework for dark-mode and light-mode transitions on Linux desktop",
         homepage: "https://gitlab.com/WhyNotHugo/darkman",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

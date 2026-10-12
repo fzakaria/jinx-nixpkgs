@@ -27,39 +27,39 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "xandikos",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "_0x4A6F"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       xandikos_client: nix.thunk(() => ({})),
       xandikos_default: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         networking: nix.thunk(() => ({
-          __proto__: pos$3,
-          firewall: nix.thunk(() => ({ __proto__: pos$2, allowedTCPPorts: nix.thunk(() => [8080n]) })),
+          [nix.POS]: pos$3,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [8080n]) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$5,
-          xandikos: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+          [nix.POS]: pos$5,
+          xandikos: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
         })),
       })),
       xandikos_proxy: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         networking: nix.thunk(() => ({
-          __proto__: pos$8,
-          firewall: nix.thunk(() => ({ __proto__: pos$7, allowedTCPPorts: nix.thunk(() => [80n, 8080n]) })),
+          [nix.POS]: pos$8,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$7, allowedTCPPorts: nix.thunk(() => [80n, 8080n]) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           xandikos: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: true,
             address: "localhost",
             port: 8080n,
@@ -67,18 +67,18 @@ export default nix.lambda((args) => (() => {
             extraOptions: nix.thunk(() => ["--defaults"]),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             enable: true,
             recommendedProxySettings: true,
             virtualHosts: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               xandikos: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 serverName: "xandikos.local",
-                basicAuth: nix.thunk(() => ({ __proto__: pos$10, xandikos: "snakeOilPassword" })),
+                basicAuth: nix.thunk(() => ({ [nix.POS]: pos$10, xandikos: "snakeOilPassword" })),
                 locations: nix.thunk(() => ({
-                  __proto__: pos$12,
-                  "/xandikos/": nix.thunk(() => ({ __proto__: pos$11, proxyPass: "http://localhost:8080/xandikos-prefix/" })),
+                  [nix.POS]: pos$12,
+                  "/xandikos/": nix.thunk(() => ({ [nix.POS]: pos$11, proxyPass: "http://localhost:8080/xandikos-prefix/" })),
                 })),
               })),
             })),

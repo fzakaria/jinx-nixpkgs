@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gpsbabel",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gpsbabel",
           repo: "gpsbabel",
           rev: nix.thunk(() => nix.str`gpsbabel_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       qmakeFlags: nix.thunk(() => nix.concat(["WITH_LIBUSB=pkgconfig", "WITH_SHAPELIB=pkgconfig", "WITH_ZLIB=pkgconfig"], nix.app(nix.sel(lib, "optionals"), withGUI, nix.thunk(() => ["CONFIG+=disable-mappreview"])))),
       makeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withGUI, "gui"), nix.app(nix.sel(lib, "optionals"), withDoc, nix.thunk(() => ["gpsbabel.pdf", "gpsbabel.html", "gpsbabel.org"])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), "-ffloat-store")),
       })),
       doCheck: true,
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.add(nix.add("install -Dm755 gpsbabel -t $out/bin\n", nix.app(nix.sel(lib, "optionalString"), withGUI, nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p $out/Applications\nmv gui/GPSBabelFE.app $out/Applications\ninstall -Dm644 gui/*.qm gui/coretool/*.qm -t $out/Applications/GPSBabelFE.app/Contents/Resources/translations\nln -s $out/bin/gpsbabel $out/Applications/GPSBabelFE.app/Contents/MacOS\n" : "install -Dm755 gui/objects/gpsbabelfe -t $out/bin\ninstall -Dm644 gui/gpsbabel.desktop -t $out/share/application\ninstall -Dm644 gui/images/appicon.png $out/share/icons/hicolor/512x512/apps/gpsbabel.png\ninstall -Dm644 gui/*.qm gui/coretool/*.qm -t $out/share/gpsbabel/translations\n")))), nix.app(nix.sel(lib, "optionalString"), withDoc, "install -Dm655 gpsbabel.{html,pdf} -t $doc/share/doc/gpsbabel\ncp -r html $doc/share/doc/gpsbabel\n"))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withGUI, nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "wrapQtApp \"$out/Applications/GPSBabelFE.app/Contents/MacOS/GPSBabelFE\"\n" : "wrapQtApp \"$out/bin/gpsbabelfe\"\n")))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Convert, upload and download data from GPS and Map programs",
         longDescription: "GPSBabel converts waypoints, tracks, and routes between popular\nGPS receivers and mapping programs.  It also has powerful\nmanipulation tools for such data.\n\nBy flattening the Tower of Babel that the authors of various\nprograms for manipulating GPS data have imposed upon us, it\nreturns to us the ability to freely move our own waypoint data\nbetween the programs and hardware we choose to use.\n\nIt contains extensive data manipulation abilities making it a\nconvenient for server-side processing or as the backend for\nother tools.\n\nIt does not convert, transfer, send, or manipulate maps.  We\nprocess data that may (or may not be) placed on a map, such as\nwaypoints, tracks, and routes.\n",
         homepage: "https://www.gpsbabel.org/",

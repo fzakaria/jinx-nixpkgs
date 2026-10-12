@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
       const pname = "emacs-all-the-icons-fonts";
       const version = "5.0.0";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/domtronn/all-the-icons.el/archive/${version}.zip`),
           hash: "sha256-70ysVxOey6NLlCwhEYhxpxO6uuarMFDpg3Efh+3bj1M=",
         }))));
       const installPhase = "runHook preInstall\n\ninstall -Dm644 fonts/*.ttf -t $out/share/fonts/all-the-icons\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Icon fonts for emacs all-the-icons",
         longDescription: "The emacs package all-the-icons provides icons to improve\npresentation of information in emacs. This package provides\nthe fonts needed to make the package work properly.\n",
         homepage: "https://github.com/domtronn/all-the-icons.el",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "rlupton20"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

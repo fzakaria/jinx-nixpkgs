@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const rclone = nix.arg($, "rclone");
   const ext = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "librclone",
       version: nix.thunk(() => nix.attr(rclone, "version")),
       src: nix.thunk(() => nix.attr(rclone, "src")),
@@ -33,7 +33,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(rclone, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Rclone as a C library",
         homepage: "https://github.com/rclone/rclone/tree/master/librclone",
         maintainers: nix.thunk(() => (() => {

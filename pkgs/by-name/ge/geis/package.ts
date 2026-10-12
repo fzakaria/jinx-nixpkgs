@@ -36,16 +36,16 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "geis",
       version: "2.2.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://launchpad.net/geis/trunk/${nix.sel(finalAttrs, "version")}/+download/geis-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-imD1aDhSCUA4kE5pDSPMWpCpgPxS2mfw8oiQuqJccOs=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=misleading-indentation -Wno-error=pointer-compare",
       })),
       hardeningDisable: nix.thunk(() => ["format"]),
@@ -79,18 +79,18 @@ export default nix.lambda((args) => (() => {
       prePatch: "substituteInPlace python/geis/geis_v2.py --replace-fail \\\n  \"ctypes.util.find_library(\\\"geis\\\")\" \"'$out/lib/libgeis.so'\"\nsubstituteInPlace config.aux/py-compile \\\n  --replace-fail \"import sys, os, py_compile, imp\" \"import sys, os, py_compile, importlib\" \\\n  --replace-fail \"imp.\" \"importlib.\" \\\n  --replace-fail \"hasattr(imp\" \"hasattr(importlib\"\n",
       preFixup: "buildPythonPath \"$out ${pythonPath[*]}\"\ngappsWrapperArgs+=(--set PYTHONPATH \"$program_PYTHONPATH\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Library for input gesture recognition",
         homepage: "https://launchpad.net/geis",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

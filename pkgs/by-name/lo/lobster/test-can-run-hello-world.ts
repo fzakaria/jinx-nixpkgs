@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const lobster = nix.arg($, "lobster");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "lobster-test-can-run-hello-world",
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 10n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 10n })),
       buildCommand: nix.thunk(() => nix.str`${lobster}/bin/lobster \\
   ${lobster}/share/Lobster/samples/rosettacode/hello_world_test.lobster \\
   | grep 'Goodbye, World!'

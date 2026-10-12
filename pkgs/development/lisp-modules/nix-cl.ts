@@ -67,10 +67,10 @@ export default nix.lambda((args) => (() => {
     const ff = nix.thunk(() => nix.app(f, origArgs));
     const overrideWith = (newArgs) => nix.update(origArgs, (nix.asBool(nix.app(nix.sel(pkgs, "lib", "isFunction"), newArgs)) ? nix.app(newArgs, origArgs) : nix.force(newArgs)));
     return (nix.asBool(nix.builtins.isAttrs(ff)) ? nix.update(ff, {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       overrideLispAttrs: (newArgs) => nix.app(makeOverridableLispPackage, f, nix.thunk(() => nix.app(overrideWith, newArgs))),
     }) : (nix.asBool(nix.builtins.isFunction(ff)) ? {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       overrideLispAttrs: (newArgs) => nix.app(makeOverridableLispPackage, f, nix.thunk(() => nix.app(overrideWith, newArgs))),
       __functor: (self) => nix.force(ff),
     } : nix.force(ff)));
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
     const flags = nix.arg($_1, "flags");
     const faslExt = nix.arg($_1, "faslExt");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.attr(asdf, "pname")),
         version: nix.thunk(() => nix.attr(asdf, "version")),
         dontUnpack: true,
@@ -125,7 +125,7 @@ cp -v asdf.${faslExt} $out
           const faslExt_1 = faslExt;
           const dontUnpack = nix.thunk(() => nix.eq(src, null));
           const asdfFasl = nix.thunk(() => nix.app(buildAsdf, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               asdf: asdf,
               pkg: pkg_1,
               program: program_1,
@@ -133,7 +133,7 @@ cp -v asdf.${faslExt} $out
               faslExt: faslExt_1,
             }))));
           const buildScript = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./builder.lisp"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               asdf: nix.thunk(() => nix.str`${asdfFasl}/asdf.${faslExt_1}`),
             }))));
           const configurePhase = nix.thunk(() => nix.str`runHook preConfigure
@@ -169,7 +169,7 @@ runHook postInstall
           const dontPatchShebangs = true;
           const dontStrip = true;
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             version: version_1,
             nativeLibs: nativeLibs_1,
             javaLibs: javaLibs_1,
@@ -193,10 +193,10 @@ runHook postInstall
           const isJVM = nix.thunk(() => nix.eq(nix.sel(args_2, "pkg", "pname"), "abcl"));
           const javaLibs_1 = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isJVM, nix.thunk(() => nix.selOr(args_2, () => [], "javaLibs"))));
           return {
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             pname: nix.thunk(() => nix.str`${nix.sel(args_2, "pkg", "pname")}-${nix.sel(args_2, "pname")}`),
             src: nix.thunk(() => (nix.asBool((nix.asBool(nix.has(args_2, "patches")) || nix.asBool(nix.has(args_2, "postPatch")))) ? nix.app(nix.sel(pkgs, "applyPatches"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 src: nix.thunk(() => nix.attr(args_2, "src")),
                 patches: nix.thunk(() => nix.selOr(args_2, () => [], "patches")),
                 postPatch: nix.thunk(() => nix.selOr(args_2, () => "", "postPatch")),
@@ -205,17 +205,17 @@ runHook postInstall
             javaLibs: javaLibs_1,
             propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "propagatedBuildInputs"), nix.concat(lispLibs, nix.concat(javaLibs_1, nativeLibs)))),
             meta: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "meta"), {
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               maintainers: nix.thunk(() => nix.selOr(args_2, () => [], "meta", "maintainers")),
               teams: nix.thunk(() => nix.selOr(args_2, () => [nix.thunk(() => nix.sel(lib, "teams", "lisp"))], "meta", "teams")),
             })),
           };
-        })())))), { __proto__: pos$10, pname: nix.thunk(() => nix.sel(args_2, "pname")) });
+        })())))), { [nix.POS]: pos$10, pname: nix.thunk(() => nix.sel(args_2, "pname")) });
     })(), formals$3)));
   const commonLispPackagesFor = (spec) => (() => {
     const build_asdf_system$ = (body) => nix.app(build_asdf_system, nix.thunk(() => nix.update(body, spec)));
     return nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./packages.nix"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         spec: spec,
         quicklispPackagesFor: quicklispPackagesFor,
         "build-asdf-system": build_asdf_system$,
@@ -223,12 +223,12 @@ runHook postInstall
   })();
   const quicklispPackagesFor = (spec) => (() => {
     const build_asdf_system$ = (body) => nix.app(build_asdf_system, nix.thunk(() => nix.update(body, spec)));
-    return nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./ql.nix"), nix.thunk(() => ({ __proto__: pos$12, "build-asdf-system": build_asdf_system$ })));
+    return nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./ql.nix"), nix.thunk(() => ({ [nix.POS]: pos$12, "build-asdf-system": build_asdf_system$ })));
   })();
   const lispWithPackages = (clpkgs) => (packages) => (() => {
     const first = nix.thunk(() => nix.app(head, nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), clpkgs))));
     return nix.app(nix.sel(nix.app(build_asdf_system, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         pkg: nix.thunk(() => nix.attr(first, "pkg")),
         program: nix.thunk(() => nix.attr(first, "program")),
         flags: nix.thunk(() => nix.attr(first, "flags")),
@@ -240,7 +240,7 @@ runHook postInstall
         lispLibs: nix.thunk(() => nix.app(packages, clpkgs)),
         systems: [],
       }))), "overrideAttrs"), (o) => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeBinaryWrapper"))]),
         installPhase: nix.thunk(() => nix.str`mkdir -pv $out/bin
 
@@ -284,7 +284,7 @@ makeWrapper "\${wrapperArgs[@]}"
     const asdf = nix.argOr($_1, "asdf", () => nix.sel(pkgs, "asdf_3_3"));
     const packageOverrides = nix.argOr($_1, "packageOverrides", () => (self) => (super$) => ({}));
     const spec = nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pkg: pkg,
       faslExt: faslExt,
       program: program,
@@ -294,7 +294,7 @@ makeWrapper "\${wrapperArgs[@]}"
     const pkgs_1 = nix.thunk(() => nix.app(nix.sel(nix.app(commonLispPackagesFor, spec), "overrideScope"), packageOverrides));
     const withPackages = nix.thunk(() => nix.app(lispWithPackages, pkgs_1));
     const withOverrides = (packageOverrides_1) => nix.app(wrapLisp, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         pkg: pkg,
         faslExt: faslExt,
         program: program,
@@ -304,7 +304,7 @@ makeWrapper "\${wrapperArgs[@]}"
       })));
     const buildASDFSystem = (args_2) => nix.app(build_asdf_system, nix.thunk(() => nix.update(args_2, spec)));
     return nix.update(pkg, {
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       pkgs: pkgs_1,
       withPackages: withPackages,
       withOverrides: withOverrides,

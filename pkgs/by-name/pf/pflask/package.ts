@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wafHook = nix.arg($, "wafHook");
   const waf = nix.arg($, "waf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "pflask",
       version: "unstable-2018-01-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ghedo",
           repo: "pflask",
           rev: "9ac31ffe2ed29453218aac89ae992abbd6e7cc69",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fno-common.patch",
             url: "https://github.com/ghedo/pflask/commit/73ba32ec48e1e0e4a56b1bceed4635711526e079.patch",
             hash: "sha256-KVuBS7LbYJQv6NXljpSiGGja7ar7W6A6SKzkEjB1B6U=",
@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [
         python3,
         nix.thunk(() => nix.app(nix.sel(wafHook, "override"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             waf: nix.thunk(() => nix.app(nix.sel(waf, "overrideAttrs"), (old) => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 version: nix.thunk(() => nix.sel(finalAttrs, "waf-version")),
                 src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(old, "src"));
                     return {
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     owner: nix.thunk(() => nix.attr(from, "owner")),
                     repo: nix.thunk(() => nix.attr(from, "repo")),
                     rev: nix.thunk(() => nix.str`waf-${nix.sel(finalAttrs, "waf-version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/bin\ncp build/pflask $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Lightweight process containers for Linux",
         mainProgram: "pflask",
         homepage: "https://ghedo.github.io/pflask/",

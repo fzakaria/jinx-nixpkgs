@@ -37,48 +37,48 @@ export default nix.lambda((args) => (() => {
   const cmdlineArgs = nix.thunk(() => nix.concat(nix.app(opt, "web.listen-address", nix.thunk(() => nix.sel(cfg, "web", "listen-address"))), nix.concat(nix.app(opt, "web.telemetry-path", nix.thunk(() => nix.sel(cfg, "web", "telemetry-path"))), nix.concat(nix.app(opt, "web.external-url", nix.thunk(() => nix.sel(cfg, "web", "external-url"))), nix.concat(nix.app(opt, "web.route-prefix", nix.thunk(() => nix.sel(cfg, "web", "route-prefix"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "persistMetrics")), nix.thunk(() => nix.str`--persistence.file="/var/lib/${nix.sel(cfg, "stateDir")}/metrics"`)), nix.concat(nix.app(opt, "persistence.interval", nix.thunk(() => nix.sel(cfg, "persistence", "interval"))), nix.concat(nix.app(opt, "log.level", nix.thunk(() => nix.sel(cfg, "log", "level"))), nix.concat(nix.app(opt, "log.format", nix.thunk(() => nix.sel(cfg, "log", "format"))), nix.sel(cfg, "extraFlags"))))))))));
   const opt = (k) => (v) => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(v, null)), nix.thunk(() => nix.str`--${k}="${v}"`));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         prometheus: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           pushgateway: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Prometheus Pushgateway")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "prometheus-pushgateway", nix.thunk(() => ({})))),
             web: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               "listen-address": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   default: null,
                   description: "Address to listen on for the web interface, API and telemetry.\n\n`null` will default to `:9091`.\n",
                 })))),
               "telemetry-path": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   default: null,
                   description: "Path under which to expose metrics.\n\n`null` will default to `/metrics`.\n",
                 })))),
               "external-url": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   default: null,
                   description: "The URL under which Pushgateway is externally reachable.\n",
                 })))),
               "route-prefix": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   default: null,
                   description: "Prefix for the internal routes of web endpoints.\n\nDefaults to the path of\n{option}`services.prometheus.pushgateway.web.external-url`.\n",
                 })))),
             })),
             persistence: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   default: null,
                   example: "10m",
@@ -86,15 +86,15 @@ export default nix.lambda((args) => (() => {
                 })))),
             })),
             log: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               level: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["debug", "info", "warn", "error", "fatal"]))))),
                   default: null,
                   description: "Only log messages with the given severity or above.\n\n`null` will default to `info`.\n",
                 })))),
               format: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   default: null,
                   example: "logger:syslog?appname=bob&local=7",
@@ -102,19 +102,19 @@ export default nix.lambda((args) => (() => {
                 })))),
             })),
             extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "Extra commandline options when launching the Pushgateway.\n",
               })))),
             persistMetrics: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to persist metrics to a file.\n\nWhen enabled metrics will be saved to a file called\n`metrics` in the directory\n`/var/lib/pushgateway`. The directory below\n`/var/lib` can be set using\n{option}`services.prometheus.pushgateway.stateDir`.\n",
               })))),
             stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "pushgateway",
                 description: "Directory below `/var/lib` to store metrics.\n\nThis directory will be created automatically using systemd's\nStateDirectory mechanism when\n{option}`services.prometheus.pushgateway.persistMetrics`\nis enabled.\n",
@@ -124,24 +124,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "/", nix.thunk(() => nix.sel(cfg, "stateDir"))))),
             message: nix.thunk(() => nix.add(nix.add("The option services.prometheus.pushgateway.stateDir", " shouldn't be an absolute directory."), " It should be a directory relative to /var/lib.")),
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             pushgateway: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 ExecStart: nix.thunk(() => nix.add(nix.str`${nix.sel(cfg, "package")}/bin/pushgateway`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.app(nix.sel(lib, "length"), cmdlineArgs), 0n)), nix.thunk(() => nix.add(" \\\n  ", nix.app(nix.sel(lib, "concatStringsSep"), " \\\n  ", cmdlineArgs)))))),
                 CapabilityBoundingSet: nix.thunk(() => [""]),
                 DeviceAllow: nix.thunk(() => [""]),

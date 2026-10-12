@@ -24,17 +24,17 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
-      const curlDep = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ __proto__: pos$1, pslSupport: false }))), "overrideAttrs"), (finalCurlAttrs) => ({
-          __proto__: pos$2,
+      const curlDep = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, pslSupport: false }))), "overrideAttrs"), (finalCurlAttrs) => ({
+          [nix.POS]: pos$2,
           buildInputs: [],
           postInstall: nix.thunk(() => nix.add(nix.sel(finalCurlAttrs, "postInstall"), "rm \"${!outputBin}/bin/wcurl\"\n")),
         })));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "sword",
         version: "1.9.0",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://www.crosswire.org/ftpmirror/pub/sword/source/v${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/sword-${nix.sel(finalAttrs, "version")}.tar.gz`),
             hash: "sha256-QkCc894vrxEIUj4sWsB0XSH57SpceO2HjuncwwNCa4o=",
           })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         configureFlags: nix.thunk(() => nix.concat(["--without-conf", "--enable-tests=no"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")), nix.thunk(() => ["--with-xz", "--with-bzip2", "--with-icuregex", "--without-zlib"])))),
         makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")), nix.thunk(() => ["LDFLAGS=-no-undefined"]))),
         env: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           ICU_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")), nix.thunk(() => nix.str`${nix.sel(icu, "dev")}/bin/icu-config --noverify`))),
           CURL_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), curlDep)}/bin/curl-config`))),
           CXXFLAGS: nix.thunk(() => nix.builtins.concatStringsSep(" ", nix.thunk(() => nix.concat([
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
             ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")), nix.thunk(() => ["-Wint-to-pointer-cast", "-fpermissive", "-D_ICUSWORD_", "-DCURL_STATICLIB"])))))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Software framework that allows research manipulation of Biblical texts",
           homepage: "https://www.crosswire.org/sword/",
           longDescription: "The SWORD Project is the CrossWire Bible Society's free Bible software\nproject. Its purpose is to create cross-platform open-source tools --\ncovered by the GNU General Public License -- that allow programmers and\nBible societies to write new Bible software more quickly and easily. We\nalso create Bible study software for all readers, students, scholars, and\ntranslators of the Bible, and have a growing collection of many hundred\ntexts in around 100 languages.\n",

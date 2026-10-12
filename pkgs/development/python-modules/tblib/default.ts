@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-6aZSaS2Rv090PUoVvBdMC3avx1D+jHttGVzBwdbSzOw=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Traceback fiddling library. Allows you to pickle tracebacks",
         homepage: "https://github.com/ionelmc/python-tblib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "teh"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, pyproject, src, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, pyproject, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

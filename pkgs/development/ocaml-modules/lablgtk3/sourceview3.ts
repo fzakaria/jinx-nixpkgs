@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const gtksourceview3 = nix.arg($, "gtksourceview3");
   const lablgtk3 = nix.arg($, "lablgtk3");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "lablgtk3-sourceview3",
       buildInputs: nix.thunk(() => nix.concat(nix.sel(lablgtk3, "buildInputs"), [gtksourceview3])),
       propagatedBuildInputs: nix.thunk(() => [lablgtk3]),

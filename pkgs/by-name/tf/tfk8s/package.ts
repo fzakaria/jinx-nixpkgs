@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.10";
       const tag = nix.thunk(() => nix.str`v${version}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jrhouston",
           repo: "tfk8s",
           rev: tag,
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       const installCheckPhase = nix.thunk(() => nix.str`$out/bin/tfk8s --version | grep ${tag} > /dev/null
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           sample1: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/sample1"), nix.thunk(() => ({})))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Utility to convert Kubernetes YAML manifests to Terraform's HCL format",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         longDescription: "tfk8s is a tool that makes it easier to work with the Terraform Kubernetes Provider.\nIf you want to copy examples from the Kubernetes documentation or migrate existing YAML manifests and use them with Terraform without having to convert YAML to HCL by hand, this tool is for you.\nFeatures:\n* Convert a YAML file containing multiple manifests.\n* Strip out server side fields when piping kubectl get $R -o yaml | tfk8s --strip\n",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "tfk8s",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         tag,

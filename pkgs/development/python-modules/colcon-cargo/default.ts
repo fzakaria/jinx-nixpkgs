@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const toml = nix.arg($, "toml");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "colcon-cargo",
       version: "0.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "colcon",
           repo: "colcon-cargo",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["test/test_flake8.py"]),
       pythonImportsCheck: nix.thunk(() => ["colcon_cargo"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension for colcon-core to support Rust packages built with Cargo",
         homepage: "https://github.com/colcon/colcon-cargo",
         changelog: nix.thunk(() => nix.str`https://github.com/colcon/colcon-cargo/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

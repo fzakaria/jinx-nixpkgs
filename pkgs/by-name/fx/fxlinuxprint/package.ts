@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fxlinuxprint";
       const version = "1.1.2-1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/NixOS/nixpkgs/files/12232817/fxlinuxpdf112119031.zip",
           sha256: "1mv07ch6ysk9bknfmjqsgxb803sj6vfin29s9knaqv17jvgyh0n3",
         }))));
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "mkdir -p $out\nmv etc $out\nmv usr/lib $out\n\nmkdir -p $out/share/cups/model\nmv usr/share/ppd/FujiXerox/* $out/share/cups/model\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fuji Xerox Linux Printer Driver",
         longDescription: "DocuPrint P365/368 d\nDocuPrint CM315/318 z\nDocuPrint CP315/318 dw\nApeosPort-VI C2271/C3370/C3371/C4471/C5571/C6671/C7771\nDocuCentre-VI C2271/C3370/C3371/C4471/C5571/C6671/C7771\nDocuPrint 3205 d/3208 d/3505 d/3508 d/4405 d/4408 d\n",
         homepage: "https://onlinesupport.fujixerox.com",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const attr = nix.arg($, "attr");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mergerfs",
       version: "2.42.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trapexit",
           repo: "mergerfs",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-FTkJpZkrU9ALMnmeqh1w9r46x4Waq30lA8yAHg3Y54s=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=unused-result", "-Wno-error=maybe-uninitialized", "-O"]))),
       })),
       nativeBuildInputs: nix.thunk(() => [automake, autoconf, pkg_config, gettext, libtool, pandoc, which]),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postFixup: "ln -srf $out/bin/mergerfs $out/bin/mount.fuse.mergerfs\nln -srf $out/bin/mergerfs $out/bin/mount.mergerfs\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "FUSE based union filesystem",
         homepage: "https://github.com/trapexit/mergerfs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const applyPatches = nix.arg($, "applyPatches");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "athens",
       version: "0.19.2",
       src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner: "gomods",
               repo: "athens",
               tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           postPatch: "sed -i 's/go 1.26.2/go 1.26/' go.mod\n",
         })))),
       vendorHash: "sha256-v1uJXiOeU4OtVHPFUgI7Lhu/AQqRcrSAH1VYo1d6EIQ=",
-      env: nix.thunk(() => ({ __proto__: pos$3, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: "0" })),
       ldflags: nix.thunk(() => [
         "-s",
         nix.thunk(() => nix.str`-X github.com/gomods/athens/pkg/build.version=${nix.sel(finalAttrs, "version")}`),
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Go module datastore and proxy",
         homepage: "https://github.com/gomods/athens",
         changelog: nix.thunk(() => nix.str`https://github.com/gomods/athens/releases/tag/v${nix.sel(finalAttrs, "version")}`),

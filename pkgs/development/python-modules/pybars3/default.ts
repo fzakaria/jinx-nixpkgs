@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.7";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-ashH6QXlO5xbk2rxEskQR14nv3Z/efRSjBb5rx7A4lI=",
@@ -31,7 +31,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["pybars"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Handlebars.js template support for Python 3 and 2",
         homepage: "https://github.com/wbond/pybars3",
         changelog: nix.thunk(() => nix.str`https://github.com/wbond/pybars3/releases/tag/${version}`),
@@ -45,7 +45,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

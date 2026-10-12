@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const pulseaudio = nix.arg($, "pulseaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "libsndfile",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libsndfile",
           repo: "libsndfile",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/libsndfile/libsndfile/commit/2251737b3b175925684ec0d37029ff4cb521d302.patch",
             hash: "sha256-LaeptEicnjpVBExlK4dNMlN8+AAJhW8dIvemF6S4W2M=",
           })))),
@@ -60,17 +60,17 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["bin", "dev", "out", "man", "doc"]),
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "NIX_CFLAGS_COMPILE+=\" -I$SDKROOT/System/Library/Frameworks/Carbon.framework/Versions/A/Headers\"\n")),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_LINK: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-logg", "-lvorbis"]))),
       })),
       doCheck: false,
       preCheck: "patchShebangs tests/test_wrapper.sh tests/pedantic-header-test.sh\n\nsubstituteInPlace tests/test_wrapper.sh \\\n  --replace '/usr/bin/env' \"$(type -P env)\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           audacity: audacity,
           freeswitch: freeswitch,
           libsamplerate: libsamplerate,
@@ -80,12 +80,12 @@ export default nix.lambda((args) => (() => {
           soundfile: nix.thunk(() => nix.attr(from, "soundfile")),
           wavefile: nix.thunk(() => nix.attr(from, "wavefile")),
           "gst-plugins-bad": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-bad")),
-          lame: nix.thunk(() => nix.app(nix.sel(lame, "override"), nix.thunk(() => ({ __proto__: pos$4, sndfileFileIOSupport: true })))),
+          lame: nix.thunk(() => nix.app(nix.sel(lame, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, sndfileFileIOSupport: true })))),
         };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "C library for reading and writing files containing sampled sound",
         homepage: "https://libsndfile.github.io/libsndfile/",
         changelog: nix.thunk(() => nix.str`https://github.com/libsndfile/libsndfile/releases/tag/${nix.sel(finalAttrs, "version")}`),

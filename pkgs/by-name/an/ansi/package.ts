@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ansi-escape-sequences-cli",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-/dyvhgNUPitSUGtQSEMPGqHED1YNGSKumIY6Rj0hnH0=",
         })))),
       cargoHash: "sha256-vAJmpILjzj9pqW2M9gIkQiKAntwvhwsHLCSbvHJ4Fug=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quickly get ANSI escape sequences",
         longDescription: "CLI utility called \"ansi\" to quickly get ANSI escape sequences. Supports\nthe colors and styles, such as bold or italic.\n",
         homepage: "https://github.com/phip1611/ansi-escape-sequences-cli",

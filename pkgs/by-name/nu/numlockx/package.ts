@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.2",
       pname: "numlockx",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rg3",
           repo: "numlockx",
           rev: "9159fd3c5717c595dadfcb33b380a85c88406185",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [libx11, libxext, autoconf]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Allows to start X with NumLock turned on",
         homepage: "https://github.com/rg3/numlockx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

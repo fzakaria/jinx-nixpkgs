@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qtmpris";
       const version = "1.0.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sailfishos",
           repo: "qtmpris",
           rev: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [qmake]);
       const buildInputs = nix.thunk(() => [qtbase]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt and QML MPRIS interface and adaptor",
         homepage: "https://github.com/sailfishos/qtmpris",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

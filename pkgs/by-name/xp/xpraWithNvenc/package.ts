@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const xpra = nix.arg($, "xpra");
   const linuxPackages = nix.arg($, "linuxPackages");
   return nix.app(nix.sel(xpra, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       withNvenc: true,
-      nvidia_x11: nix.thunk(() => nix.app(nix.sel(linuxPackages, "nvidia_x11", "override"), nix.thunk(() => ({ __proto__: pos$1, libsOnly: true })))),
+      nvidia_x11: nix.thunk(() => nix.app(nix.sel(linuxPackages, "nvidia_x11", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, libsOnly: true })))),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eepers",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tsoding",
           repo: "eepers",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
 `))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp ./eepers $out/bin/eepers\n\ncp -r ./assets $out/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple Turn-based Game",
         homepage: "https://github.com/tsoding/eepers",
         changelog: nix.thunk(() => nix.str`https://github.com/tsoding/eepers/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.txt`),

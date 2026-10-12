@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const m4 = nix.arg($, "m4");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "MAKEDEV",
       path: "etc",
       patches: nix.thunk(() => [nix.path(here, "./bash.patch")]),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
 sed -E -i -e '/^PATH=.*/d' -e 's/expr\\((.*)\\)/$((\\1))/g' etc.$TARGET_MACHINE_ARCH/MAKEDEV
 `),
       postInstall: "mkdir -p $out/bin\ncp etc.$TARGET_MACHINE_ARCH/MAKEDEV $out/bin\nchmod +x $out/bin/MAKEDEV\n",
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "MAKEDEV" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "MAKEDEV" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

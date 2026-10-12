@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/sources.nix", [["version", 3, 3], ["arm64-hash", 4, 3], ["x86_64-hash", 5, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$1,
+  [nix.POS]: pos$1,
   version: "1.18.0-1",
   "arm64-hash": "sha256-DTBL11ikReCSXfdWjVd/noUQWq4OKKXP91jSZS/QCyo=",
   "x86_64-hash": "sha256-EK0w3PwaNhGJhJZuTYBjpu+u6A3pb4V6zKji15ZeQwA=",

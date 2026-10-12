@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nyxt",
       version: "3.12.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/atlas-engineer/nyxt/releases/download/${nix.sel(finalAttrs, "version")}/nyxt-${nix.sel(finalAttrs, "version")}-source-with-submodules.tar.xz`),
           hash: "sha256-T5p3OaWp28rny81ggdE9iXffmuh6wt6XSuteTOT8FLI=",
           stripRoot: false,
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         gst_plugins_ugly,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LD_LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [
             glib,
             gobject_introspection,
@@ -91,11 +91,11 @@ gappsWrapperArgs+=(--prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.t
 `),
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           nyxt: nix.thunk(() => nix.attr(nixosTests, "nyxt")),
@@ -103,7 +103,7 @@ gappsWrapperArgs+=(--prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.t
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Infinitely extensible web-browser (with Lisp development files using WebKitGTK platform port)",
         mainProgram: "nyxt",
         homepage: "https://nyxt.atlas.engineer",

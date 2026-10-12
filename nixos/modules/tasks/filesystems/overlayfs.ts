@@ -43,16 +43,16 @@ export default nix.lambda((args) => (() => {
     const workdir = nix.thunk(() => nix.add(prefix, nix.sel(fs, "overlay", "workdir")));
     return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(fs, "overlay", "upperdir"), null)), nix.thunk(() => nix.attrsDyn({}, [
         [nix.str`rw-${escapedMountpoint}`, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           requiredBy: nix.thunk(() => [mountUnit]),
           before: nix.thunk(() => [mountUnit]),
           unitConfig: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             DefaultDependencies: false,
             RequiresMountsFor: nix.thunk(() => nix.str`${upperdir} ${workdir}`),
           })),
           serviceConfig: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             Type: "oneshot",
             ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/mkdir -p -m 0755 ${upperdir} ${workdir}`),
           })),
@@ -63,13 +63,13 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       options: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         overlay: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           lowerdir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "nonEmptyListOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.lookup(w, "pathInStore")))))));
@@ -78,19 +78,19 @@ export default nix.lambda((args) => (() => {
               description: "The list of path(s) to the lowerdir(s).\n\nTo create a writable overlay, you MUST provide an `upperdir` and a\n`workdir`.\n\nYou can create a read-only overlay when you provide multiple (at\nleast 2!) lowerdirs and neither an `upperdir` nor a `workdir`.\n",
             })))),
           upperdir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "The path to the upperdir.\n\nIf this is null, a read-only overlay is created using the lowerdir.\n\nIf the filesystem is `neededForBoot`, this will be prefixed with `/sysroot`,\nunless `useStage1BaseDirectories` is set to `true`.\n\nIf you set this to some value you MUST also set `workdir`.\n",
             })))),
           workdir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "The path to the workdir.\n\nIf the filesystem is `neededForBoot`, this will be prefixed with `/sysroot`,\nunless `useStage1BaseDirectories` is set to `true`.\n\nThis MUST be set if you set `upperdir`.\n",
             })))),
           useStage1BaseDirectories: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "If enabled, `lowerdir`, `upperdir` and `workdir` will be prefixed with `/sysroot`.\n\nDisabling this can be useful to create an overlay over directories which aren't on the real root.\n\nDisabling this does not work with the scripted (i.e. non-systemd) initrd.\n",
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config_1, "overlay", "lowerdir"), null)), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           fsType: "overlay",
           device: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "overlay")),
           depends: nix.thunk(() => nix.builtins.map((x) => nix.str`${x}`, nix.thunk(() => nix.concat(nix.sel(config_1, "overlay", "lowerdir"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(config_1, "overlay", "upperdir"), null)), nix.thunk(() => [
@@ -121,11 +121,11 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       fileSystems: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => [overlayOpts]))))),
         })))),
     })),
@@ -134,38 +134,38 @@ export default nix.lambda((args) => (() => {
       const initrdFileSystems = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_name) => nix.sel(utils, "fsNeededForBoot"), overlayFileSystems));
       const userspaceFileSystems = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_name) => (fs) => !nix.asBool(nix.app(nix.sel(utils, "fsNeededForBoot"), fs)), overlayFileSystems));
       return {
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         boot: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           initrd: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             availableKernelModules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(initrdFileSystems, {})), nix.thunk(() => ["overlay"]))),
             systemd: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               services: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), preMountService, initrdFileSystems)))),
             })),
           })),
         })),
         assertions: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_name) => (fs) => [
               nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 assertion: nix.thunk(() => nix.eq(nix.eq(nix.sel(fs, "overlay", "upperdir"), null), nix.eq(nix.sel(fs, "overlay", "workdir"), null))),
                 message: nix.thunk(() => nix.str`You cannot define a \`lowerdir\` without a \`workdir\` and vice versa for mount point: ${nix.sel(fs, "mountPoint")}`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 assertion: nix.thunk(() => (!nix.asBool((nix.asBool(!nix.eq(nix.sel(fs, "overlay", "lowerdir"), null)) && nix.asBool(nix.eq(nix.sel(fs, "overlay", "upperdir"), null)))) || nix.asBool(nix.ge(nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.sel(fs, "overlay", "lowerdir"))), 2n)))),
                 message: nix.thunk(() => nix.str`A read-only overlay (without an \`upperdir\`) requires at least 2 \`lowerdir\`s: ${nix.sel(fs, "mountPoint")}`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(nix.sel(fs, "overlay", "useStage1BaseDirectories"))) || nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")))),
                 message: nix.thunk(() => nix.str`Stage 1 overlay file system ${nix.sel(fs, "mountPoint")} has 'useStage1BaseDirectories' set to false,
 which is not supported with scripted initrd. Please enable 'boot.initrd.systemd.enable'.
 `),
               })),
             ], overlayFileSystems))), nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (fs) => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(fs, "overlay", "upperdir"), null)) || nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")))),
             message: nix.thunk(() => nix.str`Stage 1 overlay file system ${nix.sel(fs, "mountPoint")} has no upperdir,
 which is not supported with scripted initrd. Please enable
@@ -173,7 +173,7 @@ which is not supported with scripted initrd. Please enable
 `),
           }), initrdFileSystems))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), preMountService, userspaceFileSystems)))),
         })),
       };

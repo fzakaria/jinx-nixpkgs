@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const dataDir = nix.argOr($, "dataDir", () => "/var/lib/castopod");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "castopod",
       version: "1.11.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://code.castopod.org/adaures/castopod/uploads/0f1fbf6eb849b208e26b53d930b9e22f/castopod-1.11.0.tar.gz",
           sha256: "09l4q8v809jnvgx9vpa1fyjhgqdbbrwkyk591kx5k1gg935rmgnx",
         })))),
@@ -49,12 +49,12 @@ substituteInPlace modules/Admin/Controllers/VideoClipsController.php \\
 `),
       installPhase: "mkdir -p $out/share/castopod\ncp -r . $out/share/castopod\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, castopod: nix.thunk(() => nix.sel(nixosTests, "castopod")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, castopod: nix.thunk(() => nix.sel(nixosTests, "castopod")) })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open-source hosting platform made for podcasters who want to engage and interact with their audience",
         homepage: "https://castopod.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

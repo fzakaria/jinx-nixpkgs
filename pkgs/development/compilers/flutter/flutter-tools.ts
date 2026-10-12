@@ -29,10 +29,10 @@ export default nix.lambda((args) => (() => {
   const pubspecLock = nix.arg($, "pubspecLock");
   const engineVersion = nix.arg($, "engineVersion");
   const engine_stamp = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "engine_stamp",
       text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           build_date: "2025-06-27T12:30:00.000Z",
           build_time_ms: 1751027400000n,
           git_revision: engineVersion,
@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
           content_hash: "1111111111111111111111111111111111111111",
         })))),
     }))));
-  const dartEntryPoints = nix.thunk(() => ({ __proto__: pos$3, "flutter_tools.snapshot": "bin/flutter_tools.dart" }));
-  return nix.app(nix.sel(buildDartApplication, "override"), nix.thunk(() => ({ __proto__: pos$4, dart: dart })), nix.thunk(() => ({
-      __proto__: pos$8,
+  const dartEntryPoints = nix.thunk(() => ({ [nix.POS]: pos$3, "flutter_tools.snapshot": "bin/flutter_tools.dart" }));
+  return nix.app(nix.sel(buildDartApplication, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, dart: dart })), nix.thunk(() => ({
+      [nix.POS]: pos$8,
       pname: "flutter-tools",
       version: version,
       dartEntryPoints: dartEntryPoints,
@@ -69,10 +69,10 @@ rm ${nix.builtins.concatStringsSep(" ", nix.thunk(() => nix.builtins.attrNames(d
 popd
 `),
       sdkSourceBuilders: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         dart: (name) => nix.app(runCommand, nix.thunk(() => nix.str`dart-sdk-${name}`), nix.thunk(() => ({
-            __proto__: pos$6,
-            passthru: nix.thunk(() => ({ __proto__: pos$5, packageRoot: "." })),
+            [nix.POS]: pos$6,
+            passthru: nix.thunk(() => ({ [nix.POS]: pos$5, packageRoot: "." })),
           })), nix.thunk(() => nix.str`for path in '${dart}/pkg/${name}'; do
   if [ -d "$path" ]; then
     ln -s "$path" "$out"

@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pillow = nix.arg($, "pillow");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
-  const zbar$ = nix.thunk(() => nix.app(nix.sel(pkgs, "zbar", "override"), nix.thunk(() => ({ __proto__: pos$1, enableVideo: false, withXorg: false }))));
+  const zbar$ = nix.thunk(() => nix.app(nix.sel(pkgs, "zbar", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableVideo: false, withXorg: false }))));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname = "pyzbar";
       const version = "0.1.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "NaturalHistoryMuseum",
           repo: "pyzbar",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_found_non_windows", "test_not_found_non_windows"]);
       const pythonImportsCheck = nix.thunk(() => ["pyzbar"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Read one-dimensional barcodes and QR codes from Python using the zbar library",
         homepage: "https://github.com/NaturalHistoryMuseum/pyzbar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

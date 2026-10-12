@@ -383,7 +383,7 @@ export default nix.lambda((args) => (() => {
   })());
   const moduleSettingsDescription = "Boolean values render just the key if true, and nothing if false.\nNull values are ignored.\nAll other values are rendered as key-value pairs.\n";
   const mkRulesTypeOption = (type) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       description: nix.thunk(() => nix.str`PAM \`${type}\` rules for this service.
 
 Attribute keys are the name of each rule.
@@ -393,44 +393,44 @@ Attribute keys are the name of each rule.
             const name = nix.arg($_1, "name");
             const config_1 = nix.arg($_1, "config");
             return {
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               options: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$1,
+                    [nix.POS]: pos$1,
                     type: nix.thunk(() => nix.sel(lib, "types", "str")),
                     description: "Name of this rule.\n",
                     internal: true,
                     readOnly: true,
                   })))),
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                     default: true,
                     description: "Whether this rule is added to the PAM service config file.\n",
                   })))),
                 order: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     type: nix.thunk(() => nix.sel(lib, "types", "int")),
                     description: "Order of this rule in the service file. Rules are arranged in ascending order of this value.\n\n::: {.warning}\nThe `order` values for the built-in rules are subject to change. If you assign a constant value to this option, a system update could silently reorder your rule. You could be locked out of your system, or your system could be left wide open. When using this option, set it to a relative offset from another rule's `order` value:\n\n```nix\n{\n  security.pam.services.login.rules.auth.foo.order =\n    config.security.pam.services.login.rules.auth.unix.order + 10;\n}\n```\n:::\n",
                   })))),
                 control: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     type: nix.thunk(() => nix.sel(lib, "types", "str")),
                     description: "Indicates the behavior of the PAM-API should the module fail to succeed in its authentication task. See `control` in {manpage}`pam.conf(5)` for details.\n",
                   })))),
                 modulePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     type: nix.thunk(() => nix.sel(lib, "types", "str")),
                     description: "Either the full filename of the PAM to be used by the application (it begins with a '/'), or a relative pathname from the default module location. See `module-path` in {manpage}`pam.conf(5)` for details.\n",
                   })))),
                 args: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                     description: "Tokens that can be used to modify the specific behavior of the given PAM. Such arguments will be documented for each individual module. See `module-arguments` in {manpage}`pam.conf(5)` for details.\n\nEscaping rules for spaces and square brackets are automatically applied.\n\n{option}`settings` are automatically added as {option}`args`. It's recommended to use the {option}`settings` option whenever possible so that arguments can be overridden.\n",
                   })))),
                 settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     type: moduleSettingsType,
                     default: nix.thunk(() => ({})),
                     description: nix.thunk(() => nix.str`Settings to add as \`module-arguments\`.
@@ -440,7 +440,7 @@ ${moduleSettingsDescription}
                   })))),
               })),
               config: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 name: name,
                 args: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrsToList")), nix.thunk(() => nix.sel(config_1, "settings")), (name_1) => (value) => (nix.asBool(nix.app(nix.sel(lib, "isBool"), value)) ? nix.app(nix.sel(lib, "optional"), value, name_1) : nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(value, null)), nix.thunk(() => nix.str`${name_1}=${nix.builtins.toString(value)}`))))))),
               })),
@@ -456,67 +456,67 @@ ${moduleSettingsDescription}
     const cfg = config_1;
     const config_2 = parentConfig;
     return {
-      __proto__: pos$234,
+      [nix.POS]: pos$234,
       imports: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["enableKwallet"]), nix.thunk(() => ["kwallet", "enable"]))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["u2fAuth"]), nix.thunk(() => ["u2f", "enable"]))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["updateWtmp"]), nix.thunk(() => ["lastlog", "enable"]))),
       ]),
       options: nix.thunk(() => ({
-        __proto__: pos$97,
+        [nix.POS]: pos$97,
         name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             example: "sshd",
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Name of the PAM service.",
           })))),
-        enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "this PAM service"), { __proto__: pos$13, default: true, example: false })),
+        enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "this PAM service"), { [nix.POS]: pos$13, default: true, example: false })),
         rules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             visible: false,
             description: "PAM rules for this service.\n\n::: {.warning}\nThis option and its suboptions are experimental and subject to breaking changes without notice.\n\nIf you use this option in your system configuration, you will need to manually monitor this module for any changes. Otherwise, failure to adjust your configuration properly could lead to you being locked out of your system, or worse, your system could be left wide open to attackers.\n\nIf you share configuration examples that use this option, you MUST include this warning so that users are informed.\n\nYou may freely use this option within `nixpkgs`, and future changes will account for those use sites.\n:::\n",
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 options: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => ["account", "auth", "password", "session"]), mkRulesTypeOption)),
               })))),
           })))),
         useDefaultRules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             visible: false,
             default: true,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether to set up the default NixOS rule stack for this service.\n\nSet this to `false` if you want to define the entire rule stack for this service.\n\n::: {.warning}\nThis option is experimental and subject to breaking changes without notice.\n\nIf you use this option in your system configuration, you will need to manually monitor this module for any changes. Otherwise, failure to adjust your configuration properly could lead to you being locked out of your system, or worse, your system could be left wide open to attackers.\n\nIf you share configuration examples that use this option, you MUST include this warning so that users are informed.\n\nYou may freely use this option within `nixpkgs`, and future changes will account for those use sites.\n:::\n",
           })))),
         unixAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             default: true,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether users can log in with passwords defined in\n{file}`/etc/shadow`.\n",
           })))),
         rootOK: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "If set, root doesn't need to authenticate (e.g. for the\n{command}`useradd` service).\n",
           })))),
         p11Auth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             default: nix.thunk(() => nix.sel(config_2, "security", "pam", "p11", "enable")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.pam.p11.enable")),
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "If set, keys listed in\n{file}`~/.ssh/authorized_keys` and\n{file}`~/.eid/authorized_certificates`\ncan be used to log in with the associated PKCS#11 tokens.\n",
           })))),
         u2f: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               default: nix.thunk(() => nix.sel(config_2, "security", "pam", "u2f", "enable")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.pam.u2f.enable")),
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "If set, users listed in\n{file}`$XDG_CONFIG_HOME/Yubico/u2f_keys` (or\n{file}`$HOME/.config/Yubico/u2f_keys` if XDG variable is\nnot set) are able to log in with the associated U2F key. Path can be\nchanged using {option}`security.pam.u2f.authFile` option.\n",
             })))),
           control: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               default: nix.thunk(() => nix.sel(config_2, "security", "pam", "u2f", "control")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.pam.u2f.control")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["required", "requisite", "sufficient", "optional"]))),
@@ -524,83 +524,83 @@ ${moduleSettingsDescription}
             })))),
         })),
         usshAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "If set, users with an SSH certificate containing an authorized principal\nin their SSH agent are able to log in. Specific options are controlled\nusing the {option}`security.pam.ussh` options.\n\nNote that the  {option}`security.pam.ussh.enable` must also be\nset for this option to take effect.\n",
           })))),
         yubicoAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             default: nix.thunk(() => nix.sel(config_2, "security", "pam", "yubico", "enable")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.pam.yubico.enable")),
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "If set, users listed in\n{file}`~/.yubico/authorized_yubikeys`\nare able to log in with the associated Yubikey tokens.\n",
           })))),
         googleAuthenticator: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "If set, users with enabled Google Authenticator (created\n{file}`~/.google_authenticator`) will be required\nto provide Google Authenticator token to log in.\n",
             })))),
           allowNullOTP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to allow login for accounts that have no OTP set\n(i.e., accounts with no OTP configured or no existing\n{file}`~/.google_authenticator`).\n",
             })))),
           forwardPass: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "The authentication provides a single field requiring\nthe user's password followed by the one-time password (OTP).\n",
             })))),
         })),
         otpwAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             default: nix.thunk(() => nix.sel(config_2, "security", "pam", "enableOTPW")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.pam.enableOTPW")),
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "If set, the OTPW system will be used (if\n{file}`~/.otpw` exists).\n",
           })))),
         googleOsLoginAccountVerification: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "If set, will use the Google OS Login PAM modules\n(`pam_oslogin_login`,\n`pam_oslogin_admin`) to verify possible OS Login\nusers and set sudoers configuration accordingly.\nThis only makes sense to enable for the `sshd` PAM\nservice.\n",
           })))),
         googleOsLoginAuthentication: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "If set, will use the `pam_oslogin_login`'s user\nauthentication methods to authenticate users using 2FA.\nThis only makes sense to enable for the `sshd` PAM\nservice.\n",
           })))),
         mysqlAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             default: nix.thunk(() => nix.sel(config_2, "users", "mysql", "enable")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.users.mysql.enable")),
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "If set, the `pam_mysql` module will be used to\nauthenticate users against a MySQL/MariaDB database.\n",
           })))),
         fprintAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             default: nix.thunk(() => nix.sel(config_2, "services", "fprintd", "enable")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.fprintd.enable")),
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "If set, fingerprint reader will be used (if exists and\nyour fingerprints are enrolled).\n",
           })))),
         howdy: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               default: nix.thunk(() => nix.sel(config_2, "security", "pam", "howdy", "enable")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.pam.howdy.enable")),
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to enable the Howdy PAM module.\n\nIf set, users can be authenticated using Howdy, the Windows\nHello™-style facial authentication service.\n",
             })))),
           control: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               default: nix.thunk(() => nix.sel(config_2, "security", "pam", "howdy", "control")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.pam.howdy.control")),
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
@@ -608,136 +608,136 @@ ${moduleSettingsDescription}
             })))),
         })),
         oathAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             default: nix.thunk(() => nix.sel(config_2, "security", "pam", "oath", "enable")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.pam.oath.enable")),
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "If set, the OATH Toolkit will be used.\n",
           })))),
         sshAgentAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "If set, the calling user's SSH agent is used to authenticate\nagainst the keys in the calling user's\n{file}`~/.ssh/authorized_keys`.  This is useful\nfor {command}`sudo` on password-less remote systems.\n",
           })))),
         rssh: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "If set, the calling user's SSH agent is used to authenticate\nagainst the configured keys. This module works in a manner\nsimilar to pam_ssh_agent_auth, but supports a wider range\nof SSH key types, including those protected by security\nkeys (FIDO2).\n",
           })))),
         duoSecurity: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "If set, use the Duo Security pam module\n`pam_duo` for authentication.  Requires\nconfiguration of {option}`security.duosec` options.\n",
             })))),
         })),
         startSession: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "If set, the service will register a new session with\nsystemd's login manager.  For local sessions, this will give\nthe user access to audio devices, CD-ROM drives.  In the\ndefault PolicyKit configuration, it also allows the user to\nreboot the system.\n",
           })))),
         setEnvironment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: true,
             description: "Whether the service should set the environment variables\nlisted in {option}`environment.sessionVariables`\nusing `pam_env.so`.\n",
           })))),
         setLoginUid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Set the login uid of the process\n({file}`/proc/self/loginuid`) for auditing\npurposes.  The login uid is only set by ‘entry points’ like\n{command}`login` and {command}`sshd`, not by\ncommands like {command}`sudo`.\n",
           })))),
         ttyAudit: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable or disable TTY auditing for specified users\n",
             })))),
           enablePattern: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "For each user matching one of comma-separated\nglob patterns, enable TTY auditing\n",
             })))),
           disablePattern: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "For each user matching one of comma-separated\nglob patterns, disable TTY auditing\n",
             })))),
           openOnly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Set the TTY audit flag when opening the session,\nbut do not restore it when closing the session.\nUsing this option is necessary for some services\nthat don't fork() to run the authenticated session,\nsuch as sudo.\n",
             })))),
         })),
         forwardXAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether X authentication keys should be passed from the\ncalling user to the target user (e.g. for\n{command}`su`)\n",
           })))),
         pamMount: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             default: nix.thunk(() => nix.sel(config_2, "security", "pam", "mount", "enable")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.pam.mount.enable")),
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Enable PAM mount (pam_mount) system to mount filesystems on user login.\n",
           })))),
         allowNullPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether to allow logging into accounts that have no password\nset (i.e., have an empty password field in\n{file}`/etc/passwd` or\n{file}`/etc/group`).  This does not enable\nlogging into disabled accounts (i.e., that have the password\nfield set to `!`).  Note that regardless of\nwhat the pam_unix documentation says, accounts with hashed\nempty passwords are always allowed to log in.\n",
           })))),
         nodelay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether the delay after typing a wrong password should be disabled.\n",
           })))),
         requireWheel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether to permit root access only to members of group wheel.\n",
           })))),
         limits: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             default: [],
             type: limitsType,
             description: "Attribute set describing resource limits.  Defaults to the\nvalue of {option}`security.pam.loginLimits`.\nThe meaning of the values is explained in {manpage}`limits.conf(5)`.\n",
           })))),
         showMotd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether to show the message of the day.",
           })))),
         makeHomeDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether to try to create home directories for users\nwith `$HOME`s pointing to nonexistent\nlocations on session login.\n",
           })))),
         lastlog: nix.thunk(() => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to update {file}`/var/log/wtmp`.",
             })))),
           silent: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               default: true,
               example: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
@@ -745,73 +745,73 @@ ${moduleSettingsDescription}
             })))),
         })),
         logFailures: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether to log authentication failures in {file}`/var/log/faillog`.",
           })))),
         enableAppArmor: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Enable support for attaching AppArmor profiles at the\nuser/group level, e.g., as part of a role based access\ncontrol scheme.\n",
           })))),
         kwallet: nix.thunk(() => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "If enabled, pam_wallet will attempt to automatically unlock the\nuser's default KDE wallet upon login. If the user has no wallet named\n\"kdewallet\", or the login password does not match their wallet\npassword, KDE will prompt separately after login.\n",
             })))),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), nix.thunk(() => nix.sel(pkgs, "kdePackages")), "kwallet-pam", nix.thunk(() => ({ __proto__: pos$64, pkgsText: "pkgs.kdePackages" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), nix.thunk(() => nix.sel(pkgs, "kdePackages")), "kwallet-pam", nix.thunk(() => ({ [nix.POS]: pos$64, pkgsText: "pkgs.kdePackages" })))),
           forceRun: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             description: "The `force_run` option is used to tell the PAM module for KWallet\nto forcefully run even if no graphical session (such as a GUI\ndisplay manager) is detected. This is useful for when you are\nstarting an X Session or a Wayland Session from a TTY. If you\nintend to log-in from a TTY, it is recommended that you enable\nthis option **and** ensure that `plasma-kwallet-pam.service` is\nstarted by `graphical-session.target`.\n",
           })),
         })),
         sssdStrictAccess: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$67,
+            [nix.POS]: pos$67,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "enforce sssd access control",
           })))),
         enableGnomeKeyring: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "If enabled, pam_gnome_keyring will attempt to automatically unlock the\nuser's default Gnome keyring upon login. If the user login password does\nnot match their keyring password, Gnome Keyring will prompt separately\nafter login.\n",
           })))),
         oo7: nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "automatically unlock the user's default Session Keyring using pam_oo7.\nIf the user's login password does not match their keyring password,\noo7 will prompt separately after login.\n")),
         })),
         rosec: nix.thunk(() => ({
-          __proto__: pos$71,
+          [nix.POS]: pos$71,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "If enabled, pam_rosec will attempt to automatically unlock the\nuser's rosec vault upon login. If the user login password does not\nmatch their vault password, rosec will prompt separately after login.\n",
             })))),
         })),
         enableUMask: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             default: nix.thunk(() => nix.sel(config_2, "security", "pam", "enableUMask")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.pam.enableUMask")),
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "If enabled, the pam_umask module will be loaded.",
           })))),
         failDelay: nix.thunk(() => ({
-          __proto__: pos$75,
+          [nix.POS]: pos$75,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If enabled, this will replace the `FAIL_DELAY` setting from `login.defs`.\nChange the delay on failure per-application.\n",
             })))),
           delay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$74,
+              [nix.POS]: pos$74,
               default: 3000000n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               example: 1000000n,
@@ -819,81 +819,81 @@ ${moduleSettingsDescription}
             })))),
         })),
         gnupg: nix.thunk(() => ({
-          __proto__: pos$79,
+          [nix.POS]: pos$79,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$76,
+              [nix.POS]: pos$76,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If enabled, pam_gnupg will attempt to automatically unlock the\nuser's GPG keys with the login password via\n{command}`gpg-agent`. The keygrips of all keys to be\nunlocked should be written to {file}`~/.pam-gnupg`,\nand can be queried with {command}`gpg -K --with-keygrip`.\nPresetting passphrases must be enabled by adding\n`allow-preset-passphrase` in\n{file}`~/.gnupg/gpg-agent.conf`.\n",
             })))),
           noAutostart: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$77,
+              [nix.POS]: pos$77,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Don't start {command}`gpg-agent` if it is not running.\nUseful in conjunction with starting {command}`gpg-agent` as\na systemd user service.\n",
             })))),
           storeOnly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$78,
+              [nix.POS]: pos$78,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Don't send the password immediately after login, but store for PAM\n`session`.\n",
             })))),
         })),
         slurm: nix.thunk(() => ({
-          __proto__: pos$94,
+          [nix.POS]: pos$94,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "If set, ONLY prevents users from logging into nodes if they have no\njobs in the node. This module is a legacy implementation with\nfunctionality limited to login restrictions.\n",
             })))),
           adopt: nix.thunk(() => ({
-            __proto__: pos$93,
+            [nix.POS]: pos$93,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$81,
+                [nix.POS]: pos$81,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "If set, it prevents users from logging into nodes if they have no jobs\nin the node. It also tracks any other spawned processes for accounting\nand ensures complete job cleanup when a job is completed for any\nsuccessful connection. Spawned processes get \"adopted\" as external\nsteps into the current job. As such, those steps get integrated with\nSlurm accounting and control group facilities.\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$92,
+                [nix.POS]: pos$92,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$90,
+                    [nix.POS]: pos$90,
                     freeformType: moduleSettingsType,
                     options: nix.thunk(() => ({
-                      __proto__: pos$89,
+                      [nix.POS]: pos$89,
                       action_no_jobs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$82,
+                          [nix.POS]: pos$82,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["ignore", "deny"]))),
                           default: "deny",
                           description: "What to do if no jobs from the user are found, deny or ignore\n(pass along to next PAM module).\n",
                         })))),
                       action_unknown: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$83,
+                          [nix.POS]: pos$83,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["newest", "allow", "deny"]))),
                           default: "newest",
                           description: "If the user has jobs, attach them to the newest job. Allow\nthe connection through without adoption.\n",
                         })))),
                       action_adopt_failure: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$84,
+                          [nix.POS]: pos$84,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["allow", "deny"]))),
                           default: "deny",
                           description: "What to do if the process is unable to be adopted into a job.\n`allow` matches the upstream default which is only really\nsuitable for testing; production systems will want `deny`\nas a default.\n",
                         })))),
                       action_generic_failure: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$85,
+                          [nix.POS]: pos$85,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["ignore", "allow", "deny"]))),
                           default: "ignore",
                           description: "Catch all for failures related to kernel issues or slurmd\naccess. Ignore falls through to the next PAM module, allowing\nthe connection to go through without adoption.\n",
                         })))),
                       disable_x11: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$86,
+                          [nix.POS]: pos$86,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["0", "1"]))),
                           default: "0",
                           description: "Disable or enable x11 sessions. '0' means the adopted connection\nhas Slurm X11 forwarding with DISPLAY overwritten using X11\ntunnel endpoint details.\n",
                         })))),
                       nodename: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$87,
+                          [nix.POS]: pos$87,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "nonEmptyStr")));
@@ -903,33 +903,33 @@ ${moduleSettingsDescription}
                           description: "Set this only when the Slurm `NodeName` for this machine\ndiffers from `hostname -s`. If unset, `pam_slurm_adopt`\nuses the host short name.\n",
                         })))),
                       join_container: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$88,
+                          [nix.POS]: pos$88,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["true", "false"]))),
                           default: "true",
                           description: "Attach to a container created by job_container/tmpfs\n",
                         })))),
                     })),
                   })))),
-                default: nix.thunk(() => ({ __proto__: pos$91, service: name })),
+                default: nix.thunk(() => ({ [nix.POS]: pos$91, service: name })),
                 description: "Slurm Adopt Settings. More information is available at:\n  - https://slurm.schedmd.com/pam_slurm_adopt.html\n",
               })))),
           })),
         })),
         zfs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$95,
+            [nix.POS]: pos$95,
             default: nix.thunk(() => nix.sel(config_2, "security", "pam", "zfs", "enable")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.pam.zfs.enable")),
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Enable unlocking and mounting of encrypted ZFS home dataset at login.\n",
           })))),
         text: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$96,
+            [nix.POS]: pos$96,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
             description: "Contents of the PAM service file.",
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$233,
+        [nix.POS]: pos$233,
         name: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), name)),
         setLoginUid: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "startSession")))),
         limits: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config_2, "security", "pam", "loginLimits")))),
@@ -952,81 +952,81 @@ ${nix.app(formatRules, "session")}
 `));
         })()),
         rules: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "useDefaultRules")), nix.thunk(() => ({
-            __proto__: pos$232,
+            [nix.POS]: pos$232,
             account: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$98,
+                  [nix.POS]: pos$98,
                   name: "ldap",
                   enable: use_ldap,
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${pam_ldap}/lib/security/pam_ldap.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$100,
+                  [nix.POS]: pos$100,
                   name: "mysql",
                   enable: nix.thunk(() => nix.sel(cfg, "mysqlAuth")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "pam_mysql")}/lib/security/pam_mysql.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$99, config_file: "/etc/security/pam_mysql.conf" })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$99, config_file: "/etc/security/pam_mysql.conf" })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$102,
+                  [nix.POS]: pos$102,
                   name: "kanidm",
                   enable: nix.thunk(() => nix.sel(config_2, "services", "kanidm", "unix", "enable")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(config_2, "services", "kanidm", "package")}/lib/pam_kanidm.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$101, ignore_unknown_user: true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$101, ignore_unknown_user: true })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$103,
+                  [nix.POS]: pos$103,
                   name: "sss",
                   enable: nix.thunk(() => nix.sel(config_2, "services", "sssd", "enable")),
                   control: nix.thunk(() => (nix.asBool(nix.sel(cfg, "sssdStrictAccess")) ? "[default=bad success=ok user_unknown=ignore]" : "sufficient")),
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "sssd")}/lib/security/pam_sss.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$104,
+                  [nix.POS]: pos$104,
                   name: "krb5",
                   enable: nix.thunk(() => nix.sel(config_2, "security", "pam", "krb5", "enable")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${pam_krb5}/lib/security/pam_krb5.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$105,
+                  [nix.POS]: pos$105,
                   name: "oslogin_login",
                   enable: nix.thunk(() => nix.sel(cfg, "googleOsLoginAccountVerification")),
                   control: "[success=ok ignore=ignore default=die]",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "google-guest-oslogin")}/lib/security/pam_oslogin_login.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$106,
+                  [nix.POS]: pos$106,
                   name: "oslogin_admin",
                   enable: nix.thunk(() => nix.sel(cfg, "googleOsLoginAccountVerification")),
                   control: "[success=ok default=ignore]",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "google-guest-oslogin")}/lib/security/pam_oslogin_admin.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$107,
+                  [nix.POS]: pos$107,
                   name: "systemd_home",
                   enable: nix.thunk(() => nix.sel(config_2, "services", "homed", "enable")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(config_2, "systemd", "package")}/lib/security/pam_systemd_home.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$108,
+                  [nix.POS]: pos$108,
                   name: "slurm",
                   enable: nix.thunk(() => nix.sel(cfg, "slurm", "enable")),
                   control: "required",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "slurm")}/lib/security/pam_slurm.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$109,
+                  [nix.POS]: pos$109,
                   name: "unix",
                   control: "required",
                   modulePath: nix.thunk(() => nix.sel(config_2, "security", "pam", "pam_unixModulePath")),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$110,
+                  [nix.POS]: pos$110,
                   name: "slurm_adopt",
                   enable: nix.thunk(() => nix.sel(cfg, "slurm", "adopt", "enable")),
                   control: "required",
@@ -1036,50 +1036,50 @@ ${nix.app(formatRules, "session")}
               ]))),
             auth: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => nix.concat([
                 nix.thunk(() => ({
-                  __proto__: pos$111,
+                  [nix.POS]: pos$111,
                   name: "oslogin_login",
                   enable: nix.thunk(() => nix.sel(cfg, "googleOsLoginAuthentication")),
                   control: "[success=done perm_denied=die default=ignore]",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "google-guest-oslogin")}/lib/security/pam_oslogin_login.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$112,
+                  [nix.POS]: pos$112,
                   name: "rootok",
                   enable: nix.thunk(() => nix.sel(cfg, "rootOK")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${package$}/lib/security/pam_rootok.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$114,
+                  [nix.POS]: pos$114,
                   name: "wheel",
                   enable: nix.thunk(() => nix.sel(cfg, "requireWheel")),
                   control: "required",
                   modulePath: nix.thunk(() => nix.str`${package$}/lib/security/pam_wheel.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$113, use_uid: true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$113, use_uid: true })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$115,
+                  [nix.POS]: pos$115,
                   name: "faillock",
                   enable: nix.thunk(() => nix.sel(cfg, "logFailures")),
                   control: "required",
                   modulePath: nix.thunk(() => nix.str`${package$}/lib/security/pam_faillock.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$117,
+                  [nix.POS]: pos$117,
                   name: "mysql",
                   enable: nix.thunk(() => nix.sel(cfg, "mysqlAuth")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "pam_mysql")}/lib/security/pam_mysql.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$116, config_file: "/etc/security/pam_mysql.conf" })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$116, config_file: "/etc/security/pam_mysql.conf" })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$119,
+                  [nix.POS]: pos$119,
                   name: "ssh_agent_auth",
                   enable: nix.thunk(() => (nix.asBool(nix.sel(config_2, "security", "pam", "sshAgentAuth", "enable")) && nix.asBool(nix.sel(cfg, "sshAgentAuth")))),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "pam_ssh_agent_auth")}/libexec/pam_ssh_agent_auth.so`),
                   settings: nix.thunk(() => ({
-                    __proto__: pos$118,
+                    [nix.POS]: pos$118,
                     file: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.sel(config_2, "security", "pam", "sshAgentAuth", "authorizedKeysFiles")))),
                   })),
                 })),
@@ -1087,7 +1087,7 @@ ${nix.app(formatRules, "session")}
                   const from = nix.thunk(() => nix.sel(config_2, "security", "pam"));
                   const rssh = nix.thunk(() => nix.attr(from, "rssh"));
                   return {
-                    __proto__: pos$120,
+                    [nix.POS]: pos$120,
                     name: "rssh",
                     enable: nix.thunk(() => (nix.asBool(nix.sel(rssh, "enable")) && nix.asBool(nix.sel(cfg, "rssh")))),
                     control: "sufficient",
@@ -1098,7 +1098,7 @@ ${nix.app(formatRules, "session")}
                 nix.thunk(() => (() => {
                   const p11 = nix.thunk(() => nix.sel(config_2, "security", "pam", "p11"));
                   return {
-                    __proto__: pos$121,
+                    [nix.POS]: pos$121,
                     name: "p11",
                     enable: nix.thunk(() => nix.sel(cfg, "p11Auth")),
                     control: nix.thunk(() => nix.sel(p11, "control")),
@@ -1109,7 +1109,7 @@ ${nix.app(formatRules, "session")}
                 nix.thunk(() => (() => {
                   const u2f = nix.thunk(() => nix.sel(config_2, "security", "pam", "u2f"));
                   return {
-                    __proto__: pos$122,
+                    [nix.POS]: pos$122,
                     name: "u2f",
                     enable: nix.thunk(() => nix.sel(cfg, "u2f", "enable")),
                     control: nix.thunk(() => nix.sel(cfg, "u2f", "control")),
@@ -1120,13 +1120,13 @@ ${nix.app(formatRules, "session")}
                 nix.thunk(() => (() => {
                   const ussh = nix.thunk(() => nix.sel(config_2, "security", "pam", "ussh"));
                   return {
-                    __proto__: pos$124,
+                    [nix.POS]: pos$124,
                     name: "ussh",
                     enable: nix.thunk(() => (nix.asBool(nix.sel(config_2, "security", "pam", "ussh", "enable")) && nix.asBool(nix.sel(cfg, "usshAuth")))),
                     control: nix.thunk(() => nix.sel(ussh, "control")),
                     modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "pam_ussh")}/lib/security/pam_ussh.so`),
                     settings: nix.thunk(() => ({
-                      __proto__: pos$123,
+                      [nix.POS]: pos$123,
                       ca_file: nix.thunk(() => nix.sel(ussh, "caFile")),
                       authorized_principals: nix.thunk(() => nix.sel(ussh, "authorizedPrincipals")),
                       authorized_principals_file: nix.thunk(() => nix.sel(ussh, "authorizedPrincipalsFile")),
@@ -1137,13 +1137,13 @@ ${nix.app(formatRules, "session")}
                 nix.thunk(() => (() => {
                   const oath = nix.thunk(() => nix.sel(config_2, "security", "pam", "oath"));
                   return {
-                    __proto__: pos$126,
+                    [nix.POS]: pos$126,
                     name: "oath",
                     enable: nix.thunk(() => nix.sel(cfg, "oathAuth")),
                     control: "requisite",
                     modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "oath-toolkit")}/lib/security/pam_oath.so`),
                     settings: nix.thunk(() => ({
-                      __proto__: pos$125,
+                      [nix.POS]: pos$125,
                       window: nix.thunk(() => nix.attr(oath, "window")),
                       digits: nix.thunk(() => nix.attr(oath, "digits")),
                       usersfile: nix.thunk(() => nix.sel(oath, "usersFile")),
@@ -1153,13 +1153,13 @@ ${nix.app(formatRules, "session")}
                 nix.thunk(() => (() => {
                   const yubi = nix.thunk(() => nix.sel(config_2, "security", "pam", "yubico"));
                   return {
-                    __proto__: pos$128,
+                    [nix.POS]: pos$128,
                     name: "yubico",
                     enable: nix.thunk(() => nix.sel(cfg, "yubicoAuth")),
                     control: nix.thunk(() => nix.sel(yubi, "control")),
                     modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "yubico-pam")}/lib/security/pam_yubico.so`),
                     settings: nix.thunk(() => ({
-                      __proto__: pos$127,
+                      [nix.POS]: pos$127,
                       mode: nix.thunk(() => nix.attr(yubi, "mode")),
                       debug: nix.thunk(() => nix.attr(yubi, "debug")),
                       chalresp_path: nix.thunk(() => nix.sel(yubi, "challengeResponsePath")),
@@ -1170,7 +1170,7 @@ ${nix.app(formatRules, "session")}
                 nix.thunk(() => (() => {
                   const dp9ik = nix.thunk(() => nix.sel(config_2, "security", "pam", "dp9ik"));
                   return {
-                    __proto__: pos$129,
+                    [nix.POS]: pos$129,
                     name: "p9",
                     enable: nix.thunk(() => nix.sel(dp9ik, "enable")),
                     control: nix.thunk(() => nix.sel(dp9ik, "control")),
@@ -1179,14 +1179,14 @@ ${nix.app(formatRules, "session")}
                   };
                 })()),
                 nix.thunk(() => ({
-                  __proto__: pos$130,
+                  [nix.POS]: pos$130,
                   name: "fprintd",
                   enable: nix.thunk(() => nix.sel(cfg, "fprintAuth")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(config_2, "services", "fprintd", "package")}/lib/security/pam_fprintd.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$131,
+                  [nix.POS]: pos$131,
                   name: "howdy",
                   enable: nix.thunk(() => nix.sel(cfg, "howdy", "enable")),
                   control: nix.thunk(() => nix.sel(cfg, "howdy", "control")),
@@ -1194,34 +1194,34 @@ ${nix.app(formatRules, "session")}
                 })),
               ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "unixAuth")) || nix.asBool(nix.sel(config_2, "services", "homed", "enable")))) && nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.sel(config_2, "security", "pam", "enableFscrypt")) || nix.asBool(nix.sel(cfg, "pamMount")))) || nix.asBool(nix.sel(cfg, "kwallet", "enable")))) || nix.asBool(nix.sel(cfg, "enableGnomeKeyring")))) || nix.asBool(nix.sel(cfg, "oo7", "enable")))) || nix.asBool(nix.sel(cfg, "rosec", "enable")))) || nix.asBool(nix.sel(config_2, "services", "intune", "enable")))) || nix.asBool(nix.sel(cfg, "googleAuthenticator", "enable")))) || nix.asBool(nix.sel(cfg, "gnupg", "enable")))) || nix.asBool(nix.sel(cfg, "failDelay", "enable")))) || nix.asBool(nix.sel(cfg, "duoSecurity", "enable")))) || nix.asBool(nix.sel(cfg, "zfs")))))), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$132,
+                    [nix.POS]: pos$132,
                     name: "systemd_home-early",
                     enable: nix.thunk(() => nix.sel(config_2, "services", "homed", "enable")),
                     control: "optional",
                     modulePath: nix.thunk(() => nix.str`${nix.sel(config_2, "systemd", "package")}/lib/security/pam_systemd_home.so`),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$134,
+                    [nix.POS]: pos$134,
                     name: "unix-early",
                     enable: nix.thunk(() => nix.sel(cfg, "unixAuth")),
                     control: "optional",
                     modulePath: nix.thunk(() => nix.sel(config_2, "security", "pam", "pam_unixModulePath")),
                     settings: nix.thunk(() => ({
-                      __proto__: pos$133,
+                      [nix.POS]: pos$133,
                       nullok: nix.thunk(() => nix.sel(cfg, "allowNullPassword")),
                       nodelay: nix.thunk(() => nix.attr(cfg, "nodelay")),
                       likeauth: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config_2, "security", "pam", "enableLegacySettings")), true)),
                     })),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$135,
+                    [nix.POS]: pos$135,
                     name: "fscrypt",
                     enable: nix.thunk(() => nix.sel(config_2, "security", "pam", "enableFscrypt")),
                     control: "optional",
                     modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "fscrypt")}/lib/security/pam_fscrypt.so`),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$137,
+                    [nix.POS]: pos$137,
                     name: "zfs_key",
                     enable: nix.thunk(() => nix.sel(cfg, "zfs")),
                     control: "optional",
@@ -1229,92 +1229,92 @@ ${nix.app(formatRules, "session")}
                     settings: nix.thunk(() => (() => {
                       const from = nix.thunk(() => nix.sel(config_2, "security", "pam", "zfs"));
                       return {
-                      __proto__: pos$136,
+                      [nix.POS]: pos$136,
                       homes: nix.thunk(() => nix.attr(from, "homes")),
                       mount_recursively: nix.thunk(() => nix.sel(config_2, "security", "pam", "zfs", "mountRecursively")),
                     };
                     })()),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$139,
+                    [nix.POS]: pos$139,
                     name: "mount",
                     enable: nix.thunk(() => nix.sel(cfg, "pamMount")),
                     control: "optional",
                     modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "pam_mount")}/lib/security/pam_mount.so`),
-                    settings: nix.thunk(() => ({ __proto__: pos$138, disable_interactive: true })),
+                    settings: nix.thunk(() => ({ [nix.POS]: pos$138, disable_interactive: true })),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$140,
+                    [nix.POS]: pos$140,
                     name: "kwallet",
                     enable: nix.thunk(() => nix.sel(cfg, "kwallet", "enable")),
                     control: "optional",
                     modulePath: nix.thunk(() => nix.str`${nix.sel(cfg, "kwallet", "package")}/lib/security/pam_kwallet5.so`),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$141,
+                    [nix.POS]: pos$141,
                     name: "gnome_keyring",
                     enable: nix.thunk(() => nix.sel(cfg, "enableGnomeKeyring")),
                     control: "optional",
                     modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "gnome-keyring")}/lib/security/pam_gnome_keyring.so`),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$142,
+                    [nix.POS]: pos$142,
                     name: "oo7",
                     enable: nix.thunk(() => nix.sel(cfg, "oo7", "enable")),
                     control: "optional",
                     modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "oo7-pam")}/lib/security/pam_oo7.so`),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$143,
+                    [nix.POS]: pos$143,
                     name: "rosec",
                     enable: nix.thunk(() => nix.sel(cfg, "rosec", "enable")),
                     control: "optional",
                     modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "rosec")}/lib/security/pam_rosec.so`),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$144,
+                    [nix.POS]: pos$144,
                     name: "intune",
                     enable: nix.thunk(() => nix.sel(config_2, "services", "intune", "enable")),
                     control: "optional",
                     modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "intune-portal")}/lib/security/pam_intune.so`),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$146,
+                    [nix.POS]: pos$146,
                     name: "gnupg",
                     enable: nix.thunk(() => nix.sel(cfg, "gnupg", "enable")),
                     control: "optional",
                     modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "pam_gnupg")}/lib/security/pam_gnupg.so`),
                     settings: nix.thunk(() => ({
-                      __proto__: pos$145,
+                      [nix.POS]: pos$145,
                       "store-only": nix.thunk(() => nix.sel(cfg, "gnupg", "storeOnly")),
                     })),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$148,
+                    [nix.POS]: pos$148,
                     name: "faildelay",
                     enable: nix.thunk(() => nix.sel(cfg, "failDelay", "enable")),
                     control: "optional",
                     modulePath: nix.thunk(() => nix.str`${package$}/lib/security/pam_faildelay.so`),
                     settings: nix.thunk(() => (() => {
                       const from = nix.thunk(() => nix.sel(cfg, "failDelay"));
-                      return { __proto__: pos$147, delay: nix.thunk(() => nix.attr(from, "delay")) };
+                      return { [nix.POS]: pos$147, delay: nix.thunk(() => nix.attr(from, "delay")) };
                     })()),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$150,
+                    [nix.POS]: pos$150,
                     name: "google_authenticator",
                     enable: nix.thunk(() => nix.sel(cfg, "googleAuthenticator", "enable")),
                     control: "required",
                     modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "google-authenticator")}/lib/security/pam_google_authenticator.so`),
                     settings: nix.thunk(() => ({
-                      __proto__: pos$149,
+                      [nix.POS]: pos$149,
                       no_increment_hotp: true,
                       forward_pass: nix.thunk(() => nix.sel(cfg, "googleAuthenticator", "forwardPass")),
                       nullok: nix.thunk(() => nix.sel(cfg, "googleAuthenticator", "allowNullOTP")),
                     })),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$151,
+                    [nix.POS]: pos$151,
                     name: "duo",
                     enable: nix.thunk(() => nix.sel(cfg, "duoSecurity", "enable")),
                     control: "required",
@@ -1322,20 +1322,20 @@ ${nix.app(formatRules, "session")}
                   })),
                 ])), [
                 nix.thunk(() => ({
-                  __proto__: pos$152,
+                  [nix.POS]: pos$152,
                   name: "systemd_home",
                   enable: nix.thunk(() => nix.sel(config_2, "services", "homed", "enable")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(config_2, "systemd", "package")}/lib/security/pam_systemd_home.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$154,
+                  [nix.POS]: pos$154,
                   name: "unix",
                   enable: nix.thunk(() => nix.sel(cfg, "unixAuth")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.sel(config_2, "security", "pam", "pam_unixModulePath")),
                   settings: nix.thunk(() => ({
-                    __proto__: pos$153,
+                    [nix.POS]: pos$153,
                     nullok: nix.thunk(() => nix.sel(cfg, "allowNullPassword")),
                     nodelay: nix.thunk(() => nix.attr(cfg, "nodelay")),
                     likeauth: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config_2, "security", "pam", "enableLegacySettings")), true)),
@@ -1343,62 +1343,62 @@ ${nix.app(formatRules, "session")}
                   })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$155,
+                  [nix.POS]: pos$155,
                   name: "otpw",
                   enable: nix.thunk(() => nix.sel(cfg, "otpwAuth")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "otpw")}/lib/security/pam_otpw.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$157,
+                  [nix.POS]: pos$157,
                   name: "ldap",
                   enable: use_ldap,
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${pam_ldap}/lib/security/pam_ldap.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$156, use_first_pass: true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$156, use_first_pass: true })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$159,
+                  [nix.POS]: pos$159,
                   name: "kanidm",
                   enable: nix.thunk(() => nix.sel(config_2, "services", "kanidm", "unix", "enable")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(config_2, "services", "kanidm", "package")}/lib/pam_kanidm.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$158, ignore_unknown_user: true, use_first_pass: true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$158, ignore_unknown_user: true, use_first_pass: true })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$161,
+                  [nix.POS]: pos$161,
                   name: "sss",
                   enable: nix.thunk(() => nix.sel(config_2, "services", "sssd", "enable")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "sssd")}/lib/security/pam_sss.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$160, use_first_pass: true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$160, use_first_pass: true })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$163,
+                  [nix.POS]: pos$163,
                   name: "krb5",
                   enable: nix.thunk(() => nix.sel(config_2, "security", "pam", "krb5", "enable")),
                   control: "[default=ignore success=1 service_err=reset]",
                   modulePath: nix.thunk(() => nix.str`${pam_krb5}/lib/security/pam_krb5.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$162, use_first_pass: true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$162, use_first_pass: true })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$165,
+                  [nix.POS]: pos$165,
                   name: "ccreds-validate",
                   enable: nix.thunk(() => nix.sel(config_2, "security", "pam", "krb5", "enable")),
                   control: "[default=die success=done]",
                   modulePath: nix.thunk(() => nix.str`${pam_ccreds}/lib/security/pam_ccreds.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$164, action: "validate", use_first_pass: true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$164, action: "validate", use_first_pass: true })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$167,
+                  [nix.POS]: pos$167,
                   name: "ccreds-store",
                   enable: nix.thunk(() => nix.sel(config_2, "security", "pam", "krb5", "enable")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${pam_ccreds}/lib/security/pam_ccreds.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$166, action: "store", use_first_pass: true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$166, action: "store", use_first_pass: true })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$168,
+                  [nix.POS]: pos$168,
                   name: "deny",
                   control: "required",
                   modulePath: nix.thunk(() => nix.str`${package$}/lib/security/pam_deny.so`),
@@ -1406,28 +1406,28 @@ ${nix.app(formatRules, "session")}
               ]))))),
             password: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$169,
+                  [nix.POS]: pos$169,
                   name: "systemd_home",
                   enable: nix.thunk(() => nix.sel(config_2, "services", "homed", "enable")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(config_2, "systemd", "package")}/lib/security/pam_systemd_home.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$171,
+                  [nix.POS]: pos$171,
                   name: "unix",
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.sel(config_2, "security", "pam", "pam_unixModulePath")),
-                  settings: nix.thunk(() => ({ __proto__: pos$170, nullok: true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$170, nullok: true })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$172,
+                  [nix.POS]: pos$172,
                   name: "fscrypt",
                   enable: nix.thunk(() => nix.sel(config_2, "security", "pam", "enableFscrypt")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "fscrypt")}/lib/security/pam_fscrypt.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$174,
+                  [nix.POS]: pos$174,
                   name: "zfs_key",
                   enable: nix.thunk(() => nix.sel(cfg, "zfs")),
                   control: "optional",
@@ -1435,73 +1435,73 @@ ${nix.app(formatRules, "session")}
                   settings: nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(config_2, "security", "pam", "zfs"));
                     return {
-                    __proto__: pos$173,
+                    [nix.POS]: pos$173,
                     homes: nix.thunk(() => nix.attr(from, "homes")),
                     mount_recursively: nix.thunk(() => nix.sel(config_2, "security", "pam", "zfs", "mountRecursively")),
                   };
                   })()),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$175,
+                  [nix.POS]: pos$175,
                   name: "mount",
                   enable: nix.thunk(() => nix.sel(cfg, "pamMount")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "pam_mount")}/lib/security/pam_mount.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$176,
+                  [nix.POS]: pos$176,
                   name: "ldap",
                   enable: use_ldap,
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${pam_ldap}/lib/security/pam_ldap.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$178,
+                  [nix.POS]: pos$178,
                   name: "mysql",
                   enable: nix.thunk(() => nix.sel(cfg, "mysqlAuth")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "pam_mysql")}/lib/security/pam_mysql.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$177, config_file: "/etc/security/pam_mysql.conf" })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$177, config_file: "/etc/security/pam_mysql.conf" })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$179,
+                  [nix.POS]: pos$179,
                   name: "kanidm",
                   enable: nix.thunk(() => nix.sel(config_2, "services", "kanidm", "unix", "enable")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(config_2, "services", "kanidm", "package")}/lib/pam_kanidm.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$180,
+                  [nix.POS]: pos$180,
                   name: "sss",
                   enable: nix.thunk(() => nix.sel(config_2, "services", "sssd", "enable")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "sssd")}/lib/security/pam_sss.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$182,
+                  [nix.POS]: pos$182,
                   name: "krb5",
                   enable: nix.thunk(() => nix.sel(config_2, "security", "pam", "krb5", "enable")),
                   control: "sufficient",
                   modulePath: nix.thunk(() => nix.str`${pam_krb5}/lib/security/pam_krb5.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$181, use_first_pass: true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$181, use_first_pass: true })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$184,
+                  [nix.POS]: pos$184,
                   name: "gnome_keyring",
                   enable: nix.thunk(() => nix.sel(cfg, "enableGnomeKeyring")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "gnome-keyring")}/lib/security/pam_gnome_keyring.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$183, use_authtok: true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$183, use_authtok: true })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$185,
+                  [nix.POS]: pos$185,
                   name: "oo7",
                   enable: nix.thunk(() => nix.sel(cfg, "oo7", "enable")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "oo7-pam")}/lib/security/pam_oo7.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$186,
+                  [nix.POS]: pos$186,
                   name: "rosec",
                   enable: nix.thunk(() => nix.sel(cfg, "rosec", "enable")),
                   control: "optional",
@@ -1510,55 +1510,55 @@ ${nix.app(formatRules, "session")}
               ]))),
             session: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$188,
+                  [nix.POS]: pos$188,
                   name: "env",
                   enable: nix.thunk(() => nix.sel(cfg, "setEnvironment")),
                   control: "required",
                   modulePath: nix.thunk(() => nix.str`${package$}/lib/security/pam_env.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$187, conffile: "/etc/pam/environment", readenv: 0n })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$187, conffile: "/etc/pam/environment", readenv: 0n })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$189,
+                  [nix.POS]: pos$189,
                   name: "unix",
                   control: "required",
                   modulePath: nix.thunk(() => nix.sel(config_2, "security", "pam", "pam_unixModulePath")),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$190,
+                  [nix.POS]: pos$190,
                   name: "loginuid",
                   enable: nix.thunk(() => nix.sel(cfg, "setLoginUid")),
                   control: nix.thunk(() => (nix.asBool(nix.sel(config_2, "boot", "isContainer")) ? "optional" : "required")),
                   modulePath: nix.thunk(() => nix.str`${package$}/lib/security/pam_loginuid.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$192,
+                  [nix.POS]: pos$192,
                   name: "tty_audit",
                   enable: nix.thunk(() => nix.sel(cfg, "ttyAudit", "enable")),
                   control: "required",
                   modulePath: nix.thunk(() => nix.str`${package$}/lib/security/pam_tty_audit.so`),
                   settings: nix.thunk(() => ({
-                    __proto__: pos$191,
+                    [nix.POS]: pos$191,
                     open_only: nix.thunk(() => nix.sel(cfg, "ttyAudit", "openOnly")),
                     enable: nix.thunk(() => nix.sel(cfg, "ttyAudit", "enablePattern")),
                     disable: nix.thunk(() => nix.sel(cfg, "ttyAudit", "disablePattern")),
                   })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$193,
+                  [nix.POS]: pos$193,
                   name: "umask",
                   enable: nix.thunk(() => nix.sel(cfg, "enableUMask")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${package$}/lib/security/pam_umask.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$194,
+                  [nix.POS]: pos$194,
                   name: "systemd_home",
                   enable: nix.thunk(() => nix.sel(config_2, "services", "homed", "enable")),
                   control: "required",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(config_2, "systemd", "package")}/lib/security/pam_systemd_home.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$196,
+                  [nix.POS]: pos$196,
                   name: "mkhomedir",
                   enable: nix.thunk(() => nix.sel(cfg, "makeHomeDir")),
                   control: "required",
@@ -1566,7 +1566,7 @@ ${nix.app(formatRules, "session")}
                   settings: nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(config_2, "security", "pam", "makeHomeDir"));
                     return {
-                    __proto__: pos$195,
+                    [nix.POS]: pos$195,
                     silent: true,
                     skel: nix.thunk(() => nix.sel(config_2, "security", "pam", "makeHomeDir", "skelDirectory")),
                     umask: nix.thunk(() => nix.attr(from, "umask")),
@@ -1574,18 +1574,18 @@ ${nix.app(formatRules, "session")}
                   })()),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$198,
+                  [nix.POS]: pos$198,
                   name: "lastlog",
                   enable: nix.thunk(() => nix.sel(cfg, "lastlog", "enable")),
                   control: "required",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "util-linux", "lastlog")}/lib/security/pam_lastlog2.so`),
                   settings: nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(cfg, "lastlog"));
-                    return { __proto__: pos$197, silent: nix.thunk(() => nix.attr(from, "silent")) };
+                    return { [nix.POS]: pos$197, silent: nix.thunk(() => nix.attr(from, "silent")) };
                   })()),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$199,
+                  [nix.POS]: pos$199,
                   name: "fscrypt-skip-systemd",
                   enable: nix.thunk(() => nix.sel(config_2, "security", "pam", "enableFscrypt")),
                   control: "[success=1 default=ignore]",
@@ -1593,14 +1593,14 @@ ${nix.app(formatRules, "session")}
                   args: nix.thunk(() => ["service", "=", "systemd-user"]),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$200,
+                  [nix.POS]: pos$200,
                   name: "fscrypt",
                   enable: nix.thunk(() => nix.sel(config_2, "security", "pam", "enableFscrypt")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "fscrypt")}/lib/security/pam_fscrypt.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$201,
+                  [nix.POS]: pos$201,
                   name: "zfs_key-skip-systemd",
                   enable: nix.thunk(() => nix.sel(cfg, "zfs")),
                   control: "[success=1 default=ignore]",
@@ -1608,7 +1608,7 @@ ${nix.app(formatRules, "session")}
                   args: nix.thunk(() => ["service", "=", "systemd-user"]),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$203,
+                  [nix.POS]: pos$203,
                   name: "zfs_key",
                   enable: nix.thunk(() => nix.sel(cfg, "zfs")),
                   control: "optional",
@@ -1616,7 +1616,7 @@ ${nix.app(formatRules, "session")}
                   settings: nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(config_2, "security", "pam", "zfs"));
                     return {
-                    __proto__: pos$202,
+                    [nix.POS]: pos$202,
                     homes: nix.thunk(() => nix.attr(from, "homes")),
                     nounmount: nix.thunk(() => nix.sel(config_2, "security", "pam", "zfs", "noUnmount")),
                     mount_recursively: nix.thunk(() => nix.sel(config_2, "security", "pam", "zfs", "mountRecursively")),
@@ -1624,146 +1624,146 @@ ${nix.app(formatRules, "session")}
                   })()),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$205,
+                  [nix.POS]: pos$205,
                   name: "mount",
                   enable: nix.thunk(() => nix.sel(cfg, "pamMount")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "pam_mount")}/lib/security/pam_mount.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$204, disable_interactive: true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$204, disable_interactive: true })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$206,
+                  [nix.POS]: pos$206,
                   name: "ldap",
                   enable: use_ldap,
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${pam_ldap}/lib/security/pam_ldap.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$208,
+                  [nix.POS]: pos$208,
                   name: "mysql",
                   enable: nix.thunk(() => nix.sel(cfg, "mysqlAuth")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "pam_mysql")}/lib/security/pam_mysql.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$207, config_file: "/etc/security/pam_mysql.conf" })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$207, config_file: "/etc/security/pam_mysql.conf" })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$209,
+                  [nix.POS]: pos$209,
                   name: "kanidm",
                   enable: nix.thunk(() => nix.sel(config_2, "services", "kanidm", "unix", "enable")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(config_2, "services", "kanidm", "package")}/lib/pam_kanidm.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$210,
+                  [nix.POS]: pos$210,
                   name: "sss",
                   enable: nix.thunk(() => nix.sel(config_2, "services", "sssd", "enable")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "sssd")}/lib/security/pam_sss.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$211,
+                  [nix.POS]: pos$211,
                   name: "krb5",
                   enable: nix.thunk(() => nix.sel(config_2, "security", "pam", "krb5", "enable")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${pam_krb5}/lib/security/pam_krb5.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$212,
+                  [nix.POS]: pos$212,
                   name: "otpw",
                   enable: nix.thunk(() => nix.sel(cfg, "otpwAuth")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "otpw")}/lib/security/pam_otpw.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$213,
+                  [nix.POS]: pos$213,
                   name: "systemd",
                   enable: nix.thunk(() => nix.sel(cfg, "startSession")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(config_2, "systemd", "package")}/lib/security/pam_systemd.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$215,
+                  [nix.POS]: pos$215,
                   name: "xauth",
                   enable: nix.thunk(() => nix.sel(cfg, "forwardXAuth")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${package$}/lib/security/pam_xauth.so`),
                   settings: nix.thunk(() => ({
-                    __proto__: pos$214,
+                    [nix.POS]: pos$214,
                     xauthpath: nix.thunk(() => nix.str`${nix.sel(pkgs, "xauth")}/bin/xauth`),
                     systemuser: 99n,
                   })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$217,
+                  [nix.POS]: pos$217,
                   name: "limits",
                   enable: nix.thunk(() => !nix.eq(nix.sel(cfg, "limits"), [])),
                   control: "required",
                   modulePath: nix.thunk(() => nix.str`${package$}/lib/security/pam_limits.so`),
                   settings: nix.thunk(() => ({
-                    __proto__: pos$216,
+                    [nix.POS]: pos$216,
                     conf: nix.thunk(() => nix.str`${nix.app(makeLimitsConf, nix.thunk(() => nix.sel(cfg, "limits")))}`),
                   })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$219,
+                  [nix.POS]: pos$219,
                   name: "motd",
                   enable: nix.thunk(() => (nix.asBool(nix.sel(cfg, "showMotd")) && nix.asBool((nix.asBool(!nix.eq(nix.sel(config_2, "users", "motd"), "")) || nix.asBool(!nix.eq(nix.sel(config_2, "users", "motdFile"), null)))))),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${package$}/lib/security/pam_motd.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$218, motd: motd })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$218, motd: motd })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$221,
+                  [nix.POS]: pos$221,
                   name: "apparmor",
                   enable: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableAppArmor")) && nix.asBool(nix.sel(config_2, "security", "apparmor", "enable")))),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "apparmor-pam")}/lib/security/pam_apparmor.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$220, order: "user,group,default", debug: true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$220, order: "user,group,default", debug: true })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$223,
+                  [nix.POS]: pos$223,
                   name: "kwallet",
                   enable: nix.thunk(() => nix.sel(cfg, "kwallet", "enable")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(cfg, "kwallet", "package")}/lib/security/pam_kwallet5.so`),
-                  settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "kwallet", "forceRun")), nix.thunk(() => ({ __proto__: pos$222, force_run: true })))),
+                  settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "kwallet", "forceRun")), nix.thunk(() => ({ [nix.POS]: pos$222, force_run: true })))),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$225,
+                  [nix.POS]: pos$225,
                   name: "gnome_keyring",
                   enable: nix.thunk(() => nix.sel(cfg, "enableGnomeKeyring")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "gnome-keyring")}/lib/security/pam_gnome_keyring.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$224, auto_start: true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$224, auto_start: true })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$227,
+                  [nix.POS]: pos$227,
                   name: "oo7",
                   enable: nix.thunk(() => nix.sel(cfg, "oo7", "enable")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "oo7-pam")}/lib/security/pam_oo7.so`),
-                  settings: nix.thunk(() => ({ __proto__: pos$226, auto_start: true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$226, auto_start: true })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$228,
+                  [nix.POS]: pos$228,
                   name: "rosec",
                   enable: nix.thunk(() => nix.sel(cfg, "rosec", "enable")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "rosec")}/lib/security/pam_rosec.so`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$230,
+                  [nix.POS]: pos$230,
                   name: "gnupg",
                   enable: nix.thunk(() => nix.sel(cfg, "gnupg", "enable")),
                   control: "optional",
                   modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "pam_gnupg")}/lib/security/pam_gnupg.so`),
                   settings: nix.thunk(() => ({
-                    __proto__: pos$229,
+                    [nix.POS]: pos$229,
                     "no-autostart": nix.thunk(() => nix.sel(cfg, "gnupg", "noAutostart")),
                   })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$231,
+                  [nix.POS]: pos$231,
                   name: "intune",
                   enable: nix.thunk(() => nix.sel(config_2, "services", "intune", "enable")),
                   control: "optional",
@@ -1792,23 +1792,23 @@ ${nix.app(formatRules, "session")}
     return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$5);
           return {
-            __proto__: pos$240,
+            [nix.POS]: pos$240,
             options: nix.thunk(() => ({
-              __proto__: pos$239,
+              [nix.POS]: pos$239,
               domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$235,
+                  [nix.POS]: pos$235,
                   description: "Username, groupname, or wildcard this limit applies to",
                   example: "@wheel",
                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                 })))),
               type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$236,
+                  [nix.POS]: pos$236,
                   description: "Type of this limit",
                   type: nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["-", "hard", "soft"]))),
                   default: "-",
                 })))),
               item: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$237,
+                  [nix.POS]: pos$237,
                   description: "Item this limit applies to",
                   type: nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => [
                       "core",
@@ -1832,7 +1832,7 @@ ${nix.app(formatRules, "session")}
                     ]))),
                 })))),
               value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$238,
+                  [nix.POS]: pos$238,
                   description: "Value of this limit",
                   type: nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
                       nix.thunk(() => nix.lookup(w_1, "str")),
@@ -1847,9 +1847,9 @@ ${nix.app(formatRules, "session")}
   const optionalSudoConfigForSSHAgentAuth = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(config, "security", "pam", "sshAgentAuth", "enable")) || nix.asBool(nix.sel(config, "security", "pam", "rssh", "enable")))), "# Keep SSH_AUTH_SOCK so that pam_ssh_agent_auth.so and libpam_rssh.so can do their magic.\nDefaults env_keep+=SSH_AUTH_SOCK\n"));
   const enabledServices = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (svc) => nix.sel(svc, "enable"), nix.thunk(() => nix.sel(config, "security", "pam", "services"))));
   return {
-    __proto__: pos$345,
+    [nix.POS]: pos$345,
     meta: nix.thunk(() => ({
-      __proto__: pos$241,
+      [nix.POS]: pos$241,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "majiir"))]),
     })),
     imports: nix.thunk(() => [
@@ -1863,20 +1863,20 @@ ${nix.app(formatRules, "session")}
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["security", "pam", "u2f", "cue"]), nix.thunk(() => ["security", "pam", "u2f", "settings", "cue"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$309,
+      [nix.POS]: pos$309,
       security: nix.thunk(() => ({
-        __proto__: pos$305,
+        [nix.POS]: pos$305,
         pam: nix.thunk(() => ({
-          __proto__: pos$304,
+          [nix.POS]: pos$304,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$242,
+              [nix.POS]: pos$242,
               default: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to enable PAM, or entirely disable it.\n\nUnless you're building a container image, you probably don't want to disable PAM.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "pam", nix.thunk(() => ({})))),
           pam_unixModulePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$243,
+              [nix.POS]: pos$243,
               type: nix.thunk(() => nix.sel(lib, "types", "pathInStore")),
               default: nix.thunk(() => nix.str`${package$}/lib/security/pam_unix.so`),
               defaultText: "${config.security.pam.package}/lib/security/pam_unix.so",
@@ -1884,13 +1884,13 @@ ${nix.app(formatRules, "session")}
               internal: true,
             })))),
           loginLimits: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$246,
+              [nix.POS]: pos$246,
               default: [],
               type: limitsType,
               example: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$244, domain: "ftp", type: "hard", item: "nproc", value: "0" })),
+                nix.thunk(() => ({ [nix.POS]: pos$244, domain: "ftp", type: "hard", item: "nproc", value: "0" })),
                 nix.thunk(() => ({
-                  __proto__: pos$245,
+                  [nix.POS]: pos$245,
                   domain: "@student",
                   type: "-",
                   item: "maxlogins",
@@ -1900,7 +1900,7 @@ ${nix.app(formatRules, "session")}
               description: "Define resource limits that should apply to users or groups.\nEach item in the list should be an attribute set with a\n{var}`domain`, {var}`type`,\n{var}`item`, and {var}`value`\nattribute.  The syntax and semantics of these attributes\nmust be that described in {manpage}`limits.conf(5)`.\n\nNote that these limits do not apply to systemd services,\nwhose limits can be changed via {option}`systemd.settings.Manager`\ninstead.\n",
             })))),
           services: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$247,
+              [nix.POS]: pos$247,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -1909,22 +1909,22 @@ ${nix.app(formatRules, "session")}
               description: "This option defines the PAM services.  A service typically\ncorresponds to a program that uses PAM,\ne.g. {command}`login` or {command}`passwd`.\nEach attribute of this set defines a PAM service, with the attribute name\ndefining the name of the service.\n",
             })))),
           enableLegacySettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$248,
+              [nix.POS]: pos$248,
               default: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Alternative implementations of pam_unix may not support all legacy arguments.\nThis option will disable all known legacy settings.\n::: {.note}\nSetting this option to false will omit arguments, such as `yescrypt`.\nDoing so is only safe if the defaults used by pam_unix are sensible.\n:::\n",
             })))),
           makeHomeDir: nix.thunk(() => ({
-            __proto__: pos$251,
+            [nix.POS]: pos$251,
             skelDirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$249,
+                [nix.POS]: pos$249,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "/var/empty",
                 example: "/etc/skel",
                 description: "Path to skeleton directory whose contents are copied to home\ndirectories newly created by `pam_mkhomedir`.\n",
               })))),
             umask: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$250,
+                [nix.POS]: pos$250,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "0077",
                 example: "0022",
@@ -1932,10 +1932,10 @@ ${nix.app(formatRules, "session")}
               })))),
           })),
           sshAgentAuth: nix.thunk(() => ({
-            __proto__: pos$253,
+            [nix.POS]: pos$253,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "authenticating using a signature performed by the ssh-agent.\nThis allows using SSH keys exclusively, instead of passwords, for instance on remote machines\n")),
             authorizedKeysFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$252,
+                [nix.POS]: pos$252,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.lookup(w_2, "str")));
@@ -1945,17 +1945,17 @@ ${nix.app(formatRules, "session")}
               })))),
           })),
           rssh: nix.thunk(() => ({
-            __proto__: pos$258,
+            [nix.POS]: pos$258,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "authenticating using a signature performed by the ssh-agent")),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$257,
+                [nix.POS]: pos$257,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$256,
+                    [nix.POS]: pos$256,
                     freeformType: moduleSettingsType,
                     options: nix.thunk(() => ({
-                      __proto__: pos$255,
+                      [nix.POS]: pos$255,
                       auth_key_file: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$254,
+                          [nix.POS]: pos$254,
                           type: nix.thunk(() => (() => {
                             const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "nonEmptyStr")));
@@ -1976,16 +1976,16 @@ ${moduleSettingsDescription}
           })),
           enableOTPW: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the OTPW (one-time password) PAM module")),
           dp9ik: nix.thunk(() => ({
-            __proto__: pos$261,
+            [nix.POS]: pos$261,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the dp9ik pam module provided by tlsclient.\n\nIf set, users can be authenticated against the 9front\nauthentication server given in {option}`security.pam.dp9ik.authserver`\n")),
             control: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$259,
+                [nix.POS]: pos$259,
                 default: "sufficient",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "This option sets the pam \"control\" used for this module.\n",
               })))),
             authserver: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$260,
+                [nix.POS]: pos$260,
                 default: null,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -1995,16 +1995,16 @@ ${moduleSettingsDescription}
               })))),
           })),
           howdy: nix.thunk(() => ({
-            __proto__: pos$264,
+            [nix.POS]: pos$264,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$262,
+                [nix.POS]: pos$262,
                 default: nix.thunk(() => nix.sel(config, "services", "howdy", "enable")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.howdy.enable")),
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Whether to enable the Howdy PAM module.\n\nIf set, users can be authenticated using Howdy, the Windows\nHello™-style facial authentication service.\n",
               })))),
             control: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$263,
+                [nix.POS]: pos$263,
                 default: nix.thunk(() => nix.sel(config, "services", "howdy", "control")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.howdy.control")),
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
@@ -2012,9 +2012,9 @@ ${moduleSettingsDescription}
               })))),
           })),
           krb5: nix.thunk(() => ({
-            __proto__: pos$266,
+            [nix.POS]: pos$266,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$265,
+                [nix.POS]: pos$265,
                 default: nix.thunk(() => nix.sel(config, "security", "krb5", "enable")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.krb5.enable")),
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
@@ -2022,43 +2022,43 @@ ${moduleSettingsDescription}
               })))),
           })),
           p11: nix.thunk(() => ({
-            __proto__: pos$269,
+            [nix.POS]: pos$269,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$267,
+                [nix.POS]: pos$267,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Enables P11 PAM (`pam_p11`) module.\n\nIf set, users can log in with SSH keys and PKCS#11 tokens.\n\nMore information can be found [here](https://github.com/OpenSC/pam_p11).\n",
               })))),
             control: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$268,
+                [nix.POS]: pos$268,
                 default: "sufficient",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["required", "requisite", "sufficient", "optional"]))),
                 description: "This option sets pam \"control\".\nIf you want to have multi factor authentication, use \"required\".\nIf you want to use the PKCS#11 device instead of the regular password,\nuse \"sufficient\".\n\nRead\n{manpage}`pam.conf(5)`\nfor better understanding of this option.\n",
               })))),
           })),
           u2f: nix.thunk(() => ({
-            __proto__: pos$284,
+            [nix.POS]: pos$284,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$270,
+                [nix.POS]: pos$270,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Enables U2F PAM (`pam-u2f`) module.\n\nIf set, users listed in\n{file}`$XDG_CONFIG_HOME/Yubico/u2f_keys` (or\n{file}`$HOME/.config/Yubico/u2f_keys` if XDG variable is\nnot set) are able to log in with the associated U2F key. The path can\nbe changed using {option}`security.pam.u2f.authFile` option.\n\nFile format is:\n```\n<username1>:<KeyHandle1>,<UserKey1>,<CoseType1>,<Options1>:<KeyHandle2>,<UserKey2>,<CoseType2>,<Options2>:...\n<username2>:<KeyHandle1>,<UserKey1>,<CoseType1>,<Options1>:<KeyHandle2>,<UserKey2>,<CoseType2>,<Options2>:...\n```\nThis file can be generated using {command}`pamu2fcfg` command.\n\nMore information can be found [here](https://developers.yubico.com/pam-u2f/).\n",
               })))),
             control: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$271,
+                [nix.POS]: pos$271,
                 default: "sufficient",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["required", "requisite", "sufficient", "optional"]))),
                 description: "This option sets pam \"control\".\nIf you want to have multi factor authentication, use \"required\".\nIf you want to use U2F device instead of regular password, use \"sufficient\".\n\nRead\n{manpage}`pam.conf(5)`\nfor better understanding of this option.\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$283,
+                [nix.POS]: pos$283,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$281,
+                    [nix.POS]: pos$281,
                     freeformType: moduleSettingsType,
                     options: nix.thunk(() => ({
-                      __proto__: pos$280,
+                      [nix.POS]: pos$280,
                       authfile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$272,
+                          [nix.POS]: pos$272,
                           default: null,
                           type: nix.thunk(() => (() => {
                             const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -2067,7 +2067,7 @@ ${moduleSettingsDescription}
                           description: "By default `pam-u2f` module reads the keys from\n{file}`$XDG_CONFIG_HOME/Yubico/u2f_keys` (or\n{file}`$HOME/.config/Yubico/u2f_keys` if XDG variable is\nnot set).\n\nIf you want to change auth file locations or centralize database (for\nexample use {file}`/etc/u2f-mappings`) you can set this\noption.\n\nFile format is:\n`username:first_keyHandle,first_public_key: second_keyHandle,second_public_key`\nThis file can be generated using {command}`pamu2fcfg` command.\n\nMore information can be found [here](https://developers.yubico.com/pam-u2f/).\n",
                         })))),
                       appid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$273,
+                          [nix.POS]: pos$273,
                           default: null,
                           type: nix.thunk(() => (() => {
                             const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -2076,7 +2076,7 @@ ${moduleSettingsDescription}
                           description: "By default `pam-u2f` module sets the application\nID to `pam://$HOSTNAME`.\n\nWhen using {command}`pamu2fcfg`, you can specify your\napplication ID with the `-i` flag.\n\nMore information can be found [here](https://developers.yubico.com/pam-u2f/Manuals/pam_u2f.8.html)\n",
                         })))),
                       origin: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$274,
+                          [nix.POS]: pos$274,
                           default: null,
                           type: nix.thunk(() => (() => {
                             const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -2085,19 +2085,19 @@ ${moduleSettingsDescription}
                           description: "By default `pam-u2f` module sets the origin\nto `pam://$HOSTNAME`.\nSetting origin to an host independent value will allow you to\nreuse credentials across machines\n\nWhen using {command}`pamu2fcfg`, you can specify your\napplication ID with the `-o` flag.\n\nMore information can be found [here](https://developers.yubico.com/pam-u2f/Manuals/pam_u2f.8.html)\n",
                         })))),
                       debug: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$275,
+                          [nix.POS]: pos$275,
                           default: false,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           description: "Debug output to stderr.\n",
                         })))),
                       interactive: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$276,
+                          [nix.POS]: pos$276,
                           default: false,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           description: "Set to prompt a message and wait before testing the presence of a U2F device.\nRecommended if your device doesn’t have a tactile trigger.\n",
                         })))),
                       prompt: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$277,
+                          [nix.POS]: pos$277,
                           default: null,
                           type: nix.thunk(() => (() => {
                             const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -2106,7 +2106,7 @@ ${moduleSettingsDescription}
                           description: "Set individual prompt message for interactive mode.\nBy setting this option, you can set a message to be shown by the\n{option}`security.pam.u2f.settings.interactive` option.\n\nRequires {option}`security.pam.u2f.settings.interactive` to be set to `true`.\n",
                         })))),
                       cue_prompt: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$278,
+                          [nix.POS]: pos$278,
                           default: null,
                           type: nix.thunk(() => (() => {
                             const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -2115,7 +2115,7 @@ ${moduleSettingsDescription}
                           description: "Set individual prompt message for cue mode.\nBy setting this option, you can set a message to be shown by the\n{option}`security.pam.u2f.settings.cue` option.\n\nRequires {option}`security.pam.u2f.settings.cue` to be set to `true`.\n",
                         })))),
                       cue: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$279,
+                          [nix.POS]: pos$279,
                           default: false,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           description: "By default `pam-u2f` module does not inform user\nthat he needs to use the u2f device, it just waits without a prompt.\n\nIf you set this option to `true`,\n`cue` option is added to `pam-u2f`\nmodule and reminder message will be displayed.\n",
@@ -2124,7 +2124,7 @@ ${moduleSettingsDescription}
                   })))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$282,
+                  [nix.POS]: pos$282,
                   authfile: "/etc/u2f_keys",
                   authpending_file: "",
                   userpresence: 0n,
@@ -2137,15 +2137,15 @@ ${moduleSettingsDescription}
               })))),
           })),
           ussh: nix.thunk(() => ({
-            __proto__: pos$291,
+            [nix.POS]: pos$291,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$285,
+                [nix.POS]: pos$285,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Enables Uber's USSH PAM (`pam-ussh`) module.\n\nThis is similar to `pam-ssh-agent`, except that\nthe presence of a CA-signed SSH key with a valid principal is checked\ninstead.\n\nNote that this module must both be enabled using this option and on a\nper-PAM-service level as well (using `usshAuth`).\n\nMore information can be found [here](https://github.com/uber/pam-ussh).\n",
               })))),
             caFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$286,
+                [nix.POS]: pos$286,
                 default: null,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -2154,7 +2154,7 @@ ${moduleSettingsDescription}
                 description: "By default `pam-ussh` reads the trusted user CA keys\nfrom {file}`/etc/ssh/trusted_user_ca`.\n\nThis should be set the same as your `TrustedUserCAKeys`\noption for sshd.\n",
               })))),
             authorizedPrincipals: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$287,
+                [nix.POS]: pos$287,
                 default: null,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -2163,7 +2163,7 @@ ${moduleSettingsDescription}
                 description: "Comma-separated list of authorized principals to permit; if the user\npresents a certificate with one of these principals, then they will be\nauthorized.\n\nNote that `pam-ussh` also requires that the certificate\ncontain a principal matching the user's username. The principals from\nthis list are in addition to those principals.\n\nMutually exclusive with `authorizedPrincipalsFile`.\n",
               })))),
             authorizedPrincipalsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$288,
+                [nix.POS]: pos$288,
                 default: null,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -2172,7 +2172,7 @@ ${moduleSettingsDescription}
                 description: "Path to a list of principals; if the user presents a certificate with\none of these principals, then they will be authorized.\n\nNote that `pam-ussh` also requires that the certificate\ncontain a principal matching the user's username. The principals from\nthis file are in addition to those principals.\n\nMutually exclusive with `authorizedPrincipals`.\n",
               })))),
             group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$289,
+                [nix.POS]: pos$289,
                 default: null,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -2181,74 +2181,74 @@ ${moduleSettingsDescription}
                 description: "If set, then the authenticating user must be a member of this group\nto use this module.\n",
               })))),
             control: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$290,
+                [nix.POS]: pos$290,
                 default: "sufficient",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["required", "requisite", "sufficient", "optional"]))),
                 description: "This option sets pam \"control\".\nIf you want to have multi factor authentication, use \"required\".\nIf you want to use the SSH certificate instead of the regular password,\nuse \"sufficient\".\n\nRead\n{manpage}`pam.conf(5)`\nfor better understanding of this option.\n",
               })))),
           })),
           yubico: nix.thunk(() => ({
-            __proto__: pos$298,
+            [nix.POS]: pos$298,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$292,
+                [nix.POS]: pos$292,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Enables Yubico PAM (`yubico-pam`) module.\n\nIf set, users listed in\n{file}`~/.yubico/authorized_yubikeys`\nare able to log in with the associated Yubikey tokens.\n\nThe file must have only one line:\n`username:yubikey_token_id1:yubikey_token_id2`\nMore information can be found [here](https://developers.yubico.com/yubico-pam/).\n",
               })))),
             control: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$293,
+                [nix.POS]: pos$293,
                 default: "sufficient",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["required", "requisite", "sufficient", "optional"]))),
                 description: "This option sets pam \"control\".\nIf you want to have multi factor authentication, use \"required\".\nIf you want to use Yubikey instead of regular password, use \"sufficient\".\n\nRead\n{manpage}`pam.conf(5)`\nfor better understanding of this option.\n",
               })))),
             id: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$294,
+                [nix.POS]: pos$294,
                 example: "42",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "client id",
               })))),
             debug: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$295,
+                [nix.POS]: pos$295,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Debug output to stderr.\n",
               })))),
             mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$296,
+                [nix.POS]: pos$296,
                 default: "client",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["client", "challenge-response"]))),
                 description: "Mode of operation.\n\nUse \"client\" for online validation with a YubiKey validation service such as\nthe YubiCloud.\n\nUse \"challenge-response\" for offline validation using YubiKeys with HMAC-SHA-1\nChallenge-Response configurations. See the man-page {manpage}`ykpamcfg(1)` for further\ndetails on how to configure offline Challenge-Response validation.\n\nMore information can be found [here](https://developers.yubico.com/yubico-pam/Authentication_Using_Challenge-Response.html).\n",
               })))),
             challengeResponsePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$297,
+                [nix.POS]: pos$297,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 description: "If not null, set the path used by yubico pam module where the challenge expected response is stored.\n\nMore information can be found [here](https://developers.yubico.com/yubico-pam/Authentication_Using_Challenge-Response.html).\n",
               })))),
           })),
           zfs: nix.thunk(() => ({
-            __proto__: pos$303,
+            [nix.POS]: pos$303,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$299,
+                [nix.POS]: pos$299,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Enable unlocking and mounting of encrypted ZFS home dataset at login.\n",
               })))),
             homes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$300,
+                [nix.POS]: pos$300,
                 example: "rpool/home",
                 default: "rpool/home",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Prefix of home datasets. This value will be concatenated with\n`\"/\" + <username>` in order to determine the home dataset to unlock.\n",
               })))),
             noUnmount: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$301,
+                [nix.POS]: pos$301,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Do not unmount home dataset on logout.\n",
               })))),
             mountRecursively: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$302,
+                [nix.POS]: pos$302,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Mount child datasets of home dataset.\n",
@@ -2259,16 +2259,16 @@ ${moduleSettingsDescription}
         })),
       })),
       users: nix.thunk(() => ({
-        __proto__: pos$308,
+        [nix.POS]: pos$308,
         motd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$306,
+            [nix.POS]: pos$306,
             default: "",
             example: "Today is Sweetmorn, the 4th day of The Aftermath in the YOLD 3178.",
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             description: "Message of the day shown to users when they log in.",
           })))),
         motdFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$307,
+            [nix.POS]: pos$307,
             default: null,
             example: "/etc/motd",
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
@@ -2277,20 +2277,20 @@ ${moduleSettingsDescription}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "security", "pam", "enable")), nix.thunk(() => ({
-        __proto__: pos$344,
+        [nix.POS]: pos$344,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$310,
+            [nix.POS]: pos$310,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(config, "users", "motd"), "")) || nix.asBool(nix.eq(nix.sel(config, "users", "motdFile"), null)))),
             message: "Only one of users.motd and users.motdFile can be set.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$311,
+            [nix.POS]: pos$311,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "security", "pam", "zfs", "enable")) || nix.asBool(nix.sel(config, "boot", "zfs", "enabled")))),
             message: "`security.pam.zfs.enable` requires enabling ZFS (`boot.zfs.enabled`).\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$312,
+            [nix.POS]: pos$312,
             assertion: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.sel(config, "security", "pam", "sshAgentAuth")), null);
               return (!nix.asBool(nix.lookup(w_2, "enable")) || nix.asBool(!nix.eq(nix.lookup(w_2, "authorizedKeysFiles"), [])));
@@ -2298,7 +2298,7 @@ ${moduleSettingsDescription}
             message: "`security.pam.enableSSHAgentAuth` requires `services.openssh.authorizedKeysFiles` to be a non-empty list.\nDid you forget to set `services.openssh.enable` ?\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$313,
+            [nix.POS]: pos$313,
             assertion: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.sel(config, "security", "pam", "rssh")), null);
               return (!nix.asBool(nix.lookup(w_2, "enable")) || nix.asBool((nix.asBool(!nix.eq(nix.selOr(nix.lookup(w_2, "settings"), () => null, "auth_key_file"), null)) || nix.asBool(!nix.eq(nix.selOr(nix.lookup(w_2, "settings"), () => null, "authorized_keys_command"), null)))));
@@ -2314,27 +2314,27 @@ ${moduleSettingsDescription}
             return (nix.asBool((nix.asBool(nix.lookup(w_3, "enable")) && nix.asBool(!nix.eq(nix.selOr(nix.lookup(w_3, "settings"), () => null, "auth_key_file"), null)))) && nix.asBool(!nix.eq(nix.selOr(nix.lookup(w_3, "settings"), () => null, "authorized_keys_command"), null)));
           })()), "security.pam.rssh.settings.auth_key_file will be ignored as\nsecurity.pam.rssh.settings.authorized_keys_command has been specified.\nExplictly set the former to null to silence this warning.\n"))),
         environment: nix.thunk(() => ({
-          __proto__: pos$317,
+          [nix.POS]: pos$317,
           systemPackages: nix.thunk(() => nix.concat([package$], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "users", "ldap", "enable")), pam_ldap), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "services", "kanidm", "unix", "enable")), nix.thunk(() => nix.sel(config, "services", "kanidm", "package"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "services", "sssd", "enable")), nix.thunk(() => nix.sel(pkgs, "sssd"))), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "security", "pam", "krb5", "enable")), nix.thunk(() => [pam_krb5, pam_ccreds])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "security", "pam", "enableOTPW")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "otpw"))])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "security", "pam", "oath", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "oath-toolkit"))])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "security", "pam", "p11", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pam_p11"))])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "security", "pam", "enableFscrypt")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "fscrypt"))])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "security", "pam", "u2f", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pam_u2f"))])))))))))))),
           etc: nix.thunk(() => (() => {
             const pamd = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "pam.d", nix.thunk(() => ({
-                __proto__: pos$314,
+                [nix.POS]: pos$314,
                 __structuredAttrs: true,
                 services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (svc) => nix.sel(svc, "text"), enabledServices)),
               })), "mkdir $out\nfor i in \"${!services[@]}\"; do\n  printf '%s' \"${services[$i]}\" > \"$out/$i\"\ndone\n"));
             return nix.app(nix.sel(lib, "mapAttrs'"), (name) => (service) => ({
-                __proto__: pos$316,
+                [nix.POS]: pos$316,
                 name: nix.thunk(() => nix.str`pam.d/${name}`),
-                value: nix.thunk(() => ({ __proto__: pos$315, source: nix.thunk(() => nix.str`${pamd}/${name}`) })),
+                value: nix.thunk(() => ({ [nix.POS]: pos$315, source: nix.thunk(() => nix.str`${pamd}/${name}`) })),
               }), enabledServices);
           })()),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$338,
+          [nix.POS]: pos$338,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$319,
+            [nix.POS]: pos$319,
             unix_chkpwd: nix.thunk(() => ({
-              __proto__: pos$318,
+              [nix.POS]: pos$318,
               setuid: true,
               owner: "root",
               group: "root",
@@ -2342,29 +2342,29 @@ ${moduleSettingsDescription}
             })),
           })),
           pam: nix.thunk(() => ({
-            __proto__: pos$333,
+            [nix.POS]: pos$333,
             services: nix.thunk(() => nix.update({
-              __proto__: pos$331,
+              [nix.POS]: pos$331,
               other: nix.thunk(() => ({
-                __proto__: pos$323,
+                [nix.POS]: pos$323,
                 useDefaultRules: false,
                 rules: nix.thunk(() => (() => {
                   const rules = nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$320,
+                        [nix.POS]: pos$320,
                         name: "warn",
                         control: "required",
                         modulePath: nix.thunk(() => nix.str`${package$}/lib/security/pam_warn.so`),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$321,
+                        [nix.POS]: pos$321,
                         name: "deny",
                         control: "required",
                         modulePath: nix.thunk(() => nix.str`${package$}/lib/security/pam_deny.so`),
                       })),
                     ])));
                   return {
-                    __proto__: pos$322,
+                    [nix.POS]: pos$322,
                     auth: rules,
                     account: rules,
                     password: rules,
@@ -2373,33 +2373,33 @@ ${moduleSettingsDescription}
                 })()),
               })),
               i3lock: nix.thunk(() => ({
-                __proto__: pos$324,
+                [nix.POS]: pos$324,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "programs", "i3lock", "enable")))),
               })),
               "i3lock-color": nix.thunk(() => ({
-                __proto__: pos$325,
+                [nix.POS]: pos$325,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "programs", "i3lock", "enable")))),
               })),
               vlock: nix.thunk(() => ({
-                __proto__: pos$326,
+                [nix.POS]: pos$326,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "console", "enable")))),
               })),
               xlock: nix.thunk(() => ({
-                __proto__: pos$327,
+                [nix.POS]: pos$327,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "services", "xserver", "enable")))),
               })),
               xscreensaver: nix.thunk(() => ({
-                __proto__: pos$328,
+                [nix.POS]: pos$328,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "services", "xscreensaver", "enable")))),
               })),
-              runuser: nix.thunk(() => ({ __proto__: pos$329, rootOK: true, unixAuth: false, setEnvironment: false })),
-              "runuser-l": nix.thunk(() => ({ __proto__: pos$330, rootOK: true, unixAuth: false })),
-            }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "security", "pam", "enableFscrypt")), nix.thunk(() => ({ __proto__: pos$332, fscrypt: nix.thunk(() => ({})) }))))),
+              runuser: nix.thunk(() => ({ [nix.POS]: pos$329, rootOK: true, unixAuth: false, setEnvironment: false })),
+              "runuser-l": nix.thunk(() => ({ [nix.POS]: pos$330, rootOK: true, unixAuth: false })),
+            }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "security", "pam", "enableFscrypt")), nix.thunk(() => ({ [nix.POS]: pos$332, fscrypt: nix.thunk(() => ({})) }))))),
           })),
           apparmor: nix.thunk(() => ({
-            __proto__: pos$335,
+            [nix.POS]: pos$335,
             includes: nix.thunk(() => ({
-              __proto__: pos$334,
+              [nix.POS]: pos$334,
               "abstractions/pam": nix.thunk(() => nix.add(nix.app(concatMapStrings, (name) => nix.str`r ${nix.sel(config, "environment", "etc", nix.key(nix.str`pam.d/${name}`), "source")},
 `, nix.thunk(() => nix.app(attrNames, enabledServices))), (() => {
                 const types = nix.thunk(() => nix.app(concatMap, attrValues, nix.thunk(() => nix.app(catAttrs, "rules", nix.thunk(() => nix.app(attrValues, enabledServices))))));
@@ -2411,24 +2411,24 @@ ${moduleSettingsDescription}
               })())),
             })),
           })),
-          sudo: nix.thunk(() => ({ __proto__: pos$336, extraConfig: optionalSudoConfigForSSHAgentAuth })),
-          "sudo-rs": nix.thunk(() => ({ __proto__: pos$337, extraConfig: optionalSudoConfigForSSHAgentAuth })),
+          sudo: nix.thunk(() => ({ [nix.POS]: pos$336, extraConfig: optionalSudoConfigForSSHAgentAuth })),
+          "sudo-rs": nix.thunk(() => ({ [nix.POS]: pos$337, extraConfig: optionalSudoConfigForSSHAgentAuth })),
         })),
         systemd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "any"), (service) => nix.sel(service, "lastlog", "enable"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(config, "security", "pam", "services")))))), nix.thunk(() => ({
-            __proto__: pos$343,
+            [nix.POS]: pos$343,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$339,
+              [nix.POS]: pos$339,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "util-linux", "lastlog"))]),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$342,
+              [nix.POS]: pos$342,
               "lastlog2-import": nix.thunk(() => ({
-                __proto__: pos$341,
+                [nix.POS]: pos$341,
                 enable: true,
                 wantedBy: nix.thunk(() => ["default.target"]),
                 after: nix.thunk(() => ["local-fs.target", "systemd-tmpfiles-setup.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$340,
+                  [nix.POS]: pos$340,
                   ExecStartPost: nix.thunk(() => [
                     "",
                     nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "mv")} /var/log/lastlog /var/log/lastlog.migrated`),

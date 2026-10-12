@@ -22,23 +22,23 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const writeScript = nix.thunk(() => nix.attr(pkgs, "writeScript"));
-  const pkgs2storeContents = nix.thunk(() => nix.app(nix.builtins.map, (x) => ({ __proto__: pos$1, object: x, symlink: "none" })));
+  const pkgs2storeContents = nix.thunk(() => nix.app(nix.builtins.map, (x) => ({ [nix.POS]: pos$1, object: x, symlink: "none" })));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     imports: nix.thunk(() => [
       nix.path(here, "../installer/cd-dvd/channel.nix"),
       nix.path(here, "./minimal.nix"),
       nix.path(here, "./clone-config.nix"),
     ]),
     system: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       build: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tarball: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../../lib/make-system-tarball.nix"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             contents: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 source: nix.thunk(() => nix.str`${nix.sel(config, "system", "build", "toplevel")}/.`),
                 target: "./",
               })),
@@ -57,16 +57,16 @@ export default nix.lambda((args) => (() => {
 `))),
       })),
     })),
-    boot: nix.thunk(() => ({ __proto__: pos$6, isContainer: true })),
+    boot: nix.thunk(() => ({ [nix.POS]: pos$6, isContainer: true })),
     systemd: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "register-nix-paths": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           description: "Register Nix Store Paths",
           unitConfig: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             DefaultDependencies: false,
             ConditionPathExists: "/nix-path-registration",
           })),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
           after: nix.thunk(() => ["local-fs.target"]),
           conflicts: nix.thunk(() => ["shutdown.target"]),
           restartIfChanged: false,
-          serviceConfig: nix.thunk(() => ({ __proto__: pos$8, Type: "oneshot", RemainAfterExit: true })),
+          serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$8, Type: "oneshot", RemainAfterExit: true })),
           script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "nix", "package", "out")), "nix-store")} --load-db < /nix-path-registration
 rm /nix-path-registration
 

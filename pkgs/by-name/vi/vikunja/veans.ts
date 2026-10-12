@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "veans",
       src: src,
       version: version,
       __structuredAttrs: true,
       modRoot: "veans",
       vendorHash: "sha256-cCRPfJDZXIlufMg3SkqtI7Hb5Dphu2Eofxuls3eSS+Q=",
-      env: nix.thunk(() => ({ __proto__: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         nix.thunk(() => nix.str`-X main.version=v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd veans \\\n  --bash <($out/bin/veans completion bash) \\\n  --zsh <($out/bin/veans completion zsh) \\\n  --fish <($out/bin/veans completion fish)\n")),
       doCheck: false,
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A beans-shaped CLI for Vikunja",
         homepage: "https://vikunja.io/docs/veans/",
         mainProgram: "veans",

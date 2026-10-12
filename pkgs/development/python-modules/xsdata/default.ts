@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tefra",
           repo: "xsdata",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             ruff: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ruff)),
           })))),
       ]);
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         cli: nix.thunk(() => [click, jinja2, toposort]),
         lxml: nix.thunk(() => [lxml]),
         soap: nix.thunk(() => [requests]),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         "xsdata.utils.text",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Naive XML & JSON bindings for Python",
         mainProgram: "xsdata",
         homepage: "https://github.com/tefra/xsdata",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fsuae",
       version: "3.2.35",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FrodeSolheim",
           repo: "fs-uae",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       postFixup: "strip-nondeterminism --type zip $out/share/fs-uae/fs-uae.dat\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://fs-uae.net",
         description: "Accurate, customizable Amiga Emulator",
         longDescription: "FS-UAE integrates the most accurate Amiga emulation code available from\nWinUAE. FS-UAE emulates A500, A500+, A600, A1200, A1000, A3000 and A4000\nmodels, but you can tweak the hardware configuration and create customized\nAmigas.\n",

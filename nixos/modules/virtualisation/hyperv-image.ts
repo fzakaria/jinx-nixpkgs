@@ -32,29 +32,29 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "hyperv"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     imports: nix.thunk(() => [
       nix.path(here, "./disk-size-option.nix"),
       nix.path(here, "../image/file-options.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sinceRelease: 2411n,
           from: nix.thunk(() => ["hyperv", "baseImageSize"]),
           to: nix.thunk(() => ["virtualisation", "diskSize"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           sinceRelease: 2505n,
           from: nix.thunk(() => ["virtualisation", "hyperv", "vmFileName"]),
           to: nix.thunk(() => ["image", "fileName"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       hyperv: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         vmDerivationName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: nix.thunk(() => nix.str`nixos-hyperv-${nix.sel(config, "system", "nixos", "label")}-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}`),
             description: "The name of the derivation for the hyper-v appliance.\n",
@@ -62,22 +62,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         diskSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 1490n, nix.thunk(() => nix.mul(4n, 1024n)))),
-        hypervGuest: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+        hypervGuest: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$11,
-        nixos: nix.thunk(() => ({ __proto__: pos$8, tags: nix.thunk(() => ["hyperv"]) })),
+        [nix.POS]: pos$11,
+        nixos: nix.thunk(() => ({ [nix.POS]: pos$8, tags: nix.thunk(() => ["hyperv"]) })),
         build: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           image: nix.thunk(() => nix.sel(config, "system", "build", "hypervImage")),
           hypervImage: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../lib/make-disk-image.nix"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "virtualisation"));
               return {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               name: nix.thunk(() => nix.sel(cfg, "vmDerivationName")),
               baseName: nix.thunk(() => nix.sel(config, "image", "baseName")),
               postVM: nix.thunk(() => nix.str`${nix.sel(pkgs, "vmTools", "qemu")}/bin/qemu-img convert -f raw -o subformat=dynamic -O vhdx $diskImage $out/${nix.sel(config, "image", "fileName")}
@@ -93,24 +93,24 @@ rm $diskImage
             })()))),
         })),
       })),
-      image: nix.thunk(() => ({ __proto__: pos$12, extension: "vhdx" })),
+      image: nix.thunk(() => ({ [nix.POS]: pos$12, extension: "vhdx" })),
       fileSystems: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "/": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           device: "/dev/disk/by-label/nixos",
           autoResize: true,
           fsType: "ext4",
         })),
-        "/boot": nix.thunk(() => ({ __proto__: pos$14, device: "/dev/disk/by-label/ESP", fsType: "vfat" })),
+        "/boot": nix.thunk(() => ({ [nix.POS]: pos$14, device: "/dev/disk/by-label/ESP", fsType: "vfat" })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         growPartition: true,
         loader: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           grub: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             device: "nodev",
             efiSupport: true,
             efiInstallAsRemovable: true,

@@ -21,21 +21,21 @@ const pos$13 = nix.positions(here + "/containers-ip.nix", [["name", 19, 3], ["me
 
 export default nix.thunk(() => (() => {
   const webserverFor = (hostAddress) => (localAddress) => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     hostAddress: hostAddress,
     localAddress: localAddress,
     privateNetwork: true,
     config: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
-        httpd: nix.thunk(() => ({ __proto__: pos$1, enable: true, adminAddr: "foo@example.org" })),
+        [nix.POS]: pos$2,
+        httpd: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, adminAddr: "foo@example.org" })),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$4,
-        firewall: nix.thunk(() => ({ __proto__: pos$3, allowedTCPPorts: nix.thunk(() => [80n]) })),
+        [nix.POS]: pos$4,
+        firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedTCPPorts: nix.thunk(() => [80n]) })),
       })),
-      nix: nix.thunk(() => ({ __proto__: pos$5, enable: false })),
+      nix: nix.thunk(() => ({ [nix.POS]: pos$5, enable: false })),
     })),
   });
   return nix.lambda((args) => (() => {
@@ -43,29 +43,29 @@ export default nix.thunk(() => (() => {
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       name: "containers-ipv4-ipv6",
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "aszlig"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               writableStore: true,
               additionalPaths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "stdenv"))]),
             })),
             containers: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               webserver4: nix.thunk(() => nix.app(webserverFor, "10.231.136.1", "10.231.136.2")),
               webserver6: nix.thunk(() => nix.app(webserverFor, "fc00::2", "fc00::1")),
             })),

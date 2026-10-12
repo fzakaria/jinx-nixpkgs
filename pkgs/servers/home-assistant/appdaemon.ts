@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.5.13";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AppDaemon",
           repo: "appdaemon",
           tag: version,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = nix.thunk(() => nix.str`$out/bin/appdaemon -v | grep -q "${version}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sandboxed Python execution environment for writing automation apps for Home Assistant",
         mainProgram: "appdaemon",
         homepage: "https://github.com/AppDaemon/appdaemon",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "home-assistant"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const parinfer_rust = nix.arg($, "parinfer-rust");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "clojure-mcp-light",
       version: "0.2.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bhauman",
           repo: "clojure-mcp-light",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,17 +40,17 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => (() => {
         const scripts = nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "clj-nrepl-eval",
             module: "clojure-mcp-light.nrepl-eval",
           })),
           nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "clj-paren-repair",
             module: "clojure-mcp-light.paren-repair",
           })),
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "clj-paren-repair-claude-hook",
             module: "clojure-mcp-light.hook",
           })),
@@ -75,11 +75,11 @@ runHook postInstall
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Simple Clojure tooling for AI coding assistants",
         homepage: "https://github.com/bhauman/clojure-mcp-light",
         changelog: nix.thunk(() => nix.str`https://github.com/bhauman/clojure-mcp-light/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

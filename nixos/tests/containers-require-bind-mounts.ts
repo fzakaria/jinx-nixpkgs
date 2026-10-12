@@ -20,35 +20,35 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "containers-require-bind-mounts",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "kira-bruneau"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         containers: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "require-bind-mounts": nix.thunk(() => ({
-            __proto__: pos$5,
-            bindMounts: nix.thunk(() => ({ __proto__: pos$2, "/srv/data": nix.thunk(() => ({})) })),
+            [nix.POS]: pos$5,
+            bindMounts: nix.thunk(() => ({ [nix.POS]: pos$2, "/srv/data": nix.thunk(() => ({})) })),
             config: nix.thunk(() => ({
-              __proto__: pos$4,
-              nix: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
+              [nix.POS]: pos$4,
+              nix: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
             })),
           })),
         })),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           fileSystems: nix.thunk(() => ({
-            __proto__: pos$8,
-            "/srv/data": nix.thunk(() => ({ __proto__: pos$7, fsType: "tmpfs", options: nix.thunk(() => ["noauto"]) })),
+            [nix.POS]: pos$8,
+            "/srv/data": nix.thunk(() => ({ [nix.POS]: pos$7, fsType: "tmpfs", options: nix.thunk(() => ["noauto"]) })),
           })),
         })),
       })),

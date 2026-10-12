@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "confluencepot",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SIFalcon",
           repo: "confluencePot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "mv $out/bin/confluencePot $out/bin/confluencepot\n")),
       preFixup: "# Install HTML file\ninstall -vD confluence.html -t $out/share\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Honeypot for the Atlassian Confluence OGNL injection vulnerability",
         homepage: "https://github.com/SIFalcon/confluencePot",
         longDescription: "ConfluencePot is a simple honeypot for the Atlassian Confluence unauthenticated\nand remote OGNL injection vulnerability (CVE-2022-26134).\n",

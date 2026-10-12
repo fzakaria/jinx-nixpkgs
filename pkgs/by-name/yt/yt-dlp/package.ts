@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.08.19";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yt-dlp",
           repo: "yt-dlp",
           tag: version,
@@ -64,7 +64,7 @@ substituteInPlace yt_dlp/utils/_jsruntime.py \\
       const nativeBuildInputs = nix.thunk(() => [installShellFiles, pandoc]);
       const dependencies = nix.thunk(() => nix.concat(nix.sel(optional_dependencies, "default"), nix.concat(nix.sel(optional_dependencies, "curl-cffi"), nix.app(nix.sel(lib, "optionals"), withSecretStorage, nix.thunk(() => nix.sel(optional_dependencies, "secretstorage"))))));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         default: nix.thunk(() => (() => {
           const w_1 = nix.withScope(python3Packages, null);
           return [
@@ -99,12 +99,12 @@ substituteInPlace yt_dlp/utils/_jsruntime.py \\
       const checkPhase = "# Check for \"unsupported\" string in yt-dlp -v output.\noutput=$($out/bin/yt-dlp -v 2>&1 || true)\nif echo $output | grep -q \"unsupported\"; then\n  echo \"ERROR: Found \\\"unsupported\\\" string in yt-dlp -v output.\"\n  exit 1\nfi\n";
       const postInstall = nix.thunk(() => nix.add("installManPage yt-dlp.1\n\ninstallShellCompletion \\\n  --bash completions/bash/yt-dlp \\\n  --fish completions/fish/yt-dlp.fish \\\n  --zsh completions/zsh/_yt-dlp\n\ninstall -Dm644 Changelog.md README.md -t \"$doc/share/doc/yt_dlp\"\n", nix.app(nix.sel(lib, "optionalString"), withAlias, "ln -s \"$out/bin/yt-dlp\" \"$out/bin/youtube-dl\"\n")));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs'"), nix.thunk(() => [nodejs, bun, quickjs, quickjs_ng]), (runtime) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(runtime, "pname")), nix.thunk(() => nix.app(nix.sel(yt_dlp, "override"), nix.thunk(() => ({ __proto__: pos$3, jsRuntime: runtime }))))))),
+        tests: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs'"), nix.thunk(() => [nodejs, bun, quickjs, quickjs_ng]), (runtime) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(runtime, "pname")), nix.thunk(() => nix.app(nix.sel(yt_dlp, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, jsRuntime: runtime }))))))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/yt-dlp/yt-dlp/blob/${version}/Changelog.md`),
         description: "Feature-rich command-line audio/video downloader",
         homepage: "https://github.com/yt-dlp/yt-dlp/",
@@ -120,7 +120,7 @@ substituteInPlace yt_dlp/utils/_jsruntime.py \\
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

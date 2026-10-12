@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sqlauncher",
       version: "0.0.0-unstable-2025-12-30",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ItsZariep",
           repo: "SQLauncher",
           rev: "4a82d0f5d1394f3ff850297939b62357f7f3ce0f",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtbase"))]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp sqlauncher $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple QT6 Program Launcher",
         homepage: "https://codeberg.org/ItsZariep/SQLauncher",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

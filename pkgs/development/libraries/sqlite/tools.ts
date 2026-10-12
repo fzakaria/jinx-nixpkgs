@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         const src = nix.thunk(() => (() => {
           nix.assert_(nix.eq(version, nix.sel(sqlite, "version")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/libraries/sqlite/tools.nix:26:9");
           return nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://sqlite.org/2026/sqlite-src-${nix.app(archiveVersion, version)}.zip`),
               hash: "sha256-u4C/ijv/wZJBzoq6WkvHTpw5gAE8sLXw8JdqmVFpQq8=",
             })));
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         const makeFlags = nix.thunk(() => [makeTarget]);
         const installPhase = nix.thunk(() => nix.str`install -Dt $out/bin ${makeTarget}`);
         const meta = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: description,
           homepage: homepage,
           mainProgram: mainProgram,
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         }));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: pname_1,
           version,
           src,
@@ -70,9 +70,9 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     sqldiff: nix.thunk(() => nix.app(mkTool, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "sqldiff",
         makeTarget: "sqldiff",
         description: "Tool that displays the differences between SQLite databases",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sqldiff",
       })))),
     "sqlite-analyzer": nix.thunk(() => nix.app(mkTool, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "sqlite-analyzer",
         makeTarget: "sqlite3_analyzer",
         description: "Tool that shows statistics about SQLite databases",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sqlite3_analyzer",
       })))),
     "sqlite-rsync": nix.thunk(() => nix.app(mkTool, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "sqlite-rsync",
         makeTarget: "sqlite3_rsync",
         description: "Database remote-copy tool for SQLite",

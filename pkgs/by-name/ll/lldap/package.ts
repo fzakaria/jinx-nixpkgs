@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const staticAssetsHash = nix.argOr($, "staticAssetsHash", () => "sha256-xVbHD9s3ofbtHCDvjYwmsWXDEJ9z9vRxQDRR6pW6rt8=");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "lldap",
       version: "0.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lldap",
           repo: "lldap",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-GhSoPDMsWRuW6SYS/QTPgsA7fBFup5C5+DBqnlFqwlQ=",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-cargo-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -54,9 +54,9 @@ export default nix.lambda((args) => (() => {
   --set LLDAP_ASSETS_PATH ${nix.sel(finalAttrs, "finalPackage", "frontend")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         frontend: nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             cargoDeps: nix.thunk(() => nix.attr(finalAttrs, "cargoDeps")),
@@ -82,21 +82,21 @@ runHook postInstall
             doCheck: false,
           })))),
         staticAssets: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-static-assets`), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             outputHash: staticAssetsHash,
             outputHashAlgo: "sha256",
             outputHashMode: "recursive",
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             nativeBuildInputs: nix.thunk(() => [curl]),
             env: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
             })),
           })), "mkdir $out\nmkdir $out/fonts\nfor file in $(cat $src/app/static/libraries.txt); do\n  curl $file --location --remote-name --output-dir $out\ndone\nfor file in $(cat $src/app/static/fonts/fonts.txt); do\n  curl $file --location --remote-name --output-dir $out/fonts\ndone\n")),
-        tests: nix.thunk(() => ({ __proto__: pos$6, lldap: nix.thunk(() => nix.attr(nixosTests, "lldap")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$6, lldap: nix.thunk(() => nix.attr(nixosTests, "lldap")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication",
         homepage: "https://github.com/lldap/lldap",
         changelog: nix.thunk(() => nix.str`https://github.com/lldap/lldap/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

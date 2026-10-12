@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fixedsys-excelsior";
       const version = "3.00";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://raw.githubusercontent.com/chrissimpkins/codeface/master/fonts/fixed-sys-excelsior/FSEX300.ttf",
           hash: "sha256-buDzVzvF4z6TthbvYoL0m8DiJ6Map1Osdu0uPz0CBW0=",
         }))));
@@ -28,14 +28,14 @@ install -m444 -D $src $out/share/fonts/truetype/${pname}-${version}.ttf
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.fixedsysexcelsior.com/",
         description: "Pan-unicode version of Fixedsys, a classic DOS font",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "picnoir"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, dontUnpack, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, dontUnpack, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       strictDeps: true,
       __structuredAttrs: true,
       pname: "stillcolor",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/aiaf/Stillcolor/releases/download/v${nix.sel(finalAttrs, "version")}/Stillcolor-v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-ojs5EvrH4FVWHV6VXOhQmpfH69Zmy0PGMZnEO751pi8=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications/Stillcolor.app\ncp -R . $out/Applications/Stillcolor.app/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Disable temporal dithering on your Mac with this lightweight menu bar app. Designed for Apple silicon Macs.",
         downloadPage: "https://github.com/aiaf/Stillcolor/releases",
         homepage: "https://github.com/aiaf/Stillcolor",

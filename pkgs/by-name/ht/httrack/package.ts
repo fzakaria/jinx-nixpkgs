@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "httrack",
       version: "3.50.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/xroche/httrack/releases/download/${nix.sel(finalAttrs, "version")}/httrack-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ZE1OwOSK1ZbazX+AF7aNij8d/BQChLQStTCG59FmTp0=",
         })))),
       buildInputs: nix.thunk(() => [libiconv, openssl, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easy-to-use offline browser / website mirroring utility",
         homepage: "https://www.httrack.com",
         changelog: nix.thunk(() => nix.str`https://github.com/xroche/httrack/releases/tag/${nix.sel(finalAttrs, "version")}`),

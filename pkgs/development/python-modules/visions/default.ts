@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dylan-profiler",
           repo: "visions",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [attrs, multimethod, networkx, numpy, pandas, puremagic]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "type-geometry": nix.thunk(() => [shapely]),
         "type-image-path": nix.thunk(() => [imagehash, pillow]),
         plotting: nix.thunk(() => [matplotlib, pydot, pygraphviz]),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["visions"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Type system for data analysis in Python",
         homepage: "https://dylan-profiler.github.io/visions",
         downloadPage: "https://github.com/dylan-profiler/visions",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

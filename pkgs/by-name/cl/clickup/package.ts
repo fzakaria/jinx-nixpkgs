@@ -25,20 +25,20 @@ export default nix.lambda((args) => (() => {
   const pname = "clickup";
   const version = "3.5.262";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://web.archive.org/web/20260727110257/https://desktop.clickup.com/linux",
       hash: "sha256-8stmEBpvU75JSMBZCjcObLndq+51bqTYb0PK1Yypudc=",
     }))));
   const appimage = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       src: src,
       extraPkgs: (pkgs) => [nix.thunk(() => nix.sel(pkgs, "libxkbfile"))],
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$3, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: appimage,
@@ -67,16 +67,16 @@ wrapProgram $out/bin/${pname} \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "update-clickup",
               runtimeInputs: nix.thunk(() => [curl, common_updater_scripts]),
               text: "upstream_version=\"$(curl --silent --location --range 0-0 --dump-header - --output /dev/null https://desktop.clickup.com/linux | grep --only-matching --extended-regexp '[0-9]+\\.[0-9]+\\.[0-9]+')\"\n\ncurrent_version=\"$(nix-instantiate --eval --strict -A clickup.version | tr -d '\"')\"\n\nif [[ \"$current_version\" = \"$upstream_version\" ]]; then\n  echo \"clickup is already up-to-date at $current_version\"\n  exit 0\nfi\n\necho \"Updating clickup from $current_version to $upstream_version\"\n\necho \"Saving new version to archive.org...\"\narchived_url=\"$(curl --silent --max-time 600 --output /dev/null --dump-header - \"https://web.archive.org/save/https://desktop.clickup.com/linux\" | grep --ignore-case '^location:' | tr -d '\\r' | cut -d' ' -f2)\"\n\nif [[ -z \"$archived_url\" || \"$archived_url\" != *\"web.archive.org/web/\"* ]]; then\n  echo \"error: failed to archive URL on archive.org\" >&2\n  exit 1\nfi\n\nupdate-source-version clickup \"$upstream_version\" \"\" \"$archived_url\" \\\n  --source-key=src.src\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "All in one project management solution",
         homepage: "https://clickup.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -30,36 +30,36 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$13,
-      virtualisation: nix.thunk(() => ({ __proto__: pos$1, vlans: nix.thunk(() => [1n]) })),
+      [nix.POS]: pos$13,
+      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, vlans: nix.thunk(() => [1n]) })),
       environment: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         systemPackages: nix.thunk(() => (() => {
           const w = nix.withScope(pkgs, null);
           return [nix.thunk(() => nix.lookup(w, "jq"))];
         })()),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         useNetworkd: true,
         useDHCP: false,
-        firewall: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
+        firewall: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         network: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           networks: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "01-eth1": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "eth1",
-              networkConfig: nix.thunk(() => ({ __proto__: pos$5, Address: nix.thunk(() => nix.str`10.0.0.${hostId}/24`) })),
+              networkConfig: nix.thunk(() => ({ [nix.POS]: pos$5, Address: nix.thunk(() => nix.str`10.0.0.${hostId}/24`) })),
             })),
           })),
         })),
         tmpfiles: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           rules: nix.thunk(() => [
             nix.thunk(() => nix.str`f /etc/bird/static4.conf - - - - route 10.10.0.${hostId}/32 blackhole;`),
             nix.thunk(() => nix.str`f /etc/bird/static6.conf - - - - route fdff::${hostId}/128 blackhole;`),
@@ -67,9 +67,9 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         bird: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           package: package$,
           enable: true,
           config: nix.thunk(() => nix.str`log syslog all;
@@ -135,12 +135,12 @@ protocol ospf v3 ospf6 {
     };
   })(), formals$2);
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     twoNodeOSPF: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         name: nix.thunk(() => nix.str`bird${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(package$, "version")))}-twoNodeOSPF`),
         nodes: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           host1: nix.thunk(() => nix.app(makeBirdHost, "1")),
           host2: nix.thunk(() => nix.app(makeBirdHost, "2")),
         })),

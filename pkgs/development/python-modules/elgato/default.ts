@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frenck",
           repo: "python-elgato",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ substituteInPlace pyproject.toml \\
       const nativeCheckInputs = nix.thunk(() => [aresponses, pytest_asyncio, pytest_cov_stub, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["elgato"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client for Elgato Key Lights",
         homepage: "https://github.com/frenck/python-elgato",
         changelog: nix.thunk(() => nix.str`https://github.com/frenck/python-elgato/releases/tag/v${version}`),
@@ -52,7 +52,7 @@ substituteInPlace pyproject.toml \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

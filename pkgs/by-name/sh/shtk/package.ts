@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shtk",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jmmv",
           repo: "shtk",
           tag: nix.thunk(() => nix.str`shtk-${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postInstall: "# The \"shtk\" binary is only used when building packages that need shtk at\n# runtime, so it's only a developer tool.\nmoveToOutput bin \"$dev\"\n\nmoveToOutput share/aclocal \"$dev\"\nmoveToOutput lib/pkgconfig \"$dev\"\n\nsubstituteInPlace \"$dev/lib/pkgconfig/shtk.pc\" \\\n  --replace-fail \"$out/bin/shtk\" \"$dev/bin/shtk\"\n\n# Do not install tests.  This is a weird pattern that not many packages\n# follow.\nrm -rf \"$out/tests\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Application toolkit for programmers writing POSIX-compliant shell scripts",
         longDescription: "The Shell Toolkit, or shtk for short, is an application toolkit\nfor programmers writing POSIX-compliant shell scripts.\n\nshtk provides a collection of reusable modules that work on a wide\nvariety of operating systems and shell interpreters. These modules are all\nready to be used by calling the provided shtk_import primitive and\n\"compiling\" the shell scripts into their final form using the shtk(1)\nutility.\n\nshtk is purely written in the shell scripting language so there are no\ndependencies to be installed, and is known to be compatible with at least\nbash, dash, pdksh and zsh.\n",
         homepage: "https://github.com/jmmv/shtk",

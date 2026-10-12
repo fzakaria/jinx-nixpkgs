@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const libunistring = nix.arg($, "libunistring");
   const prqlSupport = nix.argOr($, "prqlSupport", () => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lnav",
       version: "0.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tstack",
           repo: "lnav",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,22 +51,22 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([autoconf, automake, zlib, nix.thunk(() => nix.sel(curl, "dev")), re2c], nix.app(nix.sel(lib, "optionals"), prqlSupport, nix.thunk(() => [cargo, nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")), rustc])))),
       buildInputs: nix.thunk(() => nix.concat([bzip2, pcre2, readline, sqlite, curl, libarchive, libunistring], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [gpm])))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/src/third-party/lnav-rs-ext`),
           hash: "sha256-Dy+V45X27dy2TN3JRic6nLmmG11I1Pw7m+vYKYJMnQs=",
         })))),
       cargoRoot: "src/third-party/lnav-rs-ext",
       preConfigure: "./autogen.sh\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex=^v(\\d+(?:\\.\\d+)*)$"]),
           })))),
       })),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/tstack/lnav",
         description: "Logfile Navigator",
         longDescription: "The log file navigator, lnav, is an enhanced log file viewer that takes\nadvantage of any semantic information that can be gleaned from the files\nbeing viewed, such as timestamps and log levels. Using this extra\nsemantic information, lnav can do things like interleaving messages from\ndifferent files, generate histograms of messages over time, and providing\nhotkeys for navigating through the file. It is hoped that these features\nwill allow the user to quickly and efficiently zero in on problems.\n",

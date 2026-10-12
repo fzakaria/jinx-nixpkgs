@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const js_of_ocaml = nix.arg($, "js_of_ocaml");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "js_of_ocaml-ppx_deriving_json",
       version: nix.thunk(() => nix.attr(js_of_ocaml, "version")),
       src: nix.thunk(() => nix.attr(js_of_ocaml, "src")),

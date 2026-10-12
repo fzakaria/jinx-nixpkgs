@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.5.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-mfJ/CvFGvrovEIZ30reYCv6N33NZtEUYG/xxOdt2SC4=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Typing stubs for xxhash",
         homepage: "https://pypi.org/project/types-xxhash",
         changelog: "https://github.com/typeshed-internal/stub_uploader/blob/main/data/changelogs/xxhash.md",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
   const pkgsCross32 = nix.thunk(() => nix.sel(pkgsCross, "gnu32"));
   const pkgsCross64 = nix.thunk(() => nix.sel(pkgsCross, "gnu64"));
   const devRootFS = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "fex-dev-rootfs",
       paths: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.sel(pkgsCross64, "stdenv", "cc", "libc_dev")),
@@ -93,11 +93,11 @@ set(CMAKE_C_FLAGS "\${CMAKE_C_FLAGS} \${CLANG_FLAGS}")
 set(CMAKE_CXX_FLAGS "\${CMAKE_CXX_FLAGS} \${CLANG_FLAGS}")
 `)));
   return nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fex",
       version: "2608",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "FEX-Emu",
           repo: "FEX",
           tag: nix.thunk(() => nix.str`FEX-${nix.sel(finalAttrs, "version")}`),
@@ -198,11 +198,11 @@ fi
       dontWrapQtApps: true,
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withQt, "wrapQtApp $out/bin/FEXConfig\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast usermode x86 and x86-64 emulator for Arm64 Linux",
         homepage: "https://fex-emu.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/FEX-Emu/FEX/releases/tag/FEX-${nix.sel(finalAttrs, "version")}`),

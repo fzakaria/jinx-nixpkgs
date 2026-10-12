@@ -53,77 +53,77 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const dynamicConfigFile = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "dynamicConfigFile"), null)) ? nix.app(nix.sel(format, "generate"), "config.toml", nix.thunk(() => nix.sel(cfg, "dynamicConfigOptions"))) : nix.sel(cfg, "dynamicConfigFile")));
   const staticConfigFile = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "staticConfigFile"), null)) ? nix.app(nix.sel(format, "generate"), "config.toml", nix.thunk(() => nix.app(nix.lookup(w, "recursiveUpdate"), nix.thunk(() => nix.sel(cfg, "staticConfigOptions")), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         providers: nix.thunk(() => ({
-          __proto__: pos$2,
-          file: nix.thunk(() => ({ __proto__: pos$1, filename: nix.thunk(() => nix.str`${dynamicConfigFile}`) })),
+          [nix.POS]: pos$2,
+          file: nix.thunk(() => ({ [nix.POS]: pos$1, filename: nix.thunk(() => nix.str`${dynamicConfigFile}`) })),
         })),
       }))))) : nix.sel(cfg, "staticConfigFile")));
   const finalStaticConfigFile = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "environmentFiles"), [])) ? nix.force(staticConfigFile) : "/run/traefik/config.toml"));
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     options: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       services: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         traefik: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Traefik web server")),
           staticConfigFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: null,
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "/path/to/static_config.toml")),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               description: "Path to traefik's static configuration to use.\n(Using that option has precedence over `staticConfigOptions` and `dynamicConfigOptions`)\n",
             })))),
           staticConfigOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Static configuration for Traefik.\n",
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 entryPoints: nix.thunk(() => ({
-                  __proto__: pos$6,
-                  http: nix.thunk(() => ({ __proto__: pos$5, address: ":80" })),
+                  [nix.POS]: pos$6,
+                  http: nix.thunk(() => ({ [nix.POS]: pos$5, address: ":80" })),
                 })),
               })),
               example: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 entryPoints: nix.thunk(() => ({
-                  __proto__: pos$10,
-                  web: nix.thunk(() => ({ __proto__: pos$8, address: ":8080" })),
-                  http: nix.thunk(() => ({ __proto__: pos$9, address: ":80" })),
+                  [nix.POS]: pos$10,
+                  web: nix.thunk(() => ({ [nix.POS]: pos$8, address: ":8080" })),
+                  http: nix.thunk(() => ({ [nix.POS]: pos$9, address: ":80" })),
                 })),
                 api: nix.thunk(() => ({})),
               })),
             })))),
           dynamicConfigFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: null,
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "/path/to/dynamic_config.toml")),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               description: "Path to traefik's dynamic configuration to use.\n(Using that option has precedence over `dynamicConfigOptions`)\n",
             })))),
           dynamicConfigOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Dynamic configuration for Traefik.\n",
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 http: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   routers: nix.thunk(() => ({
-                    __proto__: pos$15,
-                    router1: nix.thunk(() => ({ __proto__: pos$14, rule: "Host(`localhost`)", service: "service1" })),
+                    [nix.POS]: pos$15,
+                    router1: nix.thunk(() => ({ [nix.POS]: pos$14, rule: "Host(`localhost`)", service: "service1" })),
                   })),
                   services: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     service1: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       loadBalancer: nix.thunk(() => ({
-                        __proto__: pos$17,
-                        servers: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$16, url: "http://localhost:8080" }))]),
+                        [nix.POS]: pos$17,
+                        servers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$16, url: "http://localhost:8080" }))]),
                       })),
                     })),
                   })),
@@ -131,13 +131,13 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               default: "/var/lib/traefik",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               description: "Location for any persistent data traefik creates, ie. acme\n",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               default: "traefik",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               example: "docker",
@@ -145,7 +145,7 @@ export default nix.lambda((args) => (() => {
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "traefik", nix.thunk(() => ({})))),
           environmentFiles: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               example: nix.thunk(() => ["/run/secrets/traefik.env"]),
@@ -155,19 +155,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' 0700 traefik traefik - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             traefik: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               description: "Traefik web server",
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
@@ -175,7 +175,7 @@ export default nix.lambda((args) => (() => {
               startLimitIntervalSec: 86400n,
               startLimitBurst: 5n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFiles")),
                 ExecStartPre: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFiles"), [])), nix.thunk(() => nix.str`${nix.sel(pkgs, "envsubst")}/bin/envsubst -i '${staticConfigFile}' -o '${finalStaticConfigFile}'`))),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/traefik --configfile=${finalStaticConfigFile}`),
@@ -201,18 +201,18 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           users: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             traefik: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               group: "traefik",
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
               createHome: true,
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$36, traefik: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$36, traefik: nix.thunk(() => ({})) })),
         })),
       })))),
   };

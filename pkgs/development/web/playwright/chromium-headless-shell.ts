@@ -35,20 +35,20 @@ export default nix.lambda((args) => (() => {
   const nspr = nix.arg($, "nspr");
   const nss = nix.arg($, "nss");
   const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "chromium-headless-shell",
       revision: revision,
       browserVersion: browserVersion,
     }))), () => nix.force(throwSystem), nix.key(nix.force(system))));
   const linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "playwright-chromium-headless-shell",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.attr(download, "url")),
           stripRoot: nix.thunk(() => nix.attr(download, "stripRoot")),
           hash: nix.thunk(() => nix.selOr({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "x86_64-linux": "sha256-GLqqZOwtnJig+ZCIT8FYsIxZGSFTmRwLbqNXeSOdJXA=",
             "aarch64-linux": "sha256-7DSqFxtk8Jf4/ktoW1MmH5vHs5LEp7jNvglYRoKXBm4=",
           }, () => nix.force(throwSystem), nix.key(nix.force(system)))),
@@ -72,16 +72,16 @@ export default nix.lambda((args) => (() => {
       buildPhase: "cp -R . $out\n",
     }))));
   const darwin = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       url: nix.thunk(() => nix.attr(download, "url")),
       stripRoot: nix.thunk(() => nix.attr(download, "stripRoot")),
       hash: nix.thunk(() => nix.selOr({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "aarch64-darwin": "sha256-Elbpy5UDVndRzWRi8Nb391AhAAYl55PJ/3Fxz/RI/4I=",
       }, () => nix.force(throwSystem), nix.key(nix.force(system)))),
     }))));
   return nix.selOr({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     "x86_64-linux": linux,
     "aarch64-linux": linux,
     "aarch64-darwin": darwin,

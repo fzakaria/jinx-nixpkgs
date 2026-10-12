@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const ppx_expect = nix.arg($, "ppx_expect");
   const ppx_optcomp = nix.arg($, "ppx_optcomp");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "poll",
       version: "0.3.1",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/anuragsoni/poll/releases/download/${nix.sel(finalAttrs, "version")}/poll-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-IX6SivK/IMQaGgMgWiIsNgUSMHP6z1E/TSB0miaQ8pw=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ppx_expect]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Portable OCaml interface to macOS/Linux/Windows native IO event notification mechanisms",
         homepage: "https://github.com/anuragsoni/poll",
         changelog: nix.thunk(() => nix.str`https://github.com/anuragsoni/poll/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

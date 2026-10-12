@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vengi-tools",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vengi-voxel",
           repo: "vengi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -73,16 +73,16 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [gtest]),
       postInstall: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p $out/Applications\nmv $out/*.app $out/Applications/\n\nmkdir -p $out/bin\nln -s $out/Applications/vengi-voxconvert.app/Contents/MacOS/vengi-voxconvert $out/bin/vengi-voxconvert\n" : "for prog in $out/bin/*; do\n  wrapProgram \"$prog\" \\\n    --set CORE_PATH $out/share/$(basename \"$prog\")/\ndone\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "voxconvert-roundtrip": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-voxconvert-roundtrip.nix"), nix.thunk(() => ({})))),
           "voxconvert-all-formats": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-voxconvert-all-formats.nix"), nix.thunk(() => ({})))),
           "run-voxedit": nix.thunk(() => nix.sel(nixosTests, "vengi-tools")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tools from the vengi voxel engine, including a thumbnailer, a converter, and the VoxEdit voxel editor",
         longDescription: "Tools from the vengi C++ voxel game engine. It includes a voxel editor\nwith character animation support and loading/saving into a lot of voxel\nvolume formats. There are other tools like e.g. a thumbnailer for your\nfilemanager and a command line tool to convert between several voxel\nformats.\n",
         homepage: "https://vengi-voxel.github.io/vengi/",

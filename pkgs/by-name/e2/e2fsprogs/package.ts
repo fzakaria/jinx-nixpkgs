@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.47.4";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kernel/linux/kernel/people/tytso/e2fsprogs/v${version}/e2fsprogs-${version}.tar.xz`),
           hash: "sha256-/VvziMvb4Aaj07MY2YOylIOCRArMhah/Hn0QhlPo2ws=",
         }))));
@@ -68,20 +68,20 @@ moveToOutput sbin/e2scrub_all "$scripts"
 `, nix.app(nix.sel(lib, "optionalString"), withFuse, "mkdir -p $fuse2fs/bin\nmv $bin/bin/fuse2fs $fuse2fs/bin/fuse2fs\n")));
       const enableParallelBuilding = true;
       const outputChecks = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isGnu")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           bin: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             disallowedRequisites: nix.thunk(() => [bash, bashNonInteractive]),
           })),
           out: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             disallowedRequisites: nix.thunk(() => [bash, bashNonInteractive]),
           })),
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "simple-filesystem": nix.thunk(() => nix.app(runCommand, "e2fsprogs-create-fs", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out
 truncate -s10M $out/disc
 ${e2fsprogs}/bin/mkfs.ext4 $out/disc | tee $out/success
@@ -91,7 +91,7 @@ ${e2fsprogs}/bin/e2fsck -n $out/disc | tee $out/success
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://e2fsprogs.sourceforge.net/",
         changelog: nix.thunk(() => nix.str`https://e2fsprogs.sourceforge.net/e2fsprogs-release.html#${version}`),
         description: "Tools for creating and checking ext2/ext3/ext4 filesystems",
@@ -111,7 +111,7 @@ ${e2fsprogs}/bin/e2fsck -n $out/disc | tee $out/success
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         __structuredAttrs,

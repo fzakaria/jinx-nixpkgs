@@ -19,22 +19,22 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
-  const platform = nix.thunk(() => nix.sel({ __proto__: pos$1, "x86_64-linux": "amd64", "aarch64-linux": "arm64" }, nix.key(nix.force(system))));
+  const platform = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, "x86_64-linux": "amd64", "aarch64-linux": "arm64" }, nix.key(nix.force(system))));
   const hash = nix.thunk(() => nix.sel({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "sha256-DK5+VT4+OCcJ4Bbv6GGs6R332GMsD1gNEmcz0iaJb1c=",
     "aarch64-linux": "sha256-Qu2YHGu0EPFaXjlUwJ7On8tOA9rqX/k8UnwADuRxoUk=",
   }, nix.key(nix.force(system))));
   const pname = "buckets";
   const version = "0.80.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://github.com/buckets/application/releases/download/v${version}/Buckets-linux-latest-${platform}-${version}.AppImage`),
       hash: hash,
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$4, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -50,7 +50,7 @@ for size in 16 32 48 64 128 256 512; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Private family budgeting app",
         homepage: "https://www.budgetwithbuckets.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

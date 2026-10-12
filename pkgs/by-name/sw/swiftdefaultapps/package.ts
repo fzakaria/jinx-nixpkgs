@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "swiftdefaultapps";
       const version = "2.0.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Lord-Kamina/SwiftDefaultApps/releases/download/v${version}/SwiftDefaultApps-v${version}.zip`),
           stripRoot: false,
           sha256: "sha256-0HsHjZBPUzmdvHy7E9EdZj6zwaXjSX2u5aj8pij0u3E=",
         }))));
       const installPhase = "runHook preInstall\ninstall -D './swda' \"$out/bin/swda\"\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "View and change the default application for url schemes and UTIs",
         homepage: "https://github.com/Lord-Kamina/SwiftDefaultApps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "beerware")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         mainProgram: "swda",
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

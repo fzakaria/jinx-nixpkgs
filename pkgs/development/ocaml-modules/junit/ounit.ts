@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const junit = nix.arg($, "junit");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "junit_ounit",
       src: nix.thunk(() => nix.attr(junit, "src")),
       version: nix.thunk(() => nix.attr(junit, "version")),

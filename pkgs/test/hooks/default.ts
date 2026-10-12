@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const tests = nix.arg($, "tests");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "default-stdenv-hooks": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.sel(tests, "stdenv", "hooks")))),
   };
 })(), formals$1);

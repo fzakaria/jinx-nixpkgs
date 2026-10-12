@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const time_machine = nix.arg($, "time-machine");
   const tzlocal = nix.arg($, "tzlocal");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aioautomower",
       version: "2.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Thomas55555",
           repo: "aioautomower",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["aioautomower"]),
       disabledTests: nix.thunk(() => ["test_set_datetime", "test_message_event", "test_async_get_messages"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to communicate with the Automower Connect API",
         homepage: "https://github.com/Thomas55555/aioautomower",
         changelog: nix.thunk(() => nix.str`https://github.com/Thomas55555/aioautomower/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

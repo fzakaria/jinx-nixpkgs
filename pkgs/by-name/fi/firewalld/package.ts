@@ -48,14 +48,14 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => [nix.thunk(() => nix.lookup(w, "pyqt6"))])));
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "firewalld",
       version: "2.5.2",
       __structuredAttrs: true,
       strictDeps: true,
       enableParallelBuilding: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "firewalld",
           repo: "firewalld",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./respect-xml-catalog-files-var.patch"),
         nix.path(here, "./specify-localedir.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/firewalld/-/raw/5f2f37e3018835d0183ca44bc4467b3a096edec7/fix_gettext_domain.patch",
             hash: "sha256-cZnat9fAVktgDn3rdKOLCbK27ddcKW7o2KuKAm8GV8Y=",
           })))),
@@ -110,15 +110,15 @@ patchShebangs --host $out/share/firewalld/*.py
 wrapPythonProgramsIn "$out/bin" "$out ${pythonPath}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           firewalld: nix.thunk(() => nix.attr(nixosTests, "firewalld")),
           "firewall-firewalld": nix.thunk(() => nix.attr(nixosTests, "firewall-firewalld")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Firewall daemon with D-Bus interface",
         homepage: "https://firewalld.org",
         downloadPage: "https://github.com/firewalld/firewalld/releases",

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const findlib = nix.arg($, "findlib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.9.2",
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-camlpdf`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "johnwhitington",
           repo: "camlpdf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       preInstall: nix.thunk(() => nix.str`mkdir -p $out/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib/stublibs
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OCaml library for reading, writing and modifying PDF files",
         homepage: "https://github.com/johnwhitington/camlpdf",
         changelog: nix.thunk(() => nix.str`https://github.com/johnwhitington/camlpdf/blob/${nix.sel(finalAttrs, "src", "rev")}/Changes.txt`),

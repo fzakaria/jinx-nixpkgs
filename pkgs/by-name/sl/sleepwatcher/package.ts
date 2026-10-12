@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sleepwatcher",
       version: "2.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.bernhard-baehr.de/sleepwatcher_${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "0gk4x4x04wz7y0kp19p1jjcxhqqk9n29l4dw3wa72y0n09knbwab",
         })))),
@@ -34,7 +34,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmkdir -p $out/share/man/man8\ninstall -m 0755 sleepwatcher $out/bin/sleepwatcher\ninstall -m 0444 ../sleepwatcher.8 $out/share/man/man8/sleepwatcher.8\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monitors sleep, wakeup and idleness of a Mac",
         longDescription: "SleepWatcher is a command line tool (daemon) for macOS that monitors\nsleep, wakeup and idleness of a Mac. It can be used to execute a Unix\ncommand when the Mac or the display of the Mac goes to sleep mode or wakes\nup, after a given time without user interaction or when the user resumes\nactivity after a break or when the power supply of a Mac notebook is attached\nor detached. It also can send the Mac to sleep mode or retrieve the time since\nlast user activity.\n",
         homepage: "https://www.bernhard-baehr.de/",

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "spleen";
       const version = "2.2.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/fcambus/spleen/releases/download/${version}/spleen-${version}.tar.gz`),
           hash: "sha256-7EKSXGtW0hOMhisvlxR8hy5HL2dL8DQjQX2CegjWmok=",
         }))));
@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "runHook preInstall\n\nd=\"$out/share/fonts/misc\"\ninstall -D -m 644 *.{pcf,bdf,otf} -t \"$d\"\ninstall -D -m 644 *.psfu -t \"$out/share/consolefonts\"\ninstall -m644 fonts.alias-spleen $d/fonts.alias\n\n# create fonts.dir so NixOS xorg module adds to fp\nmkfontdir \"$d\"\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monospaced bitmap fonts",
         homepage: "https://www.cambus.net/spleen-monospaced-bitmap-fonts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

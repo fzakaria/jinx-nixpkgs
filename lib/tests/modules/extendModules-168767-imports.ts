@@ -26,36 +26,36 @@ export default nix.lambda((args) => (() => {
   const mkOverride = nix.thunk(() => nix.attr(lib, "mkOverride"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         options: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           sub: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$2);
                   const config = nix.arg($_1, "config");
                   const extendModules_1 = nix.arg($_1, "extendModules");
                   return {
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     options: nix.thunk(() => ({
-                      __proto__: pos$5,
-                      value: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$1, type: nix.thunk(() => nix.sel(types, "int")) })))),
+                      [nix.POS]: pos$5,
+                      value: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(types, "int")) })))),
                       specialisation: nix.thunk(() => nix.app(mkOption, nix.thunk(() => (() => {
                           const from = nix.thunk(() => nix.app(extendModules_1, nix.thunk(() => ({
-                              __proto__: pos$3,
+                              [nix.POS]: pos$3,
                               modules: nix.thunk(() => [
                                 nix.thunk(() => ({
-                                  __proto__: pos$2,
+                                  [nix.POS]: pos$2,
                                   specialisation: nix.thunk(() => nix.app(mkOverride, 0n, nix.thunk(() => ({})))),
                                 })),
                               ]),
                             }))));
                           return {
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           default: nix.thunk(() => ({})),
                           type: nix.thunk(() => nix.attr(from, "type")),
                         };
@@ -67,8 +67,8 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       nix.thunk(() => ({
-        __proto__: pos$12,
-        config: nix.thunk(() => ({ __proto__: pos$11, sub: nix.thunk(() => ({ __proto__: pos$10, value: 1n })) })),
+        [nix.POS]: pos$12,
+        config: nix.thunk(() => ({ [nix.POS]: pos$11, sub: nix.thunk(() => ({ [nix.POS]: pos$10, value: 1n })) })),
       })),
     ]),
   };

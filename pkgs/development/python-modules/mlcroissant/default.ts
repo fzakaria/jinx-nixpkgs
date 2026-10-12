@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mlcroissant",
       version: "1.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mlcommons",
           repo: "croissant",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         "test_beam_hermetic_loading",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-level format for machine learning datasets that brings together four rich layers",
         homepage: "https://github.com/mlcommons/croissant",
         changelog: nix.thunk(() => nix.str`https://github.com/mlcommons/croissant/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

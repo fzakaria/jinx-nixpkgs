@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const enableWx = nix.argOr($, "enableWx", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   const enableX11 = nix.argOr($, "enableX11", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bochs",
       version: "3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/bochs/bochs/${nix.sel(finalAttrs, "version")}/bochs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-FKr3jb4TN5h5I//8TnqWKuVqvPmodHSs455ZP5+E7oQ=",
         })))),
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
         ])))))))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://bochs.sourceforge.io/",
         description: "Open-source IA-32 (x86) PC emulator",
         longDescription: "Bochs is an open-source (LGPL), highly portable IA-32 PC emulator, written\nin C++, that runs on most popular platforms. It includes emulation of the\nIntel x86 CPU, common I/O devices, and a custom BIOS.\n",

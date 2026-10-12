@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const xcursorgen = nix.arg($, "xcursorgen");
   const dimensions = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     color: nix.thunk(() => ["Black", "Blue", "Green", "Orange", "Red", "White"]),
     opacity: nix.thunk(() => ["", "Opaque_"]),
     thickness: nix.thunk(() => ["", "Slim_"]),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "comixcursors";
       const version = "0.9.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "limitland",
           repo: "comixcursors",
           rev: "8c327c8514ab3a352583605c1ddcb7eb3d1d302b",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       })());
       const outputsToInstall = [];
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Comix Cursors mouse themes",
         longDescription: nix.thunk(() => nix.str`There are many (${nix.builtins.toString(nix.thunk(() => nix.sub(nix.app(nix.sel(lib, "length"), outputs), 1n)))}) variants of color,
 opacity, edge thickness, and right- or left-handedness, for this cursor
@@ -73,7 +73,7 @@ list).
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

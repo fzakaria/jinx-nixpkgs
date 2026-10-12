@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nvpy",
       version: "2.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cpbotha",
           repo: "nvpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -dm755 \"$out/share/licenses/nvpy/\"\ninstall -m644 LICENSE.txt \"$out/share/licenses/nvpy/LICENSE\"\n\ninstall -dm755 \"$out/share/doc/nvpy/\"\ninstall -m644 README.rst \"$out/share/doc/nvpy/README\"\n",
       pythonImportsCheck: nix.thunk(() => ["nvpy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simplenote-syncing note-taking tool inspired by Notational Velocity",
         homepage: "https://github.com/cpbotha/nvpy",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

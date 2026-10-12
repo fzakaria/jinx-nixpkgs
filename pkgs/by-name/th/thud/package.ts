@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "thud",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "donovanglover",
           repo: "thud",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "install -Dm644 assets/thud.thumbnailer $out/share/thumbnailers/thud.thumbnailer\nsubstituteInPlace $out/share/thumbnailers/thud.thumbnailer --replace \"thud\" \"$out/bin/thud\"\n\ninstallManPage target/man/thud.1\n\ninstallShellCompletion --cmd thud \\\n  --bash <(cat target/completions/thud.bash) \\\n  --fish <(cat target/completions/thud.fish) \\\n  --zsh <(cat target/completions/_thud)\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Generate directory thumbnails for GTK-based file browsers from images inside them",
         homepage: "https://github.com/donovanglover/thud",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

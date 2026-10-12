@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pname = "gnupatch";
   const version = "2.5.9";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://gnu/patch/patch-${version}.tar.gz`),
       sha256: "12nv7jx3gxfp50y11nxzlnmqqrpicjggw6pcsq0wyavkkm3cddgc",
     }))));
@@ -67,12 +67,12 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.concat(SRCS, ["error.c"]));
   const objects = nix.thunk(() => nix.builtins.map((x) => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => [".c"]), nix.thunk(() => [".o"]), nix.thunk(() => nix.builtins.baseNameOf(x))), sources));
   return nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(tinycc, "compiler"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNU Patch, a program to apply differences to files",
         homepage: "https://www.gnu.org/software/patch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

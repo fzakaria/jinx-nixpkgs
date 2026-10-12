@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
     const makeTestFor = nix.arg($_1, "makeTestFor");
     const filter = nix.argOr($_1, "filter", () => (_) => (__1) => true);
     return nix.app(recurseIntoAttrs, nix.thunk(() => nix.update(nix.app(mapAttrs, nix.thunk(() => nix.app(const$, makeTestFor)), nix.thunk(() => nix.app(filterAttrs, filter, nix.thunk(() => nix.sel(pkgs, "postgresqlVersions"))))), {
-        __proto__: pos$2,
-        passthru: nix.thunk(() => ({ __proto__: pos$1, override: makeTestFor })),
+        [nix.POS]: pos$2,
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$1, override: makeTestFor })),
       })));
   })(), formals$2);
   const importWithArgs = (path) => nix.app(nix.builtins.import(path), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       runTest: runTest,
       genTests: genTests,
       lib: nix.thunk(() => nix.attr(pkgs, "lib")),
     })));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     postgresql: nix.thunk(() => nix.app(importWithArgs, nix.path(here, "./postgresql.nix"))),
     "postgresql-jit": nix.thunk(() => nix.app(importWithArgs, nix.path(here, "./postgresql-jit.nix"))),
     "postgresql-replication": nix.thunk(() => nix.app(importWithArgs, nix.path(here, "./postgresql-replication.nix"))),

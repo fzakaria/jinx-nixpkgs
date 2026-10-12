@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pcimem",
       version: "0-unstable-2018-08-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "billfarrow",
           repo: "pcimem",
           rev: "09724edb1783a98da2b7ae53c5aaa87493aabc9b",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["CFLAGS=-Wno-maybe-uninitialized"]),
       installPhase: "install -D pcimem \"$out/bin/pcimem\"\ninstall -D README \"$doc/doc/README\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple method of reading and writing to memory registers on a PCI card",
         mainProgram: "pcimem",
         homepage: "https://github.com/billfarrow/pcimem",

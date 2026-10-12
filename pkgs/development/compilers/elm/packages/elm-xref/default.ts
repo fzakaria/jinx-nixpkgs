@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const elmPackages = nix.arg($, "elmPackages");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "elm-xref",
       version: "4.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zwilias",
           repo: "elm-xref",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/turboMaCk/elm-xref/commit/55ad630c1afc110197a4785bd2a4cd2388a1d160.patch",
             hash: "sha256-67s8gozhkWN8ci/S3OSwnNABdATY7gpBPy7zaZJPamw=",
           })))),
@@ -40,15 +40,15 @@ export default nix.lambda((args) => (() => {
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       npmBuildScript: "elm",
       postConfigure: nix.thunk(() => nix.add(nix.app(nix.sel(elmPackages, "fetchElmDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           elmPackages: nix.thunk(() => nix.builtins.import(nix.path(here, "./elm-srcs.nix"))),
           elmVersion: nix.thunk(() => nix.sel(elmPackages, "elm", "version")),
           registryDat: nix.path(here, "./registry.dat"),
         }))), nix.str`ln -sf ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(elmPackages, "elm")))} node_modules/.bin/elm
 `)),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cross referencing tool for Elm",
         homepage: "https://github.com/zwilias/elm-xref",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

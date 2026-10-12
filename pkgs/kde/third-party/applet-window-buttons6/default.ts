@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
       const pname = "applet-window-buttons6";
       const version = "0.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "moodyhunter",
           repo: "applet-window-buttons6",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-HnlgBQKT99vVkl6DWqMkN8Vz+QzzZBGj5tqOJ22VkJ8=",
         }))));
       const dontWrapQtApps = true;
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=c++20" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=c++20" }));
       const nativeBuildInputs = nix.thunk(() => [cmake, extra_cmake_modules]);
       const buildInputs = nix.thunk(() => [kcmutils, kcoreaddons, kdeclarative, kdecoration, libplasma]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Plasma 6 applet in order to show window buttons in your panels",
         homepage: "https://github.com/moodyhunter/applet-window-buttons6",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

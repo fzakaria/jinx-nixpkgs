@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const moreorless = nix.arg($, "moreorless");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stdlibs",
       version: "2026.9.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "omnilib",
           repo: "stdlibs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [moreorless, unittestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["stdlibs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Overview of the Python stdlib",
         homepage: "https://github.com/omnilib/stdlibs",
         changelog: nix.thunk(() => nix.str`https://github.com/omnilib/stdlibs/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

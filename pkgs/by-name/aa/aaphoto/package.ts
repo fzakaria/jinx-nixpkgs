@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aaphoto",
       version: "0.45",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "log69",
           repo: "aaphoto",
           rev: "581b3fad60382bdd36356155112559f731e31be3",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [jasper, libpng, libjpeg, zlib]),
       postInstall: "install -Dm644 NEWS README REMARKS TODO -t $out/share/doc/aaphoto\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/log69/aaphoto",
         description: "Free and open source automatic photo adjusting software",
         longDescription: "Auto Adjust Photo tries to give a solution for the automatic color\ncorrection of photos. This means setting the contrast, color balance,\nsaturation and gamma levels of the image by analization.\n\nThis can be a solution for those kind of users who are not able to manage\nand correct images with complicated graphical software, or just simply\ndon't intend to spend a lot of time with manually correcting the images\none-by-one.\n",

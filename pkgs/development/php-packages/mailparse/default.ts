@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const php = nix.arg($, "php");
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mailparse",
       version: "3.1.9",
       hash: "sha256-7LPTydyffOA0GC1Hi3JKw8sCCY78aaOcA1NPCxkgkis=",
       internalDeps: nix.thunk(() => [nix.thunk(() => nix.sel(php, "extensions", "mbstring"))]),
       postConfigure: "echo \"#define HAVE_MBSTRING 1\" >> config.h\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Mailparse is an extension for parsing and working with email messages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),
         homepage: "https://pecl.php.net/package/mailparse",

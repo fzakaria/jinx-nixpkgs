@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "protoc-gen-twirp";
       const version = "8.1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "twitchtv",
           repo: "twirp",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = null;
       const subPackages = nix.thunk(() => ["protoc-gen-twirp"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: true,
         description: "Simple RPC framework with protobuf service definitions",
         mainProgram: "protoc-gen-twirp",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

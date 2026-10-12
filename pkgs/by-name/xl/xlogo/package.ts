@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const util_macros = nix.arg($, "util-macros");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xlogo",
       version: "1.0.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "app",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-appdefaultdir=$out/share/X11/app-defaults"]),
       buildInputs: nix.thunk(() => [libx11, libxext, libsm, libxmu, libxaw, libxt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "X Window System logo display demo",
         homepage: "https://gitlab.freedesktop.org/xorg/app/xlogo",
         maintainers: nix.thunk(() => (() => {

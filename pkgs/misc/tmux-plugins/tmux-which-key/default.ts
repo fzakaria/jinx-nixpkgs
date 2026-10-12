@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const check_jsonschema = nix.arg($, "check-jsonschema");
   const python3 = nix.arg($, "python3");
   return nix.app(mkTmuxPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pluginName: "tmux-which-key",
       rtpFilePath: "plugin.sh.tmux",
       version: "0-unstable-2024-06-08",
@@ -37,14 +37,14 @@ ln -s ${nix.sel(python3, "pkgs", "pyyaml", "src")} plugin/pyyaml
 `),
       postInstall: "patchShebangs plugin.sh.tmux plugin/build.py\n",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alexwforsythe",
           repo: "tmux-which-key",
           rev: "1f419775caf136a60aac8e3a269b51ad10b51eb6",
           hash: "sha256-X7FunHrAexDgAlZfN+JOUJvXFZeyVj9yu6WRnxMEA8E=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/alexwforsythe/tmux-which-key",
         description: "Tmux plugin that allows users to select actions from a customizable popup menu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

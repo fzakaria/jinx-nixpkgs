@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
     const matchLine = (line) => (() => {
       const match = nix.thunk(() => nix.app(nix.sel(lib, "match"), "(CONFIG_[^=]+)=([ym])", line));
       return nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(match, null)), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), match, 0n)),
           value: nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), match, 1n)),
         })));
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
       const teams = nix.thunk(() => nix.attr(lib_1, "teams"));
       const platforms = nix.thunk(() => nix.attr(lib_1, "platforms"));
       const commonMakeFlags = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-flags.nix")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           lib: lib_1,
           stdenv: stdenv_1,
           buildPackages: buildPackages,
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
       const config_1 = nix.thunk(() => (() => {
         const attrName = (attr) => nix.add("CONFIG_", attr);
         return nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           isSet: (attr) => nix.app(hasAttr, nix.thunk(() => nix.app(attrName, attr)), config_1),
           getValue: (attr) => (nix.asBool(nix.app(nix.sel(config_1, "isSet"), attr)) ? nix.app(getAttr, nix.thunk(() => nix.app(attrName, attr)), config_1) : null),
           isYes: (attr) => nix.eq(nix.app(nix.sel(config_1, "getValue"), attr), "y"),
@@ -116,16 +116,16 @@ export default nix.lambda((args) => (() => {
         pahole,
         perl,
         elfutils,
-        nix.thunk(() => nix.app(nix.sel(buildPackages, "deterministic-uname", "override"), nix.thunk(() => ({ __proto__: pos$4, modDirVersion: modDirVersion_1 })))),
+        nix.thunk(() => nix.app(nix.sel(buildPackages, "deterministic-uname", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, modDirVersion: modDirVersion_1 })))),
         nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "setup-module-compression",
-            substitutions: nix.thunk(() => ({ __proto__: pos$5, configfile: configfile, modDirVersion: modDirVersion_1 })),
+            substitutions: nix.thunk(() => ({ [nix.POS]: pos$5, configfile: configfile, modDirVersion: modDirVersion_1 })),
             propagatedNativeBuildInputs: nix.thunk(() => [xz]),
           })), nix.path(here, "./setup-module-compression.sh"))),
       ], nix.concat(nix.app(optional, nix.thunk(() => nix.app(nix.sel(lib_1, "versionAtLeast"), version, "5.13")), zstd), nix.app(optionals, withRust, nix.thunk(() => [rustc_unwrapped, rust_bindgen_unwrapped])))));
       return nix.app(nix.sel(stdenv_1, "mkDerivation"), nix.thunk(() => nix.attrsDyn({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           pname: pname,
           version: version,
           src: src,
@@ -134,7 +134,7 @@ export default nix.lambda((args) => (() => {
           hardeningDisable: nix.thunk(() => ["bindnow", "format", "fortify", "stackprotector", "pic"]),
           dontCheckForBrokenSymlinks: true,
           patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib_1, "filter"), (p) => !nix.eq(p, null), nix.thunk(() => nix.builtins.map((p) => nix.sel(p, "patch"), kernelPatches))), nix.concat(nix.app(optional, nix.thunk(() => nix.app(nix.sel(lib_1, "versionOlder"), version, "5.19")), nix.path(here, "./randstruct-provide-seed.patch")), nix.concat(nix.app(optional, nix.thunk(() => nix.app(nix.sel(lib_1, "versionAtLeast"), version, "5.19")), nix.path(here, "./randstruct-provide-seed-5.19.patch")), nix.app(optional, nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib_1, "versionAtLeast"), version, "5.12")) && nix.asBool(nix.app(nix.sel(lib_1, "versionOlder"), version, "5.19")))) && nix.asBool(nix.sel(stdenv_1, "hostPlatform", "isPower")))), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 url: "https://git.kernel.org/pub/scm/linux/kernel/git/powerpc/linux.git/patch/?id=d9e5c3e9e75162f845880535957b7fd0b4637d23",
                 hash: "sha256-bBOyJcP6jUvozFJU0SPTOf3cmnTQ6ZZ4PlHjiniHXLU=",
               }))))))))),
@@ -161,7 +161,7 @@ export default nix.lambda((args) => (() => {
             hexdump,
           ], nix.concat(nix.app(optionals, nix.thunk(() => nix.app(nix.sel(lib_1, "versionAtLeast"), version, "5.2")), nix.thunk(() => [cpio, pahole, zlib])), nix.app(optionals, withRust, nix.thunk(() => [rustc_unwrapped, rust_bindgen_unwrapped]))))),
           env: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             RUST_LIB_SRC: nix.thunk(() => nix.app(nix.sel(lib_1, "optionalString"), withRust, nix.thunk(() => nix.sel(rustPlatform, "rustLibSrc")))),
             KRUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib_1, "optionalString"), withRust, nix.thunk(() => nix.str`--remap-path-prefix ${nix.sel(rustPlatform, "rustLibSrc")}=/`))),
           })),
@@ -331,7 +331,7 @@ export HOME=${installkernel}
             const kernelOlder = nix.thunk(() => nix.app(nix.sel(lib_1, "versionOlder"), baseVersion));
             const kernelAtLeast = nix.thunk(() => nix.app(nix.sel(lib_1, "versionAtLeast"), baseVersion));
             return {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               version: version_1,
               modDirVersion: modDirVersion_2,
               config: config_2,
@@ -356,7 +356,7 @@ export HOME=${installkernel}
           karch: nix.thunk(() => nix.sel(stdenv_1, "hostPlatform", "linuxArch")),
           pos: nix.thunk(() => nix.app(nix.sel(lib_1, "optionalDrvAttr"), nix.thunk(() => !nix.eq(pos, null)), pos)),
           meta: nix.thunk(() => nix.update({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             broken: nix.thunk(() => (nix.asBool(withRust) && nix.asBool(nix.app(nix.sel(lib_1, "versionOlder"), version, "6.12")))),
             description: nix.thunk(() => nix.add("The Linux kernel", (nix.asBool(nix.eq(kernelPatches, [])) ? "" : nix.add(nix.add(" (with patches: ", nix.app(nix.sel(lib_1, "concatStringsSep"), ", ", nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "name"), kernelPatches)))), ")")))),
             license: nix.thunk(() => nix.sel(lib_1, "licenses", "gpl2Only")),
@@ -370,9 +370,9 @@ export HOME=${installkernel}
             badPlatforms: nix.thunk(() => nix.concat(nix.app(nix.sel(lib_1, "optionals"), nix.thunk(() => nix.app(nix.sel(lib_1, "versionOlder"), version, "4.15")), nix.thunk(() => ["riscv32-linux", "riscv64-linux"])), nix.app(nix.sel(lib_1, "optional"), nix.thunk(() => nix.app(nix.sel(lib_1, "versionOlder"), version, "6.16")), "loongarch64-linux"))),
             timeout: 14400n,
             identifiers: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               cpeParts: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 part: "o",
                 vendor: "linux",
                 product: "linux_kernel",

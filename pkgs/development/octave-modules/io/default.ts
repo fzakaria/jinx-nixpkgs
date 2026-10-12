@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const pname = "io";
       const version = "2.7.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "sha256-vKrKrqDHCa+nQRXwLp1fS2zO3dgS1ajYQ7/F293uYKQ=",
         }))));
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableJava, jdk));
       const propagatedBuildInputs = nix.thunk(() => [unzip]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/io/",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         description: "Input/Output in external formats",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

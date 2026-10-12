@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const appstream_glib = nix.arg($, "appstream-glib");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zathura-pdf-poppler",
       version: "2026.05.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pwmt",
           repo: "zathura-pdf-poppler",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
         zathura_core,
       ]),
       buildInputs: nix.thunk(() => [poppler, girara]),
-      env: nix.thunk(() => ({ __proto__: pos$2, PKG_CONFIG_ZATHURA_PLUGINDIR: "lib/zathura" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PKG_CONFIG_ZATHURA_PLUGINDIR: "lib/zathura" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://pwmt.org/projects/zathura-pdf-poppler/",
         description: "Zathura PDF plugin (poppler)",
         longDescription: "The zathura-pdf-poppler plugin adds PDF support to zathura by\nusing the poppler rendering library.\n",

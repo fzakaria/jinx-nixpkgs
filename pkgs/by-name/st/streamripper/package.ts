@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const pname = "streamripper";
       const version = "1.64.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/streamripper/streamripper-${version}.tar.gz`),
           sha256: "0hnyv3206r0rfprn3k7k6a0j959kagsfyrmyjm3gsf3vkhp5zmy1",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: pname,
             version: version,
             debianRevision: "2",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-30bz7CDmbq+Bd+jTKSq7aJsXUJQAQp3nnJZvt3Qbp8Q=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: pname,
             version: version,
             debianRevision: "2",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-D6koUCbnJHtRuq2zZy9VrxymuGXN1COacbQhphgB8qo=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: pname,
             version: version,
             debianRevision: "4",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-yBFDxd2sNlavQDmg/MCORFdpJY8p1Lzo131T4sBby5g=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "streamripper-http-1.0.patch",
             url: "https://sourceforge.net/p/streamripper/bugs/_discuss/thread/df13e77a/6a82/attachment/streamripper-http-1.0.patch",
             hash: "sha256-EhkxAqMcRJ4IJ6BLrpSQu6FomfEbxvgAu12vaDdNqEU=",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [glib, libogg, libvorbis, libmad]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://streamripper.sourceforge.net/",
         description: "Application that lets you record streaming mp3 to your hard drive",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

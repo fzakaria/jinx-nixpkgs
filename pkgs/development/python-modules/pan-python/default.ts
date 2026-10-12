@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.25.0";
       const format = "wheel";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://files.pythonhosted.org/packages/68/b0/0af75e586869bc5eee67e75472771e820189cbedbdde619353191a2828b7/pan_python-0.25.0-py3-none-any.whl",
           hash: "sha256-IWqXsFORXzo8n+J39ZaqAK1vD1uIxy3idtt1+Sq5x+0=",
         }))));
       const pythonImportsCheck = nix.thunk(() => ["pan"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package for Palo Alto Networks Next-Generation Firewalls, WildFire and AutoFocus",
         homepage: "https://github.com/kevinsteves/pan-python",
         changelog: nix.thunk(() => nix.str`https://github.com/kevinsteves/pan-python/releases/tag/v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "jherland"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, pythonImportsCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, pythonImportsCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

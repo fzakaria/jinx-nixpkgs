@@ -21,20 +21,20 @@ export default nix.lambda((args) => (() => {
   const meta = nix.arg($, "meta");
   const pnpm = pnpm_11;
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "esphome-device-builder-frontend",
       version: "0.1.329",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "esphome",
           repo: "device-builder-frontend",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-Zai2wwrexO9H+LCfEuckfRffuqyKOkG7p/42NeVGcsc=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pnpm: pnpm,
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "pnpm run build\n",
       pythonImportsCheck: nix.thunk(() => ["esphome_device_builder_frontend"]),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Frontend for the ESPHome Device Builder",
         homepage: "https://github.com/esphome/device-builder-frontend",
         changelog: nix.thunk(() => nix.str`https://github.com/esphome/device-builder/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "b2a34a8af0a6625ccbdf45cd343b854fc6c1a85231dadc80b8805db836756323",
         }))));
       const patchPhase = "substituteInPlace dialog.py --replace \":/bin:/usr/bin\" \":$out/bin\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python interface to the UNIX dialog utility and mostly-compatible programs",
         homepage: "http://pythondialog.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
       }));
-      return { __proto__: pos$3, pname, version, format, disabled, src, patchPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, format, disabled, src, patchPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

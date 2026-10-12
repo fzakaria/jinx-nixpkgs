@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(python3Packages, "mlflow", "overridePythonAttrs"), (old) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "propagatedBuildInputs"), [
           nix.thunk(() => nix.sel(python3Packages, "boto3")),
           nix.thunk(() => nix.sel(python3Packages, "mysqlclient")),

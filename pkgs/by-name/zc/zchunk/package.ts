@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zchunk",
       version: "1.5.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zchunk",
           repo: "zchunk",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,16 +38,16 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "lib", "man"]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             callPackage: callPackage,
             directory: nix.path(here, "./tests"),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/zchunk/zchunk",
         description: "File format designed for highly efficient deltas while maintaining good compression",
         longDescription: "zchunk is a compressed file format that splits the file into independent\nchunks. This allows you to only download changed chunks when downloading a\nnew version of the file, and also makes zchunk files efficient over rsync.\n\nzchunk files are protected with strong checksums to verify that the file\nyou downloaded is, in fact, the file you wanted.\n",

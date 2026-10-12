@@ -29,17 +29,17 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const callPackage = nix.arg($, "callPackage");
   const mkPlugin = (name) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: name,
       src: nix.thunk(() => nix.attr(vdr, "src")),
       version: nix.thunk(() => nix.attr(vdr, "version")),
       buildInputs: nix.thunk(() => [vdr]),
       preConfigure: nix.thunk(() => nix.str`cd PLUGINS/src/${name}`),
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, homepage: "https://git.tvdr.de/?p=vdr.git" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, homepage: "https://git.tvdr.de/?p=vdr.git" })),
     })));
   return nix.update({
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     epgsearch: nix.thunk(() => nix.app(callPackage, nix.path(here, "./epgsearch"), nix.thunk(() => ({})))),
     markad: nix.thunk(() => nix.app(callPackage, nix.path(here, "./markad"), nix.thunk(() => ({})))),
     nopacity: nix.thunk(() => nix.app(callPackage, nix.path(here, "./nopacity"), nix.thunk(() => ({})))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
     streamdev: nix.thunk(() => nix.app(callPackage, nix.path(here, "./streamdev"), nix.thunk(() => ({})))),
     xineliboutput: nix.thunk(() => nix.app(callPackage, nix.path(here, "./xineliboutput"), nix.thunk(() => ({})))),
     skincurses: nix.thunk(() => nix.app(nix.sel(nix.app(mkPlugin, "skincurses"), "overrideAttrs"), (oldAttr) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         buildInputs: nix.thunk(() => nix.concat(nix.sel(oldAttr, "buildInputs"), [ncurses])),
       }))),
     vnsiserver: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         const buildInputs = nix.thunk(() => [vdr]);
         const installFlags = nix.thunk(() => ["DESTDIR=$(out)"]);
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             repo: "vdr-plugin-vnsiserver",
             owner: "vdr-projects",
             rev: version,
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
           const from = nix.thunk(() => nix.sel(src, "meta"));
           const from_1 = nix.thunk(() => nix.sel(vdr, "meta"));
           return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           homepage: nix.thunk(() => nix.attr(from, "homepage")),
           description: "VDR plugin to handle KODI clients",
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ck3d"))]),
@@ -74,13 +74,13 @@ export default nix.lambda((args) => (() => {
           platforms: nix.thunk(() => nix.attr(from_1, "platforms")),
         };
         })());
-        return { __proto__: pos$6, pname, version, buildInputs, installFlags, src, meta };
+        return { [nix.POS]: pos$6, pname, version, buildInputs, installFlags, src, meta };
       })()))),
     text2skin: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
         const pname = "vdr-text2skin";
         const version = "1.3.4-20170702";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             repo: "vdr-plugin-text2skin",
             owner: "vdr-projects",
             rev: "8f7954da2488ced734c30e7c2704b92a44e6e1ad",
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
           const from = nix.thunk(() => nix.sel(src, "meta"));
           const from_1 = nix.thunk(() => nix.sel(vdr, "meta"));
           return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           homepage: nix.thunk(() => nix.attr(from, "homepage")),
           description: "VDR Text2Skin Plugin",
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ck3d"))]),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
         };
         })());
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           pname,
           version,
           src,
@@ -124,7 +124,7 @@ export default nix.lambda((args) => (() => {
         const pname = "vdr-fritzbox";
         const version = "1.5.8";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             owner: "jowi24",
             repo: "vdr-fritz",
             rev: version,
@@ -137,7 +137,7 @@ export default nix.lambda((args) => (() => {
           const from = nix.thunk(() => nix.sel(src, "meta"));
           const from_1 = nix.thunk(() => nix.sel(vdr, "meta"));
           return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           homepage: nix.thunk(() => nix.attr(from, "homepage")),
           description: "Plugin for VDR to access AVMs Fritz Box routers",
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ck3d"))]),
@@ -145,7 +145,7 @@ export default nix.lambda((args) => (() => {
           platforms: nix.thunk(() => nix.attr(from_1, "platforms")),
         };
         })());
-        return { __proto__: pos$12, pname, version, src, buildInputs, installFlags, meta };
+        return { [nix.POS]: pos$12, pname, version, src, buildInputs, installFlags, meta };
       })()))),
   }, nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => [
       "epgtableid0",

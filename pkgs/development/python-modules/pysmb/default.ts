@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.15";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "miketeo",
           repo: "pysmb",
           tag: nix.thunk(() => nix.str`pysmb-${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["nmb", "smb"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Experimental SMB/CIFS library to support file sharing between Windows and Linux machines",
         homepage: "https://pysmb.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/miketeo/pysmb/releases/tag/${nix.sel(src, "tag")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

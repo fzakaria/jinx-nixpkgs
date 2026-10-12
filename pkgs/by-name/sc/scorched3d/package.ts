@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "44",
       pname: "scorched3d",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/scorched3d/Scorched3D-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           sha256: "1fldi9pn7cz6hc9h70pacgb7sbykzcac44yp3pkhn0qh4axj10qw",
         })))),
@@ -61,12 +61,12 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./file-existence.patch"),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/games-strategy/scorched3d/files/scorched3d-44-fix-c++14.patch?id=1bbcfc9ae3dfdfcbdd35151cb7b6050776215e4d",
             sha256: "1farmjxbc2wm4scsdbdnvh29fipnb6mp6z85hxz4bx6n9kbc8y7n",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://sources.debian.org/data/main/s/scorched3d/44%2Bdfsg-7/debian/patches/wx3.0-compat.patch",
             sha256: "sha256-Y5U5yYNT5iMqhdRaDMFtZ4K7aD+pugFZP0jLh7rdDp8=",
           })))),
@@ -74,9 +74,9 @@ export default nix.lambda((args) => (() => {
       ]),
       sourceRoot: "scorched",
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-fftw=${nix.sel(fftwSinglePrec, "dev")}`)]),
-      env: nix.thunk(() => ({ __proto__: pos$4, NIX_LDFLAGS: "-lopenal" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_LDFLAGS: "-lopenal" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "http://scorched3d.co.uk/",
         description: "3D Clone of the classic Scorched Earth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django",
           repo: "channels",
           tag: version,
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [asgiref, django]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, daphne: nix.thunk(() => [daphne]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, daphne: nix.thunk(() => [daphne]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([async_timeout, pytest_asyncio, pytest_django, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const disabledTestPaths = nix.thunk(() => ["tests/sample_project/tests/test_selenium.py"]);
       const pythonImportsCheck = nix.thunk(() => ["channels"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Brings event-driven capabilities to Django with a channel system",
         homepage: "https://github.com/django/channels",
         changelog: nix.thunk(() => nix.str`https://github.com/django/channels/blob/${nix.sel(src, "tag")}/CHANGELOG.txt`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

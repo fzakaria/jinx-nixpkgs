@@ -23,20 +23,20 @@ export default nix.lambda((args) => (() => {
   const textlint_rule_preset_ai_words_ja = nix.arg($, "textlint-rule-preset-ai-words-ja");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "textlint-rule-preset-ai-words-ja",
       version: "1.2.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "p1ass",
           repo: "textlint-rule-preset-ai-words-ja",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-uQmcThe2eSFi8iOstUaA58PX/rvcLKyGGLXHwI/9gfc=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -48,16 +48,16 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npnpm build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\npnpm install --offline --frozen-lockfile --ignore-scripts --prod\nmkdir -p $out/lib/node_modules/textlint-rule-preset-ai-words-ja\ncp -r lib node_modules package.json $out/lib/node_modules/textlint-rule-preset-ai-words-ja\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             rule: textlint_rule_preset_ai_words_ja,
             testFile: nix.path(here, "./test.md"),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Textlint preset that detects words and phrases commonly found in AI-generated Japanese",
         homepage: "https://github.com/p1ass/textlint-rule-preset-ai-words-ja",
         changelog: nix.thunk(() => nix.str`https://github.com/p1ass/textlint-rule-preset-ai-words-ja/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

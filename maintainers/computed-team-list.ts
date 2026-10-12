@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const githubTeams = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./github-teams.json")));
-  const teams = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./team-list.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const teams = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./team-list.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const maintainersById = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(lib, "maintainers")), nix.thunk(() => [
       nix.thunk(() => nix.sel(lib, "attrValues")),
       nix.thunk(() => nix.app(nix.sel(lib, "groupBy"), (attrs) => nix.builtins.toString(nix.thunk(() => nix.sel(attrs, "githubId"))))),
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const maintainerSetToList = (githubTeam) => (users) => (() => {
     const missingUsers = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (login) => !nix.asBool(nix.has(maintainersById, nix.key(nix.builtins.toString(nix.thunk(() => nix.sel(users, nix.key(nix.force(login)))))))), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), users))));
     return (nix.asBool(nix.eq(missingUsers, [])) ? nix.app(nix.sel(lib, "mapAttrsToList"), (login) => (id) => nix.sel(maintainersById, nix.key(nix.builtins.toString(id))), users) : {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       errors: nix.thunk(() => nix.builtins.map((login) => nix.str`
 - No maintainer entry for GitHub user @${login} who's part of the @NixOS/${githubTeam} team`, missingUsers)),
     });
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => !nix.asBool(nix.has(attrs, "scope"))), nix.thunk(() => nix.str`lib.teams.${name}: Both \`scope\` and \`github\` is set, but the former is synced from the latter`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/maintainers/computed-team-list.nix:51:7");
       nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => !nix.asBool(nix.has(attrs, "members"))), nix.thunk(() => nix.str`lib.teams.${name}: Both \`members\` and \`github\` is set, but the former is synced from the latter`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/maintainers/computed-team-list.nix:54:7");
       return (nix.asBool((nix.asBool(!nix.asBool(nix.has(maintainers, "errors"))) && nix.asBool(!nix.asBool(nix.has(nonMaintainers, "errors"))))) ? nix.update(attrs, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         githubId: nix.thunk(() => nix.sel(githubTeam, "id")),
         shortName: nix.thunk(() => nix.sel(githubTeam, "name")),
         scope: nix.thunk(() => nix.sel(githubTeam, "description")),

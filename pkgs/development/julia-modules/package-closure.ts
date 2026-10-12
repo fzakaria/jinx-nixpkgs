@@ -61,7 +61,7 @@ open(ENV["out"], "w") do io
 end
 `;
   return nix.app(runCommand, "julia-package-closure.yml", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildInputs: nix.thunk(() => [
         julia,
         nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {

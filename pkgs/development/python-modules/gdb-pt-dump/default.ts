@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const poetry_core = nix.arg($, "poetry-core");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gdb-pt-dump",
       version: "0-unstable-2024-04-01",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "martinradev",
           repo: "gdb-pt-dump",
           rev: "50227bda0b6332e94027f811a15879588de6d5cb",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core]),
       pythonImportsCheck: nix.thunk(() => ["pt"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GDB script to enhance debugging of a QEMU-based virtual machine",
         homepage: "https://github.com/martinradev/gdb-pt-dump",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

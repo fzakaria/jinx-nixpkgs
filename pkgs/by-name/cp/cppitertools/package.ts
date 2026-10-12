@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const catch2 = nix.arg($, "catch2");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cppitertools",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ryanhaining",
           repo: "cppitertools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       cmakeBuildDir: "cmake-build",
       cmakeInstallDir: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/cmake`),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cppitertools_INSTALL_CMAKE_DIR: nix.thunk(() => nix.sel(finalAttrs, "cmakeInstallDir")),
       })),
       cmakeFlags: nix.thunk(() => [
@@ -48,7 +48,7 @@ cp ${nix.app(nix.sel(lib, "getDev"), catch2)}/include/catch2/catch.hpp test/
       checkPhase: "runHook preCheck\ncmake -B build-test -S ../test\ncmake --build build-test -j$NIX_BUILD_CORES\nrunHook postCheck\n",
       installPhase: "runHook preInstall\ncmake --install . \"--prefix=$out\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Implementation of Python itertools and builtin iteration functions for C++17",
         longDescription: "Range-based for loop add-ons inspired by the Python builtins and itertools library\nfor C++17, using lazy evaluation wherever possible.\n",
         homepage: "https://github.com/ryanhaining/cppitertools",

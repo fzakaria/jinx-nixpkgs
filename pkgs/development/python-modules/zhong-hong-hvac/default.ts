@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const attrs = nix.arg($, "attrs");
   const poetry_core = nix.arg($, "poetry-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zhong-hong-hvac",
       version: "1.0.21",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crhan",
           repo: "ZhongHongHVAC",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["zhong_hong_hvac"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for interfacing with ZhongHong HVAC controller",
         homepage: "https://github.com/crhan/ZhongHongHVAC",
         changelog: nix.thunk(() => nix.str`https://github.com/crhan/ZhongHongHVAC/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

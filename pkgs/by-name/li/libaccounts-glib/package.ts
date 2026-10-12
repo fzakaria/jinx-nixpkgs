@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const docbook_xml_dtd_43 = nix.arg($, "docbook_xml_dtd_43");
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libaccounts-glib",
       version: "1.27",
       outputs: nix.thunk(() => ["out", "dev", "devdoc", "py"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "accounts-sso",
           repo: "libaccounts-glib",
           rev: nix.thunk(() => nix.str`VERSION_${nix.sel(finalAttrs, "version")}`),
@@ -64,17 +64,17 @@ export default nix.lambda((args) => (() => {
         sqlite,
       ]),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), "substituteInPlace meson.build \\\n  --replace \"subdir('tests')\" \"\"\n")),
-      env: nix.thunk(() => ({ __proto__: pos$2, LC_ALL: "en_US.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" })),
       mesonFlags: nix.thunk(() => [
         "-Dinstall-py-overrides=true",
         nix.thunk(() => nix.str`-Dpy-overrides-dir=${nix.builtins.placeholder("py")}/${nix.sel(python3, "sitePackages")}/gi/overrides`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "VERSION_" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "VERSION_" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Library for managing accounts which can be used from GLib applications",
         homepage: "https://gitlab.com/accounts-sso/libaccounts-glib",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

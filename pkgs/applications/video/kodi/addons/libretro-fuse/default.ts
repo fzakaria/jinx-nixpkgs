@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "game.libretro.fuse";
       const version = "1.6.0.34";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kodi-game",
           repo: "game.libretro.fuse",
           rev: nix.thunk(() => nix.str`${version}-Nexus`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const extraBuildInputs = nix.thunk(() => [fuse]);
       const propagatedBuildInputs = nix.thunk(() => [libretro]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/kodi-game/game.libretro.fuse",
         description: "Sinclair - ZX Spectrum (Fuse) GameClient for Kodi",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         namespace,
         version,

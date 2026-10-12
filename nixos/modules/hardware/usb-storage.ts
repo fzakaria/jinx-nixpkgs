@@ -18,15 +18,15 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       hardware: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         usbStorage: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           manageShutdown: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable this option to gracefully spin-down external storage during shutdown.\nIf you suspect improper head parking after poweroff, install `smartmontools` and check\nfor the `Power-Off_Retract_Count` field for an increment.\n",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "usbStorage", "manageShutdown")), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           udev: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraRules: "ACTION==\"add|change\", SUBSYSTEM==\"scsi_disk\", DRIVERS==\"usb-storage|uas\", ATTR{manage_shutdown}=\"1\"\n",
           })),
         })),

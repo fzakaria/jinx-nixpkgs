@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const npmDepsHash = nix.arg($, "npmDepsHash");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: version,
       src: src,
       npmDepsHash: npmDepsHash,
       pname: nix.thunk(() => nix.str`${pname}-frontend`),
       buildPhase: "runHook preBuild\n\nnpx lingui extract public/\nnpx lingui compile\nNODE_ENV=production node esbuild.config.js\nNODE_ENV=production npx webpack-cli\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r dist ssr.js favicon.png robots.txt $out/\n\nrunHook postInstall\n",
-      env: nix.thunk(() => ({ __proto__: pos$1, PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1n })),
     })));
 })(), formals$1);
 //# sourceMappingURL=frontend.ts.map

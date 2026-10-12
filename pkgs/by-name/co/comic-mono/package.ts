@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "comic-mono-font",
       version: "2020-12-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dtinth",
           repo: "comic-mono-font",
           rev: "9a96d04cdd2919964169192e7d9de5012ef66de4",
@@ -33,7 +33,7 @@ ln -s ${nix.path(here, "./comic-mono-weight.conf")} $out/etc/fonts/conf.d/30-com
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Legible monospace font that looks like Comic Sans",
         longDescription: "A legible monospace font... the very typeface you’ve been trained to\nrecognize since childhood. This font is a fork of Shannon Miwa’s Comic\nShanns (version 1).\n",
         homepage: "https://dtinth.github.io/comic-mono-font/",

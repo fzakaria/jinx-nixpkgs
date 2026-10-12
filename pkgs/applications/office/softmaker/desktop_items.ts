@@ -14,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const pname = nix.arg($, "pname");
   const suiteName = nix.arg($, "suiteName");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     planmaker: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`${pname}-planmaker`),
         desktopName: nix.thunk(() => nix.str`${suiteName} PlanMaker`),
         icon: nix.thunk(() => nix.str`${pname}-pml`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         startupWMClass: "pm",
       })))),
     presentations: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.str`${pname}-presentations`),
         desktopName: nix.thunk(() => nix.str`${suiteName} Presentations`),
         icon: nix.thunk(() => nix.str`${pname}-prl`),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         startupWMClass: "pr",
       })))),
     textmaker: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => nix.str`${pname}-textmaker`),
         desktopName: nix.thunk(() => nix.str`${suiteName} TextMaker`),
         icon: nix.thunk(() => nix.str`${pname}-tml`),

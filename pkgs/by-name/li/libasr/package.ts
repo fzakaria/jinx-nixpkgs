@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const libevent = nix.arg($, "libevent");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libasr",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.opensmtpd.org/archives/libasr-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1d6s8njqhvayx2gp47409sp1fn8m608ws26hr1srfp6i23nnpyqr",
         })))),
       buildInputs: nix.thunk(() => [libevent, openssl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/OpenSMTPD/libasr",
         description: "Free, simple and portable asynchronous resolver library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

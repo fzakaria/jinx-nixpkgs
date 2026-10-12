@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const pcsclite = nix.arg($, "pcsclite");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sbctl",
       version: "0.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Foxboron",
           repo: "sbctl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["-skip", "github.com/google/go-tpm-tools/.*"]),
       postInstall: nix.thunk(() => nix.add("installManPage docs/sbctl.conf.5 docs/sbctl.8\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd sbctl \\\n  --bash <($out/bin/sbctl completion bash) \\\n  --fish <($out/bin/sbctl completion fish) \\\n  --zsh <($out/bin/sbctl completion zsh)\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Secure Boot key manager",
         mainProgram: "sbctl",
         homepage: "https://github.com/Foxboron/sbctl",

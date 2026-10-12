@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const librime = nix.arg($, "librime");
   const rime_data = nix.arg($, "rime-data");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rime-ls",
       version: "0.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wlh320",
           repo: "rime-ls",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => [librime]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RIME_DATA_DIR: nix.thunk(() => nix.str`${rime_data}/share/rime-data`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Language server for Rime input method engine",
         homepage: "https://github.com/wlh320/rime-ls",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

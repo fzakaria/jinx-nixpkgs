@@ -16,15 +16,15 @@ export default nix.lambda((args) => (() => {
   const ssreflect = nix.arg($, "ssreflect");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "coq-haskell",
       owner: "jwiegley",
       version: version,
       defaultVersion: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "range"), "8.5", "8.8", nix.thunk(() => nix.sel(coq, "coq-version")))) ? "20171215" : null)),
       release: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "20171215": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: "e2cf8b270c2efa3b56fab1ef6acc376c2c3de968",
           hash: "sha256:09dq1vvshhlhgjccrhqgbhnq2hrys15xryfszqq11rzpgvl2zgdv",
         })),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [coq, ssreflect]),
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for formalizing Haskell types and functions in Coq",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

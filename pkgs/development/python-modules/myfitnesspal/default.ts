@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-eE807M8qFDlSMAcE+GFJyve1YfmlWmB3ML9VJhMUeIE=",
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_integration"]);
       const pythonImportsCheck = nix.thunk(() => ["myfitnesspal"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to access meal tracking data stored in MyFitnessPal",
         mainProgram: "myfitnesspal",
         homepage: "https://github.com/coddingtonbear/python-myfitnesspal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

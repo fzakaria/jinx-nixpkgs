@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const mopidy = nix.arg($, "mopidy");
   const python = python3;
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mopidy-ytmusic",
       version: "0.3.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jmcdo29",
           repo: "mopidy-ytmusic",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })()),
       propagatedBuildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(mopidy, "override"), nix.thunk(() => ({ __proto__: pos$2, pythonPackages: nix.thunk(() => nix.sel(python, "pkgs")) })))),
+        nix.thunk(() => nix.app(nix.sel(mopidy, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, pythonPackages: nix.thunk(() => nix.sel(python, "pkgs")) })))),
         nix.thunk(() => nix.sel(python, "pkgs", "ytmusicapi")),
         nix.thunk(() => nix.sel(python, "pkgs", "pytube")),
       ]),
       pythonImportsCheck: nix.thunk(() => ["mopidy_ytmusic"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/jmcdo29/mopidy-ytmusic/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Mopidy extension for playing music from YouTube Music",
         homepage: "https://github.com/jmcdo29/mopidy-ytmusic",

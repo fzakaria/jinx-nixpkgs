@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "glfw",
       version: "2016-12-05",
       idrisDeps: nix.thunk(() => [effects]),
@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
       extraBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "glfw"))]),
       postPatch: "substituteInPlace src/MakefileGlfw \\\n  --replace glfw3 \"glfw3 gl\"\n",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eckart",
           repo: "glfw-idris",
           rev: "10220a734b69f3b884683041a1a9c533800b663a",
           sha256: "045ylaj66g5m4syzhqxlaxmivy8y7jznkcf1y7w4awa4y5znyqqd",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GLFW bindings for Idris",
         homepage: "https://github.com/eckart/glfw-idris",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

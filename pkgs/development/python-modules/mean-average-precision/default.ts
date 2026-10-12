@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2024.01.05.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bes-dev",
           repo: "mean_average_precision",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["mean_average_precision"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mean Average Precision for Object Detection",
         homepage: "https://github.com/bes-dev/mean_average_precision",
         changelog: nix.thunk(() => nix.str`https://github.com/bes-dev/mean_average_precision/blob/${version}/CHANGELOG.md`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

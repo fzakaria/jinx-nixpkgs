@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const moduleDir = nix.thunk(() => nix.attr(gdk_pixbuf, "moduleDir"));
   const loadersPath = nix.thunk(() => nix.str`${nix.sel(gdk_pixbuf, "binaryDir")}/webp-loaders.cache`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "webp-pixbuf-loader",
       version: "0.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aruiz",
           repo: "webp-pixbuf-loader",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +56,7 @@ makeWrapper "${gdk_pixbuf}/bin/gdk-pixbuf-thumbnailer" "$out/libexec/gdk-pixbuf-
   --set GDK_PIXBUF_MODULE_FILE "$out/${loadersPath}"
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "WebP GDK Pixbuf Loader library",
         homepage: "https://github.com/aruiz/webp-pixbuf-loader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

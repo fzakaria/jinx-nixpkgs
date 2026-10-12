@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mint";
       const version = "0.29.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mint-lang",
           repo: "mint",
           tag: version,
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [openssl]);
       const preCheck = "substituteInPlace spec/spec_helper.cr \\\n  --replace-fail \"clear_env: true\" \"clear_env: false\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Refreshing language for the front-end web",
         mainProgram: "mint",
         homepage: "https://www.mint-lang.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

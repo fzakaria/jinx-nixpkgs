@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const pulseaudioSupport = nix.argOr($, "pulseaudioSupport", () => nix.selOr(config, () => nix.sel(stdenv, "hostPlatform", "isLinux"), "pulseaudio"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pcaudiolib",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "espeak-ng",
           repo: "pcaudiolib",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([portaudio], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), alsa_lib), nix.app(nix.sel(lib, "optional"), pulseaudioSupport, libpulseaudio)))),
       preConfigure: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "touch ChangeLog\n"), "./autogen.sh\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/espeak-ng/pcaudiolib",
         description: "Provides a C API to different audio devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

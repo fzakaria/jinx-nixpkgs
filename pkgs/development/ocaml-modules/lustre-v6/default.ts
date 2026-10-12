@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const rdbg = nix.arg($, "rdbg");
   const yaml = nix.arg($, "yaml");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lustre-v6",
       version: "6.107.4",
       minimalOCamlVersion: "4.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www-verimag.imag.fr/DIST-TOOLS/SYNCHRONE/pool/lustre-v6.v${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-baT5ZJtg5oFoJ5eHb3ISsmY6G31UG10KlNXC+ta+M1c=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [extlib, lutils, rdbg, yaml]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lustre V6 compiler",
         homepage: "https://www-verimag.imag.fr/lustre-v6.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill21")),

@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
   const nvvmRoot = nix.thunk(() => (nix.asBool(nix.app(nix.sel(cudaPackages, "cudaOlder"), "13.0")) ? nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc")))}/nvvm` : nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "libnvvm")))}`));
   const libCudaPath = nix.thunk(() => (nix.asBool(nix.selOr(cudaPackages, () => false, "cuda_compat", "meta", "available")) ? nix.sel(cudaPackages, "cuda_compat") : nix.sel(addDriverRunpath, "driverLink")));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       version: "0.67.0",
       pname: "numba",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "numba",
           repo: "numba",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./nvidia-libs-paths.patch"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               libcuda: libCudaPath,
               libcudart: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))),
               libcudart_static: nix.thunk(() => nix.app(nix.sel(lib, "getOutput"), "static", nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))),
@@ -82,26 +82,26 @@ export default nix.lambda((args) => (() => {
         ]))),
       pythonImportsCheck: nix.thunk(() => ["numba"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         testers: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "cuda-detect": nix.thunk(() => nix.app(nix.sel(writers, "writePython3Bin"), "numba-cuda-detect", nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               libraries: nix.thunk(() => [
-                nix.thunk(() => nix.app(nix.sel(numba, "override"), nix.thunk(() => ({ __proto__: pos$3, cudaSupport: true })))),
+                nix.thunk(() => nix.app(nix.sel(numba, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, cudaSupport: true })))),
               ]),
             })), "from numba import cuda\ncuda.detect()\n")),
         })),
         tests: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           withoutSandbox: nix.thunk(() => nix.app(nix.sel(numba, "override"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               doFullCheck: true,
               cudaSupport: true,
               testsWithoutSandbox: true,
             })))),
           withSandbox: nix.thunk(() => nix.app(nix.sel(numba, "override"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               cudaSupport: false,
               doFullCheck: true,
               testsWithoutSandbox: false,
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         changelog: nix.thunk(() => nix.str`https://numba.readthedocs.io/en/stable/release/${nix.sel(finalAttrs, "version")}-notes.html`),
         description: "Compiling Python code using LLVM",
         homepage: "https://numba.pydata.org/",

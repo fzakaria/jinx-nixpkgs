@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const netsurf_buildsystem = nix.arg($, "netsurf-buildsystem");
   const publicsuffix_list = nix.arg($, "publicsuffix-list");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libnspsl",
       version: "0.1.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.netsurf-browser.org/libs/releases/libnspsl-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-NoTOwy9VXa7UMZk+C/bL2TdPbJCERiN+CJ8LYdaUrIA=",
         })))),
@@ -36,7 +36,7 @@ ln -s ${publicsuffix_list}/share/publicsuffix/public_suffix_list.dat public_suff
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(netsurf_buildsystem, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.netsurf-browser.org/",
         description: "NetSurf Public Suffix List - Handling library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

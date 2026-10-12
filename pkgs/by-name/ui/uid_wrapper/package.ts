@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uid_wrapper",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://samba/cwrap/uid_wrapper-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-rkvzuPCnSPRwUxplBDazkYLIIX7pJpqcfpJcZDgKm9o=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper for the user, group and hosts NSS API",
         homepage: "https://git.samba.org/?p=uid_wrapper.git;a=summary;",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

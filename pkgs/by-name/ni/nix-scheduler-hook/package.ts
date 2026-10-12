@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const slurm = nix.arg($, "slurm");
   const gitUpdater = nix.arg($, "gitUpdater");
   const restclient_cpp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "mrtazz",
       repo: "restclient-cpp",
       rev: "3356f816b161279cfbe318c45cb07c07fb8de6df",
       hash: "sha256-9//KssNRD7OJFNFdXgzsu7rKP/Nlb4wtmBjfhOt2Vgw=",
     }))));
   const slurmJoined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "slurm",
       paths: nix.thunk(() => [slurm, nix.thunk(() => nix.sel(slurm, "dev"))]),
     }))));
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nix-scheduler-hook";
       const version = "0.11.0";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "lisanna",
           repo: "nix-scheduler-hook",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -68,13 +68,13 @@ cp -r ${restclient_cpp} $sourceRoot/subprojects/restclient-cpp
 `);
       const installPhase = "mkdir -p $out/bin\nmv src/nsh $out/bin\nmkdir -p $out/lib\nshopt -s extglob\nmv subprojects/restclient-cpp/librestclient_cpp.so!(*p) $out/lib\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": "v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nix$, "meta"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Nix build hook that forwards builds to job schedulers",
         homepage: "https://codeberg.org/lisanna/nix-scheduler-hook",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -87,7 +87,7 @@ cp -r ${restclient_cpp} $sourceRoot/subprojects/restclient-cpp
       };
       })());
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

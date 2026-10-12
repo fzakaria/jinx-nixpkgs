@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const markdown = nix.arg($, "markdown");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "markdown-inline-graphviz-extension",
       version: "1.1.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cesaremorel",
           repo: "markdown-inline-graphviz",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/cesaremorel/markdown-inline-graphviz/commit/579f10af9fe7187c717c20615f65774f898c1a0d.patch",
             hash: "sha256-PJdwQ6+vq28m55vbgFzlhMmgvFqGPsYfIaCYunG7bMU=",
           })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["markdown_inline_graphviz"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Render inline graphs with Markdown and Graphviz",
         homepage: "https://github.com/cesaremorel/markdown-inline-graphviz/",
         changelog: nix.thunk(() => nix.str`https://github.com/cesaremorel/markdown-inline-graphviz/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.20";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tableau",
           repo: "tabcmd",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -73,7 +73,7 @@ chmod +x $out/bin/tabcmd
 `);
       const pythonImportsCheck = nix.thunk(() => ["tabcmd"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line client for working with Tableau Server",
         homepage: "https://github.com/tableau/tabcmd",
         changelog: nix.thunk(() => nix.str`https://github.com/tableau/tabcmd/releases/tag/v${version}`),
@@ -82,7 +82,7 @@ chmod +x $out/bin/tabcmd
         mainProgram: "tabcmd",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

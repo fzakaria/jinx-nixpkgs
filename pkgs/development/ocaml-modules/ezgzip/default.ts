@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const qcheck = nix.arg($, "qcheck");
   const rresult = nix.arg($, "rresult");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ezgzip",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/hcarty/ezgzip/releases/download/v${nix.sel(finalAttrs, "version")}/ezgzip-v${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-iGju25j4Oy1T8JGoJ9ubeltOm6U4u8CAyRtKxLr2edQ=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, qcheck]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple gzip (de)compression library",
         homepage: "https://github.com/hcarty/ezgzip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

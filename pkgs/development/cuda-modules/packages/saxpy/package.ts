@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const libcublas = nix.arg($, "libcublas");
   const saxpy = nix.arg($, "saxpy");
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       strictDeps: true,
       name: nix.thunk(() => nix.str`${cudaNamePrefix}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_CUDA_ARCHITECTURES", nix.thunk(() => nix.sel(flags, "cmakeCudaArchitecturesString")))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(saxpy, "overrideAttrs"), (_) => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doInstallCheck: true,
             postInstallCheck: nix.thunk(() => nix.str`$out/bin/${nix.selOr(saxpy, () => nix.app(nix.sel(lib, "getName"), saxpy), "meta", "mainProgram")}
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
           }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple (Single-precision AX Plus Y) FindCUDAToolkit.cmake example for testing cross-compilation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "cuda"))]),

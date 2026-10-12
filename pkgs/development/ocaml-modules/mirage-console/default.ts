@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const mirage_flow = nix.arg($, "mirage-flow");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirage-console",
       version: "5.1.0",
       minimalOCamlVersion: "4.08",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-console/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-console-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-mjYRisbNOJbYoSuWaGoPueXakmqAwmWh0ATvLLsvpNM=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [lwt, mirage_flow]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementations of Mirage console devices",
         homepage: "https://github.com/mirage/mirage-console",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

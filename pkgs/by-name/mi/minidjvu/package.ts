@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "minidjvu";
       const version = "0.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/minidjvu/minidjvu-${version}.tar.gz`),
           sha256: "0jmpvy4g68k6xgplj9zsl6brg6vi81mx3nx2x9hfbr1f4zh95j79",
         }))));
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libtiff, gettext]);
       const preInstall = "mkdir -p $out/lib\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://djvu.sourceforge.net/djview4.html",
         description: "Black-and-white djvu page encoder and decoder that use interpage information",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

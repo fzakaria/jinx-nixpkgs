@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const logs = nix.arg($, "logs");
   const sexplib0 = nix.arg($, "sexplib0");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "cohttp-lwt",
       version: nix.thunk(() => nix.attr(cohttp, "version")),
       src: nix.thunk(() => nix.attr(cohttp, "src")),
       buildInputs: nix.thunk(() => [ppx_sexp_conv]),
       propagatedBuildInputs: nix.thunk(() => nix.concat([cohttp, lwt, logs, sexplib0, uri], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cohttp, "version")), "6.0.0")), nix.thunk(() => [ipaddr])))),
       meta: nix.thunk(() => nix.update(nix.sel(cohttp, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "CoHTTP implementation using the Lwt concurrency library",
       })),
     })));

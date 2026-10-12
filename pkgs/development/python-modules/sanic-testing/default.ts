@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "24.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sanic-org",
           repo: "sanic-testing",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const doInstallCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pytest: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Core testing clients for the Sanic web framework",
         homepage: "https://github.com/sanic-org/sanic-testing",
         changelog: nix.thunk(() => nix.str`https://github.com/sanic-org/sanic-testing/releases/tag/v${version}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

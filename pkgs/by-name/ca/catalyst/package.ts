@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const catalyst = nix.arg($, "catalyst");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "catalyst",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.kitware.com",
           owner: "paraview",
           repo: "catalyst",
@@ -47,13 +47,13 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(python3Packages, "pythonImportsCheckHook")),
         ])), nix.app(nix.sel(lib, "optionals"), fortranSupport, nix.thunk(() => [gfortran]))))),
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), pythonSupport, nix.thunk(() => nix.app(nix.sel(python3Packages, "mkPythonMetaPackage"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(python3Packages, null);
-              return nix.concat([nix.thunk(() => nix.lookup(w, "numpy"))], nix.app(nix.sel(lib, "optional"), mpiSupport, nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "mpi4py"), "override"), nix.thunk(() => ({ __proto__: pos$2, mpi: mpi }))))));
+              return nix.concat([nix.thunk(() => nix.lookup(w, "numpy"))], nix.app(nix.sel(lib, "optional"), mpiSupport, nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "mpi4py"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, mpi: mpi }))))));
             })()),
           }))))), nix.app(nix.sel(lib, "optional"), mpiSupport, mpi))),
       cmakeFlags: nix.thunk(() => [
@@ -72,20 +72,20 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(fortranSupport) || nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))))), nix.thunk(() => ["catalyst-abi-nm"]))),
       pythonImportsCheck: nix.thunk(() => ["catalyst"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               moduleNames: nix.thunk(() => ["catalyst"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
-          serial: nix.thunk(() => nix.app(nix.sel(catalyst, "override"), nix.thunk(() => ({ __proto__: pos$5, mpiSupport: false })))),
-          fortran: nix.thunk(() => nix.app(nix.sel(catalyst, "override"), nix.thunk(() => ({ __proto__: pos$6, fortranSupport: true })))),
+          serial: nix.thunk(() => nix.app(nix.sel(catalyst, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, mpiSupport: false })))),
+          fortran: nix.thunk(() => nix.app(nix.sel(catalyst, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, fortranSupport: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "In situ visualization and analysis library",
         homepage: "https://kitware.github.io/paraview-catalyst",
         downloadPage: "https://gitlab.kitware.com/paraview/catalyst",

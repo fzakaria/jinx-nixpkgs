@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "re-plistbuddy";
       const version = "1.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "viraptor",
           repo: "re-plistbuddy",
           tag: version,
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const cargoHash = "sha256-RyHM6CMxdhDJrg6mGt8jQCDLVjt0BiLYswelOHoellw=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open reimplementation of Apple's PlistBuddy and plutil",
         homepage: "https://github.com/viraptor/re-plistbuddy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
-      return { __proto__: pos$3, pname, version, src, cargoHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, cargoHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

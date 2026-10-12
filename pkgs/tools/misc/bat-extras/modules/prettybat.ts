@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const withClangTools = nix.argOr($, "withClangTools", () => true);
   const withRustFmt = nix.argOr($, "withRustFmt", () => true);
   return nix.app(buildBatExtrasPkg, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "prettybat",
       dependencies: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withShFmt, shfmt), nix.concat(nix.app(nix.sel(lib, "optional"), withPrettier, prettier), nix.concat(nix.app(nix.sel(lib, "optional"), withClangTools, clang_tools), nix.app(nix.sel(lib, "optional"), withRustFmt, rustfmt))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Pretty-print source code and highlight it with bat",
       })),
     })));

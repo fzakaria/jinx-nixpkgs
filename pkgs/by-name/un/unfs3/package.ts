@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "unfs3";
       const version = "0.11.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "unfs3",
           repo: "unfs3",
           tag: nix.thunk(() => nix.str`unfs3-${version}`),
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgramArg = "-h";
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", nix.thunk(() => nix.str`${pname}-(.*)`)]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "User-space NFSv3 file system server",
         longDescription: "UNFS3 is a user-space implementation of the NFSv3 server\nspecification.  It provides a daemon for the MOUNT and NFS\nprotocols, which are used by NFS clients for accessing files on the\nserver.\n",
         homepage: "https://unfs3.github.io/",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

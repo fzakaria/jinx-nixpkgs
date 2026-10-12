@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
       const pname = "fish-bd";
       const version = "1.3.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "0rax",
           repo: "fish-bd",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-GeWjoakXa0t2TsMC/wpLEmsSVGhHFhBVK3v9eyQdzv0=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fish plugin to quickly go back to a parent directory up in your current working directory tree",
         homepage: "https://github.com/0rax/fish-bd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "anomalocaris"))];
         })()),
       }));
-      return { __proto__: pos$5, pname, version, src, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=fish-bd.ts.map

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Parquery",
           repo: "pylddwrap",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./replace_env_with_placeholder.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             ldd_bin: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "bintools", "libc_bin")}/bin/ldd`),
           })))),
       ]);
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["TestAgainstMockLdd", "TestMain"]);
       const pythonImportsCheck = nix.thunk(() => ["lddwrap"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python wrapper around ldd *nix utility to determine shared libraries of a program",
         mainProgram: "pylddwrap",
         homepage: "https://github.com/Parquery/pylddwrap",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         badPlatforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

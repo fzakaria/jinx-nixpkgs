@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
       libxtst,
       fontconfig,
     ])));
-  const jdkWithFX = nix.thunk(() => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ __proto__: pos$1, enableJavaFX: true }))));
+  const jdkWithFX = nix.thunk(() => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => (() => {
       const pname = "vatprism";
       const version = "0.3.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "marvk",
           repo: "vatprism",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./0001-Fix-build-on-JDK-21.patch")]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "vatprism",
             desktopName: "VATprism",
             exec: "vatprism",
@@ -91,7 +91,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jdkWithFX)} $out/bin/vatprism \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/marvk/vatprism/raw/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "VATSIM map and data explorer",
         longDescription: "VATprism is a VATSIM Map and VATSIM Data Explorer, VATSIM being the\nVirtual Air Traffic Simulation Network. VATprism allows users to explore\navailable ATC services, connected pilots, Airports, Flight and Upper\nInformation Regions and more!\n",
@@ -105,7 +105,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

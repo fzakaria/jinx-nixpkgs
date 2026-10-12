@@ -19,20 +19,20 @@ export default nix.lambda((args) => (() => {
   const varName = "Demo";
   const readWriteVar = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3"), "read-increment-efi-var", nix.thunk(() => ({})), "import os\nimport sys\nimport fcntl\nimport array\n\nif len(sys.argv) != 3:\n    print(f\"Usage: {sys.argv[0]} NAME UUID\", file=sys.stderr)\n    sys.exit(1)\n\nname = sys.argv[1]\nuuid = sys.argv[2]\npath = f\"/sys/firmware/efi/efivars/{name}-{uuid}\"\n\nFS_IMMUTABLE_FL = 0x00000010\nFS_IOC_GETFLAGS = 0x80086601\nFS_IOC_SETFLAGS = 0x40086602\n\nif not os.path.exists(path):\n    print(f\"{path}: does not exist\", file=sys.stderr)\n    sys.exit(1)\n\nwith open(path, \"rb\") as f:\n    data = f.read()\n\n# The first 4 bytes are attributes, the rest is the data\nif data[4:] != b\"\\x2a\":\n    print(f\"0x2a value expected, got {data[4:]!r}\", file=sys.stderr)\n    sys.exit(1)\n\nfd = os.open(path, os.O_RDONLY)\narg = array.array(\"L\", [0])\nfcntl.ioctl(fd, FS_IOC_GETFLAGS, arg)\nif arg[0] & FS_IMMUTABLE_FL:\n    arg[0] &= ~FS_IMMUTABLE_FL\n    fcntl.ioctl(fd, FS_IOC_SETFLAGS, arg)\nos.close(fd)\n\nwith open(path, \"wb\") as f:\n    # Write 0x2b\n    data = bytes(list(data[:4]) + [0x2b])\n    f.write(data)\n"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "efivars",
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         boot: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           loader: nix.thunk(() => ({
-            __proto__: pos$2,
-            efi: nix.thunk(() => ({ __proto__: pos$1, canTouchEfiVariables: true })),
+            [nix.POS]: pos$2,
+            efi: nix.thunk(() => ({ [nix.POS]: pos$1, canTouchEfiVariables: true })),
           })),
         })),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$4, useEFIBoot: true })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$4, useEFIBoot: true })),
       })),
     })),
     testScript: nix.thunk(() => nix.str`import uuid

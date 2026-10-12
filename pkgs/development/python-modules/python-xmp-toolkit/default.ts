@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-xmp-toolkit",
       version: "2.0.2",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-xmp-toolkit",
           repo: "python-xmp-toolkit",
           rev: "5692bdf8dac3581a0d5fb3c5aeb29be0ab6a54fc",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       preCheck: "rm test/{test_exempi,test_files}.py\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/python-xmp-toolkit/python-xmp-toolkit",
         description: "Python XMP Toolkit for working with metadata",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

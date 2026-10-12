@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "opendmarc",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trusteddomainproject",
           repo: "opendmarc",
           rev: nix.thunk(() => nix.str`rel-opendmarc-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       outputs: nix.thunk(() => ["bin", "dev", "out", "doc"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=gnu17"]))),
       })),
       buildInputs: nix.thunk(() => [perl]),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free open source software implementation of the DMARC specification",
         homepage: "http://www.trusteddomain.org/opendmarc/",
         license: nix.thunk(() => (() => {

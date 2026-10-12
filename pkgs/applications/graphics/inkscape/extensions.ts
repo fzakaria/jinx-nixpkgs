@@ -19,16 +19,16 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const texliveBasic = nix.arg($, "texliveBasic");
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     applytransforms: nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensions/applytransforms"), nix.thunk(() => ({})))),
     hexmap: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "hexmap",
         version: "3.0pre2",
         strictDeps: true,
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "lifelike",
             repo: "hexmapextension",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         preferLocalBuild: true,
         installPhase: "runHook preInstall\n\nmkdir -p \"$out/share/inkscape/extensions\"\ncp -p *.inx *.py \"$out/share/inkscape/extensions/\"\nfind \"$out/share/inkscape/extensions/\" -name \"*.py\" -exec chmod +x {} \\;\n\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "This is an extension for creating hex grids in Inkscape. It can also be used to make brick patterns of staggered rectangles",
           homepage: "https://github.com/lifelike/hexmapextension",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -50,7 +50,7 @@ cp ${inkcut}/share/inkscape/extensions/* $out/share/inkscape/extensions
 `))),
     inkstitch: nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensions/inkstitch"), nix.thunk(() => ({})))),
     silhouette: nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensions/silhouette"), nix.thunk(() => ({})))),
-    textext: nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensions/textext"), nix.thunk(() => ({ __proto__: pos$4, pdflatex: texliveBasic, lualatex: texliveBasic })))),
+    textext: nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensions/textext"), nix.thunk(() => ({ [nix.POS]: pos$4, pdflatex: texliveBasic, lualatex: texliveBasic })))),
   };
 })(), formals$1);
 //# sourceMappingURL=extensions.ts.map

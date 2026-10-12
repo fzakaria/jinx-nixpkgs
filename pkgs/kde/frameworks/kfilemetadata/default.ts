@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const kdegraphics_mobipocket = nix.arg($, "kdegraphics-mobipocket");
   const libappimage = nix.arg($, "libappimage");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kfilemetadata",
       patches: nix.thunk(() => [nix.path(here, "./cmake-install-paths.patch")]),
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),

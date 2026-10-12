@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const metadataDrive = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "metadata",
       buildCommand: nix.thunk(() => nix.str`mkdir -p $out/iso
 
@@ -37,10 +37,10 @@ ${nix.sel(pkgs, "cdrkit")}/bin/genisoimage -volid cidata -joliet -rock -o $out/m
 `),
     }))));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "cloud-init-hostname",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -50,23 +50,23 @@ ${nix.sel(pkgs, "cdrkit")}/bin/genisoimage -volid cidata -joliet -rock -o $out/m
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       unnamed: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             qemu: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               options: nix.thunk(() => ["-cdrom", nix.thunk(() => nix.str`${metadataDrive}/metadata.iso`)]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$6,
-            "cloud-init": nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+            [nix.POS]: pos$6,
+            "cloud-init": nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
           })),
-          networking: nix.thunk(() => ({ __proto__: pos$7, hostName: "" })),
+          networking: nix.thunk(() => ({ [nix.POS]: pos$7, hostName: "" })),
         };
       })(), formals$2),
     })),

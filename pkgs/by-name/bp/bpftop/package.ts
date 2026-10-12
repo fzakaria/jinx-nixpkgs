@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const libbpf = nix.arg($, "libbpf");
   const clangStdenv = nix.arg($, "clangStdenv");
-  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: clangStdenv })), (finalAttrs) => ({
-      __proto__: pos$4,
+  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: clangStdenv })), (finalAttrs) => ({
+      [nix.POS]: pos$4,
       pname: "bpftop",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "jfernandez",
           repo: "bpftop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       hardeningDisable: nix.thunk(() => ["zerocallusedregs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dynamic real-time view of running eBPF programs",
         homepage: "https://github.com/jfernandez/bpftop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

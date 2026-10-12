@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "game-devices-udev-rules",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fabiscafe",
           repo: "game-devices-udev",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ substituteInPlace $out/lib/udev/rules.d/powera-gdu.rules \\
   --replace-fail "/bin/sh" "${bash}/bin/bash"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Udev rules to make supported controllers available with user-grade permissions",
         homepage: "https://codeberg.org/fabiscafe/game-devices-udev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

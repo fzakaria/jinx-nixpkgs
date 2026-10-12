@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const unwrapped = nh_unwrapped;
   const runtimeDeps = nix.thunk(() => [nix_output_monitor]);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nh",
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
       paths: nix.thunk(() => [unwrapped]),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(unwrapped, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "itstool",
       version: "2.0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://files.itstool.org/itstool/itstool-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-a5p80poSu5VZj1dQ6HY87niDahogf4W3TYsydbJ+h8o=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-insufficiently-quoted-regular-expressions-pr51",
             url: "https://github.com/itstool/itstool/commit/19f9580f27aa261ea383b395fdef7e153f3f9e6d.patch",
             hash: "sha256-5J4mRXQu24o2rqVtaXN/ETgj6A8R0Ym+YkZhqhZTzIc=",
@@ -48,7 +48,7 @@ substituteInPlace itstool.in \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://itstool.org/",
         description: "XML to PO and back again",
         mainProgram: "itstool",

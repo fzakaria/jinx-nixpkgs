@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const xkeyboard_config = nix.arg($, "xkeyboard_config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ckbcomp",
       version: "1.242",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "installer-team",
           repo: "console-setup",
@@ -33,7 +33,7 @@ substituteInPlace Keyboard/ckbcomp --replace "rules = 'xorg'" "rules = 'base'"
       dontBuild: true,
       installPhase: "install -Dm0555 -t $out/bin Keyboard/ckbcomp\ninstall -Dm0444 -t $out/share/man/man1 man/ckbcomp.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compiles a XKB keyboard description to a keymap suitable for loadkeys",
         homepage: "https://salsa.debian.org/installer-team/console-setup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

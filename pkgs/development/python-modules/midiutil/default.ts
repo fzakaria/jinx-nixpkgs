@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "MIDIUtil",
           version: version,
           sha256: "02m9sqv36zrzgz5zg2w9qmz8snzlm27yg3ways2hgipgs4xriykr",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/MarkCWirt/MIDIUtil",
         description: "Pure python library for creating multi-track MIDI files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, format, src, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

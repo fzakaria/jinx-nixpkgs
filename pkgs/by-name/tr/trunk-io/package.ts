@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "trunk-io",
       version: "1.3.5",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://trunk.io/releases/launcher/${nix.sel(finalAttrs, "version")}/trunk`),
           hash: "sha256-cA+Lvt/SJllZmeoiArmnr3W6g5jdcR9fFZ9bu6bL8yI=",
         })))),
@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       dontBuild: true,
       installPhase: "runHook preInstall\n\ninstall -D $src $out/bin/trunk\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://trunk.io/",
         description: "Developer experience toolkit used to check, test, merge, and monitor code",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

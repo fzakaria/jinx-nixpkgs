@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const scdoc = nix.arg($, "scdoc");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "superd",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~craftyguy",
           repo: "superd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "make doc\n",
       postInstall: "installManPage superd.1 superd.service.5 superctl.1\ninstallShellCompletion --bash completions/bash/superctl\ninstallShellCompletion --zsh completions/zsh/superctl\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unprivileged user service supervisor",
         homepage: "https://sr.ht/~craftyguy/superd/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

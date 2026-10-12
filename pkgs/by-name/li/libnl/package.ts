@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const sourceHighlight = nix.arg($, "sourceHighlight");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libnl",
       version: "3.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "libnl",
           owner: "thom311",
           rev: nix.thunk(() => nix.str`libnl${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -64,9 +64,9 @@ mkdir -p $doc/share/doc/libnl
 cp doc/libnl-doc-${nix.sel(finalAttrs, "version")}.tar.gz $doc/share/doc/libnl
 `))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), pythonSupport, "mv \"pythonlib/\" \"$py\"\n")),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pythonSupport: pythonSupport })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pythonSupport: pythonSupport })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://www.infradead.org/~tgr/libnl/",
         description: "Linux Netlink interface library suite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -76,7 +76,7 @@ cp doc/libnl-doc-${nix.sel(finalAttrs, "version")}.tar.gz $doc/share/doc/libnl
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "libnl_project", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

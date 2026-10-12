@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.44";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "florianschanda",
           repo: "miss_hit",
           tag: version,
@@ -41,7 +41,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["miss_hit"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Static analysis and other utilities for programs written in the MATLAB/Simulink and Octave languages",
         homepage: "https://misshit.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/florianschanda/miss_hit/releases/tag/${version}`),
@@ -52,7 +52,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

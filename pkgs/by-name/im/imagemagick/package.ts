@@ -78,11 +78,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(libXtSupport) || nix.asBool(libX11Support)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/im/imagemagick/package.nix:67:1");
   nix.assert_((!nix.asBool(libraqmSupport) || nix.asBool(freetypeSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/im/imagemagick/package.nix:68:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "imagemagick",
       version: "7.1.2-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ImageMagick",
           repo: "ImageMagick",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -115,17 +115,17 @@ done
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "nixos-icons": nixos_icons,
           ImageMagick: nix.thunk(() => nix.attr(perlPackages, "ImageMagick")),
           img2pdf: nix.thunk(() => nix.attr(from, "img2pdf")),
           willow: nix.thunk(() => nix.attr(from, "willow")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", nix.thunk(() => nix.sel(finalAttrs, "version")))))),
             })))),
@@ -134,7 +134,7 @@ done
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "http://www.imagemagick.org/",
         changelog: "https://github.com/ImageMagick/Website/blob/main/docs/changelog/index.md",
         description: "Software suite to create, edit, compose, or convert bitmap images",

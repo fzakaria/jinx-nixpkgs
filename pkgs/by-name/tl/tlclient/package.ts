@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const version = "4.20.0";
   const buildNum = "4284";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "tlclient",
       version: nix.thunk(() => nix.str`${version}-${buildNum}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.cendio.com/downloads/clients/tl-${nix.sel(finalAttrs, "version")}-client-linux-dynamic-x86_64.tar.gz`),
           hash: "sha256-iq1OUFyMZwYWqEI57zSwj1RDh5OZ8qNu8knpe6Hbdeo=",
         })))),
@@ -38,21 +38,21 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nrm etc/ssh_known_hosts\nrm --recursive lib/tlclient/lib\nsubstituteInPlace lib/tlclient/share/applications/thinlinc-client.desktop \\\n  --replace-fail \"/opt/thinlinc/bin/\" \"\"\ncp --recursive . $out\ncp --recursive $out/lib/tlclient/share $out/share\ninstall -D --mode=0644 $out/lib/tlclient/EULA.txt $out/share/licenses/tlclient/EULA.txt\ninstall -D --mode=0644 $out/lib/tlclient/open_source_licenses.txt $out/share/licenses/tlclient/open_source_licenses.txt\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`${version} build ${buildNum}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Linux remote desktop client built on open source technology",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             shortName: "cendio",
             fullName: "Cendio end-user license agreement",
             url: "https://www.cendio.com/thinlinc/docs/legal/eula",

@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const shell = nix.argOr($, "shell", () => nix.sel(stdenvNoCC, "shell"));
   return nix.app(replaceVarsWith, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: nix.path(here, "./remove-references-to"),
       replacements: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         storeDir: nix.thunk(() => nix.attr(nix.builtins, "storeDir")),
         shell: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "getBin"), shell), nix.selOr(shell, () => "", "shellPath"))),
         signingUtils: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "targetPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenvNoCC, "targetPlatform", "isAarch64")))), signingUtils)),
       })),
       dir: "bin",
       isExecutable: true,
-      meta: nix.thunk(() => ({ __proto__: pos$2, mainProgram: "remove-references-to" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "remove-references-to" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

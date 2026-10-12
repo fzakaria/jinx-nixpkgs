@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
       const pname = "source-han-code-jp";
       const version = "2.012";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/adobe-fonts/source-han-code-jp/archive/${version}R.zip`),
           hash: "sha256-ljO/1/CaE9Yj+AN5xxlIr30/nV/axGQPO0fGACAZGCQ=",
         }))));
       const installPhase = "runHook preInstall\n\ninstall -Dm444 OTF/*.otf -t $out/share/fonts/opentype\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monospaced Latin font suitable for coding",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://ccjktype.fonts.adobe.com/2015/06/source-han-code-jp.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

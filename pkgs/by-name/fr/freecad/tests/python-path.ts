@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const freecad = nix.arg($, "freecad");
   const runCommand = nix.arg($, "runCommand");
-  return nix.app(runCommand, "freecad-test-console", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [freecad]) })), "HOME=\"$(mktemp -d)\" PYTHONPATH=\"$(pwd)/test\" FreeCADCmd --log-file $out -c \"if not '$(pwd)/test' in sys.path: sys.exit(1)\" </dev/null\n");
+  return nix.app(runCommand, "freecad-test-console", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [freecad]) })), "HOME=\"$(mktemp -d)\" PYTHONPATH=\"$(pwd)/test\" FreeCADCmd --log-file $out -c \"if not '$(pwd)/test' in sys.path: sys.exit(1)\" </dev/null\n");
 })(), formals$1);
 //# sourceMappingURL=python-path.ts.map

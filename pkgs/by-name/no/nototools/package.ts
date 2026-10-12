@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nototools",
       version: "0.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "notofonts",
           repo: "nototools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "cp -r third_party $out\n",
       pythonImportsCheck: nix.thunk(() => ["nototools"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Noto fonts support tools and scripts plus web site generation",
         homepage: "https://github.com/notofonts/nototools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

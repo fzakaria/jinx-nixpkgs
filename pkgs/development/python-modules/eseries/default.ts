@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const hypothesis = nix.arg($, "hypothesis");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eseries",
       version: "1.2.1-unstable-2023-12-17",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rob-smallshire",
           repo: "eseries",
           rev: "3becd72de8b1b533b4a637169022231271a934fb",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["eseries"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, hypothesis]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Find value in the E-series used for electronic components values",
         homepage: "https://github.com/rob-smallshire/eseries",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

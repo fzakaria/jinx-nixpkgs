@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const version = "0-unstable-2025-03-07";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "arg274",
       repo: "cambia",
       rev: "bef0975f72e15b925d881ab70d3bc556ecf4ff7f",
       hash: "sha256-4/GKvU3r4JpOKgkLgSOKEHnSoIsjgjQU6pay2deiIng=",
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Compact disc ripper log checking utility",
     homepage: "https://github.com/arg274/cambia",
     license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -44,24 +44,24 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cambia-frontend",
       version: version,
       src: nix.thunk(() => nix.str`${src}/web`),
       postPatch: "substituteInPlace tailwind.config.ts \\\n  --replace-fail \"import { cambiaTheme } from './cambia-theme'\" \\\n  \"import { cambiaTheme } from './cambia-theme.ts'\"\n",
       npmDepsHash: "sha256-U+2YfsC4u6rJdeMo2zxWiXGM3061MKCcFl0oZt0ug6o=",
       installPhase: "runHook preInstall\ncp -r build/ $out\nrunHook postInstall\n",
-      meta: nix.thunk(() => nix.update(meta, { __proto__: pos$3, description: "Web UI for Cambia" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$3, description: "Web UI for Cambia" })),
     })));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "cambia",
       version: version,
       src: src,
       cargoHash: "sha256-dNgFQiJrakdP0ynyVcak6cKU02Z5dcw2nhh9XhlWsOg=",
       cargoPatches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "cargo.lock.patch",
             url: "https://github.com/arg274/cambia/commit/b47944fbaf4e631ede25c560a4d7e684a2ad5014.patch",
             hash: "sha256-y9WkEmzBaFJ0eHWK0hVmB6+IdWespp79N9lSuteZZAI=",
@@ -72,11 +72,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$6, extraArgs: nix.thunk(() => ["-s", "frontend"]) })))),
+        [nix.POS]: pos$7,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["-s", "frontend"]) })))),
         frontend: frontend,
       })),
-      meta: nix.thunk(() => nix.update(meta, { __proto__: pos$8, mainProgram: "cambia" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$8, mainProgram: "cambia" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

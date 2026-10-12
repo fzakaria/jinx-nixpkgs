@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pyinstaller = nix.arg($, "pyinstaller");
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   const coreutils = nix.arg($, "coreutils");
-  const coreutils$ = nix.thunk(() => nix.app(nix.sel(coreutils, "override"), nix.thunk(() => ({ __proto__: pos$1, singleBinary: false }))));
+  const coreutils$ = nix.thunk(() => nix.app(nix.sel(coreutils, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, singleBinary: false }))));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname = "macholib";
       const version = "1.16.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ronaldoussoren",
           repo: "macholib",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.sel(stdenv, "buildPlatform", "isDarwin"));
       const nativeCheckInputs = nix.thunk(() => [bashNonInteractive, coreutils$, unittestCheckHook]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, pyinstaller: pyinstaller })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, pyinstaller: pyinstaller })),
       }));
       const preCheck = "export PATH=\"$PATH:$out/bin\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Analyze and edit Mach-O headers, the executable format used by Mac OS X",
         homepage: "https://github.com/ronaldoussoren/macholib",
         changelog: nix.thunk(() => nix.str`https://github.com/ronaldoussoren/macholib/releases/tag/v${version}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

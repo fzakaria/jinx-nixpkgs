@@ -27,28 +27,28 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "heapster"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         heapster: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Heapster monitoring")),
           source: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Heapster metric source",
               example: "kubernetes:https://kubernetes.default",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           sink: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Heapster metic sink",
               example: "influxdb:http://localhost:8086",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           extraOpts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Heapster extra options",
               default: "",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "separatedString"), " ")),
@@ -58,17 +58,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             heapster: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["cadvisor.service", "kube-apiserver.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/heapster --source=${nix.sel(cfg, "source")} --sink=${nix.sel(cfg, "sink")} ${nix.sel(cfg, "extraOpts")}`),
                 User: "heapster",
               })),
@@ -76,17 +76,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           users: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             heapster: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               isSystemUser: true,
               group: "heapster",
               description: "Heapster user",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$13, heapster: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$13, heapster: nix.thunk(() => ({})) })),
         })),
       })))),
   };

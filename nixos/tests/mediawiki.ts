@@ -53,49 +53,49 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mediawiki: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: true,
           httpd: nix.thunk(() => ({
-            __proto__: pos$2,
-            virtualHost: nix.thunk(() => ({ __proto__: pos$1, hostName: "localhost", adminAddr: "root@example.com" })),
+            [nix.POS]: pos$2,
+            virtualHost: nix.thunk(() => ({ [nix.POS]: pos$1, hostName: "localhost", adminAddr: "root@example.com" })),
           })),
           passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "password", "correcthorsebatterystaple")),
-          extensions: nix.thunk(() => ({ __proto__: pos$3, ParserFunctions: null })),
+          extensions: nix.thunk(() => ({ [nix.POS]: pos$3, ParserFunctions: null })),
         })),
       })),
     };
   })(), formals$2);
   const makeTest = (t) => nix.app(runTest, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       imports: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           containers: nix.thunk(() => ({
-            __proto__: pos$8,
-            machine: nix.thunk(() => ({ __proto__: pos$7, imports: nix.thunk(() => [shared]) })),
+            [nix.POS]: pos$8,
+            machine: nix.thunk(() => ({ [nix.POS]: pos$7, imports: nix.thunk(() => [shared]) })),
           })),
         })),
         t,
       ]),
     })));
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     mysql: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         name: "mediawiki-mysql",
         containers: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           machine: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             services: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               mediawiki: nix.thunk(() => ({
-                __proto__: pos$12,
-                database: nix.thunk(() => ({ __proto__: pos$11, type: "mysql" })),
+                [nix.POS]: pos$12,
+                database: nix.thunk(() => ({ [nix.POS]: pos$11, type: "mysql" })),
               })),
             })),
           })),
@@ -103,17 +103,17 @@ export default nix.lambda((args) => (() => {
         testScript: "start_all()\n\nmachine.wait_for_unit(\"phpfpm-mediawiki.service\")\n\npage = machine.succeed(\"curl -fL http://localhost/\")\nassert \"MediaWiki has been installed\" in page\n",
       })))),
     postgresql: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         name: "mediawiki-postgres",
         containers: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           machine: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             services: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               mediawiki: nix.thunk(() => ({
-                __proto__: pos$18,
-                database: nix.thunk(() => ({ __proto__: pos$17, type: "postgres" })),
+                [nix.POS]: pos$18,
+                database: nix.thunk(() => ({ [nix.POS]: pos$17, type: "postgres" })),
               })),
             })),
           })),
@@ -121,17 +121,17 @@ export default nix.lambda((args) => (() => {
         testScript: "start_all()\n\nmachine.wait_for_unit(\"phpfpm-mediawiki.service\")\n\npage = machine.succeed(\"curl -fL http://localhost/\")\nassert \"MediaWiki has been installed\" in page\n",
       })))),
     sqlite: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         name: "mediawiki-sqlite",
         containers: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           machine: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             services: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               mediawiki: nix.thunk(() => ({
-                __proto__: pos$24,
-                database: nix.thunk(() => ({ __proto__: pos$23, type: "sqlite" })),
+                [nix.POS]: pos$24,
+                database: nix.thunk(() => ({ [nix.POS]: pos$23, type: "sqlite" })),
               })),
             })),
           })),
@@ -139,15 +139,15 @@ export default nix.lambda((args) => (() => {
         testScript: "start_all()\n\nmachine.wait_for_unit(\"phpfpm-mediawiki.service\")\n\npage = machine.succeed(\"curl -fL http://localhost/\")\nassert \"MediaWiki has been installed\" in page\n",
       })))),
     nohttpd: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         name: "mediawiki-nohttpd",
         containers: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           machine: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             services: nix.thunk(() => ({
-              __proto__: pos$30,
-              mediawiki: nix.thunk(() => ({ __proto__: pos$29, webserver: "none" })),
+              [nix.POS]: pos$30,
+              mediawiki: nix.thunk(() => ({ [nix.POS]: pos$29, webserver: "none" })),
             })),
           })),
         })),
@@ -169,15 +169,15 @@ assert "MediaWiki has been installed" in page, f"no 'MediaWiki has been installe
         })(), formals$3),
       })))),
     nginx: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         name: "mediawiki-nginx",
         containers: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           machine: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             services: nix.thunk(() => ({
-              __proto__: pos$35,
-              mediawiki: nix.thunk(() => ({ __proto__: pos$34, webserver: "nginx" })),
+              [nix.POS]: pos$35,
+              mediawiki: nix.thunk(() => ({ [nix.POS]: pos$34, webserver: "nginx" })),
             })),
           })),
         })),

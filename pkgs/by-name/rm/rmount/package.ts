@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rmount",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           owner: "Qubasa",
           repo: "rmount",
@@ -36,7 +36,7 @@ install -D ${nix.sel(finalAttrs, "src")}/config.json $out/share/config.json
 wrapProgram $out/bin/rmount --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nmap, jq, cifs_utils, sshfs]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Qubasa/rmount",
         description: "Remote mount utility which parses a json file",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

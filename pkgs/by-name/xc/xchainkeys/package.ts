@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xchainkeys",
       version: "0.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://henning-bekel.de/download/xchainkeys/xchainkeys-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1rpqs7h5krral08vqxwb0imy33z17v5llvrg5hy8hkl2ap7ya0mn",
         })))),
       buildInputs: nix.thunk(() => [libx11]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://henning-bekel.de/xchainkeys/",
         description: "Standalone X11 program to create chained key bindings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

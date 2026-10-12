@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const qgpgme = nix.arg($, "qgpgme");
   const libmms = nix.arg($, "libmms");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kget",
       extraBuildInputs: nix.thunk(() => [qgpgme, libmms]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kget" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kget" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

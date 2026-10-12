@@ -66,16 +66,16 @@ export default nix.lambda((args) => (() => {
       cairo,
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hubstaff",
       version: version,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$1, sha256: sha256, url: url })))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, sha256: sha256, url: url })))),
       nativeBuildInputs: nix.thunk(() => [unzip, makeWrapper, copyDesktopItems]),
       unpackCmd: "# MojoSetups have a ZIP file at the end. ZIP’s magic string is\n# most often PK\\x03\\x04. This has worked for all past updates,\n# but feel free to come up with something more reasonable.\ndataZipOffset=$(grep --max-count=1 --byte-offset --only-matching --text $'PK\\x03\\x04' $curSrc | cut -d: -f1)\ndd bs=$dataZipOffset skip=1 if=$curSrc of=data.zip 2>/dev/null\nunzip -q data.zip \"data/*\"\nrm data.zip\n",
       dontBuild: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "netsoft-com.netsoft.hubstaff",
             desktopName: "Hubstaff",
             exec: "HubstaffClient",
@@ -113,7 +113,7 @@ done
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "hubstaff-updater", nix.thunk(() => nix.str`set -eu -o pipefail
 
 # Create a temporary file
@@ -132,7 +132,7 @@ ${common_updater_scripts}/bin/update-source-version hubstaff "$version" "sha256:
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Time tracking software",
         homepage: "https://hubstaff.com/",
         sourceProvenance: nix.thunk(() => (() => {

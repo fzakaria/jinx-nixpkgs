@@ -29,29 +29,29 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "duckdns"));
   const duckdns = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "duckdns", "DRESPONSE=$(curl -sS --max-time 60 --no-progress-meter -k -K- <<< \"url = \\\"https://www.duckdns.org/update?verbose=true&domains=$DUCKDNS_DOMAINS&token=$DUCKDNS_TOKEN&ip=\\\"\")\nIPV4=$(echo \"$DRESPONSE\" | awk 'NR==2')\nIPV6=$(echo \"$DRESPONSE\" | awk 'NR==3')\nRESPONSE=$(echo \"$DRESPONSE\" | awk 'NR==1')\nIPCHANGE=$(echo \"$DRESPONSE\" | awk 'NR==4')\n\nif [[ \"$RESPONSE\" = \"OK\" ]] && [[ \"$IPCHANGE\" = \"UPDATED\" ]]; then\n    if [[ \"$IPV4\" != \"\" ]] && [[ \"$IPV6\" == \"\" ]]; then\n        echo \"Your IP was updated at $(date) to IPv4: $IPV4\"\n    elif [[ \"$IPV4\" == \"\" ]] && [[ \"$IPV6\" != \"\" ]]; then\n        echo \"Your IP was updated at $(date) to IPv6: $IPV6\"\n    else\n        echo \"Your IP was updated at $(date) to IPv4: $IPV4 & IPv6 to: $IPV6\"\n    fi\nelif [[ \"$RESPONSE\" = \"OK\" ]] && [[ \"$IPCHANGE\" = \"NOCHANGE\" ]]; then\n    echo \"DuckDNS request at $(date) successful. IP(s) unchanged.\"\nelse\n    echo -e \"Something went wrong, please check your settings\\nThe response returned was:\\n$DRESPONSE\\n\"\n    exit 1\nfi\n"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         duckdns: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "DuckDNS Dynamic DNS Client")),
           tokenFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: null,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The path to a file containing the token\nused to authenticate with DuckDNS.\n",
             })))),
           domains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               example: nix.thunk(() => ["examplehost"]),
               description: "The domain(s) to update in DuckDNS\n(without the .duckdns.org suffix)\n",
             })))),
           domainsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.writeText \"duckdns-domains.txt\" ''\n  examplehost\n  examplehost2\n  examplehost3\n''\n")),
@@ -61,31 +61,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "domains"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "domainsFile"), null)))),
             message: "Either services.duckdns.domains or services.duckdns.domainsFile has to be defined",
           })),
           nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "domains"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "domainsFile"), null))))),
             message: "services.duckdns.domains and services.duckdns.domainsFile can't both be defined at the same time",
           })),
           nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "tokenFile"), null)),
             message: "services.duckdns.tokenFile has to be defined",
           })),
         ]),
-        environment: nix.thunk(() => ({ __proto__: pos$10, systemPackages: nix.thunk(() => [duckdns]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$10, systemPackages: nix.thunk(() => [duckdns]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             duckdns: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "DuckDNS Dynamic DNS Client",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
                 duckdns,
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Type: "simple",
                 LoadCredential: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`DUCKDNS_TOKEN_FILE:${nix.sel(cfg, "tokenFile")}`)], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "domainsFile"), null)), nix.thunk(() => [
                     nix.thunk(() => nix.str`DUCKDNS_DOMAINS_FILE:${nix.sel(cfg, "domainsFile")}`),
@@ -116,7 +116,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), duckdns)}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "notthebee"))];

@@ -27,39 +27,39 @@ export default nix.lambda((args) => (() => {
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   const sources = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     "18": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "14.2.0",
       hash: "sha256-iJb+aUcTeN9BLil72/KG8jObU79Cmyl49UDz7iCUAMk=",
     })),
     "17": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "14.2.0",
       hash: "sha256-iJb+aUcTeN9BLil72/KG8jObU79Cmyl49UDz7iCUAMk=",
     })),
     "16": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "14.2.0",
       hash: "sha256-iJb+aUcTeN9BLil72/KG8jObU79Cmyl49UDz7iCUAMk=",
     })),
     "15": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "13.4.0",
       hash: "sha256-o3RFtOlkBvgFFfT1+BlTD6XbAOiSzBPaMi6/m8i7+9k=",
     })),
   }));
   const source = nix.thunk(() => nix.selOr(sources, () => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "",
       hash: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Source for citus is not available for ${nix.sel(postgresql, "version")}`))),
     }), nix.key(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(postgresql, "version"))))));
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "citus",
       version: nix.thunk(() => nix.attr(source, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "citusdata",
           repo: "citus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,17 +68,17 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl, lz4]),
       enableUpdateScript: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         tests: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               postgresqlExtraSettings: "shared_preload_libraries=citus\n",
               sql: "CREATE EXTENSION citus;\n\nCREATE TABLE examples (\n  id bigserial,\n  shard_key int,\n  PRIMARY KEY (id, shard_key)\n);\n\nSELECT create_distributed_table('examples', 'shard_key');\n\nINSERT INTO examples (shard_key) SELECT shard % 10 FROM generate_series(1,1000) shard;\n",
               asserts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   query: "SELECT count(*) FROM examples",
                   expected: "1000",
                   description: "Distributed table can be queried successfully.",
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(postgresql, "meta"));
         return {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         broken: nix.thunk(() => !nix.asBool(nix.builtins.elem(nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(postgresql, "version")))), nix.thunk(() => nix.builtins.attrNames(sources))))),
         description: "Distributed PostgreSQL as an extension",
         homepage: "https://www.citusdata.com/",

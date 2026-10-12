@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.16";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rbw",
           repo: "pysnow",
           rev: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [httpretty, pytestCheckHook]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "switch-to-poetry-core.patch",
             url: "https://github.com/rbw/pysnow/commit/f214a203432b329df5317f3a25b2c0d9b55a9029.patch",
             hash: "sha256-ViRR+9WStlaQwyrLGk/tMOUAcEMY+kB61ZEKGMQJ30o=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace pyproject.toml \\\n  --replace 'ijson = \"^2.5.1\"' 'ijson = \"*\"' \\\n  --replace 'pytz = \"^2019.3\"' 'pytz = \"*\"' \\\n  --replace 'oauthlib = \"^3.1.0\"' 'oauthlib = \"*\"'\n\n# https://github.com/rbw/pysnow/pull/201 doesn't apply via fetchpatch, so we recreate it\nsubstituteInPlace tests/test_client.py tests/test_oauth_client.py tests/test_params_builder.py tests/test_resource.py \\\n  --replace-fail \"self.assertEquals\" \"self.assertEqual\"\n";
       const pythonImportsCheck = nix.thunk(() => ["pysnow"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ServiceNow HTTP client library written in Python",
         homepage: "https://github.com/rbw/pysnow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

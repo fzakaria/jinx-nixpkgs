@@ -20,23 +20,23 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const python = nix.thunk(() => nix.app(nix.sel(python3Packages, "python", "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       self: python,
       packageOverrides: (self) => (super$) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         wyoming: nix.thunk(() => nix.app(nix.sel(super$, "wyoming", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "1.5.4";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(oldAttrs, "src"));
                 return {
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 owner: nix.thunk(() => nix.attr(from, "owner")),
                 repo: nix.thunk(() => nix.attr(from, "repo")),
                 tag: version,
                 hash: "sha256-gx9IbFkwR5fiFFAZTiQKzBbVBJ/RYz29sztgbvAEeRQ=",
               };
               })())));
-            return { __proto__: pos$2, version, src };
+            return { [nix.POS]: pos$2, version, src };
           })())),
       }),
     }))));
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "rhasspy",
           repo: "wyoming-satellite",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://github.com/rhasspy/wyoming-satellite/commit/69465fd56011179cb92e7ce95da2e79fb06a83fb.patch",
             hash: "sha256-njJ8kIVGOpYK6bDeGow3OSNHxKQ9NsUKAR3+lEUH3GE=",
           })))),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const optional_dependencies = nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           all: nix.thunk(() => nix.concat(nix.sel(self, "silerovad"), nix.sel(self, "webrtc"))),
           respeaker: nix.thunk(() => (() => {
             const w_2 = nix.withScope(python3Packages, null);
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Remote voice satellite using Wyoming protocol",
         homepage: "https://github.com/rhasspy/wyoming-satellite",
         changelog: nix.thunk(() => nix.str`https://github.com/rhasspy/wyoming-satellite/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wyoming-satellite",
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         pyproject,

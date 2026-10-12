@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "git-pkgs";
       const version = "0.21.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "git-pkgs",
           repo: "git-pkgs",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const postBuild = "go run scripts/generate-man/main.go\ninstallManPage man/*.1\n";
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd git-pkgs \\\n  --bash <($out/bin/git-pkgs completion bash) \\\n  --fish <($out/bin/git-pkgs completion fish) \\\n  --zsh <($out/bin/git-pkgs completion zsh)\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/git-pkgs/git-pkgs",
         description: "Git subcommand for analyzing package/dependency usage in git repositories over time",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "git-pkgs",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

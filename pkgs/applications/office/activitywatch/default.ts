@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const version = "0.13.2";
   const sources = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "ActivityWatch",
       repo: "activitywatch",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
     }))));
   return (() => {
     const aw_watcher_afk = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "aw-watcher-afk",
         version: version,
         src: nix.thunk(() => nix.str`${sources}/aw-watcher-afk`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         pythonRelaxDeps: nix.thunk(() => ["python-xlib"]),
         pythonImportsCheck: nix.thunk(() => ["aw_watcher_afk"]),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Watches keyboard and mouse activity to determine if you are AFK or not (for use with ActivityWatch)",
           homepage: "https://github.com/ActivityWatch/aw-watcher-afk",
           maintainers: nix.thunk(() => (() => {
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })),
       }))));
     const aw_watcher_window = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "aw-watcher-window",
         version: version,
         src: nix.thunk(() => nix.str`${sources}/aw-watcher-window`),
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         pythonRelaxDeps: nix.thunk(() => ["python-xlib"]),
         pythonImportsCheck: nix.thunk(() => ["aw_watcher_window"]),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Cross-platform window watcher (for use with ActivityWatch)",
           homepage: "https://github.com/ActivityWatch/aw-watcher-window",
           maintainers: nix.thunk(() => (() => {
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
         })),
       }))));
     const aw_qt = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "aw-qt",
         version: version,
         src: nix.thunk(() => nix.str`${sources}/aw-qt`),
@@ -145,7 +145,7 @@ install -D media/logo/logo-128.png $out/share/icons/hicolor/128x128/apps/activit
         preFixup: "makeWrapperArgs+=(\n  \"${qtWrapperArgs[@]}\"\n)\n",
         pythonImportsCheck: nix.thunk(() => ["aw_qt"]),
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: "Tray icon that manages ActivityWatch processes, built with Qt",
           homepage: "https://github.com/ActivityWatch/aw-qt",
           maintainers: nix.thunk(() => (() => {
@@ -158,7 +158,7 @@ install -D media/logo/logo-128.png $out/share/icons/hicolor/128x128/apps/activit
         })),
       }))));
     const aw_notify = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "aw-notify",
         version: version,
         src: nix.thunk(() => nix.str`${sources}/aw-notify`),
@@ -175,7 +175,7 @@ install -D media/logo/logo-128.png $out/share/icons/hicolor/128x128/apps/activit
         pythonRelaxDeps: nix.thunk(() => ["desktop-notifier"]),
         pythonImportsCheck: nix.thunk(() => ["aw_notify"]),
         meta: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "Desktop notification service for ActivityWatch",
           homepage: "https://github.com/ActivityWatch/aw-notify",
           maintainers: nix.thunk(() => (() => {
@@ -187,20 +187,20 @@ install -D media/logo/logo-128.png $out/share/icons/hicolor/128x128/apps/activit
         })),
       }))));
     const aw_server_rust = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         pname: "aw-server-rust",
         version: version,
         src: nix.thunk(() => nix.str`${sources}/aw-server-rust`),
         cargoHash: "sha256-E89E/LWBPHtb6vX94swodmE+UrWMrzQnm8AO5GeyuoA=",
         patches: nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./override-version.patch"), nix.thunk(() => ({ __proto__: pos$10, version: nix.thunk(() => nix.sel(sources, "rev")) })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./override-version.patch"), nix.thunk(() => ({ [nix.POS]: pos$10, version: nix.thunk(() => nix.sel(sources, "rev")) })))),
         ]),
         nativeBuildInputs: nix.thunk(() => [makeWrapper, pkg_config, perl]),
         buildInputs: nix.thunk(() => [openssl, rust_jemalloc_sys]),
-        env: nix.thunk(() => ({ __proto__: pos$11, AW_WEBUI_DIR: aw_webui })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$11, AW_WEBUI_DIR: aw_webui })),
         preCheck: "# Fake home folder for tests that use ~/.cache and ~/.local/share\nexport HOME=\"$TMPDIR\"\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           description: "High-performance implementation of the ActivityWatch server, written in Rust",
           homepage: "https://github.com/ActivityWatch/aw-server-rust",
           maintainers: nix.thunk(() => (() => {
@@ -213,7 +213,7 @@ install -D media/logo/logo-128.png $out/share/icons/hicolor/128x128/apps/activit
         })),
       }))));
     const aw_webui = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         pname: "aw-webui",
         version: version,
         src: nix.thunk(() => nix.str`${sources}/aw-server-rust/aw-webui`),
@@ -222,13 +222,13 @@ install -D media/logo/logo-128.png $out/share/icons/hicolor/128x128/apps/activit
         makeCacheWritable: true,
         npmFlags: nix.thunk(() => ["--legacy-peer-deps"]),
         patches: nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./commit-hash.patch"), nix.thunk(() => ({ __proto__: pos$14, commit_hash: nix.thunk(() => nix.sel(sources, "rev")) })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./commit-hash.patch"), nix.thunk(() => ({ [nix.POS]: pos$14, commit_hash: nix.thunk(() => nix.sel(sources, "rev")) })))),
         ]),
         installPhase: "runHook preInstall\nmv dist $out\nmv media/logo/logo.{png,svg} $out\nrunHook postInstall\n",
         doCheck: true,
         checkPhase: "runHook preCheck\nnpm test\nrunHook postCheck\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           description: "Web-based UI for ActivityWatch, built with Vue.js",
           homepage: "https://github.com/ActivityWatch/aw-webui/",
           maintainers: nix.thunk(() => (() => {
@@ -239,7 +239,7 @@ install -D media/logo/logo-128.png $out/share/icons/hicolor/128x128/apps/activit
         })),
       }))));
     return {
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       "aw-watcher-afk": aw_watcher_afk,
       "aw-watcher-window": aw_watcher_window,
       "aw-qt": aw_qt,

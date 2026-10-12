@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "notebook",
       version: "7.6.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jupyter",
           repo: "notebook",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([nodejs, nix.thunk(() => nix.sel(yarn_berry_3, "yarnBerryConfigHook"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => [distutils])))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_3, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-6Ujcy5g7f+tqe8skHG9RznvsA7+kXocVQccMgQB60Xg=",
@@ -55,10 +55,10 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [jupyter_server, jupyterlab, jupyterlab_server, notebook_shim, tornado]),
       nativeCheckInputs: nix.thunk(() => [pytest_jupyter, pytestCheckHook, versionCheckHook]),
       pytestFlags: nix.thunk(() => ["-Wignore::DeprecationWarning"]),
-      env: nix.thunk(() => ({ __proto__: pos$3, CI: 1n, JUPYTER_PLATFORM_DIRS: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CI: 1n, JUPYTER_PLATFORM_DIRS: 1n })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Web-based notebook environment for interactive computing",
         homepage: "https://github.com/jupyter/notebook",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter/notebook/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

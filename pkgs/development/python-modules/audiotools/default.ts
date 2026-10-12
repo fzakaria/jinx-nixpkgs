@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const libcdio = nix.arg($, "libcdio");
   const libcdio_paranoia = nix.arg($, "libcdio-paranoia");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "audiotools",
       version: "3.1.1-unstable-2020-07-29",
       pyproject: true,
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "# need to change probe to yes because mp3lame is not reported in pkg-config\nsubstituteInPlace setup.cfg \\\n  --replace-fail \"mp3lame:           probe\" \"mp3lame:           yes\"\n",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tuffy",
           repo: "python-audio-tools",
           rev: "de55488dc982e3f6375cde2d0c2ea6aad1b1c31c",
           hash: "sha256-iRakeV4Sg4oU0JtiA0O3jnmLJt99d89Hg6v9onUaSnw=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utilities and Python modules for handling audio",
         homepage: "https://audiotools.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

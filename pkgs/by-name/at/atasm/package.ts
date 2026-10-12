@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "atasm";
       const version = "1.29";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CycoPH",
           repo: "atasm",
           rev: nix.thunk(() => nix.str`V${version}`),
@@ -49,7 +49,7 @@ installFlagsArray+=(
       const postInstall = nix.thunk(() => nix.str`mv docs/* $out/share/doc/${pname}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/CycoPH/atasm",
         description: "Commandline 6502 assembler compatible with Mac/65",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -61,7 +61,7 @@ installFlagsArray+=(
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

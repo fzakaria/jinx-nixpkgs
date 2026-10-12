@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const writeText = nix.arg($, "writeText");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "keyguard",
       version: "2.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AChep",
           repo: "keyguard-app",
           tag: "r20260201",
@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
       gradleUpdateTask: nix.thunk(() => nix.sel(finalAttrs, "gradleBuildTask")),
       gradleInitScript: nix.thunk(() => nix.app(writeText, "empty-init-script.gradle", "")),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle_9, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
           silent: false,
           useBwrap: false,
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$3, JAVA_HOME: jdk21 })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, JAVA_HOME: jdk21 })),
       gradleFlags: nix.thunk(() => [nix.thunk(() => nix.str`-Dorg.gradle.java.home=${jdk21}`)]),
       nativeBuildInputs: nix.thunk(() => [gradle_9, jdk21, copyDesktopItems, autoPatchelfHook]),
       buildInputs: nix.thunk(() => [
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "keyguard",
             exec: "Keyguard",
             icon: "keyguard",
@@ -80,9 +80,9 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       installPhase: "runHook preInstall\n\ncp --recursive desktopApp/build/compose/binaries/main-release/app/Keyguard $out\ninstall -D --mode=0644 $out/lib/Keyguard.png $out/share/icons/hicolor/512x512/apps/keyguard.png\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Alternative client for the Bitwarden platform, created to provide the best user experience possible",
         homepage: "https://github.com/AChep/keyguard-app",
         mainProgram: "Keyguard",

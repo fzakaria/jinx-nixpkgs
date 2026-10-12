@@ -33,16 +33,16 @@ SystemdService=dbus-org.ofono.mms.service
 Exec=${nix.sel(pkgs, "coreutils")}/bin/false mmsd
 `)));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mmsd: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Multimedia Messaging Service Daemon")),
           extraArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -55,23 +55,23 @@ Exec=${nix.sel(pkgs, "coreutils")}/bin/false mmsd
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         services: nix.thunk(() => ({
-          __proto__: pos$6,
-          dbus: nix.thunk(() => ({ __proto__: pos$5, packages: nix.thunk(() => [dbusServiceFile]) })),
+          [nix.POS]: pos$6,
+          dbus: nix.thunk(() => ({ [nix.POS]: pos$5, packages: nix.thunk(() => [dbusServiceFile]) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           user: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             services: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               mmsd: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 after: nix.thunk(() => ["ModemManager.service"]),
                 aliases: nix.thunk(() => ["dbus-org.ofono.mms.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   Type: "dbus",
                   ExecStart: nix.thunk(() => nix.add(nix.str`${nix.sel(pkgs, "mmsd-tng")}/bin/mmsdtng `, nix.app(nix.lookup(w, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraArgs"))))),
                   BusName: "org.ofono.mms",

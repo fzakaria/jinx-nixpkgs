@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const textlint = nix.arg($, "textlint");
   const textlint_rule_common_misspellings = nix.arg($, "textlint-rule-common-misspellings");
   const misspellings = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "misspellings",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/misspellings/-/misspellings-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-+4QxmGjoF0mBldN4XQMvoK8YDS4PBV9/c+/BPf4FbkM=",
         })))),
@@ -39,18 +39,18 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/node_modules/misspellings\ncp -r . $out/lib/node_modules/misspellings/\n\nrunHook postInstall\n",
     })));
   const textlint_rule_helper = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "textlint-rule-helper",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "textlint",
           repo: "textlint-rule-helper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-SVeL/3KC/yazSGsmn5We8fJAuVqfcspzN7i2a4+EOlI=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-UN56VuUHl7aS+QLON8ZROTSCGKKCn/8xuIkR46LyY+U=",
         })))),
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nyarn --offline --production install\nrm -r test\nmkdir -p $out/lib/node_modules/textlint-rule-helper\ncp -r . $out/lib/node_modules/textlint-rule-helper/\n\nrunHook postInstall\n",
     })));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "textlint-rule-common-misspellings",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/textlint-rule-common-misspellings/-/textlint-rule-common-misspellings-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-5QVb5T2yGuunNhRQG5brJQyicRRbO8XewzjO2RzN0bI=",
         })))),
@@ -83,15 +83,15 @@ cp -r . $out/lib/node_modules/textlint-rule-common-misspellings/
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             rule: textlint_rule_common_misspellings,
             testFile: nix.path(here, "./test.md"),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Textlint rule to check common misspellings",
         homepage: "https://github.com/io-monad/textlint-rule-common-misspellings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

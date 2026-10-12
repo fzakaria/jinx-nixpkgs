@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qpwgraph",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "rncbc",
           repo: "qpwgraph",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => ["-DCONFIG_WAYLAND=ON"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt graph manager for PipeWire, similar to QjackCtl",
         longDescription: "qpwgraph is a graph manager dedicated for PipeWire,\nusing the Qt C++ framework, based and pretty much like\nthe same of QjackCtl.\n",
         homepage: "https://gitlab.freedesktop.org/rncbc/qpwgraph",

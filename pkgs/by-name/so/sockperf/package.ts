@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const enableTool = nix.argOr($, "enableTool", () => false);
   const enableTest = nix.argOr($, "enableTest", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sockperf",
       version: "3.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mellanox",
           repo: "sockperf",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["--enable-doc"], nix.concat(nix.app(nix.sel(lib, "optional"), enableTest, "--enable-test"), nix.app(nix.sel(lib, "optional"), enableTool, "--enable-tool")))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Network Benchmarking Utility",
         homepage: "https://github.com/Mellanox/sockperf",

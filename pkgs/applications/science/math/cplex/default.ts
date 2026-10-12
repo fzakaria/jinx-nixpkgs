@@ -95,7 +95,7 @@ runHook postInstall
       })());
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "oplide",
             desktopName: "IBM ILOG CPLEX Optimization Studio",
             genericName: "Optimization Software",
@@ -106,12 +106,12 @@ runHook postInstall
       ]);
       const fixupPhase = "runHook preFixup\n\nrm -r $out/Uninstall\n\nbins=(\n  $out/bin/*\n  $out/cplex/bin/x86-64_linux/cplex\n  $out/cplex/bin/x86-64_linux/cplexamp\n  $out/cpoptimizer/bin/x86-64_linux/cpoptimizer\n  $out/opl/bin/x86-64_linux/oplrun\n  $out/opl/bin/x86-64_linux/oplrunjava\n  $out/opl/oplide/jre/bin/*\n  $out/opl/oplide/oplide\n)\n\nfind $out -type d -exec chmod 755 {} \\;\nfind $out -type f -exec chmod 644 {} \\;\nchmod +111 \"${bins[@]}\"\n\nrunHook postFixup\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         libArch: "x86-64_linux",
         libSuffix: nix.thunk(() => nix.str`${version}0`),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Optimization solver for mathematical programming",
         homepage: "https://www.ibm.com/be-en/marketplace/ibm-ilog-cplex",
         mainProgram: "cplex",
@@ -127,7 +127,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

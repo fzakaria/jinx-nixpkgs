@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   const fetch_librusty_v8 = (args_1) => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`librusty_v8-${nix.sel(args_1, "version")}`),
       url: nix.thunk(() => nix.str`https://github.com/denoland/rusty_v8/releases/download/v${nix.sel(args_1, "version")}/librusty_v8_release_${nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")}.a.gz`),
       sha256: nix.thunk(() => nix.selOr(args_1, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), "shas", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         version: nix.thunk(() => nix.attr(args_1, "version")),
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -28,10 +28,10 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return nix.app(fetch_librusty_v8, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0.105.1",
       shas: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "x86_64-linux": "sha256-f7aDA74Jn2h4rp9sACGHX4DBbN6yevgWCEKdfI1fJDU=",
         "aarch64-linux": "sha256-vuEP7in+A/PrBXSunRq1SC77dOuMiScsKcA712AuNuk=",
         "aarch64-darwin": "sha256-GmwTJADMxArwOvRN/w5KVmWGc1+WfraBc/wWe7dxHMg=",

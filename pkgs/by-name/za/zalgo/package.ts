@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zalgo",
       version: "0-unstable-2020-08-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lunasorcery",
           repo: "zalgo",
           rev: "6aa1f66cfe183f8164a666730dfeaf39133cf01a",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "install -Dm755 zalgo -t $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Read stdin and corrupt it with combining diacritics",
         homepage: "https://github.com/lunasorcery/zalgo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

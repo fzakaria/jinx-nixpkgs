@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "craftos-pc",
         publisher: "jackmacwindows",
         version: "1.2.3",
@@ -38,7 +38,7 @@ jq -e '
 | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://marketplace.visualstudio.com/items/jackmacwindows.craftos-pc/changelog",
         description: "Visual Studio Code extension for opening a CraftOS-PC window",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=jackmacwindows.craftos-pc",

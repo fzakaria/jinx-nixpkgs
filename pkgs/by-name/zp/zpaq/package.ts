@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zpaq",
       version: "7.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zpaq",
           repo: "zpaq",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [perl]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CPPFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Dunix"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64"))))), nix.thunk(() => ["-DNOJIT"])))))),
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-O3", "-DNDEBUG"]))),
       })),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CXX=${nix.sel(stdenv, "cc", "targetPrefix")}c++`)]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Incremental journaling backup utility and archiver",
         homepage: "http://mattmahoney.net/dc/zpaq.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

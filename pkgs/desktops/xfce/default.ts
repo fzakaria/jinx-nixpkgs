@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const generateSplicesForMkScope = nix.arg($, "generateSplicesForMkScope");
   const makeScopeWithSplicing$ = nix.arg($, "makeScopeWithSplicing'");
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "xfce")),
       f: (self) => (() => {
         const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
         return nix.update({}, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             genericUpdater: nix.thunk(() => nix.builtins.throw("‘xfce.genericUpdater’ has been removed: use ‘pkgs.genericUpdater’ directly")),
             xinitrc: nix.thunk(() => nix.builtins.throw("‘xfce.xinitrc’ has been removed: use ‘pkgs.xfce4-session.xinitrc’ directly")),
             "thunar-bare": nix.thunk(() => nix.builtins.throw("‘xfce.thunar-bare’ has been removed: use ‘pkgs.thunar-unwrapped’ directly")),

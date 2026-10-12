@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const headplane = nix.arg($, "headplane");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "headplane-agent",
       __structuredAttrs: true,
       version: nix.thunk(() => nix.attr(headplane, "version")),
@@ -21,9 +21,9 @@ export default nix.lambda((args) => (() => {
       vendorHash: nix.thunk(() => nix.sel(headplane, "goVendorHash")),
       subPackages: nix.thunk(() => ["cmd/hp_agent"]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
-      env: nix.thunk(() => ({ __proto__: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Optional sidecar process providing additional features for headplane",
         homepage: "https://github.com/tale/headplane",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

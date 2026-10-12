@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const version = "5.6.2";
   const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [nix.thunk(() => nix.sel(oracle_instantclient, "lib"))])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "odpic",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oracle",
           repo: "odpi",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
 `))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Oracle ODPI-C library",
         homepage: "https://oracle.github.io/odpi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

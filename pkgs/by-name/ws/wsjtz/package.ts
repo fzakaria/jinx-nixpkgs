@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const wsjtx = nix.arg($, "wsjtx");
   return nix.app(nix.sel(wsjtx, "overrideAttrs"), (finalAttrs) => (old) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wsjtz",
       version: "2.0.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sq9fve",
           repo: "wsjt-z",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postInstall: "mv $out/bin/wsjtx $out/bin/wsjtz\nmv $out/bin/wsjtx_app_version $out/bin/wsjtz_app_version\n\nsubstituteInPlace $out/share/applications/wsjtx.desktop \\\n  --replace-fail \"Exec=wsjtx\" \"Exec=wsjtz\" \\\n  --replace-fail \"Name=wsjtx\" \"Name=wsjtz\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "WSJT-X fork, primarily focused on automation and enhanced functionality",
         homepage: "https://github.com/sq9fve/wsjt-z",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

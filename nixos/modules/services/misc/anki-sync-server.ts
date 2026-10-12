@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "anki-sync-server"));
   const name = "anki-sync-server";
   const specEscape = nix.thunk(() => nix.app(nix.lookup(w, "replaceStrings"), nix.thunk(() => ["%"]), nix.thunk(() => ["%%"])));
-  const usersWithIndexes = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lists"), "imap1"), (i) => (user) => ({ __proto__: pos$1, i: i, user: user }), nix.thunk(() => nix.sel(cfg, "users"))));
+  const usersWithIndexes = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lists"), "imap1"), (i) => (user) => ({ [nix.POS]: pos$1, i: i, user: user }), nix.thunk(() => nix.sel(cfg, "users"))));
   const usersWithIndexesFile = nix.thunk(() => nix.app(nix.lookup(w, "filter"), (x) => !nix.eq(nix.sel(x, "user", "passwordFile"), null), usersWithIndexes));
   const usersWithIndexesNoFile = nix.thunk(() => nix.app(nix.lookup(w, "filter"), (x) => (nix.asBool(nix.eq(nix.sel(x, "user", "passwordFile"), null)) && nix.asBool(!nix.eq(nix.sel(x, "user", "password"), null))), usersWithIndexes));
   const anki_sync_server_run = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "anki-sync-server-run", nix.thunk(() => nix.str`# When services.anki-sync-server.users.passwordFile is set,
@@ -55,60 +55,60 @@ ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", (x) => nix.str`export SYNC
 exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}
 `)));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         "anki-sync-server": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "anki-sync-server")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "anki-sync-server", nix.thunk(() => ({})))),
           address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "::1",
               description: "IP address anki-sync-server listens to.\nNote host names are not resolved.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 27701n,
               description: "Port number anki-sync-server listens to.",
             })))),
           baseDirectory: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "%S/%N",
               description: "Base directory where user(s) synchronized data will be stored.",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Whether to open the firewall for the specified port.",
             })))),
           users: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       options: nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         username: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.lookup(w_1, "str")),
                             description: "User name accepted by anki-sync-server.",
                           })))),
                         password: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "Password accepted by anki-sync-server for the associated username.\n**WARNING**: This option is **not secure**. This password will\nbe stored in *plaintext* and will be visible to *all users*.\nSee {option}`services.anki-sync-server.users.passwordFile` for\na more secure option.\n",
                           })))),
                         passwordFile: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")))),
                             default: null,
                             description: "File containing the password accepted by anki-sync-server for\nthe associated username.  Make sure to make readable only by\nroot.\n",
@@ -122,39 +122,39 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => nix.gt(nix.add(nix.app(nix.sel(nix.builtins, "length"), usersWithIndexesFile), nix.app(nix.sel(nix.builtins, "length"), usersWithIndexesNoFile)), 0n)),
             message: "At least one username-password pair must be set in services.anki-sync-server.users.",
           })),
         ]),
         networking: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           firewall: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "anki-sync-server": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "anki-sync-server: Anki sync server built into Anki",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               environment: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 SYNC_BASE: nix.thunk(() => nix.sel(cfg, "baseDirectory")),
                 SYNC_HOST: nix.thunk(() => nix.app(specEscape, nix.thunk(() => nix.sel(cfg, "address")))),
                 SYNC_PORT: nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "port")))),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 Type: "simple",
                 DynamicUser: true,
                 StateDirectory: name,
@@ -167,7 +167,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "telotortium"))];

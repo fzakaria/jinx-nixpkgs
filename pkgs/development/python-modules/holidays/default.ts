@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const python_dateutil = nix.arg($, "python-dateutil");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "holidays",
       version: "0.104",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vacanza",
           repo: "python-holidays",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ substituteInPlace holidays/version.py \\
       nativeCheckInputs: nix.thunk(() => [importlib_metadata, numpy, polib, pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["holidays"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generate and work with holidays in Python",
         homepage: "https://github.com/vacanza/python-holidays",
         changelog: nix.thunk(() => nix.str`https://github.com/vacanza/holidays/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

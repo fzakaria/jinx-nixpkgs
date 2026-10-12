@@ -47,38 +47,38 @@ export default nix.lambda((args) => (() => {
   const rootDir = "/run/biboumi/mnt-root";
   const stateDir = "/var/lib/biboumi";
   const settingsFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "biboumi.cfg", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         mkKeyValue: (k) => (v) => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(v, null)), nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({})), "=", k, v))),
       })), nix.thunk(() => nix.sel(cfg, "settings"))))));
   const need_CAP_NET_BIND_SERVICE = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings", "identd_port"), 0n)) && nix.asBool(nix.lt(nix.sel(cfg, "settings", "identd_port"), 1024n))));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         biboumi: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Biboumi XMPP gateway to IRC")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "biboumi", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "See [biboumi 9.0](https://doc.biboumi.louiz.org/9.0/admin.html#configuration)\n\nfor documentation.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.update(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
                             nix.thunk(() => nix.lookup(w, "str")),
                             nix.thunk(() => nix.lookup(w, "int")),
                             nix.thunk(() => nix.lookup(w, "bool")),
-                          ])))))), { __proto__: pos$2, description: "settings option" });
+                          ])))))), { [nix.POS]: pos$2, description: "settings option" });
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     admin: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -89,14 +89,14 @@ export default nix.lambda((args) => (() => {
                         description: "The bare JID of the gateway administrator. This JID will have more\nprivileges than other standard users, for example some administration\nad-hoc commands will only be available to that JID.\n",
                       })))),
                     ca_file: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         default: nix.thunk(() => nix.sel(config, "security", "pki", "caBundle")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.pki.caBundle")),
                         description: "Specifies which file should be used as the list of trusted CA\nwhen negotiating a TLS session.\n",
                       })))),
                     db_name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "path")), nix.thunk(() => nix.lookup(w_1, "str")))));
@@ -106,26 +106,26 @@ export default nix.lambda((args) => (() => {
                         example: "postgresql://user:secret@localhost",
                       })))),
                     hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         example: "biboumi.example.org",
                         description: "The hostname served by the XMPP gateway.\nThis domain must be configured in the XMPP server\nas an external component.\n",
                       })))),
                     identd_port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 113n,
                         example: 0n,
                         description: "The TCP port on which to listen for identd queries.\n",
                       })))),
                     log_level: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 0n, 3n)),
                         default: 1n,
                         description: "Indicate what type of log messages to write in the logs.\n0 is debug, 1 is info, 2 is warning, 3 is error.\n",
                       })))),
                     password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -133,38 +133,38 @@ export default nix.lambda((args) => (() => {
                         description: "The password used to authenticate the XMPP component to your XMPP server.\nThis password must be configured in the XMPP server,\nassociated with the external component on\n[hostname](#opt-services.biboumi.settings.hostname).\n\nSet it to null and use [credentialsFile](#opt-services.biboumi.credentialsFile)\nif you do not want this password to go into the Nix store.\n",
                       })))),
                     persistent_by_default: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "Whether all rooms will be persistent by default:\nthe value of the “persistent” option in the global configuration of each\nuser will be “true”, but the value of each individual room will still\ndefault to false. This means that a user just needs to change the global\n“persistent” configuration option to false in order to override this.\n",
                       })))),
                     policy_directory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         default: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/biboumi`),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.biboumi}/etc/biboumi\"")),
                         description: "A directory that should contain the policy files,\nused to customize Botan’s behaviour\nwhen negotiating the TLS connections with the IRC servers.\n",
                       })))),
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 5347n,
                         description: "The TCP port to use to connect to the local XMPP component.\n",
                       })))),
                     realname_customization: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: true,
                         description: "Whether the users will be able to use\nthe ad-hoc commands that lets them configure\ntheir realname and username.\n",
                       })))),
                     realname_from_jid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "Whether the realname and username of each biboumi\nuser will be extracted from their JID.\nOtherwise they will be set to the nick\nthey used to connect to the IRC server.\n",
                       })))),
                     xmpp_server_ip: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "127.0.0.1",
                         description: "The IP address to connect to the XMPP server on.\nThe connection to the XMPP server is unencrypted,\nso the biboumi instance and the server should\nnormally be on the same host.\n",
@@ -173,7 +173,7 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           credentialsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Path to a configuration file to be merged with the settings.\nBeware not to surround \"=\" with spaces when setting biboumi's options in this file.\nUseful to merge a file which is better kept out of the Nix store\nbecause it contains sensible data like\n[password](#opt-services.biboumi.settings.password).\n",
               default: "/dev/null",
@@ -184,25 +184,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         networking: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "openFirewall")) && nix.asBool(!nix.eq(nix.sel(cfg, "settings", "identd_port"), 0n)))), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "identd_port"))]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             biboumi: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "Biboumi, XMPP to IRC gateway",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 Type: "notify",
                 WatchdogSec: 20n,
                 Restart: "always",
@@ -275,7 +275,7 @@ install -m 644 /dev/stdin /run/biboumi/biboumi.cfg
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "julm"))];

@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const version = "3.14.0-beta.21";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "solentlabs",
       repo: "cable_modem_monitor",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       fetchLFS: true,
     }))));
   const core = nix.thunk(() => nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: src,
       version: version,
       pname: "solentlabs-cable-modem-monitor-core",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [cryptography, pytestCheckHook, pytest_cov_stub, pytest_socket]),
     })));
   const catalog = nix.thunk(() => nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: src,
       version: version,
       pname: "solentlabs-cable-modem-monitor-catalog",
@@ -68,11 +68,11 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [catalog, core]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_homeassistant_custom_component]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Home Assistant integration for monitoring cable modem signal quality",
         homepage: "https://solentlabs.io/cable-modem-monitor",
         changelog: nix.thunk(() => nix.str`https://github.com/solentlabs/cable_modem_monitor/blob/${nix.sel(src_1, "tag")}/CHANGELOG.md`),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         src: src_1,
         version: version_1,
         owner,

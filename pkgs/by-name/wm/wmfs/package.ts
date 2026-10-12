@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libxft = nix.arg($, "libxft");
   const imlib2 = nix.arg($, "imlib2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wmfs",
       version: "201902",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xorg62",
           repo: "wmfs",
           sha256: "1m7dsmmlhq2qipim659cp9aqlriz1cwrrgspl8baa5pncln0gd5c",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fno-common.patch",
             url: "https://github.com/xorg62/wmfs/commit/e4ec12618f4689d791892ebb49df9610a25d24d3.patch",
             sha256: "0qvwry9sikvr85anzha9x4gcx0r2ckwdxqw2in2l6bl9z9d9c0w2",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`MANPREFIX=${nix.builtins.placeholder("out")}/share/man`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Window manager from scratch",
         homepage: "https://github.com/xorg62/wmfs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

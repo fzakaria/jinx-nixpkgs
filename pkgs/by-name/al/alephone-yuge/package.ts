@@ -12,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const alephone = nix.arg($, "alephone");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(alephone, "makeWrapper"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yuge",
       version: "0",
       desktopName: "Marathon-Yuge",
       zip: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://lochnits.com/marathon/yuge/files/Mararthon_Yuge.zip",
           hash: "sha256-dZHInYThB/4igpAXbUadXwPvh2Fl3XGZ4ficg7IEnNc=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "30 level Marathon scenario, plus 225 secret levels for many extra hours of gameplay",
         homepage: "https://lochnits.com/marathon/yuge/",
       })),

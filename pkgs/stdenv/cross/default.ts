@@ -21,9 +21,9 @@ export default nix.lambda((args) => (() => {
   const crossOverlays = nix.arg($, "crossOverlays");
   const bootStages = nix.arg($, "bootStages");
   return nix.concat(nix.app(nix.sel(lib, "init"), bootStages), [
-    (somePrevStage) => nix.update(nix.app(nix.sel(lib, "last"), bootStages, somePrevStage), { __proto__: pos$1, allowCustomOverrides: true }),
+    (somePrevStage) => nix.update(nix.app(nix.sel(lib, "last"), bootStages, somePrevStage), { [nix.POS]: pos$1, allowCustomOverrides: true }),
     (vanillaPackages) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       config: config,
       overlays: overlays,
       selfBuild: false,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.assert_(nix.eq(nix.sel(vanillaPackages, "stdenv", "buildPlatform"), localSystem), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/cross/default.nix:29:7");
         nix.assert_(nix.eq(nix.sel(vanillaPackages, "stdenv", "hostPlatform"), localSystem), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/cross/default.nix:30:7");
         nix.assert_(nix.eq(nix.sel(vanillaPackages, "stdenv", "targetPlatform"), localSystem), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/cross/default.nix:31:7");
-        return nix.app(nix.sel(vanillaPackages, "stdenv", "override"), nix.thunk(() => ({ __proto__: pos$2, targetPlatform: crossSystem })));
+        return nix.app(nix.sel(vanillaPackages, "stdenv", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, targetPlatform: crossSystem })));
       })()),
       allowCustomOverrides: true,
     }),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
                 return (nix.asBool(nix.app(f, hostPlatform)) && nix.asBool(!nix.asBool(nix.app(f, buildPlatform))));
               })()), nix.thunk(() => nix.sel(buildPackages, "updateAutotoolsGnuConfigScriptsHook"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isCygwin")) && nix.asBool(!nix.asBool(nix.sel(buildPlatform, "isCygwin"))))), nix.thunk(() => nix.sel(buildPackages, "cygwin", "cygwinDllLinkHook")))))));
             return {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               buildPlatform,
               hostPlatform,
               targetPlatform,
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
             };
           })()))));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         config: config,
         overlays: nix.thunk(() => nix.concat(overlays, crossOverlays)),
         selfBuild: false,
@@ -73,12 +73,12 @@ export default nix.lambda((args) => (() => {
           const hostPlatform = nix.thunk(() => nix.attr(stdenvNoCC, "hostPlatform"));
           const targetPlatform = nix.thunk(() => nix.attr(stdenvNoCC, "targetPlatform"));
           const baseStdenv = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "override"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               extraBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(hostPlatform, "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "targetPackages", "apple-sdk"))]))),
               hasCC: nix.thunk(() => !nix.asBool(nix.sel(stdenvNoCC, "targetPlatform", "isGhcjs"))),
               cc: nix.thunk(() => (nix.asBool(nix.selOr(crossSystem, () => false, "useiOSPrebuilt")) ? nix.sel(buildPackages, "darwin", "iosSdkPkgs", "clang") : (nix.asBool(nix.selOr(crossSystem, () => false, "useAndroidPrebuilt")) ? nix.sel(buildPackages, nix.key(nix.str`androidndkPkgs_${nix.sel(crossSystem, "androidNdkVersion")}`), "clang") : (nix.asBool(nix.sel(targetPlatform, "isGhcjs")) ? nix.builtins.throw("no C compiler provided for this platform") : (nix.asBool(nix.sel(crossSystem, "isDarwin")) ? nix.sel(buildPackages, "llvmPackages", "systemLibcxxClang") : (nix.asBool(nix.selOr(crossSystem, () => false, "useLLVM")) ? nix.sel(buildPackages, "llvmPackages", "clang") : (nix.asBool(nix.selOr(crossSystem, () => false, "useZig")) ? nix.sel(buildPackages, "zig", "cc") : (nix.asBool(nix.selOr(crossSystem, () => false, "useArocc")) ? nix.sel(buildPackages, "arocc") : (nix.asBool(nix.selOr(crossSystem, () => false, "useGccNG")) ? nix.sel(buildPackages, "gccNGPackages", "gcc") : nix.sel(buildPackages, "gcc")))))))))),
             }))));
-          return (nix.asBool(nix.has(config, "replaceCrossStdenv")) ? nix.app(nix.sel(config, "replaceCrossStdenv"), nix.thunk(() => ({ __proto__: pos$6, buildPackages: buildPackages, baseStdenv: baseStdenv }))) : nix.force(baseStdenv));
+          return (nix.asBool(nix.has(config, "replaceCrossStdenv")) ? nix.app(nix.sel(config, "replaceCrossStdenv"), nix.thunk(() => ({ [nix.POS]: pos$6, buildPackages: buildPackages, baseStdenv: baseStdenv }))) : nix.force(baseStdenv));
         })()),
       };
     })(),

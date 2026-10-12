@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "free",
       version: "2017-07-03",
       ipkgName: "idris-free",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "idris-hackers",
           repo: "idris-free",
           rev: "919950fb6a9d97c139c2d102402fec094a99c397",
           sha256: "1n4daf1acjkd73an4m31yp9g616crjb7h5z02f1gj29wm3dbx5s7",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free Monads and useful constructions to work with them",
         homepage: "https://github.com/idris-hackers/idris-free",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

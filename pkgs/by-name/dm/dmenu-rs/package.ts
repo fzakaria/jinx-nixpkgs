@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const enablePlugins = nix.argOr($, "enablePlugins", () => false);
   const cargoLockFile = nix.thunk(() => (nix.asBool(enablePlugins) ? nix.path(here, "./enablePlugins.Cargo.lock") : nix.path(here, "./Cargo.lock")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dmenu-rs",
       version: "5.5.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Shizcow",
           repo: "dmenu-rs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")),
       ]),
       buildInputs: nix.thunk(() => nix.concat([expat, fontconfig, libxft, libxinerama, libxcb], nix.app(nix.sel(lib, "optionals"), enablePlugins, nix.thunk(() => [aspell, xclip, xdg_utils])))),
-      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ __proto__: pos$2, lockFile: cargoLockFile })))),
+      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: cargoLockFile })))),
       postPatch: nix.thunk(() => nix.add(nix.str`cp ${cargoLockFile} src/Cargo.lock
 `, nix.app(nix.sel(lib, "optionalString"), enablePlugins, "chmod +w src/Cargo.lock\n"))),
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enablePlugins, "sed -i -E \"s/PLUGINS =/PLUGINS = $(find src/plugins/ -mindepth 1 -maxdepth 1 -type d -printf \"%f\\n\" | tr \"\\n\" \" \")/\" config.mk\n")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: nix.thunk(() => nix.add("Pixel perfect port of dmenu, rewritten in Rust with extensive plugin support", nix.app(nix.sel(lib, "optionalString"), enablePlugins, ", with all upstream plugins enabled"))),
         homepage: "https://github.com/Shizcow/dmenu-rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

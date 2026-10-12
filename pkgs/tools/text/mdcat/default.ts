@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mdcat";
       const version = "2.18.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BIRSAx2",
           repo: "mdcat",
           rev: nix.thunk(() => nix.str`mdcat-${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [ansi2html, less]);
       const postInstall = nix.thunk(() => nix.add("installManPage $releaseDir/build/mdcat-*/out/mdcat.1\nln -sr $out/bin/{mdcat,mdless}\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for bin in mdcat mdless; do\n  installShellCompletion --cmd $bin \\\n    --bash <($out/bin/$bin --completions bash) \\\n    --fish <($out/bin/$bin --completions fish) \\\n    --zsh <($out/bin/$bin --completions zsh)\ndone\n")));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "cat for markdown",
         homepage: "https://github.com/BIRSAx2/mdcat",
         changelog: nix.thunk(() => nix.str`https://github.com/BIRSAx2/mdcat/releases/tag/mdcat-${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

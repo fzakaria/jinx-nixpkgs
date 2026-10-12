@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const anki = nix.arg($, "anki");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ki",
       version: "0-unstable-2023-11-08",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "langfield",
           repo: "ki",
           rev: "eb32fbd3229dc1a60bcc76a937ad63f3eb869f65",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dontCheckRuntimeDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Version control for Anki collections",
         homepage: "https://github.com/langfield/ki",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

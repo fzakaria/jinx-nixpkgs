@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cat9",
       version: "0-unstable-2025-12-26",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "letoram",
           repo: "cat9",
           rev: "8d2b30545c3e87c8f2e161d755b53c23a48bcf05",
@@ -33,7 +33,7 @@ cp -a ./* ${nix.builtins.placeholder("out")}/share/arcan/appl/cat9
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/letoram/cat9",
         description: "User shell for LASH",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

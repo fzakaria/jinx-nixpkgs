@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const menhirSdk = nix.arg($, "menhirSdk");
   const seq = nix.arg($, "seq");
   const version = nix.argOr($, "version", () => nix.sel({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "4.12.0": "4.7-412",
     "4.12.1": "4.7-412",
     "4.13.0": "4.7.1-413",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
     "5.5.0": "5.8-505",
   }, nix.key(nix.str`${nix.sel(ocaml, "version")}`)));
   const hashes = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "4.7-412": "sha256-0U3Ia7EblKULNy8AuXFVKACZvGN0arYJv7BWiBRgT0Y=",
     "4.7.1-413": "sha256-owR9ooUoOrKLOpZbKYDm8Q2ZfDn6C8GJwUF/4HQVRcI=",
     "4.14-500": "sha256-7CPzJPh1UgzYiX8wPMbU5ZXz1wAJFNQQcp8WuGrR1w4=",
@@ -66,11 +66,11 @@ export default nix.lambda((args) => (() => {
     "5.8-505": "sha256-VkLN6EhqhKrZj6XFkLcOjcxgdNf72zubjEayxbQvZTs=",
   }));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "merlin",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/ocaml/merlin/releases/download/v${version}/merlin-${version}.tbz`),
           sha256: nix.thunk(() => nix.sel(hashes, nix.key(nix.str`${version}`))),
         })))),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         const old_patch = nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "4.17"));
         return [
           nix.thunk(() => nix.app(replaceVars, nix.thunk(() => (nix.asBool(old_patch) ? nix.path(here, "./fix-paths.patch") : nix.path(here, "./fix-paths2.patch"))), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               "dot-merlin-reader": nix.thunk(() => nix.str`${dot_merlin_reader}/bin/dot-merlin-reader`),
               dune: nix.thunk(() => nix.str`${dune}/bin/dune`),
             })))),
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkPhase: "runHook preCheck\npatchShebangs tests/merlin-wrapper\ndune runtest # filtering with -p disables tests\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Editor-independent tool to ease the development of programs in OCaml",
         homepage: "https://github.com/ocaml/merlin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
   const dataDir = "/var/lib/ncdns";
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const defaultFiles = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     public: nix.thunk(() => nix.str`${dataDir}/bit.key`),
     private: nix.thunk(() => nix.str`${dataDir}/bit.private`),
     zonePublic: nix.thunk(() => nix.str`${dataDir}/bit-zone.key`),
@@ -63,30 +63,30 @@ export default nix.lambda((args) => (() => {
   const needsKeygen = nix.thunk(() => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.sel(lib, "id")), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "dnssec", "keys")), (n) => (v) => nix.eq(v, nix.app(nix.sel(lib, "getAttr"), n, defaultFiles))))));
   const mkDefaultAttrs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_n) => (v) => nix.app(nix.sel(lib, "mkDefault"), v)));
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         ncdns: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ncdns, a Go daemon to bridge Namecoin to DNS.\nTo resolve .bit domains set `services.namecoind.enable = true;`\nand an RPC username/password\n")),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "[::1]",
               description: "The IP address the ncdns resolver will bind to.  Leave this unchanged\nif you do not wish to directly expose the resolver.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 5333n,
               description: "The port the ncdns resolver will bind to.\n",
             })))),
           identity: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.sel(config, "networking", "hostName")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.hostName")),
@@ -94,44 +94,44 @@ export default nix.lambda((args) => (() => {
                 description: "The hostname of this ncdns instance, which defaults to the machine\nhostname. If specified, ncdns lists the hostname as an NS record at\nthe zone apex:\n```\nbit. IN NS ns1.example.com.\n```\nIf unset ncdns will generate an internal pseudo-hostname under the\nzone, which will resolve to the value of\n{option}`services.ncdns.identity.address`.\nIf you are only using ncdns locally you can ignore this.\n",
               })))),
             hostmaster: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 example: "root@example.com",
                 description: "An email address for the SOA record at the bit zone.\nIf you are only using ncdns locally you can ignore this.\n",
               })))),
             address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "127.127.127.127",
                 description: "The IP address the hostname specified in\n{option}`services.ncdns.identity.hostname` should resolve to.\nIf you are only using ncdns locally you can ignore this.\n",
               })))),
           })),
           dnssec: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "DNSSEC support in ncdns. This will generate KSK and ZSK keypairs\n(unless provided via the options\n{option}`services.ncdns.dnssec.publicKey`,\n{option}`services.ncdns.dnssec.privateKey` etc.) and add a trust\nanchor to recursive resolvers\n")),
             keys: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               public: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   type: nix.thunk(() => nix.sel(lib, "types", "path")),
                   default: nix.thunk(() => nix.sel(defaultFiles, "public")),
                   description: "Path to the file containing the KSK public key.\nThe key can be generated using the `dnssec-keygen`\ncommand, provided by the package `bind` as follows:\n```\n$ dnssec-keygen -a RSASHA256 -3 -b 2048 -f KSK bit\n```\n",
                 })))),
               private: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   type: nix.thunk(() => nix.sel(lib, "types", "path")),
                   default: nix.thunk(() => nix.sel(defaultFiles, "private")),
                   description: "Path to the file containing the KSK private key.\n",
                 })))),
               zonePublic: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   type: nix.thunk(() => nix.sel(lib, "types", "path")),
                   default: nix.thunk(() => nix.sel(defaultFiles, "zonePublic")),
                   description: "Path to the file containing the ZSK public key.\nThe key can be generated using the `dnssec-keygen`\ncommand, provided by the package `bind` as follows:\n```\n$ dnssec-keygen -a RSASHA256 -3 -b 2048 bit\n```\n",
                 })))),
               zonePrivate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   type: nix.thunk(() => nix.sel(lib, "types", "path")),
                   default: nix.thunk(() => nix.sel(defaultFiles, "zonePrivate")),
                   description: "Path to the file containing the ZSK private key.\n",
@@ -139,7 +139,7 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{ # enable webserver\n  ncdns.httplistenaddr = \":8202\";\n\n  # synchronize TLS certs\n  certstore.nss = true;\n  # note: all paths are relative to the config file\n  certstore.nsscertdir =  \"../../var/lib/ncdns\";\n  certstore.nssdbdir = \"../../home/alice/.pki/nssdb\";\n}\n")),
@@ -147,9 +147,9 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         "pdns-recursor": nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           resolveNamecoin: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Resolve `.bit` top-level domains using ncdns and namecoin.\n",
@@ -158,23 +158,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         services: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           "pdns-recursor": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfgs, "pdns-recursor", "resolveNamecoin")), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               forwardZonesRecurse: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 bit: nix.thunk(() => nix.str`${nix.sel(cfg, "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
               })),
               luaConfig: nix.thunk(() => (nix.asBool(nix.sel(cfg, "dnssec", "enable")) ? nix.str`readTrustAnchorsFromFile("${nix.sel(cfg, "dnssec", "keys", "public")}")` : "addNTA(\"bit\", \"namecoin DNSSEC disabled\")")),
             })))),
           ncdns: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             settings: nix.thunk(() => nix.app(mkDefaultAttrs, nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 ncdns: nix.thunk(() => nix.update({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   namecoinrpcaddress: nix.thunk(() => nix.str`${nix.sel(cfgs, "namecoind", "rpc", "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfgs, "namecoind", "rpc", "port")))}`),
                   namecoinrpcusername: nix.thunk(() => nix.sel(cfgs, "namecoind", "rpc", "user")),
                   namecoinrpcpassword: nix.thunk(() => nix.sel(cfgs, "namecoind", "rpc", "password")),
@@ -183,33 +183,33 @@ export default nix.lambda((args) => (() => {
                   selfip: nix.thunk(() => nix.sel(cfg, "identity", "address")),
                   bind: nix.thunk(() => nix.str`${nix.sel(cfg, "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
                 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "dnssec", "enable")), nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     publickey: nix.thunk(() => nix.add("../..", nix.sel(cfg, "dnssec", "keys", "public"))),
                     privatekey: nix.thunk(() => nix.add("../..", nix.sel(cfg, "dnssec", "keys", "private"))),
                     zonepublickey: nix.thunk(() => nix.add("../..", nix.sel(cfg, "dnssec", "keys", "zonePublic"))),
                     zoneprivatekey: nix.thunk(() => nix.add("../..", nix.sel(cfg, "dnssec", "keys", "zonePrivate"))),
                   }))))),
-                service: nix.thunk(() => ({ __proto__: pos$24, daemon: true })),
-                xlog: nix.thunk(() => ({ __proto__: pos$25, journal: true })),
+                service: nix.thunk(() => ({ [nix.POS]: pos$24, daemon: true })),
+                xlog: nix.thunk(() => ({ [nix.POS]: pos$25, journal: true })),
               })))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             "pdns-recursor": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfgs, "pdns-recursor", "resolveNamecoin")), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 after: nix.thunk(() => ["ncdns.service"]),
                 wants: nix.thunk(() => ["ncdns.service"]),
               })))),
             ncdns: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               description: "ncdns daemon",
               after: nix.thunk(() => ["namecoind.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 User: "ncdns",
                 StateDirectory: "ncdns",
                 Restart: "on-failure",
@@ -229,21 +229,21 @@ fi
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           users: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             ncdns: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               isSystemUser: true,
               group: "ncdns",
               description: "ncdns daemon user",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$36, ncdns: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$36, ncdns: nix.thunk(() => ({})) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "rnhmjoj"))];

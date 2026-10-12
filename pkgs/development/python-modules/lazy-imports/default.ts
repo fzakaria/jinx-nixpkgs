@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const pname = "lazy-imports";
   const version = "1.2.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "bachorp",
       repo: "lazy-imports",
       tag: version,
       hash: "sha256-3TKhPMtViebdFTR3timf0ulXMdKrpQZ22gj891xQHVI=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: src,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["lazy_imports"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility package to create lazy modules, deferring associated imports until attribute access",
         homepage: "https://github.com/bachorp/lazy-imports",
         changelog: nix.thunk(() => nix.str`https://github.com/bachorp/lazy-imports/releases/tag/${nix.sel(src, "tag")}`),

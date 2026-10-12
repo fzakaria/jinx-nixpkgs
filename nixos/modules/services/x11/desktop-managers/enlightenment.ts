@@ -57,26 +57,26 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(pkgs, "gst_all_1", "gst-libav")),
     ])));
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(nix.lookup(w, "teams"), "enlightenment"))]),
     })),
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "xserver", "desktopManager", "e19", "enable"]), nix.thunk(() => ["services", "xserver", "desktopManager", "enlightenment", "enable"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         xserver: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           desktopManager: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enlightenment: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: false,
                   description: "Enable the Enlightenment desktop environment.",
@@ -86,11 +86,11 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         enlightenment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           excludePackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: [],
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ pkgs.enlightenment.ephoto ]")),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
@@ -100,9 +100,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => nix.app(nix.sel(utils, "removePackagesByName"), nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, w);
               return [
@@ -123,20 +123,20 @@ export default nix.lambda((args) => (() => {
             "/share/locale",
           ]),
           etc: nix.thunk(() => ({
-            __proto__: pos$12,
-            "X11/xkb": nix.thunk(() => ({ __proto__: pos$11, source: nix.thunk(() => nix.sel(xcfg, "xkb", "dir")) })),
+            [nix.POS]: pos$12,
+            "X11/xkb": nix.thunk(() => ({ [nix.POS]: pos$11, source: nix.thunk(() => nix.sel(xcfg, "xkb", "dir")) })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             sessionPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "enlightenment", "enlightenment"))]),
           })),
           xserver: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               sessionCommands: nix.thunk(() => nix.str`if test "$XDG_CURRENT_DESKTOP" = "Enlightenment"; then
   export GST_PLUGIN_PATH="${GST_PLUGIN_PATH}"
 
@@ -149,40 +149,40 @@ fi
 `),
             })),
           })),
-          udisks2: nix.thunk(() => ({ __proto__: pos$17, enable: true })),
+          udisks2: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
           upower: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             enable: nix.thunk(() => nix.sel(config, "powerManagement", "enable")),
           })),
           libinput: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
           })),
           dbus: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(e, "efl"))]),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             enlightenment_ckpasswd: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               setuid: true,
               owner: "root",
               group: "root",
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "enlightenment", "enlightenment")}/lib/enlightenment/utils/enlightenment_ckpasswd`),
             })),
             enlightenment_sys: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               setuid: true,
               owner: "root",
               group: "root",
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "enlightenment", "enlightenment")}/lib/enlightenment/utils/enlightenment_sys`),
             })),
             enlightenment_system: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               setuid: true,
               owner: "root",
               group: "root",
@@ -191,31 +191,31 @@ fi
           })),
         })),
         fonts: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dejavu_fonts"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           user: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             services: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               efreet: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 enable: true,
                 description: "org.enlightenment.Efreet",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(e, "efl")}/bin/efreetd`),
                   StandardOutput: "null",
                 })),
               })),
               ethumb: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 enable: true,
                 description: "org.enlightenment.Ethumb",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(e, "efl")}/bin/ethumbd`),
                   StandardOutput: "null",
                 })),

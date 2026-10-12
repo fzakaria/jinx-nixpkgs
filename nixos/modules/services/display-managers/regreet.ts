@@ -62,95 +62,95 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const user = nix.thunk(() => nix.sel(config, "services", "greetd", "settings", "default_session", "user"));
   return {
-    __proto__: pos$49,
+    [nix.POS]: pos$49,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["programs", "regreet"]), nix.thunk(() => ["services", "displayManager", "regreet"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         displayManager: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           regreet: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Enable ReGreet, a clean and customizable greeter for greetd.\n\nBy default enables {option}`services.greetd` and configures a\n{command}`default_session` to launch ReGreet using the\n{command}`cage` compositor.\n\nSee the\n[ReGreet Readme](https://github.com/rharish101/ReGreet#set-as-default-session)\nfor other examples.\n",
             })),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "regreet", nix.thunk(() => ({})))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 default: nix.thunk(() => ({})),
                 description: "ReGreet configuration file. Refer\n<https://github.com/rharish101/ReGreet/blob/main/regreet.sample.toml>\nfor options.\n",
               })))),
             cageArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: nix.thunk(() => ["-s", "-d"]),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"-s\" \"-d\" \"-m\" \"last\" ]\n")),
                 description: "Arguments to be passed to [cage](https://github.com/cage-kiosk/cage)\nwhen using it as the default compositor.\n",
               })))),
             extraCss: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "path")), nix.thunk(() => nix.sel(lib, "types", "lines")))),
                 default: "",
                 description: "Extra CSS rules to apply on top of the GTK theme. Refer to\n[GTK CSS Properties](https://docs.gtk.org/gtk4/css-properties.html) for\nmodifiable properties.\n",
               })))),
             theme: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "gnome-themes-extra", nix.thunk(() => ({}))), {
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 description: "The package that provides the theme given in the name option.\n",
               })),
               name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "Adwaita",
                   description: "Name of the theme to use for regreet.\n",
                 })))),
             })),
             iconTheme: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "adwaita-icon-theme", nix.thunk(() => ({}))), {
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "The package that provides the icon theme given in the name option.\n",
               })),
               name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "Adwaita",
                   description: "Name of the icon theme to use for regreet.\n",
                 })))),
             })),
             font: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "cantarell-fonts", nix.thunk(() => ({}))), {
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: "The package that provides the font given in the name option.\n",
               })),
               name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "Cantarell",
                   description: "Name of the font to use for regreet.\n",
                 })))),
               size: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                   default: 16n,
                   description: "Size of the font to use for regreet.\n",
                 })))),
             })),
             cursorTheme: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "adwaita-icon-theme", nix.thunk(() => ({}))), {
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: "The package that provides the cursor theme given in the name option.\n",
               })),
               name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "Adwaita",
                   description: "Name of the cursor theme to use for regreet.\n",
@@ -161,37 +161,37 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         environment: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(cfg, "theme", "package")),
             nix.thunk(() => nix.sel(cfg, "iconTheme", "package")),
             nix.thunk(() => nix.sel(cfg, "cursorTheme", "package")),
           ]),
           etc: nix.thunk(() => ({
-            __proto__: pos$25,
-            "greetd/regreet.css": nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isPath"), nix.thunk(() => nix.sel(cfg, "extraCss")))) || nix.asBool(nix.app(nix.sel(lib, "isStorePath"), nix.thunk(() => nix.sel(cfg, "extraCss")))))) ? { __proto__: pos$22, source: nix.thunk(() => nix.sel(cfg, "extraCss")) } : { __proto__: pos$23, text: nix.thunk(() => nix.sel(cfg, "extraCss")) })),
+            [nix.POS]: pos$25,
+            "greetd/regreet.css": nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isPath"), nix.thunk(() => nix.sel(cfg, "extraCss")))) || nix.asBool(nix.app(nix.sel(lib, "isStorePath"), nix.thunk(() => nix.sel(cfg, "extraCss")))))) ? { [nix.POS]: pos$22, source: nix.thunk(() => nix.sel(cfg, "extraCss")) } : { [nix.POS]: pos$23, text: nix.thunk(() => nix.sel(cfg, "extraCss")) })),
             "greetd/regreet.toml": nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               source: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isPath"), nix.thunk(() => nix.sel(cfg, "settings")))) ? nix.sel(cfg, "settings") : nix.app(nix.sel(settingsFormat, "generate"), "regreet.toml", nix.thunk(() => nix.sel(cfg, "settings"))))),
             })),
           })),
         })),
         fonts: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "font", "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             regreet: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               settings: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 GTK: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   cursor_theme_name: nix.thunk(() => nix.sel(cfg, "cursorTheme", "name")),
                   font_name: nix.thunk(() => nix.str`${nix.sel(cfg, "font", "name")} ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "font", "size")))}`),
                   icon_theme_name: nix.thunk(() => nix.sel(cfg, "iconTheme", "name")),
@@ -200,42 +200,42 @@ export default nix.lambda((args) => (() => {
               })),
             })),
           })),
-          "accounts-daemon": nix.thunk(() => ({ __proto__: pos$32, enable: true })),
+          "accounts-daemon": nix.thunk(() => ({ [nix.POS]: pos$32, enable: true })),
           greetd: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             settings: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               default_session: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 command: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(pkgs, "dbus")}/bin/dbus-run-session ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "cage")))} ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "cageArgs")))} -- ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}`))),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             settings: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               "10-regreet": nix.thunk(() => (() => {
                 const defaultConfig = nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   user: user,
                   group: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config, "users", "users", nix.key(nix.force(user)), "group"), "")) ? nix.sel(config, "users", "users", nix.key(nix.force(user)), "group") : "greeter")),
                   mode: "0755",
                 }));
                 const dataDir = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cfg, "package", "version")), "0.2.0")) ? {
-                  __proto__: pos$39,
-                  "/var/lib/regreet": nix.thunk(() => ({ __proto__: pos$38, d: defaultConfig })),
+                  [nix.POS]: pos$39,
+                  "/var/lib/regreet": nix.thunk(() => ({ [nix.POS]: pos$38, d: defaultConfig })),
                 } : {
-                  __proto__: pos$41,
-                  "/var/cache/regreet": nix.thunk(() => ({ __proto__: pos$40, d: defaultConfig })),
+                  [nix.POS]: pos$41,
+                  "/var/cache/regreet": nix.thunk(() => ({ [nix.POS]: pos$40, d: defaultConfig })),
                 }));
                 return nix.update({
-                  __proto__: pos$43,
-                  "/var/log/regreet": nix.thunk(() => ({ __proto__: pos$42, d: defaultConfig })),
+                  [nix.POS]: pos$43,
+                  "/var/log/regreet": nix.thunk(() => ({ [nix.POS]: pos$42, d: defaultConfig })),
                 }, dataDir);
               })()),
             })),
@@ -243,7 +243,7 @@ export default nix.lambda((args) => (() => {
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             assertion: nix.thunk(() => !nix.eq(nix.selOr(config, () => ({}), "users", "users", nix.key(nix.force(user))), {})),
             message: nix.thunk(() => nix.str`regreet: user ${user} does not exist. Please create it before referencing it.`),
           })),

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "fuse",
       version: "0-unstable-2026-09-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "fuse-libretro",
           rev: "e997e2bc32c888348f862f69f2c53babfedf7791",
           hash: "sha256-QAHWuyqmlAvzDzJL6qEvTlCfzltbFPZf/XPCvo/TTcE=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of the Fuse Unix Spectrum Emulator to libretro",
         homepage: "https://github.com/libretro/fuse-libretro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

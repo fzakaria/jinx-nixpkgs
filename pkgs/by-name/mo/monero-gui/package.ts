@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "monero-gui";
       const version = "0.18.5.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "monero-project",
           repo: "monero-gui",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -93,7 +93,7 @@ substituteInPlace CMakeLists.txt \\
 `);
       const cmakeFlags = nix.thunk(() => nix.concat(["-DARCH=default"], nix.app(nix.sel(lib, "optionals"), trezorSupport, nix.thunk(() => ["-DCMAKE_CXX_FLAGS=-fpermissive"]))));
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "monero-wallet-gui",
           exec: "monero-wallet-gui",
           icon: "monero",
@@ -114,7 +114,7 @@ for n in 16 24 32 48 64 96 128 256; do
 done;
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Private, secure, untraceable currency",
         homepage: "https://getmonero.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -126,7 +126,7 @@ done;
         mainProgram: "monero-wallet-gui",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

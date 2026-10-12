@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const xtrans = nix.arg($, "xtrans");
   const font_util = nix.arg($, "font-util");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "xvfb",
       src: nix.thunk(() => nix.attr(xorg_server, "src")),
       version: nix.thunk(() => nix.attr(xorg_server, "version")),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(xorg_server, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "X virtual framebuffer",
         longDescription: "Xvfb or X virtual framebuffer is a display server implementing the X11 display server\nprotocol. In contrast to other display servers, Xvfb performs all graphical operations in\nvirtual memory without showing any screen output. From the point of view of the X client app,\nit acts exactly like any other X display server, serving requests and sending events and\nerrors as appropriate. However, no output is shown. This virtual server does not require the\ncomputer it is running on to have any kind of graphics adapter, a screen or any input device.\nIs is primarily used for testing.\n",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

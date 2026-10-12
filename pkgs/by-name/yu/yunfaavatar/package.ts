@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "yunfaavatar";
       const version = "0.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yunfachi",
           repo: "yunfaAvatar",
           rev: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [imagemagick]))}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility for automatic centralized changing of avatar in Github, Discord, Steam, Shikimori, and many more",
         homepage: "https://github.com/yunfachi/yunfaAvatar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "yunfaavatar",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

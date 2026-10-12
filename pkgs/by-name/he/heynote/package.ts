@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pname = "heynote";
   const version = "2.9.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/heyman/heynote/releases/download/v${version}/Heynote_${version}_x86_64.AppImage`),
       sha256: "sha256-37as29Jh5Xz3nEW5aryD52puqaCiAxlMBs+aRIZbbU8=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, version: version, pname: pname, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, version: version, pname: pname, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -41,11 +41,11 @@ desktop-file-install --dir $out/share/applications \\
 --delete-original $out/heynote.desktop
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mainProgram: "heynote",
         description: "Dedicated scratchpad for developers",
         homepage: "https://heynote.com/",

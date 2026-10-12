@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "binsync",
           repo: "binsync",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
         tqdm,
         wordfreq,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, ghidra: nix.thunk(() => [pyside6]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, ghidra: nix.thunk(() => [pyside6]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_qt, pyside6]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_angr_gui.py"]);
       const pythonImportsCheck = nix.thunk(() => ["binsync"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reversing plugin for cross-decompiler collaboration, built on git",
         homepage: "https://github.com/binsync/binsync",
         changelog: nix.thunk(() => nix.str`https://github.com/binsync/binsync/releases/tag/${nix.sel(src, "tag")}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "taco",
       version: "0-unstable-2025-04-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tensor-compiler",
           repo: "taco",
           rev: "0e79acb56cb5f3d1785179536256e206790b2a9e",
@@ -65,7 +65,7 @@ cp -r lib/pytaco $out/${nix.sel(python3, "sitePackages")}/.
       doCheck: false,
       dontFixup: enablePython,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Computes sparse tensor expressions on CPUs and GPUs",
         mainProgram: "taco",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

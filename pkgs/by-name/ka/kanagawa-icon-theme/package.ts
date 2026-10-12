@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kanagawa-icon-theme",
       version: "0-unstable-2023-07-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Fausto-Korpsvart",
           repo: "Kanagawa-GKT-Theme",
           rev: "35936a1e3bbd329339991b29725fc1f67f192c1e",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dontDropIconThemeCache: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/icons\ncp -a icons/* $out/share/icons\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache -f $theme\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")),
         description: "Icon theme for the Kanagawa colour palette",
         homepage: "https://github.com/Fausto-Korpsvart/Kanagawa-GKT-Theme",

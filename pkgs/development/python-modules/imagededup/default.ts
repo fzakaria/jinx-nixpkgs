@@ -28,17 +28,17 @@ export default nix.lambda((args) => (() => {
   const torchvision = nix.arg($, "torchvision");
   const tqdm = nix.arg($, "tqdm");
   const MobileNetV3 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://download.pytorch.org/models/mobilenet_v3_small-047dcff4.pth",
       hash: "sha256-BH3P9K3e+G6lvC7/E8lhTcEfR6sRYNCnGiXn25lPTh8=",
     }))));
   const ViT = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://download.pytorch.org/models/vit_b_16_swag-9ac1b537.pth",
       hash: "sha256-msG1N42ZJ71sg3TODNVX74Dhs/j7wYWd8zLE3J0P2CU=",
     }))));
   const EfficientNet = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://download.pytorch.org/models/efficientnet_b4_rwightman-23ab8bcd.pth",
       hash: "sha256-I6uLzVvb72GnpDuRrcrYH2Iv1/NvtJNaVpgo13iIxE4=",
     }))));
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const version = "03.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "idealo",
           repo: "imagededup",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -66,7 +66,7 @@ ln -s ${EfficientNet} $HOME/.cache/torch/hub/checkpoints/${nix.sel(EfficientNet,
 `);
       const pythonImportsCheck = nix.thunk(() => ["imagededup"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://idealo.github.io/imagededup/",
         changelog: nix.thunk(() => nix.str`https://github.com/idealo/imagededup/releases/tag/${nix.sel(src, "tag")}`),
         description: "Finding duplicate images made easy",
@@ -77,7 +77,7 @@ ln -s ${EfficientNet} $HOME/.cache/torch/hub/checkpoints/${nix.sel(EfficientNet,
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

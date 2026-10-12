@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libphonenumber = nix.arg($, "libphonenumber");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "spacebar",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [c_ares, curl, libphonenumber, protobuf]),

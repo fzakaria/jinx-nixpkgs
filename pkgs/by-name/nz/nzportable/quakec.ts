@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const nzportable = nix.arg($, "nzportable");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nzp-quakec",
       version: "0-unstable-2025-11-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nzp-team",
           repo: "quakec",
           rev: "b1d7fec5a536b088283578866ade2c596f7928d0",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npython3 bin/qc_hash_generator.py -i tools/asset_conversion_table.csv -o source/server/hash_table.qc\n\nmkdir -p build/{fte,standard}\n\nfteqcc -srcfile progs/csqc.src\nfteqcc -O3 -DFTE -srcfile progs/ssqc.src\nfteqcc -O3 -srcfile progs/ssqc.src\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out $fte\ncp -r build/standard/* $out\ncp -r build/fte/* $fte\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "QuakeC repository for Nazi Zombies: Portable",
         homepage: "https://github.com/nzp-team/quakec",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

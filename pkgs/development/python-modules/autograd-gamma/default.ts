@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "autograd-gamma",
       version: "0.4.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CamDavidsonPilon",
           repo: "autograd-gamma",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["autograd_gamma"]),
       checkInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/CamDavidsonPilon/autograd-gamma",
         description: "Autograd compatible approximations to the gamma family of functions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

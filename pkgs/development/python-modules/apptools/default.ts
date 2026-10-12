@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "enthought",
           repo: "apptools",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [traits]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         gui: nix.thunk(() => [pyface, traitsui]),
         h5: nix.thunk(() => [numpy, pandas, tables]),
         persistence: nix.thunk(() => [numpy]),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export HOME=$TMP\n";
       const pythonImportsCheck = nix.thunk(() => ["apptools"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Set of packages that Enthought has found useful in creating a number of applications",
         homepage: "https://github.com/enthought/apptools",
         changelog: nix.thunk(() => nix.str`https://github.com/enthought/apptools/releases/tag/${nix.sel(src, "tag")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

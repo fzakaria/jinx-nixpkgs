@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfc5890cnlpr";
       const version = "1.1.2-2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf006168/${pname}-${version}.i386.deb`),
           sha256: "119h3s1p9pv83mrfv6cmxpc0v33xf8c9nw5clj9yafv3aizxy6dp",
         }))));
@@ -52,7 +52,7 @@ wrapProgram $dir/lpd/psconvertij2 \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnused, gawk]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother MFC-5890CN LPR printer driver",
         homepage: "http://www.brother.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -67,7 +67,7 @@ wrapProgram $dir/lpd/psconvertij2 \\
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const mergeFalseByDefault = (locs) => (defs) => (nix.asBool(nix.eq(defs, [])) ? nix.app(nix.builtins.abort, "This case should never happen.") : (nix.asBool(nix.app(nix.lookup(w, "elem"), false, nix.thunk(() => nix.app(nix.lookup(w, "getValues"), defs)))) ? false : true));
   const kernelItem = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       options: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tristate: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["y", "m", "n", null]))),
             default: null,
             internal: true,
@@ -34,15 +34,15 @@ export default nix.lambda((args) => (() => {
             description: "Use this field for tristate kernel options expecting a \"y\" or \"m\" or \"n\".\n",
           })))),
         freeform: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: null,
             example: "MMC_BLOCK_MINORS.freeform = \"32\";",
             description: "Freeform description of a kernel configuration item value.\n",
           })))),
         optional: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
-            type: nix.thunk(() => nix.update(nix.sel(nix.lookup(w, "types"), "bool"), { __proto__: pos$3, merge: mergeFalseByDefault })),
+            [nix.POS]: pos$4,
+            type: nix.thunk(() => nix.update(nix.sel(nix.lookup(w, "types"), "bool"), { [nix.POS]: pos$3, merge: mergeFalseByDefault })),
             default: false,
             description: "Whether option should generate a failure when unused.\nUpon merging values, mandatory wins over optional.\n",
           })))),
@@ -65,25 +65,25 @@ export default nix.lambda((args) => (() => {
     return nix.app(mkConf, exprs);
   })();
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       intermediateNixConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           readOnly: true,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
           example: "USB? y\nDEBUG n\nLOCALVERSION\n",
           description: "The result of converting the structured kernel configuration in settings\nto an intermediate string that can be parsed by generate-config.pl to\nanswer the kernel `make defconfig`.\n",
         })))),
       settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), kernelItem)),
           example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "with lib.kernel; {\n       \"9P_NET\" = yes;\n       USB = option yes;\n       MMC_BLOCK_MINORS = freeform \"32\";\n     }")),
           description: "Structured kernel configuration.\n",
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       intermediateNixConfig: nix.thunk(() => nix.app(generateNixKConf, nix.thunk(() => nix.sel(config, "settings")))),
     })),
   };

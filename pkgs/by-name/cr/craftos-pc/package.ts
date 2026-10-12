@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const version = "2.8.3";
   const craftos2_lua = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "MCJack123",
       repo: "craftos2-lua",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-OCHN/ef83X4r5hZcPfFFvNJHjINCTiK+COf369/WPsA=",
     }))));
   const craftos2_rom = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "McJack123",
       repo: "craftos2-rom",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const pname = "craftos-pc";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "MCJack123",
           repo: "craftos2",
           rev: nix.thunk(() => nix.str`v${version_1}`),
@@ -77,15 +77,15 @@ cp -R ${craftos2_rom}/* $out/share/craftos
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mkdir -p resources/linux-icons\nunzip resources/linux-icons.zip -d resources/linux-icons\nfor dim in 16 24 32 48 64 96 128 256 1024; do\n  dir=\"$out/share/icons/hicolor/$dimx$dim/apps\"\n  mkdir -p \"$dir\"\n  cp \"resources/linux-icons/$dim.png\" \"$dir/craftos.png\"\ndone\n\nmkdir -p $out/share/applications\ncp resources/linux-icons/CraftOS-PC.desktop $out/share/applications/CraftOS-PC.desktop\n")}
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "eval-hello-world": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-eval-hello-world"), nix.thunk(() => ({})))),
           "eval-periphemu": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-eval-periphemu"), nix.thunk(() => ({})))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Implementation of the CraftOS-PC API written in C++ using SDL",
         homepage: "https://www.craftos-pc.cc",
         license: nix.thunk(() => (() => {
@@ -107,7 +107,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
         mainProgram: "craftos",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version: version_1,
         src,

@@ -35,24 +35,24 @@ export default nix.lambda((args) => (() => {
   const configContent = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.str`${k} = ${nix.app(formatValue, v)}`, nix.thunk(() => nix.sel(cfg, "settings"))))));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "agent.cfg", configContent));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         glpiAgent: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "GLPI Agent")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "glpi-agent", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: settingsType,
               default: nix.thunk(() => ({})),
               description: "GLPI Agent configuration options.\nSee <https://glpi-agent.readthedocs.io/en/latest/configuration.html> for all available options.\n\nThe 'server' option is mandatory and must point to your GLPI server.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  server = [ \"https://glpi.example.com/inventory\" ];\n  delaytime = 3600;\n  tag = \"production\";\n  logger = [ \"stderr\" \"file\" ];\n  debug = 1;\n  \"no-category\" = [ \"printer\" \"software\" ];\n}\n")),
             })))),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/glpi-agent",
               description: "Directory where GLPI Agent stores its state.",
@@ -61,25 +61,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             assertion: nix.thunk(() => nix.has(nix.sel(cfg, "settings"), "server")),
             message: "GLPI Agent requires a server to be configured in services.glpiAgent.settings.server",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "glpi-agent": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "GLPI Agent",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}`),
                     "--conf-file",

@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(runCommand, nix.thunk(() => nix.str`descent3-${nix.sel(descent3_unwrapped, "version")}`), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "descent3",
       version: nix.thunk(() => nix.attr(descent3_unwrapped, "version")),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, unwrapped: descent3_unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, unwrapped: descent3_unwrapped })),
       meta: nix.thunk(() => nix.update(nix.sel(descent3_unwrapped, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         longDescription: "Playing Descent 3 using the Nix package manager is a little bit awkward\nat the moment. This wrapper makes it slightly less awkward. Here’s how\nyou use this wrapper:\n\n1. Install the `descent3` package, or start an ephemeral shell with the\n`descent3` package.\n\n2. Find the documentation folder for `descent3-unwrapped` by running this\ncommand:\n\n    ```bash\n    nix-instantiate --eval --expr '(import <nixpkgs> { }).descent3-unwrapped + \"/share/doc/Descent3\"'\n    ```\n\n3. Open `<descent3-unwrapped-doc-folder>/USAGE.md`.\n\n4. Follow steps 1–6 of Descent 3’s usage instructions.\n\n5. Change directory into the `D3-open-source` folder:\n\n  ```bash\n  cd <path-to-D3-open-source>\n  ```\n\n6. Start Descent 3 by running this command:\n\n    ```bash\n    Descent3\n    ```\n",
       })),

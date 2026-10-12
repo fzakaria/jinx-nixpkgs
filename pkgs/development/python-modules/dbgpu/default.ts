@@ -18,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const pydantic = nix.arg($, "pydantic");
   const thefuzz = nix.arg($, "thefuzz");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dbgpu",
       version: "2025.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-1KL9w2/1/yrzfo/Yo+B0CrKvc8xeD9oZn9/z1vFob04=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [click, pydantic]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, fuzz: nix.thunk(() => [thefuzz]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, fuzz: nix.thunk(() => [thefuzz]) })),
       pythonImportsCheck: nix.thunk(() => ["dbgpu"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Small, easy-to-use open source database of over 2000 GPUs with architecture, manufacturing, API support and performance details",
         homepage: "https://github.com/painebenjamin/dbgpu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

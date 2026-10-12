@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const multimarkdown = nix.arg($, "multimarkdown");
   const cmark = nix.arg($, "cmark");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ghostwriter",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtsvg, qttools, qtwebchannel, qtwebengine, qt5compat, kdoctools, hunspell]),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         ":",
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cmark, multimarkdown, pandoc]))),
       ]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "ghostwriter" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "ghostwriter" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

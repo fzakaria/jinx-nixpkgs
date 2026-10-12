@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const pinData = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pin.json")));
   const version = nix.thunk(() => nix.sel(pinData, "serverVersion"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: version,
       pname: "lemmy-server",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LemmyNet",
           repo: "lemmy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: nix.thunk(() => nix.sel(pinData, "serverCargoHash")),
       buildInputs: nix.thunk(() => nix.concat([libpq], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         OPENSSL_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), openssl)}/lib`),
         OPENSSL_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.sel(openssl, "dev")}/include`),
         PROTOC: nix.thunk(() => nix.str`${protobuf}/bin/protoc`),
@@ -56,15 +56,15 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "rm $out/lib/libhtml2md.so\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.path(here, "./update.py"),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "lemmy-server": nix.thunk(() => nix.sel(nixosTests, "lemmy")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Federated link aggregator and forum",
         homepage: "https://join-lemmy.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -28,20 +28,20 @@ export default nix.lambda((args) => (() => {
   const pname = "fah-client";
   const version = "8.5.6";
   const cbangSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "cauldrondevelopmentllc",
       repo: "cbang",
       tag: nix.thunk(() => nix.str`bastet-v${version}`),
       hash: "sha256-oh3q/gmAKx8BHoaw6Dxkd0GoxYyJ6is8uCKcivQVv2g=",
     }))));
   const fah_client = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "FoldingAtHome",
           repo: "fah-client-bastet",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -59,13 +59,13 @@ cp -r --no-preserve=mode ${cbangSrc} $CBANG_HOME
       doInstallCheck: true,
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       targetPkgs: (_) => nix.concat([fah_client, ocl_icd, zlib, expat], extraPkgs),
       runScript: "/bin/fah-client",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Folding@home client",
         homepage: "https://foldingathome.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

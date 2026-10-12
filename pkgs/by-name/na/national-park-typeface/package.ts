@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
       const pname = "national-park-typeface";
       const version = "206464";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://files.cargocollective.com/c${version}/NationalPark.zip`),
           stripRoot: false,
           hash: "sha256-VUboZZVJfKupnoHXo3RxetEEYimrr1DxghVZaaWnnw4=",
         }))));
       const installPhase = "runHook preInstall\n\ninstall -Dm644 *.otf -t $out/share/fonts/opentype/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Typeface designed to mimic the national park service signs that are carved using a router bit",
         homepage: "https://nationalparktypeface.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const guile = nix.arg($, "guile");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         publisher: "tsyesika",
         name: "guile-scheme-enhanced",
         version: "0.0.2",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "getExe"), jq)} '.contributes.configuration.properties."guileScheme.guileREPLCommand".default = "${nix.app(nix.sel(lib, "getExe'"), guile, "guile")}"' package.json | ${nix.app(nix.sel(lib, "getExe'"), moreutils, "sponge")} package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Better experience for working with scheme",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=tsyesika.guile-scheme-enhanced",
         homepage: "https://codeberg.org/tsyesika/vscode-guile-scheme-enhanced",

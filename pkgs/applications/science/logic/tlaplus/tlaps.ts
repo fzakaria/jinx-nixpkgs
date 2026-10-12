@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tlaps";
       const version = "1.4.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://tla.msr-inria.inria.fr/tlaps/dist/${version}/tlaps-${version}.tar.gz`),
           sha256: "c296998acd14d5b93a8d5be7ee178007ef179957465966576bda26944b1b7fca",
         }))));
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [ocaml, isabelle, cvc3, perl, wget, which]);
       const installPhase = "mkdir -pv \"$out\"\nexport HOME=\"$TMPDIR\"\nexport PATH=$out/bin:$PATH\n\n# Stop Isabelle trying to use `/tmp`.\nuser_home=\"$(isabelle getenv -b ISABELLE_HOME_USER)\"\nmkdir -p \"$user_home/etc\"\necho 'ISABELLE_TMP_PREFIX=\"$TMPDIR/isabelle\"' > \"$user_home/etc/settings\"\n\npushd zenon\n./configure --prefix $out\nmake\nmake install\npopd\n\npushd isabelle\nisabelle build -b Pure\npopd\n\npushd tlapm\n./configure --prefix $out\nmake all\nmake install\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mechanically check TLA+ proofs",
         longDescription: "TLA+ is a general-purpose formal specification language that is\nparticularly useful for describing concurrent and distributed\nsystems. The TLA+ proof language is declarative, hierarchical,\nand scalable to large system specifications. It provides a\nconsistent abstraction over the various “backend” verifiers.\n",
         homepage: "https://tla.msr-inria.inria.fr/tlaps/content/Home.html",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

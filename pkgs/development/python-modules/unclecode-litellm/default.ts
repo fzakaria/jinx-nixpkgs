@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const tiktoken = nix.arg($, "tiktoken");
   const tokenizers = nix.arg($, "tokenizers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unclecode-litellm",
       version: "1.81.13",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "unclecode_litellm",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-23DjTj6FnAoH8CywLqpkT4+ktOzF4vO+mli9fRw/7tw=",
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["litellm"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pre-compromise fork of litellm to interface with LLM API providers",
         homepage: "https://pypi.org/project/unclecode-litellm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

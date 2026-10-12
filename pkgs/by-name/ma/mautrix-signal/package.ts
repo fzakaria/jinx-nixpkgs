@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.09";
       const tag = "v0.2609.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mautrix",
           repo: "signal",
           tag: tag,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withGoolm)), olm), nix.concat(nix.app(nix.sel(lib, "optional"), withGoolm, nix.thunk(() => nix.sel(stdenv, "cc", "cc", "lib"))), [libsignal_ffi, zlib])));
       const tags = nix.thunk(() => nix.app(nix.sel(lib, "optional"), withGoolm, "goolm"));
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withGoolm, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           CGO_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [cppStdLib]))),
         }))));
       const vendorHash = "sha256-/dHtn1QTQb2kf/scULECU6NquyNdMwgmF4gyeuMiHgg=";
@@ -49,7 +49,7 @@ export CGO_LDFLAGS="${cppStdLib}"
       const doInstallCheck = true;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/mautrix/signal",
         description: "Matrix-Signal puppeting bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -64,7 +64,7 @@ export CGO_LDFLAGS="${cppStdLib}"
         mainProgram: "mautrix-signal",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         tag,

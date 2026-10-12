@@ -91,12 +91,12 @@ export default nix.lambda((args) => (() => {
   const ldacbtSupport = nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), ldacbt));
   const webrtcAudioProcessingSupport = nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), webrtc_audio_processing));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "pipewire",
       version: "1.6.9",
       outputs: nix.thunk(() => ["out", "jack", "dev", "doc", "man", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "pipewire",
           repo: "pipewire",
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0060-libjack-path.patch"),
         nix.path(here, "./0070-installed-tests-path.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "musl.patch",
             url: "https://gitlab.freedesktop.org/pipewire/pipewire/-/commit/49ce385c44f4c2882ef0aeac0312e6ae9bc85f8a.patch",
             hash: "sha256-u8DLe6smodalVn3GwhI9RaDZTw4qZs8+Ylg9lxunMF0=",
@@ -197,26 +197,26 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "onnxruntime", onnxruntimeSupport)),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$3, fontDirectories: [] })))),
+        [nix.POS]: pos$4,
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$3, fontDirectories: [] })))),
       })),
       doCheck: true,
       doInstallCheck: true,
       postPatch: "patchShebangs doc/*.py\npatchShebangs doc/input-filter-h.sh\n\n# Remove problematic installed-tests\nsed -i -e \"/test-pipewire-alsa-stress/d\" pipewire-alsa/tests/meson.build\nsed -i -e \"/benchmark-aec/d\" spa/tests/meson.build\n",
       postInstall: "moveToOutput \"bin/pw-jack\" \"$jack\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "installed-tests": nix.thunk(() => nix.sel(nixosTests, "installed-tests", "pipewire")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Server and user space API to deal with multimedia pipelines",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/pipewire/pipewire/-/releases/${nix.sel(finalAttrs, "version")}`),
         homepage: "https://pipewire.org/",

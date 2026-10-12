@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const systemdSupport = nix.argOr($, "systemdSupport", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemd));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pgbouncer",
       version: "1.25.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.pgbouncer.org/downloads/files/${nix.sel(finalAttrs, "version")}/pgbouncer-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-kkrTURP9CnHI4tvoW10DRFUy4rezep+KSJg77qI4szI=",
         })))),
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), systemdSupport, "--with-systemd")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pgbouncer: nix.thunk(() => nix.sel(nixosTests, "pgbouncer")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.pgbouncer.org/",
         mainProgram: "pgbouncer",
         description: "Lightweight connection pooler for PostgreSQL",

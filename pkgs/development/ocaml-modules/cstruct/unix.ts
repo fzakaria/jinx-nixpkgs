@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const cstruct = nix.arg($, "cstruct");
   return (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.selOr(cstruct, () => "1", "version")), "3")) ? nix.force(cstruct) : nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "cstruct-unix",
       version: nix.thunk(() => nix.attr(cstruct, "version")),
       src: nix.thunk(() => nix.attr(cstruct, "src")),

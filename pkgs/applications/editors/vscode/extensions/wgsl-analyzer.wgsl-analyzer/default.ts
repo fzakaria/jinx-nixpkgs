@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const moreutils = nix.arg($, "moreutils");
   const wgsl_analyzer = nix.arg($, "wgsl-analyzer");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "wgsl-analyzer",
         publisher: "wgsl-analyzer",
         version: "0.11.318",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension that integrates wgsl-analyzer a wgsl language server into VSCode",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=wgsl-analyzer.wgsl-analyzer",
         homepage: "https://github.com/wgsl-analyzer/wgsl-analyzer",

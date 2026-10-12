@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const npmHooks = nix.arg($, "npmHooks");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "advanced-camera-card",
       version: "7.27.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "dermotduffy",
           repo: "advanced-camera-card",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-I1dm7TZMK/eRF2Uld3e+r4PQBaL9oJc+NI+/5cxaGUs=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -47,7 +47,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
 `),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-yarn-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
@@ -63,7 +63,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       npmBuildScript: "build",
       installPhase: "runHook preInstall\n\nmkdir $out\ncp -rv dist/* $out/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/dermotduffy/advanced-camera-card/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Comprehensive camera card for Home Assistant",
         homepage: "https://github.com/dermotduffy/advanced-camera-card",

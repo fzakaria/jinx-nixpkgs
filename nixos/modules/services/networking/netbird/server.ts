@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
   const str = nix.thunk(() => nix.attr(from, "str"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "netbird", "server"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "patrickdag"))];
@@ -53,17 +53,17 @@ export default nix.lambda((args) => (() => {
       nix.path(here, "./signal.nix"),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         netbird: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           server: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(mkEnableOption, "Netbird Server stack, comprising the dashboard, management API and signal service")),
             enableNginx: nix.thunk(() => nix.app(mkEnableOption, "Nginx reverse-proxy for the netbird server services")),
             domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: str,
                 description: "The domain under which the netbird server runs.",
               })))),
@@ -72,22 +72,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         services: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           netbird: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             server: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               dashboard: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 domain: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "domain")))),
                 enable: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "enable")))),
                 enableNginx: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "enableNginx")))),
                 managementServer: nix.thunk(() => nix.str`https://${nix.sel(cfg, "domain")}`),
               })),
               management: nix.thunk(() => nix.update({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 domain: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "domain")))),
                 enable: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "enable")))),
                 enableNginx: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "enableNginx")))),
@@ -95,33 +95,33 @@ export default nix.lambda((args) => (() => {
                   const turnDomain = nix.thunk(() => nix.sel(cfg, "domain"));
                   const turnPort = nix.thunk(() => nix.sel(config, "services", "coturn", "listening-port"));
                   const settings = nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     TURNConfig: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       Turns: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             Proto: "udp",
                             URI: nix.thunk(() => nix.str`turn:${turnDomain}:${nix.builtins.toString(turnPort)}`),
                             Username: "netbird",
                             Password: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "coturn", "password"), null)) ? nix.sel(cfg, "coturn", "password") : {
-                              __proto__: pos$9,
+                              [nix.POS]: pos$9,
                               _secret: nix.thunk(() => nix.sel(cfg, "coturn", "passwordFile")),
                             })),
                           })),
                         ]))),
                     })),
                   }));
-                  return { __proto__: pos$13, turnDomain, turnPort, settings };
+                  return { [nix.POS]: pos$13, turnDomain, turnPort, settings };
                 })())))),
               signal: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 domain: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "domain")))),
                 enable: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "enable")))),
                 enableNginx: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "enableNginx")))),
               })),
               coturn: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 domain: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "domain")))),
               })),
             })),

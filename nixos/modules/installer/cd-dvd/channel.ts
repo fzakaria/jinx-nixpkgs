@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const nixpkgs = nix.thunk(() => nix.app(nix.sel(lib, "cleanSource"), nix.thunk(() => nix.sel(pkgs, "path"))));
-  const channelSources = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`nixos-${nix.sel(config, "system", "nixos", "version")}`), nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
+  const channelSources = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`nixos-${nix.sel(config, "system", "nixos", "version")}`), nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
 cp -prd ${nix.sel(nixpkgs, "outPath")} $out/nixos
 chmod -R u+w $out/nixos
 if [ ! -e $out/nixos/nixpkgs ]; then
@@ -39,30 +39,30 @@ echo -n ${nix.sel(config, "system", "nixos", "versionSuffix")} > $out/nixos/.ver
 echo ${nix.sel(config, "system", "nixos", "versionSuffix")} | sed -e s/pre// > $out/nixos/svn-revision
 `)));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       system: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         installer: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           channel: nix.thunk(() => ({
-            __proto__: pos$3,
-            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "bundling NixOS/Nixpkgs channel in the installer"), { __proto__: pos$2, default: true })),
+            [nix.POS]: pos$3,
+            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "bundling NixOS/Nixpkgs channel in the installer"), { [nix.POS]: pos$2, default: true })),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "system", "installer", "channel", "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         nix: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           registry: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             nixpkgs: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               to: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: "path",
                 path: nix.thunk(() => nix.str`${channelSources}/nixos`),
               })),
@@ -70,13 +70,13 @@ echo ${nix.sel(config, "system", "nixos", "versionSuffix")} | sed -e s/pre// > $
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "nix-channel-init": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Initialize NixOS Channel",
-              unitConfig: nix.thunk(() => ({ __proto__: pos$11, DefaultDependencies: false })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$11, DefaultDependencies: false })),
               wantedBy: nix.thunk(() => ["sysinit.target"]),
               before: nix.thunk(() => [
                 "sysinit.target",
@@ -87,7 +87,7 @@ echo ${nix.sel(config, "system", "nixos", "versionSuffix")} | sed -e s/pre// > $
               after: nix.thunk(() => ["local-fs.target", "register-nix-paths.service"]),
               conflicts: nix.thunk(() => ["shutdown.target"]),
               restartIfChanged: false,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$12, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$12, Type: "oneshot", RemainAfterExit: true })),
               script: nix.thunk(() => nix.str`if ! [ -e /var/lib/nixos/did-channel-init ]; then
   echo "unpacking the NixOS/Nixpkgs sources..."
   mkdir -p /nix/var/nix/profiles/per-user/root

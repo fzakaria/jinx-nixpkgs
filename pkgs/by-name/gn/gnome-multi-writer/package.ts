@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gnome-multi-writer";
       const version = "3.35.90";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-multi-writer/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gnome-multi-writer-${version}.tar.xz`),
           sha256: "07vgzjjdrxcp7h73z13h9agafxb4vmqx5i81bcfyw0ilw9kkdzmp",
         }))));
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [glib, gtk3, gusb, libcanberra_gtk3, libgudev, polkit, udisks]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool for writing an ISO file to multiple USB devices at once",
         mainProgram: "gnome-multi-writer",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-multi-writer",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

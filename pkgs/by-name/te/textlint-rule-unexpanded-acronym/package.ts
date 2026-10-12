@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const textlint = nix.arg($, "textlint");
   const textlint_rule_unexpanded_acronym = nix.arg($, "textlint-rule-unexpanded-acronym");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "textlint-rule-unexpanded-acronym",
       version: "1.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "textlint-rule",
           repo: "textlint-rule-unexpanded-acronym",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-oUOofYfdENRQnwmBDADQgA1uGtRirqqGg8T+QA0LCXY=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-90ZONfn7CnrCsYGliF+c7Ss+SgVmaCYnaVdq3s1HdJU=",
         })))),
@@ -42,15 +42,15 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nyarn --offline build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nyarn --offline --production install\nrm -r test\nmkdir -p $out/lib/node_modules/textlint-rule-unexpanded-acronym\ncp -r . $out/lib/node_modules/textlint-rule-unexpanded-acronym/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             rule: textlint_rule_unexpanded_acronym,
             testFile: nix.path(here, "./test.md"),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Textlint rule that check unexpanded acronym",
         homepage: "https://github.com/textlint-rule/textlint-rule-unexpanded-acronym",
         changelog: nix.thunk(() => nix.str`https://github.com/textlint-rule/textlint-rule-unexpanded-acronym/releases/tag/${nix.sel(finalAttrs, "version")}`),

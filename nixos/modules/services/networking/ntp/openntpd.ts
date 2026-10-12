@@ -40,18 +40,18 @@ ${nix.sel(cfg, "extraConfig")}
 `);
   const pidFile = "/run/openntpd.pid";
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         openntpd: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "OpenNTP time synchronization server")),
           servers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(options, "services", "ntp", "servers"));
               return {
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: nix.thunk(() => nix.sel(config, "services", "ntp", "servers")),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "config.services.ntp.servers")),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
@@ -59,7 +59,7 @@ ${nix.sel(cfg, "extraConfig")}
             };
             })()))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.force(nix.lookup(w_1, "lines"));
@@ -69,7 +69,7 @@ ${nix.sel(cfg, "extraConfig")}
               description: "Additional text appended to {file}`openntpd.conf`.\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "separatedString"), " ");
@@ -82,56 +82,56 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "thoughtpolice"))];
       })()),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           timesyncd: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkForce"), false)),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           systemPackages: nix.thunk(() => [package$]),
           etc: nix.thunk(() => ({
-            __proto__: pos$11,
-            "ntpd.conf": nix.thunk(() => ({ __proto__: pos$10, text: configFile })),
+            [nix.POS]: pos$11,
+            "ntpd.conf": nix.thunk(() => ({ [nix.POS]: pos$10, text: configFile })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             ntp: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               isSystemUser: true,
               group: "ntp",
               description: "OpenNTP daemon user",
               home: "/var/empty",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$15, ntp: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$15, ntp: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             openntpd: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "OpenNTP Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target", "time-sync.target"]),
               before: nix.thunk(() => ["time-sync.target"]),
               after: nix.thunk(() => ["dnsmasq.service", "bind.service", "network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => nix.str`${package$}/sbin/ntpd -p ${pidFile} ${nix.sel(cfg, "extraOptions")}`),
                 Type: "forking",
                 PIDFile: pidFile,

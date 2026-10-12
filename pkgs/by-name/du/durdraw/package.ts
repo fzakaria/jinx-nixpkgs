@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "durdraw",
           repo: "durdraw",
           tag: version,
@@ -51,7 +51,7 @@ export TZDIR=${tzdata}/share/zoneinfo
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_log_timestamp_timezone_local"])));
       const pythonImportsCheck = nix.thunk(() => ["durdraw"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ASCII, Unicode and ANSI art editor",
         longDescription: "Terminal-based ASCII, ANSI and Unicode art editor for Unix-like systems.\nSupports frame-based animation, custom themes, 256-color and 16-color\nmodes, terminal mouse input, IRC color export, Unicode and Code Page 437\nblock characters, and PNG/GIF export via ansilove.\n",
         homepage: "https://durdraw.org",
@@ -65,7 +65,7 @@ export TZDIR=${tzdata}/share/zoneinfo
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

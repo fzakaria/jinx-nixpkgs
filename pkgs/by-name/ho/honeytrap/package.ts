@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "honeytrap",
       version: "0-unstable-2021-12-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "honeytrap",
           repo: "honeytrap",
           rev: "05965fc67deab17b48e43873abc5f509067ef098",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-W8w66weYzCpZ+hmFyK2F6wdFz6aAZ9UxMhccNy1X1R8=",
       subPackages: nix.thunk(() => ["."]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Advanced Honeypot framework",
         mainProgram: "honeytrap",
         homepage: "https://github.com/honeytrap/honeytrap",

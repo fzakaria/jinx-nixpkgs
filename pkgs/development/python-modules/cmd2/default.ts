@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const rich_argparse = nix.arg($, "rich-argparse");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cmd2",
       version: "3.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-cmd2",
           repo: "cmd2",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_find_editor_not_specified"]),
       pythonImportsCheck: nix.thunk(() => ["cmd2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Enhancements for standard library's cmd module",
         homepage: "https://github.com/python-cmd2/cmd2",
         changelog: nix.thunk(() => nix.str`https://github.com/python-cmd2/cmd2/releases/tag/${nix.sel(finalAttrs, "version")}`),

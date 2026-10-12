@@ -18,26 +18,26 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
-  const dummyVersioning = nix.thunk(() => ({ __proto__: pos$1, revision: "test", versionSuffix: "test", label: "test" }));
+  const dummyVersioning = nix.thunk(() => ({ [nix.POS]: pos$1, revision: "test", versionSuffix: "test", label: "test" }));
   return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "nixos-test": nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "nixos"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             system: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nixos: dummyVersioning,
               stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
             })),
             boot: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               loader: nix.thunk(() => ({
-                __proto__: pos$4,
-                grub: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
+                [nix.POS]: pos$4,
+                grub: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
               })),
             })),
             fileSystems: nix.thunk(() => ({
-              __proto__: pos$7,
-              "/": nix.thunk(() => ({ __proto__: pos$6, device: "/dev/null", fsType: "none" })),
+              [nix.POS]: pos$7,
+              "/": nix.thunk(() => ({ [nix.POS]: pos$6, device: "/dev/null", fsType: "none" })),
             })),
           }))), "toplevel")),
       })))));

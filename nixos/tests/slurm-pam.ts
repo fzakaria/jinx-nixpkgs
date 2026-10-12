@@ -88,21 +88,21 @@ while true; do sleep 60; done
     const $_1 = nix.formals(args_1, formals$2);
     const config = nix.arg($_1, "config");
     return {
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         slurm: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           controlMachine: "control",
           nodeName: nix.thunk(() => nix.builtins.map((n) => nix.add(n, " CPUs=1 State=UNKNOWN"), nix.thunk(() => ["regular", "pamslurm", "pamslurmadopt"]))),
           partitionName: nix.thunk(() => ["debug Nodes=ALL Default=YES MaxTime=INFINITE State=UP"]),
           extraConfig: "PrologFlags=contain\nProctrackType=proctrack/cgroup\nTaskPlugin=task/cgroup,task/affinity\nSlurmdDebug=debug\n",
         })),
         openssh: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: true,
           settings: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             AllowUsers: nix.thunk(() => ["submitter"]),
             PubkeyAuthentication: true,
             KbdInteractiveAuthentication: false,
@@ -111,53 +111,53 @@ while true; do sleep 60; done
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         systemPackages: nix.thunk(() => [
           nix.thunk(() => nix.sel(pkgs, "pamtester")),
           nix.thunk(() => nix.sel(pkgs, "sshpass")),
         ]),
         etc: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "slurm.conf": nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             source: nix.thunk(() => nix.str`${nix.sel(config, "services", "slurm", "etcSlurm")}/slurm.conf`),
           })),
         })),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$9,
-        firewall: nix.thunk(() => ({ __proto__: pos$8, enable: false })),
+        [nix.POS]: pos$9,
+        firewall: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         tmpfiles: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           rules: nix.thunk(() => [
             "f /etc/munge/munge.key 0400 munge munge - mungeverryweakkeybuteasytointegratoinatest",
           ]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           sshd: nix.thunk(() => ({
-            __proto__: pos$12,
-            environment: nix.thunk(() => ({ __proto__: pos$11, SLURM_CONF: slurmConf })),
+            [nix.POS]: pos$12,
+            environment: nix.thunk(() => ({ [nix.POS]: pos$11, SLURM_CONF: slurmConf })),
           })),
         })),
       })),
       users: nix.thunk(() => ({
-        __proto__: pos$20,
-        groups: nix.thunk(() => ({ __proto__: pos$15, submitter: nix.thunk(() => ({})) })),
+        [nix.POS]: pos$20,
+        groups: nix.thunk(() => ({ [nix.POS]: pos$15, submitter: nix.thunk(() => ({})) })),
         users: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           submitter: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             isNormalUser: true,
             createHome: true,
             initialPassword: "submitter",
             group: "submitter",
             openssh: nix.thunk(() => ({
-              __proto__: pos$17,
-              authorizedKeys: nix.thunk(() => ({ __proto__: pos$16, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+              [nix.POS]: pos$17,
+              authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$16, keys: nix.thunk(() => [snakeOilPublicKey]) })),
             })),
           })),
         })),
@@ -165,23 +165,23 @@ while true; do sleep 60; done
     };
   })(), formals$2);
   return {
-    __proto__: pos$54,
+    [nix.POS]: pos$54,
     name: "slurm-pam",
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "edwtjo"))]),
     })),
     nodes: nix.thunk(() => (() => {
       const computeNode = nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           imports: nix.thunk(() => [slurmconfig]),
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             slurm: nix.thunk(() => ({
-              __proto__: pos$24,
-              client: nix.thunk(() => ({ __proto__: pos$23, enable: true })),
+              [nix.POS]: pos$24,
+              client: nix.thunk(() => ({ [nix.POS]: pos$23, enable: true })),
             })),
           })),
         };
@@ -189,27 +189,27 @@ while true; do sleep 60; done
       const computePAMNode = nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           imports: nix.thunk(() => [computeNode]),
           security: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             pam: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               services: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 sshd: nix.thunk(() => ({
-                  __proto__: pos$28,
-                  slurm: nix.thunk(() => ({ __proto__: pos$27, enable: true })),
+                  [nix.POS]: pos$28,
+                  slurm: nix.thunk(() => ({ [nix.POS]: pos$27, enable: true })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             openssh: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               settings: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 KbdInteractiveAuthentication: false,
                 PasswordAuthentication: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                 PubkeyAuthentication: true,
@@ -221,12 +221,12 @@ while true; do sleep 60; done
       const computePAMAdoptNode = nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         return {
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           imports: nix.thunk(() => [computeNode]),
           services: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             slurm: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               extraConfig: nix.thunk(() => nix.str`LaunchParameters=ulimit_pam_adopt
 SrunProlog=${nix.app(nix.sel(pkgs, "writers", "writeBash"), "slurm-prolog", "loginctl enable-linger $SLURM_JOB_USER\nexit 0\n")}
 TaskProlog=${nix.app(nix.sel(pkgs, "writers", "writeBash"), "slurm-taskprolog", "echo \"export XDG_RUNTIME_DIR=/run/user/$SLURM_JOB_UID\"\necho \"export XDG_SESSION_ID=$(</proc/self/sessionid)\"\necho \"export XDG_SESSION_TYPE=tty\"\necho \"export XDG_SESSION_CLASS=user\"\n")}
@@ -235,19 +235,19 @@ SrunEpilog=${nix.app(nix.sel(pkgs, "writers", "writeBash"), "slurm-epilog", "#On
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             pam: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               services: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 sshd: nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   slurm: nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     adopt: nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       enable: true,
-                      settings: nix.thunk(() => ({ __proto__: pos$38, action_adopt_failure: "allow" })),
+                      settings: nix.thunk(() => ({ [nix.POS]: pos$38, action_adopt_failure: "allow" })),
                     })),
                   })),
                   startSession: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
@@ -258,17 +258,17 @@ SrunEpilog=${nix.app(nix.sel(pkgs, "writers", "writeBash"), "slurm-epilog", "#On
         };
       })(), formals$5);
       return {
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         control: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$6);
           return {
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             imports: nix.thunk(() => [slurmconfig]),
             services: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               slurm: nix.thunk(() => ({
-                __proto__: pos$47,
-                server: nix.thunk(() => ({ __proto__: pos$46, enable: true })),
+                [nix.POS]: pos$47,
+                server: nix.thunk(() => ({ [nix.POS]: pos$46, enable: true })),
               })),
             })),
           };
@@ -276,11 +276,11 @@ SrunEpilog=${nix.app(nix.sel(pkgs, "writers", "writeBash"), "slurm-epilog", "#On
         submit: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$7);
           return {
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             imports: nix.thunk(() => [slurmconfig]),
             services: nix.thunk(() => ({
-              __proto__: pos$51,
-              slurm: nix.thunk(() => ({ __proto__: pos$50, enableStools: true })),
+              [nix.POS]: pos$51,
+              slurm: nix.thunk(() => ({ [nix.POS]: pos$50, enableStools: true })),
             })),
           };
         })(), formals$7),

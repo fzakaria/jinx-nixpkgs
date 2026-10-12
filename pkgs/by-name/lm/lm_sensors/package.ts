@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const rrdtool = nix.arg($, "rrdtool");
   const sensord = nix.argOr($, "sensord", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lm-sensors",
       version: "3.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hramrach",
           repo: "lm-sensors",
           tag: nix.thunk(() => nix.add("V", nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version"))))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "mkdir -p $doc/share/doc/lm_sensors\ncp -r configs doc/* $doc/share/doc/lm_sensors\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://archive.kernel.org/oldwiki/hwmon.wiki.kernel.org/lm_sensors.html",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/hramrach/lm-sensors/${nix.sel(finalAttrs, "src", "tag")}/CHANGES`),
         description: "Tools for reading hardware sensors - maintained fork",

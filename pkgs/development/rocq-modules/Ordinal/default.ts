@@ -23,45 +23,45 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "Ordinal",
       owner: "snu-sf",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.12", "9.3")), "0.5.6")),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "0.5.6": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-ox9GaUsh/tWJGEPawPnNqXULI0kYglKmNmiTL8dF3uU=",
         })),
         "0.5.5": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-Z7+alcN63hxJOtBAXPg9ExNdwS2SiB63ZjDEnPhGi6g=",
         })),
         "0.5.4": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-PaEC71FzJzHVGYpf3J1jvb/JsJzzMio0L5d5dPwiXuc=",
         })),
         "0.5.3": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-Myxwy749ZCBpqia6bf91cMTyJn0nRzXskD7Ue8kc37c=",
         })),
         "0.5.2": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-jf16EyLAnKm+42K+gTTHVFJqeOVQfIY2ozbxIs5x5DE=",
         })),
         "0.5.1": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-ThJ+jXmtkAd3jElpQZqfzqqc3EfoKY0eMpTHnbrracY=",
         })),
         "0.5.0": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-Jq0LnR7TgRVcPqh8Ha6tIIK3KfRUgmzA9EhxeySgPnM=",
         })),
       })),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`make -f Makefile.coq COQMF_COQLIB=$out/lib/coq/${nix.sel(coq, "coq-version")}/ install
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         homepage: "https://github.com/snu-sf/Ordinal",
         description: "Ordinal Numbers in Coq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

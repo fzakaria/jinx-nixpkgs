@@ -27,7 +27,7 @@ makeWrapper "${exe}" \\
   })();
   const allBackends = nix.thunk(() => ["svg", "ps", "cairo", "rasterific", "pgf"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "diagrams-builder",
       version: nix.thunk(() => nix.attr(diagrams_builder, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

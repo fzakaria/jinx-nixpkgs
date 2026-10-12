@@ -18,9 +18,9 @@ export default nix.lambda((args) => (() => {
   const radian = nix.arg($, "radian");
   const rPackages = nix.arg($, "rPackages");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "r",
         publisher: "reditorsupport",
         version: "2.8.8",
@@ -35,7 +35,7 @@ jq '.contributes.configuration.properties."r.rterm.linux".default = "${nix.app(n
 jq '.contributes.configuration.properties."r.libPaths".default = [ "${languageserver}/library" ]' package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://marketplace.visualstudio.com/items/REditorSupport.r/changelog",
         description: "Visual Studio Code extension for the R programming language",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=REditorSupport.r",

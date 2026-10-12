@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const z3 = nix.arg($, "z3");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "symcc",
       version: "1.0-unstable-2024-07-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eurecom-s3",
           repo: "symcc",
           rev: "65a3633992318ded8939629eda54022932fd582d",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, ninja, llvm, clang, makeWrapper]),
       buildInputs: nix.thunk(() => [llvm, z3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Efficient compiler-based symbolic execution",
         homepage: "https://www.s3.eurecom.fr/tools/symbolic_execution/symcc.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const genassym = nix.arg($, "genassym");
   const defaultMakeFlags = nix.arg($, "defaultMakeFlags");
   const base = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       lib: lib,
       mkDerivation: mkDerivation,
       include: include,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       defaultMakeFlags: defaultMakeFlags,
     }))));
   return nix.app(mkDerivation, nix.thunk(() => nix.update(base, {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "sys-headers",
       installPhase: "includesPhase",
       dontBuild: true,

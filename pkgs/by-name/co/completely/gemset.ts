@@ -13,13 +13,13 @@ const pos$8 = nix.positions(here + "/gemset.nix", [["dependencies", 37, 5], ["gr
 const pos$9 = nix.positions(here + "/gemset.nix", [["colsole", 2, 3], ["completely", 12, 3], ["docopt_ng", 26, 3], ["mister_bin", 36, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$9,
+  [nix.POS]: pos$9,
   colsole: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1fvf6dz2wsvjk7q24z0dm8lajq3p2l6i5ywf3mxj683rmhwq49bg",
       type: "gem",
@@ -27,12 +27,12 @@ export default nix.thunk(() => ({
     version: "1.0.0",
   })),
   completely: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     dependencies: nix.thunk(() => ["colsole", "mister_bin"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0129alz54h2vy7vd19i5664sasdbvrl4zgj70hl5j4rpvckr5lf8",
       type: "gem",
@@ -40,11 +40,11 @@ export default nix.thunk(() => ({
     version: "0.7.1",
   })),
   docopt_ng: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0rsnl5s7k2s1gl4n4dg68ssg577kf11sl4a4l2lb2fpswj718950",
       type: "gem",
@@ -52,12 +52,12 @@ export default nix.thunk(() => ({
     version: "0.7.1",
   })),
   mister_bin: nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     dependencies: nix.thunk(() => ["colsole", "docopt_ng"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1zz3vpy6xrgzln2dpxgcnrq1bpzz0syl60whqc9zf8j29mayw1fy",
       type: "gem",

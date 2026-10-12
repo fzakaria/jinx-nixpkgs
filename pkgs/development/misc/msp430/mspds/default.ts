@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) || nix.asBool(!nix.eq(libusb1, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/misc/msp430/mspds/default.nix:12:1");
   const hidapiDriver = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "-libusb"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "msp-debug-stack",
       version: "3.15.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSPDS/3_15_1_001/export/MSPDebugStack_OS_Package_3_15_1_1.zip",
           sha256: "1j5sljqwc20zrb50mrji4mnmw5i680qc7n0lb0pakrrxqjc9m9g3",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       libName: nix.thunk(() => nix.str`libmsp430${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
       makeFlags: nix.thunk(() => ["OUTPUT=$(libName)", "HIDOBJ="]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lpugixml", nix.thunk(() => nix.str`-lhidapi${hidapiDriver}`)]))),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-I${hidapi}/include/hidapi`)]))),
       })),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       buildInputs: nix.thunk(() => nix.concat([boost, hidapi, pugixml], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), libusb1))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))))),
         description: "TI MSP430 FET debug driver",
         homepage: "https://www.ti.com/tool/MSPDS",

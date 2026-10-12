@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "commandergenius",
       version: "3.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Dringgstein",
           repo: "Commander-Genius",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-sdl-ttf_font_rename.patch",
             url: "https://github.com/gerstrong/Commander-Genius/commit/e8af0d16970d75e94392f57de0992dfddc509bc3.patch",
             hash: "sha256-bcCzXzh9yDngwHMfQTrnvyDal4YBiBcMTtKTgt9BtDk=",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "NIX_CFLAGS_COMPILE=\"$NIX_CFLAGS_COMPILE $(sdl2-config --cflags)\"\nsed -i 's,APPDIR games,APPDIR bin,' src/install.cmake\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern Interpreter for the Commander Keen Games",
         longDescription: "Commander Genius is an open-source clone of\nCommander Keen which allows you to play\nthe games, and some of the mods\nmade for it. All of the original data files\nare required to do so\n",
         homepage: "https://github.com/gerstrong/Commander-Genius",

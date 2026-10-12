@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tmuxp",
       version: "1.74.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ngSA6gEpmWAmNYh+BGHTlcLYqm42qFtabR1l3NbHgJw=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "installShellCompletion --cmd tmuxp \\\n  --bash <(shtab --shell=bash -u tmuxp.cli.create_parser) \\\n  --fish <(shtab --shell=fish -u tmuxp.cli.create_parser) \\\n  --zsh <(shtab --shell=zsh -u tmuxp.cli.create_parser)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "tmux session manager",
         homepage: "https://tmuxp.git-pull.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/tmux-python/tmuxp/raw/v${nix.sel(finalAttrs, "version")}/CHANGES`),

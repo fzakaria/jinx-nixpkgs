@@ -81,15 +81,15 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "fail2ban"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({}))));
   const configFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({})), " = ")),
     }))));
-  const mkJailConfig = (name) => (attrs) => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(name, "DEFAULT")), nix.thunk(() => ({ __proto__: pos$2, enabled: nix.thunk(() => nix.attr(attrs, "enabled")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(attrs, "filter"), null)), nix.thunk(() => ({
-      __proto__: pos$3,
+  const mkJailConfig = (name) => (attrs) => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(name, "DEFAULT")), nix.thunk(() => ({ [nix.POS]: pos$2, enabled: nix.thunk(() => nix.attr(attrs, "enabled")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(attrs, "filter"), null)), nix.thunk(() => ({
+      [nix.POS]: pos$3,
       filter: nix.thunk(() => (nix.asBool(nix.builtins.isString(nix.thunk(() => nix.sel(lib, "filter")))) ? nix.sel(lib, "filter") : nix.force(name))),
     }))), nix.sel(attrs, "settings")));
   const mkFilter = (name) => (attrs) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`fail2ban/filter.d/${name}.conf`), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       source: nix.thunk(() => nix.app(nix.sel(configFormat, "generate"), nix.thunk(() => nix.str`filter.d/${name}.conf`), nix.thunk(() => nix.sel(attrs, "filter")))),
     })));
   const fail2banConf = nix.thunk(() => nix.app(nix.sel(configFormat, "generate"), "fail2ban.local", nix.thunk(() => nix.sel(cfg, "daemonSettings"))));
@@ -97,8 +97,8 @@ export default nix.lambda((args) => (() => {
   const attrsJails = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => nix.builtins.isAttrs, nix.thunk(() => nix.sel(cfg, "jails"))));
   const jailConf = nix.thunk(() => (() => {
     const configFile = nix.thunk(() => nix.app(nix.sel(configFormat, "generate"), "jail.local", nix.thunk(() => nix.update({
-        __proto__: pos$6,
-        INCLUDES: nix.thunk(() => ({ __proto__: pos$5, before: "paths-nixos.conf" })),
+        [nix.POS]: pos$6,
+        INCLUDES: nix.thunk(() => ({ [nix.POS]: pos$5, before: "paths-nixos.conf" })),
       }, nix.app(nix.sel(lib, "mapAttrs"), mkJailConfig, attrsJails)))));
     const extraConfig = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (def) => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(def, "")), nix.thunk(() => nix.str`[${name}]
 ${def}
@@ -110,110 +110,110 @@ ${def}
   })());
   const pathsConf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "paths-nixos.conf", "# NixOS\n\n[INCLUDES]\n\nbefore = paths-common.conf\n\nafter  = paths-overrides.local\n\n[DEFAULT]\n"));
   return {
-    __proto__: pos$68,
+    [nix.POS]: pos$68,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "fail2ban", "daemonConfig"]), "The daemon is now configured through the attribute set `services.fail2ban.daemonSettings`.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "fail2ban", "extraSettings"]), "The extra default configuration can now be set using `services.fail2ban.jails.DEFAULT.settings`.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       services: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         fail2ban: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to enable the fail2ban service.\n\nSee the documentation of [](#opt-services.fail2ban.jails)\nfor what jails are enabled by default.\n",
             })))),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "fail2ban", nix.thunk(() => ({ __proto__: pos$8, example: "fail2ban_0_11" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "fail2ban", nix.thunk(() => ({ [nix.POS]: pos$8, example: "fail2ban_0_11" })))),
           packageFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: nix.thunk(() => nix.sel(config, "networking", "firewall", "package")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.firewall.package")),
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               description: "The firewall package used by fail2ban service. Defaults to the package for your firewall (iptables or nftables).",
             })))),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.ipset ]")),
               description: "Extra packages to be made available to the fail2ban service. The example contains\nthe packages needed by the `iptables-ipset-proto6` action.\n",
             })))),
           bantime: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: "10m",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "1h",
               description: "Number of seconds that a host is banned.",
             })))),
           maxretry: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: 3n,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               description: "Number of failures before a host gets banned.",
             })))),
           banaction: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "nftables", "enable")) ? "nftables-multiport" : "iptables-multiport")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.networking.nftables.enable then \"nftables-multiport\" else \"iptables-multiport\"")),
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Default banning action (e.g. iptables, iptables-new, iptables-multiport,\niptables-ipset-proto6-allports, shorewall, etc). It is used to\ndefine action_* variables. Can be overridden globally or per\nsection within jail.local file\n",
             })))),
           "banaction-allports": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               default: nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "nftables", "enable")) ? "nftables-allports" : "iptables-allports")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.networking.nftables.enable then \"nftables-allports\" else \"iptables-allports\"")),
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Default banning action (e.g. iptables, iptables-new, iptables-multiport,\nshorewall, etc) for \"allports\" jails. It is used to define action_* variables. Can be overridden\nglobally or per section within jail.local file\n",
             })))),
           "bantime-increment": nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "\"bantime.increment\" allows to use database for searching of previously banned ip's to increase\na default ban time using special formula, default it is banTime * 1, 2, 4, 8, 16, 32 ...\n",
               })))),
             rndtime: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 example: "8m",
                 description: "\"bantime.rndtime\" is the max number of seconds using for mixing with random time\nto prevent \"clever\" botnets calculate exact time IP can be unbanned again\n",
               })))),
             maxtime: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 example: "48h",
                 description: "\"bantime.maxtime\" is the max number of seconds using the ban time can reach (don't grows further)\n",
               })))),
             factor: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 example: "4",
                 description: "\"bantime.factor\" is a coefficient to calculate exponent growing of the formula or common multiplier,\ndefault value of factor is 1 and with default value of formula, the ban time grows by 1, 2, 4, 8, 16 ...\n",
               })))),
             formula: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 example: "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)",
                 description: "\"bantime.formula\" used by default to calculate next value of ban time, default value below,\nthe same ban time growing will be reached by multipliers 1, 2, 4, 8, 16, 32 ...\n",
               })))),
             multipliers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 example: "1 2 4 8 16 32 64",
                 description: "\"bantime.multipliers\" used to calculate next value of ban time instead of formula, corresponding\npreviously ban count and given \"bantime.factor\" (for multipliers default is 1);\nfollowing example grows ban time by 1, 2, 4, 8, 16 ... and if last ban count greater as multipliers count,\nalways used last multiplier (64 in example), for factor '1' and original ban time 600 - 10.6 hours\n",
               })))),
             overalljails: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                 example: true,
@@ -221,20 +221,20 @@ ${def}
               })))),
           })),
           ignoreIP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               example: nix.thunk(() => ["192.168.0.0/16", "2001:DB8::42"]),
               description: "\"ignoreIP\" can be a list of IP addresses, CIDR masks or DNS hosts. Fail2ban will not ban a host which\nmatches an address in this list. Several addresses can be defined using space (and/or comma) separator.\n",
             })))),
           daemonSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.attr(configFormat, "type")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  Definition = {\n    logtarget = \"SYSLOG\";\n    socket = \"/run/fail2ban/fail2ban.sock\";\n    pidfile = \"/run/fail2ban/fail2ban.pid\";\n    dbfile = \"/var/lib/fail2ban/fail2ban.sqlite3\";\n  };\n}\n")),
               description: "The contents of Fail2ban's main configuration file.\nIt's generally not necessary to change it.\n",
             })))),
           jails: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  apache-nohome-iptables = {\n    settings = {\n      # Block an IP address if it accesses a non-existent\n      # home directory more than 5 times in 10 minutes,\n      # since that indicates that it's scanning.\n      filter = \"apache-nohome\";\n      action = ''iptables-multiport[name=HTTP, port=\"http,https\"]'';\n      logpath = \"/var/log/httpd/error_log*\";\n      backend = \"auto\";\n      findtime = 600;\n      bantime = 600;\n      maxretry = 5;\n    };\n  };\n  dovecot = {\n    settings = {\n      # block IPs which failed to log-in\n      # aggressive mode add blocking for aborted connections\n      filter = \"dovecot[mode=aggressive]\";\n      maxretry = 3;\n    };\n  };\n};\n")),
               type: nix.thunk(() => (() => {
@@ -243,22 +243,22 @@ ${def}
                         const $_1 = nix.formals(args_1, formals$2);
                         const name = nix.arg($_1, "name");
                         return {
-                          __proto__: pos$29,
+                          [nix.POS]: pos$29,
                           options: nix.thunk(() => ({
-                            __proto__: pos$28,
+                            [nix.POS]: pos$28,
                             enabled: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "this jail"), {
-                              __proto__: pos$25,
+                              [nix.POS]: pos$25,
                               default: true,
                               readOnly: nix.thunk(() => nix.eq(name, "DEFAULT")),
                             })),
                             filter: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$26,
+                                [nix.POS]: pos$26,
                                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.sel(configFormat, "type")))))),
                                 default: null,
                                 description: "Content of the filter used for this jail.",
                               })))),
                             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$27,
+                                [nix.POS]: pos$27,
                                 type: nix.thunk(() => nix.attr(settingsFormat, "type")),
                                 default: nix.thunk(() => ({})),
                                 description: "Additional settings for this jail.",
@@ -273,52 +273,52 @@ ${def}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "bantime-increment", "formula"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "bantime-increment", "multipliers"), null)))),
             message: "Options `services.fail2ban.bantime-increment.formula` and `services.fail2ban.bantime-increment.multipliers` cannot be both specified.\n",
           })),
         ]),
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(config, "networking", "firewall", "enable"))) && nix.asBool(!nix.asBool(nix.sel(config, "networking", "nftables", "enable"))))), nix.thunk(() => ["fail2ban can not be used without a firewall"]))),
         environment: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => nix.update({
-            __proto__: pos$43,
-            "fail2ban/fail2ban.local": nix.thunk(() => ({ __proto__: pos$35, source: fail2banConf })),
-            "fail2ban/jail.local": nix.thunk(() => ({ __proto__: pos$36, source: jailConf })),
+            [nix.POS]: pos$43,
+            "fail2ban/fail2ban.local": nix.thunk(() => ({ [nix.POS]: pos$35, source: fail2banConf })),
+            "fail2ban/jail.local": nix.thunk(() => ({ [nix.POS]: pos$36, source: jailConf })),
             "fail2ban/fail2ban.conf": nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/fail2ban/fail2ban.conf`),
             })),
             "fail2ban/jail.conf": nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/fail2ban/jail.conf`),
             })),
             "fail2ban/paths-common.conf": nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/fail2ban/paths-common.conf`),
             })),
-            "fail2ban/paths-nixos.conf": nix.thunk(() => ({ __proto__: pos$40, source: pathsConf })),
+            "fail2ban/paths-nixos.conf": nix.thunk(() => ({ [nix.POS]: pos$40, source: pathsConf })),
             "fail2ban/action.d": nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/fail2ban/action.d/*.conf`),
             })),
             "fail2ban/filter.d": nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/fail2ban/filter.d/*.conf`),
             })),
           }, nix.app(nix.sel(lib, "mapAttrs'"), mkFilter, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => (nix.asBool(!nix.eq(nix.sel(v, "filter"), null)) && nix.asBool(!nix.asBool(nix.builtins.isString(nix.thunk(() => nix.sel(v, "filter")))))), attrsJails))))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             fail2ban: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               partOf: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "networking", "firewall", "enable")), "firewall.service")),
               restartTriggers: nix.thunk(() => [fail2banConf, jailConf, pathsConf]),
@@ -328,7 +328,7 @@ ${def}
                 nix.thunk(() => nix.sel(pkgs, "iproute2")),
               ], nix.sel(cfg, "extraPackages"))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 CapabilityBoundingSet: nix.thunk(() => ["CAP_AUDIT_READ", "CAP_DAC_READ_SEARCH", "CAP_NET_ADMIN", "CAP_NET_RAW"]),
                 NoNewPrivileges: true,
                 RuntimeDirectoryMode: "0755",
@@ -345,27 +345,27 @@ ${def}
             })),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             fail2ban: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               wantedBy: nix.thunk(() => ["sockets.target", "fail2ban.service"]),
               listenStreams: nix.thunk(() => ["", nix.thunk(() => nix.sel(cfg, "daemonSettings", "Definition", "socket"))]),
-              socketConfig: nix.thunk(() => ({ __proto__: pos$48, SocketGroup: "fail2ban", SocketMode: "0660" })),
+              socketConfig: nix.thunk(() => ({ [nix.POS]: pos$48, SocketGroup: "fail2ban", SocketMode: "0660" })),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$53,
-          groups: nix.thunk(() => ({ __proto__: pos$52, fail2ban: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$53,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$52, fail2ban: nix.thunk(() => ({})) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           fail2ban: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             daemonSettings: nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               Definition: nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 logtarget: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "SYSLOG")),
                 socket: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/run/fail2ban/fail2ban.sock")),
                 pidfile: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/run/fail2ban/fail2ban.pid")),
@@ -374,14 +374,14 @@ ${def}
             })),
             jails: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$59,
+                  [nix.POS]: pos$59,
                   DEFAULT: nix.thunk(() => ({
-                    __proto__: pos$58,
+                    [nix.POS]: pos$58,
                     settings: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "bantime-increment", "enable")), nix.thunk(() => nix.update({
-                        __proto__: pos$56,
+                        [nix.POS]: pos$56,
                         "bantime.increment": nix.thunk(() => nix.sel(cfg, "bantime-increment", "enable")),
                       }, nix.app(nix.sel(lib, "mapAttrs'"), (name) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`bantime.${name}`)), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => (nix.asBool(!nix.eq(v, null)) && nix.asBool(!nix.eq(n, "enable"))), nix.thunk(() => nix.sel(cfg, "bantime-increment")))))))), {
-                      __proto__: pos$57,
+                      [nix.POS]: pos$57,
                       banaction: nix.thunk(() => nix.attr(cfg, "banaction")),
                       maxretry: nix.thunk(() => nix.attr(cfg, "maxretry")),
                       bantime: nix.thunk(() => nix.attr(cfg, "bantime")),
@@ -392,11 +392,11 @@ ${def}
                   })),
                 })),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "openssh", "enable")), nix.thunk(() => ({
-                    __proto__: pos$62,
+                    [nix.POS]: pos$62,
                     sshd: nix.thunk(() => ({
-                      __proto__: pos$61,
+                      [nix.POS]: pos$61,
                       settings: nix.thunk(() => ({
-                        __proto__: pos$60,
+                        [nix.POS]: pos$60,
                         port: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ",", nix.builtins.toString, nix.thunk(() => nix.sel(config, "services", "openssh", "ports")))))),
                       })),
                     })),
@@ -404,9 +404,9 @@ ${def}
               ]))),
           })),
           openssh: nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             settings: nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               LogLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "VERBOSE")),
             })),
           })),

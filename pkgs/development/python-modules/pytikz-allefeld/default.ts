@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const ipython = nix.arg($, "ipython");
   const texliveSmall = nix.arg($, "texliveSmall");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytikz-allefeld",
       version: "unstable-2022-11-01",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "allefeld",
           repo: "pytikz",
           rev: "f878ebd6ce5a647b1076228b48181b147a61abc1",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [texliveSmall]),
       checkPhase: "runHook preCheck\npython -c 'if 1:\n  from tikz import *\n  pic = Picture()\n  pic.draw(line([(0, 0), (1, 1)]))\n  print(pic.code())\n  pic.write_image(\"test.pdf\")\n'\ntest -s test.pdf\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/allefeld/pytikz",
         description: "Python interface to TikZ",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

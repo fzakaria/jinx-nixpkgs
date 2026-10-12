@@ -25,17 +25,17 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver", "wacom"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         xserver: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           wacom: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Whether to enable the Wacom touchscreen/digitizer/tablet.\nIf you ever have any issues such as, try switching to terminal (ctrl-alt-F1) and back\nwhich will make Xorg reconfigure the device ?\n\nIf you're not satisfied by the default behaviour you can override\n{option}`environment.etc.\"X11/xorg.conf.d/70-wacom.conf\"` in\nconfiguration.nix easily.\n",
@@ -45,26 +45,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xf86-input-wacom"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "X11/xorg.conf.d/70-wacom.conf": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "xf86-input-wacom")}/share/X11/xorg.conf.d/70-wacom.conf`),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           xserver: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             modules: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xf86-input-wacom"))]),
           })),
           udev: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xf86-input-wacom"))]),
           })),
         })),

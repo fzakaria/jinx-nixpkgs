@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cargo-all-features",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-pD0lyI2zSOeEDk1Lch4Qf5mo8Z8Peiy2XF5iQ62vsaI=",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace tests/settings.rs \\\n  --replace-fail 'cmd.env(\"RUSTFLAGS\", \"-Cinstrument-coverage\");' ''\n",
       cargoHash: "sha256-EKDeBib52Os1X3sgM9CtrNkl20l1Wn/cMBIBM1/KY5A=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cargo subcommand to build and test all feature flag combinations",
         homepage: "https://github.com/frewsxcv/cargo-all-features",
         license: nix.thunk(() => (() => {

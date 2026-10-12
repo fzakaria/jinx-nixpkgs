@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libsearpc = nix.arg($, "libsearpc");
   const seadrive_fuse = nix.arg($, "seadrive-fuse");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "seadrive-gui",
       version: "3.0.26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "haiwen",
           repo: "seadrive-gui",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [seadrive_fuse]))}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/haiwen/seadrive-gui",
         changelog: nix.thunk(() => nix.str`https://github.com/haiwen/seadrive-gui/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "GUI part of Seafile drive",

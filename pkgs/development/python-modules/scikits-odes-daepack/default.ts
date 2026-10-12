@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy, scikits_odes_core]);
       const pythonImportsCheck = nix.thunk(() => ["scikits_odes_daepack"]);
       const doCheck = false;
-      const env = nix.thunk(() => ({ __proto__: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
       const meta = nix.thunk(() => nix.update(nix.sel(scikits_odes_core, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper around daepack",
         homepage: "https://github.com/bmcage/odes/blob/master/packages/scikits-odes-daepack",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         src,
         pname,

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const version = "0.43.132";
   const src = nix.thunk(() => (() => {
     const suffix = nix.thunk(() => nix.selOr({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "x86_64-linux": "linux_amd64",
       "aarch64-linux": "linux_arm64",
       "aarch64-darwin": "darwin_arm64",
@@ -30,10 +30,10 @@ export default nix.lambda((args) => (() => {
     const name = nix.thunk(() => nix.str`cli_${version}_${suffix}.tar.gz`);
     const hash = nix.thunk(() => nix.sel(buildHashes, nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
     const url = nix.thunk(() => nix.str`https://github.com/Infisical/cli/releases/download/v${version}/${name}`);
-    return nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$2, name: name, url: url, hash: hash })));
+    return nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$2, name: name, url: url, hash: hash })));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "infisical",
       version: version,
       src: src,
@@ -47,18 +47,18 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/bin/ $out/share/completions/ $out/share/man/\ncp infisical $out/bin\ncp completions/* $out/share/completions/\ncp manpages/* $out/share/man/\n",
       postInstall: "installManPage share/man/infisical.1.gz\ninstallShellCompletion share/completions/infisical.{bash,fish,zsh}\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Official Infisical CLI",
         longDescription: "Infisical is the open-source secret management platform:\nSync secrets across your team/infrastructure and prevent secret leaks.\n",
         homepage: "https://infisical.com",

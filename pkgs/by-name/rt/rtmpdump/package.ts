@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   nix.assert_((nix.asBool(gnutlsSupport) || nix.asBool(opensslSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/rt/rtmpdump/package.nix:15:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rtmpdump",
       version: "2.6",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.ffmpeg.org/rtmpdump",
           rev: "6f6bb1353fc84f4cc37138baa99f586750028a01",
           hash: "sha256-rwMA9eougKnkpG+fe6vZIwOBt2CC1d9qI9a079EbE5o=",
@@ -60,18 +60,18 @@ done
 `),
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Toolkit for RTMP streams",
         homepage: "https://rtmpdump.mplayerhq.hu/",
         changelog: "https://rtmpdump.mplayerhq.hu/ChangeLog",

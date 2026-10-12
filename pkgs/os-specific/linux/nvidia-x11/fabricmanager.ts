@@ -24,7 +24,7 @@ export default (nvidia_x11) => (sha256) => nix.lambda((args) => (() => {
       const pname = "fabricmanager";
       const version = fmver;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.add("https://developer.download.nvidia.com/compute/nvidia-driver/redist/fabricmanager/", nix.str`${sys}/${pname}-${sys}-${fmver}-archive.tar.xz`)),
           sha256: sha256,
         }))));
@@ -71,7 +71,7 @@ runHook postCheck
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const dontFixup = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.nvidia.com/object/unix.html",
         description: "Fabricmanager daemon for NVLink initialization and control",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
@@ -83,7 +83,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

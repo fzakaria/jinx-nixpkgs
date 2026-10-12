@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pcsclite = nix.arg($, "pcsclite");
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.7.11",
       pname: "libacr38u",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://http.debian.net/debian/pool/main/a/acr38/acr38_1.7.11.orig.tar.bz2",
           sha256: "0lxbq17y51cablx6bcd89klwnyigvkz0rsf9nps1a97ggnllyzkx",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pcsclite, libusb_compat_0_1]),
       preBuild: "makeFlagsArray=(usbdropdir=\"$out/pcsc/drivers\");\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ACR38U smartcard reader driver for pcsclite",
         longDescription: "A PC/SC IFD handler implementation for the ACS ACR38U\nsmartcard readers. This driver is for the non-CCID version only.\n\nThis package is needed to communicate with the ACR38U smartcard readers through\nthe PC/SC Lite resource manager (pcscd).\n\nIt can be enabled in /etc/nixos/configuration.nix by adding:\n  services.pcscd.enable = true;\n  services.pcscd.plugins = [ libacr38u ];\n\nThe package is based on the debian package libacr38u.\n",
         homepage: "https://www.acs.com.hk",

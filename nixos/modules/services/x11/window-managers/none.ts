@@ -9,14 +9,14 @@ const pos$4 = nix.positions(here + "/none.nix", [["xserver", 3, 5]]);
 const pos$5 = nix.positions(here + "/none.nix", [["services", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$5,
+  [nix.POS]: pos$5,
   services: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     xserver: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       windowManager: nix.thunk(() => ({
-        __proto__: pos$2,
-        session: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$1, name: "none", start: "" }))]),
+        [nix.POS]: pos$2,
+        session: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, name: "none", start: "" }))]),
       })),
     })),
   })),

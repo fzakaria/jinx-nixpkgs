@@ -19,15 +19,15 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const plugins = nix.argOr($, "plugins", () => (ps) => []);
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
-      packageOverrides: (final) => (prev) => ({ __proto__: pos$1, django: nix.thunk(() => nix.sel(prev, "django_5")) }),
+      [nix.POS]: pos$2,
+      packageOverrides: (final) => (prev) => ({ [nix.POS]: pos$1, django: nix.thunk(() => nix.sel(prev, "django_5")) }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "peering-manager",
       version: "1.10.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "peering-manager",
           repo: "peering-manager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,16 +67,16 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\ncp peering_manager/configuration{.example,}.py\npython3 manage.py collectstatic --no-input\nrm -f peering_manager/configuration.py\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out/opt/peering-manager\ncp -r . $out/opt/peering-manager\nchmod +x $out/opt/peering-manager/manage.py\nmakeWrapper $out/opt/peering-manager/manage.py $out/bin/peering-manager \\\n  --prefix PYTHONPATH : \"$PYTHONPATH\"\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         python: python,
         pythonPath: nix.thunk(() => nix.app(nix.sel(python, "pkgs", "makePythonPath"), nix.thunk(() => nix.sel(finalAttrs, "propagatedBuildInputs")))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "peering-manager": nix.thunk(() => nix.attr(nixosTests, "peering-manager")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://peering-manager.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         description: "BGP sessions management tool",

@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "1.5.2-stable";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "gtsteffaniak",
       repo: "filebrowser",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-1qG6IayTqL4x3CqJyvVSG8Fu4s6ywhWI9t1j9c+wTZM=",
     }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "filebrowser-quantum-frontend",
       version: version,
       src: src,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r dist/* $out\n\nrunHook postInstall\n",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "filebrowser-quantum",
       version: version,
       src: src,
@@ -52,11 +52,11 @@ cp -r ${frontend}/* http/embed/
         "-X github.com/gtsteffaniak/filebrowser/backend/version.Version=testing",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Access and manage your files from the web",
         homepage: "https://github.com/gtsteffaniak/filebrowser",
         changelog: nix.thunk(() => nix.str`https://github.com/gtsteffaniak/filebrowser/blob/v${version}/CHANGELOG.md`),

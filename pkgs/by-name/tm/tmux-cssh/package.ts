@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const tmux = nix.arg($, "tmux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tmux-cssh",
       version: "unstable-2015-10-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zinic",
           repo: "tmux-cssh",
           rev: "21750733c5b6fa2fe23b9e50ce69d8564f2f742a",
@@ -31,7 +31,7 @@ cp tmux-cssh $out/bin/tmux-cssh
 wrapProgram $out/bin/tmux-cssh --suffix PATH : ${tmux}/bin
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/dennishafemann/tmux-cssh",
         description: "SSH to multiple hosts at the same time using tmux",
         longDescription: "tmux is a terminal multiplexer, like e.g. screen, which gives you a\npossibility to use multiple virtual terminal session within one real\nterminal session. tmux-cssh (tmux-cluster-ssh) sets a comfortable and\neasy to use functionality, clustering and synchronizing virtual\ntmux-sessions, on top of tmux. No need for a x-server or x-forwarding.\ntmux-cssh works just with tmux and in an low-level terminal-environment,\nlike most server do.\n",

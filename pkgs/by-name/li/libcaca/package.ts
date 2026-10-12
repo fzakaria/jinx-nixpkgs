@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const x11Support = nix.argOr($, "x11Support", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libcaca",
       version: "0.99.beta20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cacalabs",
           repo: "libcaca",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2026-42046.patch",
             url: "https://github.com/cacalabs/libcaca/commit/fb77acff9ba6bb01d53940da34fb10f20b156a23.patch",
             hash: "sha256-AdpiE5Gw/CVET//7TTYZCb0glW5HY+T8xZkYs1XCBvY=",
@@ -47,17 +47,17 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([
         ncurses,
         zlib,
-        nix.thunk(() => nix.app(nix.sel(imlib2, "override"), nix.thunk(() => ({ __proto__: pos$3, x11Support: x11Support })))),
+        nix.thunk(() => nix.app(nix.sel(imlib2, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, x11Support: x11Support })))),
       ], nix.app(nix.sel(lib, "optionals"), x11Support, nix.thunk(() => [libx11, libxext])))),
       outputs: nix.thunk(() => ["bin", "dev", "out", "man"]),
       configureFlags: nix.thunk(() => nix.concat([nix.thunk(() => (nix.asBool(x11Support) ? "--enable-x11" : "--disable-x11"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), false, "cocoa"))])))),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(x11Support)), "-DX_DISPLAY_MISSING")),
       })),
       postInstall: "mkdir -p $dev/bin\nmv $bin/bin/caca-config $dev/bin/caca-config\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "http://caca.zoy.org/wiki/libcaca",
         description: "Graphics library that outputs text instead of pixels",
         longDescription: "libcaca is a graphics library that outputs text instead of pixels, so that\nit can work on older video cards or text terminals. It is not unlike the\nfamous ​AAlib library, with the following improvements:\n\n- Unicode support\n- 2048 available colours (some devices can only handle 16)\n- dithering of colour images\n- advanced text canvas operations (blitting, rotations)\n\nLibcaca works in a text terminal (and should thus work on all Unix systems\nincluding Mac OS X) using the S-Lang or ncurses libraries. It also works\nnatively on DOS and Windows.\n\nLibcaca was written by Sam Hocevar and Jean-Yves Lamoureux.\n",

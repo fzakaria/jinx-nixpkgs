@@ -12,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$3,
-      withStructuredAttrs: nix.thunk(() => nix.app(callPackage, nix.path(here, "./package.nix"), nix.thunk(() => ({ __proto__: pos$1, __structuredAttrs: true })))),
-      withoutStructuredAttrs: nix.thunk(() => nix.app(callPackage, nix.path(here, "./package.nix"), nix.thunk(() => ({ __proto__: pos$2, __structuredAttrs: false })))),
+      [nix.POS]: pos$3,
+      withStructuredAttrs: nix.thunk(() => nix.app(callPackage, nix.path(here, "./package.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, __structuredAttrs: true })))),
+      withoutStructuredAttrs: nix.thunk(() => nix.app(callPackage, nix.path(here, "./package.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, __structuredAttrs: false })))),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const enableStatic = nix.argOr($, "enableStatic", () => !nix.asBool(enableShared));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libbpkg",
       version: "0.18.0",
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pkg.cppget.org/1/alpha/build2/libbpkg-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ROaIgIql1oXOqiwz8giTcz0landh6rITyzX3WxR16L4=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Build2 package dependency manager utility library",
         longDescription: "This library defines the types and utilities for working with build2 packages.\nIn particular, it provides C++ classes as well as the parser and serializer\nimplementations that can be used to read, manipulate, and write package,\nrepository and signature manifests.\n",
         homepage: "https://build2.org/",

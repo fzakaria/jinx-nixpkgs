@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const sortedcontainers = nix.arg($, "sortedcontainers");
   const valkey = nix.arg($, "valkey");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fakeredis",
       version: "2.36.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cunla",
           repo: "fakeredis-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [redis, sortedcontainers]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         lua: nix.thunk(() => [lupa]),
         json: nix.thunk(() => [jsonpath_ng]),
         bf: nix.thunk(() => [pyprobables]),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_async_lock"]),
       preCheck: "redisTestPort=6390\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fake implementation of Redis API",
         homepage: "https://github.com/cunla/fakeredis-py",
         changelog: nix.thunk(() => nix.str`https://github.com/cunla/fakeredis-py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

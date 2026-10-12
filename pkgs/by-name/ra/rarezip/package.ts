@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rarezip",
       version: "0-unstable-2023-09-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MittenzHugg",
           repo: "rarezip",
           rev: "2c4ba146c1b2fec851d3db8cf455c6af090bc544",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "substituteInPlace gzip/zip.c \\\n  --replace-fail \"size_t bufs_init();\" \"\"\n\nmkdir c\nmake c\n",
       installPhase: "mkdir -p $out/lib\ncp c/librarezip.a $out/lib\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library version gzip v1.2.4 with foreign function interfaces to multiple languages",
         homepage: "https://github.com/MittenzHugg/rarezip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "colorscript",
       version: "1.0.0-unstable-2024-09-20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EntySec",
           repo: "ColorScript",
           rev: "b98ec077fd2faa700ac5c6dafa0cdd17f649ffbc",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["colorscript"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for functionality with text, escape codes, octal and hexadecimal codes, and other data",
         homepage: "https://github.com/EntySec/ColorScript",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

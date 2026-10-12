@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rgb",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://xorg.freedesktop.org/archive/individual/app/rgb-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-yA/ygKAvVsMPrcLfohD8aXnEq5aK+jFSeMuXdotk7Ks=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [xorgproto]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "X11 colorname to RGB mapping database",
         mainProgram: "showrgb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const chickenPackages_4 = nix.arg($, "chickenPackages_4");
   const z3 = nix.arg($, "z3");
   const eggs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./eggs.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       eggDerivation: nix.thunk(() => nix.attr(chickenPackages_4, "eggDerivation")),
       fetchegg: nix.thunk(() => nix.attr(chickenPackages_4, "fetchegg")),
     }))));
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0";
       const name = nix.thunk(() => nix.str`${pname}-${version}`);
       const src = nix.thunk(() => nix.app(nix.sel(chickenPackages_4, "fetchegg"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: version,
           name: pname,
           sha256: "1l5zkr6b8l5dw9p5mimbva0ncqw1sbvp3d4cywm1hqx2m03a0f1n",
@@ -50,13 +50,13 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.kitten-technologies.co.uk/project/ugarit/",
         description: "Backup/archival system based around content-addressable storage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$4, pname, version, name, src, buildInputs, meta };
+      return { [nix.POS]: pos$4, pname, version, name, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

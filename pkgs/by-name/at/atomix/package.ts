@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libgnome_games_support = nix.arg($, "libgnome-games-support");
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "atomix",
       version: "44.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/atomix/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/atomix-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-yISTF2iNh9pzTJBjA1YxBSAH8qh5m2xsyRUmWIC1X7Q=",
         })))),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gtk3, gdk_pixbuf, libgnome_games_support]),
       postPatch: "chmod +x meson_post_install.py\npatchShebangs meson_post_install.py\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "atomix" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "atomix" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Puzzle game where you move atoms to build a molecule",
         mainProgram: "atomix",
         homepage: "https://gitlab.gnome.org/GNOME/atomix",

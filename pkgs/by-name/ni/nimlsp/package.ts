@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const srcOnly = nix.arg($, "srcOnly");
   const nim_unwrapped = nix.arg($, "nim-unwrapped");
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nimlsp",
       version: "0.4.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PMunch",
           repo: "nimlsp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       lockFile: nix.path(here, "./lock.json"),
       buildInputs: nix.thunk(() => (() => {
         const jsonSchemaSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "PMunch",
             repo: "jsonschema",
             rev: "7b41c03e3e1a487d5a8f6b940ca8e764dc2cbabf",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nimDefines: nix.thunk(() => ["nimcore", "nimsuggest", "debugCommunication", "debugLogging"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Language Server Protocol implementation for Nim",
         homepage: "https://github.com/PMunch/nimlsp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

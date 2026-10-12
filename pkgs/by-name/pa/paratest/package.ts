@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
       const all = nix.arg($_1, "all");
       return nix.concat(enabled, [nix.thunk(() => nix.sel(all, "pcov"))]);
     })(), formals$2)), "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "paratest",
       version: "7.26.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "paratestphp",
           repo: "paratest",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
         })))),
       composerLock: nix.path(here, "./composer.lock"),
       vendorHash: "sha256-sl2pdV5ABqLY5nu8JCE5pfOUatBHA4yjhCy82K6VL28=",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/paratestphp/paratest/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Parallel testing for PHPUnit",
         homepage: "https://github.com/paratestphp/paratest",

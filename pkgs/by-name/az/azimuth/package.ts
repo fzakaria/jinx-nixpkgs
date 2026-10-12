@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const icnsify = nix.arg($, "icnsify");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "azimuth",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mdsteele",
           repo: "azimuth",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\nmkdir -p $out/bin\ninstall -m755 out/release/host/bin/azimuth $out/bin/\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\ncp -R out/release/host/Azimuth.app $out/Applications/\n")), "runHook postInstall\n")),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeBinaryWrapper \"$out/Applications/Azimuth.app/Contents/MacOS/Azimuth\" \\\n  \"$out/bin/azimuth\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Metroidvania game with vector graphics, inspired by Super Metroid and Star Control II",
         longDescription: "Azimuth is a metroidvania game, and something of an homage to the previous\ngreats of the genre (Super Metroid in particular). You will need to pilot\nyour ship, explore the inside of the planet, fight enemies, overcome\nobstacles, and uncover the storyline piece by piece. Azimuth features a\nhuge game world to explore, lots of little puzzles to solve, dozens of\nweapons and upgrades to find and use, and a wide variety of enemies and\nbosses to tangle with.\n",
         homepage: "https://mdsteele.games/azimuth/",

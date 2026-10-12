@@ -49,13 +49,13 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const nodejs = nodejs_24;
   const esbuildFor = (version) => (hash) => (vendorHash) => nix.app(nix.sel(esbuild, "override"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       buildGoModule: (args_1) => nix.app(buildGoModule, nix.thunk(() => nix.update(args_1, {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: version,
           vendorHash: vendorHash,
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner: "evanw",
               repo: "esbuild",
               rev: nix.thunk(() => nix.str`v${version}`),
@@ -70,18 +70,18 @@ jq "del(.scripts.postinstall)" ${path}/node_modules/esbuild/package.json | spong
 ln -s -f ${nix.app(nix.sel(lib, "getExe"), esbuildPackage)} ${path}/node_modules/esbuild/bin/esbuild
 `;
   const vscodeTarget = nix.thunk(() => nix.sel({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": "linux-x64",
     "aarch64-linux": "linux-arm64",
     "aarch64-darwin": "darwin-arm64",
   }, nix.key(nix.force(system))));
   const commit = "88c2b7432e938f6918f21ff8d9dbfc641cd933d0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "code-server",
       version: "4.134.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "coder",
           repo: "code-server",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -89,14 +89,14 @@ ln -s -f ${nix.app(nix.sel(lib, "getExe"), esbuildPackage)} ${path}/node_modules
           hash: "sha256-wPTFYCZiUXHTbQiDFlT+VA3c6CITDju8L6tJrV78UZ8=",
         })))),
       nodeModules: nix.thunk(() => nix.app(runCommand, "code-server-node-modules", nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(finalAttrs, "nativeBuildInputs"), [npm_lockfile_fix, prefetch_npm_deps])),
           outputHashMode: "recursive",
           outputHashAlgo: "sha256",
           outputHash: "sha256-uCoYvSWOxGJ168sQk0ORVNUYrCX0WL4KF6rbPsp8LVE=",
           env: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             FORCE_EMPTY_CACHE: true,
             FORCE_GIT_DEPS: true,
             npm_config_progress: false,
@@ -143,7 +143,7 @@ substituteInPlace ./lib/vscode/build/npm/postinstall.ts \\
     "try { child_process.execSync('git config blame.ignoreRevsFile .git-blame-ignore-revs'); } catch {}"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         NODE_OPTIONS: "--openssl-legacy-provider --max-old-space-size=4096",
         NODE_ENV: "development",
         PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1",
@@ -269,17 +269,17 @@ makeWrapper "${nodejs}/bin/node" "$out/bin/code-server" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
-        prefetchNodeModules: nix.thunk(() => nix.app(nix.sel(lib, "overrideDerivation"), nix.thunk(() => nix.sel(finalAttrs, "nodeModules")), (d) => ({ __proto__: pos$9, outputHash: nix.thunk(() => nix.sel(lib, "fakeSha256")) }))),
+        [nix.POS]: pos$11,
+        prefetchNodeModules: nix.thunk(() => nix.app(nix.sel(lib, "overrideDerivation"), nix.thunk(() => nix.sel(finalAttrs, "nodeModules")), (d) => ({ [nix.POS]: pos$9, outputHash: nix.thunk(() => nix.sel(lib, "fakeSha256")) }))),
         tests: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           "code-server": nix.thunk(() => nix.attr(nixosTests, "code-server")),
         })),
         executableName: "code-server",
         longName: "Visual Studio Code Server",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         changelog: nix.thunk(() => nix.str`https://github.com/coder/code-server/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Run VS Code on a remote server",
         longDescription: "code-server is VS Code running on a remote server, accessible through the\nbrowser.\n",

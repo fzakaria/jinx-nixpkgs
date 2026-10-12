@@ -24,16 +24,16 @@ export default nix.lambda((args) => (() => {
     const rev = nix.arg($_1, "rev");
     const sha256 = nix.arg($_1, "sha256");
     return (name) => nix.app(nix.sel(nix.app(buildOpenRAEngine, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: version,
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           description: "Open-source re-implementation of Westwood Studios' 2D Command and Conquer games",
           homepage: "https://www.openra.net/",
         })),
         mods: nix.thunk(() => ["cnc", "d2k", "ra", "ts"]),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "OpenRA",
             repo: "OpenRA",
             rev: rev,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
             postFetch: postFetch,
           })))),
       })), name), "overrideAttrs"), (origAttrs) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         postInstall: nix.thunk(() => nix.str`${nix.sel(origAttrs, "postInstall")}
 cp -r mods/ts $out/lib/openra/mods/
 cp mods/ts/icon.png $(mkdirp $out/share/pixmaps)/openra-ts.png
@@ -50,21 +50,21 @@ cp mods/ts/icon.png $(mkdirp $out/share/pixmaps)/openra-ts.png
       }));
   })(), formals$2);
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     release: (name) => nix.app(buildUpstreamOpenRAEngine, nix.thunk(() => (() => {
         const version = "20190314";
         const rev = nix.thunk(() => nix.str`${name}-${version}`);
         const sha256 = "15pvn5cx3g0nzbrgpsfz8dngad5wkzp5dz25ydzn8bmxafiijvcr";
-        return { __proto__: pos$5, version, rev, sha256 };
+        return { [nix.POS]: pos$5, version, rev, sha256 };
       })()), name),
     playtest: (name) => nix.app(buildUpstreamOpenRAEngine, nix.thunk(() => (() => {
         const version = "20190302";
         const rev = nix.thunk(() => nix.str`${name}-${version}`);
         const sha256 = "1vqvfk2p2lpk3m0d3rpvj34i8cmk3mfc7w4cn4llqd9zp4kk9pya";
-        return { __proto__: pos$6, version, rev, sha256 };
+        return { [nix.POS]: pos$6, version, rev, sha256 };
       })()), name),
     bleed: nix.thunk(() => nix.app(buildUpstreamOpenRAEngine, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version: "8ee1102",
         rev: "8ee11028d72cde7556b31d45f556b40be65b4b70",
         sha256: "0f1fpf37ms8d7fhlh3rjzsxsk9w23iyi3phs2i7g561292d5rk3l",

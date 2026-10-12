@@ -19,31 +19,31 @@ const pos$14 = nix.positions(here + "/fluent-bit.nix", [["machine", 4, 9]]);
 const pos$15 = nix.positions(here + "/fluent-bit.nix", [["name", 3, 3], ["nodes", 4, 3], ["testScript", 45, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$15,
+  [nix.POS]: pos$15,
   name: "fluent-bit",
   nodes: nix.thunk(() => ({
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     machine: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "fluent-bit": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: true,
           settings: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pipeline: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               inputs: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   name: "systemd",
                   systemd_filter: "_SYSTEMD_UNIT=fluent-bit-regression-395128.service",
                 })),
               ]),
               outputs: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   name: "file",
                   path: "/var/log/fluent-bit",
                   file: "fluent-bit.out",
@@ -54,16 +54,16 @@ export default nix.thunk(() => ({
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           "fluent-bit": nix.thunk(() => ({
-            __proto__: pos$8,
-            serviceConfig: nix.thunk(() => ({ __proto__: pos$7, LogsDirectory: "fluent-bit" })),
+            [nix.POS]: pos$8,
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$7, LogsDirectory: "fluent-bit" })),
           })),
           "fluent-bit-regression-395128": nix.thunk(() => ({
-            __proto__: pos$10,
-            serviceConfig: nix.thunk(() => ({ __proto__: pos$9, Type: "oneshot", RemainAfterExit: true })),
+            [nix.POS]: pos$10,
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$9, Type: "oneshot", RemainAfterExit: true })),
             script: "for i in {1..20}; do\n  (head -c 1200 < /dev/zero | tr '\\0' 'A') && echo\n  sleep 1\ndone\n",
           })),
         })),

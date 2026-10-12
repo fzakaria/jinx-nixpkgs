@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const makeHardcodeGsettingsPatch = nix.arg($, "makeHardcodeGsettingsPatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "evolution-ews",
       version: "3.60.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/evolution-ews/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/evolution-ews-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-lAIFgY9piEEUV931gE0hDzUVwm4zQV3r2Puycxsdrys=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-gsettings.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             evo: nix.thunk(() => nix.app(nix.sel(glib, "makeSchemaPath"), evolution, nix.thunk(() => nix.sel(evolution, "name")))),
           })))),
       ]),
@@ -62,12 +62,12 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => ["-DFORCE_INSTALL_PREFIX=ON"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         hardcodeGsettingsPatch: nix.thunk(() => nix.app(makeHardcodeGsettingsPatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             schemaIdToVariableMapping: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               "org.gnome.evolution.mail": "evo",
               "org.gnome.evolution.calendar": "evo",
             })),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
           })))),
         updateScript: nix.thunk(() => (() => {
           const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               packageName: "evolution-ews",
               versionPolicy: "odd-unstable",
             }))));
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Evolution connector for Microsoft Exchange Server protocols",
         homepage: "https://gitlab.gnome.org/GNOME/evolution-ews",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

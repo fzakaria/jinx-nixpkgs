@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.13.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1e6bba42a5f66c245adf38a5a4006a99dcc06a0703786ea636098667d42903b8",
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [six, pynacl]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Macaroon library for Python",
         homepage: "https://github.com/ecordell/pymacaroons",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

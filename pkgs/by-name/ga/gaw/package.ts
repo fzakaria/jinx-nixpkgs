@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gaw3",
       version: "20250128",
       src: nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.str`gaw3-${nix.sel(finalAttrs, "version")}.tar.gz`), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           BASE: "https://www.rvq.fr/php/ndl.php",
           FNAME: nix.thunk(() => nix.str`gaw3-${nix.sel(finalAttrs, "version")}.tar.gz`),
           nativeBuildInputs: nix.thunk(() => [htmlq, curl]),
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
         })), "# fetch download page\nhtml_form=$(\n  curl \"$BASE?id=$FNAME\" |\n    tr '\\n' ' ' | tr -s ' ' | # minimize whitespace\n    htmlq tr | # select table rows, one per line\n    grep \"<td>$FNAME</td>\" | # filter for row of interest\n    head -n1 | # first match, just in case\n    htmlq form --base \"$BASE\"\n)\n\ndeclare -a curl_args=()\n\n# hidden fields\ndeclare -a input_names=()\nreadarray -td $'\\n' input_names < <(\n  htmlq <<<\"$html_form\" \"input[type=hidden]\" -a name\n)\nfor input_name in \"${input_names[@]}\"; do\n  input_value=$(\n    htmlq <<<\"$html_form\" \"input[type=hidden][name=${input_name}]\" -a value\n  )\n  echo \"$input_name = $input_value\"\n  curl_args+=( --form \"$input_name=$input_value\" )\ndone\n\n# destination\ncurl_args+=(\n  \"https://www.rvq.fr/$( htmlq <<<\"$html_form\"  form -a action )\"\n)\n\n# POST and download\n(set -x\n  curl -X POST \"${curl_args[@]}\" $NIX_CURL_FLAGS --output \"$FNAME\"\n)\n\n# unpack and strip root dir\nmkdir unpack/\ntar xvf \"$FNAME\" --directory=unpack/\n[[ \"$(printf \"%s\\n\" unpack/* | wc -l)\" -eq 1 ]]\ncp -a unpack/* $out\n")),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [gtk3]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Gtk Analog Wave viewer",
         mainProgram: "gaw",
         longDescription: "Gaw is a software tool for displaying analog waveforms from\nsampled data, for example from the output of simulators or\ninput from sound cards. Data can be imported to gaw using files,\ndirect tcp/ip connection or directly from the sound card.\n",

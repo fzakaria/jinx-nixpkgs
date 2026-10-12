@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   const which = nix.arg($, "which");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "sameboy",
       version: "0-unstable-2026-07-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "sameboy",
           rev: "aa158a889a48b538a0302873704a34577c8eb67d",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "cd libretro",
       makefile: "Makefile",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SameBoy libretro port",
         homepage: "https://github.com/libretro/SameBoy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

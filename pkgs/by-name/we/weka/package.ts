@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "weka";
       const version = "3.9.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/weka/${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.str`weka-${version}`))}.zip`),
           sha256: "sha256-8fVN4MXYqXNEmyVtXh1IrauHTBZWgWG8AvsGI5Y9Aj0=",
         }))));
@@ -64,7 +64,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "weka",
             exec: "weka",
             icon: "weka",
@@ -72,7 +72,7 @@ runHook postInstall
             categories: nix.thunk(() => ["Science", "ArtificialIntelligence", "ComputerScience"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "weka-doc",
             exec: "weka-doc",
             icon: "weka",
@@ -81,7 +81,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.cs.waikato.ac.nz/ml/weka/",
         description: "Collection of machine learning algorithms for data mining tasks",
         mainProgram: "weka",
@@ -94,7 +94,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

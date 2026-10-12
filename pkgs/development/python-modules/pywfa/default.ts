@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kcleal",
           repo: "pywfa",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "cd pywfa/tests\n";
       const pythonImportsCheck = nix.thunk(() => ["pywfa", "pywfa.align"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper for wavefront alignment using WFA2-lib",
         homepage: "https://github.com/kcleal/pywfa",
         changelog: nix.thunk(() => nix.str`https://github.com/kcleal/pywfa/releases/tag/v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

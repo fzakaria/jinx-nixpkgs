@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       fonts: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         enableGhostscriptFonts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: false,
             description: "Whether to add the fonts provided by Ghostscript (such as\nvarious URW fonts and the “Base-14” Postscript fonts) to the\nlist of system fonts, making them available to X11\napplications.\n",
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "fonts", "enableGhostscriptFonts")), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         fonts: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ghostscript", "fonts"))]),
         })),
       })))),

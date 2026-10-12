@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0-unstable-2004-12-03";
       const script = nix.path(here, "./extract-cfile.awk");
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.ietf.org/rfc/rfc3951.txt",
           sha256: "0zf4mvi3jzx6zjrfl2rbhl2m68pzbzpf1vbdmn7dqbfpcb67jpdy",
         }))));
@@ -31,12 +31,12 @@ cp -v ${nix.path(here, "./CMakeLists.txt")} CMakeLists.txt
 `);
       const cmakeFlags = nix.thunk(() => ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         script,

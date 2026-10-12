@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mtx",
       version: "1.3.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/mtx/mtx-stable/${nix.sel(finalAttrs, "version")}/mtx-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0261c5e90b98b6138cd23dadecbc7bc6e2830235145ed2740290e1f35672d843",
         })))),
       postPatch: "substituteInPlace mtx.h                     \\\n  --replace-fail                            \\\n    \"typedef enum { false, true } boolean;\" \\\n    \"typedef bool boolean;\"\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Media Changer Tools",
         longDescription: "The mtx command controls single or multi-drive SCSI media changers such as\ntape changers, autoloaders, tape libraries, or optical media jukeboxes. It\ncan also be used with media changers that use the 'ATTACHED' API, presuming\nthat they properly report the MChanger bit as required by the SCSI T-10 SMC\nspecification.\n",
         homepage: "https://sourceforge.net/projects/mtx/",

@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "system", "nixos-init"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       system: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "nixos-init": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nixos-init, a system for bashless initialization.\n\nThis doesn't use any `activationScripts`. Anything set in these options is\na no-op here.\n")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nixos-init", nix.thunk(() => ({})))),
         })),
@@ -42,26 +42,26 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           boot: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             bootspec: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               extensions: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 "org.nixos.nixos-init.v1": nix.thunk(() => nix.update({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   firmware: nix.thunk(() => nix.str`${nix.sel(config, "hardware", "firmware")}/lib/firmware`),
                   modprobe_binary: nix.thunk(() => nix.str`${nix.sel(pkgs, "kmod")}/bin/modprobe`),
                   nix_store_mount_opts: nix.thunk(() => nix.sel(config, "boot", "nixStoreMountOpts")),
                 }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(config, "environment", "binsh"), null)), nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     sh_binary: nix.thunk(() => nix.sel(config, "environment", "binsh")),
                   }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(config, "environment", "usrbinenv"), null)), nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     env_binary: nix.thunk(() => nix.sel(config, "environment", "usrbinenv")),
                   }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "system", "etc", "overlay", "enable")), nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     etc_metadata_image: nix.thunk(() => nix.sel(config, "system", "build", "etcMetadataImage")),
                     etc_basedir: nix.thunk(() => nix.sel(config, "system", "build", "etcBasedir")),
                   }))))))),
@@ -70,25 +70,25 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 assertion: nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "enable")),
                 message: "nixos-init can only be used with boot.initrd.systemd.enable",
               })),
               nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 assertion: nix.thunk(() => nix.sel(config, "system", "etc", "overlay", "enable")),
                 message: "nixos-init can only be used with system.etc.overlay.enable",
               })),
               nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 assertion: nix.thunk(() => (nix.asBool(nix.sel(config, "services", "userborn", "enable")) || nix.asBool(nix.sel(config, "systemd", "sysusers", "enable")))),
                 message: "nixos-init can only be used with services.userborn.enable or systemd.sysusers.enable",
               })),
               nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 assertion: nix.thunk(() => nix.eq(nix.sel(config, "boot", "postBootCommands"), "")),
                 message: "nixos-init cannot be used with boot.postBootCommands",
               })),

@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oidentd",
       version: "3.1.0",
       nativeBuildInputs: nix.thunk(() => [bison, flex]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://files.janikrabe.com/pub/oidentd/releases/${nix.sel(finalAttrs, "version")}/oidentd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-yyvcnabxNkcIMOiZBjvoOm/pEjrGXFt4W4SG5lprkbc=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Configurable Ident protocol server",
         mainProgram: "oidentd",
         homepage: "https://oidentd.janikrabe.com/",

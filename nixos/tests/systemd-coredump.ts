@@ -20,21 +20,21 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const crasher = nix.thunk(() => nix.app(nix.sel(pkgs, "writeCBin"), "crasher", "int main;"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "systemd-coredump",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       machine: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             crasher: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 ExecStart: nix.thunk(() => nix.str`${crasher}/bin/crasher`),
                 StateDirectory: "crasher",
                 WorkingDirectory: "%S/crasher",
@@ -43,10 +43,10 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           coredump: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             settings: nix.thunk(() => ({
-              __proto__: pos$6,
-              Coredump: nix.thunk(() => ({ __proto__: pos$5, Storage: "journal", ProcessSizeMax: "0" })),
+              [nix.POS]: pos$6,
+              Coredump: nix.thunk(() => ({ [nix.POS]: pos$5, Storage: "journal", ProcessSizeMax: "0" })),
             })),
           })),
         })),

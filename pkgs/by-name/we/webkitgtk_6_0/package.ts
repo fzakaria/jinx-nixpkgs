@@ -90,25 +90,25 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const abiVersion = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(gtk4, "version")), "4.0")) ? "6.0" : "4.1"));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "webkitgtk",
       version: "2.54.1",
       name: nix.thunk(() => nix.str`webkitgtk-${nix.sel(finalAttrs, "version")}+abi=${abiVersion}`),
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       separateDebugInfo: nix.thunk(() => (nix.asBool(nix.sel(clangStdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(nix.sel(clangStdenv, "hostPlatform", "is32bit"))))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://webkitgtk.org/releases/webkitgtk-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-6gu7AtvbxZaHSk5601tmZFs+CiMr0OQIHeXtkusKOX0=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-bubblewrap-paths.patch"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               storeDir: nix.thunk(() => nix.attr(nix.builtins, "storeDir")),
               driverLink: nix.thunk(() => nix.attr(addDriverRunpath, "driverLink")),
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: "https://salsa.debian.org/webkit-team/webkit/-/raw/debian/2.44.1-1/debian/patches/fix-ftbfs-riscv64.patch",
               hash: "sha256-MgaSpXq9l6KCLQdQyel6bQFHG53l3GY277WePpYXdjA=",
               name: "fix_ftbfs_riscv64.patch",
@@ -189,15 +189,15 @@ export default nix.lambda((args) => (() => {
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Web content rendering engine, GTK port",
         mainProgram: "WebKitWebDriver",
         homepage: "https://webkitgtk.org/",

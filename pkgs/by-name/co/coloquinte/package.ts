@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const boost = nix.arg($, "boost");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "coloquinte",
       version: "0.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coloquinte",
           repo: "PlaceRoute",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [lemon_graph, eigen, boost]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Placement library for electronic circuits",
         homepage: "https://github.com/Coloquinte/PlaceRoute",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

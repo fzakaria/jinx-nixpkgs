@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const qrencode = nix.arg($, "qrencode");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qtpass",
       version: "1.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "IJHack",
           repo: "QtPass",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "runHook preInstall\nmkdir -p $out/Applications\ncp -r main/QtPass.app $out/Applications\nmakeWrapper $out/Applications/QtPass.app/Contents/MacOS/QtPass $out/bin/qtpass\nrunHook postInstall\n")),
       postInstall: "install -D qtpass.1 -t $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multi-platform GUI for pass, the standard unix password manager",
         mainProgram: "qtpass",
         homepage: "https://qtpass.org",

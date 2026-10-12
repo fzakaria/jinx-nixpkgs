@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kdiff3",
       version: "1.12.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/kdiff3/kdiff3-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-RpCjWqkzsZJ1HdWQprT1P+86qVAkY3ERKtbocvaybss=",
         })))),
@@ -43,12 +43,12 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       cmakeFlags: nix.thunk(() => ["-Wno-dev"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LANG: "C.UTF-8" })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -s \"$out/Applications/KDE/kdiff3.app/Contents/MacOS\" \"$out/bin\"\n")),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kdePackages, "qtbase", "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Compares and merges 2 or 3 files or directories",
         mainProgram: "kdiff3",
         homepage: "https://invent.kde.org/sdk/kdiff3",

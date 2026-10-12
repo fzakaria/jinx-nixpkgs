@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nvidiabl";
       const version = "2020-10-01";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yorickvP",
           repo: "nvidiabl",
           rev: "9e21bdcb7efedf29450373a2e9ff2913d1b5e3ab",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`KVER=${nix.sel(kernel, "modDirVersion")}`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux driver for setting the backlight brightness on laptops using NVIDIA GPU",
         homepage: "https://github.com/yorickvP/nvidiabl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelAtLeast"), "5.18")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name,
         pname,
         version,

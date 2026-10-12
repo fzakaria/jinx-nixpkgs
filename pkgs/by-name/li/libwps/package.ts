@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const librevenge = nix.arg($, "librevenge");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libwps",
       version: "0.4.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libwps/libwps-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-xVEdlAngO446F50EZcHMKW7aBvyDcTVu9Egs2oaIadE=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [boost, librevenge, zlib]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-fallthrough" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-fallthrough" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://libwps.sourceforge.net/",
         description: "Microsoft Works document format import filter library",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

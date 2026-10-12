@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const extraPatch = nix.argOr($, "extraPatch", () => "");
   const patches = nix.argOr($, "patches", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "tcl",
       version: version,
       src: src,
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--mandir=${nix.builtins.placeholder("out")}/share/man`),
         "--with-tzdata=no",
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "9.0")), nix.thunk(() => ["--enable-threads"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "9.0")), nix.thunk(() => ["--disable-zipfs"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))), nix.thunk(() => ["--enable-man-symlinks"])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is64bit")), "--enable-64bit")))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "9.0")), nix.thunk(() => ({ __proto__: pos$1, ZIPFS_BUILD: 0n })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "9.0")), nix.thunk(() => ({ [nix.POS]: pos$1, ZIPFS_BUILD: 0n })))),
       buildFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ["binaries", "libraries", "doc"]))),
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ["INSTALL_PACKAGE_TARGETS="]))),
       enableParallelBuilding: true,
@@ -87,7 +87,7 @@ fi
       })()),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tcl scripting language",
         homepage: "https://www.tcl-lang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "tcltk")),
@@ -104,7 +104,7 @@ fi
       passthru: nix.thunk(() => (() => {
         const libPrefix = nix.thunk(() => nix.str`tcl${release}`);
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           release: release,
           version: version,
           libPrefix: libPrefix,
@@ -114,13 +114,13 @@ fi
               const $_1 = nix.formals(args_1, formals$2);
               const buildPackages_1 = nix.arg($_1, "buildPackages");
               return nix.app(makeSetupHook, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   name: "tcl-package-hook",
                   propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages_1, "makeBinaryWrapper"))]),
                   meta: nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
                     return {
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
                     platforms: nix.thunk(() => nix.attr(from, "platforms")),
                     license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -132,13 +132,13 @@ fi
               const $_1 = nix.formals(args_1, formals$3);
               const buildPackages_1 = nix.arg($_1, "buildPackages");
               return nix.app(makeSetupHook, nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   name: "tcl-requires-check-hook",
-                  substitutions: nix.thunk(() => ({ __proto__: pos$5, tcl_hook: nix.path(here, "./tcl-requires-check-hook.tcl") })),
+                  substitutions: nix.thunk(() => ({ [nix.POS]: pos$5, tcl_hook: nix.path(here, "./tcl-requires-check-hook.tcl") })),
                   meta: nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
                     return {
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
                     platforms: nix.thunk(() => nix.attr(from, "platforms")),
                     license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -147,13 +147,13 @@ fi
                 })), nix.path(here, "./tcl-requires-check-hook.sh"));
             })(), formals$3), nix.thunk(() => ({})))),
           tests: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             tzdata: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test-tzdata`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/bin/tclsh <(echo "set t [clock scan {2004-10-30 05:00:00} \\
                               -format {%Y-%m-%d %H:%M:%S} \\
                               -timezone :America/New_York]") > $out
 `))),
           })),
-          mkTclDerivation: nix.thunk(() => nix.app(callPackage, nix.path(here, "./mk-tcl-derivation.nix"), nix.thunk(() => ({ __proto__: pos$9, tcl: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+          mkTclDerivation: nix.thunk(() => nix.app(callPackage, nix.path(here, "./mk-tcl-derivation.nix"), nix.thunk(() => ({ [nix.POS]: pos$9, tcl: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
         };
       })()),
     }));

@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const overridenCopyright = nix.thunk(() => nix.builtins.toFile("overridden-copyright.txt", nix.thunk(() => nix.add(copyrightString, " with override!"))));
   const buildDotnetModule = nix.thunk(() => nix.attr(buildPackages, "buildDotnetModule"));
   const app_recursive = nix.thunk(() => nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "final-attrs-rec-test-application",
       src: nix.path(here, "../structured-attrs/src"),
       nugetDeps: nix.path(here, "../structured-attrs/nuget-deps.json"),
@@ -37,56 +37,56 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--property:Copyright=${nix.sel(finalAttrs, "passthru", "copyrightString")}`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         TargetFramework: nix.thunk(() => nix.str`net${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), dotnet_sdk)))}`),
       })),
       __structuredAttrs: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, copyrightString: copyrightString })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, copyrightString: copyrightString })),
     })));
   const app_const = nix.thunk(() => nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "final-attrs-const-test-application",
       src: nix.path(here, "../structured-attrs/src"),
       nugetDeps: nix.path(here, "../structured-attrs/nuget-deps.json"),
       dotnetFlags: nix.thunk(() => [nix.thunk(() => nix.str`--property:Copyright=${copyrightString}`)]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         TargetFramework: nix.thunk(() => nix.str`net${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), dotnet_sdk)))}`),
       })),
       __structuredAttrs: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$5, copyrightString: copyrightString })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, copyrightString: copyrightString })),
     }))));
   const override = (app) => nix.app(nix.sel(app, "overrideAttrs"), (previousAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       passthru: nix.thunk(() => nix.update(nix.sel(previousAttrs, "passthru"), {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         copyrightString: nix.thunk(() => nix.add(nix.sel(previousAttrs, "passthru", "copyrightString"), " with override!")),
       })),
     }));
   const run = (name) => (app) => nix.app(runCommand, name, nix.thunk(() => ({})), nix.thunk(() => nix.str`${app}/bin/Application >"$out"
 `));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     "check-output": nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         assertion: "buildDotnetModule produces the expected output when called with a recursive function",
         expected: originalCopyright,
         actual: nix.thunk(() => nix.app(run, "dotnet-final-attrs-test-rec-output", app_recursive)),
       })))),
     "output-matches-const": nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         assertion: "buildDotnetModule produces the same output when called with attrs or a recursive function",
         expected: nix.thunk(() => nix.app(run, "dotnet-final-attrs-test-const", app_const)),
         actual: nix.thunk(() => nix.app(run, "dotnet-final-attrs-test-rec", app_recursive)),
       })))),
     "override-has-no-effect": nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         assertion: "buildDotnetModule produces the expected output when called with a recursive function",
         expected: originalCopyright,
         actual: nix.thunk(() => nix.app(run, "dotnet-final-attrs-test-override-const-output", nix.thunk(() => nix.app(override, app_const)))),
       })))),
     "override-modifies-output": nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         assertion: "buildDotnetModule produces the expected output when called with a recursive function",
         expected: overridenCopyright,
         actual: nix.thunk(() => nix.app(run, "dotnet-final-attrs-test-override-rec-output", nix.thunk(() => nix.app(override, app_recursive)))),

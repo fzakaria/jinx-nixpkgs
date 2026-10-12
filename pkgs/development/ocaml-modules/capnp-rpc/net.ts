@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const uri = nix.arg($, "uri");
   const x509 = nix.arg($, "x509");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "capnp-rpc-net",
       minimalOCamlVersion: "5.2",
       src: nix.thunk(() => nix.attr(capnp_rpc, "src")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         x509,
       ]),
       meta: nix.thunk(() => nix.update(nix.sel(capnp_rpc, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Network and TLS support for Cap'n Proto RPC services",
       })),
     })));

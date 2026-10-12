@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const wayland = nix.arg($, "wayland");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libkscreen",
       extraNativeBuildInputs: nix.thunk(() => [qttools, qtwayland, jq, wayland]),
       extraBuildInputs: nix.thunk(() => [qtwayland]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kscreen-doctor" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kscreen-doctor" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

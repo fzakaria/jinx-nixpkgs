@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const libressl = nix.arg($, "libressl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "waynergy",
       version: "0.0.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "r-c-f",
           repo: "waynergy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libdrm, wayland, wayland_protocols, wl_clipboard, libxkbcommon, libressl]),
       postPatch: "substituteInPlace waynergy.desktop --replace \"Exec=/usr/bin/waynergy\" \"Exec=$out/bin/waynergy\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Synergy client for Wayland compositors",
         longDescription: "A synergy client for Wayland compositors\n",
         homepage: "https://github.com/r-c-f/waynergy",

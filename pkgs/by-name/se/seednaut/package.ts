@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "seednaut",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Baltram",
           repo: "seednaut",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-1GZ7ZoiGKEQGN2AQFcz/YXpcqg3iYLRSzl2GfTmGk8g=",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Inspect, verify and extract files from Seedvault Android backups",
         longDescription: "A command-line and terminal UI utility for Seedvault, the backup\nmechanism integrated by Android distributions such as CalyxOS,\nGrapheneOS, iodéOS, LineageOS and /e/OS. It works fully offline and\nsupports the current backup formats (v2 app backup, v0 file backup),\nallowing backups to be verified, explored and extracted off-device.\n",
         homepage: "https://github.com/Baltram/seednaut",

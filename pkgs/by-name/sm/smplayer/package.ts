@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const qtscript = nix.thunk(() => nix.attr(qt5, "qtscript"));
   const wrapQtAppsHook = nix.thunk(() => nix.attr(qt5, "wrapQtAppsHook"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "smplayer",
       version: "26.8.29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smplayer-dev",
           repo: "smplayer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,9 +33,9 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       dontUseQmakeConfigure: true,
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=unused-but-set-variable" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=unused-but-set-variable" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.smplayer.info",
         description: "Complete front-end for MPlayer",
         longDescription: "SMPlayer is a free media player for Windows and Linux with built-in codecs\nthat can play virtually all video and audio formats. It doesn't need any\nexternal codecs. Just install SMPlayer and you'll be able to play all\nformats without the hassle to find and install codec packs.\n\nOne of the most interesting features of SMPlayer: it remembers the\nsettings of all files you play. So you start to watch a movie but you have\nto leave... don't worry, when you open that movie again it will be resumed\nat the same point you left it, and with the same settings: audio track,\nsubtitles, volume...\n\nSMPlayer is a graphical user interface (GUI) for the award-winning\nMPlayer, which is capable of playing almost all known video and audio\nformats. But apart from providing access for the most common and useful\noptions of MPlayer, SMPlayer adds other interesting features like the\npossibility to play Youtube videos or download subtitles.\n",

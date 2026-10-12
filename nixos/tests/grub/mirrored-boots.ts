@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "grub-mirrored-boots",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "tomfitzhenry")),
           nix.thunk(() => nix.lookup(w, "rnhmjoj")),
@@ -32,25 +32,25 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$8,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, useBootLoader: true })),
+          [nix.POS]: pos$8,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, useBootLoader: true })),
           boot: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             loader: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               timeout: null,
               grub: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 enable: true,
                 device: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOverride"), 0n, "")),
                 mirroredBoots: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$3, path: "/boot1", devices: nix.thunk(() => ["/dev/vda"]) })),
-                  nix.thunk(() => ({ __proto__: pos$4, path: "/boot2", devices: nix.thunk(() => ["nodev"]) })),
+                  nix.thunk(() => ({ [nix.POS]: pos$3, path: "/boot1", devices: nix.thunk(() => ["/dev/vda"]) })),
+                  nix.thunk(() => ({ [nix.POS]: pos$4, path: "/boot2", devices: nix.thunk(() => ["nodev"]) })),
                 ]),
                 extraConfig: "serial; terminal_output serial",
               })),

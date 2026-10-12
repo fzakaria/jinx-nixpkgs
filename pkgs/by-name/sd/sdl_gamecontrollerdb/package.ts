@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sdl_gamecontrollerdb",
       version: "0-unstable-2026-09-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mdqinc",
           repo: "SDL_GameControllerDB",
           rev: "94c48e92e0c969b438263bc4a7c74ba2ee2103da",
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       installPhase: "runHook preInstall\n\ninstall -Dm644 gamecontrollerdb.txt -t $out/share\ninstall -Dm644 LICENSE -t $out/share/licenses/sdl_gamecontrollerdb\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Community sourced database of game controller mappings to be used with SDL2 and SDL3 Game Controller functionality",
         homepage: "https://github.com/mdqinc/SDL_GameControllerDB",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

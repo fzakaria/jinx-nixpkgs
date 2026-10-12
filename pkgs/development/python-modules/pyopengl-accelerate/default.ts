@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pyopengl = nix.arg($, "pyopengl");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pyopengl-accelerate",
       pyproject: true,
       version: nix.thunk(() => nix.attr(pyopengl, "version")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pyopengl, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "This set of C (Cython) extensions provides acceleration of common operations for slow points in PyOpenGL 3.x",
         homepage: "https://github.com/mcfletch/pyopengl/tree/master/accelerate#readme",
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

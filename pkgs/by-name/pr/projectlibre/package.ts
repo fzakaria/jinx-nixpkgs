@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "projectlibre",
       version: "1.9.8",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.code.sf.net/p/projectlibre/code",
           rev: "0530be227f4a10c5545cce8d3db20ac5a4d76a66",
           hash: "sha256-eGoPtHy1XfPLnJXNDOMcek4spNKkNyZdby0IsZFZfME=",
@@ -54,7 +54,7 @@ wrapProgram $out/bin/projectlibre \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Project-Management Software similar to MS-Project",
         homepage: "https://www.projectlibre.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cpal10")),

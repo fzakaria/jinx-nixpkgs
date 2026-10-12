@@ -39,7 +39,7 @@ if [[ "$rem" != "" ]]; then
 fi
 `)));
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     commonFileActions: commonFileActions,
     checkForRemainingFiles: checkForRemainingFiles,
   };

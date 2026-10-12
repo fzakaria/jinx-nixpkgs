@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const elpa = nix.arg($, "elpa");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "siesta",
       version: "5.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "siesta-project",
           repo: "siesta",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,20 +42,20 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-bug-125383",
             url: "https://gitlab.com/siesta-project/siesta/-/commit/bb6d7f5493c19078ecc236cf36b8672eeaf228c8.patch",
             hash: "sha256-p7jE5m055m0XW/lJHtyHYmGIJ3Dz+5sLy0jcG/zyAqg=",
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mpi: mpi,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [ninja, gfortran, cmake, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([blas, lapack, readline, elpa], nix.app(nix.sel(lib, "optionals"), useMpi, nix.thunk(() => [mpi, scalapack])))),
-      env: nix.thunk(() => ({ __proto__: pos$4, NIX_LDFLAGS: "-lm" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_LDFLAGS: "-lm" })),
       cmakeFlags: nix.thunk(() => [
         "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
         "-DCMAKE_INSTALL_INCLUDEDIR=include",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       preBuild: nix.thunk(() => (nix.asBool(useMpi) ? "makeFlagsArray+=(\n    CC=\"mpicc\" FC=\"mpifort\"\n    FPPFLAGS=\"-DMPI\" MPI_INTERFACE=\"libmpi_f90.a\" MPI_INCLUDE=\".\"\n    COMP_LIBS=\"\" LIBS=\"-lblas -llapack -lscalapack\"\n);\n" : "makeFlagsArray+=(\n  COMP_LIBS=\"\" LIBS=\"-lblas -llapack\"\n);\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "First-principles materials simulation code using DFT",
         mainProgram: "siesta",
         longDescription: "SIESTA is both a method and its computer program\nimplementation, to perform efficient electronic structure\ncalculations and ab initio molecular dynamics simulations of\nmolecules and solids. SIESTA's efficiency stems from the use\nof strictly localized basis sets and from the implementation\nof linear-scaling algorithms which can be applied to suitable\nsystems. A very important feature of the code is that its\naccuracy and cost can be tuned in a wide range, from quick\nexploratory calculations to highly accurate simulations\nmatching the quality of other approaches, such as plane-wave\nand all-electron methods.\n",

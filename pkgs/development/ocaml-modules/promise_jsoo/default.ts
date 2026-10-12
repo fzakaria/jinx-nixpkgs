@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const gen_js_api = nix.arg($, "gen_js_api");
   const ojs = nix.arg($, "ojs");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "promise_jsoo",
       version: "0.3.1",
       minimalOCamlVersion: "4.08",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mnxn/promise_jsoo/releases/download/v${nix.sel(finalAttrs, "version")}/promise_jsoo-v${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "00pjnsbv0yv3hhxbbl8dsljgr95kjgi9w8j1x46gjyxg9zayrxzl",
         })))),
       buildInputs: nix.thunk(() => [ppxlib, js_of_ocaml_ppx, gen_js_api]),
       propagatedBuildInputs: nix.thunk(() => [js_of_ocaml, ojs]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mnxn/promise_jsoo",
         description: "Js_of_ocaml bindings to JS Promises with supplemental functions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

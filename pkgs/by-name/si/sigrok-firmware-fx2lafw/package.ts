@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const sdcc = nix.arg($, "sdcc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sigrok-firmware-fx2lafw",
       version: "0.1.7-unstable-2024-02-03",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://sigrok.org/sigrok-firmware-fx2lafw",
           rev: "0f2d3242ffb5582e5b9a018ed9ae9812d517a56e",
           hash: "sha256-xveVcwAwtqKGD3/UvnBz5ASvTyg/6jAlTedZElhV2HE=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, sdcc]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Firmware for FX2 logic analyzers",
         homepage: "https://sigrok.org/",
         license: nix.thunk(() => (() => {

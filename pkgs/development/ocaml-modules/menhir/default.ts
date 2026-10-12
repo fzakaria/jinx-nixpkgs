@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const menhirLib = nix.arg($, "menhirLib");
   const menhirSdk = nix.arg($, "menhirSdk");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "menhir",
       version: nix.thunk(() => nix.attr(menhirLib, "version")),
       src: nix.thunk(() => nix.attr(menhirLib, "src")),
       buildInputs: nix.thunk(() => [menhirGLR, menhirLib, menhirSdk]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./menhir-suggest-menhirLib.patch"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             libdir: nix.thunk(() => nix.str`${menhirLib}/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib/menhirLib`),
           })))),
       ]),
       meta: nix.thunk(() => nix.update(nix.sel(menhirSdk, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LR(1) parser generator for OCaml",
         mainProgram: "menhir",
       })),

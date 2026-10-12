@@ -43,54 +43,54 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "jenkins"));
   const jenkinsUrl = nix.thunk(() => nix.str`http://${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}${nix.sel(cfg, "prefix")}`);
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         jenkins: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Jenkins, a continuous integration server")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "jenkins",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "User the jenkins server should execute under.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "jenkins",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "If the default user \"jenkins\" is configured then this is the primary\ngroup of that user.\n",
             })))),
           extraGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["wheel", "dialout"]),
               description: "List of extra groups that the \"jenkins\" user should be a part of.\n",
             })))),
           home: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "/var/lib/jenkins",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The path to use as JENKINS_HOME. If the default user \"jenkins\" is configured then\nthis is the home of the \"jenkins\" user.\n",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "0.0.0.0",
               example: "localhost",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Specifies the bind address on which the jenkins HTTP interface listens.\nThe default is the wildcard address.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: 8080n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: "Specifies port number on which the jenkins HTTP interface listens.\nThe default is 8080.\n",
             })))),
           prefix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "",
               example: "/jenkins",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
@@ -99,14 +99,14 @@ export default nix.lambda((args) => (() => {
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "jenkins", nix.thunk(() => ({})))),
           javaPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "jdk25", nix.thunk(() => ({})))),
           packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  pkgs.stdenv\n  pkgs.git\n  pkgs.jdk25\n  config.programs.ssh.package\n  pkgs.nix\n]\n")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               description: "Packages to add to PATH for the jenkins process.\n",
             })))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -115,28 +115,28 @@ export default nix.lambda((args) => (() => {
               description: "Additional environment variables to be passed to the jenkins process.\nAs a base environment, jenkins receives NIX_PATH from\n{option}`environment.sessionVariables`, NIX_REMOTE is set to\n\"daemon\" and JENKINS_HOME is set to the value of\n{option}`services.jenkins.home`.\nThis option has precedence and can be used to override those\nmentioned variables.\n",
             })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "package")))))),
               description: "A set of plugins to activate. Note that this will completely\nremove and replace any previously installed plugins. If you\nhave manually-installed plugins that you want to keep while\nusing this module, set this option to\n`null`. You can generate this set with a\ntool such as `jenkinsPlugins2nix`.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "import path/to/jenkinsPlugins2nix-generated-plugins.nix { inherit (pkgs) fetchurl stdenv; }\n")),
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--debug=9"]),
               description: "Additional command line arguments to pass to Jenkins.\n",
             })))),
           extraJavaOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["-Xmx80m"]),
               description: "Additional command line arguments to pass to the Java run time (as opposed to Jenkins).\n",
             })))),
           withCLI: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to make the CLI available.\n\nMore info about the CLI available at\n[\nhttps://www.jenkins.io/doc/book/managing/cli](https://www.jenkins.io/doc/book/managing/cli) .\n",
@@ -145,25 +145,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "dejavu_fonts"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "withCLI")), nix.thunk(() => nix.sel(cfg, "package"))))),
-          variables: nix.thunk(() => nix.update({}, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "withCLI")), nix.thunk(() => ({ __proto__: pos$17, JENKINS_URL: jenkinsUrl }))))),
+          variables: nix.thunk(() => nix.update({}, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "withCLI")), nix.thunk(() => ({ [nix.POS]: pos$17, JENKINS_URL: jenkinsUrl }))))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "jenkins")), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               jenkins: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "jenkins")),
               })),
             })))),
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "jenkins")), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               jenkins: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 description: "jenkins user",
                 createHome: true,
                 home: nix.thunk(() => nix.sel(cfg, "home")),
@@ -175,18 +175,18 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             jenkins: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "Jenkins Continuous Integration Server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => (() => {
                 const selectedSessionVars = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => nix.builtins.elem(n, nix.thunk(() => ["NIX_PATH"])), nix.thunk(() => nix.sel(config, "environment", "sessionVariables"))));
                 return nix.update(selectedSessionVars, nix.update({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   JENKINS_HOME: nix.thunk(() => nix.sel(cfg, "home")),
                   NIX_REMOTE: "daemon",
                 }, nix.sel(cfg, "environment")));
@@ -215,7 +215,7 @@ ${replacePlugins}
 done
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 StateDirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "/var/lib/jenkins", nix.thunk(() => nix.sel(cfg, "home")))), "jenkins")),
@@ -255,7 +255,7 @@ done
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "felixsinger"))];

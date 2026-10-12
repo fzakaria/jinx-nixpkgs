@@ -24,16 +24,16 @@ export default nix.lambda((args) => (() => {
   const popt = nix.arg($, "popt");
   const libunistring = nix.arg($, "libunistring");
   const heimdalConfigHeader = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://raw.githubusercontent.com/heimdal/heimdal/d8c10e68a61f10c8fca62b227a0766d294bda4a0/include/heim_threads.h",
       hash: "sha256-HEZAyUyjWs0N4bRLbW3tHDHCiTBtdCbgY23JsiYsZCA=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openvas-smb",
       version: "22.5.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "greenbone",
           repo: "openvas-smb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ NIX_CFLAGS_COMPILE+=" -isystem $(pwd)/include";
 cp ${heimdalConfigHeader} include/heim_threads.h
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SMB module for Greenbone Community Edition",
         homepage: "https://github.com/greenbone/openvas-smb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "home-assistant-frontend",
       version: "20260826.7",
       format: "wheel",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           format: "wheel",
           pname: "home_assistant_frontend",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant/frontend/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Frontend for Home Assistant",
         homepage: "https://github.com/home-assistant/frontend",

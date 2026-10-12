@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "beszel",
       version: "0.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "henrygd",
           repo: "beszel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-F7N9IVqOk+pNrH1wIqkNthLNhqW+HmTkJB43RwBMWpo=",
         })))),
       webui: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -72,12 +72,12 @@ cp -r ${nix.sel(finalAttrs, "webui")}/* internal/site/dist
       postInstall: "mv $out/bin/agent $out/bin/beszel-agent\nmv $out/bin/hub $out/bin/beszel-hub\n",
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "webui"]) })))),
-        tests: nix.thunk(() => ({ __proto__: pos$4, nixos: nix.thunk(() => nix.sel(nixosTests, "beszel")) })),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "webui"]) })))),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, nixos: nix.thunk(() => nix.sel(nixosTests, "beszel")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/henrygd/beszel",
         changelog: nix.thunk(() => nix.str`https://github.com/henrygd/beszel/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Lightweight server monitoring hub with historical data, docker stats, and alerts",

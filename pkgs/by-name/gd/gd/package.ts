@@ -28,17 +28,17 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const freetype = nix.arg($, "freetype");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gd",
       version: "2.3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/libgd/libgd/releases/download/gd-${nix.sel(finalAttrs, "version")}/libgd-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0qas3q9xz3wgw06dm2fj0i189rain6n60z1vyq50d5h7wbn25s1z",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "restore-GD_FLIP.patch",
             url: "https://github.com/libgd/libgd/commit/f4bc1f5c26925548662946ed7cfa473c190a104a.diff",
             sha256: "XRXR3NOkbEub3Nybaco2duQk0n8vxif5mTl2AUacn9w=",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://libgd.github.io/",
         description: "Dynamic image creation library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

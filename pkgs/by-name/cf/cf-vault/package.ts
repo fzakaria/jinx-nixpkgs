@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const cf_vault = nix.arg($, "cf-vault");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cf-vault",
       version: "0.0.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jacobbednarz",
           repo: "cf-vault",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       ]),
       vendorHash: "sha256-7qFB1Y1AnqMgdu186tAXCdoYOhCMz8pIh6sY02LbIgs=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: cf_vault, command: "cf-vault version" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: cf_vault, command: "cf-vault version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tool for managing your Cloudflare credentials, securely",
         homepage: "https://github.com/jacobbednarz/cf-vault/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nexB",
           repo: "dparse2",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_parse.py"]);
       const pythonImportsCheck = nix.thunk(() => ["dparse2"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to parse Python dependency files",
         homepage: "https://github.com/nexB/dparse2",
         changelog: nix.thunk(() => nix.str`https://github.com/nexB/dparse2/blob/${version}/CHANGELOG.rst`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

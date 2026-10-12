@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "2.3.1";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "go-toml",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pelletier",
           repo: "go-toml",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       excludedPackages: nix.thunk(() => ["cmd/gotoml-test-decoder", "cmd/gotoml-test-encoder", "cmd/tomltestgen"]),
       ldflags: nix.thunk(() => ["-s", "-w", nix.thunk(() => nix.str`-X main.version=${version}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Go library for the TOML language",
         homepage: "https://github.com/pelletier/go-toml",
         changelog: nix.thunk(() => nix.str`https://github.com/pelletier/go-toml/releases/tag/v${version}`),

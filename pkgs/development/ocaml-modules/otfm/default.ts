@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const version = "0.4.0";
   const webpage = nix.thunk(() => nix.str`https://erratique.ch/software/${pname}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}`),
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${webpage}/releases/${pname}-${version}.tbz`),
           hash: "sha256-02U23mYTy0ZJgSObDoyygPTGEMC4/Zge5bux4wshaEE=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenType font decoder for OCaml",
         longDescription: "Otfm is an in-memory decoder for the OpenType font data format. It\nprovides low-level access to font tables and functions to decode some\nof them.\n",
         homepage: webpage,

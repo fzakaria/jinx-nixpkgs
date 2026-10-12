@@ -29,24 +29,24 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       environment: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         enableAllTerminfo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether to install all terminfo outputs\n",
           })))),
       })),
       security: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sudo: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           keepTerminfo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to preserve the `TERMINFO` and `TERMINFO_DIRS`\nenvironment variables, for `root` and the `wheel` group.\n",
@@ -55,9 +55,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       environment: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "environment", "enableAllTerminfo")), nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "terminfo"), nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "pkgsBuildBuild")), null);
               return [
@@ -78,23 +78,23 @@ export default nix.lambda((args) => (() => {
             })()))))),
         pathsToLink: nix.thunk(() => ["/share/terminfo"]),
         etc: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           terminfo: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             source: nix.thunk(() => nix.str`${nix.sel(config, "system", "path")}/share/terminfo`),
           })),
         })),
-        profileRelativeSessionVariables: nix.thunk(() => ({ __proto__: pos$9, TERMINFO_DIRS: nix.thunk(() => ["/share/terminfo"]) })),
+        profileRelativeSessionVariables: nix.thunk(() => ({ [nix.POS]: pos$9, TERMINFO_DIRS: nix.thunk(() => ["/share/terminfo"]) })),
         extraInit: "\n# reset TERM with new TERMINFO available (if any)\nexport TERM=$TERM\n",
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         initrd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemd: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             contents: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "map"), (ti) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`/etc/terminfo/${ti}`), nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     source: nix.thunk(() => nix.str`${nix.sel(pkgs, "ncurses")}/share/terminfo/${ti}`),
                   }))), nix.thunk(() => ["l/linux", "v/vt100", "v/vt102", "v/vt220"]))))),
           })),
@@ -103,9 +103,9 @@ export default nix.lambda((args) => (() => {
       security: nix.thunk(() => (() => {
         const extraConfig = "\n# Keep terminfo database for root and %wheel.\nDefaults:root,%wheel env_keep+=TERMINFO_DIRS\nDefaults:root,%wheel env_keep+=TERMINFO\n";
         return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "security", "sudo", "keepTerminfo")), nix.thunk(() => ({
-            __proto__: pos$17,
-            sudo: nix.thunk(() => ({ __proto__: pos$15, extraConfig: extraConfig })),
-            "sudo-rs": nix.thunk(() => ({ __proto__: pos$16, extraConfig: extraConfig })),
+            [nix.POS]: pos$17,
+            sudo: nix.thunk(() => ({ [nix.POS]: pos$15, extraConfig: extraConfig })),
+            "sudo-rs": nix.thunk(() => ({ [nix.POS]: pos$16, extraConfig: extraConfig })),
           })));
       })()),
     })),

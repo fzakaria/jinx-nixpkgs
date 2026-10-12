@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "speedread",
       version: "unstable-2016-09-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pasky",
           repo: "speedread",
           rev: "93acfd61a1bf4482537ce5d71b9164b8446cb6bd",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [perl]),
       installPhase: "install -m755 -D speedread $out/bin/speedread\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple terminal-based open source Spritz-alike",
         longDescription: "Speedread is a command line filter that shows input text as a\nper-word rapid serial visual presentation aligned on optimal\nreading points. This allows reading text at a much more rapid\npace than usual as the eye can stay fixed on a single place.\n",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),

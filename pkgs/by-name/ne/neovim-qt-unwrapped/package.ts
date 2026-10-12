@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const neovim = nix.arg($, "neovim");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "neovim-qt-unwrapped",
       version: "0.2.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "equalsraf",
           repo: "neovim-qt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(neovim, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Neovim client library and GUI, in Qt5",
         homepage: "https://github.com/equalsraf/neovim-qt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

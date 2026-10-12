@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const olm = nix.arg($, "olm");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "quaternion",
       version: "0.0.97.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "quotient-im",
           repo: "Quaternion",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,10 +42,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qttools")),
         nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook")),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LANG: "C.UTF-8" })),
       postInstall: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p $out/Applications\nmv $out/bin/quaternion.app $out/Applications\nrmdir $out/bin || :\n" : "substituteInPlace $out/share/applications/io.github.quotient_im.Quaternion.desktop \\\n  --replace-fail 'Exec=quaternion' \"Exec=$out/bin/quaternion\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Cross-platform desktop IM client for the Matrix protocol",
         mainProgram: "quaternion",

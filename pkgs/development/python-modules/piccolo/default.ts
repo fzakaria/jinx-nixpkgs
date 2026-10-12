@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const targ = nix.arg($, "targ");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "piccolo",
       version: "1.36.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "piccolo-orm",
           repo: "piccolo",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [black, colorama, inflection, jinja2, pydantic, targ, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         orjson: nix.thunk(() => [orjson]),
         postgres: nix.thunk(() => [asyncpg]),
         sqlite: nix.thunk(() => [aiosqlite]),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         "test_warn_if_is_conflicting",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ORM and query builder which supports asyncio",
         homepage: "https://github.com/piccolo-orm/piccolo",
         changelog: nix.thunk(() => nix.str`https://github.com/piccolo-orm/piccolo/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

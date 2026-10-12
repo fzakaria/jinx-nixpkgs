@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.25.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fabiocaccamo",
           repo: "django-treenode",
           tag: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [django]);
       const pythonImportsCheck = nix.thunk(() => ["treenode"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Deciduous_tree: probably the best abstract model/admin for your tree based stuff",
         homepage: "https://github.com/fabiocaccamo/django-treenode",
         changelog: nix.thunk(() => nix.str`https://github.com/fabiocaccamo/django-treenode/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

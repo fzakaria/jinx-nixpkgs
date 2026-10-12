@@ -79,7 +79,7 @@ done
       const noAuditTmpdir = true;
       const meta_1 = meta;
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         package: package$_1,
         os: os_1,
         arch: arch_1,

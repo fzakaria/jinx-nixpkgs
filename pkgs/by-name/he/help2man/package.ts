@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const libintl = nix.arg($, "libintl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "help2man",
       version: "1.49.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/help2man/help2man-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-TX5P3vLspq/geiaCFRzqeHgeCk6PliIULZ9wwIOi/U8=",
         })))),
@@ -46,7 +46,7 @@ chmod +x $out/bin/help2man
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generate man pages from `--help' output",
         mainProgram: "help2man",
         longDescription: "help2man produces simple manual pages from the ‘--help’ and ‘--version’ output of other commands.\n",

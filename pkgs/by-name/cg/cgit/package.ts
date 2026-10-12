@@ -35,16 +35,16 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cgit",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.zx2c4.com/cgit/snapshot/cgit-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "c40fd71e120783d5e57d822208f3e17333cde2cd4baf3e7c8c75630b68afe12a",
         })))),
       gitSrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "mirror://kernel/software/scm/git/git-2.54.0.tar.xz",
           hash: "sha256-9okWI2TBDeee+Jqo2/SHMesFfjTtu9IKylEM4BVGgaM=",
         })))),
@@ -96,11 +96,11 @@ done
       stripDebugList: nix.thunk(() => ["cgit"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, cgit: nix.thunk(() => nix.attr(nixosTests, "cgit")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, cgit: nix.thunk(() => nix.attr(nixosTests, "cgit")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://git.zx2c4.com/cgit/about/",
         description: "Web frontend for git repositories",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

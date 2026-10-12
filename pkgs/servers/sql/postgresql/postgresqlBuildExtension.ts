@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["enableUpdateScript"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -24,10 +24,10 @@ export default nix.lambda((args) => (() => {
         const prevAttrs = args_1;
         const enableUpdateScript = nix.argOr($_1, "enableUpdateScript", () => true);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           passthru: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "passthru"), nix.app(nix.sel(lib, "optionalAttrs"), enableUpdateScript, nix.thunk(() => ({
-              __proto__: pos$2,
-              updateScript: nix.thunk(() => nix.selOr(prevAttrs, () => nix.app(nix_update_script, nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "hasInfix"), "unstable", nix.thunk(() => nix.sel(prevAttrs, "version")))), nix.thunk(() => ({ __proto__: pos$1, extraArgs: nix.thunk(() => ["--version=branch"]) }))))), "passthru", "updateScript")),
+              [nix.POS]: pos$2,
+              updateScript: nix.thunk(() => nix.selOr(prevAttrs, () => nix.app(nix_update_script, nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "hasInfix"), "unstable", nix.thunk(() => nix.sel(prevAttrs, "version")))), nix.thunk(() => ({ [nix.POS]: pos$1, extraArgs: nix.thunk(() => ["--version=branch"]) }))))), "passthru", "updateScript")),
             }))))),
           strictDeps: true,
           __structuredAttrs: true,

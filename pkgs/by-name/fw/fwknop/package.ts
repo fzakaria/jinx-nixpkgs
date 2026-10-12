@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const buildServer = nix.argOr($, "buildServer", () => true);
   const buildClient = nix.argOr($, "buildClient", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fwknop",
       version: "2.6.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mrash",
           repo: "fwknop",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       preInstall: "substituteInPlace Makefile --replace-fail \\\n  \"sysconfdir = /etc\"\\\n  \"sysconfdir = $out/etc\"\nsubstituteInPlace server/Makefile --replace-fail \\\n  \"wknopddir = /etc/fwknop\"\\\n  \"wknopddir = $out/etc/fwknop\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Single Packet Authorization (and Port Knocking) server/client",
         longDescription: "fwknop stands for the \"FireWall KNock OPerator\", and implements an\nauthorization scheme called Single Packet Authorization (SPA).\n",
         homepage: "https://www.cipherdyne.org/fwknop/",

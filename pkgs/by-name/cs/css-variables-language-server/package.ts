@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const libsecret = nix.arg($, "libsecret");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "css-variables-language-server",
       version: "2.8.4",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vunguyentuan",
           repo: "vscode-css-variables",
           tag: nix.thunk(() => nix.str`css-variables-language-server@${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ makeWrapper ${nodejs}/bin/node $out/bin/css-variables-language-server --add-flag
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CSS Variables Language Server in node",
         changelog: nix.thunk(() => nix.str`https://github.com/vunguyentuan/vscode-css-variables/releases/tag/css-variables-language-server@${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/vunguyentuan/vscode-css-variables",

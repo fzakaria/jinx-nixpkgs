@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bitlbee-mastodon",
       version: "1.4.5",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://alexschroeder.ch/cgit/bitlbee-mastodon",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-8vmq/YstuBYUxe00P4NrxD/eMYI++R9uvn1sCcMTr7I=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bitlbee]),
       preConfigure: "export BITLBEE_PLUGINDIR=$out/lib/bitlbee\nexport BITLBEE_DATADIR=$out/share/bitlbee\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bitlbee plugin for Mastodon",
         homepage: "https://alexschroeder.ch/cgit/bitlbee-mastodon/about",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

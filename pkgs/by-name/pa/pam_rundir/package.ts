@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const pam = nix.arg($, "pam");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pam_rundir",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://jjacky.com/pam_rundir/pam_rundir-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-x3m2me0jd3o726h7f2ftOV/pV/PJYTj67kX4eie8wCA=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--securedir=/lib/security", "--with-parentdir=/run/user"]),
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://jjacky.com/pam_rundir",
         description: "Provide user runtime directory on Linux systems",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

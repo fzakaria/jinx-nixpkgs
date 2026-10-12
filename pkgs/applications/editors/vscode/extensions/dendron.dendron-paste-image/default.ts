@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "dendron-paste-image",
         publisher: "dendron",
         version: "1.1.3",
         hash: "sha256-nnaHXQAOEblQRKqbDIsuTVrdh3BlDnWJGy9ai2bv02c=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Paste images directly from your clipboard to markdown/asciidoc(or other file)",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=dendron.dendron-paste-image",
         homepage: "https://github.com/dendronhq/dendron-paste-image",

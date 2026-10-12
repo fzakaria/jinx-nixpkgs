@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "colormake",
       version: "2.1.0",
       buildInputs: nix.thunk(() => [perl]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pagekite",
           repo: "Colormake",
           rev: "66544f40d4626aace137c6a502b3c70b56c770c1",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir -p $out/bin\ncp -fa colormake.pl colormake colormake-short clmake clmake-short $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple wrapper around make to colorize the output",
         homepage: "https://bre.klaki.net/programs/colormake/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

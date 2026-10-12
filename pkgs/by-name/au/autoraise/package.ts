@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "autoraise";
       const version = "5.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sbmpost",
           repo: "AutoRaise",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ runHook postBuild
 `);
       const installPhase = "runHook preInstall\nmkdir -p $out/Applications $out/bin\nmv AutoRaise.app $out/Applications/AutoRaise.app\nln -s $out/Applications/AutoRaise.app/Contents/MacOS/AutoRaise $out/bin/autoraise\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatically raise and focus a window when hovering over it with the mouse",
         homepage: "https://github.com/sbmpost/AutoRaise",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -50,7 +50,7 @@ runHook postBuild
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

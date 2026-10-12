@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const qt5 = nix.arg($, "qt5");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(wsjtx, "overrideAttrs"), (old) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jtdx",
       version: "unstable-2022-03-01",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/jtdx-project/jtdx.git",
           rev: "2a0e2bea8c66c9ca94d2ea8034cf83a68cfa40eb",
           hash: "sha256-5KlFBlzG3hKFFGO37c+VN+FvZKSnTQXvSorB+Grns8w=",
         })))),
       buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [nix.thunk(() => nix.sel(qt5, "qtwebsockets"))])),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "wsjtx fork with some extra features",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

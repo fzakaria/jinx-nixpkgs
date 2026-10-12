@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const libsoup_3 = nix.arg($, "libsoup_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uhttpmock",
       version: "0.11.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "pwithnall",
           repo: "uhttpmock",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => [mesonEmulatorHook])))),
       propagatedBuildInputs: nix.thunk(() => [glib, libsoup_3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Project for mocking web service APIs which use HTTP or HTTPS",
         homepage: "https://gitlab.freedesktop.org/pwithnall/uhttpmock/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

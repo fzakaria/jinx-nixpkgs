@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pipe-viewer";
       const version = "0.5.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trizen",
           repo: "pipe-viewer",
           tag: version,
@@ -70,7 +70,7 @@ wrapProgram "$out/bin/gtk-pipe-viewer" \${gappsWrapperArgs[@]} \\
   --suffix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdg_utils]))}"
 `))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/trizen/pipe-viewer",
         description: "CLI+GUI YouTube Client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),
@@ -82,7 +82,7 @@ wrapProgram "$out/bin/gtk-pipe-viewer" \${gappsWrapperArgs[@]} \\
         mainProgram: "pipe-viewer",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const mydumper = nix.arg($, "mydumper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mydumper",
       version: "1.0.3-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mydumper",
           repo: "mydumper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,20 +65,20 @@ export default nix.lambda((args) => (() => {
       postPatch: "# as of mydumper v0.14.5-1, mydumper tries to install its config to /etc\nsubstituteInPlace CMakeLists.txt\\\n  --replace-fail \"/etc\" \"$out/etc\" \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8.12)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       postInstall: "installManPage $src/docs/man/*\nmkdir -p $doc/share/doc/mydumper\ncp -r $src/docs/html/* $doc/share/doc/mydumper\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "v(\\d+\\.\\d+\\.\\d*[13579]-\\d+)"]),
           })))),
         tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             package: mydumper,
             command: "myloader --version",
             version: nix.thunk(() => nix.str`myloader v${nix.sel(finalAttrs, "version")}`),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "High-performance MySQL backup tool",
         homepage: "https://github.com/mydumper/mydumper",
         changelog: nix.thunk(() => nix.str`https://github.com/mydumper/mydumper/releases/tag/v${nix.sel(finalAttrs, "version")}`),

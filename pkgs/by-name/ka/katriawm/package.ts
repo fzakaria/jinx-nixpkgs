@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "katriawm",
       version: "26.03",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.uninformativ.de/git/katriawm/archives/katriawm-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-vnnc5SkNzCLZTBxKcaHDo9F5f++7dtESD5hOB0zrxjo=",
         })))),
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["prefix=$(out)"]),
       postPatch: "substituteInPlace src/config.mk \\\n  --replace pkg-config \"$PKG_CONFIG\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://www.uninformativ.de/git/katriawm.git/",
             "rev-prefix": "v",
           })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libx11, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.uninformativ.de/git/katriawm/file/README.html",
         description: "Non-reparenting, dynamic window manager with decorations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

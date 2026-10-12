@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xlink",
       version: "0-unstable-2025-14-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "luxonis",
           repo: "XLink",
           rev: "fe8b5450f545a2ebf26dbc093e98c0265d7f4029",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./001-remove-hunter.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/luxonis/XLink/commit/160c6c918c07e28a6a8c5c080a257f7619223304.patch?full_index=1",
             hash: "sha256-1VMCteJf/an20fI3UTT/X9cH96dCxPRQolfN+e+6jnU=",
           })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/include\nmkdir -p $share/examples\nmkdir -p $share/tests\n\ncp -r $src/include/* $out/include/\n\nexamples=(\n  \"boot_firmware\"\n  \"list_devices\"\n  \"boot_bootloader\"\n  \"search_devices\"\n  \"Makefile\"\n  \"device_connect_reset\"\n)\n\ntests=(\n  \"multiple_open_stream\"\n  \"multithreading_search_test\"\n)\n\nfind $buildDir\nfor file in \"${examples[@]}\"; do\n  cp examples/$file $share/examples/$file\ndone\nfor file in \"${tests[@]}\"; do\n  cp tests/$file $share/tests/$file\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for communication with Myriad VPUs",
         homepage: "https://github.com/luxonis/XLink",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cli-tips",
       version: "0-unstable-2026-03-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cli-stuff",
           repo: "cli-tips",
           rev: "0268e0e3a8eddf21a61a4d21be3b5b81629b14b4",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/tips\ninstall -Dm755 cli-tips.sh $out/bin/cli-tips\ncp tips.txt $out/share/tips\n\nrunHook postInstall\n",
       postInstall: "wrapProgram $out/bin/cli-tips \\\n  --set TIPS_FOLDER \"$out/share/tips\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CLI tool that provides useful tips and commands for Linux users",
         homepage: "https://github.com/cli-stuff/cli-tips",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

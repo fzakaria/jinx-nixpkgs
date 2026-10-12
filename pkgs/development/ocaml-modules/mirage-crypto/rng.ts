@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const duration = nix.arg($, "duration");
   const logs = nix.arg($, "logs");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mirage-crypto-rng",
       minimalOCamlVersion: "4.14",
       version: nix.thunk(() => nix.attr(mirage_crypto, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), "substituteInPlace tests/dune \\\n  --replace-fail \\\n    '(enabled_if (and (<> %{architecture} \"arm64\") (<> %{architecture} \"riscv\")))' \\\n    '(enabled_if false)'\n")),
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [digestif, mirage_crypto, duration, logs]),
-      meta: nix.thunk(() => nix.update(nix.sel(mirage_crypto, "meta"), { __proto__: pos$1, description: "Cryptographically secure PRNG" })),
+      meta: nix.thunk(() => nix.update(nix.sel(mirage_crypto, "meta"), { [nix.POS]: pos$1, description: "Cryptographically secure PRNG" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=rng.ts.map

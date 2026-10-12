@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cargo-codspeed",
       version: "5.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CodSpeedHQ",
           repo: "codspeed-rust",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
         "--skip=test_criterion_build_and_run_filtered_by_name",
         "--skip=test_criterion_build_and_run_filtered_by_name_single",
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/CodSpeedHQ/codspeed-rust/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Cargo extension to build & run your codspeed benchmarks",
         homepage: "https://github.com/CodSpeedHQ/codspeed-rust",

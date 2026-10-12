@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stumpwm",
       version: "24.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stumpwm",
           repo: "stumpwm",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postConfigure: "export ASDF_OUTPUT_TRANSLATIONS=$(pwd):$(pwd)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tiling, keyboard driven window manager",
         homepage: "https://stumpwm.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

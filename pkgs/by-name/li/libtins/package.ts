@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libtins";
       const version = "4.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mfontanini",
           repo: "libtins",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -47,7 +47,7 @@ chmod -R a+w googletest
       const doCheck = true;
       const checkTarget = "tests test";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-level, multiplatform C++ network packet sniffing and crafting library",
         homepage: "https://libtins.github.io/",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/mfontanini/libtins/v${version}/CHANGES.md`),
@@ -59,7 +59,7 @@ chmod -R a+w googletest
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

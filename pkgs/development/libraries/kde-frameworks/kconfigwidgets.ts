@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const qtbase = nix.arg($, "qtbase");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kconfigwidgets",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules, kdoctools]),
       buildInputs: nix.thunk(() => [kguiaddons, ki18n, qtbase, qttools]),

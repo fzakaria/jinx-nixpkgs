@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const faust2jaqt = nix.arg($, "faust2jaqt");
   const faust2lv2 = nix.arg($, "faust2lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "faustCompressors",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "magnetophon",
           repo: "faustCompressors",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "echo \"hack out autoComp.dsp due to https://github.com/grame-cncm/faust/407/issues \"\nrm autoComp.dsp\nfor f in *.dsp;\ndo\n  echo \"compiling standalone from\" $f\n  faust2jaqt -time -double -t 99999 $f\ndone\n\nfor f in *.dsp;\ndo\n  echo \"Compiling plugin from\" $f\n  faust2lv2  -time -double -gui -t 99999 $f\ndone\n",
       installPhase: "mkdir -p $out/lib/lv2\nmv *.lv2/ $out/lib/lv2\nmkdir -p $out/bin\nrm newlib.sh\nfor f in $(find . -executable -type f); do\n  cp $f $out/bin/\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of bread and butter compressors",
         homepage: "https://github.com/magnetophon/faustCompressors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

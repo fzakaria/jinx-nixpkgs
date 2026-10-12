@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const extendModules = nix.arg($, "extendModules");
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const imageModules = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     amazon: nix.path(here, "../../maintainers/scripts/ec2/amazon-image.nix"),
     azure: nix.path(here, "../virtualisation/azure-image.nix"),
     cloudstack: nix.path(here, "../../maintainers/scripts/cloudstack/cloudstack-image.nix"),
@@ -51,19 +51,19 @@ export default nix.lambda((args) => (() => {
     "proxmox-lxc": nix.path(here, "../virtualisation/proxmox-lxc.nix"),
     "qemu-efi": nix.path(here, "../virtualisation/disk-image.nix"),
     qemu: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       imports: nix.thunk(() => [nix.path(here, "../virtualisation/disk-image.nix")]),
-      image: nix.thunk(() => ({ __proto__: pos$1, efiSupport: false })),
+      image: nix.thunk(() => ({ [nix.POS]: pos$1, efiSupport: false })),
     })),
     "raw-efi": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       imports: nix.thunk(() => [nix.path(here, "../virtualisation/disk-image.nix")]),
-      image: nix.thunk(() => ({ __proto__: pos$3, format: "raw" })),
+      image: nix.thunk(() => ({ [nix.POS]: pos$3, format: "raw" })),
     })),
     raw: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       imports: nix.thunk(() => [nix.path(here, "../virtualisation/disk-image.nix")]),
-      image: nix.thunk(() => ({ __proto__: pos$5, format: "raw", efiSupport: false })),
+      image: nix.thunk(() => ({ [nix.POS]: pos$5, format: "raw", efiSupport: false })),
     })),
     kubevirt: nix.path(here, "../virtualisation/kubevirt.nix"),
     "vagrant-virtualbox": nix.path(here, "../virtualisation/vagrant-virtualbox-image.nix"),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
     iso: nix.path(here, "../installer/cd-dvd/iso-image.nix"),
     "iso-installer": nix.path(here, "../installer/cd-dvd/installation-cd-base.nix"),
     "sd-card": nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       imports: nix.thunk(() => (() => {
         const module = nix.thunk(() => nix.add(nix.path(here, "../."), nix.str`/installer/sd-card/sd-image-${nix.sel(pkgs, "targetPlatform", "qemuArch")}.nix`));
         return (nix.asBool(nix.builtins.pathExists(module)) ? [module] : nix.builtins.throw(nix.thunk(() => nix.str`The module ${nix.builtins.toString(module)} does not exist.`)));
@@ -80,17 +80,17 @@ export default nix.lambda((args) => (() => {
     })),
     kexec: nix.path(here, "../installer/netboot/netboot-minimal.nix"),
   }));
-  const imageConfigs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (module) => nix.app(extendModules, nix.thunk(() => ({ __proto__: pos$9, modules: nix.thunk(() => [module]) }))), nix.thunk(() => nix.sel(config, "image", "modules"))));
+  const imageConfigs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (module) => nix.app(extendModules, nix.thunk(() => ({ [nix.POS]: pos$9, modules: nix.thunk(() => [module]) }))), nix.thunk(() => nix.sel(config, "image", "modules"))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       system: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         build: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           images: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw")))),
               readOnly: true,
               description: "Different target images generated for this NixOS configuration.\n",
@@ -98,29 +98,29 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       image: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         modules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "deferredModule")))),
             description: "image-specific NixOS Modules used for `system.build.images`.\n",
           })))),
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$21,
-      image: nix.thunk(() => ({ __proto__: pos$16, modules: imageModules })),
+      [nix.POS]: pos$21,
+      image: nix.thunk(() => ({ [nix.POS]: pos$16, modules: imageModules })),
       system: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         build: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           images: nix.thunk(() => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.has(nix.sel(config, "system", "build"), "image")), "`system.build.image` is defined, while `system.build.images` is used.\nThe former will conflict with variants in the latter.\nMaybe you are importing an image-building module into the toplevel?\nAdd it to `image.modules` instead, or adjust priorities manually.\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (nixos) => (() => {
                 const config_1 = nix.thunk(() => nix.attr(nixos, "config"));
                 const from = nix.thunk(() => nix.sel(config_1, "image"));
                 const filePath = nix.thunk(() => nix.attr(from, "filePath"));
                 const builder = nix.thunk(() => nix.selOr(config_1, () => nix.builtins.throw(nix.thunk(() => nix.str`Module for \`system.build.images.${name}\` misses required \`system.build.image\` option.`)), "system", "build", "image"));
                 return nix.app(nix.sel(lib, "recursiveUpdate"), builder, nix.thunk(() => ({
-                    __proto__: pos$18,
-                    passthru: nix.thunk(() => ({ __proto__: pos$17, config: config_1, filePath: filePath })),
+                    [nix.POS]: pos$18,
+                    passthru: nix.thunk(() => ({ [nix.POS]: pos$17, config: config_1, filePath: filePath })),
                   })));
               })(), imageConfigs)))),
         })),

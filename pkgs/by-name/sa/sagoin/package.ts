@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sagoin",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "figsoda",
           repo: "sagoin",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-JM7m/VdaXpUlPOi+N7gue6mlQuxvRFU6++SaSq45Ntg=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "installManPage artifacts/sagoin.1\ninstallShellCompletion artifacts/sagoin.{bash,fish} --zsh artifacts/_sagoin\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, GEN_ARTIFACTS: "artifacts" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GEN_ARTIFACTS: "artifacts" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line submission tool for the UMD CS Submit Server",
         homepage: "https://github.com/figsoda/sagoin",
         changelog: nix.thunk(() => nix.str`https://github.com/figsoda/sagoin/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -46,18 +46,18 @@ export default nix.lambda((args) => (() => {
   const toJSON = nix.thunk(() => nix.attr(from, "toJSON"));
   const from_1 = nix.thunk(() => nix.sel(lib, "trivial"));
   const oldestSupportedReleaseIsAtLeast = nix.thunk(() => nix.attr(from_1, "oldestSupportedReleaseIsAtLeast"));
-  const doubles = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./doubles.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
-  const parse = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./parse.nix")), nix.thunk(() => ({ __proto__: pos$2, lib: lib }))));
-  const inspect = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./inspect.nix")), nix.thunk(() => ({ __proto__: pos$3, lib: lib }))));
-  const platforms = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./platforms.nix")), nix.thunk(() => ({ __proto__: pos$4, lib: lib }))));
-  const examples = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./examples.nix")), nix.thunk(() => ({ __proto__: pos$5, lib: lib }))));
-  const architectures = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./architectures.nix")), nix.thunk(() => ({ __proto__: pos$6, lib: lib }))));
+  const doubles = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./doubles.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
+  const parse = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./parse.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib }))));
+  const inspect = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./inspect.nix")), nix.thunk(() => ({ [nix.POS]: pos$3, lib: lib }))));
+  const platforms = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./platforms.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, lib: lib }))));
+  const examples = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./examples.nix")), nix.thunk(() => ({ [nix.POS]: pos$5, lib: lib }))));
+  const architectures = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./architectures.nix")), nix.thunk(() => ({ [nix.POS]: pos$6, lib: lib }))));
   const rustc_target_env = nix.thunk(() => nix.builtins.import(nix.path(here, "./rustc-target-env.nix")));
   const equals = (a) => (b) => nix.eq(nix.sel(a, "_withoutFunctions"), nix.sel(b, "_withoutFunctions"));
   const functionNames = nix.thunk(() => ["canExecute", "emulator", "emulatorAvailable", "staticEmulatorAvailable"]);
   const ignoredNames = nix.thunk(() => nix.concat(functionNames, ["_withoutFunctions"]));
   const flakeExposed = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./flake-systems.nix")), nix.thunk(() => ({}))));
-  const systemToAttrs = (systemOrArgs) => (nix.asBool(nix.app(isAttrs, systemOrArgs)) ? nix.force(systemOrArgs) : { __proto__: pos$7, system: systemOrArgs });
+  const systemToAttrs = (systemOrArgs) => (nix.asBool(nix.app(isAttrs, systemOrArgs)) ? nix.force(systemOrArgs) : { [nix.POS]: pos$7, system: systemOrArgs });
   const elaborate = (systemOrArgs) => (() => {
     const allArgs = nix.thunk(() => nix.app(systemToAttrs, systemOrArgs));
     const args_1 = nix.thunk(() => nix.builtins.removeAttrs(allArgs, nix.thunk(() => ["parsed", "system", "_withoutFunctions"])));
@@ -68,11 +68,11 @@ export default nix.lambda((args) => (() => {
     })();
     const final = nix.thunk(() => nix.update((() => {
       const from_2 = nix.thunk(() => nix.update({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         gcc: nix.thunk(() => nix.selOr(args_1, () => ({}), "gcc")),
       }, nix.app(nix.sel(platforms, "select"), final)));
       return {
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       _withoutFunctions: nix.thunk(() => nix.builtins.removeAttrs(final, ignoredNames)),
       parsed: nix.thunk(() => nix.app(nix.sel(parse, "mkSystemFromString"), nix.thunk(() => nix.selOr(args_1, () => nix.sel(allArgs, "system"), "config")))),
       system: nix.thunk(() => nix.app(nix.sel(parse, "doubleFromSystem"), nix.thunk(() => nix.sel(final, "parsed")))),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       linker: nix.thunk(() => (nix.asBool(nix.selOr(final, () => false, "useLLVM")) ? "lld" : (nix.asBool(nix.sel(final, "isDarwin")) ? "cctools" : "bfd"))),
       libDir: nix.thunk(() => (nix.asBool(nix.sel(final, "isLinux")) ? (nix.asBool((nix.asBool((nix.asBool(nix.sel(final, "isx86_64")) || nix.asBool(nix.sel(final, "isMips64")))) || nix.asBool(nix.sel(final, "isPower64")))) ? "lib64" : "lib") : null)),
       extensions: nix.thunk(() => nix.attrsDyn({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         staticLibrary: nix.thunk(() => (nix.asBool(nix.sel(final, "isWindows")) ? ".lib" : ".a")),
         library: nix.thunk(() => (nix.asBool(nix.sel(final, "isStatic")) ? nix.sel(final, "extensions", "staticLibrary") : nix.sel(final, "extensions", "sharedLibrary"))),
         executable: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(final, "isWindows")) || nix.asBool(nix.sel(final, "isCygwin")))) ? ".exe" : "")),
@@ -97,9 +97,9 @@ export default nix.lambda((args) => (() => {
       useAndroidPrebuilt: false,
       useiOSPrebuilt: false,
       uname: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         system: nix.thunk(() => nix.selOr({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           linux: "Linux",
           windows: "Windows",
           cygwin: "CYGWIN_NT",
@@ -137,11 +137,11 @@ export default nix.lambda((args) => (() => {
       emulator: (pkgs) => (nix.asBool(nix.app(nix.sel(final, "emulatorAvailable"), pkgs)) ? nix.app(selectEmulator, pkgs) : nix.builtins.throw(nix.thunk(() => nix.str`Don't know how to run ${nix.sel(final, "config")} executables.`))),
     };
     })(), nix.update(nix.app(mapAttrs, (n) => (v) => nix.app(v, nix.thunk(() => nix.sel(final, "parsed"))), nix.thunk(() => nix.sel(inspect, "predicates"))), nix.update(nix.app(mapAttrs, (n) => (v) => nix.app(v, nix.thunk(() => nix.selOr(final, () => "default", "gcc", "arch"))), nix.thunk(() => nix.sel(architectures, "predicates"))), nix.update(args_1, {
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       rust: nix.thunk(() => nix.update(rust, {
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         platform: nix.thunk(() => nix.update(nix.selOr(rust, () => (nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".json", nix.thunk(() => nix.selOr(rust, () => "", "rustcTargetSpec")))) ? nix.app(nix.sel(lib, "importJSON"), nix.thunk(() => nix.sel(rust, "rustcTargetSpec"))) : {}), "platform"), {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           arch: nix.thunk(() => (nix.asBool(nix.has(rust, "platform")) ? nix.sel(rust, "platform", "arch") : (nix.asBool(nix.sel(final, "isAarch32")) ? "arm" : (nix.asBool(nix.sel(final, "isMips64")) ? "mips64" : (nix.asBool(nix.sel(final, "isPower64")) ? "powerpc64" : nix.sel(final, "parsed", "cpu", "name")))))),
           env: nix.thunk(() => (nix.asBool(nix.has(rust, "platform", "env")) ? nix.sel(rust, "platform", "env") : (nix.asBool(nix.has(rustc_target_env, nix.key(nix.sel(final, "rust", "rustcTargetSpec")))) ? nix.sel(rustc_target_env, nix.key(nix.sel(final, "rust", "rustcTargetSpec"))) : ""))),
           os: nix.thunk(() => (nix.asBool(nix.has(rust, "platform")) ? nix.selOr(rust, () => "none", "platform", "os") : (nix.asBool(nix.sel(final, "isDarwin")) ? "macos" : (nix.asBool(nix.sel(final, "isWasi")) ? "wasi" : (nix.asBool((nix.asBool(nix.sel(final, "isWasm")) && nix.asBool(!nix.asBool(nix.sel(final, "isWasi"))))) ? "unknown" : nix.sel(final, "parsed", "kernel", "name")))))),
@@ -152,7 +152,7 @@ export default nix.lambda((args) => (() => {
           vendor: nix.thunk(() => (() => {
             const from_2 = nix.thunk(() => nix.sel(final, "parsed"));
             const vendor = nix.thunk(() => nix.attr(from_2, "vendor"));
-            return nix.selOr(rust, () => nix.selOr({ __proto__: pos$13, w64: "pc" }, () => nix.sel(vendor, "name"), nix.key(nix.sel(vendor, "name"))), "platform", "vendor");
+            return nix.selOr(rust, () => nix.selOr({ [nix.POS]: pos$13, w64: "pc" }, () => nix.sel(vendor, "name"), nix.key(nix.sel(vendor, "name"))), "platform", "vendor");
           })()),
         })),
         rustcTargetSpec: nix.thunk(() => (() => {
@@ -161,7 +161,7 @@ export default nix.lambda((args) => (() => {
           const kernel = nix.thunk(() => nix.attr(from_2, "kernel"));
           const abi = nix.thunk(() => nix.attr(from_2, "abi"));
           const cpu_ = nix.thunk(() => nix.selOr(rust, () => nix.selOr({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               armv7a: "armv7",
               armv7l: "armv7",
               armv6l: "arm",
@@ -180,9 +180,9 @@ export default nix.lambda((args) => (() => {
         isNoStdTarget: nix.thunk(() => nix.app(any, (t) => nix.app(hasInfix, t, nix.thunk(() => nix.sel(final, "rust", "rustcTarget"))), nix.thunk(() => ["-none", "nvptx", "switch", "-uefi"]))),
       })),
       go: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         GOARCH: nix.thunk(() => nix.selOr({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           aarch64: "arm64",
           arm: "arm",
           armv5tel: "arm",
@@ -205,17 +205,17 @@ export default nix.lambda((args) => (() => {
         GOARM: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "intersectLists"), nix.thunk(() => [nix.thunk(() => nix.selOr(final, () => "", "parsed", "cpu", "version"))]), nix.thunk(() => ["5", "6", "7"]))))),
       })),
       node: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         arch: nix.thunk(() => (nix.asBool(nix.sel(final, "isAarch")) ? nix.add("arm", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(final, "is64bit")), "64")) : (nix.asBool(nix.sel(final, "isMips32")) ? nix.add("mips", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(final, "isLittleEndian")), "el")) : (nix.asBool((nix.asBool(nix.sel(final, "isMips64")) && nix.asBool(nix.sel(final, "isLittleEndian")))) ? "mips64el" : (nix.asBool(nix.sel(final, "isPower")) ? nix.add("ppc", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(final, "is64bit")), "64")) : (nix.asBool(nix.sel(final, "isx86_64")) ? "x64" : (nix.asBool(nix.sel(final, "isx86_32")) ? "ia32" : (nix.asBool(nix.sel(final, "isS390x")) ? "s390x" : (nix.asBool(nix.sel(final, "isRiscV64")) ? "riscv64" : (nix.asBool(nix.sel(final, "isLoongArch64")) ? "loong64" : null)))))))))),
         platform: nix.thunk(() => (nix.asBool(nix.sel(final, "isAndroid")) ? "android" : (nix.asBool(nix.sel(final, "isDarwin")) ? "darwin" : (nix.asBool(nix.sel(final, "isFreeBSD")) ? "freebsd" : (nix.asBool(nix.sel(final, "isLinux")) ? "linux" : (nix.asBool(nix.sel(final, "isOpenBSD")) ? "openbsd" : (nix.asBool(nix.sel(final, "isSunOS")) ? "sunos" : (nix.asBool((nix.asBool(nix.sel(final, "isWindows")) || nix.asBool(nix.sel(final, "isCygwin")))) ? "win32" : null)))))))),
       })),
       nim: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         cpu: nix.thunk(() => (nix.asBool(nix.sel(final, "isAarch32")) ? "arm" : (nix.asBool(nix.sel(final, "isAarch64")) ? "arm64" : (nix.asBool(nix.sel(final, "isAlpha")) ? "alpha" : (nix.asBool(nix.sel(final, "isAvr")) ? "avr" : (nix.asBool((nix.asBool(nix.sel(final, "isMips")) && nix.asBool(nix.sel(final, "is32Bit")))) ? "mips" : (nix.asBool((nix.asBool(nix.sel(final, "isMips")) && nix.asBool(nix.sel(final, "is64Bit")))) ? "mips64" : (nix.asBool(nix.sel(final, "isMsp430")) ? "msp430" : (nix.asBool((nix.asBool(nix.sel(final, "isPower")) && nix.asBool(nix.sel(final, "is32bit")))) ? "powerpc" : (nix.asBool((nix.asBool(nix.sel(final, "isPower")) && nix.asBool(nix.sel(final, "is64bit")))) ? "powerpc64" : (nix.asBool((nix.asBool(nix.sel(final, "isRiscV")) && nix.asBool(nix.sel(final, "is64bit")))) ? "riscv64" : (nix.asBool(nix.sel(final, "isSparc")) ? "sparc" : (nix.asBool(nix.sel(final, "isx86_32")) ? "i386" : (nix.asBool(nix.sel(final, "isx86_64")) ? "amd64" : null)))))))))))))),
         os: nix.thunk(() => (nix.asBool(nix.sel(final, "isAndroid")) ? "Android" : (nix.asBool(nix.sel(final, "isDarwin")) ? "MacOSX" : (nix.asBool(nix.sel(final, "isFreeBSD")) ? "FreeBSD" : (nix.asBool(nix.sel(final, "isGenode")) ? "Genode" : (nix.asBool(nix.sel(final, "isLinux")) ? "Linux" : (nix.asBool(nix.sel(final, "isNetBSD")) ? "NetBSD" : (nix.asBool(nix.sel(final, "isNone")) ? "Standalone" : (nix.asBool(nix.sel(final, "isOpenBSD")) ? "OpenBSD" : (nix.asBool(nix.sel(final, "isWindows")) ? "Windows" : (nix.asBool(nix.sel(final, "isiOS")) ? "iOS" : null))))))))))),
       })),
       swift: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         arch: nix.thunk(() => nix.sel(final, "uname", "processor")),
         platform: nix.thunk(() => (nix.asBool(nix.sel(final, "isMacOS")) ? "macosx" : (nix.asBool(nix.sel(final, "isiOS")) ? "iphoneos" : (nix.asBool(nix.sel(final, "isLinux")) ? "linux" : (nix.asBool(nix.sel(final, "isWindows")) ? "windows" : null))))),
         triple: nix.thunk(() => (nix.asBool(nix.sel(final, "isDarwin")) ? nix.str`${nix.sel(final, "swift", "arch")}-${nix.sel(final, "parsed", "vendor", "name")}-${nix.sel(final, "swift", "platform")}${nix.sel(final, "darwinMinVersion")}` : nix.sel(final, "config"))),
@@ -232,7 +232,7 @@ export default nix.lambda((args) => (() => {
     return nix.force(final);
   })();
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     architectures: architectures,
     doubles: doubles,
     elaborate: elaborate,

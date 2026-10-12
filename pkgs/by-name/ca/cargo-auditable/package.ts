@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const makeRustPlatform = nix.arg($, "makeRustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   const rustPlatform = nix.thunk(() => nix.app(makeRustPlatform, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       rustc: nix.thunk(() => nix.attr(buildPackages, "rustc")),
-      cargo: nix.thunk(() => nix.app(nix.sel(buildPackages, "cargo", "override"), nix.thunk(() => ({ __proto__: pos$1, auditable: false })))),
+      cargo: nix.thunk(() => nix.app(nix.sel(buildPackages, "cargo", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, auditable: false })))),
     }))));
   const auditableBuilder = nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder.nix"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       rustPlatform: rustPlatform,
       "auditable-bootstrap": bootstrap,
     }))));
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const hash = "sha256-0VONJCv/msLcGenItWMLJ7DH79RTD6vsU9gX/nphh1g=";
   const cargoHash = "sha256-/iAYib+xDQSJ8B559/V7b994ErSUGsPSDx64jFF5B6I=";
   const bootstrap = nix.thunk(() => nix.app(auditableBuilder, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: version,
       hash: hash,
       cargoHash: cargoHash,
@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
       auditable: false,
     }))));
   return nix.app(auditableBuilder, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: version,
       hash: hash,
       cargoHash: cargoHash,
       auditable: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     })));

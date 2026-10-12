@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tt-rss-plugin-ff-instagram",
       version: "0-unstable-2019-01-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wltb",
           repo: "ff_instagram",
           rev: "0366ffb18c4d490c8fbfba2f5f3367a5af23cfe8",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir -p $out/ff_instagram\n\ncp *.php $out/ff_instagram\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: true,
         description: "Plugin for Tiny Tiny RSS that allows to fetch posts from Instagram user sites",
         longDescription: "Plugin for Tiny Tiny RSS that allows to fetch posts from Instagram user sites.\n\nThe name of the plugin in TT-RSS is 'ff_instagram'.\n",

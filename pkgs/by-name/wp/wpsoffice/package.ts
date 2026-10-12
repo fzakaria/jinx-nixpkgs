@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wpsoffice";
       const version = pkgVersion;
       const src = nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.str`wps-office_${version}.XA_amd64.deb`), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           outputHashMode: "recursive",
           outputHashAlgo: "sha256",
           outputHash: hash,
@@ -94,7 +94,7 @@ mkdir -p "$out/lib"
 ln -s "${nix.app(nix.sel(lib, "getLib"), libxml2)}/lib/libxml2.so" "$out/lib/libxml2.so.2"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Office suite, formerly Kingsoft Office",
         homepage: "https://www.wps.com",
         platforms: nix.thunk(() => ["x86_64-linux"]),
@@ -115,7 +115,7 @@ ln -s "${nix.app(nix.sel(lib, "getLib"), libxml2)}/lib/libxml2.so" "$out/lib/lib
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

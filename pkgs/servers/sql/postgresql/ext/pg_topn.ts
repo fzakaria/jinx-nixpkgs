@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const pname = "pg_topn";
       const version = "2.7.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "citusdata",
           repo: "postgresql-topn",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-cQW3aGCN0BZB0gmwnUtQHz+Rjt1V38eGXsTNNm9o28U=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Efficient querying of 'top values' for PostgreSQL",
         homepage: "https://github.com/citusdata/postgresql-topn",
         changelog: nix.thunk(() => nix.str`https://github.com/citusdata/postgresql-topn/raw/v${version}/CHANGELOG.md`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(postgresql, "meta", "platforms")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=pg_topn.ts.map

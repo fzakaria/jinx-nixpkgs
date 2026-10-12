@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const bubblewrap = nix.arg($, "bubblewrap");
   nix.assert_(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08.0"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/tools/ocaml/opam/default.nix:14:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opam",
       version: "2.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml/opam/releases/download/${nix.sel(finalAttrs, "version")}/opam-full-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-s2I4CVZ/Ge1rXWebjHu8C97JQYv/Sodf8HmdRG2FVcM=",
         })))),
@@ -42,7 +42,7 @@ $out/bin/opam-installer --prefix=$installer opam-installer.install
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Package manager for OCaml",
         homepage: "https://opam.ocaml.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/ocaml/opam/raw/${nix.sel(finalAttrs, "version")}/CHANGES`),

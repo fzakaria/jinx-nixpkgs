@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const zip = nix.arg($, "zip");
   const extraRuntimeDeps = nix.argOr($, "extraRuntimeDeps", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "eaglemode",
       version: "0.96.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/eaglemode/eaglemode-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-AHeupgEnyQylRWFDrPeo4b0mNONqG+6QwWnRpYknqOQ=",
         })))),
@@ -93,7 +93,7 @@ runHook postInstall
       })()),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "eaglemode",
             exec: "eaglemode",
             icon: "eaglemode",
@@ -103,15 +103,15 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://eaglemode.sourceforge.net/download.html",
             extraRegex: "(?!.*(x86_64|setup64|livecd|amd64)).*",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://eaglemode.sourceforge.net",
         description: "Zoomable User Interface",
         changelog: "https://eaglemode.sourceforge.net/ChangeLog.html",

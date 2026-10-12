@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lmdb";
       const version = "0.9.36";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.openldap.org",
           owner: "openldap",
           repo: "openldap",
@@ -54,7 +54,7 @@ EOF
 ln -s lmdb.pc "$dev/lib/pkgconfig/liblmdb.pc"
 `));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightning memory-mapped database",
         longDescription: "LMDB is an ultra-fast, ultra-compact key-value embedded data store\ndeveloped by Symas for the OpenLDAP Project. It uses memory-mapped files,\nso it has the read performance of a pure in-memory database while still\noffering the persistence of standard disk-based databases, and is only\nlimited to the size of the virtual address space.\n",
         homepage: "https://symas.com/lmdb/",
@@ -70,7 +70,7 @@ ln -s lmdb.pc "$dev/lib/pkgconfig/liblmdb.pc"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

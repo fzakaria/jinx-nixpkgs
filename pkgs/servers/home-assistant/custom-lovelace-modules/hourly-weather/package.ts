@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
       const pname = "hourly-weather";
       const version = "7.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "decompil3d",
           repo: "lovelace-hourly-weather",
           rev: version,
           hash: "sha256-Iy2PbGUe6ygMI6HzmlgLhK5jtnME5U5zIxt+6+sw0aY=",
         }))));
       const npmDepsHash = "sha256-+tBcLc8YDvyfqyATy9NBblmqgZUsErNk0+mleqEEOdU=";
-      const env = nix.thunk(() => ({ __proto__: pos$2, CYPRESS_INSTALL_BINARY: "0" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CYPRESS_INSTALL_BINARY: "0" }));
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp dist/hourly-weather.js $out\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Hourly weather card for Home Assistant. Visualize upcoming weather conditions as a colored horizontal bar",
         homepage: "https://github.com/decompil3d/lovelace-hourly-weather",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$4, pname, version, src, npmDepsHash, env, installPhase, meta };
+      return { [nix.POS]: pos$4, pname, version, src, npmDepsHash, env, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

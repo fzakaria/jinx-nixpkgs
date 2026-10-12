@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const addons = nix.argOr($, "addons", () => []);
   const extraLdLibraries = nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.map((x) => nix.selOr(x, () => [], "extraLdLibraries"), addons))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`fcitx5-with-addons-${nix.sel(fcitx5, "version")}`),
       paths: nix.thunk(() => nix.concat([
         fcitx5,

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const scikit_learn = nix.arg($, "scikit-learn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tadasets",
       version: "0.2.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-C+l19J0PHjZTlzAhXbojicaOyr/gjN8fuH7cLyb449w=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [numpy, matplotlib]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, scipy, scikit_learn]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Great data sets for Topological Data Analysis",
         homepage: "https://tadasets.scikit-tda.org",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-tda/tadasets/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

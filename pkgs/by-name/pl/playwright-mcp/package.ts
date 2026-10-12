@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "playwright-mcp";
       const version = "0.0.80";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Microsoft",
           repo: "playwright-mcp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,9 +40,9 @@ wrapProgram $out/bin/playwright-mcp \\
   --run 'if [ -z "$PLAYWRIGHT_MCP_USER_DATA_DIR" ]; then export PLAYWRIGHT_MCP_ISOLATED=1; fi'
 `);
       const dontNpmBuild = true;
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/Microsoft/playwright-mcp/releases/tag/v${version}`),
         description: "Playwright MCP server",
         homepage: "https://github.com/Microsoft/playwright-mcp",
@@ -51,7 +51,7 @@ wrapProgram $out/bin/playwright-mcp \\
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kalekseev"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

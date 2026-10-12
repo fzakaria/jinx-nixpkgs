@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const python3Packages = nix.arg($, "python3Packages");
   const w = nix.withScope(python3Packages, null);
-  return nix.app(nix.sel(nix.app(nix.lookup(w, "toPythonApplication"), nix.thunk(() => nix.lookup(w, "deptry"))), "overrideAttrs"), (_) => ({ __proto__: pos$1, __structuredAttrs: true }));
+  return nix.app(nix.sel(nix.app(nix.lookup(w, "toPythonApplication"), nix.thunk(() => nix.lookup(w, "deptry"))), "overrideAttrs"), (_) => ({ [nix.POS]: pos$1, __structuredAttrs: true }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

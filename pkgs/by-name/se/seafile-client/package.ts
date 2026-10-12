@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libsearpc = nix.arg($, "libsearpc");
   const withShibboleth = nix.argOr($, "withShibboleth", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "seafile-client",
       version: "9.0.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "haiwen",
           repo: "seafile-client",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix_build_with_QT6.patch",
             url: "https://aur.archlinux.org/cgit/aur.git/plain/fix_build_with_QT6.diff?h=seafile-client&id=8bbd6e5017f03dbb368603b4313738b0d783ca2a",
             hash: "sha256-N1fepqjTm/M17+TgwNTUecP/wGVlBuZEtTezFgJEeVM=",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [seafile_shared]))}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/haiwen/seafile-client",
         changelog: nix.thunk(() => nix.str`https://github.com/haiwen/seafile-client/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Desktop client for Seafile, the Next-generation Open Source Cloud Storage",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "seafile-applet",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     }));

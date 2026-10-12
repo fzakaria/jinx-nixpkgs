@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "allure",
       version: "2.46.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/allure-framework/allure2/releases/download/${nix.sel(finalAttrs, "version")}/allure-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-N0KBZPMQyNE3z90sOiXQSbIzJh3asT4b1N/XYntcv40=",
         })))),
@@ -38,7 +38,7 @@ makeWrapper $out/share/${nix.sel(finalAttrs, "meta", "mainProgram")}-${nix.sel(f
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://allurereport.org/",
         description: "Flexible, lightweight multi-language test reporting tool",
         longDescription: "Allure Report is a flexible, lightweight multi-language test reporting\ntool providing clear graphical reports and allowing everyone involved\nin the development process to extract the maximum of information from\nthe everyday testing process.\n",

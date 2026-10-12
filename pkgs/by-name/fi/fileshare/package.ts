@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const libmicrohttpd = nix.arg($, "libmicrohttpd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fileshare",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.tkolb.de",
           owner: "Public",
           repo: "fileshare",
@@ -34,7 +34,7 @@ substituteInPlace Makefile \\
   --replace-fail gcc "${nix.sel(stdenv, "cc", "targetPrefix")}cc"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, git]),
@@ -42,7 +42,7 @@ substituteInPlace Makefile \\
       makeFlags: nix.thunk(() => ["BUILD=release"]),
       installPhase: "mkdir -p $out/bin\ncp bin/release/fileshare $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Small HTTP Server for quickly sharing files over the network",
         longDescription: "Fileshare is a simple tool for sharing the contents of a directory via a webserver and optionally allowing uploads.",
         homepage: "https://git.tkolb.de/Public/fileshare",

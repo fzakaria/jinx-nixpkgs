@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "projectm",
       version: "3.1.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "projectM-visualizer",
           repo: "projectM",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-qt", "--enable-sdl"]),
       fixupPhase: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "# NOTE: 2019-10-05: Upstream inserts the src path buring build into ELF rpath, so must delete it out\n# upstream report: https://github.com/projectM-visualizer/projectm/issues/245\nfor entry in $out/bin/* ; do\n  patchelf --set-rpath \"$(patchelf --print-rpath $entry | tr ':' '\\n' | grep -v 'src/libprojectM' | tr '\\n' ':')\" \"$entry\"\ndone\n"), "wrapQtApp $out/bin/projectM-pulseaudio\nrm $out/bin/projectM-unittest\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/projectM-visualizer/projectm",
         description: "Cross-platform Milkdrop-compatible music visualizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

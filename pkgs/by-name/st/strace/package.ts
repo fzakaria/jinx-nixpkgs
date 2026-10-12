@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const elfutils = nix.arg($, "elfutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "strace",
       version: "7.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://strace.io/files/${nix.sel(finalAttrs, "version")}/strace-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-S95iRpJokNzugk9uasQqBnUvR9d+UJfYbjwNbUtwn+U=",
         })))),
@@ -38,16 +38,16 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       configureFlags: nix.thunk(() => nix.concat(["--enable-mpers=check"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "CFLAGS=-Wno-unused-function"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/strace/strace.git",
             "rev-prefix": "v",
           })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://strace.io/",
         description: "System call tracer for Linux",
         license: nix.thunk(() => (() => {

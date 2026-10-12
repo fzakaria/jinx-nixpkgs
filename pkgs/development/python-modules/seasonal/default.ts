@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "welch",
           repo: "seasonal",
           rev: "2a2396014d46283d0c7aff34cde5dafb6c462c58",
@@ -34,21 +34,21 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const propagatedBuildInputs = nix.thunk(() => [numpy, scipy]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         csv: nix.thunk(() => [pandas]),
         plot: nix.thunk(() => [matplotlib]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["seasonal", "seasonal.trend", "seasonal.periodogram"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Robustly estimate trend and periodicity in a timeseries",
         homepage: "https://github.com/welch/seasonal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

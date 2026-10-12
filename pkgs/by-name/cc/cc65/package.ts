@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cc65";
       const version = "2.19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cc65",
           repo: "cc65",
           rev: nix.thunk(() => nix.str`V${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const makeFlags = nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://cc65.github.io/",
         description: "C compiler for processors of 6502 family",
         longDescription: "cc65 is a complete cross development package for 65(C)02 systems,\nincluding a powerful macro assembler, a C compiler, linker, librarian and\nseveral other tools.\n\ncc65 has C and runtime library support for many of the old 6502 machines,\nincluding the following Commodore machines:\n\n- VIC20\n- C16/C116 and Plus/4\n- C64\n- C128\n- CBM 510 (aka P500)\n- the 600/700 family\n- newer PET machines (not 2001).\n- the Apple ][+ and successors.\n- the Atari 8-bit machines.\n- the Atari 2600 console.\n- the Atari 5200 console.\n- GEOS for the C64, C128 and Apple //e.\n- the Bit Corporation Gamate console.\n- the NEC PC-Engine (aka TurboGrafx-16) console.\n- the Nintendo Entertainment System (NES) console.\n- the Watara Supervision console.\n- the VTech Creativision console.\n- the Oric Atmos.\n- the Oric Telestrat.\n- the Lynx console.\n- the Ohio Scientific Challenger 1P.\n\nThe libraries are fairly portable, so creating a version for other 6502s\nshouldn't be too much work.\n",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

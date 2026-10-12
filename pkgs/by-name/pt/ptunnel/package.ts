@@ -18,27 +18,27 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const libpcap = nix.arg($, "libpcap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ptunnel",
       version: "0.72",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.cs.uit.no/~daniels/PingTunnel/PingTunnel-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-sxj3qn2IkYtiadBUp+JvBPl9iHD0e9Sadsssmcc0B6Q=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/alteholz/ptunnel/-/raw/7475a32bc401056aeeb1b99e56b9ae5f1ee9c960/debian/patches/fix_minus_chars_in_man.patch",
             hash: "sha256-DcMsCZczO+SxOiQuFbdSJn5UH5E4TVf3+vupJ4OurVg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://salsa.debian.org/alteholz/ptunnel/-/raw/7475a32bc401056aeeb1b99e56b9ae5f1ee9c960/debian/patches/fix_typo.diff",
             hash: "sha256-9cdOCfr2r9FnTmxJwvoClW5uf27j05zWQLykahKMJQg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://salsa.debian.org/alteholz/ptunnel/-/raw/1dbf9b69507e19c86ac539fd8e3c60fc274717b3/debian/patches/memset-fix.patch",
             hash: "sha256-dYbuMM0/ZUgi3OxukBIp5rKhlwAjGu7cl/3w3sWr/xU=",
           })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["prefix=$(out)", "CC=cc"]),
       buildInputs: nix.thunk(() => [libpcap]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tool for reliably tunneling TCP connections over ICMP echo request and reply packets",
         homepage: "https://www.cs.uit.no/~daniels/PingTunnel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

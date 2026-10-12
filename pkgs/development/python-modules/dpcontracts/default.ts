@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dpcontracts",
       version: "0.6.0-unstable-2018-11-20",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deadpixi",
           repo: "contracts",
           rev: "45cb8542272c2ebe095c6efb97aa9407ddc8bf3c",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["README.rst"]),
       pythonImportsCheck: nix.thunk(() => ["dpcontracts"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides a collection of decorators that makes it easy to write software using contracts",
         homepage: "https://github.com/deadpixi/contracts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

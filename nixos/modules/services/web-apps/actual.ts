@@ -45,69 +45,69 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "actual"));
   const formatType = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         actual: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(mkEnableOption, "actual, a privacy focused app for managing your finances")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "actual-server", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Whether to open the firewall for the specified port.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "User account under which Actual runs.\n\nIf null is specified (default), a temporary user will be created by systemd. Otherwise won't be automatically created by the service.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Group account under which Actual runs.\n\nIf null is specified (default), a temporary user will be created by systemd. Otherwise won't be automatically created by the service.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: nix.thunk(() => ({})),
               description: "Server settings, refer to [the documentation](https://actualbudget.org/docs/config/) for available options.\nYou can specify secret values in this configuration by setting `somevalue._secret = \"/path/to/file\"` instead of setting `somevalue` directly.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   freeformType: nix.thunk(() => nix.sel(formatType, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     hostname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         description: "The address to listen on",
                         default: "::",
                       })))),
                     port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(types, "port")),
                         description: "The port to listen on",
                         default: 3000n,
                       })))),
                     dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "/var/lib/actual",
                         description: "Directory under which Actual runs and saves its data.\n\nChanging this after you already have a working instance may make Actual fail to start, even if you move all files in the data dir. If migration is needed, refer to [this comment](https://github.com/actualbudget/actual/issues/3957#issuecomment-2567076794) for a fix.\n",
                       })))),
                     serverFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: nix.thunk(() => nix.str`${nix.sel(cfg, "settings", "dataDir")}/server-files`),
                         defaultText: "${cfg.settings.dataDir}/server-files",
                         description: "The server will put an account.sqlite file in this directory, which will contain the (hashed) server password, a list of all the budget files the server knows about, and the active session token (along with anything else the server may want to store in the future).\n",
                       })))),
                     userFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: nix.thunk(() => nix.str`${nix.sel(cfg, "settings", "dataDir")}/user-files`),
                         defaultText: "${cfg.settings.dataDir}/user-files",
@@ -120,29 +120,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         networking: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           firewall: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "port"))]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             actual: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "Actual server, a local-first personal finance app",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              environment: nix.thunk(() => ({ __proto__: pos$17, ACTUAL_CONFIG_PATH: "/run/actual/config.json" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$17, ACTUAL_CONFIG_PATH: "/run/actual/config.json" })),
               preStart: nix.thunk(() => nix.str`# Generate config including secret values.
 ${nix.app(nix.sel(utils, "genJqSecretsReplacementSnippet"), nix.thunk(() => nix.sel(cfg, "settings")), "/run/actual/config.json")}
 `),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 ExecStart: nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))),
                 StateDirectory: "actual",
                 RuntimeDirectory: "actual",
@@ -177,17 +177,17 @@ ${nix.app(nix.sel(utils, "genJqSecretsReplacementSnippet"), nix.thunk(() => nix.
                 SystemCallFilter: nix.thunk(() => ["@system-service", "@pkey"]),
                 UMask: "0077",
               }, (nix.asBool(!nix.eq(nix.sel(cfg, "user"), null)) ? {
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 DynamicUser: false,
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
-              } : { __proto__: pos$20, DynamicUser: true, User: "actual", Group: "actual" }))),
+              } : { [nix.POS]: pos$20, DynamicUser: true, User: "actual", Group: "actual" }))),
             })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       maintainers: nix.thunk(() => [
         nix.thunk(() => nix.sel(lib, "maintainers", "oddlama")),
         nix.thunk(() => nix.sel(lib, "maintainers", "patrickdag")),

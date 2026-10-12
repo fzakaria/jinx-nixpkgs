@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "etlegacy-assets",
       version: "2.86.1",
       srcs: nix.thunk(() => (() => {
@@ -26,24 +26,24 @@ export default nix.lambda((args) => (() => {
           const asset = nix.arg($_1, "asset");
           const hash = nix.arg($_1, "hash");
           return nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://mirror.etlegacy.com/etmain/${asset}`),
               hash: hash,
             })));
         })(), formals$2);
         return [
           nix.thunk(() => nix.app(fetchAsset, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               asset: "pak0.pk3",
               hash: "sha256-cSlmsg4GUj/oFBlRZQDkmchrK0/sgjhW3b0zP8s9JuU=",
             })))),
           nix.thunk(() => nix.app(fetchAsset, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               asset: "pak1.pk3",
               hash: "sha256-VhD9dJAkQFtEJafOY5flgYe5QdIgku8R1IRLQn31Pl0=",
             })))),
           nix.thunk(() => nix.app(fetchAsset, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               asset: "pak2.pk3",
               hash: "sha256-pIq3SaGhKrTZE3KGsfI9ZCwp2lmEWyuvyPZOBSzwbz4=",
             })))),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       unpackCmd: "cp -r $curSrc ${curSrc##*-}",
       installPhase: "runHook preInstall\nmkdir -p $out/lib/etlegacy/etmain\ncp -r . $out/lib/etlegacy/etmain/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "ET: Legacy assets only",
         homepage: "https://etlegacy.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-nc-sa-30")),

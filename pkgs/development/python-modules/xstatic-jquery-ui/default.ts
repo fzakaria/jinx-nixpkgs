@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const setuptools_80 = nix.arg($, "setuptools_80");
   const xstatic_jquery = nix.arg($, "xstatic-jquery");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xstatic-jquery-ui",
       version: "1.13.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "XStatic-jquery-ui",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Npfl8O81W49KHHJCIVkmg8LbAxk1y7V7RiJO70dL0pQ=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [xstatic_jquery]),
       pythonImportsCheck: nix.thunk(() => ["xstatic.pkg.jquery_ui"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://jqueryui.com/",
         description: "jquery-ui packaged static files for python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

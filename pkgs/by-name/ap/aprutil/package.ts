@@ -32,17 +32,17 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(bdbSupport) || nix.asBool(!nix.eq(db, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ap/aprutil/package.nix:22:1");
   nix.assert_((!nix.asBool(ldapSupport) || nix.asBool(!nix.eq(openldap, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ap/aprutil/package.nix:23:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "apr-util",
       version: "1.6.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/apr/apr-util-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-lt4d1vagR20tLnlkkm2MHdw7sOIQ4bGBLTulpFSjkuI=",
         })))),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./fix-libxcrypt-build.patch")], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.path(here, "./include-static-dependencies.patch")))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_LINK: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lcrypt"]))),
       })),
       outputs: nix.thunk(() => ["out", "dev"]),
@@ -73,13 +73,13 @@ wrapProgram $dev/bin/apu-1-config --prefix PATH : "${gnused}/bin"
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         sslSupport: sslSupport,
         bdbSupport: bdbSupport,
         ldapSupport: ldapSupport,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://apr.apache.org/",
         description: "Companion library to APR, the Apache Portable Runtime",
         mainProgram: "apu-1-config",

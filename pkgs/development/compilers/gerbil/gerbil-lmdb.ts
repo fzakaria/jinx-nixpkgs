@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lmdb = nix.arg($, "lmdb");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     pname: "gerbil-lmdb",
     version: "unstable-2023-09-23",
     "git-version": "6d64813",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
     "version-path": "",
     softwareName: "Gerbil-LMDB",
     "pre-src": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fun: fetchFromGitHub,
       owner: "mighty-gerbils",
       repo: "gerbil-lmdb",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       sha256: "12kywxx4qjxchmhcd66700r2yfqjnh12ijgqnpqaccvigi07iq9b",
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "LMDB bindings for Gerbil",
       homepage: "https://github.com/mighty-gerbils/gerbil-lmdb",
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

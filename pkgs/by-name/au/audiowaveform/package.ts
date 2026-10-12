@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "audiowaveform";
       const version = "1.10.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bbc",
           repo: "audiowaveform",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
 `);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ program to generate waveform data and render waveform images from audio files",
         longDescription: "audiowaveform is a C++ command-line application that generates waveform data from either MP3, WAV, FLAC, or Ogg Vorbis format audio files.\nWaveform data can be used to produce a visual rendering of the audio, similar in appearance to audio editing applications.\n",
         homepage: "https://github.com/bbc/audiowaveform",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "audiowaveform",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

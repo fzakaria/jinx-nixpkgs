@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lv_font_conv";
       const version = "1.5.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lvgl",
           repo: "lv_font_conv",
           rev: version,
@@ -27,18 +27,18 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-nNMcOL3uu77e4qLoWGhtBgNQXxeEU+kUuKAc25a8fUc=";
       const preBuild = "patchShebangs support/build_web.js\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Converts TTF/WOFF fonts to compact bitmap format",
         mainProgram: "lv_font_conv",
         homepage: "https://lvgl.io/tools/fontconverter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { __proto__: pos$4, pname, version, src, npmDepsHash, preBuild, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, npmDepsHash, preBuild, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

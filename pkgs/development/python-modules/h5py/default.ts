@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const pname = "h5py";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-oNuq15aEDMqmekwUSg0MgIAHPDTHbVppQdaBhnjvJzg=",
         }))));
       const pythonRelaxDeps = nix.thunk(() => ["mpi4py"]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         HDF5_DIR: nix.thunk(() => nix.str`${hdf5}`),
         HDF5_MPI: nix.thunk(() => (nix.asBool(mpiSupport) ? "ON" : "OFF")),
         H5PY_SETUP_REQUIRES: 0n,
@@ -55,9 +55,9 @@ ${nix.app(nix.sel(lib, "optionalString"), mpiSupport, "export OMPI_MCA_rmaps_bas
       const preCheck = "cd $out\n";
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), mpiSupport, nix.thunk(() => ["TestPageBuffering"])));
       const pythonImportsCheck = nix.thunk(() => ["h5py"]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, hdf5: hdf5 }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, hdf5: hdf5 }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/h5py/h5py/blob/${version}/docs/whatsnew/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}.rst`),
         description: "Pythonic interface to the HDF5 binary data format",
         homepage: "http://www.h5py.org/",
@@ -68,7 +68,7 @@ ${nix.app(nix.sel(lib, "optionalString"), mpiSupport, "export OMPI_MCA_rmaps_bas
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version,
         pname,
         pyproject,

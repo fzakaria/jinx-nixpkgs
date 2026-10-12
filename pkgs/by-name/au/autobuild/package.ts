@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const rsync = nix.arg($, "rsync");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "autobuild",
       version: "5.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/autobuild/autobuild-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0gv7g61ja9q9zg1m30k4snqwwy1kq7b4df6sb7d2qra7kbdq8af1",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [perl, openssh, rsync]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Continuous integration tool",
         longDescription: "Autobuild is a package that process output from building\nsoftware, primarily focused on packages using Autoconf and\nAutomake, and then generate a HTML summary file, containing\nlinks to each build log.\n\nAutobuild can also help you automate building your project on\nmany systems concurrently.  Users with accounts on the\nSourceForge compile farms will be able to invoke a parallel\nbuild of their Autoconf/Automake based software, and produce a\nsummary of the build status, after reading the manual.\n",
         homepage: "https://josefsson.org/autobuild/",

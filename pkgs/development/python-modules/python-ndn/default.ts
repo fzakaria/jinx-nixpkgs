@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "named-data",
           repo: "python-ndn",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["lark"]);
       const pythonImportsCheck = nix.thunk(() => ["ndn"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "NDN client library with AsyncIO support",
         homepage: "https://github.com/named-data/python-ndn",
         changelog: nix.thunk(() => nix.str`https://github.com/named-data/python-ndn/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

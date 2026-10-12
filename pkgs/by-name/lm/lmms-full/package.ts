@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lmms = nix.arg($, "lmms");
   return nix.app(nix.sel(lmms, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       withSoundio: true,
       withPortAudio: true,
       withSndio: true,

@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nteract",
           repo: "papermill",
           tag: version,
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         tqdm,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => [aiohttp]))));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         azure: nix.thunk(() => [azure_datalake_store, azure_identity, azure_storage_blob]),
         gcs: nix.thunk(() => [gcsfs]),
         github: nix.thunk(() => [pygithub]),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Parametrize and run Jupyter and interact with notebooks",
         homepage: "https://github.com/nteract/papermill",
         changelog: "https://papermill.readthedocs.io/en/latest/changelog.html",
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "papermill",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

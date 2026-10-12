@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const name = "appimage-run";
   const fhsArgs = nix.thunk(() => nix.sel(appimageTools, "defaultFhsEnvArgs"));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: name,
       exec: name,
       desktopName: name,
@@ -30,17 +30,17 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["PackageManager", "Utility"]),
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), fhsArgs, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: name,
         targetPkgs: (pkgs) => nix.concat([nix.thunk(() => nix.sel(appimageTools, "appimage-exec"))], nix.concat(nix.app(nix.sel(fhsArgs, "targetPkgs"), pkgs), nix.app(extraPkgs, pkgs))),
         runScript: "appimage-exec.sh",
         extraInstallCommands: nix.thunk(() => nix.str`cp --recursive "${desktopItem}/share" "$out/"
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$3,
-          tests: nix.thunk(() => ({ __proto__: pos$2, "appimage-run": appimage_run_tests })),
+          [nix.POS]: pos$3,
+          tests: nix.thunk(() => ({ [nix.POS]: pos$2, "appimage-run": appimage_run_tests })),
         })),
-        meta: nix.thunk(() => ({ __proto__: pos$4, mainProgram: "appimage-run" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$4, mainProgram: "appimage-run" })),
       })))));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

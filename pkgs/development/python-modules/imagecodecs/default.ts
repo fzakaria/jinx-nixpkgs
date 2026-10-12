@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cgohlke",
           repo: "imagecodecs",
           tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["imagecodecs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Image transformation, compression, and decompression codecs",
         homepage: "https://github.com/cgohlke/imagecodecs",
         changelog: nix.thunk(() => nix.str`https://github.com/cgohlke/imagecodecs/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version: version_1,
         pyproject,

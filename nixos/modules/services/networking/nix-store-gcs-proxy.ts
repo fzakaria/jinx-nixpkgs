@@ -30,25 +30,25 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       options: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: true,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             example: true,
             description: "Whether to enable proxy for this bucket",
           })))),
         bucketName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: name,
             example: "my-bucket-name",
             description: "Name of Google storage bucket",
           })))),
         address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             example: "localhost:3000",
             description: "The address of the proxy.",
@@ -59,13 +59,13 @@ export default nix.lambda((args) => (() => {
   const enabledProxies = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => nix.sel(v, "enable"), nix.thunk(() => nix.sel(config, "services", "nix-store-gcs-proxy"))));
   const mapProxies = (function$) => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), function$, enabledProxies)));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "nix-store-gcs-proxy": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), opts)))),
             default: nix.thunk(() => ({})),
             description: "An attribute set describing an HTTP to GCS proxy that allows us to use GCS\nbucket via HTTP protocol.\n",
@@ -73,17 +73,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       systemd: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         services: nix.thunk(() => nix.app(mapProxies, (name) => (cfg) => nix.attrsDyn({}, [
             [nix.str`nix-store-gcs-proxy-${name}`, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "A HTTP nix store that proxies requests to Google Storage",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               startLimitIntervalSec: 10n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 RestartSec: 5n,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "nix-store-gcs-proxy")}/bin/nix-store-gcs-proxy \\
   --bucket-name ${nix.sel(cfg, "bucketName")} \\
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(nix.lookup(w, "maintainers"), "mrkkrp"))]),
     })),
   };

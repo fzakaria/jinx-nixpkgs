@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const hasVPrefix = (ver) => nix.eq(nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "stringToCharacters"), ver)), 0n), "v");
   const k3sVersionSet = nix.thunk(() => (nix.asBool(!nix.eq(k3sVersion, null)) ? (nix.asBool(nix.app(hasVPrefix, k3sVersion)) ? nix.builtins.throw("k3sVersion should not have a v prefix") : true) : false));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "k3d",
       version: "5.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "k3d-io",
           repo: "k3d",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,9 +49,9 @@ $out/bin/k3d --help
 $out/bin/k3d --version | grep -e "k3d version v${nix.sel(finalAttrs, "version")}" ${nix.app(nix.sel(lib, "optionalString"), k3sVersionSet, nix.thunk(() => nix.str`-e "k3s version v${k3sVersion}"`))}
 runHook postInstallCheck
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/k3d-io/k3d/",
         changelog: nix.thunk(() => nix.str`https://github.com/k3d-io/k3d/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Helper to run k3s (Lightweight Kubernetes. 5 less than k8s) in a docker container",

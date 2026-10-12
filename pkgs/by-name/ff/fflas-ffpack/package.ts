@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fflas-ffpack";
       const version = "2.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linbox-team",
           repo: "fflas-ffpack",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "detect-openmp.patch",
             url: "https://github.com/linbox-team/fflas-ffpack/commit/833bb2fa4e87e51e3f7fa1d97f3b4372c1ee4200.patch?full_index=1",
             hash: "sha256-COJxb1Y47rLBogJuXzznKHOSs9gAX1BtN+j8pEqOhLY=",
             excludes: nix.thunk(() => ["benchmarks/*"]),
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "do-not-use-_mm_permute_ps-for-simd128_float.patch",
             url: "https://github.com/linbox-team/fflas-ffpack/commit/be33b602ecdef543a30ea494899b08610c7e0a74.patch?full_index=1",
             hash: "sha256-YWUFnPViXwyyHLXuewX6KQsgUiwgl6vfYnZX2JzgkE4=",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Finite Field Linear Algebra Subroutines",
         mainProgram: "fflas-ffpack-config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://linbox-team.github.io/fflas-ffpack/",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

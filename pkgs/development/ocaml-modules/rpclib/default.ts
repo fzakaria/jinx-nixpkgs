@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const xmlm = nix.arg($, "xmlm");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rpclib",
       version: "10.2.0",
       minimalOCamlVersion: "4.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-rpc/releases/download/${nix.sel(finalAttrs, "version")}/rpclib-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-N+xKTdU/yy042EZBXTpFl21aeMFTHm2HbbJDbpRxcvM=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mirage/ocaml-rpc",
         description: "Light library to deal with RPCs in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

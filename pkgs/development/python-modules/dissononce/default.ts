@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const cryptography = nix.arg($, "cryptography");
   const transitions = nix.arg($, "transitions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dissononce",
       version: "0.34.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tgalal",
           repo: "dissononce",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, writableTmpDirAsHomeHook]),
       pythonImportsCheck: nix.thunk(() => ["dissononce"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://pypi.org/project/dissononce/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Python implementation for Noise Protocol Framework",

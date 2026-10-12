@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const sfml_2 = nix.arg($, "sfml_2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cutecapture",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Gotos",
           repo: "cutecapture",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ EOF
       doInstallCheck: true,
       postInstall: "install -Dm644 -t $out/lib/udev/rules.d 95-{3,}dscapture.rules\ninstall -Dm444 -t $out/share/applications Cute{3,}DSCapture.desktop\ninstall -Dm444 -t $out/share/icons/hicolor/128x128/apps Cute{3,}DSCapture.png\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nintendo DS and 3DS capture software for Linux and Mac",
         homepage: "https://github.com/Gotos/CuteCapture",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

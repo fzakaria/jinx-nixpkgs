@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "unetbootin",
       version: "702",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "unetbootin",
           repo: "unetbootin",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +59,7 @@ substituteInPlace unetbootin.desktop \\
         "--set QT_X11_NO_MITSHM 1",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to create bootable live USB drives from ISO images",
         homepage: "https://unetbootin.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

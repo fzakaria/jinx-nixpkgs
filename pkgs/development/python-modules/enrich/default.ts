@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.7";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0a2ab0d2931dff8947012602d1234d2a3ee002d9a355b5d70be6bf5466008893",
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_rich_console_ex"]);
       const pythonImportsCheck = nix.thunk(() => ["enrich"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Enrich adds few missing features to the wonderful rich library",
         homepage: "https://github.com/pycontribs/enrich",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

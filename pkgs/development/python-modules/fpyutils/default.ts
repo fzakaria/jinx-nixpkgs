@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frnmst",
           repo: "fpyutils",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_execute_command_live_output"]);
       const pythonImportsCheck = nix.thunk(() => ["fpyutils"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of useful non-standard Python functions",
         homepage: "https://github.com/frnmst/fpyutils",
         changelog: nix.thunk(() => nix.str`https://blog.franco.net.eu.org/software/fpyutils-${version}/release.html`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

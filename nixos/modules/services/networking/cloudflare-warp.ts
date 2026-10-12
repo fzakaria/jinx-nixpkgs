@@ -28,57 +28,57 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "cloudflare-warp"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "cloudflare-warp": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Cloudflare Zero Trust client daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "cloudflare-warp", nix.thunk(() => ({})))),
           rootDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/cloudflare-warp",
               description: "Working directory for the warp-svc daemon.\n",
             })))),
           udpPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 2408n,
               description: "The UDP port to open in the firewall. Warp uses port 2408 by default, but fallback ports can be used\nif that conflicts with another service. See the [firewall documentation](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/firewall#warp-udp-ports)\nfor the pre-configured available fallback ports.\n",
             })))),
-          openFirewall: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "opening UDP ports in the firewall"), { __proto__: pos$3, default: true })),
+          openFirewall: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "opening UDP ports in the firewall"), { [nix.POS]: pos$3, default: true })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               allowedUDPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "udpPort"))]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "rootDir")}    - root root`),
               nix.thunk(() => nix.str`z ${nix.sel(cfg, "rootDir")}    - root root`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "cloudflare-warp": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: true,
               description: "Cloudflare Zero Trust Client Daemon",
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lsof"))]),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
               serviceConfig: nix.thunk(() => (() => {
                 const caps = nix.thunk(() => ["CAP_NET_ADMIN", "CAP_NET_BIND_SERVICE", "CAP_SYS_PTRACE"]);
                 return {
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   Type: "simple",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/warp-svc`),
                   ReadWritePaths: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(cfg, "rootDir")}`), "/etc/resolv.conf"]),
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "treyfortmuller"))];

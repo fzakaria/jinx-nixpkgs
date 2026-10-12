@@ -39,40 +39,40 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "certspotter"));
   const configDir = nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "certspotter-config", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "toList"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "watchlist",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "certspotter-watchlist", nix.thunk(() => nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.sel(cfg, "watchlist")))))),
       }))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "emailRecipients"), [])), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "email_recipients",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "certspotter-email_recipients", nix.thunk(() => nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.sel(cfg, "emailRecipients")))))),
       }))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "emailRecipients"), [])) || nix.asBool(!nix.eq(nix.sel(cfg, "hooks"), [])))), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "hooks.d",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "certspotter-hooks", nix.thunk(() => nix.app(nix.sel(lib, "imap1"), (i) => (path) => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               path: path,
               name: nix.thunk(() => nix.str`hook${nix.builtins.toString(i)}`),
             }), nix.thunk(() => nix.sel(cfg, "hooks")))))),
       }))))))));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         certspotter: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Cert Spotter, a Certificate Transparency log monitor")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "certspotter", nix.thunk(() => ({})))),
           startAtEnd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to skip certificates issued before the first launch of Cert Spotter.\nSetting this to `false` will cause Cert Spotter to download tens of terabytes of data.\n",
               default: true,
             })))),
           sendmailPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.system-sendmail}/bin/sendmail\"")),
             })))),
           watchlist: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => [".example.org", "another.example.com"]),
             })))),
           emailRecipients: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
               default: [],
             })))),
           hooks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -113,7 +113,7 @@ for more info.
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  (pkgs.writeShellScript \"certspotter-hook\" ''\n    echo \"Event summary: $SUMMARY.\"\n  '')\n]\n")),
             })))),
           extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -126,18 +126,18 @@ for more info.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "emailRecipients"), [])) || nix.asBool(!nix.eq(nix.sel(cfg, "sendmailPath"), null)))),
             message: "You must configure the sendmail setuid wrapper (services.mail.sendmailSetuidWrapper)\nor services.certspotter.sendmailPath\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           certspotter: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             sendmailPath: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "security"));
               const wrapperDir = nix.thunk(() => nix.attr(from, "wrapperDir"));
@@ -151,30 +151,30 @@ for more info.
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           users: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             certspotter: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Cert Spotter user",
               group: "certspotter",
               home: "/var/lib/certspotter",
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$19, certspotter: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$19, certspotter: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             certspotter: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "Cert Spotter - Certificate Transparency Monitor",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 CERTSPOTTER_CONFIG_DIR: configDir,
                 SENDMAIL_PATH: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "sendmailPath"), null)) ? nix.sel(cfg, "sendmailPath") : "/run/current-system/sw/bin/false")),
               })),
@@ -188,7 +188,7 @@ fi
 exec ${nix.sel(cfg, "package")}/bin/certspotter ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraFlags")))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 User: "certspotter",
                 Group: "certspotter",
                 StateDirectory: "certspotter",
@@ -198,7 +198,7 @@ exec ${nix.sel(cfg, "package")}/bin/certspotter ${nix.app(nix.sel(lib, "escapeSh
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "chayleaf"))];

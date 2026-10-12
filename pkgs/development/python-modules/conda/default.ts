@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.5.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           owner: "conda",
@@ -78,14 +78,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["conda"]);
       const pythonRemoveDeps = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))), nix.thunk(() => ["menuinst"])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OS-agnostic, system-level binary package manager",
         homepage: "https://github.com/conda/conda",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ericthemagician"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         __structuredAttrs,
         pname,
         version,

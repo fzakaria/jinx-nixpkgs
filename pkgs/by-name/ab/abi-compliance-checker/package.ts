@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const binutils = nix.arg($, "binutils");
   const abi_dumper = nix.arg($, "abi-dumper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "abi-compliance-checker",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lvc",
           repo: "abi-compliance-checker",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [abi_dumper]),
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://lvc.github.io/abi-compliance-checker",
         description: "Tool for checking backward API/ABI compatibility of a C/C++ library",
         mainProgram: "abi-compliance-checker",

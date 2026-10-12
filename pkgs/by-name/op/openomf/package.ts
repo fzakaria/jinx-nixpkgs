@@ -34,28 +34,28 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const assets = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://www.omf2097.com/pub/files/omf/openomf-assets.zip",
       hash: "sha256-3kcseGrfnmGL9LcaXyy4W7CwkPJ9orMAjzBUU6jepn0=",
     }))));
   const icons = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://www.omf2097.com/pub/files/omf/openomf-icons.zip",
       hash: "sha256-8LWmrkY3ZiXcuVe0Zj90RQFUTwM27dJ4ev9TiBGoVk0=",
     }))));
   const musicRemixes = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://github.com/omf2097/openomf-music-mod/releases/download/1.0/openomf-mods-1.0.zip",
       hash: "sha256-uiaM6n+dDcTeBNNnypEWXPNG8Xac1JQXCTfVkORfvi0=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "openomf",
       version: "0.8.6",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "omf2097",
           repo: "openomf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -101,11 +101,11 @@ install -Dm644 $src/resources/flatpak/org.openomf.OpenOMF.desktop $out/share/app
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "One Must Fall 2097 Remake",
         longDescription: "OpenOMF is an open-source remake of the 1994 DOS fighting game One Must\nFall 2097 by Diversions Entertainment. It reimplements the original\nengine from scratch, uses the original (now freeware) game assets, and\nadds modern conveniences such as online netplay.\n\nIncludes remixed music mod. To add other mods: drop its .zip file\ninto the user mods directory as-is; it does not need to be extracted.\n\nThe user mods directory is <state>/mods, where <state> is resolved at\nlaunch in the following order.\n\n  1. $OPENOMF_STATE_PATH, if set\n  2. $XDG_STATE_HOME, if set\n     (e.g. ~/.local/state, giving ~/.local/state/mods)\n  3. SDL's preference path, ~/.local/share/OpenOMF/mods\n",
         homepage: "https://www.openomf.org",

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vis";
       const version = "0.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-SYM3zlzhp3NdyOjtXc+pOiWY4/WA/Ax+qAWe18ggq3g=",
           repo: "vis",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "vis",
             exec: "vis %U",
             type: "Application",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Vim like editor",
         homepage: "https://github.com/martanne/vis",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "vis",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

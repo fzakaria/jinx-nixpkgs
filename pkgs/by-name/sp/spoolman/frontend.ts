@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "spoolman-frontend",
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.str`${nix.sel(common, "src")}/client`),
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       VITE_APIURL: "/api/v1",
       installPhase: "cp -r dist $out",
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Spoolman frontend",
         mainProgram: "spoolman-frontend",
       })),

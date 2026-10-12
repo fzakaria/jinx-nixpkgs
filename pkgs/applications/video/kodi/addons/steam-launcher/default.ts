@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const dos2unix = nix.arg($, "dos2unix");
   const wmctrl = nix.arg($, "wmctrl");
   return nix.app(buildKodiAddon, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "steam-launcher",
       namespace: "script.steam.launcher",
       version: "3.7.11",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
           const repo = nix.thunk(() => nix.add(owner, "-xbmc-repo"));
           const rev = "76d728bb51ad265a28d4945af99c7fa2626df624";
           const sha256 = "sha256-i8plXt+Fu+O42JPo/FJI365IAUCNvWhREy2eZuG44lQ=";
-          return { __proto__: pos$1, owner, repo, rev, sha256 };
+          return { [nix.POS]: pos$1, owner, repo, rev, sha256 };
         })()))),
       propagatedBuildInputs: nix.thunk(() => [steam, which, xdotool]),
       postInstall: nix.thunk(() => nix.str`substituteInPlace $out/share/kodi/addons/script.steam.launcher/resources/main.py \\
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
 ${dos2unix}/bin/dos2unix $out/share/kodi/addons/script.steam.launcher/resources/scripts/steam-launcher.sh
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://forum.kodi.tv/showthread.php?tid=157499",
         description: "Launch Steam in Big Picture Mode from Kodi",
         longDescription: "This add-on will close/minimise Kodi, launch Steam in Big\nPicture Mode and when Steam BPM is exited (either by quitting\nSteam or returning to the desktop) Kodi will\nrestart/maximise. Running pre/post Steam scripts can be\nconfigured via the addon.\n",

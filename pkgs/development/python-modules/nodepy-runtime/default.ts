@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-6tSsD76EpCZxkdulv1BcUZtIXGWLG6PuII25J8STygE=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [localimport, pathlib2, six]);
       const pythonImportsCheck = nix.thunk(() => ["nodepy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/nodepy/nodepy",
         description: "Runtime for Python inspired by Node.JS",
         longDescription: "Node.py is a Python runtime and package manager compatible with CPython\n2.7 and 3.3 – 3.6. It provides a separate import mechanism for modules\ninspired by Node.js, bringing dependency management and ease of deployment\nfor Python applications up to par with other languages without virtual\nenvironments.\n\nNode.py comes with a built-in package manager that builds on Pip for\nstandard Python dependencies but also adds the capability to install\npackages that are specifically developed for Node.py. To install the\ndependencies of the package manager you must specify the [pm] install\nextra.\n",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

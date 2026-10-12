@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
       const pname = "ocl";
       const version = "1.2.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "sha256-ymahtzdCX4D3rBMThUmhWOY238yckP0bmNE0xFhK0No=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/ocl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         description: "Use OpenCL for parallelization",
         longDescription: "Package using OpenCL for parallelization, mostly suitable to\nSingle-Instruction-Multiple-Data (SIMD) computations, selectively\nusing available OpenCL hardware and drivers.\n",
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "maltego",
       version: "4.11.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.maltego.com/maltego-v4/linux/Maltego.v${nix.sel(finalAttrs, "version")}.linux.zip`),
           hash: "sha256-9VDArX8fc4Orh5xCILX7n2teB6cRUABTkCYaStPoa80=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "maltego",
             desktopName: "Maltego",
             exec: "maltego",
@@ -70,7 +70,7 @@ makeWrapper $out/share/maltego/bin/maltego $out/bin/maltego \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.maltego.com",
         description: "Open source intelligence and forensics application, enabling to easily gather information about DNS, domains, IP addresses, websites, persons, and so on",
         mainProgram: "maltego",

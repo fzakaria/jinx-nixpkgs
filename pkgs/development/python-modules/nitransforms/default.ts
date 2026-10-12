@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-Wcs0iV/ENCLhsjH6hTDmxoAsNAN9qzd9n+wWbiA04aU=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         "nitransforms.patched",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://nitransforms.readthedocs.io",
         description: "Geometric transformations for images and surfaces",
         mainProgram: "nb-transform",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

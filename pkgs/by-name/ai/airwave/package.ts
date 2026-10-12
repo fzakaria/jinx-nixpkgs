@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const vst2_sdk = nix.arg($, "vst2-sdk");
   const wine_wow64 = nix.thunk(() => nix.sel(wineWow64Packages, "stableFull"));
   return nix.app(nix.sel(multiStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "airwave",
       version: "1.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "psycha0s",
           repo: "airwave",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +54,7 @@ wrapProgram $out/libexec/airwave-host-32.exe --set WINELOADER ${nix.app(nix.sel(
 wrapProgram $out/libexec/airwave-host-64.exe --set WINELOADER ${nix.app(nix.sel(lib, "getExe'"), wine_wow64, "wine")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "WINE-based VST bridge for Linux VST hosts",
         longDescription: "Airwave is a wine based VST bridge, that allows for the use of\nWindows 32- and 64-bit VST 2.4 audio plugins with Linux VST\nhosts. Due to the use of shared memory, only one extra copying\nis made for each data transfer. Airwave also uses the XEMBED\nprotocol to correctly embed the plugin editor into the host\nwindow.\n",
         homepage: "https://github.com/psycha0s/airwave",

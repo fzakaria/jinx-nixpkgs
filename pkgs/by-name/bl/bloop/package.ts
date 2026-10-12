@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
     const asset = nix.arg($_1, "asset");
     const hash = nix.arg($_1, "hash");
     return nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://github.com/${repo}/releases/download/v${version}/${asset}`),
         hash: hash,
       })));
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   const bloop_fish = nix.thunk(() => nix.app(fetchAsset, nix.thunk(() => nix.sel(completions, "fish"))));
   const bloop_zsh = nix.thunk(() => nix.app(fetchAsset, nix.thunk(() => nix.sel(completions, "zsh"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       dontUnpack: true,
@@ -80,19 +80,19 @@ runHook postInstall
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           help: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-help`), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "export HOME=\"$TMPDIR\"\n\n# Anything that reaches the build server, `bloop --version` and\n# `bloop about` included, downloads it from Maven Central first and so\n# cannot run in the sandbox. --help is answered by the native client\n# alone, and still exercises the patched binary and its wrapper.\nbloop --help > help.txt\ngrep -q 'Interact with Bloop' help.txt\ngrep -q -- '--java-home' help.txt\n\ntouch $out\n")),
-          completions: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-completions`), nix.thunk(() => ({ __proto__: pos$4, nativeBuildInputs: nix.thunk(() => [zsh, fish]) })), nix.thunk(() => nix.str`share=${nix.sel(finalAttrs, "finalPackage")}/share
+          completions: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-completions`), nix.thunk(() => ({ [nix.POS]: pos$4, nativeBuildInputs: nix.thunk(() => [zsh, fish]) })), nix.thunk(() => nix.str`share=${nix.sel(finalAttrs, "finalPackage")}/share
 
 bash -n "$share/bash-completion/completions/bloop"
 zsh -n "$share/zsh/site-functions/_bloop"
@@ -103,7 +103,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://scalacenter.github.io/bloop/",
         changelog: nix.thunk(() => nix.str`https://github.com/${repo}/releases/tag/v${version}`),
         sourceProvenance: nix.thunk(() => (() => {

@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "langgraph-checkpoint-sqlite",
       version: "3.1.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "langchain-ai",
           repo: "langgraph",
           tag: nix.thunk(() => nix.str`checkpointsqlite==${nix.sel(finalAttrs, "version")}`),
@@ -44,16 +44,16 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_ttl.py"]),
       disabledTests: nix.thunk(() => ["test_combined_metadata", "test_asearch", "test_search"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         skipBulkUpdate: true,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "rev-prefix": "checkpointsqlite==",
             ignoredVersions: "a|b|dev|rc",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langgraph/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Library with a SQLite implementation of LangGraph checkpoint saver",
         homepage: "https://github.com/langchain-ai/langgraph/tree/main/libs/checkpoint-sqlite",

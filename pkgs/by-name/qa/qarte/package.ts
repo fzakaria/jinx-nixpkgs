@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qarte",
       version: "5.5.0",
       src: nix.thunk(() => nix.app(fetchbzr, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://bazaar.launchpad.net/~vincent-vandevyvre/qarte/qarte-5",
           rev: "88",
           sha256: "sha256-+Ixe4bWKubH/XBESwmP2NWS8bH0jq611c3MZn7W87Jw=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${rtmpdump}/bin
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://launchpad.net/qarte",
         description: "Recorder for Arte TV Guide and Arte Concert",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

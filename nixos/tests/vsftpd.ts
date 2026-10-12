@@ -23,26 +23,26 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "vsftpd",
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       server: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         security: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pam: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             services: nix.thunk(() => ({
-              __proto__: pos$2,
-              vsftpd: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+              [nix.POS]: pos$2,
+              vsftpd: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           vsftpd: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: true,
             userlistDeny: false,
             localUsers: true,
@@ -52,21 +52,21 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$8,
-          firewall: nix.thunk(() => ({ __proto__: pos$7, enable: false })),
+          [nix.POS]: pos$8,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$7, enable: false })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           users: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "ftp-test-user": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               isSystemUser: true,
               password: "ftp-test-password",
               group: "ftp-test-group",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$11, "ftp-test-group": nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$11, "ftp-test-group": nix.thunk(() => ({})) })),
         })),
       })),
       client: nix.thunk(() => ({})),

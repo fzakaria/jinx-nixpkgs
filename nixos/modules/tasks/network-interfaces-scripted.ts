@@ -85,7 +85,7 @@ ip link del dev "${i}" 2>/dev/null || true
       nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ")),
     ]));
   const parseAddr = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     ipv4: (addr) => (() => {
       const pad = (b) => nix.concat(nix.app(nix.sel(lib, "replicate"), nix.thunk(() => nix.sub(8n, nix.app(nix.sel(nix.builtins, "length"), b))), 0n), b);
       const toBin = (n) => nix.app(pad, nix.thunk(() => nix.app(nix.sel(lib, "toBaseDigits"), 2n, nix.thunk(() => nix.app(nix.sel(lib, "toInt"), n)))));
@@ -115,28 +115,28 @@ ip link del dev "${i}" 2>/dev/null || true
   const bondDeprecation = nix.thunk(() => (() => {
     const deprecated = nix.thunk(() => ["lacp_rate", "miimon", "mode", "xmit_hash_policy"]);
     const filterDeprecated = (bond) => nix.app(nix.lookup(w_1, "filterAttrs"), (attrName) => (attr) => (nix.asBool(nix.app(nix.lookup(w_1, "elem"), attrName, deprecated)) && nix.asBool(!nix.eq(attr, null))), bond);
-    return { __proto__: pos$2, deprecated, filterDeprecated };
+    return { [nix.POS]: pos$2, deprecated, filterDeprecated };
   })());
   const bondWarnings = nix.thunk(() => (() => {
     const oneBondWarnings = (bondName) => (bond) => nix.app(nix.lookup(w_1, "mapAttrsToList"), nix.thunk(() => nix.app(bondText, bondName)), nix.thunk(() => nix.app(nix.sel(bondDeprecation, "filterDeprecated"), bond)));
     const bondText = (bondName) => (optName) => (_) => nix.str`${bondName}.${optName} is deprecated, use ${bondName}.driverOptions`;
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       warnings: nix.thunk(() => nix.app(nix.lookup(w_1, "flatten"), nix.thunk(() => nix.app(nix.lookup(w_1, "mapAttrsToList"), oneBondWarnings, nix.thunk(() => nix.sel(cfg, "bonds")))))),
     };
   })());
   const normalConfig = nix.thunk(() => ({
-    __proto__: pos$46,
+    [nix.POS]: pos$46,
     systemd: nix.thunk(() => ({
-      __proto__: pos$43,
+      [nix.POS]: pos$43,
       network: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         links: nix.thunk(() => (() => {
           const createNetworkLink = (i) => nix.app(nix.lookup(w_1, "nameValuePair"), nix.thunk(() => nix.str`40-${nix.sel(i, "name")}`), nix.thunk(() => ({
-              __proto__: pos$7,
-              matchConfig: nix.thunk(() => ({ __proto__: pos$4, OriginalName: nix.thunk(() => nix.sel(i, "name")) })),
-              linkConfig: nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "macAddress"), null)), nix.thunk(() => ({ __proto__: pos$5, MACAddress: nix.thunk(() => nix.sel(i, "macAddress")) }))), nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "mtu"), null)), nix.thunk(() => ({
-                  __proto__: pos$6,
+              [nix.POS]: pos$7,
+              matchConfig: nix.thunk(() => ({ [nix.POS]: pos$4, OriginalName: nix.thunk(() => nix.sel(i, "name")) })),
+              linkConfig: nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "macAddress"), null)), nix.thunk(() => ({ [nix.POS]: pos$5, MACAddress: nix.thunk(() => nix.sel(i, "macAddress")) }))), nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "mtu"), null)), nix.thunk(() => ({
+                  [nix.POS]: pos$6,
                   MTUBytes: nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(i, "mtu")))),
                 }))))),
             })));
@@ -153,13 +153,13 @@ ip link del dev "${i}" 2>/dev/null || true
           const needsSourceIface6 = nix.thunk(() => (nix.asBool((nix.asBool(isDefaultGateway6) && nix.asBool(!nix.eq(nix.sel(cfg, "defaultGateway6", "source"), null)))) && nix.asBool(!nix.eq(nix.sel(i, "name"), nix.sel(source6Iface, "name")))));
           const configureGateway = (version) => (gateway) => nix.app(nix.lookup(w_1, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(gateway, "address"), "")), nix.thunk(() => nix.str`echo -n "setting ${nix.sel(i, "name")} as default IPv${version} gateway... "
 ${nix.app(nix.lookup(w_1, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(gateway, "interface"), null)), nix.thunk(() => nix.str`ip -${version} route replace ${nix.sel(gateway, "address")} proto static ${nix.app(formatIpArgs, nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   metric: nix.thunk(() => nix.sel(gateway, "metric")),
                   dev: nix.thunk(() => nix.sel(gateway, "interface")),
                 })))}
 `))}
 ip -${version} route replace default proto static ${nix.app(formatIpArgs, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 metric: nix.thunk(() => nix.sel(gateway, "metric")),
                 via: nix.thunk(() => nix.sel(gateway, "address")),
                 window: nix.thunk(() => nix.sel(cfg, "defaultGatewayWindowSize")),
@@ -169,13 +169,13 @@ ip -${version} route replace default proto static ${nix.app(formatIpArgs, nix.th
 echo "done"
 `));
           return nix.app(nix.lookup(w_1, "nameValuePair"), nix.thunk(() => nix.str`network-addresses-${nix.sel(i, "name")}`), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: nix.thunk(() => nix.str`Address configuration of ${nix.sel(i, "name")}`),
               wantedBy: nix.thunk(() => nix.concat(nix.app(deviceDependency, nix.thunk(() => nix.sel(i, "name"))), nix.concat(nix.app(nix.lookup(w_1, "optional"), nix.thunk(() => nix.sel(config, "boot", "isContainer")), "network.target"), nix.app(nix.lookup(w_1, "optional"), nix.thunk(() => (nix.asBool(isDefaultGateway4) || nix.asBool(isDefaultGateway6))), "network-online.target")))),
               bindsTo: nix.thunk(() => nix.app(deviceDependency, nix.thunk(() => nix.sel(i, "name")))),
               partOf: nix.thunk(() => ["networking-scripted.target"]),
               after: nix.thunk(() => nix.concat(["network-pre.target"], nix.concat(nix.app(nix.lookup(w_1, "optional"), needsSourceIface4, nix.thunk(() => nix.str`network-addresses-${nix.sel(source4Iface, "name")}.service`)), nix.concat(nix.app(nix.lookup(w_1, "optional"), needsSourceIface6, nix.thunk(() => nix.str`network-addresses-${nix.sel(source6Iface, "name")}.service`)), nix.app(deviceDependency, nix.thunk(() => nix.sel(i, "name"))))))),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$11, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$11, Type: "oneshot", RemainAfterExit: true })),
               stopIfChanged: false,
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iproute2"))]),
               script: nix.thunk(() => nix.str`state="/run/nixos/network/addresses/${nix.sel(i, "name")}"
@@ -240,7 +240,7 @@ fi
             })));
         })();
         const createTunDevice = (i) => nix.app(nix.lookup(w_1, "nameValuePair"), nix.thunk(() => nix.str`${nix.sel(i, "name")}-netdev`), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             description: nix.thunk(() => nix.str`Virtual Network Interface ${nix.sel(i, "name")}`),
             bindsTo: nix.thunk(() => nix.app(nix.lookup(w_1, "optional"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "isContainer"))), "dev-net-tun.device")),
             partOf: nix.thunk(() => ["networking-scripted.target"]),
@@ -251,7 +251,7 @@ fi
             ]),
             before: nix.thunk(() => ["network.target"]),
             path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iproute2"))]),
-            serviceConfig: nix.thunk(() => ({ __proto__: pos$13, Type: "oneshot", RemainAfterExit: true })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$13, Type: "oneshot", RemainAfterExit: true })),
             script: nix.thunk(() => nix.str`ip tuntap add dev "${nix.sel(i, "name")}" mode "${nix.sel(i, "virtualType")}" ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(i, "virtualOwner"), null)), nix.thunk(() => nix.str`user "${nix.sel(i, "virtualOwner")}"`))}
 `),
             postStop: nix.thunk(() => nix.str`ip link del dev ${nix.sel(i, "name")} || true
@@ -260,14 +260,14 @@ fi
         const createBridgeDevice = (n) => (v) => nix.app(nix.lookup(w_1, "nameValuePair"), nix.thunk(() => nix.str`${n}-netdev`), nix.thunk(() => (() => {
             const deps = nix.thunk(() => nix.app(nix.lookup(w_1, "concatLists"), nix.thunk(() => nix.app(nix.builtins.map, deviceDependency, nix.thunk(() => nix.sel(v, "interfaces"))))));
             return {
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: nix.thunk(() => nix.str`Bridge Interface ${n}`),
               wantedBy: nix.thunk(() => ["network.target", nix.thunk(() => nix.app(subsystemDevice, n))]),
               bindsTo: nix.thunk(() => nix.concat(deps, nix.app(nix.lookup(w_1, "optional"), nix.thunk(() => nix.sel(v, "rstp")), "mstpd.service"))),
               partOf: nix.thunk(() => nix.concat(["network.target", "networking-scripted.target"], nix.app(nix.lookup(w_1, "optional"), nix.thunk(() => nix.sel(v, "rstp")), "mstpd.service"))),
               after: nix.thunk(() => nix.concat(["network-pre.target"], nix.concat(deps, nix.concat(nix.app(nix.lookup(w_1, "optional"), nix.thunk(() => nix.sel(v, "rstp")), "mstpd.service"), nix.app(nix.builtins.map, (i) => nix.str`network-addresses-${i}.service`, nix.thunk(() => nix.sel(v, "interfaces"))))))),
               before: nix.thunk(() => ["network.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$15, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$15, Type: "oneshot", RemainAfterExit: true })),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iproute2"))]),
               script: nix.thunk(() => nix.str`# Remove Dead Interfaces
 echo "Removing old bridge ${n}..."
@@ -335,7 +335,7 @@ echo ${(nix.asBool(nix.sel(v, "rstp")) ? "2" : "0")} > /sys/class/net/${n}/bridg
             const internalConfigs = nix.thunk(() => nix.app(nix.builtins.map, (i) => nix.str`network-addresses-${i}.service`, nix.thunk(() => nix.app(nix.lookup(w_1, "attrNames"), nix.thunk(() => nix.app(nix.lookup(w_1, "filterAttrs"), (_) => (config_1) => nix.eq(nix.sel(config_1, "type"), "internal"), nix.thunk(() => nix.sel(v, "interfaces"))))))));
             const ofRules = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`vswitch-${n}-openFlowRules`), nix.thunk(() => nix.sel(v, "openFlowRules"))));
             return {
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: nix.thunk(() => nix.str`Open vSwitch Interface ${n}`),
               wantedBy: nix.thunk(() => nix.concat(["network.target", nix.thunk(() => nix.app(subsystemDevice, n))], internalConfigs)),
               before: nix.thunk(() => nix.concat(["network.target"], internalConfigs)),
@@ -343,7 +343,7 @@ echo ${(nix.asBool(nix.sel(v, "rstp")) ? "2" : "0")} > /sys/class/net/${n}/bridg
               bindsTo: nix.thunk(() => ["ovs-vswitchd.service"]),
               after: nix.thunk(() => nix.concat(["network-pre.target", "ovs-vswitchd.service"], deps)),
               wants: deps,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$17, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$17, Type: "oneshot", RemainAfterExit: true })),
               path: nix.thunk(() => [
                 nix.thunk(() => nix.sel(pkgs, "iproute2")),
                 nix.thunk(() => nix.sel(config, "virtualisation", "vswitch", "package")),
@@ -375,14 +375,14 @@ ovs-vsctl --if-exists del-br ${n} || true
         const createBondDevice = (n) => (v) => nix.app(nix.lookup(w_1, "nameValuePair"), nix.thunk(() => nix.str`${n}-netdev`), nix.thunk(() => (() => {
             const deps = nix.thunk(() => nix.app(nix.lookup(w_1, "concatLists"), nix.thunk(() => nix.app(nix.builtins.map, deviceDependency, nix.thunk(() => nix.sel(v, "interfaces"))))));
             return {
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: nix.thunk(() => nix.str`Bond Interface ${n}`),
               wantedBy: nix.thunk(() => ["network.target", nix.thunk(() => nix.app(subsystemDevice, n))]),
               bindsTo: deps,
               partOf: nix.thunk(() => ["networking-scripted.target"]),
               after: nix.thunk(() => nix.concat(["network-pre.target"], nix.concat(deps, nix.app(nix.builtins.map, (i) => nix.str`network-addresses-${i}.service`, nix.thunk(() => nix.sel(v, "interfaces")))))),
               before: nix.thunk(() => ["network.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$19, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$19, Type: "oneshot", RemainAfterExit: true })),
               path: nix.thunk(() => [
                 nix.thunk(() => nix.sel(pkgs, "iproute2")),
                 nix.thunk(() => nix.sel(pkgs, "gawk")),
@@ -412,14 +412,14 @@ ip link set dev "${i}" master "${n}"
         const createMacvlanDevice = (n) => (v) => nix.app(nix.lookup(w_1, "nameValuePair"), nix.thunk(() => nix.str`${n}-netdev`), nix.thunk(() => (() => {
             const deps = nix.thunk(() => nix.app(deviceDependency, nix.thunk(() => nix.sel(v, "interface"))));
             return {
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: nix.thunk(() => nix.str`MACVLAN Interface ${n}`),
               wantedBy: nix.thunk(() => ["network.target", nix.thunk(() => nix.app(subsystemDevice, n))]),
               bindsTo: deps,
               partOf: nix.thunk(() => ["networking-scripted.target"]),
               after: nix.thunk(() => nix.concat(["network-pre.target"], deps)),
               before: nix.thunk(() => ["network.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$21, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$21, Type: "oneshot", RemainAfterExit: true })),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iproute2"))]),
               script: nix.thunk(() => nix.str`# Remove Dead Interfaces
 ip link show dev "${n}" >/dev/null 2>&1 && ip link delete dev "${n}"
@@ -434,14 +434,14 @@ ip link set dev "${n}" up
         const createIpvlanDevice = (n) => (v) => nix.app(nix.lookup(w_1, "nameValuePair"), nix.thunk(() => nix.str`${n}-netdev`), nix.thunk(() => (() => {
             const deps = nix.thunk(() => nix.app(deviceDependency, nix.thunk(() => nix.sel(v, "interface"))));
             return {
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               description: nix.thunk(() => nix.str`IPVLAN Interface ${n}`),
               wantedBy: nix.thunk(() => ["network.target", nix.thunk(() => nix.app(subsystemDevice, n))]),
               bindsTo: deps,
               partOf: nix.thunk(() => ["networking-scripted.target"]),
               after: nix.thunk(() => nix.concat(["network-pre.target"], deps)),
               before: nix.thunk(() => ["network.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$23, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$23, Type: "oneshot", RemainAfterExit: true })),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iproute2"))]),
               script: nix.thunk(() => nix.str`# Remove Dead Interfaces
 ip link show dev "${n}" >/dev/null 2>&1 && ip link delete dev "${n}"
@@ -460,14 +460,14 @@ ip link set dev "${n}" up
               ]))));
             const fouSpec = nix.thunk(() => nix.str`port ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(v, "port")))} ${(nix.asBool(!nix.eq(nix.sel(v, "protocol"), null)) ? nix.str`ipproto ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(v, "protocol")))}` : "gue")} ${nix.app(nix.lookup(w_1, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(v, "local"), null)), nix.thunk(() => nix.str`local ${nix.app(nix.lookup(w_1, "escapeShellArg"), nix.thunk(() => nix.sel(v, "local", "address")))} ${nix.app(nix.lookup(w_1, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(v, "local", "dev"), null)), nix.thunk(() => nix.str`dev ${nix.app(nix.lookup(w_1, "escapeShellArg"), nix.thunk(() => nix.sel(v, "local", "dev")))}`))}`))}`);
             return {
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: nix.thunk(() => nix.str`FOU endpoint ${n}`),
               wantedBy: nix.thunk(() => ["network.target", nix.thunk(() => nix.app(subsystemDevice, n))]),
               bindsTo: deps,
               partOf: nix.thunk(() => ["networking-scripted.target"]),
               after: nix.thunk(() => nix.concat(["network-pre.target"], deps)),
               before: nix.thunk(() => ["network.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$25, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$25, Type: "oneshot", RemainAfterExit: true })),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iproute2"))]),
               script: nix.thunk(() => nix.str`# always remove previous incarnation since show can't filter
 ip fou del ${fouSpec} >/dev/null 2>&1 || true
@@ -480,18 +480,18 @@ ip fou add ${fouSpec}
         const createSitDevice = (n) => (v) => nix.app(nix.lookup(w_1, "nameValuePair"), nix.thunk(() => nix.str`${n}-netdev`), nix.thunk(() => (() => {
             const deps = nix.thunk(() => nix.app(deviceDependency, nix.thunk(() => nix.sel(v, "dev"))));
             return {
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               description: nix.thunk(() => nix.str`IPv6 in IPv4 Tunnel Interface ${n}`),
               wantedBy: nix.thunk(() => ["network.target", nix.thunk(() => nix.app(subsystemDevice, n))]),
               bindsTo: deps,
               after: nix.thunk(() => nix.concat(["network-pre.target"], deps)),
               before: nix.thunk(() => ["network.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$27, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$27, Type: "oneshot", RemainAfterExit: true })),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iproute2"))]),
               script: nix.thunk(() => nix.str`# Remove Dead Interfaces
 ip link show dev "${n}" >/dev/null 2>&1 && ip link delete dev "${n}"
 ip link add name "${n}" type sit ${nix.app(formatIpArgs, nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   remote: nix.thunk(() => nix.attr(v, "remote")),
                   local: nix.thunk(() => nix.attr(v, "local")),
                   ttl: nix.thunk(() => nix.attr(v, "ttl")),
@@ -509,24 +509,24 @@ ip link set dev "${n}" up
         const createIpipDevice = (n) => (v) => nix.app(nix.lookup(w_1, "nameValuePair"), nix.thunk(() => nix.str`${n}-netdev`), nix.thunk(() => (() => {
             const deps = nix.thunk(() => nix.app(deviceDependency, nix.thunk(() => nix.sel(v, "dev"))));
             return {
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               description: nix.thunk(() => nix.str`IP in IP Tunnel Interface ${n}`),
               wantedBy: nix.thunk(() => ["network.target", nix.thunk(() => nix.app(subsystemDevice, n))]),
               bindsTo: deps,
               partOf: nix.thunk(() => ["networking-scripted.target"]),
               after: nix.thunk(() => nix.concat(["network-pre.target"], deps)),
               before: nix.thunk(() => ["network.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$30, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$30, Type: "oneshot", RemainAfterExit: true })),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iproute2"))]),
               script: nix.thunk(() => nix.str`# Remove Dead Interfaces
 ip link show dev "${n}" >/dev/null 2>&1 && ip link delete dev "${n}"
 ip tunnel add name "${n}" ${nix.app(formatIpArgs, nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   remote: nix.thunk(() => nix.attr(v, "remote")),
                   local: nix.thunk(() => nix.attr(v, "local")),
                   ttl: nix.thunk(() => nix.attr(v, "ttl")),
                   dev: nix.thunk(() => nix.attr(v, "dev")),
-                  mode: nix.thunk(() => nix.sel({ __proto__: pos$31, "4in6": "ipip6", ipip: "ipip" }, nix.key(nix.sel(v, "encapsulation", "type")))),
+                  mode: nix.thunk(() => nix.sel({ [nix.POS]: pos$31, "4in6": "ipip6", ipip: "ipip" }, nix.key(nix.sel(v, "encapsulation", "type")))),
                   encaplimit: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(v, "encapsulation", "type"), "ipip")) ? null : nix.sel(v, "encapsulation", "limit"))),
                 })))}
 ip link set dev "${n}" up
@@ -539,14 +539,14 @@ ip link set dev "${n}" up
             const deps = nix.thunk(() => nix.app(deviceDependency, nix.thunk(() => nix.sel(v, "dev"))));
             const ttlarg = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "ip6", nix.thunk(() => nix.sel(v, "type")))) ? "hoplimit" : "ttl"));
             return {
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               description: nix.thunk(() => nix.str`GRE Tunnel Interface ${n}`),
               wantedBy: nix.thunk(() => ["network.target", nix.thunk(() => nix.app(subsystemDevice, n))]),
               bindsTo: deps,
               partOf: nix.thunk(() => ["networking-scripted.target"]),
               after: nix.thunk(() => nix.concat(["network-pre.target"], deps)),
               before: nix.thunk(() => ["network.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$34, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$34, Type: "oneshot", RemainAfterExit: true })),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iproute2"))]),
               script: nix.thunk(() => nix.str`# Remove Dead Interfaces
 ip link show dev "${n}" >/dev/null 2>&1 && ip link delete dev "${n}"
@@ -564,14 +564,14 @@ ip link set dev "${n}" up
         const createVlanDevice = (n) => (v) => nix.app(nix.lookup(w_1, "nameValuePair"), nix.thunk(() => nix.str`${n}-netdev`), nix.thunk(() => (() => {
             const deps = nix.thunk(() => nix.app(deviceDependency, nix.thunk(() => nix.sel(v, "interface"))));
             return {
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               description: nix.thunk(() => nix.str`VLAN Interface ${n}`),
               wantedBy: nix.thunk(() => ["network.target", nix.thunk(() => nix.app(subsystemDevice, n))]),
               bindsTo: deps,
               partOf: nix.thunk(() => ["network.target", "networking-scripted.target"]),
               after: nix.thunk(() => nix.concat(["network-pre.target"], deps)),
               before: nix.thunk(() => ["network.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$36, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$36, Type: "oneshot", RemainAfterExit: true })),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iproute2"))]),
               script: nix.thunk(() => nix.str`# Remove Dead Interfaces
 ip link show dev "${n}" >/dev/null 2>&1 && ip link delete dev "${n}"
@@ -588,32 +588,32 @@ ip link set dev "${n}" up || true
             };
           })()));
         return nix.update(nix.app(nix.lookup(w_1, "listToAttrs"), nix.thunk(() => nix.concat(nix.app(nix.builtins.map, configureAddrs, interfaces), nix.app(nix.builtins.map, createTunDevice, nix.thunk(() => nix.app(nix.lookup(w_1, "filter"), (i) => nix.sel(i, "virtual"), interfaces)))))), nix.update(nix.app(nix.lookup(w_1, "mapAttrs'"), createBridgeDevice, nix.thunk(() => nix.sel(cfg, "bridges"))), nix.update(nix.app(nix.lookup(w_1, "mapAttrs'"), createVswitchDevice, nix.thunk(() => nix.sel(cfg, "vswitches"))), nix.update(nix.app(nix.lookup(w_1, "mapAttrs'"), createBondDevice, nix.thunk(() => nix.sel(cfg, "bonds"))), nix.update(nix.app(nix.lookup(w_1, "mapAttrs'"), createMacvlanDevice, nix.thunk(() => nix.sel(cfg, "macvlans"))), nix.update(nix.app(nix.lookup(w_1, "mapAttrs'"), createIpvlanDevice, nix.thunk(() => nix.sel(cfg, "ipvlans"))), nix.update(nix.app(nix.lookup(w_1, "mapAttrs'"), createFouEncapsulation, nix.thunk(() => nix.sel(cfg, "fooOverUDP"))), nix.update(nix.app(nix.lookup(w_1, "mapAttrs'"), createSitDevice, nix.thunk(() => nix.sel(cfg, "sits"))), nix.update(nix.app(nix.lookup(w_1, "mapAttrs'"), createIpipDevice, nix.thunk(() => nix.sel(cfg, "ipips"))), nix.update(nix.app(nix.lookup(w_1, "mapAttrs'"), createGreDevice, nix.thunk(() => nix.sel(cfg, "greTunnels"))), nix.update(nix.app(nix.lookup(w_1, "mapAttrs'"), createVlanDevice, nix.thunk(() => nix.sel(cfg, "vlans"))), {
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           "network-local-commands": nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             after: nix.thunk(() => ["network-pre.target"]),
             wantedBy: nix.thunk(() => ["network.target"]),
           })),
         })))))))))));
       })()),
       targets: nix.thunk(() => ({
-        __proto__: pos$42,
-        network: nix.thunk(() => ({ __proto__: pos$40, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
-        "networking-scripted": nix.thunk(() => ({ __proto__: pos$41, description: "NixOS scripted networking setup" })),
+        [nix.POS]: pos$42,
+        network: nix.thunk(() => ({ [nix.POS]: pos$40, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+        "networking-scripted": nix.thunk(() => ({ [nix.POS]: pos$41, description: "NixOS scripted networking setup" })),
       })),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       udev: nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         extraRules: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.concat(["KERNEL==\"tun\", TAG+=\"systemd\""], nix.app(nix.sel(lib, "forEach"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(cfg, "interfaces")))), (iface) => nix.add(nix.str`ACTION=="add", SUBSYSTEM=="net", KERNEL=="${iface}", `, nix.str`ENV{SYSTEMD_WANTS}="network-addresses-${iface}.service"`)))))),
       })),
     })),
   }));
   return {
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     meta: nix.thunk(() => ({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       maintainers: nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w_1);
         return [nix.thunk(() => nix.lookup(w_2, "rnhmjoj"))];
@@ -623,9 +623,9 @@ ip link set dev "${n}" up || true
         bondWarnings,
         nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "useNetworkd"))), normalConfig)),
         nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           networking: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             interfaces: nix.thunk(() => nix.app(nix.lookup(w_1, "genAttrs"), slaves, (i) => ({}))),
           })),
         })),

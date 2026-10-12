@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const pam = nix.arg($, "pam");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "plasma-login-manager",
       patches: nix.thunk(() => [
         nix.path(here, "./config-path.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./kwin-path.patch"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             kwin_wayland: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), kwin, "kwin_wayland")),
             CMAKE_INSTALL_FULL_BINDIR: null,
           })))),

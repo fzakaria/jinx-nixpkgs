@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xfig";
       const version = "3.2.9a";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/mcj/xfig-${version}.tar.xz`),
           hash: "sha256-vFcqGIHl4gmHrFkBWLBBq3gDhFqWkQNtO6XpgvZtnKM=",
         }))));
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libxpm, libxmu, libxi, libxp, libxaw3d, libxaw, libxft]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://www-user.tu-chemnitz.de/~hamari/distfiles/xfig-3.2.9a-modern-c.patch",
             hash: "sha256-brUonsrWP97QnIkHnAHa2PSAiV9JUVOzmu0kvuLNFGw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://sources.debian.org/data/main/x/xfig/1%3A3.2.9a-4/debian/patches/19_boolean.patch",
             hash: "sha256-cMUyp/93bCva4gT349IThhuYmOGZBd0EZ38Y4JrxZn8=",
           })))),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(fig2dev, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://sourceforge.net/p/mcj/xfig/ci/${version}/tree/CHANGES`),
         description: "Interactive drawing tool for X11",
         mainProgram: "xfig",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

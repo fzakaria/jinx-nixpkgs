@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const vst2_sdk = nix.arg($, "vst2-sdk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "airwindows",
       version: "0-unstable-2026-08-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "airwindows",
           repo: "airwindows",
           rev: "1a6b436df99cbfced21a8850305bb1135a4efb4f",
@@ -39,11 +39,11 @@ ln -s ${vst2_sdk} plugins/LinuxVST/include/vstsdk
       buildInputs: nix.thunk(() => [vst2_sdk]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/vst/airwindows\nfind \"$PWD\" -type f -name \"*.so\" -exec install -Dm755 {} $out/lib/vst/airwindows \\;\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "All Airwindows VST Plugins",
         homepage: "https://airwindows.com/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

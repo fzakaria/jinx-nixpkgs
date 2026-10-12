@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const glibc = nix.arg($, "glibc");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(glibc, "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "glibc-mtrace",
       buildPhase: "runHook preBuild\n\nmkdir malloc\nmake -C ../malloc objdir=`pwd` `pwd`/malloc/mtrace;\n\nrunHook postBuild\n",
       installPhase: "mkdir -p $out/bin\nmv malloc/mtrace $out/bin/\n",
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out"]),
       separateDebugInfo: false,
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Perl script used to interpret and provide human readable output of the trace log contained in the file mtracedata, whose contents were produced by mtrace(3)",
         mainProgram: "mtrace",
       })),

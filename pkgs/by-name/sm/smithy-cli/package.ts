@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writeText = nix.arg($, "writeText");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "smithy-cli",
       version: "1.72.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smithy-lang",
           repo: "smithy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gradle, makeWrapper]),
       __darwinAllowLocalNetworking: true,
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -67,10 +67,10 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           validate: nix.thunk(() => nix.app(runCommand, "smithy-cli-validate-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} validate ${nix.app(writeText, "example.smithy", "$version: \"2.0\"\nnamespace example\nservice ExampleService {\n    version: \"2023-01-01\"\n    operations: [GetUser]\n}\noperation GetUser {\n    input: GetUserInput\n    output: GetUserOutput\n}\nstructure GetUserInput {\n    @required\n    userId: String\n}\nstructure GetUserOutput {\n    @required\n    name: String\n}\n")}
 touch $out
 `))),
@@ -79,7 +79,7 @@ touch $out
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "CLI for the Smithy interface definition language (IDL)",
         homepage: "https://smithy.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/smithy-lang/smithy/releases/tag/${nix.sel(finalAttrs, "version")}`),

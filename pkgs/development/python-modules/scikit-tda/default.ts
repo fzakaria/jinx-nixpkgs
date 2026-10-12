@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scikit-tda",
           repo: "scikit-tda",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -54,14 +54,14 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "pytest test\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Topological Data Analysis for humans",
         homepage: "https://github.com/scikit-tda/scikit-tda",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

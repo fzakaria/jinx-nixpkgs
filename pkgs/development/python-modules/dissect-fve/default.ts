@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fox-it",
           repo: "dissect.fve",
           tag: version,
@@ -34,10 +34,10 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [argon2_cffi, dissect_cstruct, dissect_util, pycryptodome]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, full: nix.thunk(() => [dissect_target, rich]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, full: nix.thunk(() => [dissect_target, rich]) }));
       const pythonImportsCheck = nix.thunk(() => ["dissect.fve"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dissect module implementing parsers for full volume encryption implementations",
         homepage: "https://github.com/fox-it/dissect.fve",
         changelog: nix.thunk(() => nix.str`https://github.com/fox-it/dissect.fve/releases/tag/${nix.sel(src, "tag")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

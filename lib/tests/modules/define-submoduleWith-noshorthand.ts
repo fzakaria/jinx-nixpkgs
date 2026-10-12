@@ -7,10 +7,10 @@ const pos$2 = nix.positions(here + "/define-submoduleWith-noshorthand.nix", [["c
 const pos$3 = nix.positions(here + "/define-submoduleWith-noshorthand.nix", [["submodule", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$3,
+  [nix.POS]: pos$3,
   submodule: nix.thunk(() => ({
-    __proto__: pos$2,
-    config: nix.thunk(() => ({ __proto__: pos$1, config: true })),
+    [nix.POS]: pos$2,
+    config: nix.thunk(() => ({ [nix.POS]: pos$1, config: true })),
   })),
 }));
 //# sourceMappingURL=define-submoduleWith-noshorthand.ts.map

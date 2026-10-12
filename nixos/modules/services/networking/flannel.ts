@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "flannel"));
   const networkConfig = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => !nix.eq(v, null), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       Network: nix.thunk(() => nix.sel(cfg, "network")),
       SubnetLen: nix.thunk(() => nix.sel(cfg, "subnetLen")),
       SubnetMin: nix.thunk(() => nix.sel(cfg, "subnetMin")),
@@ -57,73 +57,73 @@ export default nix.lambda((args) => (() => {
       Backend: nix.thunk(() => nix.sel(cfg, "backend")),
     }))), nix.sel(cfg, "extraNetworkConfig")));
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         flannel: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "flannel")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "flannel", nix.thunk(() => ({})))),
           publicIp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "IP accessible by other nodes for inter-host communication.\nDefaults to the IP of the interface being used for communication.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
             })))),
           iface: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Interface to use (IP or name) for inter-host communication.\nDefaults to the interface for the default route on the machine.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
             })))),
           etcd: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             endpoints: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 description: "Etcd endpoints",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: nix.thunk(() => ["http://127.0.0.1:2379"]),
               })))),
             prefix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 description: "Etcd key prefix",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "/coreos.com/network",
               })))),
             caFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 description: "Etcd certificate authority file",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
               })))),
             certFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "Etcd cert file",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
               })))),
             keyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "Etcd key file",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
               })))),
           })),
           kubeconfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Path to kubeconfig to use for storing flannel config using the\nKubernetes API\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
             })))),
           network: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "IPv4 network in CIDR format to use for the entire flannel network",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           nodeName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Needed when running with Kubernetes as backend as this cannot be auto-detected\";\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => nix.sel(config, "networking", "fqdnOrHostName")),
@@ -131,62 +131,62 @@ export default nix.lambda((args) => (() => {
               example: "node1.example.com",
             })))),
           storageBackend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Determines where flannel stores its configuration at runtime",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["etcd", "kubernetes"]))),
               default: "etcd",
             })))),
           subnetLen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "The size of the subnet allocated to each host. Defaults to 24 (i.e. /24)\nunless the Network was configured to be smaller than a /24 in which case\nit is one less than the network.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 24n,
             })))),
           subnetMin: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "The beginning of IP range which the subnet allocation should start with.\nDefaults to the first subnet of Network.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
             })))),
           subnetMax: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "The end of IP range which the subnet allocation should start with.\nDefaults to the last subnet of Network.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
             })))),
           backend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Type of backend to use and specific configurations for that backend.",
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
-              default: nix.thunk(() => ({ __proto__: pos$17, Type: "vxlan" })),
+              default: nix.thunk(() => ({ [nix.POS]: pos$17, Type: "vxlan" })),
             })))),
           extraNetworkConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Extra configuration to be added to the net-conf.json/etcd-backed network configuration.",
               type: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "type")),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$19, EnableIPv6: true })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$19, EnableIPv6: true })),
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         systemd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             flannel: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "Flannel Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 FLANNELD_PUBLIC_IP: nix.thunk(() => nix.sel(cfg, "publicIp")),
                 FLANNELD_IFACE: nix.thunk(() => nix.sel(cfg, "iface")),
               }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "storageBackend"), "etcd")), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   FLANNELD_ETCD_ENDPOINTS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.sel(cfg, "etcd", "endpoints")))),
                   FLANNELD_ETCD_KEYFILE: nix.thunk(() => nix.sel(cfg, "etcd", "keyFile")),
                   FLANNELD_ETCD_CERTFILE: nix.thunk(() => nix.sel(cfg, "etcd", "certFile")),
@@ -197,7 +197,7 @@ export default nix.lambda((args) => (() => {
                   ETCDCTL_ENDPOINTS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.sel(cfg, "etcd", "endpoints")))),
                   ETCDCTL_API: "3",
                 }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "storageBackend"), "kubernetes")), nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   FLANNELD_KUBE_SUBNET_MGR: "true",
                   FLANNELD_KUBECONFIG_FILE: nix.thunk(() => nix.sel(cfg, "kubeconfig")),
                   NODE_NAME: nix.thunk(() => nix.sel(cfg, "nodeName")),
@@ -211,7 +211,7 @@ do
 done
 `))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/flannel`),
                 Restart: "always",
                 RestartSec: "10s",
@@ -220,20 +220,20 @@ done
             })),
           })),
         })),
-        boot: nix.thunk(() => ({ __proto__: pos$31, kernelModules: nix.thunk(() => ["br_netfilter"]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$31, kernelModules: nix.thunk(() => ["br_netfilter"]) })),
         services: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           etcd: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "storageBackend"), "etcd")) && nix.asBool(nix.eq(nix.sel(cfg, "etcd", "endpoints"), ["http://127.0.0.1:2379"])))))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           etc: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             "kube-flannel/net-conf.json": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "storageBackend"), "kubernetes")), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "net-conf.json", nix.thunk(() => nix.builtins.toJSON(networkConfig)))),
               })))),
           })),

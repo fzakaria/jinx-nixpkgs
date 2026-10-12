@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(buildGStreamer)), "gst")),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lsp-plugins",
       version: "1.2.35",
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/lsp-plugins/lsp-plugins/releases/download/${nix.sel(finalAttrs, "version")}/lsp-plugins-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-LJXse7IZ1WHqPbNgUbbHMhM7zXZCb7g2sd2FDcS1u2w=",
         })))),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`),
         nix.thunk(() => nix.str`SHAREDDIR=${nix.builtins.placeholder("out")}/share`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-DLSP_NO_EXPERIMENTAL" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-DLSP_NO_EXPERIMENTAL" })),
       configurePhase: nix.thunk(() => nix.str`runHook preConfigure
 
 make $makeFlags config SUB_FEATURES="${nix.app(nix.sel(lib, "concatStringsSep"), " ", subFeatures)}"
@@ -80,7 +80,7 @@ runHook postConfigure
       doCheck: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Collection of open-source audio plugins",
         longDescription: "Compatible with the following formats:\n\n- CLAP - set of plugins for Clever Audio Plugins API\n- LADSPA - set of plugins for Linux Audio Developer's Simple Plugin API\n- LV2 - set of plugins and UIs for Linux Audio Developer's Simple Plugin API (LADSPA) version 2\n- LinuxVST - set of plugins and UIs for Steinberg's VST 2.4 format ported on GNU/Linux Platform\n- VST3 - set of plugins and UIs for Steinberg's VST 3 format\n- JACK - Standalone versions for JACK Audio connection Kit with UI\n\nContains the following plugins (https://lsp-plug.in/?page=plugins)\n\nEqualizers:\n- Filter\n- Graphic Equalizer\n- Parametric Equalizer\n\nDynamic Processing:\n- Beat Breather\n- Clipper\n- Compressor\n- Dynamics Processor\n- Expander\n- Gate\n- Limiter\n\nMultiband Dynamic Processing:\n- GOTT Compressor\n- Multiband Clipper\n- Multiband Compressor\n- Multiband Dynamics Processor\n- Multiband Expander\n- Multiband Gate\n- Multiband Limiter\n\nConvolution / Reverb Processing:\n- Impulse Responses\n- Impulse Reverb\n- Room Builder\n\nDelay Effects:\n- Artistic Delay\n- Compensation Delay\n- Slap-back Delay\n\nModulation Effects:\n- Chorus\n- Flanger\n- Phaser\n\nAnalyzers:\n- Oscilloscope\n- Phase Detector\n- Spectrum Analyzer\n\nMultiband Processing:\n- Crossover\n\nSamplers:\n- Multisampler\n- Sampler\n\nGenerators / Oscillators:\n- Noise Generator\n- Oscillator\n\nUtility Plugins:\n- A/B Test Plugin\n- Automatic Gain Control\n- Latency Meter\n- Loudness Compensator\n- Mixer\n- Profiler\n- Referencer\n- Return\n- Ring Modulated Sidechain\n- Send\n- Surge Filter\n- Trigger\n\nMatcher plugins:\n- Matcher\n- Sidechain Matcher\n",
         homepage: "https://lsp-plug.in",

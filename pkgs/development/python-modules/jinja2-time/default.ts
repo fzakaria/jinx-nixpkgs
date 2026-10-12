@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0h0dr7cfpjnjj8bgl2vk9063a53649pn37wnlkd8hxjy656slkni",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/hackebrot/jinja2-time/pull/19/commits/3b2476c266ba53262352153104ca3501722823a4.patch",
             hash: "sha256-zh4PpAj2GtpgaEap/Yvu6DNY84AwH/YTJlUPRRHPyTs=",
           })))),
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [freezegun, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["jinja2_time"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/hackebrot/jinja2-time",
         description: "Jinja2 Extension for Dates and Times",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

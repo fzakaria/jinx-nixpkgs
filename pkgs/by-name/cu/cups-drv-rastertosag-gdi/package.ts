@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
       const pname = "rastertosag-gdi";
       const version = "0.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.openprinting.org/download/printing/${pname}/${pname}-${version}.tar.gz`),
           sha256: "1ldplpv497j8vhw24sksg3fiw8c5pqr0wajajh7p5xpvb6zlcmvw",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://sources.debian.org/data/main/r/${pname}/0.1-7/debian/patches/0001-${pname}-python3.patch`),
             sha256: "1l3xbrs67025595k9ba5794q3s74anizpbxwsshcfhmbrzd9h8hg",
           })))),
@@ -46,7 +46,7 @@ runHook postInstall
       const postFixup = nix.thunk(() => nix.str`gzip -9nv "${nix.builtins.placeholder("out")}/share/cups/model/rastertosag-gdi"/*.ppd
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CUPS driver for Ricoh Aficio SP 1000S and SP 1100S printers",
         mainProgram: "rastertosag-gdi",
         downloadPage: "https://www.openprinting.org/download/printing/rastertosag-gdi/",
@@ -56,7 +56,7 @@ runHook postInstall
         longDescription: "This package brings CUPS raster filter\nfor Ricoh Aficio SP 1000S and SP 1100S.\nIn contrast to other Ricoh laser printers,\nthey use the proprietary SAG-GDI raster format by\nSagem Communication and do not understand PCL or PostScript.\nTherefore they do not work with Ricoh's PPD files.\n",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

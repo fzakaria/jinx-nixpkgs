@@ -13,7 +13,7 @@ export default nix.thunk(() => (() => {
     const jq = nix.arg($, "jq");
     const stdenv = nix.arg($, "stdenv");
     return (self) => (super$) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildPhase: nix.thunk(() => nix.add(nix.selOr(super$, () => "", "buildPhase"), nix.str`${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (pkg) => nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.concat([
             nix.thunk(() => nix.str`echo "Removing headers and libraries from ${nix.sel(pkg, "package")}"`),
           ], nix.concat(nix.builtins.map((header) => nix.str`rm -rf -- usr/include/${header}`, nix.thunk(() => nix.selOr(pkg, () => [], "headers"))), nix.concat(nix.builtins.map((framework) => nix.str`rm -rf -- System/Library/Frameworks/${framework}`, nix.thunk(() => nix.selOr(pkg, () => [], "frameworks"))), nix.builtins.map((library) => nix.str`rm -rf -- usr/lib/${library}`, nix.thunk(() => nix.selOr(pkg, () => [], "libraries")))))))), disallowedPackages)}

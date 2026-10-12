@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const patches = nix.argOr($, "patches", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "surf",
       version: "2.1-unstable-2025-04-19",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.suckless.org/surf",
           rev: "48517e586cdc98bc1af7115674b554cc70c8bc2e",
           hash: "sha256-+qg1mF5X/hYxCy7N3CxIEM2yHi1jmUGiK/vaQBjKy1I=",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple web browser based on WebKitGTK",
         mainProgram: "surf",
         longDescription: "surf is a simple web browser based on WebKitGTK. It is able to display\nwebsites and follow links. It supports the XEmbed protocol which makes it\npossible to embed it in another application. Furthermore, one can point\nsurf to another URI by setting its XProperties.\n",

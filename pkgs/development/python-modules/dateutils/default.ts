@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const python_dateutil = nix.arg($, "python-dateutil");
   const pytz = nix.arg($, "pytz");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dateutils",
       version: "0.6.12",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "dateutils",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-A92QvLIVQb1OtLATY35PG1+USIHEbMbktnpgWeNw4/E=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [python_dateutil, pytz]),
       pythonImportsCheck: nix.thunk(() => ["dateutils"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utilities for working with datetime objects",
         homepage: "https://github.com/jmcantrell/python-dateutils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),

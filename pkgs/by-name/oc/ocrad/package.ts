@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocrad",
       version: "0.29",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/ocrad/ocrad-${nix.sel(finalAttrs, "version")}.tar.lz`),
           hash: "sha256-ESAMxrC3uhaISnLcy1jvaU96omzSsgQeVVWA8GTS2ek=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [texinfo, libpng]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Optical character recognition (OCR) program & library",
         longDescription: "GNU Ocrad is an OCR (Optical Character Recognition) program based on\na feature extraction method.  It reads images in pbm (bitmap), pgm\n(greyscale) or ppm (color) formats and produces text in byte (8-bit)\nor UTF-8 formats.\n\nAlso includes a layout analyser able to separate the columns or\nblocks of text normally found on printed pages.\n\nOcrad can be used as a stand-alone console application, or as a\nbackend to other programs.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

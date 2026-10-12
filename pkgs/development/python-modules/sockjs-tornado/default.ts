@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.7";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "02ff25466b3a46b1a7dbe477340b042770ac078de7ea475a6285a28a75eb1fab",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [tornado]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mrjoes/sockjs-tornado/",
         description: "SockJS python server implementation on top of Tornado framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

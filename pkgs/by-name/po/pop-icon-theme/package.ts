@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pop-icon-theme";
       const version = "3.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pop-os",
           repo: "icon-theme",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [adwaita_icon_theme, hicolor_icon_theme]);
       const dontDropIconThemeCache = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Icon theme for Pop!_OS with a semi-flat design and raised 3D motifs",
         homepage: "https://github.com/pop-os/icon-theme",
         license: nix.thunk(() => (() => {
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

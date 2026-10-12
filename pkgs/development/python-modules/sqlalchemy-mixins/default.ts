@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "absent1706",
           repo: "sqlalchemy-mixins",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [aiosqlite, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["sqlalchemy_mixins"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python mixins for SQLAlchemy ORM",
         homepage: "https://github.com/absent1706/sqlalchemy-mixins",
         changelog: nix.thunk(() => nix.str`https://github.com/absent1706/sqlalchemy-mixins/releases/tag/v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gcompris",
       version: "26.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/gcompris/qt/src/gcompris-qt-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-w4m4Y7KfASzMGz7vdAmC/2x2VME6LjQzl+5GYSTzEzk=",
         })))),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm444 ../org.kde.gcompris.appdata.xml -t $out/share/metainfo\n\nqtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\")\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High quality educational software suite, including a large number of activities for children aged 2 to 10",
         homepage: "https://gcompris.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

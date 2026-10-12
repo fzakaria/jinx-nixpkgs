@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "snes9x",
       version: "0-unstable-2026-09-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snes9xgit",
           repo: "snes9x",
           rev: "1bcc369e89f08243e0a462882fb1f3e42e51de3a",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       makefile: "Makefile",
       preBuild: "cd libretro",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of SNES9x git to libretro",
         homepage: "https://github.com/snes9xgit/snes9x",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

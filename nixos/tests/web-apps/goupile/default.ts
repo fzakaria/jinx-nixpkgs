@@ -85,31 +85,31 @@ EOF
 fi
 `)));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     name: "goupile",
-    passthru: nix.thunk(() => ({ __proto__: pos$1, "interactive-script": run_goupile_test })),
+    passthru: nix.thunk(() => ({ [nix.POS]: pos$1, "interactive-script": run_goupile_test })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             goupile: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               enableSandbox: true,
-              settings: nix.thunk(() => ({ __proto__: pos$3, HTTP: nix.thunk(() => ({ __proto__: pos$2, Port: 8889n })) })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$3, HTTP: nix.thunk(() => ({ [nix.POS]: pos$2, Port: 8889n })) })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             firewall: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               allowedTCPPorts: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "services", "nginx", "defaultHTTPListenPort")),
               ]),
@@ -118,11 +118,11 @@ fi
             extraHosts: "127.0.0.1 www.example.com\n",
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             systemPackages: nix.thunk(() => [python, run_goupile_test]),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             memorySize: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), 8192n)),
             cores: 4n,
           })),
@@ -149,52 +149,52 @@ finally:
 `;
     })(), formals$3),
     interactive: nix.thunk(() => ({
-      __proto__: pos$26,
-      sshBackdoor: nix.thunk(() => ({ __proto__: pos$12, enable: true })),
+      [nix.POS]: pos$26,
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           const config = nix.arg($_1, "config");
           const port = nix.thunk(() => nix.sel(config, "services", "goupile", "settings", "HTTP", "Port"));
           return {
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             imports: nix.thunk(() => [
               nix.path(here, "../../common/x11.nix"),
               nix.path(here, "../../common/user-account.nix"),
             ]),
             services: nix.thunk(() => ({
-              __proto__: pos$14,
-              xserver: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+              [nix.POS]: pos$14,
+              xserver: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
             })),
             "test-support": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               displayManager: nix.thunk(() => ({
-                __proto__: pos$16,
-                auto: nix.thunk(() => ({ __proto__: pos$15, user: "alice" })),
+                [nix.POS]: pos$16,
+                auto: nix.thunk(() => ({ [nix.POS]: pos$15, user: "alice" })),
               })),
             })),
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               forwardPorts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   from: "host",
-                  host: nix.thunk(() => ({ __proto__: pos$18, port: port })),
-                  guest: nix.thunk(() => ({ __proto__: pos$19, port: port })),
+                  host: nix.thunk(() => ({ [nix.POS]: pos$18, port: port })),
+                  guest: nix.thunk(() => ({ [nix.POS]: pos$19, port: port })),
                 })),
               ]),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$23,
-              firewall: nix.thunk(() => ({ __proto__: pos$22, allowedTCPPorts: nix.thunk(() => [port]) })),
+              [nix.POS]: pos$23,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$22, allowedTCPPorts: nix.thunk(() => [port]) })),
             })),
           };
         })(), formals$4),
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
   };

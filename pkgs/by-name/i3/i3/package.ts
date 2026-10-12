@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "i3",
       version: "4.25.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "i3",
           repo: "i3",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -103,12 +103,12 @@ export default nix.lambda((args) => (() => {
       postInstall: "wrapProgram \"$out/bin/i3-save-tree\" --prefix PERL5LIB \":\" \"$PERL5LIB\"\nfor program in $out/bin/i3-sensible-*; do\n  sed -i 's/which/command -v/' $program\ndone\n\ninstallManPage man/*.1\n",
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$2, i3wm: nix.thunk(() => nix.attr(nixosTests, "i3wm")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, i3wm: nix.thunk(() => nix.attr(nixosTests, "i3wm")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tiling window manager",
         homepage: "https://i3wm.org",
         maintainers: nix.thunk(() => (() => {

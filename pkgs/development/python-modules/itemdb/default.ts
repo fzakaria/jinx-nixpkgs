@@ -19,20 +19,20 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const nativeBuildInputs = nix.thunk(() => [flit_core]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "almarklein",
           repo: "itemdb",
           tag: nix.thunk(() => nix.str`v${version}`),
           sha256: "sha256-HXdOERq2td6CME8zWN0DRVkSlmdqTg2po7aJrOuITHE=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easy transactional database for Python dicts, backed by SQLite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         homepage: "https://itemdb.readthedocs.io",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "matthiasbeyer"))]),
       }));
-      return { __proto__: pos$3, pname, version, pyproject, nativeBuildInputs, src, meta };
+      return { [nix.POS]: pos$3, pname, version, pyproject, nativeBuildInputs, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

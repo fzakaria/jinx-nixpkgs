@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mdadm",
       version: "4.6",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.kernel.org/pub/scm/utils/mdadm/mdadm.git",
           tag: nix.thunk(() => nix.str`mdadm-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-jFsVPJC4lcShkSwQCGjVdVkvk4q4weM7i5DzrLgpuSM=",
@@ -62,20 +62,20 @@ sed -i \\
 `),
       postFixup: "grep -r $out $out/bin && false || true\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "systemd-initrd-swraid": nix.thunk(() => nix.attr(nixosTests, "systemd-initrd-swraid")),
           "installer-swraid": nix.thunk(() => nix.sel(nixosTests, "installer", "swraid")),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://git.kernel.org/pub/scm/utils/mdadm/mdadm.git",
             "rev-prefix": "mdadm-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/utils/mdadm/mdadm.git/tree/CHANGELOG.md?h=${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Programs for managing RAID arrays under Linux",
         homepage: "https://git.kernel.org/pub/scm/utils/mdadm/mdadm.git",

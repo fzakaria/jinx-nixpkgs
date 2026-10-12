@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const puredata = nix.arg($, "puredata");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "helmholtz",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.katjaas.nl/helmholtz/helmholtz~.zip",
           name: "helmholtz.zip",
           curlOpts: "--user-agent ''",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "mkdir -p $out/helmholtz~\nsed -i \"s@current: pd_darwin@current: pd_linux@g\" Makefile\nsed -i \"s@-Wl@@g\" Makefile\nsed -i \"s@\\$(NAME).pd_linux \\.\\./\\$(NAME).pd_linux@helmholtz~.pd_linux $out/helmholtz~/@g\" Makefile\n",
       installPhase: "cp -r helmholtz~/ $out/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "Time domain pitch tracker for Pure Data",
         homepage: "http://www.katjaas.nl/helmholtz/helmholtz.html",

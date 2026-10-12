@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const jq = nix.arg($, "jq");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spectre-cli",
       version: "unstable-2022-02-05",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spectre.app",
           repo: "cli",
           rev: "a5e7aab28f44b90e5bd1204126339a81f64942d2",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "mv ../spectre-cli-tests ../spectre_tests.xml ./\npatchShebangs spectre-cli-tests\nexport HOME=$(mktemp -d)\n\n./spectre-tests\n./spectre-cli-tests\n",
       installPhase: "mkdir -p $out/bin\nmv spectre $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Stateless cryptographic identity algorithm",
         homepage: "https://spectre.app",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

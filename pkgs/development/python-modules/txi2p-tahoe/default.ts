@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tahoe-lafs",
           repo: "txi2p",
           tag: version,
@@ -38,7 +38,7 @@ ${nix.sel(python, "interpreter")} -m twisted.trial txi2p
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "I2P bindings for Twisted",
         homepage: "https://github.com/tahoe-lafs/txi2p",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -48,7 +48,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

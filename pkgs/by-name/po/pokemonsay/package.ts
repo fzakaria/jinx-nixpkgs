@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const findutils = nix.arg($, "findutils");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pokemonsay",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HRKings",
           repo: "pokemonsay-newgenerations",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ substituteInPlace pokemonthink.sh \\
       doInstallCheck: true,
       installCheckPhase: "(set -x\n  test \"$($out/bin/pokemonsay --list | wc -l)\" -ge 992\n)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Print pokemon in the CLI! An adaptation of the classic cowsay",
         changelog: nix.thunk(() => nix.str`https://github.com/HRKings/pokemonsay-newgenerations/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/HRKings/pokemonsay-newgenerations",

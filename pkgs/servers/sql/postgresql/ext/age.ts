@@ -28,49 +28,49 @@ export default nix.lambda((args) => (() => {
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const stdenv = nix.arg($, "stdenv");
   const sources = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     "19": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "1.8.0-rc0",
       hash: "sha256-tEWWn2Wtz30N18pfvW+R3TEylustFeII7kBE1aiJw80=",
     })),
     "18": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "1.8.0-rc0",
       hash: "sha256-QtcH0lUWvey/URZm/cqh1TempMU2Vnerzu6SQg+yofA=",
     })),
     "17": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.7.0-rc0",
       hash: "sha256-hAjhNj/benwZbbuxDl9RSjwWRai9CUozbEN6ecPKoFE=",
     })),
     "16": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "1.6.0-rc0",
       hash: "sha256-iukdi2c3CukGvjuTojybFFAZBlAw8GEfzFPr2qJuwTA=",
     })),
     "15": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "1.6.0-rc0",
       hash: "sha256-W4EALCgCuyzCOUiTu5aU2fz2P8rJFv+7/8m+d+dIV60=",
     })),
     "14": nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "1.6.0-rc0",
       hash: "sha256-6TTuqJs//QpNgNMw4TZf/3rdtMGSO/ytG4s8i+Jv2d8=",
     })),
   }));
   const source = nix.thunk(() => nix.selOr(sources, () => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       version: "",
       hash: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Source for Age is not available for ${nix.sel(postgresql, "version")}`))),
     }), nix.key(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(postgresql, "version"))))));
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "age",
       version: nix.thunk(() => nix.attr(source, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           owner: "apache",
           repo: "age",
           tag: nix.thunk(() => nix.str`PG${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(postgresql, "version")))}/v${nix.sel(finalAttrs, "version")}`),
@@ -83,9 +83,9 @@ export default nix.lambda((args) => (() => {
       ]),
       enableUpdateScript: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         tests: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             pname: "age-regression",
@@ -110,7 +110,7 @@ ${nix.app(nix.sel(lib, "getDev"), postgresql)}/lib/pgxs/src/test/regress/pg_regr
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         broken: nix.thunk(() => !nix.asBool(nix.builtins.elem(nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(postgresql, "version")))), nix.thunk(() => nix.builtins.attrNames(sources))))),
         description: "Graph database extension for PostgreSQL",
         homepage: "https://age.apache.org/",

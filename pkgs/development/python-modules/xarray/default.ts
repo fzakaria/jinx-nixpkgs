@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const h5py = nix.arg($, "h5py");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xarray",
       version: "2026.07.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pydata",
           repo: "xarray",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [numpy, packaging, pandas]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         accel: nix.thunk(() => [bottleneck, numba, numbagg, opt_einsum, scipy]),
         io: nix.thunk(() => [netcdf4, h5netcdf, scipy, zarr, fsspec, cftime, pooch]),
         etc: nix.thunk(() => [sparse]),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["xarray"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/pydata/xarray/blob/${nix.sel(finalAttrs, "src", "tag")}/doc/whats-new.rst`),
         description: "N-D labeled arrays and datasets in Python",
         homepage: "https://github.com/pydata/xarray",

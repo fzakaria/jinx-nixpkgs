@@ -21,22 +21,22 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dnsdbq",
       version: "2.6.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dnsdb",
           repo: "dnsdbq",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-5Pi8xFZXnU3abIsH9m6xqrQ6NnEtAbhMU6HXsOYP0gg=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: dnsdbq, command: "dnsdbq -v" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: dnsdbq, command: "dnsdbq -v" })))),
         })),
       })),
       nativeBuildInputs: nix.thunk(() => [curl]),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp dnsdbq $out/bin\nmkdir -p $out/man/man1\ncp dnsdbq.man $out/man/man1/dnsdbq.1\nrunHook postInstall\n",
       extraOutputsToInstall: nix.thunk(() => ["man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "C99 program that accesses passive DNS database systems",
         homepage: "https://github.com/dnsdb/dnsdbq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

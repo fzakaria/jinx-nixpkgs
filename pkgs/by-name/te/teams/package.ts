@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pbzx = nix.arg($, "pbzx");
   const cpio = nix.arg($, "cpio");
   const pname = "teams";
-  const versions = nix.thunk(() => ({ __proto__: pos$1, darwin: "25255.703.3981.5698" }));
+  const versions = nix.thunk(() => ({ [nix.POS]: pos$1, darwin: "25255.703.3981.5698" }));
   const hashes = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     darwin: "sha256-p9tAvOJxoIO0d8z0qdfc4sokUNfaYKq2NtBHKOWYBM4=",
   }));
   const meta = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     description: "Microsoft Teams",
     homepage: "https://teams.microsoft.com",
     downloadPage: "https://teams.microsoft.com/downloads",
@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
     mainProgram: "teams",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       meta: meta,
       version: nix.thunk(() => nix.sel(versions, "darwin")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://statics.teams.cdn.office.net/production-osx/${nix.sel(versions, "darwin")}/MicrosoftTeams.pkg`),
           hash: nix.thunk(() => nix.sel(hashes, "darwin")),
         })))),

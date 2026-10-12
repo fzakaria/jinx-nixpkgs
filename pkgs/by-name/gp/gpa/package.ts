@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const libgpg_error = nix.arg($, "libgpg-error");
   const libassuan = nix.arg($, "libassuan");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gpa",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnupg/gpa/gpa-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Jqj6W/cFQct0Hwxxt8/ikbHqVuq2jusHqpYs71zfM8w=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "remove-trust_item-stuff-to-make-it-build-with-gpgme-2.x.patch",
             url: "https://dev.gnupg.org/rGPAb6ba8bcc6db7765667cd6c49b7edc9a2073bc74f?diff=1",
             hash: "sha256-A3Cx4zub3Um09yjZ1mu0PZe/v7rmhXjND0Hg5WkcIf8=",
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [intltool, pkg_config]),
       buildInputs: nix.thunk(() => [gtk3, gpgme, libgpg_error, libassuan]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://dev.gnupg.org/source/gpa/browse/master/NEWS;gpa-${nix.sel(finalAttrs, "version")}?view=raw`),
         description: "Graphical user interface for the GnuPG",
         homepage: "https://www.gnupg.org/related_software/gpa/",

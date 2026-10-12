@@ -70,97 +70,97 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "omnom-config.yml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$57,
+    [nix.POS]: pos$57,
     options: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       services: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         omnom: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Omnom, a webpage bookmarking and snapshotting service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "omnom", nix.thunk(() => ({})))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/omnom",
               description: "The directory where Omnom stores its data files.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 7331n,
               description: "The Omnom service port.",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open ports in the firewall.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
               default: "omnom",
               description: "The Omnom service user.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
               default: "omnom",
               description: "The Omnom service group.",
             })))),
           passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "File containing the password for the SMTP user.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               description: "Configuration options for the /etc/omnom/config.yml file.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     app: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       debug: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "debug mode")),
                       disable_signup: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "restricting user creation")),
                       results_per_page: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: 20n,
                           description: "Number of results per page.",
                         })))),
                     })),
                     db: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       connection: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/db.sqlite3`),
                           description: "Database connection URI.",
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.omnom.dataDir}/db.sqlite3\"\n")),
                         })))),
                       type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["sqlite"]))),
                           default: "sqlite",
                           description: "Database type.",
                         })))),
                     })),
                     server: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
                           description: "Server address.",
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"127.0.0.1:${config.services.omnom.port}\"\n")),
                         })))),
                       base_url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           internal: true,
                           default: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}/`),
@@ -169,67 +169,67 @@ export default nix.lambda((args) => (() => {
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"http://${config.services.omnom.settings.server.address}/\"\n")),
                         })))),
                       secure_cookie: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Whether to limit cookies to a secure channel.",
                         })))),
                     })),
                     storage: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "fs",
                           description: "Storage type.",
                         })))),
                     })),
                     smtp: nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       tls: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Whether TLS encryption should be used.")),
                       tls_allow_insecure: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Whether to allow insecure TLS.")),
                       host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "",
                           description: "SMTP server hostname.",
                         })))),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 25n,
                           description: "SMTP server port address.",
                         })))),
                       sender: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "Omnom <omnom@127.0.0.1>",
                           description: "Omnom sender e-mail.",
                         })))),
                       send_timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: 10n,
                           description: "Send timeout duration in seconds.",
                         })))),
                       connection_timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: 5n,
                           description: "Connection timeout duration in seconds.",
                         })))),
                     })),
                     activitypub: nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       pubkey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/public.pem`),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.omnom.dataDir}/public.pem\"\n")),
                           description: "ActivityPub public key. Will be generated, by default.",
                         })))),
                       privkey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/private.pem`),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.omnom.dataDir}/private.pem\"\n")),
@@ -244,15 +244,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         services: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           omnom: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             settings: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               app: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 static_dir: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/static`),
                 template_dir: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/templates`),
               })),
@@ -261,23 +261,23 @@ export default nix.lambda((args) => (() => {
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "password", nix.thunk(() => nix.sel(cfg, "settings", "smtp"))))),
             message: "`services.omnom.settings.smtp.password` must be defined in `services.omnom.passwordFile`.\n",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           services: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             omnom: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               path: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [nix.thunk(() => nix.lookup(w, "yq-go"))];
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 StateDirectory: "omnom",
@@ -297,52 +297,52 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} lis
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             settings: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               "10-omnom": nix.thunk(() => (() => {
                 const settings = nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   user: nix.thunk(() => nix.attr(cfg, "user")),
                   group: nix.thunk(() => nix.attr(cfg, "group")),
                 }));
                 return nix.attrsDyn({}, [
-                  [nix.str`${nix.sel(cfg, "dataDir")}`, nix.thunk(() => ({ __proto__: pos$42, d: settings }))],
+                  [nix.str`${nix.sel(cfg, "dataDir")}`, nix.thunk(() => ({ [nix.POS]: pos$42, d: settings }))],
                   [nix.str`${nix.sel(cfg, "settings", "app", "static_dir")}`, nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     C: nix.thunk(() => nix.update(settings, {
-                      __proto__: pos$43,
+                      [nix.POS]: pos$43,
                       argument: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/static`),
                     })),
                   }))],
-                  [nix.str`${nix.sel(cfg, "settings", "app", "static_dir")}/data`, nix.thunk(() => ({ __proto__: pos$45, d: settings }))],
+                  [nix.str`${nix.sel(cfg, "settings", "app", "static_dir")}/data`, nix.thunk(() => ({ [nix.POS]: pos$45, d: settings }))],
                 ]);
               })()),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "omnom")), nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               omnom: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "omnom")), nix.thunk(() => ({ __proto__: pos$51, omnom: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "omnom")), nix.thunk(() => ({ [nix.POS]: pos$51, omnom: nix.thunk(() => ({})) })))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           systemPackages: nix.thunk(() => (() => {
             const omnom_wrapped = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "omnom", nix.thunk(() => nix.str`#! ${nix.sel(pkgs, "runtimeShell")}
 cd ${nix.sel(cfg, "dataDir")}

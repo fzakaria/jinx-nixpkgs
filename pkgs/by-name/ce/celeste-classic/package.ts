@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const srcbin = nix.thunk(() => (nix.asBool(practiceMod) ? "celeste_practice_mod" : "celeste"));
   const outbin = nix.thunk(() => (nix.asBool(practiceMod) ? "celeste-classic-pm" : "celeste-classic"));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: outbin,
       version: "unstable-2020-12-08",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.speedrun.com/static/resource/174ye.zip?v=f3dc98f",
           hash: "sha256-GANHqKB0N905QJOLaePKWkUuPl9UlL1iqvkMMvw/CC8=",
           extension: "zip",
@@ -38,7 +38,7 @@ ln -s $out/lib/${outbin}/${outbin} $out/bin/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`PICO-8 platformer about climbing a mountain, made in four days${nix.app(nix.sel(lib, "optionalString"), practiceMod, " (Practice Mod)")}`),
         homepage: "https://celesteclassic.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

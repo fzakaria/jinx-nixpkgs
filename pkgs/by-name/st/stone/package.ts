@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stone",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.gcd.org/sengoku/stone/stone-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-1dwa9uxdpQPypAs98/4ZqPv5085pa49G9NU9KsjY628=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["linux-ssl"]),
       installPhase: "runHook preInstall\ninstall -Dm755 stone -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TCP/IP repeater in the application layer",
         homepage: "http://www.gcd.org/sengoku/stone/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

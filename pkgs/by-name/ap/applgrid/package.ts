@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const root = nix.arg($, "root");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "applgrid",
       version: "1.6.27",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.hepforge.org/archive/applgrid/applgrid-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-h+ZNGj33FIwg4fOCyfGJrUKM2vDDQl76JcLhtboAOtc=",
         })))),
@@ -43,7 +43,7 @@ sed -i appl_grid/serialise_base.h -e '1i#include <cstdint>'
       enableParallelBuilding: false,
       postInstall: "for header in src/*.h; do\n  install -Dm644 \"$header\" \"$out\"/include/appl_grid/\"`basename $header`\"\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast and flexible way to reproduce the results of full NLO calculations with any input parton distribution set in only a few milliseconds rather than the weeks normally required to gain adequate statistics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         homepage: "http://applgrid.hepforge.org",

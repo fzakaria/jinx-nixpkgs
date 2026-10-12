@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const utf8Locale = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "en_US.UTF-8" : "C.UTF-8"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mandoc",
       version: "1.14.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mandoc.bsd.lv/snapshots/mandoc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "8bf0d570f01e70a6e124884088870cbed7537f36328d512909eb10cd53179d9c",
         })))),
@@ -55,11 +55,11 @@ UTF8_LOCALE=${utf8Locale}
       nativeCheckInputs: nix.thunk(() => [perl]),
       preCheck: "patchShebangs --build regress/regress.pl",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "man")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "man")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform", "system"), nix.sel(stdenv, "hostPlatform", "system"))),
         homepage: "https://mandoc.bsd.lv/",
         description: "Suite of tools compiling mdoc and man",

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vdr-skin-nopacity";
       const version = "1.1.20";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "SkinNopacity",
           owner: "kamel5",
           hash: "sha256-50oCb9xixPQEwv3Ni1UUmmWVzky/MTvZaqSUczhsHWc=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         const from_1 = nix.thunk(() => nix.sel(vdr, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Highly customizable native true color skin for the Video Disc Recorder",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ck3d"))]),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.attr(from_1, "platforms")),
       };
       })());
-      return { __proto__: pos$3, pname, version, src, buildInputs, installFlags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, installFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -72,12 +72,12 @@ export default nix.lambda((args) => (() => {
   const revision = nix.arg($, "revision");
   const system = nix.arg($, "system");
   const throwSystem = nix.arg($, "throwSystem");
-  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => ({ __proto__: pos$1, name: "webkit", revision: revision }))), () => nix.force(throwSystem), nix.key(nix.force(system))));
+  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, name: "webkit", revision: revision }))), () => nix.force(throwSystem), nix.key(nix.force(system))));
   const libvpx$ = nix.thunk(() => nix.app(nix.sel(libvpx, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "webmproject",
           repo: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -85,10 +85,10 @@ export default nix.lambda((args) => (() => {
         })))),
     })));
   const libjxl$ = nix.thunk(() => nix.app(nix.sel(libjxl, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "0.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "libjxl",
           repo: "libjxl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/libjxl/libjxl/commit/22d12d74e7bc56b09cfb1973aa89ec8d714fa3fc.patch",
             hash: "sha256-X4fbYTMS+kHfZRbeGzSdBW5jQKw8UN44FEyFRUtw0qo=",
           })))),
@@ -112,14 +112,14 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ["-DJPEGXL_STATIC=ON"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch32")), nix.thunk(() => ["-DJPEGXL_FORCE_NEON=ON"]))))),
     })));
   const webkit_linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       name: "playwright-webkit",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           url: nix.thunk(() => nix.attr(download, "url")),
           stripRoot: nix.thunk(() => nix.attr(download, "stripRoot")),
           hash: nix.thunk(() => nix.selOr({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "x86_64-linux": "sha256-My6nSOMD2NfPGUmOJKZgWpkjktEsj+P+CPeVmKy1VAQ=",
             "aarch64-linux": "sha256-5CCcWiZN1lVoiiSEO1OvxLcuKhSOIQrD5GH1TYr7XIY=",
           }, () => nix.force(throwSystem), nix.key(nix.force(system)))),
@@ -185,16 +185,16 @@ wrapProgram $out/minibrowser-wpe/bin/MiniBrowser \\
 `),
     }))));
   const webkit_darwin = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       url: nix.thunk(() => nix.attr(download, "url")),
       stripRoot: nix.thunk(() => nix.attr(download, "stripRoot")),
       hash: nix.thunk(() => nix.selOr({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "aarch64-darwin": "sha256-EjI0TdmQfB2qT2bBtbJFpsa+bplkJ5YyyVxNoOgsnZc=",
       }, () => nix.force(throwSystem), nix.key(nix.force(system)))),
     }))));
   return nix.selOr({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     "x86_64-linux": webkit_linux,
     "aarch64-linux": webkit_linux,
     "aarch64-darwin": webkit_darwin,

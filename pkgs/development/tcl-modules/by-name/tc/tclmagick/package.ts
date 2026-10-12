@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const tk = nix.arg($, "tk");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tclmagick",
       version: "1.3.43",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/graphicsmagick/GraphicsMagick-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-CpZztiBF0HqH4XWIAyE9IbZVpBcgrDzyASv47wTneQ0=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tcl and Tk Interfaces to GraphicsMagick and ImageMagick",
         homepage: "http://www.graphicsmagick.org/TclMagick/doc/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "tcltk")),
